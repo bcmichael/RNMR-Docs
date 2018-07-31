@@ -4,6 +4,7 @@ theme: readthedocs
 page:
 - ['index.md', 'Index']
 - ['getting_started.md', 'Getting Started']
+- ['running_routine_experiments.md', 'Running Routine Experiments']
 markdown_extensions:
     - toc:
         separator: "_"

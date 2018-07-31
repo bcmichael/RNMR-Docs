@@ -9,3 +9,12 @@
 * [Display Screen](getting_started.md#display_screen)
 * [Setting the Magic Angle](getting_started.md#setting_the_magic_angle)
 * [Basic Shimming](getting_started.md#basic_shimming)
+## Running Routine Experiments
+* [Introduction](running_routine_experiments.md#introduction)
+* [A Brief Primer On Macros](running_routine_experiments.md#a_brief_primer_on_macros)
+* [Invoking an Experiment](running_routine_experiments.md#invoking_an_experiment)
+* [Calibrating Pulse Powers](running_routine_experiments.md#calibrating_pulse_powers)
+* [Optimizing Cross Polarization](running_routine_experiments.md#optimizing_cross_polarization)
+* [Running a 2D DARR Experiment](running_routine_experiments.md#running_a_2d_darr_experiment)
+* [RNMRP](running_routine_experiments.md#rnmrp)
+* [Going Further](running_routine_experiments.md#going_further)
