@@ -118,7 +118,7 @@ the macro using the `ONERR` command.
 ## Macro Output
 There are several ways in which an RNMR macro may output data to the user. First, data resulting from a calculation,
 experiment, or other manipulation may simply be stored in a global argument, which may be used on console level or in
-another macro as desired. Second, data from a macro may be printed to the screen using the MSG command, as shown below:
+another macro as desired. Second, data from a macro may be printed to the screen using the `MSG` command, as shown below:
 ```no-highlight
 LCLARG ABC 9
 MSG "VALUE OF ABC IS &ABC"
@@ -179,10 +179,10 @@ a local argument to create in the called macro. You can also specify the values 
 macro temp contains the following:
 ```no-highlight
 IFLCL A . .+3
-  MSG “A EXISTS AND HAS VALUE &A”
-  MSG “B HAS VALUE &B”
+  MSG "A EXISTS AND HAS VALUE &A"
+  MSG "B HAS VALUE &B"
   MEXIT
-MSG “A DOES NOT EXIST
+MSG "A DOES NOT EXIST"
 MEXIT
 ```
 then calling the following:
