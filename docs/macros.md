@@ -200,4 +200,5 @@ These two methods of passing arguments into macros are somewhat analogous to the
 constructs in some other programing languages. You may use a mixture of both methods to pass information into a macro.
 
 The local arguments `KEY$MAX` and `POS$MAX` will automatically be created when a macro is called and will contain the
-number of each of these types of arguments that were passed to the macro. The local argument `MACRO$` will also be created and will hold the name of the macro.
+number of each of these types of arguments that were passed to the macro. The local argument `MACRO$` will also be
+created and will hold the name of the macro.

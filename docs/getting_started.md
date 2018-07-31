@@ -83,7 +83,8 @@ why not use the Help menus to find out more about it?
 `UNIT /FREQ PPM` changes the display units to PPM (this would not be legal for an FID).
 
 `LIM # ##` displays the portion of the spectrum between # and ##. For instance, suppose you wish to display the portion
-of the spectrum between 1 and 2 PPM, type `LIM 1 2` (assuming you have previously selected UNIT PPM and set the referencing).
+of the spectrum between 1 and 2 PPM, type `LIM 1 2` (assuming you have previously selected UNIT PPM and set the
+referencing).
 
 `LPK`  lists the peaks above the threshold value.
 
@@ -140,9 +141,9 @@ hopefully, acted upon.
 We typically set the magic angle for solid state NMR using KBr. With a sample of KBr spinning at 4-6 KHz run a one pulse
 experiment. We want to be able to observe rotational echoes, so we must move the transmitter frequency to be on resonance
 with the KBr peak. First process, and phase the spectrum. Type `ZO` to enter the zoom subroutine (hitting enter exits
- it). Move the cursor to the peak and note the frequency in the top left of the display. The `P` command within the zoom
- subroutine can help you position the cursor on the center of the peak.  Move the transmitter frequency by typing `F 1 #`,
- where # is the frequency you wish to move to.
+it). Move the cursor to the peak and note the frequency in the top left of the display. The `P` command within the zoom
+subroutine can help you position the cursor on the center of the peak.  Move the transmitter frequency by typing
+`F 1 #`, where # is the frequency you wish to move to.
 
 Run the experiment again with the new transmitter position and you should see rotational echoes in the FID if you are
 spinning at close to the magic angle. Type `MAG` to put the FID into magnitude mode. How far out in time do the
