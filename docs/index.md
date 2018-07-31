@@ -1,17 +1,11 @@
-# Welcome to MkDocs
-
-For full documentation visit [mkdocs.org](http://mkdocs.org).
-
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+# RNMR Documentation
+## Getting Started
+* [Introduction](getting_started.md#introduction)
+* [Manually Running a One Pulse 1D Experiment](getting_started.md#manually_running_a_one_pulse_1d_experiment)
+* [Phase Correction](getting_started.md#phase_correction)
+* [Manipulating Spectra](getting_started.md#manipulating_spectra)
+* [Keeping Stuff](getting_started.md#keeping_stuff)
+* [Help](getting_started.md#Help)
+* [Display Screen](getting_started.md#display_screen)
+* [Setting the Magic Angle](getting_started.md#setting_the_magic_angle)
+* [Basic Shimming](getting_started.md#basic_shimming)

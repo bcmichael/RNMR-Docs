@@ -1,1 +1,9 @@
-site_name: My Docs
+site_name: RNMR Documentation
+theme: readthedocs
+
+page:
+- ['index.md', 'Index']
+- ['getting_started.md', 'Getting Started']
+markdown_extensions:
+    - toc:
+        separator: "_"
