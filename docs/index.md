@@ -18,3 +18,11 @@
 * [Running a 2D DARR Experiment](running_routine_experiments.md#running_a_2d_darr_experiment)
 * [RNMRP](running_routine_experiments.md#rnmrp)
 * [Going Further](running_routine_experiments.md#going_further)
+## Macros
+* [Introduction](macros.md#introduction)
+* [Global Arguments](macros.md#global_arguments)
+* [Local Arguments](macros.md#local_arguments)
+* [Macro Labels](macros.md#macro_labels)
+* [Control Flow](macros.md#control_flow)
+* [Macro Output](macros.md#macro_output)
+* [Passing Information to and from Macros](macros.md#passing_information_to_and_from_macros)

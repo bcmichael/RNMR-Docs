@@ -5,6 +5,7 @@ pages:
 - Index: 'index.md'
 - Getting Started: 'getting_started.md'
 - Running Routine Experiments: 'running_routine_experiments.md'
+- Macros: 'macros.md'
 
 markdown_extensions:
     - toc:
