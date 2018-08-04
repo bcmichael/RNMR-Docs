@@ -1,6 +1,6 @@
 # Getting Started
 ## Introduction
-RNMR software has two separate but similar programs. The acquisition softwareis called RNMRA, while the processing
+RNMR software has two separate but similar programs. The acquisition software is called RNMRA, while the processing
 software is called RNMRP. Open a terminal window and you will be prompted to enter your home directory or your last name.
 To collect data you launch RNMRA by typing the following command:  
 
