@@ -90,7 +90,7 @@ allocate the next available record and print out the record number as an informa
 complete. When "rec#" is missing or 0, an error message (FNDTA ) NO AVAILABLE `TITLE` RECORD indicates that there are no
 more empty title records available to be allocated.  If this message is encountered, the user should either delete one
 or more existing records in the current archive or create a new, empty  archive ($ CRTARC) before retrying the
-allocation.  If "rec#" is specified and is not 0, the specified record must be empty (i.e. not previously allocated). 
+allocation.  If "rec#" is specified and is not 0, the specified record must be empty (i.e. not previously allocated).
 Only records 5 through 200 may be allocated with `ALLB`; scratch records (numbers 1-4) may not be allocated.  The
 parameter NDIM specifies the number of dimensions. NDIM may be chosen from 1 to 4.  If NDIM is not specified on the
 command line, RNMR will prompt for it with a default value of 2.
@@ -103,16 +103,16 @@ that may be specified for any dimension is 1.
 
 NDIMX is the number of dimensions that will be simultaneously accessible. NDIMX is an integer between 1 and NDIM,
 inclusive.  This parameter controls the manner in which the blocks of the allocated record are physically stored on
-disk.  If NDIMX is 1, data is written in sequential order, as appropriate for a one-dimensional read operation. 
-However, if NDIMX is 2, data is written in 64 X 64 point blocks to facilitate simultaneous retrieval in two dimensions. 
-Similarly, NDIMX values of 3 and 4 direct RNMR to store data in a manner optimized for 3 and 4 dimensional retrieval. 
+disk.  If NDIMX is 1, data is written in sequential order, as appropriate for a one-dimensional read operation.
+However, if NDIMX is 2, data is written in 64 X 64 point blocks to facilitate simultaneous retrieval in two dimensions.
+Similarly, NDIMX values of 3 and 4 direct RNMR to store data in a manner optimized for 3 and 4 dimensional retrieval.
 If NDIMX is not specified on the command line, RNMR will prompt for its value; the default value of this parameter is
 always 1, regardless of NDIM.  Note that once a record has been allocated, it is impossible to reset  its NDIMX value.
 
 When NDIMX is greater than 1, data is stored physically in units of a specific size, which depends only on the value of
 NDIMX.  Since the user may allocate only an integer number of these units, RNMR will sometimes create a blocked record
 with more blocks than the number requested by the user.  For example, a request to allocate a blocked record with 5
-blocks of 4096 points each and NDIMX 1 gives `SIZEB` 2 of 5, i.e. RNMR returns exactly the number of blocks requested. 
+blocks of 4096 points each and NDIMX 1 gives `SIZEB` 2 of 5, i.e. RNMR returns exactly the number of blocks requested.
 However, if the same request is made with NDIMX 2, 8 blocks will be allocated since 8 X 4096 corresponds to the smallest
 number of storage units greater than equal to the number required.
 
@@ -123,24 +123,28 @@ blocks (268.4 MB or 33554432 complex data points).
 
 When a record is allocated, the following title record fields are initialized with the following default values:
 
-      DATE     	'       '         	date of this record
-      FIRST    	0.0,0.0,0.0,0.0   	initial time in each dimension
-      STEP     	1.0,1.0,1.0,1.0   	time step in each dimension
-      IRBLK   	 0                 	read pointer (see `PTRB`)
-      IWBLK    	0                 	write pointer (see `PTRB`)
-      OWNER    	'       '         	owner of this record
-      `SIZE`     	0,0,0,0           	#pts actually used in each dimension
-      SYN      	0,0,0,0           	synthesizer used for detection in each dimension
-      `TITLE`    	(NULL)            	title of this record
-      DOMAIN   	TIME\*4            	domain for each dimension
+Field  | Default Value   | Field Meaning
+------ | -------------   | -------------
+DATE   | '       '       | date of this record
+FIRST  | 0.0,0.0,0.0,0.0 | initial time in each dimension
+STEP   | 0.0,1.0,1.0,1.0 | time step in each dimension
+IRBLK  | 0               | read pointer (see `PTRB`)
+IWBLK  | 0               | write pointer (see `PTRB`)
+OWNER  | '       '       | owner of this record
+SIZE   | 0,0,0,0         | #pts actually used in each dimension
+SYN    | 0,0,0,0         | synthesizer used for detection in each dimension
+TITLE  | (NULL)          | title of this record
+DOMAIN | TIME\*4         | domain for each dimension
 
 These title record fields are initialized with the values specified in the `ALLB` command statement:
 
-      NDIM        number of dimensions
-      ISIZEA      allocated size in each dim.
+Field   | Field Meaning
+------- | -------------
+NDIM    | number of dimensions
+ISIZEA  | allocated size in each dim.
 
 If the allocation is successful and no record number (or record  number "0") was specified, RNMR will return the record
-number for the allocated blocked record.  After a successful allocation, the current record pointer will be updated. 
+number for the allocated blocked record.  After a successful allocation, the current record pointer will be updated.
 Thus, `PTRA` may be used to check which record was just allocated.
 
 See command `PARB` for establishing the parameters (e.g. time step in each dimension) of a blocked record allocated with
@@ -189,9 +193,11 @@ message to the screen reporting the new, extended size in blocks (512 bytes = 1 
 
 When a record is allocated, the following title record fields are initialized with default values:
 
-         	IRBLK    	0         	read pointer (see `PTRB`)
-         	IWBLK    	0         	write pointer (see `PTRB`)
-         	`SIZE`      	0,0,0,0  number of pts actually used in each dimension
+Field  | Default Value   | Field Meaning
+------ | -------------   | -------------
+IRBLK  | 0               | read pointer (see `PTRB`)
+IWBLK  | 0               | write pointer (see `PTRB`)
+SIZE   | 0,0,0,0         | #pts actually used in each dimension
 
 All other title record fields are initialized with the values from the input record INREC, i.e. a record allocated using
 `ALLCPY` inherits all the parameters set by `PARB` from the input record.  If the allocation is successful and no record
@@ -263,7 +269,7 @@ specified, RNMR will attempt to operate on the global variable TEMP.  The "label
 to which macro execution will jump if the incremented value of "gblnam" is less than or equal to "limit".  Conversely, a
 jump will be made to "labelf" if the incremented value is greater than "limit".  Remember to always specify statement
 labels with an initial period, for example ".LABEL".  For purposes of `AOBLE`, if the value of the global argument
-"gblnam" is blank, the value is taken to be 1.  If the value of "gblnam" is not blank, this value must be an integer. 
+"gblnam" is blank, the value is taken to be 1.  If the value of "gblnam" is not blank, this value must be an integer.
 Once "gblnam" has been incremented by 1, a jump is made to "labelt" always if "limit" is -1 or if the incremented value
 of "gblnam" is less than or equal to "limit" if "limit" is 1 or greater.  In all other cases, macro execution jumps to
 "labelf".  If "labelt" is omitted and "limit" is -1 or the incremented value of "gblnam" is less than or equal to
@@ -302,11 +308,14 @@ Prerequisites: Macro only (MAC)
 
 Description:
 `ASKYN` prompts the user for a YES/NO response. If the response is  YES, a jump is made to "labelt", otherwise a jump is
-made to "labelf".  If no default response is specified on the `ASKYN` command line, the default response will be NO. 
+made to "labelf".  If no default response is specified on the `ASKYN` command line, the default response will be NO.
 The acceptable choices for "default" are:
 
-        TRUE states        FALSE states YES                 NO             Y                     N
-            ON                  `OFF`
+TRUE States | FALSE states
+----------- | ------------
+YES         | NO
+Y           | N
+ON          | OFF
 
 Regardless of which default (if any) is specified in the `ASKYN` command, RNMR will prompt the user for a response with
 "YES" or "NO" as the default.  The "labelt" parameter specifies a statement label to which macro execution will jump if
@@ -315,13 +324,16 @@ always specify statement labels with an initial period, for example ".LABEL".
 
 When the user responds to the yes/no query, the acceptable responses are:
 
-        TRUE states        FALSE states YES                 NO             Y                     N
-            ON                  `OFF`
+TRUE States | FALSE states
+----------- | ------------
+YES         | NO
+Y           | N
+ON          | OFF
 
 or <RETURN\> to accept the default response.  If the user does not enter one of these responses, RNMR will ask for an
 acceptable response. As usual, the user may enter <CTRL-Z\> to exit this loop and return to console level.  When a jump
 is made either to "labelt" or to "labelf", RNMR first searches ahead from the current macro line to the end of the macro
-for the specified statement label.  If that label is not found, the search begins again at the first line of the macro. 
+for the specified statement label.  If that label is not found, the search begins again at the first line of the macro.
 The statement labels "labelt" and "labelf" may each have a positive line offset, as in the command:
 
         \> `ASKYN` YES .XYZ+1 .VVV+3
@@ -359,7 +371,7 @@ Format: `BF`
 Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
-`BF` performs a linear baseline fix by subtracting a straight line from the data between the current display limits. 
+`BF` performs a linear baseline fix by subtracting a straight line from the data between the current display limits.
 `BF` does not require the user to be viewing the processing block  (`VIEW` PRO), but baseline fixing is only performed
 on the processing block.  To obtain the equation of the line to subtract from the spectrum, `BF` uses the following
 algorithm:
@@ -377,7 +389,7 @@ the spectrum instead.
 3.	Calculate complex polynomial coefficients P1 and P2:
 
         P1 = (Ravg - Lavg)/(Rlim - Llim)
-        P2 = Lavg - P1\*Llim
+        P2 = Lavg - P1*Llim
 
 where Lavg and Ravg are the averages of the first few and last few points on either side of the display, as described in
 (1) and (2), respectively, and Rlim and Llim are the point numbers corresponding to the right and left display limits.
@@ -427,14 +439,14 @@ To calculate the phase portion of the finite pulse correction, `BINCP` follows t
 
 1.	A constant phase and a phase increment are calculated:
 
-         	PHI = (270.0\*DFRST)/(RATIO\*FNYQ) - 90.0
-         	DPHI = (270.0\*DSTEP)/(RATIO\*FNYQ)
+         	PHI = (270.0*DFRST)/(RATIO*FNYQ) - 90.0
+         	DPHI = (270.0*DSTEP)/(RATIO*FNYQ)
 
 where DSTEP is -1 times the frequency per point and DFRST is the frequency of the first point in the spectrum.
 
 2.	PHI and DPHI are used to calculate a linear phase shift L(I) for each point of the spectrum:
 
-         	L(I) = `EXP`(i\*(PHI + (I-1)\*DPHI)) where i = SQRT(-1).
+         	L(I) = EXP(i*(PHI + (I-1)* DPHI)) where i = SQRT(-1).
 
 3.	The data in each block of the processing buffer is phase corrected by multiplying by the complex phase correction
 function L(I).  Each block receives this phase correction independently.
@@ -516,7 +528,7 @@ line.  Remember that each argument can contain no more than 8 characters.  The c
 depth of 10.  If an attempt is made to push more than 10 arguments onto the stack, the error message
 "(CALC0 ) STACK OVERFLOW" will be displayed.  When `CALC` encounters a unary arithmetic operator such as ABS (absolute
 value), it expects that there exists at least one value on the stack on which to operate. To put this another way, TOS
-(Top Of Stack) must exist.  If the stack is empty, the error message "(CALC0) STACK UNDERFLOW" will be displayed. 
+(Top Of Stack) must exist.  If the stack is empty, the error message "(CALC0) STACK UNDERFLOW" will be displayed.
 Similarly, there must be at least two values on the stack in order to perform a binary arithmetic operation; a lack of
 sufficiently many arguments will give an underflow error.  When a binary operation is executed, the result replaces both
 (TOS) and (TOS-1), reducing the number of values on the stack by one.  When a constant is pushed onto the stack, the
@@ -527,203 +539,75 @@ The arguments which may be used with the `CALC` command are as follows:
 
 Constants:
 
-E  	pushes the constant e onto the top of the stack:  	 	 	(TOS)=e
-
-PI  	pushes the constant pi onto the stack:  	 	 	 	(TOS)=pi
+Argument | Description | Equation
+-------- | ----------- | --------
+E        | Pushes the constant e onto the top of the stack. | (TOS)=e
+PI       | Pushes the constant pi onto the stack.           | (TOS)=pi
 
 Unary Arithmetic Operators:
 
-ABS  	replaces the top of stack with its absolute value: 	 	 	(TOS)=ABS(TOS)
-
-COS 	replaces the top of stack with its cosine: 	 	 	 	(TOS)=COS(TOS)
-The operand is assumed to be in units of radians.
-For operands in degrees, use COSD.
-
-COSD  replaces the top of stack with its cosine: 	 	 	 	(TOS)=COSD(TOS)
-The operand is assumed to be in units of degrees.  For operands in radians, use COS.
-
-`EXP`
- 	replaces the top of stack with e\*\*(TOS): 	 	 	 	(TOS)=`EXP`(TOS)
-The operand must be no greater than 30.0.
-INT
- 	replaces the top of stack with the largest integer whose absolute value does not exceed the absolute value of
-(TOS) and has the same sign as (TOS): 	 	 	 	(TOS)=AINT(TOS)
-LOG 	replaces the top of stack with its natural (base e) logarithm: 	 	(TOS)=ALOG(TOS) The operand must be greater than
-0.0.
-
-LOG10  replaces the top of stack with its common (base 10) logarithm: (TOS)=ALOG10(TOS)
-The operand must be greater than 0.0.
-
-NEG 	replaces the top of stack with its negative:
- 	 	(TOS)=-(TOS).
-NINT 	replaces the top of stack with the integer nearest to (TOS): 	 	(TOS)=ANINT(TOS).
-
-SIN 	replaces the top of stack with its sine:
-The operand is assumed to be in units of radians.   For operands in degrees, use SIND.
- 	 	 	(TOS)=SIN(TOS)
-SIND 	replaces the top of stack with its sine:
-The operand is assumed to be in units of degrees.   For operands in radians, use SIN.
- 	 	 	(TOS)=SIND(TOS)
-SQRT 	replaces the top of stack with its square root:
-The operand must be greater than or equal to 0.0.
- 	 	 	(TOS)=SQRT(TOS)
-TAN  	replaces the top of stack with its tangent:
-The operand is assumed to be in units of radians.   For operands in degrees, use TAND.
- 	 	 	(TOS)=TAN(TOS)
-TAND replaces the top of stack with its tangent:
-The operand is assumed to be in units of degrees.   For operands in radians, use TAN.
+Argument | Description | Equation
+-------- | ----------- | --------
+ABS      | Replaces the top of stack with its absolute value | (TOS)=ABS(TOS)
+COS      | Replaces the top of stack with its cosine. The operand is assumed to be in units of radians. | (TOS)=COS(TOS)
+COSD     | Replaces the top of stack with its cosine. The operand is assumed to be in units of degrees. | (TOS)=COSD(TOS)
+EXP      | Replaces the top of stack with e^(TOS). The operand must be no greater than 30.0. | (TOS)=EXP(TOS)
+INT      | Replaces the top of stack with the largest integer whose absolute value does not exceed the absolute value of (TOS) and has the same sign as (TOS). | (TOS)=AINT(TOS)
+LOG      | Replaces the top of stack with its natural (base e) logarithm.  The operand must be greater than 0.0. | (TOS)=ALOG(TOS)
+LOG10    | Replaces the top of stack with its common (base 10) logarithm. The operand must be greater than 0.0. | (TOS)=ALOG10(TOS)
+NEG      | Replaces the top of stack with its negative. | (TOS)=-(TOS).
+NINT     | Replaces the top of stack with the integer nearest to (TOS). | (TOS)=ANINT(TOS).
+SIN      | Replaces the top of stack with its sine. The operand is assumed to be in units of radians. | (TOS)=SIN(TOS)
+SIND     | Replaces the top of stack with its sine. The operand is assumed to be in units of degrees. | (TOS)=SIND(TOS)
+SQRT     | Replaces the top of stack with its square root. The operand must be greater than or equal to 0.0. | (TOS)=SQRT(TOS)
+TAN      | Replaces the top of stack with its tangent. The operand is assumed to be in units of radians. | (TOS)=TAN(TOS)
+TAND     | Replaces the top of stack with its tangent. The operand is assumed to be in units of degrees. | (TOS)=TAND(TOS)
 
 Binary Arithmetic Operators:
- 	 	 	(TOS)=TAND(TOS)
-ADD 	replaces (TOS) and (TOS-1) with their sum:
- 	 	 	(TOS)=(TOS-1)+(TOS)
-DIV 	replaces (TOS-1) and (TOS) with their quotient:  Division by zero is not allowed.
- 	 	 	(TOS)=(TOS-1)/(TOS)
-MAX 	replaces (TOS-1) and (TOS) with the greater of the two values:
-1),(TOS))
- 	 	(TOS)=AMAX1((TOS-
-MIN 	replaces (TOS-1) and (TOS) with the lesser of the two values:  	(TOS)=AMIN1((TOS-1),(TOS))
 
-MOD  replaces (TOS-1) and (TOS) with the remainder of: (TOS1)/(TOS):(TOS)=AMOD((TOS-1),(TOS)) Division by zero is not
-allowed.
-
-MUL 	replaces (TOS-1) and (TOS) with their product: 	 	 	 (TOS)=(TOS-1)\*(TOS)
-
-SUB  	replaces (TOS-1) and (TOS) with their difference: 	 	 	 (TOS)=(TOS-1)-(TOS)
+Argument | Description | Equation
+-------- | ----------- | --------
+ADD      | Replaces (TOS) and (TOS-1) with their sum. | (TOS)=(TOS-1)+(TOS)
+DIV      | Replaces (TOS-1) and (TOS) with their quotient. Division by zero is not allowed. | (TOS)=(TOS-1)/(TOS)
+MAX      | Replaces (TOS-1) and (TOS) with the greater of the two values. | (TOS)=AMAX1((TOS-1),(TOS))
+MIN      | Replaces (TOS-1) and (TOS) with the lesser of the two values. | (TOS)=AMIN1((TOS-1),(TOS))
+MOD      | Replaces (TOS-1) and (TOS) with the remainder of: (TOS1)/(TOS). Division by zero is not allowed. | (TOS)=AMOD((TOS-1),(TOS))
+MUL      | Replaces (TOS-1) and (TOS) with their product. | (TOS)=(TOS-1)\*(TOS)
+SUB      | Replaces (TOS-1) and (TOS) with their difference. | (TOS)=(TOS-1)-(TOS)
 
 Unary Logical Operators:
 
-NOT  	replaces (TOS) with 1.0 if (TOS) is equal to 0.0 and 0.0 if (TOS) is not equal to 0.0:
-(TOS) .EQ. 0.0 -\> (TOS)=1.0
-(TOS) .NE. 0.0 -\> (TOS)=0.0
+Argument | Description | Equation
+-------- | ----------- | --------
+NOT      | Replaces (TOS) with 1.0 if (TOS) is equal to 0.0 and 0.0 if (TOS) is not equal to 0.0. | (TOS)=NOT (TOS)
 
 Binary Logical Operators:
 
-AND 	replaces (TOS-1) and (TOS) with 1.0 if they are both nonzero or with 0.0 otherwise:
-
-                    	|(TOS) 0.0 	not 0.0
-        \_________ |\_____________________
-         (TOS-1) 	|
-         0.0        | 0.0 0.0          not 0.0  | 0.0 1.0
-
-OR  	replaces (TOS-1) and (TOS) with 1.0 if either is nonzero  or with 0.0 otherwise:
-
-                      	|(TOS) 0.0 	not 0.0
-         \________ 	|\________________________
-          (TOS-1) 	|
-         0.0         	|         	0.0      	1.0
-         not 0.0   	|          	1.0      	1.0
+Argument | Description | Equation
+-------- | ----------- | --------
+AND      | Replaces (TOS-1) and (TOS) with 1.0 if they are both nonzero or with 0.0 otherwise. | (TOS)=(TOS-1) AND (TOS)
+OR       | Replaces (TOS-1) and (TOS) with 1.0 if either is nonzero  or with 0.0 otherwise. | (TOS)=(TOS-1) OR (TOS)
 
 Binary Relational Operators:
 
-EQ
- 	replaces (TOS-1) and (TOS) with 1.0 if they are equal or with 0.0 if they are not equal.
-          	(TOS-1) .EQ. (TOS) -\> (TOS)=1.0
-
- 	(TOS-1) .NE. (TOS) -\> (TOS)=0.0
-GE
- 	replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is greater than or equal to (TOS) or with 0.0 otherwise:
-          	(TOS-1) .GE. (TOS) -\> (TOS)=1.0
-
- 	(TOS-1) .LT. (TOS) -\> (TOS)=0.0
-GT
- 	replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is greater than (TOS) or with 0.0 otherwise:
-          	(TOS-1) .GT. (TOS) -\> (TOS)=1.0
-
- 	(TOS-1) .LE. (TOS) -\> (TOS)=0.0
-LE
- 	replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is less than or equal to (TOS) or with 0.0 otherwise:
-          	(TOS-1) .LE. (TOS) -\> (TOS)=1.0
-
- 	(TOS-1) .GT. (TOS) -\> (TOS)=0.0
-LT
- 	replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is less than (TOS) or with 0.0 otherwise:
-          	(TOS-1) .LT. (TOS) -\> (TOS)=1.0
-
- 	(TOS-1) .GE. (TOS) -\> (TOS)=0.0
-NE
- 	replaces (TOS-1) and (TOS) with 1.0 if they are not equal or with 0.0 if they are equal:
-(TOS-1) .NE. (TOS) -\> (TOS)=1.0
-(TOS-1) .EQ. (TOS) -\> (TOS)=0.0
+Argument | Description | Equation
+-------- | ----------- | --------
+EQ       | Replaces (TOS-1) and (TOS) with 1.0 if they are equal or with 0.0 if they are not equal. | (TOS)=(TOS-1)==(TOS)
+GE       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is greater than or equal to (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)>=(TOS)
+GT       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is greater than (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)>(TOS)
+LE       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is less than or equal to (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)<=(TOS)
+LT       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is less than (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)<(TOS)
+NE       | Replaces (TOS-1) and (TOS) with 1.0 if they are not equal or with 0.0 if they are equal. | (TOS)=(TOS-1)!=(TOS)
 
 Special Operators:
 
-DUP
- 	duplicates the top of stack, increasing the number of values on  the stack by 1.  If the stack is empty, DUP will
-result in a (CALC0 ) STACK UNDERFLOW error message.  Conversely, if the stack is full when
-`CALC` encounters the DUP operator, a (CALC0 ) STACK OVERFLOW error message will be displayed.
-GBL
- 	defines a global argument.  The top of stack defines the name of the resulting global argument while (TOS1) contains
-the value of the argument:
-(TOS) -\> `GBLARG` name
-(TOS-1) -\> `GBLARG` value
-
-Once GBL is executed, the top two values on the stack are popped, decreasing the stack size by two.  GBL expects that
-the global argument name stored in (TOS) is an integer between 0 and 99999999, inclusive.  To define a global argument
-with a different name, use the "\>" operator.  When (TOS-1) is popped into a global argument, its value is written  out
-as an eight character string with the current number of decimal places (`NDEC`).  If the `NDEC` operator was not present
-on the `CALC` command line before GBL, then the value is written as an integer (`NDEC` -1).  Otherwise, it is written
-with the maximum number of decimal places set by `NDEC`.
-
-Example:
-
-	`CALC` 1 2 ADD 5 GBL
-
-This command adds 1.0 and 2.0 yielding 3.0.  The result is popped as the integer 3 into global argument 5.  This command
-is equivalent to:
-
-`CALC` 1 2 ADD \>5
-
-`NDEC` sets the number of decimal places for displaying or popping results from the calculator stack.  The top of stack
-defines the maximum number of decimal places that will be displayed.  On completion, `NDEC` pops the top of stack,
-decreasing the stack size be one.  In order to use `NDEC`, the stack must not be empty.  "-1 `NDEC`" directs `CALC` to
-display and pop results as integers i.e. with no decimal point, while "0 `NDEC`" yields results with a final decimal
-point but no digits to the right of the decimal point.  Higher values of `NDEC` request additional digits to the right
-of the decimal point, but these may be dropped if the value is too large:
-
-Example:
-                        Value = 100000.0
-
-                -1 `NDEC` -\> "100000  "
-0	`NDEC` -\> "100000. "
-1	`NDEC` -\> "100000.0"
-2	`NDEC` -\> "100000.0"
-
-
-\>\>
-
-
-
- 	pops the top of stack into a local argument.  The name of the local argument which will receive the value is given by
-the remaining characters in the `CALC` parameter beginning with "\>\>".  Thus, the command: `CALC` 1 2 ADD \>\>XYZ
-adds 1.0 and 2.0 to give 3.0, which is written into local argument XYZ as the integer 3 (`NDEC` is -1 by default). 
-Because the \>\> operator and the name of the local argument comprise one token on the command line, the argument name
-must be no more than six characters long to be used with "\>\>".  The name of the local argument may not be blank and
-must use only the characters A-Z, 0-9, $, or \_.
-When (TOS) is popped into a local argument, its value is written out as an eight character string with the current
-number of  decimal places (`NDEC`).  If the `NDEC` operator was not present on the `CALC` command line before \>\>, then
-the value is written as an integer (`NDEC`-1).  Otherwise, it is written with the maximum number of decimal places set
-by `NDEC`.  Because \>\> pops the top of stack, the stack size is decreased by one after \>\> is processed.  In order to
-use \>\>, the stack must not be empty.
-\>
-
- 	pops the top of stack into a global argument.  The name of the global argument which will receive the value is given
-by the remaining characters in the `CALC` parameter beginning with "\>".  Thus, the command:
-`CALC` 1 2 ADD \>XYZ
-PRT 	displays the top of stack as an informational message.  The value of the top of stack is displayed with the current
- number of decimal places as set by a previous `NDEC` operator on the same `CALC` command line.  If no `NDEC` operator
-preceded the PRT command, then the top of stack will be displayed as an integer (`NDEC` -1).  On completion, PRT pops
-the top of stack, decreasing the stack size be one.  In order to use PRT, the stack must not be empty. adds 1.0 and 2.0
-to give 3.0, which is written into global argument XYZ as the integer 3 (`NDEC` is -1 by default).  Because the \>
-operator and the name of the global argument comprise one token on the command line, the argument name must be no more
-than seven characters long to be used with "\>".  The name of the global argument may not be blank and must use only the
-characters A-Z, 0-9, $, or \_.
-When (TOS) is popped into a global argument, its value is written out as an eight character string with the current
-number of decimal places (`NDEC`).  If the `NDEC` operator was not present on the `CALC` command line before \>, then
-the value is written as an integer (`NDEC`-1).  Otherwise, it is written with the maximum number of decimal places set
-by `NDEC`.  Because \> pops the top of stack, the stack size is decreased by one after \> is processed.  In order to use
-\>, the stack must not be empty.
-
+Argument | Description
+-------- | -----------
+DUP      | Duplicates the top of stack, increasing the number of values on  the stack by 1. If the stack is empty, DUP will result in a (CALC0 ) STACK UNDERFLOW error message. Conversely, if the stack is full when `CALC` encounters the DUP operator, a (CALC0) STACK OVERFLOW error message will be displayed.
+NDEC     | sets the number of decimal places for displaying or popping results from the calculator stack. The top of stack defines the maximum number of decimal places that will be displayed. On completion, NDEC pops the top of stack, decreasing the stack size be one. In order to use NDEC, the stack must not be empty. "-1 NDEC" directs `CALC` to display and pop results as integers i.e. with no decimal point, while "0 NDEC" yields results with a final decimal point but no digits to the right of the decimal point. Higher values of NDEC request additional digits to the right of the decimal point, but these may be dropped if the value is too large.
+PRT      | Displays the top of stack as an informational message. The value of the top of stack is displayed with the current number of decimal places as set by a previous NDEC operator on the same `CALC` command line. If no NDEC operator preceded the PRT command, then the top of stack will be displayed as an integer (NDEC -1). On completion, PRT pops the top of stack, decreasing the stack size be one. In order to use PRT, the stack must not be empty.
+\>\>     | Pops the top of stack into a local argument. The name of the local argument which will receive the value is given by the remaining characters in the `CALC` parameter beginning with "\>\>". The name of the local argument may not be blank and must use only the characters A-Z, 0-9, $, or \_. Because \>\> pops the top of stack, the stack size is decreased by one after \>\> is processed. In order to use \>\>, the stack must not be empty.
+\>       | Pops the top of stack into a global argument. The name of the global argument which will receive the value is given by the remaining characters in the `CALC` parameter beginning with "\>". The name of the global argument may not be blank and must use only the characters A-Z, 0-9, $, or \_. Because \> pops the top of stack, the stack size is decreased by one after \> is processed. In order to use \>, the stack must not be empty.
 
 Any argument on the `CALC` command line other than those listed above is treated as a default push onto the calculator
 stack.  Values may be pushed onto the stack only if the stack is not full, i.e. there are fewer than 10 values on the
@@ -865,7 +749,7 @@ Prerequisites: Time domain data in processing buffer (TIME)
 Description:
 `CD` performs a convolution difference apodization on an FID.  The apodization function applied to the FID is given by:
 
-         	apodization = `EM`(narrow) - wfract\*`EM`(wide)
+         	apodization = `EM`(narrow) - wfract*`EM`(wide)
 
 Note that `CD` yields the same result as separately exponentially line broadening the original FID using `EM`, scaling
 the wide result using `SC` and subtracting the two resulting FID's.  This apodization is useful for separating out
@@ -968,6 +852,7 @@ Description:
 polar form:
 
 REAL(CONST) = VALR\*COS(VALPHI\*PI/2)
+
 IMAG(CONST) = VALR\*SIN(VALPHI\*PI/2)
 
 The first parameter, "valr" is a real number which is the magnitude of the complex constant.  If this parameter is
@@ -978,7 +863,7 @@ updated; the visible buffer is buffer 1.  The buffer number may be either 1 or 2
 processed; RNMR will not prompt for "buf".  `CMUL` multiplies each block of the selected processing buffer by the
 specified constant:
 
-        BUFFER = BUFFER\*CONST
+        BUFFER = BUFFER*CONST
 
 If the processing buffer is currently visible and "buf" is 1, `CMUL` always updates the display upon completion.
 ## CMULV
@@ -993,10 +878,10 @@ Defaults: 2 1
 Description:
 `CMULV` complex multiplies the destination buffer DST by the source buffer SRC changing the destination buffer:
 
-        DST = DST \* SRC
+        DST = DST * SRC
 
 The arguments "SRC" and "DST" specify the numbers of the buffers to be multiplied.  Each buffer number may be either 1
-or 2; buffer 1 is the visible processing buffer.  If either argument is omitted, RNMR will prompt for a buffer number. 
+or 2; buffer 1 is the visible processing buffer.  If either argument is omitted, RNMR will prompt for a buffer number.
 The default source is buffer 2 while the default destination is buffer 1.  While `CMULV` operates only on processing
 buffers, the user need not be viewing the processing buffers to perform the multiplication.  For two buffers to be
 multiplied, they must have the same domain  (time or frequency) and the same active size (though not necessarily the
@@ -1050,9 +935,10 @@ Sets the color for the display.
 
 When /DATA is selected, the allowed values of parameter clr_indx are 1 and 2 and are used as follows:
 
-       clr_indx      1D      2D
-1	real     positive
-2	imag   negative
+clr_indx | 1D | 2D
+-------- | -- | --
+1 | real | positive
+2 | imag | negative
 
 When /CURSOR is selected, the only allowed value of clr_indx is 1 and this color applies to all cursors.
 
@@ -1088,7 +974,7 @@ Format: `CONLIM` min max
 Defaults: current current
 
 Description:
-`CONLIM` sets intensity limits for contour plotting.  Contours will only be drawn for intensities between these limits. 
+`CONLIM` sets intensity limits for contour plotting.  Contours will only be drawn for intensities between these limits.
 If either "min" or "max" is omitted from the command line, RNMR will prompt for the contour limit with its current value
 as the default.  Contour levels are real numbers and are displayed to a maximum of three decimal places.  If the user
 accepts the defaults for both "min" and "max", no changes are made to the current contour limits.  If both "min" and
@@ -1123,7 +1009,9 @@ Description:
 
          	DST = COMPLEX(REAL(DST),REAL(SRC))
 
- or      REAL(DST) = REAL(DST)          IMAG(DST) = REAL(SRC)
+ or      REAL(DST) = REAL(DST)
+
+ IMAG(DST) = REAL(SRC)
 
 The arguments "SRC" and "DST" specify the numbers of the buffers to be processed. Each buffer number may be either 1 or
 2; buffer 1 is the visible processing buffer.  If either argument is omitted, RNMR will prompt for a buffer number. The
@@ -1153,7 +1041,7 @@ number is specified, RNMR will prompt for "src" with the current read record (as
 default.  The allowable values of "src" are integers between 5 and 200, inclusive.  Consequently, scratch records may
 not be copied by `CPY`.  The source record specified must not be empty.  The second parameter, "dst" is the number of
 the destination record, i.e. the record which will contain a copy of "src".  If "dst" is not specified, then RNMR will
-attempt to put the copy of "src" into the next available record; RNMR does not prompt for a destination record number. 
+attempt to put the copy of "src" into the next available record; RNMR does not prompt for a destination record number.
 If "dst" is zero, then RNMR will use the next available record for "dst". Otherwise, this parameter must be an integer
 between 5 and 200; `CPY` does not copy records into scratch records (numbers 1-4).  When `CPY` is asked to use the next
 available record for "dst", a search is made for an empty record starting with the current read record .  The search
@@ -1230,7 +1118,9 @@ values of "ndim" are 1, 2, 3, or 4.  The remaining parameters are the sizes in e
 expects to find "ndim" integers greater than or equal to 1 following "ndim".  These sizes are to be entered in order of
 dimension, starting with dimension 1. If one or more of these is omitted, RNMR will prompt for its value with the
 current conversion size in the appropriate dimension as the default.
-D
+# D
+---
+## D
 Set pulse programmer delay
 
 Category: Acquisition
@@ -1249,7 +1139,7 @@ check the current value of a delay, the RNMR command "D" may be entered whenever
 acquisition need not be stopped to use this command.  The first parameter of the D command, "dly", specifies which delay
 is to be modified.  If "dly" is omitted, RNMR will prompt for its value with a default of 1.  The legal values for "dly"
 are integers from 1 to 16.  While the pulse programmer supports 32 delays, only the first
-16 can be set from RNMR; delays 17 through 32 may be used internally in a pulse program but are not accessible to RNMR. 
+16 can be set from RNMR; delays 17 through 32 may be used internally in a pulse program but are not accessible to RNMR.
 The second parameter, "msec" specifies the length of the selected delay in milliseconds. If this parameter is omitted,
 RNMR will prompt for the delay length with its current value as the default.  While delays may be entered with any
 desired number of decimal places, restrictions on the speed of the pulse programmer limit the precision of delay values
@@ -1261,9 +1151,6 @@ pulse program.  If the user accepts the current delay value by pressing <RETURN\
 change the delay value.  After changing a delay with the D command during acquisition, several seconds will usually
 elapse before the pulse programmer responds to the change.  However, if the delay value is modified before acquisition
 is started, the first shot should reflect the modified delay setting.
-
-# D
----
 ## DADJ
 Interactively adjust pulse programmer delay
 
@@ -1325,7 +1212,7 @@ which gives the maximum possible number of data blocks for a given choice of "is
 to zero (`DBSZ` \* 0 0), then the appropriate data buffer is partitioned into one block of allocated size 8192.  If no
 modifications were made to "isize" or "nblk", `DBSZ` does nothing.  Otherwise, RNMR verifies that ISIZE X NBLK does not
 exceed the maximum data buffer size of 8192.  Once either the size or number of blocks of the selected data buffer has
-been modified, the active size of the buffer is set to its allocated size and the active number of blocks is set to 1. 
+been modified, the active size of the buffer is set to its allocated size and the active number of blocks is set to 1.
 Later on, the active size may be decreased below the allocated size and the number of blocks may be increased.  After
 the size and partitioning have been modified, the data buffer is filled with zeroes.  If the selected processing buffer
 "ibuf" is currently visible, `DBSZ` updates the display.
@@ -1401,7 +1288,7 @@ user for the command line to be executed.  This may be any valid `DCL` command u
 presses <RETURN\> when prompted for a `DCL` command, no subprocess is created and the console prompt is returned.  If
 `DCL` is used from within a macro, RNMR expects the `DCL` command to be delimited by two semicolons (;;) on the line
 following "`DCL`".  The entire line after ;; constitutes the `DCL` command string, as illustrated below:
-## DCL
+DCL
 ;;PRINT/NOHEADER XYZ.`WRT`
 
 If the double semicolon delimiter ;; is not found on the line after `DCL`, or if there are no characters on the line
@@ -1473,7 +1360,7 @@ Prerequisites: Frequency domain data in processing buffer (FREQ)
 Description:
 `DF` differentiates data in the visible processing buffer (buffer 1).  While the user is not required to view the
 processing buffer in order to use `DF`, `DF` acts only on that buffer.  Differentiation of a spectrum is often useful in
-resolving subtle features on broad lines since inflection points on the source spectrum become peaks in its derivative. 
+resolving subtle features on broad lines since inflection points on the source spectrum become peaks in its derivative.
 If the processing buffer is partitioned into two or more blocks, `DF` differentiates each block independently.  If the
 active size of each block in the processing buffer is 0 or 1, `DF` does nothing.
 
@@ -1522,7 +1409,7 @@ For example, if local argument ABC is undefined, the command
 
 generates the prompt:
 
-         	VALUE = 123 \_
+         	VALUE = 123 _
 
 If the user presses <RETURN\> at this prompt, ABC is defined with value "123". Otherwise, ABC is defined with the value
 entered by the user.  Conversely, the command
@@ -1547,7 +1434,7 @@ repetition is significantly faster than the longest relaxation time in the sampl
 fluctuation due to saturation.  With sufficiently many dummy shots, the initial FID intensity comes to some equilibrium
 value, so succeeding shots will start with a stable initial magnetization.
 
-The first parameter of the `DG` command, "ndly" is the number of dummy shots to take before beginning signal averaging. 
+The first parameter of the `DG` command, "ndly" is the number of dummy shots to take before beginning signal averaging.
 If this parameter is omitted, the current number of dummy shots (as displayed and set by `NDLY`) will be taken. RNMR
 does not prompt for "ndly".  The legal values of "ndly" are the positive integers including zero.
 
@@ -1568,7 +1455,7 @@ is called from a macro, either `NWAIT` or `NA` shots will be taken, whichever is
 will determine the number of shots taken from a macro, and similarly, `NWAIT` shots will be taken if `NA` is -1 and
 `NWAIT` is nonzero.
 
-Once acquisition is started, each shot will increment the shot indicator in the upper right hand corner of the display. 
+Once acquisition is started, each shot will increment the shot indicator in the upper right hand corner of the display.
 If the acquisition block is visible, the current sum of FID's will be updated on the screen every two seconds or once
 per shot, whichever is slower.  Note that the shot indicator counts off dummy shots with negative integers starting with
 -1 and decreasing, while averaged shots are counted off with positive integers starting with 1.
@@ -1702,7 +1589,10 @@ nonblank.
 
 Whether any arguments or `IDN` fields are defined or not by `DO`, the number of `DO` cycles will be:
 
-        end - beg + 1     for "end" not equal to -1         unlimited         for "end" = -1
+End Values | Cycles
+---------- | ------
+end != -1  | end - beg + 1
+end == -1  | unlimited
 
 If one or more arguments or `IDN` fields are incremented by `DO`, each cycle will increment the appropriate counter by
 one.  Note that any modifications to "argnam" by commands between `DO` and `ENDDO` will not affect the number of
@@ -1712,7 +1602,7 @@ repetitions.  In addition, the total number of cycles is not affected by any cha
 `DO`/`ENDDO` loops in RNMR may have extended range.  That is, it is legal to jump out of a `DO`/`ENDDO` loop then jump
 back in again after executing one or more statements.  The range of the `DO`/`ENDDO` loop is thus extended to include
 all the statements after the jump out and before the jump back in.  Unlike FORTRAN, RNMR permits the statements in the
-extended range to change the values of "beg" and/or "end" without effect on the number of cycles that will be executed. 
+extended range to change the values of "beg" and/or "end" without effect on the number of cycles that will be executed.
 This is possible because the `DO` command is only processed once.  Jumps into a `DO` loop are not allowed when that `DO`
 command has not yet been processed, though the error will not be detected until the matching `ENDDO` statement is
 executed.
@@ -1757,9 +1647,9 @@ the adjusted dwell time.
 
 On spectrometers with audio filters under computer control via S-bus, changing the dwell time resets the filter cutoff
 frequencies.  The filter setting is identical for the real and imaginary channels.  Since the filter frequencies are
-digitally programmed, only discrete cutoff values (in increments of 200.0 Hz up to 50000.0 Hz) are allowed. 
+digitally programmed, only discrete cutoff values (in increments of 200.0 Hz up to 50000.0 Hz) are allowed.
 Accordingly, RNMR sets the filters to the closest available values given the new dwell time and the current filter
-factor (as displayed and set by `FLF`).  If the filter factor is 0.0, then the filters are disabled entirely. 
+factor (as displayed and set by `FLF`).  If the filter factor is 0.0, then the filters are disabled entirely.
 Otherwise, they are set to the nearest cutoff setting at least as wide as `FLF` X (`SW`/2.0).  If the calculated filter
 bandwidth exceeds 50000.0 Hz, then the filters are disabled entirely.  Whenever the dwell time is changed, the shot
 counter and averager are zeroed.  Finally, if the acquisition buffer is currently visible, `DW` always updates the
@@ -1877,7 +1767,7 @@ pulse program.
 
 `EX` loads the pulse programmer with the current values of `SIZE`, `DW`, `RD`, HETR, `DEC`, and `DECFLG` 1 through
 `DECFLG` 4.  Note that the pulse programmer performs the recycle delay in discrete 0.1 second steps, so the actual
-recycle time executed may be slightly different than that requested due to rounding to the nearest multiple of 0.1 sec. 
+recycle time executed may be slightly different than that requested due to rounding to the nearest multiple of 0.1 sec.
 See documentation under `RD` for more details.  When a pulse program is loaded into the pulse programmer, all the
 default values for pulse lengths, loop counts, etc. specified within the program become active and will be executed
 unless changed from RNMR.
@@ -1898,24 +1788,28 @@ another via `IMP`.
 `EXP` takes one parameter, "format" which specifies the foreign destination format.  If "format" is omitted, RNMR will
 prompt for a  foreign format with NMR1 as the default.  The currently supported foreign formats are:
 
-FELIX    	FELIX, complex data
-FTNMR    	FTNMR, complex data
-FTNMRR   	FTNMR, real data
-NMR1     	NMR1/NMR2, standard blocks
-NMR1A    	NMR1/NMR2, alternate blocks 	(NMR1 and NMR1A formats are identical for 1D data.)
-VARIAN 	complex data
-BRUKER 	real data
+Format | Description
+------ | -----------
+FELIX  | FELIX, complex data
+FTNMR  | FTNMR, complex data
+FTNMRR | FTNMR, real data
+NMR1   | NMR1/NMR2, standard blocks
+NMR1A  | NMR1/NMR2, alternate blocks 	(NMR1 and NMR1A formats are identical for 1D data.)
+VARIAN | Complex data
+BRUKER | Real data
 
 Supported formats for page layout programs (these do not include acquisition parameters):
 
-        ASCII    	generic ASCII
-        SPYG     	IEEE floating point for Spyglass
+Format | Description
+------ | -----------
+ASCII  | Generic ASCII
+SPYG   | IEEE floating point for Spyglass
 
 Note that while the user need not be viewing the processing buffer to use `EXP`, `EXP` exports only the contents of
 processing buffer 1.  If the `EXP` command is used at console level, RNMR will prompt the user for the name of the file
 to contain the exported data.  The user may enter any valid VMS file name up to 64 characters long.  If the user presses
 <RETURN\> at this prompt, no data is exported and no file is created.  If `EXP` is used from within a macro, RNMR
-expects the foreign format file name to be delimited by two semicolons (;;) on the line following the `EXP` command. 
+expects the foreign format file name to be delimited by two semicolons (;;) on the line following the `EXP` command.
 The entire line after ;; constitutes the file name, as illustrated below:
 
          	`EXP` FTNMR
@@ -1925,16 +1819,21 @@ If the double semicolon delimiter ;; is not found on the line after `EXP`, RNMR 
 `EXP` is used from console level.  Conversely, if ;; is present but there is no text on the line after ;;, then `EXP`
 does nothing and the macro execution continues.  The text following ;; may be any valid VMS file name up to 64
 characters long. This text may contain local and global argument substitutions, e.g.
- 	`EXP` FTNMR
+
+ 	        `EXP` FTNMR
          	;;MYFILE_&1
 The local and global arguments specified will be evaluated and filled in before the export file is created.
 
 If no VMS file type was specified in the export file name, RNMR uses
- 	".FELIX" 	if   "format" is FELIX
-    	".FTNMR"    	if   "format" is FTNMR
-    	".NMR1"     	if   "format" is NMR1 or NMR1A
- 	".ASCII"    	if   "format" is ASCII
-    	".SPYG"     	if   "format" is SPYG
+
+Format | File Type
+------ | -----------
+FELIX  | .FELIX
+FTNMR  | .FTNMR
+NMR1 or NMR1A | .NMR1
+ASCII  | .ASCII
+SPYG   | .SPYG
+
 Unlike `OPNWRT`, `EXP` will create a new version of the output file if there already exists a file in the current
 directory with the name entered by the user.  Note that if processing buffer 1 is divided into two or more blocks, `EXP`
 writes out data from the first block only.
@@ -1955,14 +1854,18 @@ archive to another via `IMP2D`.
 The first parameter, "format" specifies the foreign destination format.  If "format" is omitted, RNMR will prompt for a
 foreign format with NMR1 as the default.  The currently supported foreign formats are:
 
-         	FELIX    	FELIX, complex data
-         	FTNMR    	FTNMR, complex data
-         	NMR1     	NMR1/NMR2, standard blocks
-         	NMR1A    	NMR1/NMR2, alternate blocks
+Format | Description
+------ | -----------
+FELIX  | FELIX, complex data
+FTNMR  | FTNMR, complex data
+NMR1   | NMR1/NMR2, standard blocks
+NMR1A  | NMR1/NMR2, alternate blocks
 
 Supported formats for page layout programs (these do not include acquisition parameters):
 
-         	SPYG     IEEE floating point for Spyglass
+Format | Description
+------ | -----------
+SPYG   | IEEE floating point for Spyglass
 
 The second parameter, "rec" specifies the number of a blocked archive record containing the data to be exported.  If
 this parameter is omitted, RNMR will prompt for a source record number with the current read record (as displayed and
@@ -2005,12 +1908,13 @@ characters long.  This text may contain local and global argument substitutions,
 The local and global arguments specified will be evaluated and filled in before the export file is created.
 
 If no VMS file type was specified in the export file name, RNMR uses:
-
-    	".FELIX"    	if   "format" is FELIX
-    	".FTNMR"    	if   "format" is FTNMR
-    	".NMR1"     	if   "format" is NMR1 or NMR1A
- 	".ASCII"    	if   "format" is ASCII
-    	".SPYG"     	if   "format" is SPYG
+Format | File Type
+------ | -----------
+FELIX  | .FELIX
+FTNMR  | .FTNMR
+NMR1 or NMR1A | .NMR1
+ASCII  | .ASCII
+SPYG   | .SPYG
 
 Unlike `OPNWRT`, `EXP2D` will create a new version of the output file if there already exists a file in the current
 directory with the name entered by the user.
@@ -2022,15 +1926,15 @@ set and displayed by `PTRA`, is set to "rec" by `EXP2D`.
 Using the automatic block advance feature of `EXP2D` ("blk2d" equals 0), a 3D data set may conveniently be exported to a
 sequence of 2D foreign format files, as shown in the example below:
 
-   ! EXPORT 3D RECORD #29 TO SEQUENCE OF 2D NMR1 FILES    `DIRB` 3 123       ! `SET` DIRECTION FOR BLOCKED ACCESS
-   `SET` IMSG `OFF` 1 1 ! GET `SIZE` OF DIMENSION 3
-   `SIZEB` 29 3
-   `SET` IMSG ON
-   `PTRB` 29 0 \>        ! `SET` READ POINTER TO FIRST BLOCK
-   `DO` /LCL 1,%1,BLK2D ! `EXP` EACH 2D SLICE TO NMR1 FILE
-   `EXP2D` NMR1 29 0
-   ;;3DDATA_SLICE&BLK2D
-   `ENDDO`
+        ! EXPORT 3D RECORD #29 TO SEQUENCE OF 2D NMR1 FILES    `DIRB` 3 123       ! `SET` DIRECTION FOR BLOCKED ACCESS
+        `SET` IMSG `OFF` 1 1 ! GET `SIZE` OF DIMENSION 3
+        `SIZEB` 29 3
+        `SET` IMSG ON
+        `PTRB` 29 0 \>        ! `SET` READ POINTER TO FIRST BLOCK
+        `DO` /LCL 1,%1,BLK2D ! `EXP` EACH 2D SLICE TO NMR1 FILE
+        `EXP2D` NMR1 29 0
+        ;;3DDATA_SLICE&BLK2D
+        `ENDDO`
 
 This macro exports the first 2D slice of record 29 to 3DDATA_SLICE1.NMR1, the second slice to 3DDATA_SLICE2.NMR1, etc.
 ## EXP3D
@@ -2044,7 +1948,9 @@ Defaults: NMR1 current 1
 
 Description:
 Currently supported formats: SPYG
-F
+# F
+---
+## F
 Set synthesizer offset frequency
 
 Category: Freq. Control
@@ -2082,7 +1988,7 @@ of decimal places (`NDEC`).
 The actual frequency output by the spectrometer is a function of the reference frequency and PPM to Hz conversion factor
 of the synthesized nucleus as well as the offset selected by the F command:
 
-         	Factual(Hz) = 1.0E+06\*FPPM(MHz) + FREQ(Hz) + FREF(Hz)
+         	Factual(Hz) = 1.0E+06*FPPM(MHz) + FREQ(Hz) + FREF(Hz)
 
 where FPPM is the PPM to Hz conversion factor and FREF is the reference frequency of the nucleus assigned to the
 selected synthesizer and FREQ is the frequency entered with the F command.  Thus, if `NUC` 1 is H1 with `NUCD` H1
@@ -2101,14 +2007,11 @@ only those table entries with value "\*" are affected by the F command.  All oth
 determined by FPPM and `FSYN`.  For more information on defining frequency table entries and their use in pulse
 programs, see `FSYN`.
 
-In RNMRP, F modifies the offset of processing buffer 1.  The user need not be viewing this buffer to use the F command. 
+In RNMRP, F modifies the offset of processing buffer 1.  The user need not be viewing this buffer to use the F command.
 The actual offset will be set to FREQ(Hz) + FREF(Hz), where FREF is the reference frequency for the nucleus assigned to
 synthesizer "syn".  If the processing buffer is currently visible, F will update the display whenever the offset is
 modified to show the new frequency scale.  All other aspects of the F command are identical in RNMR and RNMRP.  Thus,
 the F command in RNMRP serves to make corrections to the frequency scales stored with experimental spectra.
-
-# F
----
 ## FLF
 Set filter factor
 
@@ -2124,7 +2027,7 @@ Description:
 On spectrometers with S-bus interfaced acquisition filters, `FLF` sets the filter bandwidth factor.  This factor is used
 to compute the cutoff frequencies for both the real and imaginary channel filters.  `FLF` takes one parameter, "factor"
 which specifies the filter cutoff scaling factor.  If this parameter is omitted, RNMR will prompt for a factor with the
-current filter factor as the default.  The allowable values for "factor" are real numbers from 0.0 to 5.0, inclusive. 
+current filter factor as the default.  The allowable values for "factor" are real numbers from 0.0 to 5.0, inclusive.
 If the user accepts the current filter factor by pressing <RETURN\> at the FACTOR prompt, no changes are made to the
 filter settings.  Since the filter frequencies are digitally programmed, only discrete cutoff values (in increments of
 200.0 Hz up to 50000.0 Hz) are allowed.  Accordingly, RNMR sets the filter cutoffs to the closest available value given
@@ -2189,17 +2092,17 @@ nucleus.  Consequently, whenever the reference frequency for the assigned nucleu
 displayed by `FSYN` will be changed to reflect the new reference frequency.  The number of decimal places reported for
 the offset frequency is displayed and set by `NDEC` for the current frequency unit.  If the user accepts the current
 frequency by pressing <RETURN\> at the FREQ prompt, no changes are made.  The frequency offset set by `FSYN` is
-considered to be precise to 0.1 Hz, regardless of the choice of frequency units or number of  decimal places (`NDEC`). 
+considered to be precise to 0.1 Hz, regardless of the choice of frequency units or number of  decimal places (`NDEC`).
 If the user enters "\*" for "freq", RNMR will mark the specified table entry as undefined. This implies that the
 frequency for that entry will be calculated by:
 
-         	Factual(Hz) = 1.0E+06\*FPPM(MHz) + FREQ(Hz) + FREF(Hz)
+         	Factual(Hz) = 1.0E+06*FPPM(MHz) + FREQ(Hz) + FREF(Hz)
 
 where FPPM and FREF are frequencies defined for each nucleus by `NUCD`  and FREQ is the frequency entered with the F
 command.  That is, a table entry of \* directs RNMR to follow the F command when calculating the corresponding
 frequency.  If a table entry has a value other than \*, the corresponding frequency is calculated by:
 
-         	Factual(Hz) = 1.0E+06\*FPPM(MHz) + `FSYN`(Hz) + FREF(Hz)
+         	Factual(Hz) = 1.0E+06*FPPM(MHz) + `FSYN`(Hz) + FREF(Hz)
 
 where `FSYN` is the value for "freq" entered into the table with the `FSYN` command.  Note that FREF defines the zero
 point for frequency offsets but changes to FREF (via `NUCD`, `REF`, or `FSYS`) do not change the physical synthesizer
@@ -2271,17 +2174,17 @@ Before transformation, RNMR checks whether the frequency scale  should be revers
 with minimum time on the left while frequency data is presented with maximum frequency on the left (by long standing NMR
 convention), the default action of `FT` is to reverse the order of the data after transformation.  This is done by
 conjugating the FID before the Fourier transform is calculated.  If the observe synthesizer has not been defined, the
-FID is always conjugated.  Otherwise, the FID will be conjugated if the observe channel is generated from the lower 
+FID is always conjugated.  Otherwise, the FID will be conjugated if the observe channel is generated from the lower
 sideband (LSB) of the sum of the synthesizer and intermediate (IF)  frequencies.  After conjugation (if required), the
 FID is zero filled to the  appropriate size if necessary.  Then the first point of the FID is scaled as specified by
-"fctr1" and a fast Fourier transform is performed, replacing the FID with frequency domain data in processing buffer 1. 
+"fctr1" and a fast Fourier transform is performed, replacing the FID with frequency domain data in processing buffer 1.
 Use of `FT` resets the constant and linear phase values of the processing buffer (phi0 and phi1) to zero.  The frequency
 data in each block of the processing buffer is scaled by a constant factor so that the complex magnitude of the largest
 point in the first block is 1.0.  The largest point is the point whose intensity has the largest complex magnitude.  If
 the largest magnitude in block 1 is 0.0, no rescaling of the data is performed.  After any rescaling is complete, the
 buffer scale factor is multiplied by the new size and the rescaling factor:
 
-         	SFT = SFT\*`SIZE`/VMAX
+         	SFT = SFT*`SIZE`/VMAX
 
 where VMAX is the maximum magnitude in block 1 if this magnitude is nonzero or 1.0 otherwise.
 
@@ -2329,14 +2232,15 @@ size of the archive record.  To check and, if necessary, modify the allocated bu
 If the last record read into buffer `BUF` is different from REC, then the following buffer parameters are replaced with
 the new values as described below:
 
-TTLFLG  	title flag  	set to FALSE to indicate that the buffer title should be verified
-
-RECNO  	record number 	set to "rec"
-NDIM  	number of dims.  set to value in archive record
-`TITLE`  	buffer title 	inherited from archive record
-OWNER 	record owner  	"       "
-DATE  	date created 	"       "
-`IDN` 	 	ident. Fields 	"       "
+Parameter | Description | Set Value
+--------- | ----------- | ---------
+TTLFLG    | Title flag  | FALSE to indicate that the buffer title should be verified
+RECNO     | Record number | "rec"
+NDIM      | Number of dims. | value in archive record
+TITLE     | Buffer title | inherited from archive record
+OWNER     | Record owner | "       "
+DATE      | Date created | "       "
+IDN       | Ident. Fields | "       "
 
 `GA` always sets the buffer IDIMX parameter to 1; IDIMX specifies which dimension of a multidimensional source record is
 currently stored in the buffer.  When a new record is read into a processing buffer by `GA`, RNMR checks the nucleus
@@ -2372,7 +2276,7 @@ Prerequisites: RNMR only
 Description:
 `GAIN` sets the observe channel receiver relative gain.  This command sets the gain only if S-bus receiver gain control
 has been implemented on the spectrometer running RNMR.  Whether gain control has been implemented or not, the gain value
-is written to the archive title records and may be displayed by `LP` once the record has been read into a buffer. 
+is written to the archive title records and may be displayed by `LP` once the record has been read into a buffer.
 `GAIN` takes one parameter, "db" which is the relative receiver gain in decibels.  If this parameter is omitted, RNMR
 will prompt for the receiver gain with the current gain as the default.  The receiver gain is a real number between 0.0
 and 100.0 dB, inclusive.  It is considered precise to 0.1 dB.  If the user accepts the current gain value by pressing
@@ -2482,11 +2386,13 @@ Each time `GAV` is used, the destination buffer parameters are initialized with 
 and phi1) equal to 0.0 and with buffer scale factor 1.0.  In addition, the following parameters are initialized for the
 first direction:
 
-      	DIM       	1st direction dimension   set to 1 (i.e. DIR 1 = 1)
-      	DOMAIN   	1st direction domain      	set to TIME
-      	`SIZE`      	1st direction size        	set to averager size per block
-      	FIRST    1st direction min. time   	set to 0.0
-      	STEP     1st direction step size   	set to `DW` (msec)
+Parameter | Description | Set Value
+--------- | ----------- | ---------
+DIM       | 1st direction dimension | 1 (i.e. DIR 1 = 1)
+DOMAIN    | 1st direction domain | TIME
+SIZE      | 1st direction size | Averager size per block
+FIRS      | 1st direction min. time | 0.0
+STEP      | 1st direction step size | `DW` (msec)
 
 The initialization of these parameters is done only once per invocation of `GAV`, regardless of how many averager blocks
 are transferred.
@@ -2497,15 +2403,15 @@ digital converter (ADC) can represent.  If a given ADC yields N-bit signed integ
 no signal averaged shots were taken, the data are scaled by 1/ADCMAX instead.  The table below lists current values of
 ADCMAX for each spectrometer:
 
-        Spectrometer 	ADC bits         	ADCMAX
-       \____________     	\________        	\______
-A              	12             	2048
-B              	12             	2048
-C	16            	32768
-D	12             	2048
-E	16             	32768
-F	8               	128
-G	16 	 	32768
+Spectrometer | ADC bits | ADCMAX
+------------ | -------- | ------
+A | 12 | 2048
+B | 12 | 2048
+C | 16 | 32768
+D | 12 | 2048
+E | 16 | 32768
+F | 8  | 128
+G | 16 | 32768
 
 Once the data has been scaled, it is converted from complex integer to complex floating point representation.  After
 `GAV` has successfully transferred all the specified averager blocks, the active number of blocks in the processing
@@ -2528,7 +2434,7 @@ corresponding values read from the disk record.  Most RNMR commands require that
 into a buffer before further processing may be performed.  Since processing buffers are onedimensional, the user must
 specify which one-dimensional slice(s) of the blocked record is to be read into the buffer.  In RNMR, this specification
 is accomplished with one parameter, the block number.  As the block number is incremented from 1, 1D slices along the
-first direction are selected for increasing depth in the second direction and minimum height in directions 3 and 4. 
+first direction are selected for increasing depth in the second direction and minimum height in directions 3 and 4.
 Next, 1D slices are read from the next lowest plane in direction 3 with minimum height in direction 4.  When all slices
 have been read for minimum height in direction 4, retrieval continues with the next lowest cube.  In this way, every
 slice along direction 1 is read out with depth in direction 2 varying fastest and height in direction 4 varying most
@@ -2550,12 +2456,12 @@ as the default.
 
 The second parameter, "blk" is used to select the first block of  record "rec" to be transferred.  If this parameter is
 omitted, RNMR will not prompt for a block number.  Instead, "blk" will default to zero.  When "blk" is set to zero,
-either explicitly or by default, the first record block transferred will be determined by the current `PTRB` setting. 
-The `PTRB` command displays and sets a pointer which marks the current read and write blocks of a given blocked record. 
+either explicitly or by default, the first record block transferred will be determined by the current `PTRB` setting.
+The `PTRB` command displays and sets a pointer which marks the current read and write blocks of a given blocked record.
 When "blk" is 0, RNMR begins the transfer with the first block after the current read block (`PTRB`+1).  Legal values
 for "blk" are integers greater than or equal to zero.
 
-The third parameter, "buf" specifies which processing buffer should receive the data and parameters from record "rec". 
+The third parameter, "buf" specifies which processing buffer should receive the data and parameters from record "rec".
 If "buf" is omitted, the specified blocks of the source record will be read into  processing buffer 1.  RNMR does not
 prompt for "buf".  Legal values of "buf" are 1 and 2 since there are two processing buffers available.  Note that buffer
 1 is the visible processing buffer while buffer 2 is invisible.
@@ -2585,7 +2491,7 @@ the error message:
 
         (RARCX ) BLOCK OUT OF BOUNDS
 
-Since blocks are transferred one at a time, RNMR reads in as many blocks as possible from those requested by the user. 
+Since blocks are transferred one at a time, RNMR reads in as many blocks as possible from those requested by the user.
 If at any point one of the three error conditions described above occurs, the transfer stops.  In this case, all the
 blocks that transferred successfully may be processed as usual, but the screen display is not updated.  Thus, if the
 number of blocks in record "rec" is not known, one may use `GB` to get successive blocks until a BLOCK OUT OF BOUNDS
@@ -2618,13 +2524,15 @@ gives an error message:
 If the last record read into buffer "buf" is different from "rec", then the following buffer parameters are replaced
 with the new values as described below:
 
- TTLFLG 	title flag       	set to FALSE to indicate that the buffer title should be verified
- RECNO   	record number   set to "rec"
- NDIM    	number of dims.  set to value in title record
- `TITLE`   buffer title     	inherited from title record
- OWNER   	record owner  	"       "
- DATE    	date created  	"       "
- `IDN`      	ident. Fields 	"       "
+Parameter | Description | Set Value
+--------- | ----------- | ---------
+TTLFLG    | Title flag  | FALSE to indicate that the buffer title should be verified
+RECNO     | Record number | "rec"
+NDIM      | Number of dims. | value in archive record
+TITLE     | Buffer title | inherited from archive record
+OWNER     | Record owner | "       "
+DATE      | Date created | "       "
+IDN       | Ident. Fields | "       "
 
 `GB` always sets the buffer IDIMX parameter to the direction 1 dimension; IDIMX specifies which dimension of a
 multidimensional source record is currently stored in the buffer. Thus, `GB` marks the buffer as containing data from
@@ -2653,7 +2561,7 @@ parameter table.  `GB` always updates the buffer to reflect the archive record's
 frequency scale, and dimension, and phase and scale factors.  After the data is read from the archive record to the
 processing buffer, the active size of the buffer becomes the size of the record.  As each block is successfully
 transferred from record REC to buffer `BUF`, RNMR sets the block read pointer to the number of the block just read. This
-pointer indicates the "current" block of a given record and may be set as desired manually with the command `PTRB`. 
+pointer indicates the "current" block of a given record and may be set as desired manually with the command `PTRB`.
 Upon successful completion, `GB` updates the current read record pointer (as displayed and set by `PTRA`) to "rec" and
 updates the display if processing buffer "buf" is currently visible.
 ## GBLARG
@@ -2691,7 +2599,7 @@ argument "nam" does not yet exist.  Thus, to make `GBLARG` prompt the user for t
          	`GBLARG` XYZ,,XYZ_VAL
 
 This command will cause RNMR to prompt the user for the value of global argument XYZ. If the user presses <RETURN\> at
-this prompt, global argument XYZ will not be defined or redefined and the `GBLARG` command will have changed nothing. 
+this prompt, global argument XYZ will not be defined or redefined and the `GBLARG` command will have changed nothing.
 If a global argument with name "nam" does not exist prior to the execution of the `GBLARG` command, RNMR will create a
 new global argument with the specified non-blank value. Otherwise, the value of the existing global argument "nam" will
 be updated.
@@ -2733,7 +2641,7 @@ corresponding to a multiline spectrum.  Such a simulation is generated by the sy
 frequencies, amplitudes, and line widths from a text file and uses `GENCS` and other commands to calculate the FID.
 
 The first parameter of `GENCS` is "freq", which specifies the frequency of the complex sine wave to be generated.
-This frequency should be expressed in the current frequency unit, as set and displayed by the command `UNIT` /FREQ. 
+This frequency should be expressed in the current frequency unit, as set and displayed by the command `UNIT` /FREQ.
 Currently, the available units are Hz, kHz, MHz, and PPM.  If "freq." is omitted, RNMR will prompt for a frequency with
 a default of 1 in the current frequency units with the current number of decimal places (as displayed and set by
 `NDEC`).
@@ -2750,23 +2658,27 @@ zero.  If a valid value of "`SW`" is entered, RNMR resets the sweep width of the
 When `GENCS` is executed, the first point of the buffer is always identified with zero time, regardless of its original
 time value.  Each partition of the visible processing buffer receives an identical complex sine wave whose points are
 given by:
-I(k) = `EXP`(i(phase + (k-1)dphi))  k= 1,...,`SIZE`
+
+        I(k) = `EXP`(i(phase + (k-1)dphi))  k= 1,...,`SIZE`
 
 where "dphi" is 360\*freq/sw.  If the frequency scale of the buffer is reversed, "phase" and "dphi" will be negated
 before computing the complex sine.  This will occur when the buffer synthesizer is 0 or when the spectrum reverse flag
 (`SRFLG`) for the buffer synthesizer is false.
 
 After the complex sine has been generated, RNMR initializes the following parameters for processing buffer 1:
-TTLFLG  	title flag        	 	 	set to FALSE to indicate that the buffer title should be verified
-RECNO   	record number for `GA`,`GS`,`GB`   	set to zero
-BLKNO   	block number for `GB`          	set to all zeroes
-`TITLE`    	buffer title                 	 	set to null
-OWNER   	owner for `SA`,`SB`,`SS`           	set to current `USER`
-DATE     	date for `SA`,`SB`,`SS`             	set to current date
-`IDN`      	identification fields    	 	all set to null
-PHI0     	constant phase factor    	 	set to 0.0
-PHI1     	linear phase factor      	 	set to 0.0
-SFT      	buffer scale factor      	 	set to 1.0
+
+Parameter | Description | Set Value
+--------- | ----------- | ---------
+TTLFLG    | Title flag  | FALSE to indicate that the buffer title should be verified
+RECNO     | Record number for `GA`,`GS`,`GB` | 0
+BLKNO     | Block number for `GB` | All 0
+TITLE     | Buffer title | Null
+OWNER     | Owner for `SA`,`SB`,`SS`  | Current `USER`
+DATE      | Date for `SA`,`SB`,`SS` | Current date
+IDN       | Identification fields | All null
+PHI0      | Constant phase factor | 0.0
+PHI1      | Linear phase factor | 0.0
+SFT       | Buffer scale factor | 1.0
 
 If the processing buffer is currently visible, `GENCS` always updates the display upon completion.
 ## GM
@@ -2796,7 +2708,7 @@ multiplication of the data.  `GM` multiplies each block of processing buffer 1 b
 
 F(I) = `EXP`-(0.5\*PI\*(I-1)\*`LB`/`SW`)\*\*2)
 
-where I is the index of the data point (I=1,2,...), `LB` is the line broadening factor, and `SW` is buffer sweep width. 
+where I is the index of the data point (I=1,2,...), `LB` is the line broadening factor, and `SW` is buffer sweep width.
 If the processing buffer is currently visible, `GM` always updates the display.
 ## GMV
 Calculate geometric mean
@@ -2846,7 +2758,7 @@ towards this limit.  If "`NA`" is omitted, the current shot limit as set and dis
 additional shots will be taken; RNMR does not prompt for "na".  Legal values for "`NA`" are -1 and integers greater than
 or equal to 1. If "na" is -1, RNMR will continue acquisition with no limit to the number of shots taken; acquisition
 will continue until stopped by `QUIT` or `WAIT`.  Before resuming acquisition, RNMR checks that the number of shots
-already taken is less than the requested shot limit specified by the `NA` command or the "`NA`" parameter of `GO`. 
+already taken is less than the requested shot limit specified by the `NA` command or the "`NA`" parameter of `GO`.
 Unless `NA` or "na" is -1, acquisition will not be started if this condition is not satisfied.  If "`NA`" is specified
 and is greater than the current number of shots completed, RNMR will replace the current shot limit with "na".  When
 acquisition is continued with `GO`, no delay shots are taken even if `NDLY` is greater than zero.  To continue
@@ -2861,10 +2773,14 @@ will determine the number of shots taken from a macro, and similarly, `NWAIT` sh
 `NWAIT` is nonzero.  In summary, if no shots have been taken, `GO` acts like `ZG` except that neither the averager nor
 the acquisition title parameters nor the display is initialized by `GO`.  `GO` resets the following averager parameters
 to their current settings in RNMR:
-	`NABLK`    	number of averager blocks (logical avg. memory partitions)
-        	`NAMD`     	length of phase cycle
-        	`NDLY`     	number of dummy shots to take on `DG` or `NG`
-        	`NDSP` 	 	number of shots to take for each display update
+
+Parameter | Description
+--------- | -----------
+`NABLK`   | Number of averager blocks (logical avg. memory partitions)
+`NAMD`    | Length of phase cycle
+`NDLY`    | Number of dummy shots to take on `DG` or `NG`
+`NDSP`    | Number of shots to take for each display update
+
 Before acquisition is resumed, `GO` also resets the frequency table pointer for each synthesizer so that frequencies
 will be generated starting with the first table entry.  Once acquisition is restarted, each shot will increment the shot
  indicator in the upper right hand corner of the display.  If the acquisition block is visible, the current sum of FID's
@@ -2931,13 +2847,15 @@ the buffer must be greater than or equal to the size of the scratch record.  To 
 allocated buffer size, use the command `DBSZ` "buf".  If the last record read into buffer "buf" is different from "rec",
 then the following buffer parameters are replaced with new values as described below:
 
-TTLFLG  	title flag       	set to FALSE to indicate that the buffer title should be verified
-RECNO   	record number    set to "rec"
-NDIM     	number of dims.  set to value in scratch record
-`TITLE`  	buffer title     	inherited from scratch record
-OWNER   	record owner  	"       "
-DATE     	date created  	"       "
-`IDN`      	ident. fields  	"       "
+Parameter | Description | Set Value
+--------- | ----------- | ---------
+TTLFLG    | Title flag  | FALSE to indicate that the buffer title should be verified
+RECNO     | Record number | "rec"
+NDIM      | Number of dims. | value in scratch record
+TITLE     | Buffer title | inherited from scratch record
+OWNER     | Record owner | "       "
+DATE      | Date created | "       "
+IDN       | Ident. Fields | "       "
 
 `GS` always sets the buffer IDIMX parameter to 1; IDIMX specifies which dimension of a multidimensional source record is
 currently stored in the buffer.  When a new record is read into a processing buffer by `GS`, RNMR checks the nucleus
@@ -2988,9 +2906,11 @@ Legal values of "buf" are 1 and 2 since there are two processing buffers availab
 processing buffer while buffer 2 is invisible.  In addition to transferring data from DATAA.DAT to the processing
 buffer, `GSA` initializes the following buffer parameters:
 
-TTLFLG  	title flag  	set to FALSE to indicate that the buffer title should be verified
-RECNO   	record number    set to ZERO
-BLKNO   	block number     set to all zeroes
+Parameter | Description | Set Value
+--------- | ----------- | ---------
+TTLFLG    | Title flag  | FALSE to indicate that the buffer title should be verified
+RECNO     | Record number | 0
+BLKNO     | block number | All 0
 
 When `GSA` completes successfully, the display is updated if "buf" is 1.
 
@@ -3024,7 +2944,7 @@ process.  Once the `HELP` session is complete, RNMR resets the CTRL-Y state to i
 interrupts were allowed before `HELP`, they will be re-enabled.  The RNMR graphics window is then popped to the
 foreground, hiding the text window.
 
-The RNMR command help library is structured so that one may obtain help on a command XYZ by entering "`HELP` RNMR XYZ". 
+The RNMR command help library is structured so that one may obtain help on a command XYZ by entering "`HELP` RNMR XYZ".
 Retrieving other information about RNMR or PPROG requires navigating through the `HELP` tree interactively or specifying
 additional keywords "key2" through "key9".  For assistance in navigating through a VMS `HELP` library, enter (at the
 `DCL` prompt "$") "`HELP` `HELP`".
@@ -3057,16 +2977,16 @@ Hilbert transform on each block of buffer 1.  The following algorithm is used:
 
 1.	The imaginary part of the data is initially computed by interpolating points from the real part:
 
-IMAG(I) = (REAL(I) + REAL(I+1))/2                   I=1,...,`SIZE`-1
-IMAG(`SIZE`) = (REAL(`SIZE`) + REAL(1))/2                   I=`SIZE`
+        IMAG(I) = (REAL(I) + REAL(I+1))/2                   I=1,...,`SIZE`-1
+        IMAG(`SIZE`) = (REAL(`SIZE`) + REAL(1))/2                   I=`SIZE`
 
 2.	A real FFT is performed on the real part and the imaginary part of the data separately.
 
 3.	Both the real and imaginary parts of the first point are multiplied by 0.5 in preparation for inverse Fourier
 transformation (see "fctr1" under the command "`IFT`"):
 
-       	REAL(1)=0.5\*REAL(1)
-       	IMAG(1)=0.5\*IMAG(1)
+       	REAL(1)=0.5*REAL(1)
+       	IMAG(1)=0.5*IMAG(1)
 
 4.	A complex inverse FFT is performed on the real and imaginary parts of the data simultaneously.
 
@@ -3097,7 +3017,7 @@ Defaults: current
 Prerequisites: RNMR only.
 
 Description:
-`HTR` sets the heater enable flag on or off.  This flag enables or disables computer control of the probe temperature. 
+`HTR` sets the heater enable flag on or off.  This flag enables or disables computer control of the probe temperature.
 When the `HTR` command is issued, RNMR checks the current status of the probe heater.  If the heater is in ERROR status,
 RNMR reports the error and resets the heater status.  `HTR` takes one parameter, "state", which is ON if heater control
 is enabled and `OFF` otherwise.  If "state" is omitted, RNMR will prompt for the heater enable state with the current
@@ -3152,8 +3072,8 @@ The third parameter, "prompt", specifies a prompt string to use for inquiring th
 This parameter is used only if "val" is omitted from the `IDN` command line. The purpose of the "prompt" parameter is to
 facilitate interactive input of `IDN` values from a macro, as in the command:
 
-         	`IDN` 1 7.0    ! set default value for idn 1
-`IDN` 1,,`PH`    ! prompt user for new `IDN` 1 value
+        `IDN` 1 7.0    ! set default value for idn 1
+        `IDN` 1,,`PH`    ! prompt user for new `IDN` 1 value
 
 which prompts for the value of `IDN` number 1 as shown below:
 
@@ -3197,7 +3117,7 @@ saved to disk after acquisition) before beginning an experiment.
 The first parameter, "idn", selects which identifier field is to be modified.  The legal values for "idn" are the
 integers 1,2,3, and 4. If "idn" is not specified, RNMR will prompt for an identifier number with a default value of 1.
 
-The third parameter, "prompt", specifies a prompt string to use for inquiring the value of the specified `IDNA` field. 
+The third parameter, "prompt", specifies a prompt string to use for inquiring the value of the specified `IDNA` field.
 This parameter is used only if "val" is omitted from the `IDNA` command line.  The purpose of the "prompt" parameter is
 to facilitate interactive input of `IDNA` values from a macro, as in the command:
 
@@ -3218,7 +3138,7 @@ RNMR will ask the user for a value using the prompt selected by the "prompt" par
 field and ask the user for a new value.  If the user presses <RETURN\> at this prompt, no changes are made.  Otherwise,
 RNMR sets the specified `IDNA` field to the value entered. If the "val" parameter is specified on the `IDNA` command
 line, RNMR will update the value of the identifier field and no prompt will be made.  Each `IDNA` field stores a maximum
-of 8 characters and is a parameter of the acquisition buffer.  When RNMR starts up, each identifier field is blank. 
+of 8 characters and is a parameter of the acquisition buffer.  When RNMR starts up, each identifier field is blank.
 Acquisition buffer identifier fields may be displayed and modified only by the `IDNA` command.
 ## IFCND
 Branch on condition flag
@@ -3248,7 +3168,7 @@ The third parameter, "labelf", specifies a label to which macro  execution will 
 `OFF`. If "labelf" is omitted and condition flag "icnd" is `OFF`, execution will continue with the next line in the
 current macro following `IFCND`.  Both "labelt" and "labelf" should be specified as character strings of the form
 ".XXXXXXX" where "." is required syntax and X may be any ASCII character.  When a jump to either "labelt" or "labelf" is
-made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label. 
+made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label.
 If that label is not found, the search begins again at the first line of the macro.
 
 Each statement label may contain a positive line offset, as in the command:
@@ -3298,6 +3218,7 @@ made, RNMR first searches ahead from the current macro line to the end of the ma
 If that label is not found, the search begins again at the first line of the macro.
 
 Each statement label may contain a positive line offset, as in the command:
+
  	`IFEQ` %VVV,1,.XYZ+1
 
 In this example, macro execution jumps to the first line after the label ".XYZ" if the value of global argument VVV is
@@ -3339,14 +3260,14 @@ The third parameter, "labelf", specifies a label to which macro  execution will 
 not exist.  If "labelf" is omitted and the global argument does not exist, execution will continue with the next line in
 the current macro following `IFGBL`.  Both "labelt" and "labelf" should be specified as character strings of the form
 ".XXXXXXX" where "." is required syntax and X may be any ASCII character.  When a jump to either "labelt" or "labelf" is
-made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label. 
+made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label.
 If that label is not found, the search begins again at the first line of the macro.
 
 Each statement label may contain a positive line offset, as in the command:
 
          	`IFGBL` VVV .XYZ+1
 
-In this example, macro execution jumps to the first line after the label ".XYZ" if a global argument named VVV exists. 
+In this example, macro execution jumps to the first line after the label ".XYZ" if a global argument named VVV exists.
 Note that line  offsets may not be so large as to go beyond the end of the macro; the search for lines offset from .XYZ
 does not wrap around to the beginning of the macro.  Also note that the label name and line offset together must be no
 more than eight characters in length.
@@ -3382,7 +3303,7 @@ The third parameter, "labelf", specifies a label to which macro  execution will 
 exist.  If "labelf" is omitted and the local argument does not exist, execution will continue with the next line in the
 current macro following `IFLCL`.  Both "labelt" and "labelf" should be specified as character strings of the form
 ".XXXXXXX" where "." is required syntax and X may be any ASCII character.  When a jump to either "labelt" or "labelf" is
-made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label. 
+made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label.
 If that label is not found, the search begins again at the first line of the macro.
 
 Each statement label may contain a positive line offset, as in the command:
@@ -3423,7 +3344,7 @@ The third parameter, "labelf", specifies a label to which macro  execution will 
 If "labelf" is omitted and the macro does not exist, execution will continue with  the next line in the current macro
 following `IFMAC`.  Both "labelt" and "labelf" should be specified as character strings of the form
 ".XXXXXXX" where "." is required syntax and X may be any ASCII character.  When a jump to either "labelt" or "labelf" is
-made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label. 
+made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label.
 If that label is not found, the search begins again at the first line of the macro.
 
 Each statement label may contain a positive line offset, as in the command:
@@ -3449,7 +3370,7 @@ Description:
 `IFREC` performs a conditional jump within a macro based on whether record "rec." is empty or not empty.  If the
 specified record is empty, a jump will be made to "labelt", otherwise macro execution will jump to "labelf".  Up to 200
 records may be occupied at a time in a given RNMR archive.  These include the four scratch records (1-4) and any archive
-or blocked records saved to disk with `GA` or `GB`.  When an archive is created, all 200 records are marked as empty. 
+or blocked records saved to disk with `GA` or `GB`.  When an archive is created, all 200 records are marked as empty.
 When data and parameters are saved to any of these records, the destination record remains allocated until it is
 deleted, at which time it becomes empty.
 
@@ -3505,7 +3426,7 @@ The first parameter of `IFT` is "size", which is the desired number of points af
 parameter is omitted, the size after transformation will be the smallest power of 2 greater than or equal to the current
 size.  Thus, if the spectrum has 200 points, its Fourier transform will have 256 points.  The processing buffer must
 have an allocated size at least as large as this adjusted size or an error message will be returned.  When the size of
-the spectrum is not a power of 2, RNMR zero fills the  spectrum to the next power of 2 before Fourier transformation. 
+the spectrum is not a power of 2, RNMR zero fills the  spectrum to the next power of 2 before Fourier transformation.
 If "size" is omitted, RNMR will not prompt for a size and the current size must be at least 3.  If "size" is specified,
 the value entered must be a power of 2 greater than or equal to the current size and between 4 and SIZEA inclusive,
 where SIZEA is the allocated size of each block in processing buffer 1.  If "size" is explicitly specified, RNMR will
@@ -3534,7 +3455,7 @@ largest point in the first block is 1.0.  The largest point is the point whose i
 magnitude. If the largest magnitude in block 1 is 0.0, no rescaling of the data is performed.  After any rescaling is
 complete, the buffer scale factor is divided by the new size and the rescaling factor:
 
-        SFT = SFT/(VMAX\*`SIZE`)
+        SFT = SFT/(VMAX*`SIZE`)
 
 where VMAX is the maximum magnitude in block 1 if this magnitude is nonzero or 1.0 otherwise.  If the processing buffer
 is currently visible, `IFT` always updates the display to show the transformed data.  If processing buffer 1 is
@@ -3560,11 +3481,13 @@ store the imported data permanently.
 `IMP` takes one parameter, "format" which specifies the foreign source format.  If "format" is omitted, RNMR will prompt
 for a  foreign format with NMR1 as the default.  The currently supported foreign formats are:
 
-         	FELIX    FELIX, complex data
-         	FTNMR    	FTNMR, complex data
-         	FTNMRR 	FTNMR, real data
-         	NMR1     	NMR1/NMR2, standard blocks
-         	NMR1A    	NMR1/NMR2, alternate blocks
+Format | Description
+------ | -----------
+FELIX  | FELIX, complex data
+FTNMR  | FTNMR, complex data
+FTNMRR | FTNMR, real data
+NMR1   | NMR1/NMR2, standard blocks
+NMR1A  | NMR1/NMR2, alternate blocks
 
 For the importation of one-dimensional data, NMR1 and NMR1A formats are identical.  Note that while the user need not be
 viewing the processing buffer to use `IMP`, `IMP` imports data only to processing buffer 1.  If the `IMP` command is
@@ -3588,9 +3511,11 @@ long.  This text may contain local and global argument substitutions, e.g.
 The local and global arguments specified will be evaluated and filled in before the import file is read in.  If no VMS
 file type was specified in the import file name, RNMR uses:
 
-   ".FELIX"    	if   "format" is FELIX
-   ".FTNMR"  	if   "format" is FTNMR
-   ".NMR1"    	if   "format" is NMR1 or NMR1A
+Format | File Type
+------ | -----------
+FELIX  | .FELIX
+FTNMR  | .FTNMR
+NMR1 or NMR1A | .NMR1
 
 RNMR will attempt to read the most recent version of the foreign format file in the current default directory (e.g.
 USERA:[JONES]) unless an explicit version number and/or directory were specified by the user.  The foreign format file
@@ -3613,36 +3538,36 @@ buffer owner and date fields are set to the current user and date.
 `IMP` FTNMR sets the processing buffer parameters to default values since none of these values are available from the
 FTNMR file header:
 
-   Parameter  	Description              	`IMP` FTNMR default
-   \_________  	\___________              	\_________________
-   RECNO      	archive record number    	0
-   BLKNO      	archive block number     	0 each
-   `IDN`        	identifier field         	'       ' each
-   SYN        	buffer synthesizer       	1
-   `PWR`        	transmitter power        	0.0 each
-   `GAIN`       	receiver gain            	0.0
-   `FLF`        	receiver filter factor   	1.0
-   PPNAM      	pulse program name       	'       '
-   PLS        	pulse length             	0.0 each
-   DLY        	delay length             	0.0 each
-   LOOP       	loop value               	0 each
-   FLAG       	PP flag state (`PPFLG`)    	.FALSE. each
-   FLDEC      	decouple flag (`DEC`)      	.FALSE.
-   FLHETR     	heteronuclear decouple   	.FALSE.
-   FLDECX     	decouple flag (`DECFLG`)   .FALSE. each
-   `RD`        	recycle delay            	0.0
-   `NAMD`       	number of acq modes      1
-   `AMD`        	acquisition mode list    	0
-   `PPMD`       	PP mode list             	0 each
-   `NA`         	total number of scans    	1
-   IA         	number of scans taken    	1
-   `NWAIT`      	number of scans to `WAIT`  0
-   `NDLY`       	number of dummy scans    0
-   `NDSP`       	#scans/screen update     	0
-   DIM        	buffer dimension         	1
-   IPHI0      	constant phase value     	0
-   IPHI1      	linear phase value       	0
-   SFT        	buffer scale factor      	1.0
+Parameter | Description | IMP FTNMR default
+--------- | ----------- | -----------------
+RECNO     | Archive record number | 0
+BLKNO     | Archive block number | 0 each
+IDN       | Identifier field | '       ' each
+SYN       | Buffer synthesizer | 1
+PWR       | Transmitter power | 0.0 each
+GAIN      | Receiver gain | 0.0
+FLF       | Receiver filter factor | 1.0
+PPNAM     | Pulse program name | '       '
+PLS       | Pulse length | 0.0 each
+DLY       | Delay length | 0.0 each
+LOOP      | Loop value | 0 each
+FLAG      | PP flag state (`PPFLG`) | .FALSE. each
+FLDEC     | Decouple flag (`DEC`) | .FALSE.
+FLHETR    | Heteronuclear decouple | .FALSE.
+FLDECX    | Decouple flag (`DECFLG`) | .FALSE. each
+RD        | Recycle delay | 0.0
+NAMD      | Number of acq modes | 1
+AMD       | Acquisition mode list | 0
+PPMD      | PP mode list | 0 each
+NA        | Total number of scans | 1
+IA        | Number of scans taken | 1
+NWAIT     | Number of scans to `WAIT` | 0
+NDLY      | Number of dummy scans | 0
+NDSP      | #scans/screen update | 0
+DIM       | Buffer dimension | 1
+IPHI0     | Constant phase value | 0
+IPHI1     | Linear phase value | 0
+SFT       | Buffer scale factor | 1.0
 
 Note that RNMR ignores any PPM to Hz conversion parameters and constant and linear phase values encoded in the FTNMR
 file header in favor of the default values listed above.  If the FTNMR file has a parameter header record, RNMR reads
@@ -3691,44 +3616,45 @@ the first (acquisition) dimension. The size and domain (time or frequency) of th
 values in the NMR1 header (fdsize and fdFtFlag).  `IMP` NMR1 sets certain processing buffer parameters to default values
 since their values are not available from the NMR1 file header:
 
-   Parameter  	Description              	`IMP` NMR1 default
-   \_________ 	\___________              	\_________________
-   RECNO      	archive record number    	0
-   BLKNO      	archive block number     	0 each
-   `IDN`        	identifier field         	'       ' each
-   SYN        	buffer synthesizer       	1
-   `PWR`        	transmitter power        	0.0 each
-   `GAIN`       	receiver gain            	0.0
-   `FLF`        	receiver filter factor   	1.0
-   PPNAM      	pulse program name       	'       '
-   PLS        	pulse length            	0.0 each
-   DLY        	delay length             	0.0 each
-   LOOP       	loop value               	0 each
-   FLAG       	PP flag state (`PPFLG`)    	.FALSE. each
-   FLDEC      	decouple flag (`DEC`)      	.FALSE.
-   FLHETR     	heteronuclear decouple   	.FALSE.
-   FLDECX     	decouple flag (`DECFLG`)   .FALSE. each
-   `RD`         	recycle delay            	0.0
-   `NAMD`       	number of acq modes      1
-   `AMD`        	acquisition mode list    	0
-   `PPMD`       	PP mode list             	0 each
-   `NA`         	total number of scans    	1
-   IA         	number of scans taken    	1
-   `NWAIT`      	number of scans to `WAIT`  0
-   `NDLY`       	number of dummy scans    0
-   `NDSP`       	#scans/screen update     	0
-   DIM        	buffer dimension         	1
-   IPHI0      	constant phase value     	0
-   IPHI1      	linear phase value       	0
-   SFT        	buffer scale factor      	1.0
-
+Parameter | Description | IMP FTNMR default
+--------- | ----------- | -----------------
+RECNO     | Archive record number | 0
+BLKNO     | Archive block number | 0 each
+IDN       | Identifier field | '       ' each
+SYN       | Buffer synthesizer | 1
+PWR       | Transmitter power | 0.0 each
+GAIN      | Receiver gain | 0.0
+FLF       | Receiver filter factor | 1.0
+PPNAM     | Pulse program name | '       '
+PLS       | Pulse length | 0.0 each
+DLY       | Delay length | 0.0 each
+LOOP      | Loop value | 0 each
+FLAG      | PP flag state (`PPFLG`) | .FALSE. each
+FLDEC     | Decouple flag (`DEC`) | .FALSE.
+FLHETR    | Heteronuclear decouple | .FALSE.
+FLDECX    | Decouple flag (`DECFLG`) | .FALSE. each
+RD        | Recycle delay | 0.0
+NAMD      | Number of acq modes | 1
+AMD       | Acquisition mode list | 0
+PPMD      | PP mode list | 0 each
+NA        | Total number of scans | 1
+IA        | Number of scans taken | 1
+NWAIT     | Number of scans to `WAIT` | 0
+NDLY      | Number of dummy scans | 0
+NDSP      | #scans/screen update | 0
+DIM       | Buffer dimension | 1
+IPHI0     | Constant phase value | 0
+IPHI1     | Linear phase value | 0
+SFT       | Buffer scale factor | 1.0
 
 When RNMR imports data from an NMR1 format file, the data is multiplied by a factor C as defined below:
 
- C = SF                  	 	if `NA` is less than or equal                        to 0 and time domain
- C = SF/`SIZE`             	 	if `NA` is less than or equal                        to 0 and freq. domain
- C = SF/(2048\*`NA`)        	 	if `NA` is greater than 0 and                        time domain
- C = SF/(2048\*`NA`\*`SIZE`)   	if `NA` is greater than 0 and                        frequency domain
+C | Condition
+- | ---------
+SF | `NA` is less than or equal to 0 and time domain
+SF/`SIZE` | `NA` is less than or equal to 0 and freq. domain
+SF/(2048\*`NA`) | `NA` is greater than 0 and time domain
+SF/(2048\*`NA`\*`SIZE`) | `NA` is greater than 0 and frequency domain
 
  where SF is the NMR1 scale factor:
 
@@ -3759,10 +3685,14 @@ from one RNMR archive to another via `EXP2D`.  The first parameter, "format" spe
 "format" is omitted, RNMR will prompt for a foreign format with NMR1 as the default.  The currently supported foreign
 formats are:
 
-         	FELIX    FELIX, complex data
-         	FTNMR    	FTNMR, complex data          	FTNMRR  	FTNMR, real data
-         	NMR1    NMR1/NMR2, standard blocks
-         	NMR1A    	NMR1/NMR2, alternate blocks
+Format | Description
+------ | -----------
+FELIX  | FELIX, complex data
+FTNMR  | FTNMR, complex data
+FTNMRR | FTNMR, real data
+NMR1   | NMR1/NMR2, standard blocks
+NMR1A  | NMR1/NMR2, alternate blocks
+
 
 The second parameter, "rec" specifies the number of a blocked archive record to receive the imported data.  If this
 parameter is omitted, RNMR will prompt for a destination record number with the current archive record (as displayed and
@@ -3791,7 +3721,7 @@ dimensions.  If the record has only one dimension allocated, RNMR will display t
 If the `IMP2D` command is used at console level, RNMR will prompt the user for the name of the file which contains the
 data to be imported.  The user may enter any valid VMS file name up to 64 characters long.  If the user presses
 <RETURN\> at this prompt, no data is imported to the processing buffer.  If `IMP2D` is used from within a macro, RNMR
-expects the foreign format file name to be delimited by two semicolons (;;) on the line following the `IMP` command. 
+expects the foreign format file name to be delimited by two semicolons (;;) on the line following the `IMP` command.
 The entire line after ;; constitutes the file name, as illustrated below:
 
          	`IMP2D` FTNMR 25
@@ -3808,9 +3738,11 @@ characters long.  This text may contain local and global argument substitutions,
 The local and global arguments specified will be evaluated and filled in before the import file is read in.  If no VMS
 file type was specified in the import file name, RNMR uses:
 
-   ".FELIX"    	if   "format" is FELIX
-   ".FTNMR"    	if   "format" is FTNMR
-   ".NMR1"     	if   "format" is NMR1 or NMR1A
+Format | File Type
+------ | -----------
+FELIX  | .FELIX
+FTNMR  | .FTNMR
+NMR1 or NMR1A | .NMR1
 
 RNMR will attempt to read the most recent version of the foreign format file in the current default directory (e.g.
 USERA:[JONES]) unless an explicit version number and/or directory were specified by the user.  The foreign format file
@@ -3861,43 +3793,46 @@ are set to the value of fdnscan, the number of scans parameter in the NMR1 file 
 corresponding values in the NMR1 header (fdsize and fdFtFlag).  `IMP2D` NMR1 sets certain processing buffer parameters
 to default values since their values are not available from the NMR1 file header:
 
-   Parameter  	Description              	`IMP` NMR1 default
-   \_________  	\___________   	 	\_________________
-   `IDN`        	identifier field         	'       ' each
-   SYN        	buffer synthesizer       	1
-   `PWR`        	transmitter power        	0.0 each
-   `GAIN`       	receiver gain            	0.0
-   `FLF`        	receiver filter factor   	1.0
-   PPNAM      	pulse program name       	'       '
-   PLS        	pulse length            	0.0 each
-   DLY        	delay length             	0.0 each
-   LOOP       	loop value               	0 each
-   FLAG       	PP flag state (`PPFLG`)    	.FALSE. each
-   FLDEC      	decouple flag (`DEC`)      	.FALSE.
-   FLHETR     	heteronuclear decouple   	.FALSE.
-   FLDECX     	decouple flag (`DECFLG`)   .FALSE. each
-   `RD`         	recycle delay            	0.0
-   `NAMD`       	number of acq modes      1
-   `AMD`        	acquisition mode list    	0
-   `PPMD`       	PP mode list             	0 each
-   `NA`         	total number of scans    	1
-   `NWAIT`      	number of scans to `WAIT`  0
-   `NDLY`       	number of dummy scans    0
-   `NDSP`       	#scans/screen update     	0
-   IPHI0      	constant phase value     	0
-   IPHI1      	linear phase value      	0
-   SFT        	buffer scale factor      	1.0
+Parameter | Description | IMP FTNMR default
+--------- | ----------- | -----------------
+IDN       | Identifier field | '       ' each
+SYN       | Buffer synthesizer | 1
+PWR       | Transmitter power | 0.0 each
+GAIN      | Receiver gain | 0.0
+FLF       | Receiver filter factor | 1.0
+PPNAM     | Pulse program name | '       '
+PLS       | Pulse length | 0.0 each
+DLY       | Delay length | 0.0 each
+LOOP      | Loop value | 0 each
+FLAG      | PP flag state (`PPFLG`) | .FALSE. each
+FLDEC     | Decouple flag (`DEC`) | .FALSE.
+FLHETR    | Heteronuclear decouple | .FALSE.
+FLDECX    | Decouple flag (`DECFLG`) | .FALSE. each
+RD        | Recycle delay | 0.0
+NAMD      | Number of acq modes | 1
+AMD       | Acquisition mode list | 0
+PPMD      | PP mode list | 0 each
+NA        | Total number of scans | 1
+NWAIT     | Number of scans to `WAIT` | 0
+NDLY      | Number of dummy scans | 0
+NDSP      | #scans/screen update | 0
+DIM       | Buffer dimension | 1
+IPHI0     | Constant phase value | 0
+IPHI1     | Linear phase value | 0
+SFT       | Buffer scale factor | 1.0
 
 When RNMR imports data from an NMR1 format file, the data is multiplied by a factor C as defined below:
 
- C = SF                  	 	if `NA` is less than or equal                        to 0 and time domain
- C = SF/`SIZE`             	 	if `NA` is less than or equal                        to 0 and freq. domain  C =
-SF/(2048\*`NA`)        	 	if `NA` is greater than 0 and                        time domain
- C = SF/(2048\*`NA`\*`SIZE`)   	if `NA` is greater than 0 and                        frequency domain
+C | Condition
+- | ---------
+SF | `NA` is less than or equal to 0 and time domain
+SF/`SIZE` | `NA` is less than or equal to 0 and freq. domain
+SF/(2048\*`NA`) | `NA` is greater than 0 and time domain
+SF/(2048\*`NA`\*`SIZE`) | `NA` is greater than 0 and frequency domain
 
  where SF is the NMR1 scale factor:
 
-        SF = 2.0\*\*(-IPWR), IPWR = fdAbsScale
+        SF = 2.0^(-IPWR), IPWR = fdAbsScale
 
 RNMR reads each 1D slice from the NMR1 format file and writes it (after scaling the data by the factor C above) to a
 block in record "rec".
@@ -3949,15 +3884,13 @@ the spectrum instead.
 3.	Calculate complex polynomial coefficients P1 and P2:
 
         P1 = (Ravg - Lavg)/(Rlim - Llim)
-        P2 = Lavg - P1\*Llim
-
+        P2 = Lavg - P1*Llim
 where Lavg and Ravg are the averages of the first few and last few points on either side of the display, as described in
 (1) and (2), respectively, and Rlim and Llim are the point numbers corresponding to the right and left display limits.
 
 4.	Calculate the value of a complex polynomial function Z at each point in the current display:
 
          	Z(I) = (P1 X I) + P2
-
 where I is the data point number (I=1 is the first point in the spectrum, regardless of display limits).  Note that this
 polynomial describes a straight line in both its real and imaginary parts.
 
@@ -3969,15 +3902,15 @@ After baseline fixing, each block of the processing buffer is separately integra
 replacing each data point within the region to be integrated by the sum of all points from the left display limit to
 that data point, including the endpoints:
 
-        	DATA(LLIM) 	= DATA(LLIM)
-      	DATA(LLIM+1) = DATA(LLIM)+DATA(LLIM+1)
-      	DATA(LLIM+2) = DATA(LLIM)+DATA(LLIM+1)+DATA(LLIM+2)
+        DATA(LLIM) 	= DATA(LLIM)
+        DATA(LLIM+1) = DATA(LLIM)+DATA(LLIM+1)
+        DATA(LLIM+2) = DATA(LLIM)+DATA(LLIM+1)+DATA(LLIM+2)
 
 After integration, the data is normalized so that the largest point in the first block (between the current display
 limits) has a real absolute value intensity of 1.  If the largest real absolute value intensity is zero, the data is not
 rescaled.  If the data is rescaled, RNMR updates the buffer scale factor, as displayed by `SC`:
 
-         	SFT = SFT\*SF
+         	SFT = SFT*SF
 
 where SF is the factor by which the data was multiplied to normalize the first block of the processing buffer.  If the
 processing buffer is currently visible, RNMR updates the display after executing `INTG`.
@@ -3998,7 +3931,7 @@ currently viewing this buffer (`VIEW` PRO) to use `INTRG`.  The parameters of th
 the left and right integration limits, respectively.  If either or both of these limits are omitted from the command
 line, RNMR will prompt for the missing limit(s).  The left and right integration limits default to the current left and
 right display limits, which RNMR will report to the user in the current time or frequency unit, as set and displayed by
-the `UNIT` command, with the current maximum number of decimal places, as set and displayed by `NDEC` for that unit. 
+the `UNIT` command, with the current maximum number of decimal places, as set and displayed by `NDEC` for that unit.
 For each display limit, the user should enter a value expressed in the current time or frequency unit or "\*" to select
 the leftmost left limit or the rightmost right limit.  If the user requests an integration limit to the left of the
 leftmost point in the data buffer, the integration will begin at the leftmost data point.  Similarly, if the right
@@ -4051,7 +3984,7 @@ Description:
 with the `EM` or `GM` commands.  Thus, "`EM` 1", "`GM` 1", and "`LB` 1" all set the line broadening factor to 1.0 for
 all subsequent apodizations.
 
-`LB` has one parameter, "lb", which is the line broadening factor, expressed in the current default frequency unit. 
+`LB` has one parameter, "lb", which is the line broadening factor, expressed in the current default frequency unit.
 This unit is set by the command "`UNIT` /FREQ /`DFLT`" and can be any frequency unit except PPM.  If "lb" is not
 specified on the command line, RNMR will display the current line broadening factor and prompt for a value.  If the user
 presses <RETURN\> at this prompt, the line broadening factor will not be updated.  The current line broadening factor is
@@ -4078,7 +4011,7 @@ Prerequisites: `LCK` requires implementation of RNMR lock control. It is availab
 Description:
 `LCK` enables or disables the magnetic field-frequency lock on spectrometers with software lock control enabled.  `LCK`
 takes one parameter, "state", which may be specified as  either ON or `OFF` to enable or disable the lock, respectively.
- If "state" is omitted from the command line, RNMR will display the current lock enable status and prompt for "state". 
+ If "state" is omitted from the command line, RNMR will display the current lock enable status and prompt for "state".
 If the user presses <RETURN\> at this prompt, RNMR exits `LCK` without updating the hardware lock state.
 ## LCLARG
 Set local argument value
@@ -4165,7 +4098,7 @@ loops, only the first 16 can be set from RNMR; loops 17 through 32 may be used i
 accessible to RNMR.
 
 The second parameter, "incr.", is the number by which the specified loop is to be incremented. If "incr." is not
-specified on the command line, the loop will be incremented by 1; RNMR will not prompt for "incr." if it is omitted. 
+specified on the command line, the loop will be incremented by 1; RNMR will not prompt for "incr." if it is omitted.
 Legal values for "incr." are positive or negative integers between -32767 and 32767, inclusive.  Note that RNMR will
 update the pulse programmer hardware even if "incr." is zero.
 
@@ -4208,7 +4141,7 @@ the leftmost left limit or the rightmost right limit.  If the user requests a di
 point in the data buffer, the display will begin at the leftmost data point.  Similarly, if the right display limit
 specified is beyond the rightmost data point, the display will extend to the rightmost data point.  If the user
 specifies an display limit that is within the range of the data buffer but which does not correspond to a specific data
-point, RNMR will set that limit to the time or frequency of the closest data point to the right of the value specified. 
+point, RNMR will set that limit to the time or frequency of the closest data point to the right of the value specified.
 Note that the command "`LIM` \* \*" directs RNMR to set the display limits so that all points in the data buffer are
 visible.  Unless display updating has been set off with the `SET` DSP command, RNMR will update the display to show the
 data between "llim" and "rlim", whether the user is currently viewing the acquisition or the processing buffer.
@@ -4291,7 +4224,7 @@ RECEIVER `GAIN` (`GAIN`)
 RNMR reports the receiver gain in dB only if S-bus gain control has been implemented on the current spectrometer.
 
 SWEEP WIDTH (`SW`)
-The sweep width reported by `LP` is identically equal to 1.0E+06 divided by the hardware dwell time in microseconds. 
+The sweep width reported by `LP` is identically equal to 1.0E+06 divided by the hardware dwell time in microseconds.
 RNMR reports the sweep width in the current frequency unit (`UNIT` /FREQ) to the current number of decimal places for
 that unit (`NDEC`).
 
@@ -4358,7 +4291,7 @@ shot to shot.
 
 BLOCKED ACQUISITION MODES
 The blocked acquisition modes (`AMD` /BLK) are listed so that the number of modes is equal to the buffer `NAMD` /BLK
-value.  That is, regardless of how the `AMD` /BLK modes were entered by the user, `NAMD` /BLK modes will be displayed. 
+value.  That is, regardless of how the `AMD` /BLK modes were entered by the user, `NAMD` /BLK modes will be displayed.
 These modes represent the sequence of complex numbers by which FID's in are multiplied before signal averaging.  For a
 given experiment, the `AMD` modes are selected so that the desired NMR signal adds constructively from shot to shot.
 
@@ -4409,7 +4342,7 @@ Format: `LPA`
 Prerequisites: RNMR only
 
 Description:
-`LPA` prints a summary of acquisition parameter values on the current printer, as selected with the command `LPDEV`. 
+`LPA` prints a summary of acquisition parameter values on the current printer, as selected with the command `LPDEV`.
 These parameters are the latest settings of the pulse programmer, averager, and other spectrometer hardware.  The exact
 format of the `LPA` summary varies from spectrometer to spectrometer due to differences in implementation of
 RNMR-controlled hardware.  If a title has been specified earlier using the `TITLEA` command, RNMR  will use this title
@@ -4449,7 +4382,7 @@ RECEIVER `GAIN` (`GAIN`)
 RNMR reports the receiver gain in dB only if S-bus gain control has been implemented on the current spectrometer.
 
 SWEEP WIDTH (`SW`)
-The sweep width reported by `LPA` is identically equal to 1.0E+06 divided by the hardware dwell time in microseconds. 
+The sweep width reported by `LPA` is identically equal to 1.0E+06 divided by the hardware dwell time in microseconds.
 RNMR reports the sweep width in the current frequency unit (`UNIT` /FREQ) to the current number of decimal places for
 that unit (`NDEC`).
 
@@ -4544,7 +4477,7 @@ shot to shot.
 
 BLOCKED ACQUISITION MODES
 The blocked acquisition modes (`AMD` /BLK) are listed so that the number of modes is equal to the buffer `NAMD` /BLK
-value.  That is, regardless of how the `AMD` /BLK modes were entered by the user, `NAMD` /BLK modes will be displayed. 
+value.  That is, regardless of how the `AMD` /BLK modes were entered by the user, `NAMD` /BLK modes will be displayed.
 These modes represent the sequence of complex numbers by which FID's in are multiplied before signal averaging.  For a
 given experiment, the `AMD` modes are selected so that the desired NMR signal adds constructively from shot to shot.
 
@@ -4588,19 +4521,19 @@ values of the FID at earlier times.  In a linear prediction calculation, the FID
 number of exponentially damped complex sine waves with different intensities, phases, and damping factors.  Determining
 the best fit for the parameters of these components is done by diagonalizing a matrix of numbers with dimension N-M by
 N-M, where N-M is the number of components and M is the number of data points to fit.  The elements of the diagonalized
-matrix are then used to calculate the complex intensities of a small number of points at the beginning of the FID. 
+matrix are then used to calculate the complex intensities of a small number of points at the beginning of the FID.
 `LPB` replaces these points with their calculated values, leaving the total number of points in the FID constant.  By
-using backward linear prediction, one may correct FID data points which were corrupted by probe or filter ring-down. 
+using backward linear prediction, one may correct FID data points which were corrupted by probe or filter ring-down.
 `LPB` operates only on the data in the visible processing buffer (buffer 1).  The user need not be viewing this buffer
 to use `LPB`.
 
 The first parameter of `LPB`, "irlim", is the point number of the  rightmost point to be updated by linear prediction.
-`LPB` will replace data points 1 through "irlim" with values calculated from a certain number of the remaining points. 
+`LPB` will replace data points 1 through "irlim" with values calculated from a certain number of the remaining points.
 If "irlim" is not specified on the command line, RNMR will correct only the leftmost point of the FID; the default value
 of "irlim" is 1 and RNMR will not prompt for "irlim" if it is omitted.  Legal values for "irlim" are positive integers
 from 1 to one-eighth (1/8) the number of points in the FID.
 
-The second parameter, "nmm", is the number of spectral components to be used in the linear prediction calculation, N-M. 
+The second parameter, "nmm", is the number of spectral components to be used in the linear prediction calculation, N-M.
 This parameter also determines the size of the matrix that RNMR must diagonalize in order to calculate the intensities
 of points 1 through "irlim".  Thus, larger values of "nmm" will result in much longer calculation times.  If "nmm" is
 not specified on the command line, RNMR will set "nmm" to either the largest integer less than or equal to
@@ -4634,14 +4567,13 @@ matrix is an integer between zero and NMM.
 
 4.	A vector is constructed with length equal to the rank determined in step 3.  This vector is equal to the product:
 
-        (TEMP1)=(LAMBDA\*\*-1)\*(UT)\*(DATA)
-
-where LAMBDA\*\*-1 is the inverse of the vector of eigenvalues of rank NMM-RANK+1 to NMM and UT is the transpose of the
+        (TEMP1)=(LAMBDA^-1)*(UT)*(DATA)
+where LAMBDA^-1 is the inverse of the vector of eigenvalues of rank NMM-RANK+1 to NMM and UT is the transpose of the
 eigenvector matrix.
 
 5.	The vector calculated in step 4 is used to compute an NMM-element vector:
 
-        (TEMP2)=(U)\*(LAMBDA\*\*-1)\*(UT)\*(DATA)               =(U)\*(TEMP1)
+        (TEMP2)=(U)*(LAMBDA^-1)*(UT)*(DATA)               =(U)*(TEMP1)
 
 6.	The linear prediction coefficients are calculated by multiplying the conjugate of the data vector DATA with the
 vector TEMP2.  These coefficients are factors by which the first M data points to the right of each predicted point are
@@ -4735,10 +4667,12 @@ device as the default.  This default will be the device assigned to the current 
 print device has been modified by an earlier `LPDEV` command in the current RNMR or RNMRP session.  The legal choices of
 text printer device are currently:
 
-   device_name     printer       	location
- 	LJ3 	HP LJ3         	4119
-    	LJ4 	HP LJ4         	5119
- 	LJ5 	HP LJ5  	0249
+Device Name | Printer | Location
+----------- | ------- | --------
+LJ3 | HP LJ3 | 4119
+LJ4 | HP LJ4 | 5119
+LJ5 | HP LJ5 | 0249
+
 ## LPF
 Perform forward linear prediction on FID
 
@@ -4771,7 +4705,7 @@ one. Note that RNMR will not prompt for "irlim" if it is omitted.  Legal values 
 `SIZE` to SIZEA, where `SIZE` is the number of points in the current FID, as displayed by the command "`SHOW` `BUF`
 `SIZE`" and SIZEA is the number of points allocated in buffer 1, as displayed and set by `DBSZ`.
 
-The second parameter, "nmm", is the number of spectral components to be used in the linear prediction calculation, N-M. 
+The second parameter, "nmm", is the number of spectral components to be used in the linear prediction calculation, N-M.
 This parameter also determines the size of the matrix that RNMR must diagonalize in order to calculate the intensities
 of points `SIZE`+1 through "irlim".  Thus, larger values of "nmm" will result in much longer calculation times.  If
 "nmm" is not specified on the command line, RNMR will set "nmm" to either the largest integer less than or equal to
@@ -4806,15 +4740,14 @@ matrix is an integer between zero and NMM.
 
 4.	A vector is constructed with length equal to the rank determined in step 3. This vector is equal to the product:
 
-        (TEMP1)=(LAMBDA\*\*-1)\*(UT)\*(DATA)
-
-where LAMBDA\*\*-1 is the inverse of the vector of eigenvalues of rank NMM-RANK+1 to NMM and UT is the transpose of the
+        (TEMP1)=(LAMBDA^-1)*(UT)*(DATA)
+where LAMBDA^-1 is the inverse of the vector of eigenvalues of rank NMM-RANK+1 to NMM and UT is the transpose of the
 eigenvector matrix.
 
 5.	The vector calculated in step 4 is used to compute an NMM-element vector:
 
-        (TEMP2)=(U)\*(LAMBDA\*\*-1)\*(UT)\*(DATA)
-               =(U)\*(TEMP1)
+        (TEMP2)=(U)*(LAMBDA^-1)*(UT)*(DATA)
+               =(U)*(TEMP1)
 
 6.	The linear prediction coefficients are calculated by multiplying the conjugate of the data vector DATA with the
 vector TEMP2. These coefficients are factors by which the data points at the end of the FID are multiplied and summed to
@@ -4874,12 +4807,10 @@ can be a peak.
 point is a peak.  If I is the intensity of the test point and IL and IR are the intensities of the first points to the
 left and right of the test point, respectively, then the test point is a peak if:
 
-   (ABS(I) .GT. IL) .AND. (ABS(I) .GE. IR)      .AND. (ABS(I) .GE. `TH`)   if I .GE. 0
+        (ABS(I) .GT. IL) .AND. (ABS(I) .GE. IR)      .AND. (ABS(I) .GE. `TH`)   if I .GE. 0
+or
 
- or
-
-   (ABS(I) .GT. -IL) .AND. (ABS(I) .GE. -IR)      .AND. (ABS(I) .GE. `TH`)   if I .LT. 0
-
+        (ABS(I) .GT. -IL) .AND. (ABS(I) .GE. -IR)      .AND. (ABS(I) .GE. `TH`)   if I .LT. 0
 where `TH` is the current peak pick threshold, as set and displayed by the command `TH`.  That is, for a positive point
 to be a peak, its intensity must be greater than or equal to the peak pick threshold, greater than the intensity of the
 adjacent point on the left, and greater than or equal to the intensity of the point on the right.  Conversely, for a
@@ -4900,27 +4831,25 @@ reported to a maximum of 3 decimal places.
 displayed. If no peaks were found, an error message is displayed:
 
          	(`LPK`   ) NO PEAKS
-
 In this case, RNMR does not print a peak list.  Conversely, if more  than 50 peaks were found, RNMR displays the
 message:
 
          	(`LPK`   ) TOO MANY PEAKS
-
 along with the number of peaks actually found between the display limits.  When this occurs, RNMR prints a listing of
 the first 50 peaks from left to right and does not list the remaining peaks.
 
 Each `LPK` printout begins with a header which includes the buffer title, record and block numbers, record owner, and
 date, as well as titles for each column specifying the domain (time or frequency) and units for the peak data to follow.
  When reading the record and block number at the top of the `LPK` printout, note that direction 1 is always indicated by
-"\*" in the block number display and corresponds to the dimension visible on the screen for onedimensional displays. 
+"\*" in the block number display and corresponds to the dimension visible on the screen for onedimensional displays.
 For example, if buffer 1 contains data from record 5, which is two-dimensional, and `DIRB` 2 is currently 12, the `LPK`
 summary will include the line:
 
-         	REC     5       (\*    ,   1)
+         	REC     5       (*    ,   1)
 
 when listing the peaks in block 1 of record 5.  Conversely, if `DIRB` 2 is set  to 21, the summary will include:
 
-         	REC     5       (1    ,   \*)
+         	REC     5       (1    ,   * )
 
 to indicate that direction 1 is mapped to dimension 2.  If buffer 1 contains data from a one-dimensional record, RNMR
 will not list any block numbers.
@@ -4962,7 +4891,7 @@ integer value from 1 to SIZE3 where SIZE3 is the size in the dimension mapped to
 "rec" has four dimensions, values of "blk" from 1 to SIZE3 select planes with minimum height in the fourth direction,
 blocks SIZE3+1 to 2\*SIZE3 select planes from the second cube of the 4D hypercube, and so forth.  Thus, by incrementing
 "blk" from 1 to SIZE3\*SIZE4, one may select all the data in a 4D data set one plane at a time.  If "iblk" is not
-specified, `LPK2D` will list two dimensional peaks in the first plane of record "rec"; RNMR will not prompt for "iblk". 
+specified, `LPK2D` will list two dimensional peaks in the first plane of record "rec"; RNMR will not prompt for "iblk".
 Legal values of "iblk" are integers greater than or equal to zero. If "iblk" is zero, RNMR will list the peaks in the
 next 2D slice of record "rec", where the current slice number is set and displayed by the command `PTRB` "rec".
 
@@ -5016,18 +4945,18 @@ the block of record "rec" being processed by `LPK2D`.  Thus, multiple calls to `
 in listing 2D peaks in successive planes of a 3D or 4D record since RNMR updates the block pointer with each call.  The
 following macro code example uses this technique to generate 2D peak listings for each plane of a 3-dimensional record.
 
-  ! LIST ALL 2D PEAKS AT EACH HEIGHT OF A 3D DATA `SET`    (RECORD 29)
-  `DIRB` 3 123         ! `SET` DIRECTION FOR BLOCKED ACCESS
-  `SET` IMSG `OFF` 1 2   ! GET `SIZE` OF DIMENSION 3 (#BLKS USED)
-  `SIZEB` 29 3
-  `SET` IMSG ON
-  `PTRB` 29 0 \>         ! `SET` READ POINTER TO FIRST BLOCK
-  `SETIDN` BLOCK 	      ! CURRENT BLOCK NUMBER WILL BE PRINTED TO SCREEN
-  `DO` /`IDN` /LCL 1,%2,BLK2D  ! LIST PEAKS IN EACH 2D SLICE
-  `LPK2D` 29 &BLK2D
-  `ENDDO`
+    ! LIST ALL 2D PEAKS AT EACH HEIGHT OF A 3D DATA SET    (RECORD 29)
+    DIRB 3 123         ! SET DIRECTION FOR BLOCKED ACCESS
+    SET IMSG OFF 1 2   ! GET SIZE OF DIMENSION 3 (#BLKS USED)
+    SIZEB` 29 3
+    SET` IMSG ON
+    PTRB 29 0 >         ! SET READ POINTER TO FIRST BLOCK
+    SETIDN BLOCK 	      ! CURRENT BLOCK NUMBER WILL BE PRINTED TO SCREEN
+    DO /IDN /LCL 1,%2,BLK2D  ! LIST PEAKS IN EACH 2D SLICE
+    LPK2D 29 &BLK2D
+    ENDDO
 
-The `LPK2D` peak listing sheets will be printed in order from the bottom slice to the top slice of the 3D data cube. 
+The `LPK2D` peak listing sheets will be printed in order from the bottom slice to the top slice of the 3D data cube.
 Note that neither the current record or block numbers are stored on disk, so they will be set back to zero the next time
 an RNMR or RNMRP session is initiated.  In order to remind the user of which dimensions in record "rec" will be searched
 for 2D peaks, RNMR displays the dimensions assigned to directions 1 and 2 as two informational messages.  For example,
@@ -5069,38 +4998,34 @@ threshold.
 4.	If the original value of the current point, I, is positive or zero, that point will be listed as a peak if:
 
        	(I .GT. L) .AND. (I .GE. R) .AND. (I .GT. D) .AND. (I .GE. U)
-
-where L, R, D, and U are the intensities of the nearest points to the left, right, below, and above the current point. 
+where L, R, D, and U are the intensities of the nearest points to the left, right, below, and above the current point.
 The real or imaginary part of each intensity will be used according to the current `BUF` setting.  Conversely, if the
 original value of the current point is  negative, the current point will be listed as a peak if:
 
        	(I .GT. -L) .AND. (I .GE. -R) .AND. (I .GT. -D) .AND. (I .GE. -U)
-
-where L, R, D, and U are the intensities of the nearest points to the left, right, below, and above the current point. 
+where L, R, D, and U are the intensities of the nearest points to the left, right, below, and above the current point.
 The real or imaginary part of each intensity will be used according to the current `BUF` setting.
 
 5.	For each peak found, RNMR writes a line to `LP`.TMP.  The first column in the `LPK2D` printout will specify the peak
 number, starting at one for the leftmost, bottom peak.  If the current unit in direction 1 is PPM, the second column of
 the `LPK2D` printout will list the peak position in PPM while the third column will list this position in the current
 default frequency unit, as set by the command "`UNIT` /`DFLT`".  If the direction 1 unit is not PPM, the second column
-will list the peak position in the current unit while the third column will specify "--------" for each peak. 
-Similarly, columns 4 and 5 will contain the peak position along direction 2 in current and default units, respectively. 
+will list the peak position in the current unit while the third column will specify "--------" for each peak.
+Similarly, columns 4 and 5 will contain the peak position along direction 2 in current and default units, respectively.
 Again, if the current unit for direction 2 is not PPM, column 5 will specify "--------" for each peak.  Note that the
 command "`UNIT` /DIM2 /`DFLT`" sets and displays the fallback unit RNMR will use if `UNIT` /DIM2 is PPM.  RNMR will list
 all peak positions with the maximum number of decimal places currently set for the appropriate units at RNMR startup
 time or as modified by the `NDEC` command.  The sixth column of the `LPK2D` printout specifies the peak height for each
 peak, reported to a maximum of 3 decimal places.
 
-4.  RNMR stops listing peaks after finding the first 250 peaks or after testing the last point in the search range
+6.  RNMR stops listing peaks after finding the first 250 peaks or after testing the last point in the search range
 described above.  If no peaks were found, an error message is displayed:
 
          	(`LPK2D`   ) NO PEAKS
-
 In this case, RNMR does not print a peak list.  Conversely, if more  than 250 peaks were found, RNMR displays the
 message:
 
          	(`LPK2D`   ) TOO MANY PEAKS
-
 along with the number of peaks actually found between the display limits.  When this occurs, RNMR prints a listing of
 the first 250 peaks from left to right, bottom to top, and does not list the remaining peaks.
 
@@ -5111,11 +5036,11 @@ peak data to follow.  When reading the record and block number at the top of the
 `LPK2D`. For example, if record 5 has three dimensions and `DIRB` 3 is currently 123, the `LPK2D` summary will include
 the line:
 
-         	REC     5       (\*    ,\*    ,1)
+         	REC     5       (*    ,*    ,1)
 
 when listing the peaks in block 1 of record 5. Conversely, if `DIRB` 3 is set  to 321, the summary will include:
 
-         	REC     5       (1    ,\*    ,\*)
+         	REC     5       (1    ,*    ,* )
 
 to indicate that direction 3 is mapped to dimension 1.  If record "rec" has only two dimensions, RNMR will not display
 any block numbers.  Wherever possible, `LPK2D` lists peak positions and intensities as  floating point numbers with the
@@ -5186,14 +5111,20 @@ Description:
 Creates global list of time or freq values. There are 4 lists available
 
 Subcommands:
-          	CR       Terminate
-B	Move to bottom of list
-C	Display current entry
-D	Delete entry
-          	I        	Insert entry
-          	L        	Display last entry
-          	N        	Display next entry           	Q        	Terminate
-          	T        	Move to top of list           	Z        	Call `ZO`
+
+Command | Description
+------- | -----------
+CR      | Terminate
+B       | Move to bottom of list
+C       | Display current entry
+D       | Delete entry
+I       | Insert entry
+L       | Display last entry
+N       | Display next entry
+Q       | Terminate
+T       | Move to top of list
+Z       | Call `ZO`
+
 ## LSTE
 Edit global list
 
@@ -5207,14 +5138,20 @@ Description:
 Edit global list.
 
 Subcommands:
-          	CR       Terminate
-B	Move to bottom of list
-C	Display current entry
-D	Delete entry           I        Insert entry           	L        	Display last entry
-          	N        	Display next entry
-Q	Terminate
-R	Replace entry
-          	T        	Move to top of list
+
+Command | Description
+------- | -----------
+CR      | Terminate
+B       | Move to bottom of list
+C       | Display current entry
+D       | Delete entry
+I       | Insert entry
+L       | Display last entry
+N       | Display next entry
+Q       | Terminate
+R       | Replace entry
+T       | Move to top of list
+
 ## LSTL
 List global list
 
@@ -5333,15 +5270,20 @@ Description:
 Edits macro. 	            TEMP
 
 Subcommands:
-          	CR       Terminate
-B	Move to bottom of macro
-C	Display current line
-D	Delete line
-          	I        	Insert line
-          	L        	Display last line
-          	N        	Display next line           	Q        	Terminate
-          	R        	Replace line
-          	T        	Move to top of macro
+
+Command | Description
+------- | -----------
+CR      | Terminate
+B       | Move to bottom of macro
+C       | Display current line
+D       | Delete line
+I       | Insert line
+L       | Display last line
+N       | Display next line
+Q       | Terminate
+R       | Replace line
+T       | Move to top of macro
+
 ## MEDBF
 Median baseline fix spectrum
 
@@ -5483,8 +5425,8 @@ Defaults: 2 1
 Description:
 Real multiplies complex destination buffer by complex source buffer.
 
-        REAL(DST) = REAL(DST) \* REAL(SRC)
-        IMAG(DST) = IMAG(DST) \* IMAG(SRC)
+        REAL(DST) = REAL(DST) * REAL(SRC)
+        IMAG(DST) = IMAG(DST) * IMAG(SRC)
 ## MXEQ
 Macro execute
 
@@ -5747,7 +5689,10 @@ Defaults: DATA
 Description:
 Opens `WRT` file.  The file type will be `WRT`. All write commands between `OPNWRT` and `CLSWRT` will appear in one
 file.
-P
+
+# P
+---
+## P
 Set pulse length
 
 Category: Acquisition
@@ -5760,9 +5705,6 @@ Prerequisites: LOAD
 
 Description:
 Sets pulse time in usec.
-
-# P
----
 ## PADJ
 Interactively adjust pulse length
 
@@ -5831,14 +5773,19 @@ Description:
 Performs interactive phase correction.
 
 Subcommands:
-          	CR       Terminate with current phase values
-C	Select constant value for change
-D	Select decrement direction
-          	I        	Select increment direction
-          	L        	Select linear value for change
-P	Select current cursor position as pivot for linear value
-Q	Terminate with original phase values
-          	V        	Change phase value after prompt           	Z        	Call `ZO`
+
+Command | Description
+------- | -----------
+CR | Terminate with current phase values
+C  | Select constant value for change
+D  | Select decrement direction
+I  | Select increment direction
+L  | Select linear value for change
+P  | Select current cursor position as pivot for linear value
+Q  | Terminate with original phase values
+V  | Change phase value after prompt
+Z  | Call `ZO`
+
 ## PHL
 Interactive lock channel phase correction
 
@@ -5852,9 +5799,15 @@ Description:
 Performs interactive lock channel phase correction.
 
 Subcommands:
-          CR       Terminate with current phase values D        Select decrement direction
-          	I        	Select increment direction
-          Q        Terminate with current phase values           V        Change phase value after prompt
+
+Command | Description
+------- | -----------
+CR | Terminate with current phase values
+D  | Select decrement direction
+I  | Select increment direction
+Q  | Terminate with original phase values
+V  | Change phase value after prompt
+
 ## PLDEV
 Select plotting device
 
@@ -5866,10 +5819,13 @@ Defaults: current
 
 Description:
 Sets plotter device.  The legal choices of plotter device are currently:
-    	Device Name    	Printer  	Location
- 	LJ3             	HP LJ3         	4???
-    	LJ4  	 	HP LJ4  	5119
-    	LJ5 	 	HP LJ5  	0249
+
+Device Name | Printer | Location
+----------- | ------- | --------
+LJ3 | HP LJ3 | 4119
+LJ4 | HP LJ4 | 5119
+LJ5 | HP LJ5 | 0249
+
 ## PLOT
 Plot current 1D display
 
@@ -6381,31 +6337,14 @@ Format: `SET` flgnam ...
 Description:
 Sets state of system flag. Arguments may be one of the following:
 
- 	AUTOZ  	state
- 	 	 	current
-Sets state of background hardware auto-shimming routine.  State my be ON or `OFF`.  Z1 is optimized based on the lock
-level.
-
-          	DSP 	 	state                   	 	current
-Sets state of display enable flag.  State may be ON or `OFF`.  Flag is set on when lowest console level is reached.
-
-          IMSG  state   gbl#1   gbl#2                     current     0      gbl#1
-Sets state of informational message flag.  State may be ON or `OFF`.  Flag is set on when lowest console level is
-reached.  If flag is off any values which would have been printed by the message are transferred to successive global
-arguments beginning with gbl#1 and ending with gbl#2, if gbl#1 and gbl#2 are nonzero.
-
-	LCKMTR 	state
-	 	 	Current
-Sets state of lock meter display.  State may be ON or `OFF`.  The lock meter is displayed as both graphically (a
-horizontal bar which monitors the lock level) and numerically.
-
-          	TIMER  	state
-                     	 	current
-Sets state of timer. State may be ON or `OFF`.  An informational message is written when timer is set to `OFF`.
-
-          	TRACE    	state                      	 	current
-Sets state of DEBUG trace enable flag.  State may be ON or `OFF`.  Flag is set off when lowest console level is reached.
- If flag is on each macro line will be listed before being executed.
+Flag | Description
+---- | -----------
+AUTOZ  | Sets state of background hardware auto-shimming routine. State my be ON or `OFF`. Z1 is optimized based on the lock level.
+DSP    | Sets state of display enable flag. State may be ON or `OFF`. Flag is set on when lowest console level is reached.
+IMSG   | Sets state of informational message flag.  State may be ON or `OFF`. Flag is set on when lowest console level is reached. If flag is off any values which would have been printed by the message are transferred to successive global arguments beginning with gbl#1 and ending with gbl#2, if gbl#1 and gbl#2 are nonzero.
+LCKMTR | Sets state of lock meter display.  State may be ON or `OFF`. The lock meter is displayed as both graphically (a horizontal bar which monitors the lock level) and numerically.
+TIMER  | Sets state of timer. State may be ON or `OFF`. An informational message is written when timer is set to `OFF`.
+TRACE  | Sets state of DEBUG trace enable flag.  State may be ON or `OFF`. Flag is set off when lowest console level is reached. If flag is on each macro line will be listed before being executed.
 
 System flags DSP, IMSG, EMSG,
 
@@ -6877,7 +6816,7 @@ Format: `UNIT` [qual] unit
 	Qualifiers: 	            /`DFLT`   /DIM1   /DIM2   /FREQ   /TIME
 Qualifier defaults:         current dimension         current domain Defaults:          current Description:
 Sets time or frequency unit.  Valid time domain units are USEC, MSEC, and SEC.  Valid frequency domain units are HZ,
-kHz, MHz, and PPM.  The /`DFLT` qualifier is used to specify a unit to be used when the primary unit is not acceptable. 
+kHz, MHz, and PPM.  The /`DFLT` qualifier is used to specify a unit to be used when the primary unit is not acceptable.
 All primary units are valid default units with the exception of PPM.
 ## UPDARV
 Update archive
@@ -6954,7 +6893,7 @@ Defaults: 1 2
 Description:
 `WAVV` performs a weighted addition of two complex buffers, "isrc" and "idst", modifying the destination buffer:
 
-      DST = DST\*NA_DST/(NA_DST+NA_SRC) + SRC\*NA_SRC/(NA_DST+NA_SRC)\*(SF_DST/SF_SRC)
+      DST = DST*NA_DST/(NA_DST+NA_SRC) + SRC*NA_SRC/(NA_DST+NA_SRC) * (SF_DST/SF_SRC)
 
 This addition permits the proper addition of two FID's or spectra with different scale factors and/or number of
 acquisitions; each data set is weighted appropriately.
@@ -7210,20 +7149,26 @@ Description:
 Positions cursors on display.
 
 Subcommands:
-          	CR       Terminate
-          	0-3      	Move 10\*\*digit points
-          	E        	Expand display between cursors           	F        	Contract to display full buffer
-          	H        	List point values on line printer
-L	Select left movement
-M	1      Select 1 cursor display
-          	M 2      Select 2 cursor display (shows expand region)
-O	Enter offset value after prompt
-P	Move to next peak
-Q	Terminate
-R	Select right movement
-S	Switch active cursor
-T	Enter threshold value after prompt
-          	V        	Enter cursor value after prompt           	W        Write point values to `WRT` file
+
+Command | Description
+------- | -----------
+CR      | Terminate
+0-3     | Move 10^digit points
+E       | Expand display between cursors
+F       | Contract to display full buffer
+H       | List point values on line printer
+L       | Select left movement
+M 1     | Select 1 cursor display
+M 2     | Select 2 cursor display (shows expand region)
+O       | Enter offset value after prompt
+P       | Move to next peak
+Q       | Terminate
+R       | Select right movement
+S       | Switch active cursor
+T       | Enter threshold value after prompt
+V       | Enter cursor value after prompt
+W       | Write point values to `WRT` file
+
 ## ZO2D
 Zoom on 2D data set
 
@@ -7239,15 +7184,20 @@ Description:
 Performs two-dimensional zooming on blocked record.
 
 Subcommands:
-          	CR       Terminate
-          	0-3      	Move 10\*\*digit blocks
-          	D1       Select 1st dimension
-          	D2       Select 2nd dimension
-          	F        	Select forward direction
-Q	Terminate
-R	Select reverse direction
-S	Switch dimensions
-          	V        	Enter other dimension value after prompt           	Z       	Call `ZO`
+
+Command | Description
+------- | -----------
+CR      | Terminate
+0-3     | Move 10^digit blocks
+D1      | Select 1st dimension
+D2      | Select 2nd dimension
+F       | Select forward direction
+Q       | Terminate
+R       | Select reverse direction
+S       | Switch dimensions
+V       | Enter other dimension value after prompt
+Z       | Call `ZO`
+
 ## ZO2DC
 Zoom on 2D contour display
 
@@ -7263,23 +7213,30 @@ Description:
 Performs two-dimensional contour zooming on blocked record.
 
 Subcommands:
-          	CR       Terminate
-          	0-3      	Move 10\*\*digit points
-D	Select down movement
-E	Expand display between cursors           	F        	Contract to display full record
-          	H        	List point values on line printer           	L        	Select left movement
-          	M 1      Select 1 cursor display
-          	M 2      Select 2 cursor display (shows expand region)
-          	M C 	Select contour mode
-          	M I      Select image mode
-O	Enter offset value after prompt
-P	Move to next peak           	Q        	Terminate
-R	Select right movement
-S	Switch active cursors
-T	Enter threshold value after prompt
-U	Select up movement
-V	Enter cursor value after prompt
-W	Write point values to `WRT` file
+
+Command | Description
+------- | -----------
+CR      | Terminate
+0-3     | Move 10^digit points
+D       | Select down movement
+E       | Expand display between cursors
+F       | Contract to display full record
+H       | List point values on line printer
+L       | Select left movement
+M 1     | Select 1 cursor display
+M 2     | Select 2 cursor display (shows expand region)
+M C     | Select contour mode
+M I     | Select image mode
+O       | Enter offset value after prompt
+P       | Move to next peak
+Q       | Terminate
+R       | Select right movement
+S       | Switch active cursors
+T       | Enter threshold value after prompt
+U       | Select up movement
+V       | Enter cursor value after prompt
+W       | Write point values to `WRT` file
+
 ## ZOA
 Zoom on acquisition display
 
@@ -7293,19 +7250,24 @@ Description:
 Positions cursors on acquisition display.
 
 Subcommands:
-          	CR       Terminate
-          	0-3      	Move 10\*\*digit points
-E	Expand display between cursors
-F	Contract to display full buffer
-          	H        	List point values on line printer
-          	L        	Select left movement
-O	Enter offset value after prompt
-P	Move to next peak
-Q	Terminate
-R	Select right movement
-S	Switch active cursor
-T	Enter threshold value after prompt           	V        	Enter cursor value after prompt           	W        Write
-point values to `WRT` file
+
+Command | Description
+------- | -----------
+CR      | Terminate
+0-3     | Move 10^digit points
+E       | Expand display between cursors
+F       | Contract to display full buffer
+H       | List point values on line printer
+L       | Select left movement
+O       | Enter offset value after prompt
+P       | Move to next peak
+Q       | Terminate
+R       | Select right movement
+S       | Switch active cursor
+T       | Enter threshold value after prompt
+V       | Enter cursor value after prompt
+W       | Write point values to `WRT` file
+
 ## ZOL
 Zoom on lock display
 
@@ -7320,13 +7282,16 @@ Description:
 Positions cursors on lock display.
 
 Subcommands:
-CR 	Terminate
-0-2 	Move 10\*\*digit points
-C 	Contract display by factor of 2
-E        	Expand display by factor of 2
-F        	Contract to display maximum sweep width
-L        	Select left movement
-P        	Enter position value after prompt
-Q        	Terminate
-R        	Select right movement
-W        	Enter sweep width value after prompt
+
+Command | Description
+------- | -----------
+CR      | Terminate
+0-2     | Move 10^digit points
+C       | Contract display by factor of 2
+E       | Expand display by factor of 2
+F       | Contract to display maximum sweep width
+L       | Select left movement
+P       | Enter position value after prompt
+Q       | Terminate
+R       | Select right movement
+W       | Enter sweep width value after prompt
