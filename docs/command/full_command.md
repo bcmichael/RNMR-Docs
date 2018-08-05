@@ -924,31 +924,28 @@ Set data display colors
 
 Category: Display Control
 
-Format: `COLOR` [qual] clr_indx red green blue
-Qualifiers:                   /CURSOR   /DATA
-Qualifier defaults:         /DATA
+Format: `COLOR` [qual] red green blue
 
-Defaults: 1 current_color_values
+Qualifiers: /REAL /IMAG /CURSOR
+
+Qualifier defaults:         /REAL
+
+Defaults: current_color_values
 
 Description:
-Sets the color for the display.
-
-When /DATA is selected, the allowed values of parameter clr_indx are 1 and 2 and are used as follows:
-
-clr_indx | 1D | 2D
--------- | -- | --
-1 | real | positive
-2 | imag | negative
-
-When /CURSOR is selected, the only allowed value of clr_indx is 1 and this color applies to all cursors.
+Sets the color for the display. Use /REAL and /IMAG to set the color of the real and imaginary data respectively. Use
+/CURSOR to set the color of all cursors.
 
 The red/green/blue values may each range from 0 to 100.  That is, to specify pure red, use  100  0   0.
 
-Defaults are:               /DATA
-              clr_indx=1:  0   0  100 (=blue)               clr_indx=2: 100  0   0  (=red)
+Defaults are:
 
-              /CURSOR
-              clr_indx=1:  0   0   0  (=black)
+Option | Default Color
+------ | -------------
+/REAL  | 0 100 0 (Green)
+/IMAG  | 100 0 0 (Red)
+/CURSOR | 100 100 100 (White)
+
 ## CONJG
 Complex conjugate data
 
