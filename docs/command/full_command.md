@@ -518,22 +518,21 @@ Format: `CALC` arg1 ... arg10
 Defaults: none none
 
 Description:
-`CALC` performs desk calculator operations in reverse Polish notation.  Arguments are pushed onto the calculator stack
+`CALC` performs desk calculator operations in reverse Polish notation. Arguments are pushed onto the calculator stack
 and operations are performed on them, yielding results which may either be printed to the screen or popped into local or
-global arguments.  All calculations are performed internally using floating point arithmetic.  The results are presented
-as integers (`NDEC` -1) unless modified by the `NDEC` operator, as described below:
+global arguments. All calculations are performed internally using single precision floating point arithmetic. The
+results are presented as integers (NDEC -1) unless modified by the NDEC operator, as described below:
 
-`CALC` operates on each argument on the command line from left to right.  There may be up to 10 arguments on the command
-line.  Remember that each argument can contain no more than 8 characters.  The calculator stack used by `CALC` has a
-depth of 10.  If an attempt is made to push more than 10 arguments onto the stack, the error message
-"(CALC0 ) STACK OVERFLOW" will be displayed.  When `CALC` encounters a unary arithmetic operator such as ABS (absolute
-value), it expects that there exists at least one value on the stack on which to operate. To put this another way, TOS
-(Top Of Stack) must exist.  If the stack is empty, the error message "(CALC0) STACK UNDERFLOW" will be displayed.
-Similarly, there must be at least two values on the stack in order to perform a binary arithmetic operation; a lack of
-sufficiently many arguments will give an underflow error.  When a binary operation is executed, the result replaces both
-(TOS) and (TOS-1), reducing the number of values on the stack by one.  When a constant is pushed onto the stack, the
-number of values on the stack increases by one. When a unary operation is executed, the number of values on the stack
-does not change.
+`CALC` operates on each argument on the command line from left to right. There may be up to 10 arguments on the command
+line. Remember that each argument can contain no more than 8 characters. The calculator stack used by `CALC` has a depth
+of 10. If an attempt is made to push more than 10 arguments onto the stack, the error message "(CALC0 ) STACK OVERFLOW"
+will be displayed. When `CALC` encounters a unary arithmetic operator such as ABS (absolute value), it expects that
+there exists at least one value on the stack on which to operate. To put this another way, TOS (Top Of Stack) must
+exist. If the stack is empty, the error message "(CALC0) STACK UNDERFLOW" will be displayed. Similarly, there must be at
+least two values on the stack in order to perform a binary arithmetic operation; a lack of sufficiently many arguments
+will give an underflow error. When a binary operation is executed, the result replaces both (TOS) and (TOS-1), reducing
+the number of values on the stack by one. When a constant is pushed onto the stack, the number of values on the stack
+increases by one. When a unary operation is executed, the number of values on the stack does not change.
 
 The arguments which may be used with the `CALC` command are as follows:
 
@@ -606,22 +605,24 @@ Argument | Description
 DUP      | Duplicates the top of stack, increasing the number of values on  the stack by 1. If the stack is empty, DUP will result in a (CALC0 ) STACK UNDERFLOW error message. Conversely, if the stack is full when `CALC` encounters the DUP operator, a (CALC0) STACK OVERFLOW error message will be displayed.
 NDEC     | sets the number of decimal places for displaying or popping results from the calculator stack. The top of stack defines the maximum number of decimal places that will be displayed. On completion, NDEC pops the top of stack, decreasing the stack size be one. In order to use NDEC, the stack must not be empty. "-1 NDEC" directs `CALC` to display and pop results as integers i.e. with no decimal point, while "0 NDEC" yields results with a final decimal point but no digits to the right of the decimal point. Higher values of NDEC request additional digits to the right of the decimal point, but these may be dropped if the value is too large.
 PRT      | Displays the top of stack as an informational message. The value of the top of stack is displayed with the current number of decimal places as set by a previous NDEC operator on the same `CALC` command line. If no NDEC operator preceded the PRT command, then the top of stack will be displayed as an integer (NDEC -1). On completion, PRT pops the top of stack, decreasing the stack size be one. In order to use PRT, the stack must not be empty.
-\>\>     | Pops the top of stack into a local argument. The name of the local argument which will receive the value is given by the remaining characters in the `CALC` parameter beginning with "\>\>". The name of the local argument may not be blank and must use only the characters A-Z, 0-9, $, or \_. Because \>\> pops the top of stack, the stack size is decreased by one after \>\> is processed. In order to use \>\>, the stack must not be empty.
-\>       | Pops the top of stack into a global argument. The name of the global argument which will receive the value is given by the remaining characters in the `CALC` parameter beginning with "\>". The name of the global argument may not be blank and must use only the characters A-Z, 0-9, $, or \_. Because \> pops the top of stack, the stack size is decreased by one after \> is processed. In order to use \>, the stack must not be empty.
+\>\>     | Pops the top of stack into a local argument. The name of the local argument which will receive the value is given by the remaining characters in the `CALC` parameter beginning with "\>\>". The name of the local argument may not be blank, cannot be longer than sixteen characters, and must use only the characters A-Z, 0-9, $, or \_. Because \>\> pops the top of stack, the stack size is decreased by one after \>\> is processed. In order to use \>\>, the stack must not be empty.
+\>       | Pops the top of stack into a global argument. The name of the global argument which will receive the value is given by the remaining characters in the `CALC` parameter beginning with "\>". The name of the global argument may not be blank, cannot be longer than sixteen characters, and must use only the characters A-Z, 0-9, $, or \_. Because \> pops the top of stack, the stack size is decreased by one after \> is processed. In order to use \>, the stack must not be empty.
 
 Any argument on the `CALC` command line other than those listed above is treated as a default push onto the calculator
-stack.  Values may be pushed onto the stack only if the stack is not full, i.e. there are fewer than 10 values on the
-stack before the push operation.  A default push operation increases the stack depth by one.  Because all `CALC`
+stack. Values may be pushed onto the stack only if the stack is not full, i.e. there are fewer than 10 values on the
+stack before the push operation. A default push operation increases the stack depth by one. Because all `CALC`
 manipulations are performed using real arithmetic, only integers or real numbers may be pushed onto the stack;
-alphabetic and special characters may not be entered.  Values to be pushed onto the stack may be written in exponential
-notation if desired.  As usual, a value to be pushed onto the stack must be no more than eight characters long.  An
-example of a default push is shown in the command below:
+alphabetic and special characters may not be entered. Values to be pushed onto the stack may be written in exponential
+notation if desired. A value to be pushed onto the stack must be no more than sixteen characters long. Values popped
+from the stack into local or global arguments should not be more than sixteen characters. If a longer value is popped
+into an argument the argument will be filled with \*s. Be careful not to set NDEC to too large a value in order to avoid
+this situation. An example of a default push is shown in the command below:
 
 `CALC` 1 2 ADD PRT
 
 Here, the arguments "1" and "2" are not operations known to RNMR, so they are interpreted as values to be pushed onto
-the calculator stack.  Once all operations specified on the `CALC` command line have been executed, RNMR checks that the
-calculator stack is empty.  If it is not empty, an error message will be displayed.
+the calculator stack. Once all operations specified on the `CALC` command line have been executed, RNMR checks that the
+calculator stack is empty. If it is not empty, an error message will be displayed.
 ## CALIB
 Measure pulse phases and amplitudes Category:  	Acquisition
 
