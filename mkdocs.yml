@@ -1,11 +1,15 @@
 site_name: RNMR Documentation
-theme: readthedocs
+theme:
+    name: 'rtd-dropdown'
 
 pages:
 - Index: 'index.md'
 - Getting Started: 'getting_started.md'
 - Running Routine Experiments: 'running_routine_experiments.md'
 - Macros: 'macros.md'
+- Commands:
+    - Command Syntax: 'command/syntax.md'
+    - Full Command Descriptions: 'command/full_command.md'
 
 markdown_extensions:
     - toc:
