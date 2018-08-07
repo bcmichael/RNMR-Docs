@@ -522,16 +522,16 @@ and operations are performed on them, yielding results which may either be print
 global arguments. All calculations are performed internally using single precision floating point arithmetic. The
 results are presented as integers (NDEC -1) unless modified by the NDEC operator, as described below:
 
-`CALC` operates on each argument on the command line from left to right. There may be up to 10 arguments on the command
-line. Remember that each argument can contain no more than 8 characters. The calculator stack used by `CALC` has a depth
-of 10. If an attempt is made to push more than 10 arguments onto the stack, the error message "(CALC0 ) STACK OVERFLOW"
-will be displayed. When `CALC` encounters a unary arithmetic operator such as ABS (absolute value), it expects that
-there exists at least one value on the stack on which to operate. To put this another way, TOS (Top Of Stack) must
-exist. If the stack is empty, the error message "(CALC0) STACK UNDERFLOW" will be displayed. Similarly, there must be at
-least two values on the stack in order to perform a binary arithmetic operation; a lack of sufficiently many arguments
-will give an underflow error. When a binary operation is executed, the result replaces both (TOS) and (TOS-1), reducing
-the number of values on the stack by one. When a constant is pushed onto the stack, the number of values on the stack
-increases by one. When a unary operation is executed, the number of values on the stack does not change.
+`CALC` operates on each argument on the command line from left to right. Remember that each argument can contain no more
+than 16 characters. The calculator stack used by `CALC` has a depth of 10. If an attempt is made to push more than 10
+arguments onto the stack, the error message "(CALC0 ) STACK OVERFLOW" will be displayed. When `CALC` encounters a unary
+arithmetic operator such as ABS (absolute value), it expects that there exists at least one value on the stack on which
+to operate. To put this another way, TOS (Top Of Stack) must exist. If the stack is empty, the error message "(CALC0)
+STACK UNDERFLOW" will be displayed. Similarly, there must be at least two values on the stack in order to perform a
+binary arithmetic operation; a lack of sufficiently many arguments will give an underflow error. When a binary operation
+is executed, the result replaces both (TOS) and (TOS-1), reducing the number of values on the stack by one. When a
+constant is pushed onto the stack, the number of values on the stack increases by one. When a unary operation is
+executed, the number of values on the stack does not change.
 
 The arguments which may be used with the `CALC` command are as follows:
 
@@ -617,10 +617,103 @@ from the stack into local or global arguments should not be more than sixteen ch
 into an argument the argument will be filled with \*s. Be careful not to set NDEC to too large a value in order to avoid
 this situation. An example of a default push is shown in the command below:
 
-`CALC` 1 2 ADD PRT
+ CALC 1 2 ADD PRT
 
 Here, the arguments "1" and "2" are not operations known to RNMR, so they are interpreted as values to be pushed onto
 the calculator stack. Once all operations specified on the `CALC` command line have been executed, RNMR checks that the
+calculator stack is empty. If it is not empty, an error message will be displayed.
+## CALCI
+Perform arithmetic and logical calculations on integers
+
+Category: Calculator
+
+Format: `CALCI` arg1 ... arg10
+
+Defaults: none none
+
+Description:
+`CALCI` performs desk calculator operations in reverse Polish notation. Arguments are pushed onto the calculator stack
+and operations are performed on them, yielding results which may either be printed to the screen or popped into local or
+global arguments. All calculations are performed internally using 32 bit integer arithmetic. As a result values to be
+pushed onto the stack should be between -2,147,483,647 and 2,147,483,647. `CALCI` does allow for integer overflow so be
+cautious if performing calculations with large numbers near these bounds.
+
+`CALCI` operates on each argument on the command line from left to right. The calculator stack used by `CALCI` has a
+depth of 10. If an attempt is made to push more than 10 arguments onto the stack, the error message "(CALCI0 ) STACK
+OVERFLOW" will be displayed. When `CALCI` encounters a unary arithmetic operator such as ABS (absolute value), it
+expects that there exists at least one value on the stack on which to operate. To put this another way, TOS (Top Of
+Stack) must exist. If the stack is empty, the error message "(CALC0) STACK UNDERFLOW" will be displayed. Similarly,
+there must be at least two values on the stack in order to perform a binary arithmetic operation; a lack of sufficiently
+many arguments will give an underflow error. When a binary operation is executed, the result replaces both (TOS) and
+(TOS-1), reducing the number of values on the stack by one. When a constant is pushed onto the stack, the number of
+values on the stack increases by one. When a unary operation is executed, the number of values on the stack does not
+change.
+
+The arguments which may be used with the `CALCI` command are as follows:
+
+Unary Arithmetic Operators:
+
+Argument | Description | Equation
+-------- | ----------- | --------
+ABS      | Replaces the top of stack with its absolute value | (TOS)=ABS(TOS)
+NEG      | Replaces the top of stack with its negative. | (TOS)=-(TOS).
+
+Binary Arithmetic Operators:
+
+Argument | Description | Equation
+-------- | ----------- | --------
+ADD      | Replaces (TOS) and (TOS-1) with their sum. | (TOS)=(TOS-1)+(TOS)
+DIV      | Replaces (TOS-1) and (TOS) with their quotient using integer division. Division by zero is not allowed. | (TOS)=(TOS-1)/(TOS)
+MAX      | Replaces (TOS-1) and (TOS) with the greater of the two values. | (TOS)=AMAX1((TOS-1),(TOS))
+MIN      | Replaces (TOS-1) and (TOS) with the lesser of the two values. | (TOS)=AMIN1((TOS-1),(TOS))
+MOD      | Replaces (TOS-1) and (TOS) with the remainder of: (TOS1)/(TOS). Division by zero is not allowed. | (TOS)=AMOD((TOS-1),(TOS))
+MUL      | Replaces (TOS-1) and (TOS) with their product. | (TOS)=(TOS-1)\*(TOS)
+SUB      | Replaces (TOS-1) and (TOS) with their difference. | (TOS)=(TOS-1)-(TOS)
+
+Unary Logical Operators:
+
+Argument | Description | Equation
+-------- | ----------- | --------
+NOT      | Replaces (TOS) with 1.0 if (TOS) is equal to 0.0 and 0.0 if (TOS) is not equal to 0.0. | (TOS)=NOT (TOS)
+
+Binary Logical Operators:
+
+Argument | Description | Equation
+-------- | ----------- | --------
+AND      | Replaces (TOS-1) and (TOS) with 1.0 if they are both nonzero or with 0.0 otherwise. | (TOS)=(TOS-1) AND (TOS)
+OR       | Replaces (TOS-1) and (TOS) with 1.0 if either is nonzero  or with 0.0 otherwise. | (TOS)=(TOS-1) OR (TOS)
+
+Binary Relational Operators:
+
+Argument | Description | Equation
+-------- | ----------- | --------
+EQ       | Replaces (TOS-1) and (TOS) with 1.0 if they are equal or with 0.0 if they are not equal. | (TOS)=(TOS-1)==(TOS)
+GE       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is greater than or equal to (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)>=(TOS)
+GT       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is greater than (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)>(TOS)
+LE       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is less than or equal to (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)<=(TOS)
+LT       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is less than (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)<(TOS)
+NE       | Replaces (TOS-1) and (TOS) with 1.0 if they are not equal or with 0.0 if they are equal. | (TOS)=(TOS-1)!=(TOS)
+
+Special Operators:
+
+Argument | Description
+-------- | -----------
+DUP      | Duplicates the top of stack, increasing the number of values on  the stack by 1. If the stack is empty, DUP will result in a (CALC0 ) STACK UNDERFLOW error message. Conversely, if the stack is full when `CALCI` encounters the DUP operator, a (CALC0) STACK OVERFLOW error message will be displayed.
+NDEC     | sets the number of decimal places for displaying or popping results from the calculator stack. The top of stack defines the maximum number of decimal places that will be displayed. On completion, NDEC pops the top of stack, decreasing the stack size be one. In order to use NDEC, the stack must not be empty. "-1 NDEC" directs `CALCI` to display and pop results as integers i.e. with no decimal point, while "0 NDEC" yields results with a final decimal point but no digits to the right of the decimal point. Higher values of NDEC request additional digits to the right of the decimal point, but these may be dropped if the value is too large.
+PRT      | Displays the top of stack as an informational message. The value of the top of stack is displayed with the current number of decimal places as set by a previous NDEC operator on the same `CALCI` command line. If no NDEC operator preceded the PRT command, then the top of stack will be displayed as an integer (NDEC -1). On completion, PRT pops the top of stack, decreasing the stack size be one. In order to use PRT, the stack must not be empty.
+\>\>     | Pops the top of stack into a local argument. The name of the local argument which will receive the value is given by the remaining characters in the `CALCI` parameter beginning with "\>\>". The name of the local argument may not be blank, cannot be longer than sixteen characters, and must use only the characters A-Z, 0-9, $, or \_. Because \>\> pops the top of stack, the stack size is decreased by one after \>\> is processed. In order to use \>\>, the stack must not be empty.
+\>       | Pops the top of stack into a global argument. The name of the global argument which will receive the value is given by the remaining characters in the `CALCI` parameter beginning with "\>". The name of the global argument may not be blank, cannot be longer than sixteen characters, and must use only the characters A-Z, 0-9, $, or \_. Because \> pops the top of stack, the stack size is decreased by one after \> is processed. In order to use \>, the stack must not be empty.
+
+Any argument on the `CALCI` command line other than those listed above is treated as a default push onto the calculator
+stack. Values may be pushed onto the stack only if the stack is not full, i.e. there are fewer than 10 values on the
+stack before the push operation. A default push operation increases the stack depth by one. Because all `CALCI`
+manipulations are performed using integer arithmetic, only integers may be pushed onto the stack; decimals as well as
+alphabetic and special characters may not be entered. An example of a default push is shown in the command below:
+
+    CALCI 1 2 ADD PRT
+
+Here, the arguments "1" and "2" are not operations known to RNMR, so they are interpreted as values to be pushed onto
+the calculator stack. Once all operations specified on the `CALCI` command line have been executed, RNMR checks that the
 calculator stack is empty. If it is not empty, an error message will be displayed.
 ## CALIB
 Measure pulse phases and amplitudes Category:  	Acquisition
