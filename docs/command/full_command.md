@@ -518,9 +518,18 @@ Defaults: none none
 
 Description:
 `CALC` performs desk calculator operations in reverse Polish notation. Arguments are pushed onto the calculator stack
-and operations are performed on them, yielding results which may either be printed to the screen or popped into local or
-global arguments. All calculations are performed internally using single precision floating point arithmetic. The
-results are presented as integers (NDEC -1) unless modified by the NDEC operator, as described below:
+and operations are performed on them, yielding results which may either be printed to the screen (PRT) or popped into
+local (>>) or global (>) arguments. `CALC` can perform basic arithmetic operations (+,-,\*,/) using infix notation with
+parentheses for order of operations. The result of this infix math is pushed onto the stack like any other argument. All
+calculations are performed internally using single precision floating point arithmetic. The results are presented as
+integers (NDEC -1) unless modified by the NDEC flag or the NDEC operator, as described below. For example the following
+command:
+
+    CALC /NDEC=2 1/3 PRT
+
+will print the following as an informational message:
+
+    VAL    =0.33
 
 `CALC` operates on each argument on the command line from left to right. Remember that each argument can contain no more
 than 16 characters. The calculator stack used by `CALC` has a depth of 10. If an attempt is made to push more than 10
@@ -633,10 +642,18 @@ Defaults: none none
 
 Description:
 `CALCI` performs desk calculator operations in reverse Polish notation. Arguments are pushed onto the calculator stack
-and operations are performed on them, yielding results which may either be printed to the screen or popped into local or
-global arguments. All calculations are performed internally using 32 bit integer arithmetic. As a result values to be
-pushed onto the stack should be between -2,147,483,647 and 2,147,483,647. `CALCI` does allow for integer overflow so be
-cautious if performing calculations with large numbers near these bounds.
+and operations are performed on them, yielding results which may either be printed to the screen (PRT) or popped into
+local (>>) or global (>) arguments. `CALCI` can perform basic arithmetic operations (+,-,\*,/) using infix notation with
+parentheses for order of operations. The result of this infix math is pushed onto the stack like any other argument. All
+calculations are performed internally using 32 bit integer arithmetic. As a result values to be pushed onto the stack
+should be between -2,147,483,647 and 2,147,483,647. `CALCI` does allow for integer overflow so be cautious if performing
+calculations with large numbers near these bounds. For example the following command:
+
+    CALCI 2*3 PRT
+
+will print the following as an informational message:
+
+    VAL    =6
 
 `CALCI` operates on each argument on the command line from left to right. The calculator stack used by `CALCI` has a
 depth of 10. If an attempt is made to push more than 10 arguments onto the stack, the error message "(CALCI0 ) STACK
