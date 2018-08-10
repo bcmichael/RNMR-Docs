@@ -73,23 +73,23 @@ Allocate a blocked record
 
 Category: Blocked Records
 
-Format: `ALLB` rec# ndim isize(1)...isize(ndim) ndimx
+Format: `ALLB` rec# ndim isize(1)...isize(ndim) ndimx nsega
 
 Defaults: 0 2 64 ... 64 1
 
 Description:
-`ALLB` allocates a blocked record for 2D to 4D records.  By allocating multidimensional records in advance, the user is
+`ALLB` allocates a blocked record for 2D to 4D records. By allocating multidimensional records in advance, the user is
 assured that there will be adequate disk space to hold all the data to be acquired.  Blocked records must be allocated
-using `ALLB`, `ALLCPY`, or `CPY` before data may be written into them.  The parameter "rec#" is the record number to be
+using `ALLB`, `ALLCPY`, or `CPY` before data may be written into them. The parameter "rec#" is the record number to be
 allocated. If 0 is entered for this parameter or if the parameter is omitted form the command line, then RNMR will
 allocate the next available record and print out the record number as an informational message once the allocation is
 complete. When "rec#" is missing or 0, an error message (FNDTA ) NO AVAILABLE TITLE RECORD indicates that there are no
-more empty title records available to be allocated.  If this message is encountered, the user should either delete one
-or more existing records in the current archive or create a new, empty  archive ($ CRTARC) before retrying the
-allocation.  If "rec#" is specified and is not 0, the specified record must be empty (i.e. not previously allocated).
-Only records 5 through 200 may be allocated with `ALLB`; scratch records (numbers 1-4) may not be allocated.  The
-parameter NDIM specifies the number of dimensions. NDIM may be chosen from 1 to 4.  If NDIM is not specified on the
-command line, RNMR will prompt for it with a default value of 2.
+more empty title records available to be allocated. If this message is encountered, the user should either delete one or
+more existing records in the current archive or create a new, empty  archive ($ CRTARC) before retrying the allocation.
+If "rec#" is specified and is not 0, the specified record must be empty (i.e. not previously allocated). Only records 5
+through 200 may be allocated with `ALLB`; scratch records (numbers 1-4) may not be allocated. The parameter NDIM
+specifies the number of dimensions. NDIM may be chosen from 1 to 4. If NDIM is not specified on the command line, RNMR
+will prompt for it with a default value of 2.
 
 The parameters ISIZE(1), ISIZE(2), ISIZE(3), and ISIZE(4) give the number of points in dimensions 1 through 4,
 respectively.  For a particular choice of NDIM, RNMR expects the user to supply NDIM arguments describing the size of
@@ -112,32 +112,13 @@ blocks of 4096 points each and NDIMX 1 gives `SIZEB` 2 of 5, i.e. RNMR returns e
 However, if the same request is made with NDIMX 2, 8 blocks will be allocated since 8 X 4096 corresponds to the smallest
 number of storage units greater than equal to the number required.
 
+NSEGA is the number of aquisition segments. If NSEGA is not specified RNMR will not prompt for a value and it will
+default to 1.
+
 If the physical size of the data file \*DATA.DAT must be increased to allocate the requested record, RNMR will write a
 message to the screen reporting the new, extended size in blocks (512 bytes = 1 block).  Note that the total allocated
 space occupied by an RNMR archive (including any deleted blocks that have not been squeezed) is limited to 524288 disk
 blocks (268.4 MB or 33554432 complex data points).
-
-When a record is allocated, the following title record fields are initialized with the following default values:
-
-Field  | Default Value   | Field Meaning
------- | -------------   | -------------
-DATE   | '       '       | date of this record
-FIRST  | 0.0,0.0,0.0,0.0 | initial time in each dimension
-STEP   | 0.0,1.0,1.0,1.0 | time step in each dimension
-IRBLK  | 0               | read pointer (see `PTRB`)
-IWBLK  | 0               | write pointer (see `PTRB`)
-OWNER  | '       '       | owner of this record
-SIZE   | 0,0,0,0         | #pts actually used in each dimension
-SYN    | 0,0,0,0         | synthesizer used for detection in each dimension
-TITLE  | (NULL)          | title of this record
-DOMAIN | TIME\*4         | domain for each dimension
-
-These title record fields are initialized with the values specified in the `ALLB` command statement:
-
-Field   | Field Meaning
-------- | -------------
-NDIM    | number of dimensions
-ISIZEA  | allocated size in each dim.
 
 If the allocation is successful and no record number (or record  number "0") was specified, RNMR will return the record
 number for the allocated blocked record.  After a successful allocation, the current record pointer will be updated.
