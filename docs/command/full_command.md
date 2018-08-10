@@ -1785,6 +1785,18 @@ Category:
 Format: `ECDBP`
 
 Defaults:
+## ELSTST
+Separate the code blocks after a `TST` check
+
+Category: Macro
+
+Format: `ELSTST`
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`ELSTST` separates the two blocks of commands to be executed based upon the results of a conditional test using `TST`.
+For usage details see the description of `TST`.
 ## EM
 Exponential multiply FID
 
@@ -1845,6 +1857,18 @@ matching `DO` statement and the current loop count is incremented by 1.  If `DO`
 field should be incremented (`DO` /`IDN`), then that field is updated to show the new loop count.  Similarly, any local
 and/or global arguments created by `DO` are incremented by one.  For more details on the use of `DO`/`ENDDO` loops in
 macros, see the description of the `DO` command.
+## ENDTST
+End a macro `TST` block
+
+Category: Macro
+
+Format: `ENDTST`
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`ENDTST` marks the end of a `TST` block used for conditional execution of commands. For usage details see the
+description of `TST`.
 ## EX
 Load a pulse program experiment
 
@@ -2927,6 +2951,31 @@ The parameter "label" may contain a positive line offset, as in the command:
 In this example, macro execution jumps to the first line after the label ".XYZ".  Note that line offsets may not be so
 large as to go beyond the end of the macro; the search for lines offset from .XYZ does not wrap around to the beginning
 of the macro.  Also note that the label name and line offset together must be no more than eight characters in length.
+## GOTST
+Perform a conditional jump within a macro based on a test
+
+Category: Macro
+
+Format: `GOTST` [qual] name args... label1 label2
+
+Qualifiers: /TRUE /FALSE
+
+Qualifier defaults: /TRUE
+
+Defaults: none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`GOTST` jumps to a label within a macro based upon the results of a conditional test. The available qualifiers and
+arguments for `GOTST` tests are the same as those detailed in the description of `TST`. While `TST` executes different
+blocks of commands based upon the test result, `GOTST` jumps to macro labels. Tests which would cause `TST` to execute
+the commands between `TST` and `ELSTST` cause `GOTST` to jump to label1. Tests which would cause `TST` to execute the
+commands between `ELSTST` and `ENDTST` cause `GOTST` to jump to label2.
+
+`GOTST` is the most direct replacement for the behavior of the old if commands such as `IFEQ`. `GOTST` should only be
+used when there is a need to jump to labels in different parts of a macro. `TST` should be used for conditional
+execution of blocks of commands.
 ## GS
 Get data from scratch record
 
@@ -6909,6 +6958,139 @@ Prerequisites: Spectrometer configured for RNMR temperature control
 
 Description:
 Sets desired heater temperature.
+## TST
+Conditionally execute a block of commands based on a test
+
+Category: Macro
+
+Format: `TST` [qual] name args...
+
+Qualifiers: /TRUE /FALSE
+
+Qualifier defaults: /TRUE
+
+Defaults: none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`TST` begins a `TST` block which is then ended by `ENDTST` and may optionally contain an `ELSTST` command. `TST` checks
+a condition and then either runs the commands between `TST` and `ELSTST` or the commands between `ELSTST` and `ENDTST`.
+It is good practice to indent these commands in order to improve readability. `TST` accepts a qualifier which is /TRUE
+by default and a name which determines what type of test `TST` performs. This is followed by a variable number of
+parameters depending on which type of test is being performed. Certain tests will also accept additional qualifiers,
+which should be specified after name.
+
+When the qualifier is /TRUE, `TST` will run the commands between `TST` and `ELSTST` if the test returns true and the
+commands between `ELSTST` and `ENDTST` if it returns false. /FALSE reverses this behaviour. /FALSE is mostly useful when
+you only have one set of commands that you want to execute commands when the test is false. For example, the following:
+
+    tst lcl a
+      msg "The value of a is &a"
+    elstst
+      msg "local argument a does not exist"
+    endtst
+
+will test if local argument a exists and then either print its value or the fact that it does not exist.
+
+The following tests are available in both RNMRA and RNMRP:
+
+Test Name | Description | Parameters | Default | Qualifiers | Default
+--------- | ----------- | ---------- | ------- | ---------- | -------
+ARV       | Checks archive | ARV | 1 | /VALID, /RD, /WRT, /CLS | /RD
+CND       | Checks condition flag | CND | 1 | None | None
+REC       | Checks record | REC | IRREC | /RD, /WRT, /SCR, /PERM, /VALID, /NOALLOC, /ALLOC, /ARC, /BLK | /RD, /ALLOC
+FIL       | Checks for existence of file | NAM | None | None | None
+RD        | Checks for file open for `RDWRT` command | None | None | None | None
+WRT       | Checks for file open for `WRT` command  | None | None | None | None
+ASKYN     | Checks for yes/no response | PRMPT | 'Enter response:' | /NO, /YES | /NO
+DFLT      | Tests arg for explicit default | ARG | None | None | None
+EQ        | Compares two args for equality | ARG1, ARG2 | None, None | /FLT, /INT, /LOG, /NUM, /STR, /CASE, /NOCASE, /PAD, /NOPAD | /INT, /STR, /NOCASE, /PAD
+FLG       | Checks flag | NAM | None | None | None
+GBL       | Checks for existence of global argument | NAM | None | None | None
+LAB       | Checks for existence of label | LAB | None | None | None
+LCL       | Checks for existence of local ARGUMENT | NAM | None | /LEV=<ilev> | /LEV=1
+LIM       | Checks numeric value is within limits |  VAL,LIM1,LIM2 | \* , \* , \* | /FLT, /INT | /INT
+LST       | Checks for existence of list | NAM | None | None | None
+MAC       | Checks for existence of macro | NAM | None | None | None
+SYM       | Checks for existence of symbol | NAM | None | None | None
+TBL       | Checks for existence of user name table | TBL | None | None | None
+TBLARG    | Checks for existence of user name table argument | TBL, NAM | None, None | None | None
+
+The following tests are available in RNMRA but not in RNMRP:
+
+Test Name | Description | Parameters | Default | Qualifiers | Default
+--------- | ----------- | ---------- | ------- | ---------- | -------
+CFG       | Checks for existence of subsystem | NAM | None | None | None
+PPS       | Checks for existence of pp symbol | TYP, NAM | None, None | None | None
+SIG       | Checks for signal | NAM | None | None | None
+
+The flags for `TST ARV` have the following meanings:
+
+Flag | Description
+---- | -----------
+/VALID | Check for validity of the archive number
+/RD | Check for write access
+/WRT | Check for read access
+/CLS | Check if the archive is closed
+
+The flags for `TST REC` have the following meanings:
+
+Flag | Description
+---- | -----------
+/RD | Check for write access
+/WRT | Check for read access
+/SCR | Check if it is a scratch record written using `SS`
+/PERM | Check if it is a permanent record
+/VALID | Check for validity of the record number
+/NOALLOC | Check if it has not been allocated
+/ALLOC | Check if it has been allocated
+/ARC | Check if it is a non-blocked record written with `SA`
+/BLK | Check if it is a blocked record written using `SB`
+
+The flags for `TST ASKYN` have the following meanings:
+
+Flag | Description
+---- | -----------
+/NO  | Default value of the prompt is NO
+/YES  | Default value of the prompt is YES
+
+The flags for `TST EQ` have the following meanings:
+
+Flag | Description
+---- | -----------
+/FLT | Number mode uses floating point numbers (also sets /NUM)
+/INT | Number mode uses integers (also sets /NUM)
+/LOG | Use logical mode (args must be 1 or 0)
+/NUM | Use number mode (args must be either integers or floats depending on /INT or /FLT)
+/STR | Use string mode
+/CASE | Use case sensitive string comparison
+/NOCASE | Use non-case sensitive string comparison
+/PAD | Pad strings with spaces before comparison
+/NOPAD | Don't pad strings with spaces before comparison
+
+The flags for `TST LCL` have the following meanings:
+
+Flag | Description
+---- | -----------
+/LEV | Select the command level to check for the local argument. 1 indicates the current macro, 2 the macro that called the current macro, 3 the macro that called that macro, etc. The value must be an integer ranging from 1 to the depth of the call stack.
+
+The flags for `TST LIM` have the following meanings:
+
+Flag | Description
+---- | -----------
+/FLT | Use floating point numbers
+/INT | Use integers
+
+Note that these qualifiers are evaluated in the order they are provided and can override each other's behavior. For
+example in the command:
+
+    tst eq /log /str &a &b
+
+/STR will override /LOG and `TST` will do string comparison.
+
+`TST` is a replacement for the old if commands such as `IFEQ`. If you need the old behavior of jumping to labels instead
+of executing code blocks use `GOTST`.
 ## TSTEX
 Test pulse program
 
