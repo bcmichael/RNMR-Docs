@@ -3315,33 +3315,11 @@ Defaults: 1 none none
 Prerequisites: Macro only (MAC)
 
 Description:
-`IFCND` performs a conditional jump inside a macro based on the state of a condition (`CND`) flag.  If the specified
-condition flag is ON, a jump will be made to the statement label "labelt", otherwise a jump is made to "labelf" if
-"labelf" is defined.  There are 64 available condition flags (numbers 1-64).  Each flag may be ON or OFF and is set to
-OFF at startup time.
+`IFCND` is one of the old if commands. It jumps to labelt if the specified condition flag is ON and to labelf if it is
+OFF. As with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
 
-The first parameter, "icnd", specifies which condition flag is to be tested.  The legal values of "icnd" are integers
-from 1 to 64, inclusive.  If "icnd" is not specified, RNMR will test condition flag 1; RNMR does not prompt for "icnd".
-
-The second parameter, "labelt", specifies a label to which macro  execution will jump if the indicated `CND` flag is ON.
- If "labelt" is omitted and condition flag "icnd" is ON, execution will continue with the next line in the current macro
-following `IFCND`.
-
-The third parameter, "labelf", specifies a label to which macro  execution will jump if the indicated `CND` flag is
-OFF. If "labelf" is omitted and condition flag "icnd" is OFF, execution will continue with the next line in the
-current macro following `IFCND`.  Both "labelt" and "labelf" should be specified as character strings of the form
-".XXXXXXX" where "." is required syntax and X may be any ASCII character.  When a jump to either "labelt" or "labelf" is
-made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label.
-If that label is not found, the search begins again at the first line of the macro.
-
-Each statement label may contain a positive line offset, as in the command:
-
-    IFCND 5 .XYZ+1
-
-In this example, macro execution jumps to the first line after the label ".XYZ" if `CND` flag 5 is ON.  Note that line
-offsets may not be so large as to go beyond the end of the macro; the search for lines offset from .XYZ does not wrap
-around to the beginning of the macro.  Also note that the label name and line offset together must be no more than eight
-characters in length.
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 ## IFEQ
 Branch on equal
 
@@ -3354,45 +3332,11 @@ Defaults: none none none none
 Prerequisites: Macro only (MAC)
 
 Description:
-`IFEQ` performs a conditional jump within a macro based on whether arguments "arg1" and "arg2" or equal or not equal. If
-they are equal, a jump is made to "labelt", otherwise execution jumps to "labelf".  Comparison of "arg1" and "arg2" is
-based on comparing all the characters of each argument ignoring any trailing blanks; the two strings must match exactly
-in order to jump to "labelt".
+`IFEQ` is one of the old if commands. It jumps to labelt if arg1 and arg2 are the same string and to labelf if they are
+not. As with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
 
-The first two arguments, "arg1" and "arg2", specify the two strings to be compared.  Typically, at least one argument is
-the value of a local or global variable, as in the command:
-
-    IFEQ &ABC,1,.XYZ
-
-which causes macro execution to jump to the label ".XYZ" if the value of local argument ABC is equal to one.  No syntax
-checks are performed on "arg1" or "arg2" and RNMR will not prompt for either argument if it is omitted.  If either
-"arg1" or "arg2" is missing, a jump to "labelt" is made only if both arguments are omitted or if the supplied argument
-is all blanks (' ').
-
-The third parameter, "labelt", specifies a label to which macro  execution will jump if "arg1" and "arg2" are equal.  If
-"labelt" is omitted and the arguments are equal, execution will continue with the next line in the current macro
-following `IFEQ`.
-
-The fourth parameter, "labelf", specifies a label to which macro  execution will jump if "arg1" and "arg2" are not
-equal.  If "labelt" is omitted and the arguments are not equal, execution will continue with the next line in the
-current macro following `IFEQ`.  Both "labelt" and "labelf" should be specified as character strings of the form
-".XXXXXXX" where "." is required syntax and X may be any ASCII character.  When a jump to either "labelt" or "labelf" is
-made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label.
-If that label is not found, the search begins again at the first line of the macro.
-
-Each statement label may contain a positive line offset, as in the command:
-
-    IFEQ %VVV,1,.XYZ+1
-
-In this example, macro execution jumps to the first line after the label ".XYZ" if the value of global argument VVV is
-equal to 1.  Note that line offsets may not be so large as to go beyond the end of the macro; the search for lines
-offset from .XYZ does not wrap around to the beginning of the macro.  Also note that the label name and line offset
-together must be no more than eight characters in length.  When RNMR compares arguments "arg1" and "arg2", it first
-checks the number of characters in each argument, neglecting any trailing blanks.  If both arguments have zero length
-(i.e. argument omitted or all blanks), then "arg1" and "arg2" are considered equal and a jump is made to "labelt".  If
-the two arguments have unequal lengths, then they are unequal and a jump is made to "labelf".  Finally, if the two
-arguments have equal, nonzero lengths, they are considered equal if they match character for character, neglecting any
-trailing blanks.
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 ## IFGBL
 Check for global argument and branch
 
@@ -3405,35 +3349,12 @@ Defaults: TEMP none none
 Prerequisites: Macro only (MAC)
 
 Description:
-`IFGBL` performs a conditional jump within a macro based on the  existence of global argument "gblnam".  If a global
-argument named "gblnam" is defined, a jump will be made to "labelt", otherwise execution will jump to
-"labelf".  Global arguments are variables available to all RNMR command levels, including the console ("\>") level.
-At any time there may be at most 64 defined global arguments.  Both the name and the value of each argument are 8-byte
-character  strings and each argument must have a unique name.
+`IFGBL` is one of the old if commands. It jumps to labelt if the specified global argument exists and to labelf if it
+does not. As with all of the old if commands, if the label to jump to is not specified execution continues to the next
+line.
 
-The first parameter, "gblnam", specifies the name of the global argument to be checked for existence.  The name of a
-global argument may not be blank and must use only the characters A-Z, 0-9, $, or \_.  If no argument name is specified,
-RNMR will test for the existence of a global argument named "TEMP"; RNMR does not prompt for "gblnam".
-
-The second parameter, "labelt", specifies a label to which macro  execution will jump if global argument "gblnam"
-exists.  If "labelt" is omitted and the global argument exists, execution will continue with the next line in the
-current macro following `IFGBL`.
-
-The third parameter, "labelf", specifies a label to which macro  execution will jump if global argument "gblnam" does
-not exist.  If "labelf" is omitted and the global argument does not exist, execution will continue with the next line in
-the current macro following `IFGBL`.  Both "labelt" and "labelf" should be specified as character strings of the form
-".XXXXXXX" where "." is required syntax and X may be any ASCII character.  When a jump to either "labelt" or "labelf" is
-made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label.
-If that label is not found, the search begins again at the first line of the macro.
-
-Each statement label may contain a positive line offset, as in the command:
-
-    IFGBL VVV .XYZ+1
-
-In this example, macro execution jumps to the first line after the label ".XYZ" if a global argument named VVV exists.
-Note that line  offsets may not be so large as to go beyond the end of the macro; the search for lines offset from .XYZ
-does not wrap around to the beginning of the macro.  Also note that the label name and line offset together must be no
-more than eight characters in length.
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 ## IFLCL
 Check for local argument and branch
 
@@ -3446,37 +3367,12 @@ Defaults: TEMP none none
 Prerequisites: Macro only (MAC)
 
 Description:
-`IFLCL` performs a conditional jump within a macro based on the  existence of local argument "lclnam".  If a local
-argument named "lclnam" is defined at the current command level, a jump will be made to "labelt", otherwise execution
-will jump to "labelf".  Local arguments are variables available only to the current RNMR command level. Each command
-level, including the console ("\>") level, has its own local argument table; there are 16 command levels available,
-including console level.  At any time there may be at most a total of 128 defined local arguments over all command
-levels. Both the name and the value of each argument are 8-byte character strings and each argument must have a unique
-name within the current level's local argument table.
+`IFLCL` is one of the old if commands. It jumps to labelt if the specified local argument exists and to labelf if it
+does not. As with all of the old if commands, if the label to jump to is not specified execution continues to the next
+line.
 
-The first parameter, "lclnam", specifies the name of the local argument to be checked for existence.  The name of a
-local argument may not be blank and must use only the characters A-Z, 0-9, $, or \_.  If no argument name is specified,
-RNMR will test for the existence of a local argument named "TEMP"; RNMR does not prompt for "lclnam".
-
-The second parameter, "labelt", specifies a label to which macro  execution will jump if local argument "lclnam" exists.
-If "labelt" is omitted and the local argument exists, execution will continue with the next line in the current macro
-following `IFLCL`.
-
-The third parameter, "labelf", specifies a label to which macro  execution will jump if local argument "lclnam" does not
-exist.  If "labelf" is omitted and the local argument does not exist, execution will continue with the next line in the
-current macro following `IFLCL`.  Both "labelt" and "labelf" should be specified as character strings of the form
-".XXXXXXX" where "." is required syntax and X may be any ASCII character.  When a jump to either "labelt" or "labelf" is
-made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label.
-If that label is not found, the search begins again at the first line of the macro.
-
-Each statement label may contain a positive line offset, as in the command:
-
-    IFLCL VVV .XYZ+1
-
-In this example, macro execution jumps to the first line after the label ".XYZ" if a local argument named VVV exists at
-the current command level.  Note that line offsets may not be so large as to go beyond the end of the macro; the search
-for lines offset from .XYZ does not wrap around to the beginning of the macro.  Also note that the label name and line
-offset together must be no more than eight characters in length.
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 ## IFMAC
 Check for macro and branch
 
@@ -3489,35 +3385,11 @@ Defaults: TEMP none none
 Prerequisites: Macro only (MAC)
 
 Description:
-`IFMAC` performs a conditional jump within a macro based on whether a macro named "macnam" exists or does not exist.  If
-"macnam" is a defined macro, a jump is made to "labelt", otherwise execution jumps to "labelf".  Each macro must have a
-unique name up to 8 characters long.  There may be as many as 200 defined macros at any time in an RNMR session,
-including entries from both the user library (MACRO.DAT) and the system library (MACRO.SYS).
+`IFMAC` is one of the old if commands. It jumps to labelt if the specified macro exists and to labelf if it does not. As
+with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
 
-The first parameter, "macnam", specifies the name of the macro to be checked for existence.  The name of a macro may not
-be blank.  Macro names must begin with a letter from A to Z and thereafter must contain only the characters A-Z, 0-9, $,
-or \_.  If no argument name is specified, RNMR will test for the existence of a macro named "TEMP"; RNMR does not prompt
-for "macnam".
-
-The second parameter, "labelt", specifies a label to which macro  execution will jump if macro "macnam" exists. If
-"labelt" is omitted and the macro exists, execution will continue with the next line in the current macro following
-`IFMAC`.
-
-The third parameter, "labelf", specifies a label to which macro  execution will jump if macro "macnam" does not exist.
-If "labelf" is omitted and the macro does not exist, execution will continue with  the next line in the current macro
-following `IFMAC`.  Both "labelt" and "labelf" should be specified as character strings of the form
-".XXXXXXX" where "." is required syntax and X may be any ASCII character.  When a jump to either "labelt" or "labelf" is
-made, RNMR first searches ahead from the current macro line to the end of the macro for the specified statement label.
-If that label is not found, the search begins again at the first line of the macro.
-
-Each statement label may contain a positive line offset, as in the command:
-
-    IFMAC VVV .XYZ+1
-
-In this example, macro execution jumps to the first line after the label ".XYZ" if a macro named VVV exists.  Note that
-line offsets may not be so large as to go beyond the end of the macro; the search for lines offset from .XYZ does not
-wrap around to the beginning of the macro.  Also note that the label name and line offset together must be no more than
-eight characters in length.
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 ## IFREC
 Check for record and branch
 
@@ -3530,45 +3402,11 @@ Defaults: current none none
 Prerequisites: Macro only (MAC)
 
 Description:
-`IFREC` performs a conditional jump within a macro based on whether record "rec." is empty or not empty.  If the
-specified record is empty, a jump will be made to "labelt", otherwise macro execution will jump to "labelf".  Up to 200
-records may be occupied at a time in a given RNMR archive.  These include the four scratch records (1-4) and any archive
-or blocked records saved to disk with `GA` or `GB`.  When an archive is created, all 200 records are marked as empty.
-When data and parameters are saved to any of these records, the destination record remains allocated until it is
-deleted, at which time it becomes empty.
+`IFREC` is one of the old if commands. It jumps to labelt if the specified record exists and to labelf if it does not.
+As with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
 
-The first parameter, "rec.", is the number of the record to be checked for allocation.  Since there are a maximum of 200
-records in each archive, the legal values of "rec." are the integers from 1 to 200, inclusive.  If "rec." is not
-specified, RNMR will prompt for a record number with the current read record (as displayed and set by the command
-`PTRA`) as the default.
-
-The second parameter, "labelt", specifies a label to which macro  execution will jump if record "rec." is not empty.  If
-"labelt" is omitted and the record is allocated, execution will continue with the next line in the current macro
-following `IFREC`.
-
-The third parameter, "labelf", specifies a label to which macro  execution will jump if record "rec." is empty.  If
-"labelf" is omitted and the record is empty, execution will continue with the next line in the current macro following
-`IFREC`.  Both "labelt" and "labelf" should be specified as character strings of the form ".XXXXXXX" where "." is
-required syntax and X may be any ASCII character.  When a jump to either "labelt" or "labelf" is made, RNMR first
-searches ahead from the current macro line to the end of the macro for the specified statement label.  If that label is
-not found, the search begins again at the first line of the macro.
-
-Each statement label may contain a positive line offset, as in the command:
-
-    IFREC 5 .XYZ+1
-
-In this example, macro execution jumps to the first line after the label ".XYZ" if record 5 is not empty.  Note that
-line offsets may not be so large as to go beyond the end of the macro; the search for lines offset from .XYZ does not
-wrap around to the beginning of the macro.  Also note that the label name and line offset together must be no more than
-eight characters in length.
-## IFSIG
-Branch on signal
-
-Category:
-
-Format: `IFSIG`
-
-Defaults:
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 ## IFT
 Inverse Fourier transform spectrum
 
