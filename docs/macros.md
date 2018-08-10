@@ -81,28 +81,21 @@ execution from there. The `GOSUB` command is similar to `GOTO` in that it jumps 
 `MEXIT` it will return to where `GOSUB` was called from instead of exiting the macro. This is useful for creating
 subroutines within macros.
 
-There are also a number of conditional jumping if commands. They will all check some condition and jump to a label if it
-is satisfied and a different label if it is not. The branching commands listed here each check a different type of
-condition:
-
-Command | Branch Condition
-------- | ----------------
-IFCND   | Branch on condition flag
-IFEQ    | Branch on equal
-IFGBL   | Check for global argument and branch
-IFLCL   | Check for local argument and branch
-IFMAC   | Check for macro and branch
-IFREC   | Check for record and branch
-IFLAB   | Check for a label and branch
-
-There are a handful of additional branching commands which may be of use to you:
-
-Command | Branch Condition
-------- | ----------------
-AOBLE   | Add one and branch if less than or equal
-SOBGT   | Subtract one and branch if greater than or equal
-ASKYN   | Ask yes or no and branch
-
+Blocks of commands can be executed conditionally using the `TST` construct. `TST` checks some condition and then
+executes one of two blocks of commands depending on the result. The two blocks are separated with `ELSTST` and the whole
+construct ends with `ENDTST`. `ELSTST` is optional and if it is not present then nothing will be executed if the test is
+false. `TST` can perform a range of different tests, such as checking equality of values or checking the existence of
+arguments. For full details see the description of `TST` in the Full Command Descriptions section. For example:
+```no-highlight
+TST EQ &A &B
+  ;Commands here execute if local args a and b are the same
+ELSTST
+  ;Commands here execute if local args a and b are not the same
+ENDTST
+```
+`GOTST` performs the same type of tests as `TST`, but instead of executing one of two blocks of commands it jumps to one
+of two labels.
+### Loops
 While you can use conditional commands and labels to construct a looping type behavior RNMR also has a `DO` loop
 construct built in. A `DO` loop will execute until it reaches an `ENDDO` statement at which point it will increment the
 loop value and run it again. This will repeat a number of times determined by the beginning and end values of the loop.
@@ -180,11 +173,13 @@ There is an additional method of passing information into a macro using a / in a
 a local argument to create in the called macro. You can also specify the values of these arguments. For example, if the
 macro temp contains the following:
 ```no-highlight
-IFLCL A . .+3
+TST LCL A
   MSG "A EXISTS AND HAS VALUE &A"
   MSG "B HAS VALUE &B"
   MEXIT
-MSG "A DOES NOT EXIST"
+ELSTST
+  MSG "A DOES NOT EXIST"
+ENDTST
 MEXIT
 ```
 then calling the following:
