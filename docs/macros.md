@@ -12,8 +12,8 @@ been altered outside of RNMR you must type `MACRO SOME_MACRO` in order for the c
 A number of commands and control flow constructs will be briefly described here and some examples of their use will be
 provided. More thorough documentation of these commands as well as many others can be found in the Full Command
 Descriptions section.
-
-## Global Arguments
+## Macro Arguments
+### Global Arguments
 An RNMR macro may utilize two kinds of variables. Global arguments are variables which, once defined, are accessible to
 all command levels in RNMR, including the console level. If a global argument is defined in a macro, it is still defined
 and accessible after the macro exits unless a `GBLDL` command is issued to delete the argument from the global table.
@@ -39,7 +39,7 @@ DO /GBL 1,10 ITER  ;creates global ITER, which stores the current loop
 ENDDO
 ```
 
-## Local Arguments
+### Local Arguments
 Local arguments are similar to global arguments, but are available only within the command level in which they were
 defined. Thus, local arguments which were defined in a macro will be automatically deleted and thus unavailable once the
 macro exits to console level. Similarly, local arguments defined at console level are not available to macros unless
@@ -76,11 +76,12 @@ Appending +# to a label will cause RNMR to start execution # lines farther down 
 including the period and line offset cannot be more than 16 characters long.
 
 ## Control Flow
+### Jumps
 The most basic control flow in RNMR macros is the `GOTO` command, which will simply jump to a label and continue
 execution from there. The `GOSUB` command is similar to `GOTO` in that it jumps to a label but when the macro hits an
 `MEXIT` it will return to where `GOSUB` was called from instead of exiting the macro. This is useful for creating
 subroutines within macros.
-
+### Conditionals
 Blocks of commands can be executed conditionally using the `TST` construct. `TST` checks some condition and then
 executes one of two blocks of commands depending on the result. The two blocks are separated with `ELSTST` and the whole
 construct ends with `ENDTST`. `ELSTST` is optional and if it is not present then nothing will be executed if the test is
@@ -107,6 +108,7 @@ DO /LCL 1 &LOOPTO COUNT
   ;Lines entered here will in this case execute 10 times
 ENDDO
 ```
+### Error Handling
 You can also set a label to jump to in the event that an error is encountered during the execution of commands within
 the macro using the `ONERR` command.
 
