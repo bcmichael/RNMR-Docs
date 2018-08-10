@@ -8,12 +8,11 @@ Category: Acquisition
 
 Format: `ABORT`
 
-Prerequisites: RNMR only
+Prerequisites: RNMRA only
 
 Description:
-Aborts acquisition. If acquisition is not currently active, an error message will result.  `ABORT` is equivalent to
-`QUIT` followed by <CTRL-Z\>.  Acquisition will be aborted abruptly i.e. RNMR will not wait for next shot to be
-completed.
+Aborts acquisition. If acquisition is not currently active, an error message will result. `ABORT` is equivalent to
+`QUIT`.  Acquisition will be aborted abruptly i.e. RNMR will not wait for next shot to be completed.
 ## ADDV
 Add buffers
 
