@@ -247,45 +247,6 @@ is entered with no parameters, RNMR prints out the current acquisition mode sequ
 acquisition modes were originally entered, RNMR displays only the currently active number of modes, as set and displayed
 by the command `NAMD`.  These modes are listed 16 per line; the user must press <SPACE\> or <RETURN\> to display the
 next line or Q or <CTRL-Z\> to terminate the display before all modes have been printed out.
-## AOBLE
-Add one and branch if less than or equal
-
-Category: Macros
-
-Format: `AOBLE` limit gblnam labelt labelf
-
-Defaults: 1 TEMP none none
-
-Prerequisites: Macro only (MAC)
-
-Description:
-`AOBLE` increments the global argument "gblnam" by one.  If the result is less than or equal to "limit" a jump is made
-to "labelt", otherwise a jump is made to "labelf".  The "limit" parameter must either be an integer between 1 and
-99999999 or the integer -1. If no limit is specified, the limit defaults to 1. If "limit" is -1, "gblnam" is incremented
-by 1, but the resulting value is not tested.  Rather, a jump is made to "labelt" for any value of "gblnam".  The
-parameter "gblnam" is the name of the global variable to be  incremented and tested.  If no global variable name if
-specified, RNMR will attempt to operate on the global variable TEMP.  The "labelt" parameter specifies a statement label
-to which macro execution will jump if the incremented value of "gblnam" is less than or equal to "limit".  Conversely, a
-jump will be made to "labelf" if the incremented value is greater than "limit".  Remember to always specify statement
-labels with an initial period, for example ".LABEL".  For purposes of `AOBLE`, if the value of the global argument
-"gblnam" is blank, the value is taken to be 1.  If the value of "gblnam" is not blank, this value must be an integer.
-Once "gblnam" has been incremented by 1, a jump is made to "labelt" always if "limit" is -1 or if the incremented value
-of "gblnam" is less than or equal to "limit" if "limit" is 1 or greater.  In all other cases, macro execution jumps to
-"labelf".  If "labelt" is omitted and "limit" is -1 or the incremented value of "gblnam" is less than or equal to
-"limit", no jump will be made, i.e. execution will continue with the next line in the current macro.  Similarly, if
-"labelf" is omitted and the test condition is not satisfied, macro execution will proceed without
-a jump.  When a jump is made either to "labelt" or to "labelf", RNMR first searches ahead from the current macro line to
-the end of the macro for the specified statement label.  If that label is not found, the search begins again at the
-first line of the macro.
-
-The statement labels "labelt" and "labelf" may each have a positive line offset, as in the command:
-
-        > AOBLE 10 ABC .XYZ+1 .VVV+3
-
-In this example, global argument ABC is incremented by one and compared to the integer 10.  If the incremented value is
-less than or equal to 10, a jump is made to the statement one line after .XYZ.  Otherwise, execution jumps to the
-statement three lines after .VVV.  Note that line offsets may not be so large as to go beyond the end of the macro; the
-search for lines offset from .XYZ or .VVV does not wrap around to the beginning of the macro.
 ## ASIG
 Acknowledge signal
 
@@ -306,41 +267,11 @@ Defaults: NO none none
 Prerequisites: Macro only (MAC)
 
 Description:
-`ASKYN` prompts the user for a YES/NO response. If the response is  YES, a jump is made to "labelt", otherwise a jump is
-made to "labelf".  If no default response is specified on the `ASKYN` command line, the default response will be NO.
-The acceptable choices for "default" are:
+`ASKYN` falls into the same category as the old if commands. It prompts the user for a YES/NO response and jumps to
+labelt if YES or labelf if NO.
 
-TRUE States | FALSE states
------------ | ------------
-YES         | NO
-Y           | N
-ON          | OFF
-
-Regardless of which default (if any) is specified in the `ASKYN` command, RNMR will prompt the user for a response with
-"YES" or "NO" as the default.  The "labelt" parameter specifies a statement label to which macro execution will jump if
-the user responds positively. Conversely, a jump will be made to "labelf" if the user responds negatively.  Remember to
-always specify statement labels with an initial period, for example ".LABEL".
-
-When the user responds to the yes/no query, the acceptable responses are:
-
-TRUE States | FALSE states
------------ | ------------
-YES         | NO
-Y           | N
-ON          | OFF
-
-or <RETURN\> to accept the default response.  If the user does not enter one of these responses, RNMR will ask for an
-acceptable response. As usual, the user may enter <CTRL-Z\> to exit this loop and return to console level.  When a jump
-is made either to "labelt" or to "labelf", RNMR first searches ahead from the current macro line to the end of the macro
-for the specified statement label.  If that label is not found, the search begins again at the first line of the macro.
-The statement labels "labelt" and "labelf" may each have a positive line offset, as in the command:
-
-        > `ASKYN` YES .XYZ+1 .VVV+3
-
-In this example, if the user responds positively, a jump is made to the statement one line after .XYZ.  Otherwise,
-execution jumps to the statement three lines after .VVV.  Note that line offsets may not be so large as to go beyond the
-end of the macro; the search for lines offset from .XYZ or .VVV does not wrap around to the beginning of the macro.
-
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 # B
 ---
 ## BC
@@ -6498,20 +6429,6 @@ NBLK  | Number of blocks actually used
 SIZEA | Allocated size of a block in points
 SIZE  | Actual size of a block in points
 
-## SOBGT
-Subtract one and branch if greater than
-
-Category: Macro
-
-Format: `SOBGT` gblnam labelt labelf
-
-Defaults: TEMP none none
-
-Prerequisites: Macro only (MAC)
-
-Description:
-Global argument gblnam is decremented by one.  If the result is greater than zero jump is made to labelt, else jump is
-made to labelf.  If label is not specified, execution continues with next line.
 ## SP
 Display archive space information
 
