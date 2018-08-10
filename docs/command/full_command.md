@@ -50,11 +50,10 @@ Defaults: current
 
 Description:
 `AI` scales data in the visible processing buffer (buffer 1) to make the scale factor equal to a specified absolute
-scale factor.  This absolute scale factor, "sfa", is a floating point number greater than 0.  Since the sfa argument
-must be no more than 8 characters long, the largest possible value is 99999999 and the smallest possible value is
--9999999.  If sfa is equal to the buffer scale factor, `AI` does nothing.  If sfa is not equal to the buffer scale
-factor, the buffer data is scaled by sfa/(buffer_sf) and the current scale factor, buffer scale factor, and display are
-updated.  If the sfa parameter is omitted, `AI` will scale to the current absolute scale factor.
+scale factor. This absolute scale factor, "sfa", is a floating point number greater than 0. If sfa is equal to the
+buffer scale factor, `AI` does nothing.  If sfa is not equal to the buffer scale factor, the buffer data is scaled by
+sfa/(buffer_sf) and the current scale factor, buffer scale factor, and display are updated. If the sfa parameter is
+omitted, `AI` will scale to the current absolute scale factor.
 ## AK
 Set absolute scale factor
 
