@@ -280,6 +280,39 @@ used. An example of use in a macro is given here:
     ;;Also append this
 
 Text appended by `APNLST` will be all caps regardless of the capitalization provided in RNMR.
+## APNMAC
+Appends text to macro
+
+Category: Macro
+
+Format: `APNMAC` nam
+
+Qualifiers: /END=<end\> /TTY
+
+Qualifier Defaults: /END=''
+
+Defaults: temp
+
+Description:
+`APNMAC` appends lines of text to a macro nam. /END sets a string which marks the end of what is to be appended.
+`APNMAC` behaves slightly differently if called at the command line or in a macro. At the command line if no macro is
+specified RNMR will prompt for a macro with temp as a default. If the macro exists, RNMR will then prompt for a line to
+append to the macro with a default of <end\>. Otherwise an error will be thrown. RNMR will continue to prompt for lines
+until a line is entered which matches <end\>. By default <end\> is an empty string and `APNMAC` will end if an empty
+line is provided.
+
+When called from a macro `APNMAC` will not prompt for a macro name. The lines to be appended should be provided on the
+lines following `APNMAC` in the macro and should start with ;;. The first line will be interpreted as a macro name if
+none is provided as an argument. `APNMAC` will stop appending lines when it either reaches a line that matches <end\> or
+runs out of lines. /TTY will make RNMR prompt for the lines to enter much like the behavior at the command line even
+when `APNMAC` is called from a macro. RNMR will still expect the macro name to passed in the same way as when /TTY is not
+used. An example of use in a macro is given here:
+
+    APNMAC TEMP.TXT
+    ;;Append this
+    ;;Also append this
+
+Text written by `APNMAC` will be all caps regardless of the capitalization provided in RNMR.
 ## ASIG
 Acknowledge signal
 
