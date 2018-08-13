@@ -181,43 +181,41 @@ Category: Acquisition
 
 Format: `AMD` spec1 spec2 ... spec8
 
+Qualifiers: /ACQ /BLK /MOD=MODMD
+
+Qualifier Defaults: /ACQ /MOD=4
+
 Defaults: none none ... none
 
-Prerequisites: Acquisition stopped (HALT)
- 	RNMR only
+Prerequisites: Acquisition stopped (HALT) RNMRA only
 
 Description:
-`AMD` sets the sequence of phase decoding modes to be applied to acquired data during phase cycling.  From one shot to
-the next, RNMR uses this sequence to determine what constant phase shift to apply to each FID so the signal will add
-properly.  This process of phase shifting successive FID's according to a predetermined sequence decodes the phase
-encoding that results from phase cycling the RF pulses.  Each element or mode of the `AMD` sequence is a number from 1
-to 4  specifying a unique phase shift to apply to an acquired FID.  Mode 1 specifies a phase shift which makes the
-magnetization following an X pulse positive in the real channel and zero in the imaginary channel.  Similarly, modes 2,
-3, and 4 specify phase shifts that yield similar real and imaginary parts following Y, -X, or -Y pulses.  The maximum
-number of acquisition modes in a sequence is 64.  The  total number of acquisition modes specified by `AMD` must be a
-power of 2.  If the number of modes entered is less than 64, the specified modes will be replicated to a 64 mode
-sequence.  For example, if the user specifies:
+`AMD` sets the receiver phase cycling. /MOD defines the number of different phase values to be used. These phase values
+will be equally spaced so the default value of 4 yields 90° phase steps while for example 6 would yield 60° steps. Each
+element or mode of the `AMD` sequence is a number from 1 to the value specified by /MOD. With the default qualifier /ACQ
+these modes indicate a sequence of phase shifts to apply to an acquired FID on sequential shots.
 
-        > AMD 1111 3333
+The default value is /MOD=4, which yields phase values of (0°, 90°, 180°, 270°) corresponding to the numbers 1 through 4.
+The maximum number of acquisition modes in a sequence is 64. If the number of modes entered is less than 64, the
+specified modes will be replicated to a 64 mode sequence. For example, if the user specifies:
+
+        AMD 1111 3333
 
 the eight modes specified are replicated by RNMR to give a full 64 step phase cycle:
 
      11113333 11113333 11113333 11113333
      11113333 11113333 11113333 11113333
 
-While all sequences are replicated to 64 modes internally, the active phase cycle length (as displayed and set by
-`NAMD`) after setting the acquisition modes is just the number of modes entered with the `AMD` command.  So in the above
-example, the user has entered 8 modes, so `NAMD` will be 8 following this command.  The replication of acquisition modes
-to 64 permits the user to increase `NAMD` at a later time without having to reenter the acquisition sequence; the
-additional modes required for the longer phase cycle are obtained by repeating the original cycle.  When entering the
-acquisition mode sequence with `AMD`, the user may group the modes in any desired pattern for readability, with two
-restrictions.  First, since command line arguments in RNMR must be 8 characters or less in length, no more than eight
-modes may be grouped together in each argument.  Second, RNMR reads only the first eight arguments on the `AMD` command
-line.  Consequently, in order to specify 64 acquisition modes, the user must enter 8 groups of 8 modes each.  If `AMD`
-is entered with no parameters, RNMR prints out the current acquisition mode sequence.  Regardless of how many
-acquisition modes were originally entered, RNMR displays only the currently active number of modes, as set and displayed
-by the command `NAMD`.  These modes are listed 16 per line; the user must press <SPACE\> or <RETURN\> to display the
-next line or Q or <CTRL-Z\> to terminate the display before all modes have been printed out.
+While all sequences are replicated to 64 modes internally, only a number of steps equal to the active phase cycle length
+(set by `NAMD`) are actually used. The sequence of modes may be broken up across multiple command line arguments as
+shown in the example above. This can help improve readability.
+
+If `AMD` is called with no parameters RNMR will not prompt for modes. Instead it will print the current receiver phase
+cycle out to the active phase cycle length with 16 modes per line.
+
+The /BLK qualifier is used to setup additional receiver phase shifts for different blocks of acquisition. The number of
+blocks can be set using `NAMD /BLK`. This capability is typically used to set up phase differences used for the
+different steps in hypercomplex acquisition of multi-dimensional spectra.
 ## ASIG
 Acknowledge signal
 
