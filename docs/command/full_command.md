@@ -217,7 +217,7 @@ The /BLK qualifier is used to setup additional receiver phase shifts for differe
 blocks can be set using `NAMD /BLK`. This capability is typically used to set up phase differences used for the
 different steps in hypercomplex acquisition of multi-dimensional spectra.
 ## APNFIL
-Appends text to text file
+Append text to file
 
 Category: File IO
 
@@ -250,7 +250,7 @@ used. An example of use in a macro is given here:
 
 Text written by `APNFIL` will be all caps regardless of the capitalization provided in RNMR.
 ## APNLST
-Appends text to text file
+Append values to list
 
 Category: List Handling
 
@@ -281,7 +281,7 @@ used. An example of use in a macro is given here:
 
 Text appended by `APNLST` will be all caps regardless of the capitalization provided in RNMR.
 ## APNMAC
-Appends text to macro
+Append text to macro
 
 Category: Macro
 
