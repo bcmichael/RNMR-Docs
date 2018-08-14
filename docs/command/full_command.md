@@ -366,7 +366,7 @@ A particular signal can also be tested for using `TST SIG`.
 ## ASKYN
 Ask yes or no
 
-Category: Macros
+Category: Macro
 
 Format: `ASKYN` default labelt labelf
 
@@ -380,6 +380,20 @@ labelt if YES or labelf if NO.
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
 conditional jumps.
+## AUTOZ
+Set automatic Z shim parameters
+
+Category: Shim
+
+Format: `AUTOZ` step time
+
+Defaults: current
+
+Prerequisites: RNMRA only. Spectrometer must have lock and shim setup to run via RNMR.
+
+Description:
+`AUTOZ` sets up automatic Z shimming in RNMRA. In order for this to function RNMR must have access to both the lock and
+shim controls. The step must be between 0 and 1, while time must be between 4 and 100.
 # B
 ---
 ## BC
