@@ -424,41 +424,14 @@ Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
 `BF` performs a linear baseline fix by subtracting a straight line from the data between the current display limits.
-`BF` does not require the user to be viewing the processing block  (`VIEW PRO`), but baseline fixing is only performed
-on the processing block.  To obtain the equation of the line to subtract from the spectrum, `BF` uses the following
-algorithm:
+`BF` does not require the user to be viewing the processing block (`VIEW PRO`), but baseline fixing is only performed
+on the processing block.
 
-1.	Starting at the current left display limit, take the complex  average of the first five points toward the right
-(including the point at the display limit).  If there are fewer than five points to the right in the spectrum (including
-any points beyond the right display limit), average over all the points from the left display limit to the last point in
-the spectrum instead.
-
-2.	Starting at the current right display limit, take the complex average of the first five points toward the left
-(including the point at the display limit).  If there are fewer than five points to the left in the spectrum (including
-any points beyond the left display limit), average over all points from the right display limit to the first point in
-the spectrum instead.
-
-3.	Calculate complex polynomial coefficients P1 and P2:
-
-        P1 = (Ravg - Lavg)/(Rlim - Llim)
-        P2 = Lavg - P1*Llim
-
-where Lavg and Ravg are the averages of the first few and last few points on either side of the display, as described in
-(1) and (2), respectively, and Rlim and Llim are the point numbers corresponding to the right and left display limits.
-
-4.	Calculate the value of a complex polynomial function Z at each point in the current display:
-
-        Z(I) = (P1 X I) + P2
-
-where I is the data point number (I=1 is the first point in the spectrum, regardless of display limits).  Note that this
-polynomial describes a straight line in both its real and imaginary parts.
-
-5.	For each point of the spectrum in the current display, subtract the value of the corresponding point of Z(I), the
-baseline correction polynomial.  This corrects both the real and imaginary parts of each data point within the display
-limits, but does not affect any points outside those limits.
-
-A separate baseline correction is performed on each block of the processing buffer.  If the processing buffer is
-currently visible, `BF` always updates the display upon completion.
+`BF` uses the average of the leftmost and rightmost 5 points between the current display limits to determine the line to
+subtract. If there are fewer than 5 points between the current display limits `BF` subtracts the average over all the
+points instead of calculating a line. `BF` only subtracts from the points between the current display limits, leaving
+everything outside of those limits untouched. If the processing buffer is currently visible, `BF` always updates the
+display upon completion.
 ## BINCP
 `BINCP` phase correction
 
