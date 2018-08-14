@@ -474,6 +474,19 @@ If the data point closest to zero frequency (without offset) is not the last poi
 in each block from zero to minimum (most negative) frequency are negated.
 
 If the processing buffer is currently visible, `BINCP` always updates the display upon completion.
+## BRKDO
+Break out of a macro `DO` loop
+
+Category: Macro
+
+Format: `BRKDO`
+
+Prerequisites: Macro only and must be in a `DO` loop
+
+Description:
+`BRKDO` can be used to break out of a macro `DO` loop. The loop will terminate immediately without executing any more
+commands within the loop regardless of how many more iterations it was supposed to do. Execution will continue on the
+line after the `ENDDO` at the end of the loop. `BRKDO` must appear between `DO` and `ENDDO`
 ## BRUK
 Convert BRUKER FID to complex FID
 
