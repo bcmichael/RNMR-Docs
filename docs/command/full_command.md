@@ -433,50 +433,44 @@ points instead of calculating a line. `BF` only subtracts from the points betwee
 everything outside of those limits untouched. If the processing buffer is currently visible, `BF` always updates the
 display upon completion.
 ## BINCP
-`BINCP` phase correction
+Perform binary pulse phase correction
 
 Category: Data Manipulation
 
-Format: `BINCP` fmax
+Format: `BINCP` fnyq fmax
 
-Defaults: Fnyq/2 + offset
+Defaults: first (fnyq-orgn)/2+orgn
 
 Prerequisites: Frequency data in processing buffer (FREQ)
 
 Description:
-`BINCP` performs the phase portion of a binary pulse correction.  When used with the `BINCP` solvent suppression pulse
+`BINCP` performs the phase portion of a binary pulse correction. When used with the `BINCP` solvent suppression pulse
 sequence, this command corrects the phase of the off-resonant component of the magnetization, which is preserved while
-the on-resonance solvent peak is cancelled out.  `BINCP` does not require the user to be viewing the processing block
-(`VIEW PRO`), but phase correction is only performed on the processing block.  `BINCP` takes one parameter, "fmax",
-which is the frequency of maximum RF excitation.  The default value of "fmax" is one half the Nyquist frequency (Fnyq =
-0.5\*SW) plus the current processing buffer offset, if any.  The "fmax" parameter is a real number expressed in the
-current frequency units.  Legal values of "fmax" are those which satisfy:
+the on-resonance solvent peak is cancelled out. `BINCP` does not require the user to be viewing the processing block
+(`VIEW PRO`), but phase correction is only performed on the processing block. The parameters fnyq and fmax are the
+nyquist frequency of the processing buffer and the max frequency to be used for the correction. Both parameters are
+specified in terms of current frequency units including the frequency offset of the origin of the buffer (orgn). The
+default value of fnyq will be correspond to the frequency of the first point in the buffer. The default of fmax is
+(fnyq-orgn)/2+orgn. Internally `BINCP` subtracts the origin from the values before using them. In order to make the
+calculations more understandable all references to these parameters going forward will refer to the corrected values
+with the origin subtracted out. The corrected fnyq must be greater than 0. The absolute value of the corrected fmax
+divided by the corrected fnyq must be between 0.1 and 2.0.
 
-        0.1 .LE. RATIO .LE. 2.0
+To calculate the phase portion of the finite pulse correction, `BINCP` first calculates a constant phase and a phase
+increment:
 
- where RATIO is defined by:
-
-        RATIO = |fmax - offset|/Fnyq
-
-Note that if the user accepts the default value of "fmax", the above condition is always satisfied.
-
-To calculate the phase portion of the finite pulse correction, `BINCP` follows the algorithm below:
-
-1.	A constant phase and a phase increment are calculated:
-
-         	PHI = (270.0*DFRST)/(RATIO*FNYQ) - 90.0
-         	DPHI = (270.0*DSTEP)/(RATIO*FNYQ)
+ 	PHI = 270.0*DFRST/FMAX - 90.0
+ 	DPHI = 270.0*DSTEP/FMAX
 
 where DSTEP is -1 times the frequency per point and DFRST is the frequency of the first point in the spectrum.
 
-2.	PHI and DPHI are used to calculate a linear phase shift L(I) for each point of the spectrum:
+Each point I ranging from 1 to the size of the buffer is multiplied by a complex phase shift calculated as follows:
 
-         	L(I) = EXP(i*(PHI + (I-1)* DPHI)) where i = SQRT(-1).
+    EXP(i*(PHI + (I-1)* DPHI))
 
-3.	The data in each block of the processing buffer is phase corrected by multiplying by the complex phase correction
-function L(I).  Each block receives this phase correction independently.
+The data in each block of the processing buffer is phase corrected independently.
 
-4.	If the data point closest to zero frequency (without offset) is not the last point in the spectrum, then all points
+If the data point closest to zero frequency (without offset) is not the last point in the spectrum, then all points
 in each block from zero to minimum (most negative) frequency are negated.
 
 If the processing buffer is currently visible, `BINCP` always updates the display upon completion.
