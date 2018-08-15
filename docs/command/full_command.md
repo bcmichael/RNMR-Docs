@@ -1021,20 +1021,33 @@ Category: Macros
 
 Format: `CATMAC` first last
 
-Defaults: none ZZZZZZZZ
+Qualifiers: /PRT /SYS /TTY /USR /WND /WRT
+
+Qualifier Defaults: /WND
+
+Defaults: none ZZZZZZZZZZZZZZZZ
 
 Description:
-`CATMAC` displays a catalog of the currently defined macros by name from "first" to "last" in alphabetical order.  Each
-macro must have a unique name up to 8 characters long.  There may be as many as 100 defined macros at any time in an
-RNMR session, including entries from both the user library (MACRO.DAT) and the system library (MACRO.SYS).  If "first"
-is omitted from the command line, then the catalog will begin with the first entry in the macro table. RNMR will not
-prompt for "first".  Similarly, if "last" is not specified, RNMR will list local arguments up to and including ZZZZZZZZ;
-the user will not be prompted for "last".  Both "first" and "last" must be character strings beginning with A-Z,
-containing only characters A-Z, 0-9, $, or \_, and no more than 8 characters long. While "first" may be blank, "last"
-must be nonblank.  Each defined macro name is listed along with its entry number.  Positive entry numbers are assigned
-to user macros (stored in MACRO.DAT) while negative entry numbers are assigned to system macros (stored in MACRO.SYS).
-Recall that user macros are modifiable while system macros are not.  Pressing <RETURN\> or <SPACE\> lists the next macro
-name while pressing "Q" or <CTRL-Z\> quits `CATMAC` and returns the console prompt.
+`CATMAC` displays a catalog of the currently defined macros by name from first to last in alphabetical order.
+If first is omitted from the command line, then the catalog will begin with the first entry in the macro table.
+RNMR will not prompt for first. Similarly, if last is not specified, `CATMAC` will list all macros. If only one
+argument is specified, `CATMAC` will list information about only that single macro. Each macro is listed by
+name along with whether it is a user or system macro and the file where it is stored. The file will only be listed if
+the macro has been called during the current RNMR session.
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/SYS      | List system macros
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/USR      | List user macros
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
+Note that if neither /USR nor /SYS is specified `CATMAC` will list both, which is the same behavior as if both are
+specified.
 ## CATNUC
 List catalog of nuclei
 
