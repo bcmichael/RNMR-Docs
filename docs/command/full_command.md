@@ -870,16 +870,34 @@ Category: Data Storage
 
 Format: `CAT` first-rec last-rec
 
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
 Defaults: 5 200
 
 Description:
-`CAT` displays a catalog of archive records from first-rec to last-rec.  `CAT` takes two parameters, which are the first
-and last record numbers to be displayed.  If these are omitted, the listing will begin with record 5 and end at record
-200; RNMR will not prompt for "first-rec" and "last-rec".  The user is permitted to enter any integer from 1 to 200 for
-"first-rec".  Similarly, "last-rec" may be any integer from "first-rec" to 200, inclusive.  For each nonempty record,
-`CAT` returns the record  number, owner, record length, date, and title.  Note that `CAT` reports record length in units
-of blocks, which are 512 bytes long each.  Pressing <RETURN\> or <SPACE\> lists the next record in the current archive,
-while pressing "Q" or <CTRL-Z\> quits `CAT` and returns the console prompt.
+`CAT` displays a catalog of archive records from first-rec to last-rec. `CAT` takes two parameters, which are the first
+and last record numbers to be displayed. If these are omitted, the listing will begin with record 5 and end at record
+200; RNMR will not prompt for "first-rec" and "last-rec".
+
+Any value corresponding to a record in an open archive may be provided for first-rec. Records in archives other than 1
+can be specified by either pre-pending the archive number and a ":" or specifying numbers larger than 200. For example
+record # in archive can be specified either as 2:# or by adding 200 to #. Similarly, last-rec may be any integer from
+the record number within an archive specified in first-rec to 200, inclusive. If only one argument specified, `CAT` will
+list information about only that single record. For each nonempty record, `CAT` returns the record  number, owner,
+record length, record position within the archive, date, and title. Note that `CAT` reports record length and position
+in units of blocks, which are 512 bytes long each.
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behaviour.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## CATARV
 Catalog archives
 
