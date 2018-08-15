@@ -884,8 +884,8 @@ and last record numbers to be displayed. If these are omitted, the listing will 
 Any value corresponding to a record in an open archive may be provided for first-rec. Records in archives other than 1
 can be specified by either pre-pending the archive number and a ":" or specifying numbers larger than 200. For example
 record # in archive can be specified either as 2:# or by adding 200 to #. Similarly, last-rec may be any integer from
-the record number within an archive specified in first-rec to 200, inclusive. If only one argument specified, `CAT` will
-list information about only that single record. For each nonempty record, `CAT` returns the record  number, owner,
+the record number within an archive specified in first-rec to 200, inclusive. If only one argument is specified, `CAT`
+will list information about only that single record. For each nonempty record, `CAT` returns the record  number, owner,
 record length, record position within the archive, date, and title. Note that `CAT` reports record length and position
 in units of blocks, which are 512 bytes long each.
 
@@ -895,7 +895,7 @@ Qualifier | Output
 --------- | ------
 /PRT      | Print the list to the printer device as specified by `LPDEV`
 /TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
-/WND      | Display the list in a pop-up window. This is the default behaviour.
+/WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
 ## CATARV
@@ -923,7 +923,7 @@ Qualifier | Output
 --------- | ------
 /PRT      | Print the list to the printer device as specified by `LPDEV`
 /TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
-/WND      | Display the list in a pop-up window. This is the default behaviour.
+/WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
 ## CATGBL
