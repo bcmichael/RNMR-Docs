@@ -927,17 +927,34 @@ Qualifier | Output
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
 ## CATGBL
-List catalog of global variables  	Category: 	Arguments Format :  	`CATGBL`  first   last
+List catalog of global variables
 
-Defaults: none ZZZZZZZZ
+Category: Arguments
+
+Format : `CATGBL` first last
+
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
+Defaults: none ZZZZZZZZZZZZZZZZ
 
 Description:
-`CATGBL` displays a catalog of the currently defined global arguments by name from "first" to "last" in alphabetical
-order.  If "first" is omitted from the command line, then the catalog will begin with the first entry in the global
-argument table.  RNMR will not prompt for "first".  Similarly, if "last" is not specified, RNMR will list global
-arguments up to and including ZZZZZZZZ; the user will not be prompted for "last".  Each global argument is listed by
-name along with its current value. Pressing <RETURN\> or <SPACE\> lists the next defined global argument while pressing
-"Q" or <CTRL-Z\> quits `CATGBL` and returns the console prompt.
+`CATGBL` displays a catalog of the currently defined global arguments by name from first to last in alphabetical order.
+If first is omitted from the command line, then the catalog will begin with the first entry in the global argument
+table. RNMR will not prompt for first. Similarly, if last is not specified, `CATGBL` will list all global arguments. If
+only one argument is specified, `CATGBL` will list information about only that single argument. Each global argument is
+listed by name along with its current value.
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## CATLCL
 List catalog of local variables
 
