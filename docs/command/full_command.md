@@ -899,17 +899,33 @@ Qualifier | Output
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
 ## CATARV
-Catalog archives
+List catalog of archives
 
 Category: Data Storage
 
 Format: `CATARV` first_archive last_archive
 
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
 Defaults: 1 4
 
 Description:
-Displays a list of open archives.  Shows the archive number, flags for read access and write access, and the name of the
-archive.
+Displays a list of archives from first-archive to last-archive which must be integers between 1 and 4. If only one
+argument is specified, `CATARV` will list information about only that single archive. `CATARV` shows the archive number
+and if the archive is open it also shows flags indicating the presence of read access and write access, as well as the
+name of the archive.
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behaviour.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## CATGBL
 List catalog of global variables  	Category: 	Arguments Format :  	`CATGBL`  first   last
 
