@@ -984,6 +984,36 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
+## CATLST
+List catalog of lists
+
+Category: Lists
+
+Format: `CATLST` first last
+
+Qualifiers: /PRT /TTY /VAL /WND /WRT
+
+Qualifier Defaults: /WND
+
+Defaults: none ZZZZZZZZZZZZZZZZ
+
+Description:
+`CATLST` displays a catalog of the currently defined lists by name from first to last in alphabetical order.
+If first is omitted from the command line, then the catalog will begin with the first entry in the list table.
+RNMR will not prompt for first. Similarly, if last is not specified, `CATLST` will list all lists. If only one
+argument is specified, `CATLST` will list information about only that single list. Each list is listed by
+name along with its maximum size and its current size.
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/VAL      | Also list the values in the list
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## CATMAC
 List catalog of macros
 
