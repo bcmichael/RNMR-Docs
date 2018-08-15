@@ -850,6 +850,19 @@ are performed on the processing block. The argument "fcalib" is a real number in
 of the processing buffer (PPM or absolute units). If "fcalib" is omitted from the command line, RNMR will prompt for a
 frequency, with the current calibration frequency as the default. After conversion to Hz, the calibration frequency
 must be nonzero.
+## CASE
+Process `CASE` clause of `SEL` block
+
+Category: Macro
+
+Format: `CASE` val
+
+Defaults: none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`CASE` executes the block of commands that falls between it and either the next `CASE` command or `ENDSEL` if the value used in the `SEL` block matches val. If val is omitted then `CASE` will act as if it matches for any value. `CASE` must be between a `SEL` and a matching `ENDSEL`.
 ## CAT
 List catalog of records
 
