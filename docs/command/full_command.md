@@ -962,15 +962,28 @@ Category: Arguments
 
 Format: `CATLCL` first last
 
-Defaults: none ZZZZZZZZ
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
+Defaults: none ZZZZZZZZZZZZZZZZ
 
 Description:
-`CATLCL` displays a catalog of the currently defined local arguments by name from "first" to "last" in alphabetical
-order.  If "first" is omitted from the command line, then the catalog will begin with the first entry in the current
-level's local argument table.  RNMR will not prompt for "first".  Similarly, if "last" is not specified, RNMR will list
-local arguments up to and including ZZZZZZZZ; the user will not be prompted for "last".  Each local argument is listed
-by name along with its current value.  Pressing <RETURN\> or <SPACE\> lists the next defined local argument while
-pressing "Q" or <CTRL-Z\> quits `CATLCL` and returns the console prompt.
+`CATLCL` displays a catalog of the currently defined local arguments by name from first to last in alphabetical order.
+If first is omitted from the command line, then the catalog will begin with the first entry in the local argument table.
+RNMR will not prompt for first. Similarly, if last is not specified, `CATLCL` will list all local arguments. If only one
+argument is specified, `CATLCL` will list information about only that single argument. Each local argument is listed by
+name along with its current value.
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## CATMAC
 List catalog of macros
 
