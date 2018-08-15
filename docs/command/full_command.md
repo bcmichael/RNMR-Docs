@@ -557,28 +557,35 @@ it is currently visible.
 # C
 ---
 ## CALC
-Perform arithmetic and logical calculations
+Perform floating point arithmetic and logical calculations
 
 Category: Calculator
 
 Format: `CALC` arg1 ... arg10
 
-Defaults: none none
+Qualifiers: /NDEC
+
+Qualifier Defaults: /NDEC=-1
+
+Defaults: none
 
 Description:
 `CALC` performs desk calculator operations in reverse Polish notation. Arguments are pushed onto the calculator stack
 and operations are performed on them, yielding results which may either be printed to the screen (PRT) or popped into
-local (>>) or global (>) arguments. `CALC` can perform basic arithmetic operations (+,-,\*,/) using infix notation with
-parentheses for order of operations. The result of this infix math is pushed onto the stack like any other argument. All
-calculations are performed internally using single precision floating point arithmetic. The results are presented as
-integers (NDEC -1) unless modified by the NDEC flag or the NDEC operator, as described below. For example the following
-command:
+local (>>) or global (>) arguments or symbols (>>>). `CALC` can perform basic arithmetic operations (+, -, \*, /) using
+infix notation when pushing values onto the stack. Infix operations are performed left to right with no regard for order
+of operations, but parentheses can be used to alter this order. The result of this infix math is pushed onto the stack
+like any other argument. All calculations are performed internally using single precision floating point arithmetic. The
+results are presented as integers (NDEC -1) unless modified by the NDEC qualifier or the NDEC operator, as described
+below. For example the following command:
 
     CALC /NDEC=2 1/3 PRT
 
 will print the following as an informational message:
 
     VAL    =0.33
+
+The /NDEC qualifier must be an integer from -1 to 6.
 
 `CALC` operates on each argument on the command line from left to right. Remember that each argument can contain no more
 than 16 characters. The calculator stack used by `CALC` has a depth of 10. If an attempt is made to push more than 10
@@ -589,7 +596,8 @@ STACK UNDERFLOW" will be displayed. Similarly, there must be at least two values
 binary arithmetic operation; a lack of sufficiently many arguments will give an underflow error. When a binary operation
 is executed, the result replaces both (TOS) and (TOS-1), reducing the number of values on the stack by one. When a
 constant is pushed onto the stack, the number of values on the stack increases by one. When a unary operation is
-executed, the number of values on the stack does not change.
+executed, the number of values on the stack does not change. `CALC` also has access to a 16 element register, which
+values can be stored in.
 
 The arguments which may be used with the `CALC` command are as follows:
 
@@ -605,25 +613,36 @@ Unary Arithmetic Operators:
 Argument | Description | Equation
 -------- | ----------- | --------
 ABS      | Replaces the top of stack with its absolute value | (TOS)=ABS(TOS)
+ACOS     | Replaces the top of stack with its inverse cosine. The result is in units of radians. | (TOS)=ACOS(TOS)
+ACOSD    | Replaces the top of stack with its inverse cosine. The result is in units of degrees. | (TOS)=ACOSD(TOS)
+ASIN     | Replaces the top of stack with its inverse sine. The result is in units of radians. | (TOS)=ASIN(TOS)
+ASIND    | Replaces the top of stack with its inverse sine. The result is in units of degrees. | (TOS)=ASIND(TOS)
+ATAN     | Replaces the top of stack with its inverse tangent. The result is in units of radians. | (TOS)=ATAN(TOS)
+ATAND    | Replaces the top of stack with its inverse tangent. The result is in units of degrees. | (TOS)=ATAND(TOS)
 COS      | Replaces the top of stack with its cosine. The operand is assumed to be in units of radians. | (TOS)=COS(TOS)
 COSD     | Replaces the top of stack with its cosine. The operand is assumed to be in units of degrees. | (TOS)=COSD(TOS)
+COSH     | Replaces the top of stack with its hyperbolic cosine. | (TOS)=COSH(TOS)
 EXP      | Replaces the top of stack with e^(TOS). The operand must be no greater than 30.0. | (TOS)=EXP(TOS)
 INT      | Replaces the top of stack with the largest integer whose absolute value does not exceed the absolute value of (TOS) and has the same sign as (TOS). | (TOS)=AINT(TOS)
-LOG      | Replaces the top of stack with its natural (base e) logarithm.  The operand must be greater than 0.0. | (TOS)=ALOG(TOS)
+LOG      | Replaces the top of stack with its natural (base e) logarithm.  The operand must be greater than 0.0. | (TOS)=LOG(TOS)
 LOG10    | Replaces the top of stack with its common (base 10) logarithm. The operand must be greater than 0.0. | (TOS)=ALOG10(TOS)
 NEG      | Replaces the top of stack with its negative. | (TOS)=-(TOS).
 NINT     | Replaces the top of stack with the integer nearest to (TOS). | (TOS)=ANINT(TOS).
 SIN      | Replaces the top of stack with its sine. The operand is assumed to be in units of radians. | (TOS)=SIN(TOS)
 SIND     | Replaces the top of stack with its sine. The operand is assumed to be in units of degrees. | (TOS)=SIND(TOS)
+SIN      | Replaces the top of stack with its hyperbolic sine. | (TOS)=SINH(TOS)
 SQRT     | Replaces the top of stack with its square root. The operand must be greater than or equal to 0.0. | (TOS)=SQRT(TOS)
 TAN      | Replaces the top of stack with its tangent. The operand is assumed to be in units of radians. | (TOS)=TAN(TOS)
 TAND     | Replaces the top of stack with its tangent. The operand is assumed to be in units of degrees. | (TOS)=TAND(TOS)
+TAN      | Replaces the top of stack with its hyperbolic tangent. | (TOS)=TANH(TOS)
 
 Binary Arithmetic Operators:
 
 Argument | Description | Equation
 -------- | ----------- | --------
 ADD      | Replaces (TOS) and (TOS-1) with their sum. | (TOS)=(TOS-1)+(TOS)
+ATAN2    | Replaces (TOS-1) and (TOS) with the inverse tangent of their ratio. The result is in units of radians. | (TOS)=ATAN((TOS-1)/(TOS))
+ATAN2D   | Replaces (TOS-1) and (TOS) with the inverse tangent of their ratio. The result is in units of degrees. | (TOS)=ATAND((TOS-1)/(TOS))
 DIV      | Replaces (TOS-1) and (TOS) with their quotient. Division by zero is not allowed. | (TOS)=(TOS-1)/(TOS)
 MAX      | Replaces (TOS-1) and (TOS) with the greater of the two values. | (TOS)=AMAX1((TOS-1),(TOS))
 MIN      | Replaces (TOS-1) and (TOS) with the lesser of the two values. | (TOS)=AMIN1((TOS-1),(TOS))
@@ -635,14 +654,14 @@ Unary Logical Operators:
 
 Argument | Description | Equation
 -------- | ----------- | --------
-NOT      | Replaces (TOS) with 1.0 if (TOS) is equal to 0.0 and 0.0 if (TOS) is not equal to 0.0. | (TOS)=NOT (TOS)
+NOT      | Replaces (TOS) with the bitwise not of its integer representation. | (TOS)=NOT INT(TOS)
 
 Binary Logical Operators:
 
 Argument | Description | Equation
 -------- | ----------- | --------
-AND      | Replaces (TOS-1) and (TOS) with 1.0 if they are both nonzero or with 0.0 otherwise. | (TOS)=(TOS-1) AND (TOS)
-OR       | Replaces (TOS-1) and (TOS) with 1.0 if either is nonzero  or with 0.0 otherwise. | (TOS)=(TOS-1) OR (TOS)
+AND      | Replaces (TOS-1) and (TOS) with the bitwise and of their integer representations. | (TOS)=INT(TOS-1) AND INT(TOS)
+OR       | Replaces (TOS-1) and (TOS) with the bitwise or of their integer representations. | (TOS)=INT(TOS-1) OR INT(TOS)
 
 Binary Relational Operators:
 
@@ -655,6 +674,13 @@ LE       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is less than or equal 
 LT       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is less than (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)<(TOS)
 NE       | Replaces (TOS-1) and (TOS) with 1.0 if they are not equal or with 0.0 if they are equal. | (TOS)=(TOS-1)!=(TOS)
 
+Register Operators:
+
+Argument | Description
+-------- | -----------
+LOAD     | Replace TOS with the value in the register position specified by TOS
+STORE    | Store TOS-1 in the register position specified by TOS. STORE reduces the number of values on the stack by 2.
+
 Special Operators:
 
 Argument | Description
@@ -662,8 +688,10 @@ Argument | Description
 DUP      | Duplicates the top of stack, increasing the number of values on  the stack by 1. If the stack is empty, DUP will result in a (CALC0 ) STACK UNDERFLOW error message. Conversely, if the stack is full when `CALC` encounters the DUP operator, a (CALC0) STACK OVERFLOW error message will be displayed.
 NDEC     | sets the number of decimal places for displaying or popping results from the calculator stack. The top of stack defines the maximum number of decimal places that will be displayed. On completion, NDEC pops the top of stack, decreasing the stack size be one. In order to use NDEC, the stack must not be empty. "-1 NDEC" directs `CALC` to display and pop results as integers i.e. with no decimal point, while "0 NDEC" yields results with a final decimal point but no digits to the right of the decimal point. Higher values of NDEC request additional digits to the right of the decimal point, but these may be dropped if the value is too large.
 PRT      | Displays the top of stack as an informational message. The value of the top of stack is displayed with the current number of decimal places as set by a previous NDEC operator on the same `CALC` command line. If no NDEC operator preceded the PRT command, then the top of stack will be displayed as an integer (NDEC -1). On completion, PRT pops the top of stack, decreasing the stack size be one. In order to use PRT, the stack must not be empty.
-\>\>     | Pops the top of stack into a local argument. The name of the local argument which will receive the value is given by the remaining characters in the `CALC` parameter beginning with "\>\>". The name of the local argument may not be blank, cannot be longer than sixteen characters, and must use only the characters A-Z, 0-9, $, or \_. Because \>\> pops the top of stack, the stack size is decreased by one after \>\> is processed. In order to use \>\>, the stack must not be empty.
+SWAP     | Swap the positions on the stack of the values at (TOS) and (TOS-1)
 \>       | Pops the top of stack into a global argument. The name of the global argument which will receive the value is given by the remaining characters in the `CALC` parameter beginning with "\>". The name of the global argument may not be blank, cannot be longer than sixteen characters, and must use only the characters A-Z, 0-9, $, or \_. Because \> pops the top of stack, the stack size is decreased by one after \> is processed. In order to use \>, the stack must not be empty.
+\>\>     | Pops the top of stack into a local argument. The name of the local argument which will receive the value is given by the remaining characters in the `CALC` parameter beginning with "\>\>". The name of the local argument may not be blank, cannot be longer than sixteen characters, and must use only the characters A-Z, 0-9, $, or \_. Because \>\> pops the top of stack, the stack size is decreased by one after \>\> is processed. In order to use \>\>, the stack must not be empty.
+\>\>\>   | Pops the top of stack into a symbol. The name of the symbol which will receive the value is given by the remaining characters in the `CALC` parameter beginning with "\>\>\>". The name of the symbol may not be blank, cannot be longer than sixteen characters, and must use only the characters A-Z, 0-9, $, or \_. Because \>\>\> pops the top of stack, the stack size is decreased by one after \>\>\> is processed. In order to use \>\>\>, the stack must not be empty.
 
 Any argument on the `CALC` command line other than those listed above is treated as a default push onto the calculator
 stack. Values may be pushed onto the stack only if the stack is not full, i.e. there are fewer than 10 values on the
@@ -675,28 +703,29 @@ from the stack into local or global arguments should not be more than sixteen ch
 into an argument the argument will be filled with \*s. Be careful not to set NDEC to too large a value in order to avoid
 this situation. An example of a default push is shown in the command below:
 
- CALC 1 2 ADD PRT
+    CALC 1 2 MAX PRT
 
 Here, the arguments "1" and "2" are not operations known to RNMR, so they are interpreted as values to be pushed onto
 the calculator stack. Once all operations specified on the `CALC` command line have been executed, RNMR checks that the
 calculator stack is empty. If it is not empty, an error message will be displayed.
 ## CALCI
-Perform arithmetic and logical calculations on integers
+Perform integer arithmetic, logical, and bitwise calculations
 
 Category: Calculator
 
 Format: `CALCI` arg1 ... arg10
 
-Defaults: none none
+Defaults: none
 
 Description:
 `CALCI` performs desk calculator operations in reverse Polish notation. Arguments are pushed onto the calculator stack
 and operations are performed on them, yielding results which may either be printed to the screen (PRT) or popped into
-local (>>) or global (>) arguments. `CALCI` can perform basic arithmetic operations (+,-,\*,/) using infix notation with
-parentheses for order of operations. The result of this infix math is pushed onto the stack like any other argument. All
-calculations are performed internally using 32 bit integer arithmetic. As a result values to be pushed onto the stack
-should be between -2,147,483,647 and 2,147,483,647. `CALCI` does allow for integer overflow so be cautious if performing
-calculations with large numbers near these bounds. For example the following command:
+local (>>) or global (>) arguments or symbols (>>>). `CALCI` can perform basic arithmetic operations (+, -, \*, /) using
+infix notation when pushing values onto the stack. Infix operations are performed left to right with no regard for order
+of operations, but parentheses can be used to alter this order. The result of this infix math is pushed onto the stack
+like any other argument. All calculations are performed internally using 32 bit integer arithmetic. As a result values
+to be pushed onto the stack should be between -2,147,483,647 and 2,147,483,647. `CALCI` does allow for integer overflow
+so be cautious if performing calculations with large numbers near these bounds. For example the following command:
 
     CALCI 2*3 PRT
 
@@ -722,6 +751,8 @@ Unary Arithmetic Operators:
 Argument | Description | Equation
 -------- | ----------- | --------
 ABS      | Replaces the top of stack with its absolute value | (TOS)=ABS(TOS)
+EXP2     | Replaces the top of stack with 2 raised to the power given by the top of the stack. The operand must be no greater than 30. | (TOS)=2^(TOS)
+LOG2     |  Replaces the top of stack with its base 2 logarithm. The operand must be greater than 0. | (TOS)=LOG2(TOS)
 NEG      | Replaces the top of stack with its negative. | (TOS)=-(TOS).
 
 Binary Arithmetic Operators:
@@ -740,35 +771,51 @@ Unary Logical Operators:
 
 Argument | Description | Equation
 -------- | ----------- | --------
-NOT      | Replaces (TOS) with 1.0 if (TOS) is equal to 0.0 and 0.0 if (TOS) is not equal to 0.0. | (TOS)=NOT (TOS)
+NOT      | Replaces (TOS) with its bitwise not. | (TOS)=NOT (TOS)
 
 Binary Logical Operators:
 
 Argument | Description | Equation
 -------- | ----------- | --------
-AND      | Replaces (TOS-1) and (TOS) with 1.0 if they are both nonzero or with 0.0 otherwise. | (TOS)=(TOS-1) AND (TOS)
-OR       | Replaces (TOS-1) and (TOS) with 1.0 if either is nonzero  or with 0.0 otherwise. | (TOS)=(TOS-1) OR (TOS)
+AND      | Replaces (TOS-1) and (TOS) with their bitwise and. | (TOS)=(TOS-1) AND (TOS)
+OR       | Replaces (TOS-1) and (TOS) with their bitwise or. | (TOS)=(TOS-1) OR (TOS)
 
 Binary Relational Operators:
 
 Argument | Description | Equation
 -------- | ----------- | --------
-EQ       | Replaces (TOS-1) and (TOS) with 1.0 if they are equal or with 0.0 if they are not equal. | (TOS)=(TOS-1)==(TOS)
-GE       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is greater than or equal to (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)>=(TOS)
-GT       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is greater than (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)>(TOS)
-LE       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is less than or equal to (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)<=(TOS)
-LT       | Replaces (TOS-1) and (TOS) with 1.0 if (TOS-1) is less than (TOS) or with 0.0 otherwise. | (TOS)=(TOS-1)<(TOS)
-NE       | Replaces (TOS-1) and (TOS) with 1.0 if they are not equal or with 0.0 if they are equal. | (TOS)=(TOS-1)!=(TOS)
+EQ       | Replaces (TOS-1) and (TOS) with 1 if they are equal or with 0 if they are not equal. | (TOS)=(TOS-1)==(TOS)
+GE       | Replaces (TOS-1) and (TOS) with 1 if (TOS-1) is greater than or equal to (TOS) or with 0 otherwise. | (TOS)=(TOS-1)>=(TOS)
+GT       | Replaces (TOS-1) and (TOS) with 1 if (TOS-1) is greater than (TOS) or with 0 otherwise. | (TOS)=(TOS-1)>(TOS)
+LE       | Replaces (TOS-1) and (TOS) with 1 if (TOS-1) is less than or equal to (TOS) or with 0 otherwise. | (TOS)=(TOS-1)<=(TOS)
+LT       | Replaces (TOS-1) and (TOS) with 1 if (TOS-1) is less than (TOS) or with 0 otherwise. | (TOS)=(TOS-1)<(TOS)
+NE       | Replaces (TOS-1) and (TOS) with 1 if they are not equal or with 0 if they are equal. | (TOS)=(TOS-1)!=(TOS)
+
+Register Operators:
+
+Argument | Description
+-------- | -----------
+LOAD     | Replace TOS with the value in the register position specified by TOS
+STORE    | Store TOS-1 in the register position specified by TOS. STORE reduces the number of values on the stack by 2.
+
+Bit Manipulation Operators:
+
+Argument | Description
+-------- | -----------
+EXTRACT  | Extract (TOS) bits starting at bit (TOS-1) from (TOS-2). The extracted bits will be the least significant bits of the new (TOS) with all other bits being 0. EXTRACT reduces the number of values on the stack by 2.
+INSERT   | Insert (TOS) bits starting at bit (TOS-1) from (TOS-2) into (TOS-3) and put the result in (TOS). The rest of the bits will be untouched. INSERT reduces the number of values on the stack by 3.
+SHFT     | Replace (TOS) and (TOS-1) with (TOS-1) bit shifted by (TOS) bits. Positive (TOS) indicates a left shift while negative (TOS) indicates a right shift.
 
 Special Operators:
 
 Argument | Description
 -------- | -----------
 DUP      | Duplicates the top of stack, increasing the number of values on  the stack by 1. If the stack is empty, DUP will result in a (CALC0 ) STACK UNDERFLOW error message. Conversely, if the stack is full when `CALCI` encounters the DUP operator, a (CALC0) STACK OVERFLOW error message will be displayed.
-NDEC     | sets the number of decimal places for displaying or popping results from the calculator stack. The top of stack defines the maximum number of decimal places that will be displayed. On completion, NDEC pops the top of stack, decreasing the stack size be one. In order to use NDEC, the stack must not be empty. "-1 NDEC" directs `CALCI` to display and pop results as integers i.e. with no decimal point, while "0 NDEC" yields results with a final decimal point but no digits to the right of the decimal point. Higher values of NDEC request additional digits to the right of the decimal point, but these may be dropped if the value is too large.
 PRT      | Displays the top of stack as an informational message. The value of the top of stack is displayed with the current number of decimal places as set by a previous NDEC operator on the same `CALCI` command line. If no NDEC operator preceded the PRT command, then the top of stack will be displayed as an integer (NDEC -1). On completion, PRT pops the top of stack, decreasing the stack size be one. In order to use PRT, the stack must not be empty.
+SWAP     | Swap the positions on the stack of the values at (TOS) and (TOS-1)
 \>\>     | Pops the top of stack into a local argument. The name of the local argument which will receive the value is given by the remaining characters in the `CALCI` parameter beginning with "\>\>". The name of the local argument may not be blank, cannot be longer than sixteen characters, and must use only the characters A-Z, 0-9, $, or \_. Because \>\> pops the top of stack, the stack size is decreased by one after \>\> is processed. In order to use \>\>, the stack must not be empty.
 \>       | Pops the top of stack into a global argument. The name of the global argument which will receive the value is given by the remaining characters in the `CALCI` parameter beginning with "\>". The name of the global argument may not be blank, cannot be longer than sixteen characters, and must use only the characters A-Z, 0-9, $, or \_. Because \> pops the top of stack, the stack size is decreased by one after \> is processed. In order to use \>, the stack must not be empty.
+\>\>\>   | Pops the top of stack into a symbol. The name of the symbol which will receive the value is given by the remaining characters in the `CALCI` parameter beginning with "\>\>\>". The name of the symbol may not be blank, cannot be longer than sixteen characters, and must use only the characters A-Z, 0-9, $, or \_. Because \>\>\> pops the top of stack, the stack size is decreased by one after \>\>\> is processed. In order to use \>\>\>, the stack must not be empty.
 
 Any argument on the `CALCI` command line other than those listed above is treated as a default push onto the calculator
 stack. Values may be pushed onto the stack only if the stack is not full, i.e. there are fewer than 10 values on the
@@ -776,7 +823,7 @@ stack before the push operation. A default push operation increases the stack de
 manipulations are performed using integer arithmetic, only integers may be pushed onto the stack; decimals as well as
 alphabetic and special characters may not be entered. An example of a default push is shown in the command below:
 
-    CALCI 1 2 ADD PRT
+    CALCI 1 2 MAX PRT
 
 Here, the arguments "1" and "2" are not operations known to RNMR, so they are interpreted as values to be pushed onto
 the calculator stack. Once all operations specified on the `CALCI` command line have been executed, RNMR checks that the
