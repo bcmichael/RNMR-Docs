@@ -829,20 +829,26 @@ Here, the arguments "1" and "2" are not operations known to RNMR, so they are in
 the calculator stack. Once all operations specified on the `CALCI` command line have been executed, RNMR checks that the
 calculator stack is empty. If it is not empty, an error message will be displayed.
 ## CALIB
-Measure pulse phases and amplitudes Category:  	Acquisition
+Determine data buffer amplitudes and phases
+
+Category: Acquisition
 
 Format: `CALIB` fcalib
+
+Qualifiers: /REAL /IMAG
+
+Qualifier Defaults: /REAL
 
 Defaults: current
 
 Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-This command is used with the `CALIB` pulse program to calibrate spectrometer phases.  It is to be used only by the
-support staff.  `CALIB` does not require the user to be viewing the processing block (`VIEW PRO`), but all manipulations
-are performed on the processing block.  The argument "fcalib" is a real number interpreted in the current frequency unit
-of the processing buffer (PPM or absolute units).  If "fcalib" is omitted from the command line, RNMR will prompt for a
-frequency, with the current calibration frequency as the default.  After conversion to Hz, the calibration frequency
+This command is used with the `CALIB` pulse program to calibrate spectrometer phases. It is to be used only by the
+support staff. `CALIB` does not require the user to be viewing the processing block (`VIEW PRO`), but all manipulations
+are performed on the processing block. The argument "fcalib" is a real number interpreted in the current frequency unit
+of the processing buffer (PPM or absolute units). If "fcalib" is omitted from the command line, RNMR will prompt for a
+frequency, with the current calibration frequency as the default. After conversion to Hz, the calibration frequency
 must be nonzero.
 ## CAT
 List catalog of records
