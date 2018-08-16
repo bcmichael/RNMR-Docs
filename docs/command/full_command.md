@@ -1078,6 +1078,38 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
+## CATPPS
+List catalog of PP symbols
+
+Category: Pulse Program
+
+Format: `CATPPS` type first last
+
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
+Defaults: none none ZZZZZZZZZZZZZZZZ
+
+Description:
+`CATPPS` displays a catalog of the currently defined PP symbols. The catalog is organized by PP symbol type and then
+each type section is organized by name from first to last in alphabetical order. If type is omitted from the command
+line then `CATPPS` will display all types of symbols. If a type is specified then only the section of the catalog
+corresponding to that type will be listed. If first is omitted from the command line, then the catalog will begin with
+the first entry in each included section. RNMR will not prompt for first. Similarly, if last is not specified, `CATPPS`
+will list all entries in each included section. If only one of first and last is specified, `CATPPS` will list
+information about only that single PP symbol in each included section. Each PP symbol is listed by name along with its
+location.
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## CD
 Perform convolution difference apodization
 
