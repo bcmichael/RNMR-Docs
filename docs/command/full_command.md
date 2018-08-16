@@ -1055,17 +1055,29 @@ Category: Nuclei
 
 Format: `CATNUC` first last
 
-Defaults: none ZZZZZZZZ
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
+Defaults: none ZZZZZZZZZZZZZZZZ
 
 Description:
-`CATNUC` displays a catalog of the currently defined nuclei by name from "first" to "last" in alphabetical order.  If
-"first" is omitted from the command line, then the catalog will begin with the first entry in the nucleus table. RNMR
-will not prompt for "first".  Similarly, if "last" is not specified, RNMR will list nuclei up to and including
-ZZZZZZZZ; the user will not be  prompted for "last".  Each defined nucleus is listed by name along with its current
-frequency (PPM to Hz conversion factor) in MHz and its reference frequency in the current frequency unit (as set by
-`UNIT /FREQ`).  The nucleus frequency is always reported to three decimal places, while the number of decimal places in
-the reference frequency depends on the choice of frequency unit (as set by the `NDEC` command).  Pressing <RETURN\> or
-<SPACE\> lists the next defined nucleus while pressing "Q" or <CTRL-Z\> quits `CATNUC` and returns the console prompt.
+`CATNUC` displays a catalog of the currently defined nuclei by name from first to last in alphabetical order. If first
+is omitted from the command line, then the catalog will begin with the first entry in the nucleus table. RNMR will not
+prompt for first. Similarly, if last is not specified, `CATNUC` will list all nuclei. If only one argument is specified,
+`CATNUC` will list information about only that single nucleus. Each nucleus is listed by name along with its current
+frequency (value used to convert between PPM and Hz) in MHz and its reference frequency in Hz.
+
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## CD
 Perform convolution difference apodization
 
