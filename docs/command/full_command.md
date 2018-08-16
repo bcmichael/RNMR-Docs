@@ -1068,7 +1068,6 @@ prompt for first. Similarly, if last is not specified, `CATNUC` will list all nu
 `CATNUC` will list information about only that single nucleus. Each nucleus is listed by name along with its current
 frequency (value used to convert between PPM and Hz) in MHz and its reference frequency in Hz.
 
-
 The qualifiers specify how the list is output as follows:
 
 Qualifier | Output
@@ -1110,6 +1109,40 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
+## CATSYM
+List catalog of nuclei
+
+Category: Nuclei
+
+Format: `CATSYM` first last
+
+Qualifiers: /FLT /INT /NDEC /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /NDEC=1 /WND
+
+Defaults: none ZZZZZZZZZZZZZZZZ
+
+Description:
+`CATSYM` displays a catalog of the currently defined symbols by name from first to last in alphabetical order. If first
+is omitted from the command line, then the catalog will begin with the first entry in the symbol table. RNMR will not
+prompt for first. Similarly, if last is not specified, `CATSYM` will list all symbols. If only one argument is specified,
+`CATSYM` will list information about only that single symbol. Each symbol is listed by name along with its current
+value. Floating point symbols will be displayed with a number of decimal places set by /NDEC.
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/FLT      | List floating point symbols
+/INT      | List integer symbols
+/NDEC     | Set the number of decimal places for displaying floating point symbols
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
+Note that if neither /FLT nor /INT is specified `CATSYM` will list both, which is the same behavior as if both are
+specified.
 ## CD
 Perform convolution difference apodization
 
