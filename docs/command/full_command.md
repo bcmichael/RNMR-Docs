@@ -1143,6 +1143,37 @@ Qualifier | Output
 
 Note that if neither /FLT nor /INT is specified `CATSYM` will list both, which is the same behavior as if both are
 specified.
+## CATTBL
+List catalog of user name tables
+
+Category: Lists
+
+Format: `CATTBL` tbl first last
+
+Qualifiers: /PRT /TTY /VAL /WND /WRT
+
+Qualifier Defaults: /WND
+
+Defaults: none ZZZZZZZZZZZZZZZZ
+
+Description:
+`CATTBL` displays a catalog of the currently defined tables by name from first to last in alphabetical order. A single
+table to display may be selected using the tbl argument. /VAL will cause `CATTBL` to list the values in the tables. If
+first is omitted from the command line, then the values will begin with the first entry in the table. RNMR will not
+prompt for first. Similarly, if last is not specified, `CATTBL` will list all values in the table. If only one of first
+and last is specified, `CATTBL` will list information about only that single value. Each table is listed by name along
+with its maximum size and its current size.
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/VAL      | Also list the values in the tables
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## CD
 Perform convolution difference apodization
 
