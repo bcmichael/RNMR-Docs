@@ -1,4 +1,6 @@
 site_name: RNMR Documentation
+repo_url: https://github.com/bcmichael/RNMR-Docs
+
 theme:
     name: 'rtd-dropdown'
 
