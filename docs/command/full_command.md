@@ -1209,11 +1209,38 @@ where L1 and L2 are the narrow and wide line widths, respectively, and T(N) is t
 FID. Each block of the processing buffer is separately multiplied by the apodization vector VEC(N), yielding an
 apodized complex FID. If the processing buffer is currently visible, `CD` always updates the display upon completion.
 ## CHN
-Select channel Category:
+Map logical and physical channels to one another
 
-Format:
+Category: Acquisition
 
-Defaults:
+Format: `CHN` args
+
+Qualifiers: /LOG /PHY /SEQ
+
+Qualifier Defaults: /SEQ
+
+Defaults: current
+
+Prerequisites: Acquisition stopped (HALT) RNMRA only
+
+Description:
+RNMR pulse sequences specify pulses to be run on logical channels. Logical channel 1 is always the observe channel and
+the other logical channels may be used for other nuclei. These logical channels are distinct from the hardware channels
+in the console which are physically connected to the desired amplifiers, duplexers, and ultimately probe inputs. `CHN`
+sets the mapping between the logical and physical channels, so that the pulses are generated on the right channel in the
+console.
+
+The /LOG and /PHY qualifiers are used to set the mapping for a single channel while the /SEQ option sets all the
+channels at once. /LOG accepts two arguments: the first being a logical channel and the second being a physical channel
+to map it to. /PHY works the same as /LOG but the first argument should be the physical channel and the second argument
+should be the logical channel.
+
+/SEQ, which is the default qualifier, expects a sequence of physical channels consisting of up to the number of channels
+in the system. The sequence of channels will be mapped to the logical channels starting from 1. For example:
+
+    CHN 31
+
+will map logical channel 1 to physical channel 3 and logical channel 2 to physical channel 1.
 ## CLSARV
 Close archive 	 `CHN`
 
