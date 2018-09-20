@@ -1268,12 +1268,21 @@ specified record is not an open blocked record.
 ## CLSDSP
 Close display
 
-Category:
+Category: Display
 
 Format: `CLSDSP`
 
 Description:
 Close display opened with `OPNDSP`.
+## CLSEXP
+Close export file
+
+Category: File IO
+
+Format: `CLSEXP`
+
+Description:
+Close export file opened with `OPNEXP`.
 ## CLSPLT
 Close plotter stream and print
 
