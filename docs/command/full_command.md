@@ -1493,6 +1493,19 @@ Description:
 `CONMD` sets the contour plotting mode. The argument mode may be entered as ABS, NEG, or POS. If mode is omitted, RNMR
 will prompt for a contour plotting mode with the current mode as the default. If the user accepts this default, no
 changes are made.
+## COSSQ
+Perform cosine squared apodization
+
+Category: Data Manipulation
+
+Format: `COSSQ` time0
+
+Defaults: (size+1)\*step
+
+Prerequisites: Time domain data in processing buffer (TIME)
+
+Description:
+`COSSQ` multiplies processing buffer 1 by a cosine squared function which goes to zero at time0.
 ## CPXV
 Complex merge two buffers
 
