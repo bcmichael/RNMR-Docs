@@ -1569,6 +1569,17 @@ message reporting the new data file size in blocks (512 bytes per block).
 Once the copy operation has been completed, `CPY` updates the current read record pointer to dst. Afterwards, `PTRA`
 will display the number of the record which received the copy of src. If dst was zero or omitted, `CPY` displays the
 destination record number as an informational message.
+## CPYMAC
+Copy macro
+
+Category: Macro
+
+Format: `CPYMAC` name1 name2
+
+Defaults: temp temp
+
+Description
+`CPYMAC` copies the contents of macro name1 into a new macro name2.
 ## CRS
 Set cursor positions
 
