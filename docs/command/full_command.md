@@ -1272,7 +1272,8 @@ Category:
 
 Format: `CLSDSP`
 
-Defaults:
+Description:
+Close display opened with `OPNDSP`.
 ## CLSPLT
 Close plotter stream and print
 
