@@ -1602,7 +1602,7 @@ data point. If the user specifies a position that is within the range of the dat
 to a specific data point, RNMR will set that position to the time or frequency of the closest data point to the right of
 the value specified.
 ## CRSA
-Set acqusition cursor positions
+Set acquisition cursor positions
 
 Category: Display Control
 
