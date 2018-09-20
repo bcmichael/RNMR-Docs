@@ -1256,11 +1256,15 @@ which is not open will result in an error.
 ## CLSB
 Close blocked record
 
-Category:
+Category: Data Storage
 
-Format: `CLSB`
+Format: `CLSB` record
 
-Defaults:
+Defaults: wrec
+
+Description:
+`CLSB` closes an open blocked record. The default value is the most recently written to record. `CLSB` will error if the
+specified record is not an open blocked record.
 ## CLSDSP
 Close display
 
