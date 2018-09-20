@@ -1242,7 +1242,7 @@ in the system. The sequence of channels will be mapped to the logical channels s
 
 will map logical channel 1 to physical channel 3 and logical channel 2 to physical channel 1.
 ## CLSARV
-Close archive 	 `CHN`
+Close archive
 
 Category: Data Storage
 
@@ -1251,7 +1251,8 @@ Format: `CLSARV` archive
 Defaults: 1
 
 Description:
-Closes the specified archive.
+`CLSARV` closes an archive. The archive is specified as an integer ranging from 1 to 4. An attempt to close an archive
+which is not open will result in an error.
 ## CLSB
 Close blocked record
 
