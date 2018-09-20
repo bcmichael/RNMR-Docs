@@ -1273,7 +1273,7 @@ Category: Display
 Format: `CLSDSP`
 
 Description:
-Close display opened with `OPNDSP`.
+Close display opened with `OPNDSP`. `CLSDSP` will error if no export file is open.
 ## CLSEXP
 Close export file
 
@@ -1282,7 +1282,7 @@ Category: File IO
 Format: `CLSEXP`
 
 Description:
-Close export file opened with `OPNEXP`.
+Close export file opened with `OPNEXP`. `CLSEXP` will error if no export file is open.
 ## CLSIMP
 Close import file
 
@@ -1291,7 +1291,7 @@ Category: File IO
 Format: `CLSIMP`
 
 Description:
-Close import file opened with `OPNIMP`.
+Close import file opened with `OPNIMP`. `CLSIMP` will error if no export file is open.
 ## CLSPLT
 Close plotter stream and print
 
