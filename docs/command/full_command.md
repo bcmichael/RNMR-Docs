@@ -1391,12 +1391,11 @@ Format: `CND` cnd# state
 Defaults: 1 current
 
 Description:
-`CND` sets the state of the specified condition flag to ON or OFF.  The first parameter, "cnd#" specifies which of the
-64 available condition flags is to be set. Accordingly, "cnd#" may be any integer from 1 to 64 inclusive.  If this
-parameter is omitted, RNMR will prompt for a flag number with 1 as the default.  The second parameter, "state" specifies
-the logical state to  which the condition flag should be set. The acceptable choices of this parameter are ON and OFF.
- If "state" is omitted, RNMR will prompt for the state of the `CND` flag with the current state as the default.  That
-is, by default no changes are made to the condition flag.
+`CND` sets the state of the specified condition flag to ON or OFF. The first parameter, cnd# specifies which of the
+64 available condition flags is to be set. Accordingly, cnd# may be any integer from 1 to 64. If this parameter is
+omitted, RNMR will prompt for a flag number with 1 as the default. The second parameter, "state" specifies the logical
+state to  which the condition flag should be set. The acceptable choices of this parameter are ON and OFF. If "state" is
+omitted, RNMR will prompt for the state of the `CND` flag with the current state as the default.
 ## CNVFL
 Convolution filter
 
