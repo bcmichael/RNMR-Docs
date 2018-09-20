@@ -1601,6 +1601,19 @@ Similarly, if the position specified is beyond the rightmost data point, the cur
 data point. If the user specifies a position that is within the range of the data buffer but which does not correspond
 to a specific data point, RNMR will set that position to the time or frequency of the closest data point to the right of
 the value specified.
+## CRSA
+Set acqusition cursor positions
+
+Category: Display Control
+
+Format: `CRS` cursor1_pos cursor2_pos
+
+Defaults: current current
+
+Prerequisites: RNMRA only
+
+Description:
+`CRSA` functions identically to `CRS`, but sets the position of cursors visible during acquisition.
 ## CRTARV
 Create archive
 
