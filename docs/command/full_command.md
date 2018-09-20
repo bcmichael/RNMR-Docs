@@ -1490,8 +1490,8 @@ Format: `CONMD` mode
 Defaults: current
 
 Description:
-`CONMD` sets the contour plotting mode.  The argument "mode" may be entered as ABS, NEG, or POS.  If "mode" is omitted,
-RNMR will prompt for a contour plotting mode with the current mode as the default.  If the user accepts this default, no
+`CONMD` sets the contour plotting mode. The argument mode may be entered as ABS, NEG, or POS. If mode is omitted, RNMR
+will prompt for a contour plotting mode with the current mode as the default. If the user accepts this default, no
 changes are made.
 ## CPXV
 Complex merge two buffers
