@@ -1430,27 +1430,27 @@ Set data display colors
 
 Category: Display Control
 
-Format: `COLOR` [qual] red green blue
+Format: `COLOR` red green blue
 
-Qualifiers: /REAL /IMAG /CURSOR
+Qualifiers: /BG /CURSOR /IMAG /REAL
 
-Qualifier defaults:         /REAL
+Qualifier defaults: /REAL
 
-Defaults: current_color_values
+Defaults: current current current
 
 Description:
-Sets the color for the display. Use /REAL and /IMAG to set the color of the real and imaginary data respectively. Use
-/CURSOR to set the color of all cursors.
+`COLOR` sets the color of elements of the display. /BG sets the color of the background and /CURSOR sets the color of all cursors. /REAL and /IMAG set the color of the real and imaginary data respectively.
 
-The red/green/blue values may each range from 0 to 100.  That is, to specify pure red, use  100  0   0.
+The red/green/blue values may each range from 0 to 100. That is, to specify pure red, use 100 0 0.
 
-Defaults are:
+The default colors are:
 
 Option | Default Color
 ------ | -------------
+/BG    | 0 0 0 (Black)
+/CURSOR | 100 100 100 (White)
 /REAL  | 0 100 0 (Green)
 /IMAG  | 100 0 0 (Red)
-/CURSOR | 100 100 100 (White)
 
 ## CONJG
 Complex conjugate data
