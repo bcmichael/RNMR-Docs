@@ -1301,11 +1301,11 @@ Format: `CLSPLT`
 
 Description:
 `CLSPLT` writes out the current plot buffer and submits the resulting file for printing or plotting, terminating the
-plot sequence that began with `OPNPLT`.  All plots between `OPNPLT` and `CLSPLT` will appear on one sheet of paper.
-`CLSPLT` is legal only if the plot file is currently open.  If the plotter or printer selected by `PLDEV` is not
-currently idle, `CLSPLT` sends the appropriate control sequences to put it in idle mode.  Next, the current plot buffer,
+plot sequence that began with `OPNPLT`. All plots between `OPNPLT` and `CLSPLT` will appear on one sheet of paper.
+`CLSPLT` is legal only if the plot file is currently open. If the plotter or printer selected by `PLDEV` is not
+currently idle, `CLSPLT` sends the appropriate control sequences to put it in idle mode. Next, the current plot buffer,
 containing the code for each spectrum or FID to be plotted, is written out to a temporary plot file, PL.TMP, in the
-user's directory.  This plot file is then submitted to the appropriate queue for printing or plotting.  Upon successful
+user's directory. This plot file is then submitted to the appropriate queue for printing or plotting. Upon successful
 generation of the plot, the plot file is deleted.
 ## CLSRD
 Close file opened for read
@@ -1315,7 +1315,7 @@ Category: File IO
 Format: `CLSRD`
 
 Description:
-`CLSRD` closes a file opened by `OPNRD` for reading with `RDWRT`.  If `CLSRD` is entered when no file is open for read,
+`CLSRD` closes a file opened by `OPNRD` for reading with `RDWRT`. If `CLSRD` is entered when no file is open for read,
 RNMR will display an error message.
 ## CLSWRT
 Close file which has been opened for writing
@@ -1325,8 +1325,8 @@ Category: File IO
 Format: `CLSWRT`
 
 Description:
-`CLSWRT` closes a file opened by `OPNWRT` for writing with the `WRT` command.  All output from `WRT` commands issued
-between `OPNWRT` and `CLSWRT` will appear in one file.  If `CLSWRT` is entered when no file is open for write, RNMR will
+`CLSWRT` closes a file opened by `OPNWRT` for writing with the `WRT` command. All output from `WRT` commands issued
+between `OPNWRT` and `CLSWRT` will appear in one file. If `CLSWRT` is entered when no file is open for write, RNMR will
 display an error message.
 ## CMUL
 Multiply buffer by complex constant
