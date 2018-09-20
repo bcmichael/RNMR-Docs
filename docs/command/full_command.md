@@ -1283,6 +1283,15 @@ Format: `CLSEXP`
 
 Description:
 Close export file opened with `OPNEXP`.
+## CLSIMP
+Close import file
+
+Category: File IO
+
+Format: `CLSIMP`
+
+Description:
+Close import file opened with `OPNIMP`.
 ## CLSPLT
 Close plotter stream and print
 
