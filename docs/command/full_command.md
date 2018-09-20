@@ -1546,25 +1546,29 @@ Format: `CPY` src dst
 Defaults: current_read_record next_available_record
 
 Description:
-`CPY` copies the archive record "src" into record "dst".  Unlike `ALLCPY`, `CPY` copies both title parameters and data
-from source to destination.  The first parameter, "src" is the number of the record to be copied. If no source record
-number is specified, RNMR will prompt for "src" with the current read record (as displayed and set by `PTRA`) as the
-default.  The allowable values of "src" are integers between 5 and 200, inclusive.  Consequently, scratch records may
-not be copied by `CPY`.  The source record specified must not be empty.  The second parameter, "dst" is the number of
-the destination record, i.e. the record which will contain a copy of "src".  If "dst" is not specified, then RNMR will
-attempt to put the copy of "src" into the next available record; RNMR does not prompt for a destination record number.
-If "dst" is zero, then RNMR will use the next available record for "dst". Otherwise, this parameter must be an integer
-between 5 and 200; `CPY` does not copy records into scratch records (numbers 1-4).  When `CPY` is asked to use the next
-available record for "dst", a search is made for an empty record starting with the current read record .  The search
-proceeds toward record 200 and starts over at record 5 if no empty records are found ahead of the current record.  If no
-empty records can be located, then an error message is displayed.  In this case, the user must either delete an existing
-record (`DL`) or start a new archive.  If "dst" is specified and is not zero, then RNMR checks that the  requested
-destination record is empty.  If it is not empty, an error message will be printed and neither the existing data nor
-parameters of "dst" will be overwritten.  If the data file (\*DATA.DAT) is extended to hold the copy of "src", then RNMR
-will display a message reporting the new data file size in blocks (512 bytes per block).  Once the copy operation has
-been completed, `CPY` updates the current read record pointer to "dst".  Afterwards, `PTRA` will display the number of
-the record which received the copy of "src".  If "dst" was zero or omitted, `CPY` displays the destination record number
-as an informational message.
+`CPY` copies the archive record src into record dst. Unlike `ALLCPY`, `CPY` copies both title parameters and data from
+source to destination. The first parameter, src is the number of the record to be copied. If no source record number is specified, RNMR will prompt for src with the current read record (as displayed and set by `PTRA`) as the default.
+
+The second parameter, dst is the number of the destination record, i.e. the record which will contain a copy of src. If
+dst is not specified, is 0, or is not empty, then RNMR will attempt to put the copy of src into the next available
+record; RNMR does not prompt for a destination record number.
+
+Record numbers are specified as integers with every set of 200 values corresponding to an archive. Records 1-200 are
+archive 1, 201-400 are archive 2 etc. A record in a given archive may also be specified as arv:rec. For example 205 and
+2:5 are the same record. `CPY` cannot copy to or from scratch records which are the first 4 records in an archive.
+
+When `CPY` is asked to use the next available record for dst, a search is made for an empty record starting with the
+current read record. The search proceeds toward record 200 and starts over at record 5 if no empty records are found
+ahead of the current record. If no empty records can be located, then an error message is displayed. In this case, the
+user must either delete an existing record (`DL`) or start a new archive.
+
+If RNMR does not have write access to dst an error message will be printed and neither the existing data nor parameters
+of dst will be overwritten. If the data file (\*DATA.DAT) is extended to hold the copy of src, then RNMR will display a
+message reporting the new data file size in blocks (512 bytes per block).
+
+Once the copy operation has been completed, `CPY` updates the current read record pointer to dst. Afterwards, `PTRA`
+will display the number of the record which received the copy of src. If dst was zero or omitted, `CPY` displays the
+destination record number as an informational message.
 ## CRS
 Set cursor positions
 
