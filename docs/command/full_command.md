@@ -1397,16 +1397,34 @@ omitted, RNMR will prompt for a flag number with 1 as the default. The second pa
 state to  which the condition flag should be set. The acceptable choices of this parameter are ON and OFF. If "state" is
 omitted, RNMR will prompt for the state of the `CND` flag with the current state as the default.
 ## CNVFL
-Convolution filter
+Convolution filter spectrum
 
-Category:
+Category: Data Manipulation
 
-Format: `CNVFL`
+Format: `CNVFL` kmax
 
-Defaults:
+Qualifiers: /KRNL=(GAUSS,SINEB) /PASS=(HIGH,LOW) /END=(EXT,LP,ZER)
+
+Qualifier Defaults: /KRNL=GAUSS /PASS=HIGH /END=EXT
+
+Defaults: 8
 
 Description:
-Convolution filter for time domain data processing (post-acquisition digital solvent suppression)
+`CNVFL` convolves the data in processing buffer 1 with a filter kernel. The argument kmax sets the maximum filter
+component. The filter kernel will contain nkrnl=2\*kmax+1 points. kmax can range from 1 to 32.
+
+/KRNL selects either a gaussian or sinebell function to use for the filter kernel. A convolution filter cannot calculate
+values at the edges of the data. /END determines what is done with these points. The minimum size of the buffer relative
+to the kernel size also depends on /END. The following options area available:
+
+Option | Description | Minimum Buffer Size
+------ | ----------- | -------------------
+EXT    | Extrapolate to fill in the points | 4*kmax+1
+LP     | Apply linear prediction to fill in the points | 2*kmax+128
+ZER    | Set the points to 0 | 2*kmax+1
+
+/PASS determines what is done with the result of the convolution. /PASS=HIGH subtracts the result from the buffer while
+/PASS=LOW replaces the buffer with the result.
 ## COLOR
 Set data display colors
 
