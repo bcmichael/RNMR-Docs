@@ -1636,7 +1636,7 @@ Qualifiers: /END=<end\>
 
 Qualifier Defaults: /END=''
 
-Defaults: 'temp.dat'
+Defaults: temp.dat
 
 Description:
 `CRTFIL` creates a text file with the name fspec. /END sets a string which marks the end of what is to be written to the file.
@@ -1645,18 +1645,6 @@ specified RNMR will prompt for a file with temp.dat as a default. If the file do
 in creating it, RNMR will pop up a window where text can be entered to write to the file. Otherwise an error will be
 thrown.
 
-## CRTLST
-Create list
-
-Category: List Handling
-
-Format: `CRTLST` nam maxval
-
-Defaults: temp 32
-
-Description:
-`CRTLST` creates a new list named nam that can hold a maximum of maxval entries. RNMR will prompt for nam and maxval if
-they are not provided. If a list with the same name already exists `CRTLST` will error.
 When called from a macro `CRTFIL` will not prompt for a file name. The lines to be written should be provided on the
 lines following `CRTFIL` in the macro and should start with ;;. The first line will be interpreted as a file name if
 none is provided as an argument. `CRTFIL` will stop writing lines when it either reaches a line that matches <end\> or
@@ -1669,6 +1657,48 @@ used. An example of use in a macro is given here:
     ;;Also write this
 
 Text written when `CRTFIL` is called from a macro will be all caps regardless of the capitalization in the macro.
+## CRTLST
+Create list
+
+Category: List Handling
+
+Format: `CRTLST` nam maxval
+
+Defaults: temp 32
+
+Description:
+`CRTLST` creates a new list named nam that can hold a maximum of maxval entries. RNMR will prompt for nam and maxval if
+they are not provided. If a list with the same name already exists `CRTLST` will error.
+## CRTMAC
+Create macro
+
+Category: Macro
+
+Format: `CRTMAC` nam
+
+Qualifier Defaults: /END=''
+
+Defaults: temp
+
+Description:
+`CRTMAC` creates a macro with the name nam. /END sets a string which marks the end of what is to be written to the macro.
+`CRTMAC` behaves slightly differently if called at the command line or in a macro. At the command line if no name is
+specified RNMR will prompt for a name with temp as a default. If the macro does not already exist and RNMR succeeds
+in creating it, RNMR will pop up a window where text can be entered to write to the macro. Otherwise an error will be
+thrown.
+
+When called from a macro `CRTMAC` will not prompt for a macro name. The lines to be written should be provided on the
+lines following `CRTMAC` in the macro and should start with ;;. The first line will be interpreted as a macro name if
+none is provided as an argument. `CRTMAC` will stop writing lines when it either reaches a line that matches <end\> or
+runs out of lines. /TTY will make RNMR pop up a window much like the behavior at the command line even
+when `CRTMAC` is called from a macro. RNMR will still expect the macro name to passed in the same way as when /TTY is
+not used. An example of use in a macro is given here:
+
+    CRTmac TEMP
+    ;;This will me in macro temp
+    ;;so will this
+
+Text written when `CRTMAC` is called from a macro will be all caps regardless of the capitalization in the macro.
 ## CVTMD
 Set modes for blocked record index conversion
 
