@@ -1144,9 +1144,9 @@ Qualifier | Output
 Note that if neither /FLT nor /INT is specified `CATSYM` will list both, which is the same behavior as if both are
 specified.
 ## CATTBL
-List catalog of user name tables
+List catalog of name tables
 
-Category: Lists
+Category: Table
 
 Format: `CATTBL` tbl first last
 
@@ -7356,8 +7356,8 @@ LIM       | Checks numeric value is within limits |  VAL,LIM1,LIM2 | \* , \* , \
 LST       | Checks for existence of list | NAM | None | None | None
 MAC       | Checks for existence of macro | NAM | None | None | None
 SYM       | Checks for existence of symbol | NAM | None | None | None
-TBL       | Checks for existence of user name table | TBL | None | None | None
-TBLARG    | Checks for existence of user name table argument | TBL, NAM | None, None | None | None
+TBL       | Checks for existence of name table | TBL | None | None | None
+TBLARG    | Checks for existence of name table argument | TBL, NAM | None, None | None | None
 
 The following tests are available in RNMRA but not in RNMRP:
 
