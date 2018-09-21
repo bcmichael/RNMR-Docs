@@ -1699,6 +1699,18 @@ not used. An example of use in a macro is given here:
     ;;so will this
 
 Text written when `CRTMAC` is called from a macro will be all caps regardless of the capitalization in the macro.
+## CRTTBL
+Create name table
+
+Category: Table
+
+Format: `CRTTBL` nam maxval
+
+Defaults: temp 32
+
+Description:
+`CRTTBL` creates a new name table named nam that can hold a maximum of maxval entries. RNMR will prompt for nam and
+maxval if they are not provided. If a name table with the same name already exists `CRTTBL` will error.
 ## CVTMD
 Set modes for blocked record index conversion
 
