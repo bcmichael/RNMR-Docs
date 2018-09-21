@@ -1624,7 +1624,7 @@ Format: `CRTARV` archive name
 Defaults: 1 TEMP
 
 Description:
-Creates and opens a new archive with read/write access.
+`CRTARV`creates and opens a new archive with read/write access.
 ## CVTMD
 Set modes for blocked record index conversion
 
