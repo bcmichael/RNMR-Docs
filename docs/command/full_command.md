@@ -1625,6 +1625,38 @@ Defaults: 1 TEMP
 
 Description:
 `CRTARV`creates and opens a new archive with read/write access.
+## CRTFIL
+Create text file
+
+Category: File IO
+
+Format: `APNFIL` fspec
+
+Qualifiers: /END=<end\>
+
+Qualifier Defaults: /END=''
+
+Defaults: 'temp.dat'
+
+Description:
+`CRTFIL` creates a text file with the name fspec. /END sets a string which marks the end of what is to be written to the file.
+`CRTFIL` behaves slightly differently if called at the command line or in a macro. At the command line if no file is
+specified RNMR will prompt for a file with temp.dat as a default. If the file does not already exist and RNMR succeeds
+in creating it, RNMR will pop up a window where text can be entered to write to the file. Otherwise an error will be
+thrown.
+
+When called from a macro `CRTFIL` will not prompt for a file name. The lines to be written should be provided on the
+lines following `CRTFIL` in the macro and should start with ;;. The first line will be interpreted as a file name if
+none is provided as an argument. `CRTFIL` will stop writing lines when it either reaches a line that matches <end\> or
+runs out of lines. /TTY will make RNMR pop up a window much like the behavior at the command line even
+when `CRTFIL` is called from a macro. RNMR will still expect the file name to passed in the same way as when /TTY is not
+used. An example of use in a macro is given here:
+
+    CRTFIL TEMP.TXT
+    ;;Write this to temp.txt
+    ;;Also write this
+
+Text written when `CRTFIL` is called from a macro will be all caps regardless of the capitalization in the macro.
 ## CVTMD
 Set modes for blocked record index conversion
 
