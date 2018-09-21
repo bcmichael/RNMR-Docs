@@ -1645,6 +1645,18 @@ specified RNMR will prompt for a file with temp.dat as a default. If the file do
 in creating it, RNMR will pop up a window where text can be entered to write to the file. Otherwise an error will be
 thrown.
 
+## CRTLST
+Create list
+
+Category: List Handling
+
+Format: `CRTLST` nam maxval
+
+Defaults: temp 32
+
+Description:
+`CRTLST` creates a new list named nam that can hold a maximum of maxval entries. RNMR will prompt for nam and maxval if
+they are not provided. If a list with the same name already exists `CRTLST` will error.
 When called from a macro `CRTFIL` will not prompt for a file name. The lines to be written should be provided on the
 lines following `CRTFIL` in the macro and should start with ;;. The first line will be interpreted as a file name if
 none is provided as an argument. `CRTFIL` will stop writing lines when it either reaches a line that matches <end\> or
