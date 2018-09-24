@@ -1767,35 +1767,6 @@ Prerequisites: Pulse program loaded (LOAD); RNMRA only
 Description:
 `D` is an old command for setting the length of pulse program delays. It has been replaced with the `DLY` command and is
 currently simply an alias to it. As such `DLY` should be use in place of `D`
-## DADJ
-Interactively adjust pulse programmer delay
-
-Category: Acquisition
-
-Format: `DADJ` dly
-
-Defaults: 1
-
-Prerequisites: Pulse program loaded (LOAD); (`VIEW ACQ`); RNMR only
-
-Description:
-`DADJ` interactively adjusts the value of a pulse programmer delay.  With acquisition is in progress, `DADJ` prompts the
-user for a new delay value, updates the delay, and then prompts for the next value.  Thus, `DADJ` is equivalent to
-multiple uses of the command `D`.  `DADJ` is particularly useful for dynamically optimizing the value of a delay by
-examining the FID for each shot.  `DADJ` accepts one parameter, "dly", which specifies the number of the delay to be
-adjusted.  If "dly" is omitted, RNMR will prompt for its value with a default of 1.  The legal values for "dly" are
-integers from 1 to 16.  While the pulse programmer supports 32 delays, only the first 16 can be set from RNMR; delays 17
-through 32 may be used internally in a pulse program but are not accessible to RNMR.  Once the delay to be adjusted has
-been selected, `DADJ` enters a loop in which the user is prompted for values for that delay repeatedly.
-In each iteration, the current value of the delay is displayed and the user is asked to enter a new value.  Each time
-RNMR prompts for a delay value, RNMR rounds the user's  response down to the nearest multiple of 0.01 msec, thereby
-truncating any digits specified beyond the second decimal place.  The resulting rounded value must lie between 0.0 msec
-and 1.0E+05 msec, inclusive.  Note that a delay value of 0.0 msec directs the pulse programmer to simply skip the
-specified delay during the execution of the pulse program.  If the user enters a delay value that is outside the legal
-range  specified above, `DADJ` prints an error message but continues to prompt for new delay values.  All other errors
-abort the `DADJ` loop and return the console prompt.  After each modification to delay "dly" during acquisition, several
-seconds will usually elapse before the pulse programmer responds to the change.  After all desired delay adjustments are
-complete, pressing <RETURN\> exits the `DADJ` loop and returns the console prompt.
 ## DBSZ
 Set data buffer size and partitioning
 
