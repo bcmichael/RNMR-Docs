@@ -1869,6 +1869,20 @@ other hand would consider the linear index to only be over the final dimension a
 
 The value of ind must not exceed the product of the sizes of the dimensions that the linear index is over. For example
 in a 3D data set with 32X64 blocks ind can be up to 2048 when ndim is 1 but only up to 64 if ndim is 2.
+## DCDREC
+Convert record number into archive and archive record index
+
+Category: Misc.
+
+Format: `DCDREC` rec
+
+Defaults: 1
+
+Description:
+`DCDREC` accepts a record rec as an argument. It then prints the archive number that that record is in and the index of
+the record within that archive. Since record numbers in archives other than 1 are represented by adding 200 for each
+archive this can be a useful conversion back to just the archive and record number. For example if rec is 205 it will
+print that the archive is 2 and the record index is 5.
 ## DCL
 Execute a `DCL` command in background Category:  	Pipe OS
 
