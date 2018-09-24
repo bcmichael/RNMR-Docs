@@ -1826,13 +1826,27 @@ on, the active size may be decreased below the allocated size and the number of 
 and partitioning have been modified, the data buffer is filled with zeroes. If the selected processing buffer buf is
 currently visible, `DBSZ` updates the display.
 ## DCDB
-Decode block limits
+Convert block indices to values
 
-Category:
+Category: Misc.
 
-Format: `DCDB`
+Format: `DCDB` rec ndim ind
 
-Defaults:
+Defaults: last_read 1 1
+
+Description:
+`DCDB` decodes a linear block index ind into a vector of actual values associated with the blocked record. For example
+when used on a dataset from a multi dimensional experiment stored as a blocked record, `DCDB` will convert a block index
+into indirect dimension time values.
+
+The value of ndim must not exceed the number of block dimensions. For a 2D dataset this would be 1 for a 3D it would be
+2 etc. ndim specifies how many dimensions are accounted for before the linear index. For example in a 3D data set ndim
+set to 1 will indicate that only the direct dimension is already accounted for and the linear index is over the last two
+dimensions. The result will be two values corresponding to the position of the other two dimensions. A value of 2 on the
+other hand would consider the linear index to only be over the final dimension and only one value will be printed.
+
+The value of ind must not exceed the product of the sizes of the dimensions that the linear index is over. For example
+in a 3D data set with 32X64 blocks ind can be up to 2048 when ndim is 1 but only up to 64 if ndim is 2.
 ## DCDBP
 Decode block limits in points
 
