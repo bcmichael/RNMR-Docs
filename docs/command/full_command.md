@@ -1742,6 +1742,15 @@ of ndim are 1, 2, 3, or 4. The remaining parameters are the sizes in each of the
 ndim integers greater than or equal to 1 following ndim.  These sizes are to be entered in order of dimension, starting
 with dimension 1. If one or more of these is omitted, RNMR will prompt for its value with the current conversion size in
 the appropriate dimension as the default.
+##CVTUNIT
+Convert a value between units
+
+Category: Data Manipulation
+
+Format: `CVTUNIT` srcunit dstunit val
+
+Description:
+`CVTUNIT` converts val from srcunit to dstunit.
 # D
 ---
 ## D
