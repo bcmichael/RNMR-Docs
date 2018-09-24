@@ -1922,6 +1922,8 @@ Perform depaking of powder pattern spectrum
 
 Format `DEPAKE`
 
+Prerequisites: Frequency domain data in processing buffer (FREQ)
+
 Description:
 `DEPAKE` applies a depaking routine to the visible processing buffer to remove the effects of a pake pattern from the
 spectrum. The visible processing buffer must contain frequency domain data and its size must be a power of 2.
