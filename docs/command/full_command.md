@@ -1762,28 +1762,11 @@ Format: `D` dly msec
 
 Defaults: 1 current
 
-Prerequisites: Pulse program loaded (LOAD); RNMR only
+Prerequisites: Pulse program loaded (LOAD); RNMRA only
 
 Description:
-`D` sets the length of a pulse program delay time in milliseconds.  Pulse program delays are specified in the PP source
-code by DLY statements and assigned default values by DEF statements.  Upon loading a pulse program with the RNMR
-command `EX`, these delays are initialized with any default values that were declared in the source code.  To modify or
-check the current value of a delay, the RNMR command `D` may be entered whenever a pulse program is loaded; the
-acquisition need not be stopped to use this command.  The first parameter of the `D` command, "dly", specifies which delay
-is to be modified.  If "dly" is omitted, RNMR will prompt for its value with a default of 1.  The legal values for "dly"
-are integers from 1 to 16.  While the pulse programmer supports 32 delays, only the first
-16 can be set from RNMR; delays 17 through 32 may be used internally in a pulse program but are not accessible to RNMR.
-The second parameter, "msec" specifies the length of the selected delay in milliseconds. If this parameter is omitted,
-RNMR will prompt for the delay length with its current value as the default.  While delays may be entered with any
-desired number of decimal places, restrictions on the speed of the pulse programmer limit the precision of delay values
-to 0.01 msec, i.e. only the first two decimal places in "msec" are significant.  When a delay value is entered, RNMR
-rounds the user's value down to the nearest multiple of 0.01 msec, thereby truncating any additional decimal places
-specified by the user.  The resulting rounded value must lie between 0.0 msec and 1.0E+05 msec, inclusive.  Note that a
-delay value of 0.0 msec directs the pulse programmer to simply skip the specified delay during the execution of the
-pulse program.  If the user accepts the current delay value by pressing <RETURN\> at the "MSEC" prompt, RNMR does not
-change the delay value.  After changing a delay with the `D` command during acquisition, several seconds will usually
-elapse before the pulse programmer responds to the change.  However, if the delay value is modified before acquisition
-is started, the first shot should reflect the modified delay setting.
+`D` is an old command for setting the length of pulse program delays. It has been replaced with the `DLY` command and is
+currently simply an alias to it. As such `DLY` should be use in place of `D`
 ## DADJ
 Interactively adjust pulse programmer delay
 
@@ -2176,6 +2159,25 @@ Defaults: 1
 
 Description:
 Deletes the specified archive.
+## DLY
+Set pulse programmer delay
+
+Category: Acquisition
+
+Format: `DLY` name time
+
+Qualifiers: /DLY /PLS
+
+Qualifier Defaults: /DLY
+
+Defaults: 1 current
+
+Prerequisites: Pulse program loaded (LOAD); RNMRA only
+
+Description:
+`DLY` sets the length of a pulse program delay indicated by name. /DLY will interpret time in milliseconds while /PLS will interpret time in microseconds. The length of a delay can range from 0 to 40 seconds. A pulse program must be loaded using `PPEX` in order for `DLY` to be used to set the length of any delays.
+
+Due to restrictions on the speed of the pulse programmer delays are rounded to the nearest 10 microseconds. Delays may be entered with more precision than this limit, but the additional precision will have no effect on the actual length of the delay.
 ## DO
 Begin macro `DO` loop Category:  	Macro
 
