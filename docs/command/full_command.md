@@ -1848,13 +1848,26 @@ other hand would consider the linear index to only be over the final dimension a
 The value of ind must not exceed the product of the sizes of the dimensions that the linear index is over. For example
 in a 3D data set with 32X64 blocks ind can be up to 2048 when ndim is 1 but only up to 64 if ndim is 2.
 ## DCDBP
-Decode block limits in points
+Convert linear block index to vector indices
 
-Category:
+Category: Misc.
 
-Format: `DCDBP`
+Format: `DCDBP` rec ndim ind
 
-Defaults:
+Defaults: last_read 1 1
+
+Description:
+`DCDBP` converts a linear block index ind into a vector of indices for each block dimension. The conversion uses
+information about the block layout of a record rec which defaults to the last record that was read.
+
+The value of ndim must not exceed the number of block dimensions. For a 2D dataset this would be 1 for a 3D it would be
+2 etc. ndim specifies how many dimensions are accounted for before the linear index. For example in a 3D data set ndim
+set to 1 will indicate that only the direct dimension is already accounted for and the linear index is over the last two
+dimensions. The result will be two values corresponding to the position of the other two dimensions. A value of 2 on the
+other hand would consider the linear index to only be over the final dimension and only one value will be printed.
+
+The value of ind must not exceed the product of the sizes of the dimensions that the linear index is over. For example
+in a 3D data set with 32X64 blocks ind can be up to 2048 when ndim is 1 but only up to 64 if ndim is 2.
 ## DCL
 Execute a `DCL` command in background Category:  	Pipe OS
 
