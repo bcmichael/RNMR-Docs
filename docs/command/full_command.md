@@ -1935,10 +1935,10 @@ Format: `DF`
 Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
-`DF` differentiates data in the visible processing buffer (buffer 1).  While the user is not required to view the
-processing buffer in order to use `DF`, `DF` acts only on that buffer.  Differentiation of a spectrum is often useful in
+`DF` differentiates data in the visible processing buffer (buffer 1). While the user is not required to view the
+processing buffer in order to use `DF`, `DF` acts only on that buffer. Differentiation of a spectrum is often useful in
 resolving subtle features on broad lines since inflection points on the source spectrum become peaks in its derivative.
-If the processing buffer is partitioned into two or more blocks, `DF` differentiates each block independently.  If the
+If the processing buffer is partitioned into two or more blocks, `DF` differentiates each block independently. If the
 active size of each block in the processing buffer is 0 or 1, `DF` does nothing.
 
 Differentiation replaces data points in each block of the processing buffer as shown below:
