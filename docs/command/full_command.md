@@ -1917,6 +1917,14 @@ be entered. During execution, <CTRL-Z\> may not be used to cancel the subprocess
 continues without interruption.  If the subprocess exits on error, RNMR will display an error message indicating the
 error condition returned.  If `DCL` was called from within a macro, the current macro error handler (as set by `ONERR`)
 is executed.
+## DEPAKE
+Perform depaking of powder pattern spectrum
+
+Format `DEPAKE`
+
+Description:
+`DEPAKE` applies a depaking routine to the visible processing buffer to remove the effects of a pake pattern from the
+spectrum. The visible processing buffer must contain frequency domain data and its size must be a power of 2.
 ## DF
 Differentiate data
 
