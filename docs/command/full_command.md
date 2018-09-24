@@ -1884,36 +1884,39 @@ the record within that archive. Since record numbers in archives other than 1 ar
 archive this can be a useful conversion back to just the archive and record number. For example if rec is 205 it will
 print that the archive is 2 and the record index is 5.
 ## DCL
-Execute a `DCL` command in background Category:  	Pipe OS
+Execute a shell command in background
+
+Category: Misc.
 
 Format: `DCL`
 
 Description:
-`DCL` spawns a subprocess to execute a single `DCL` command.  This command is useful for performing background tasks
-such as printing and submitting files which do not require a separate terminal session.  `DCL` also allows a macro to
-compose and execute `DCL` commands transparently.  If the `DCL` command is used at console level, RNMR will prompt the
-user for the command line to be executed.  This may be any valid `DCL` command up to 80 characters long.  If the user
-presses <RETURN\> when prompted for a `DCL` command, no subprocess is created and the console prompt is returned.  If
-`DCL` is used from within a macro, RNMR expects the `DCL` command to be delimited by two semicolons (;;) on the line
-following `DCL`.  The entire line after ;; constitutes the `DCL` command string, as illustrated below:
+`DCL` spawns a subprocess to execute a single shell command. This command is useful for performing background tasks
+ which do not require a separate terminal session. `DCL` also allows a macro to compose and execute commands
+ transparently. If the `DCL` command is used at console level, RNMR will prompt the user for the command line to be
+ executed. This may be any valid shell command up to 80 characters long. If the user presses <RETURN\> when prompted for
+ a command, no subprocess is created and the console prompt is returned. If `DCL` is used from within a macro, RNMR
+ expects the command to be delimited by two semicolons on the line following `DCL`. The entire line after ;; constitutes
+ the command string, as illustrated below:
 
     DCL
-    ;;PRINT/NOHEADER XYZ.WRT
+    ;;CP XYZ.DAT NEW_NAME.DAT
 
 If the double semicolon delimiter ;; is not found on the line after `DCL`, or if there are no characters on the line
-following ;;, `DCL` does nothing and the macro execution continues.  The `DCL` command line may contain local and global
+following ;;, `DCL` does nothing and the macro execution continues. The command line may contain local and global
 argument substitutions, e.g.
 
     DCL
-    ;;@MYCOMMAND &ABC %XYZ
+    ;;SOME_COMMAND &ABC %XYZ
+
 The local and global arguments specified will be evaluated and filled in before the command line is passed to `DCL`.
-The subprocess created by `DCL` is unable to either read from or write to the terminal; both SYS$INPUT and
-SYS$OUTPUT are defined to be NLA0: (the null device).  Consequently, any attempt by the spawned process to read from the
-terminal will result in an immediate end of file during read condition, and any data directed to the terminal will be
-lost.  While the subprocess is executing the specified `DCL` command, no new RNMR commands may be entered.  During
-execution, <CTRL-Z\> may not be used to cancel the subprocess, but any acquisition in progress continues without
-interruption.  If the subprocess exits on error, RNMR will display an error message indicating the `DCL` error condition
-returned.  If `DCL` was called from within a macro, the current macro error handler (as set by `ONERR`) is executed.
+The subprocess created by `DCL` is unable to either read from or write to the terminal. Consequently, any attempt by the
+spawned process to read from the terminal will result in an immediate end of file during read condition, and any data
+directed to the terminal will be lost. While the subprocess is executing the specified command, no new RNMR commands may
+be entered. During execution, <CTRL-Z\> may not be used to cancel the subprocess, but any acquisition in progress
+continues without interruption.  If the subprocess exits on error, RNMR will display an error message indicating the
+error condition returned.  If `DCL` was called from within a macro, the current macro error handler (as set by `ONERR`)
+is executed.
 ## DEC
 Enable or disable decoupling
 
