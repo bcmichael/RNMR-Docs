@@ -1794,37 +1794,37 @@ Set data buffer size and partitioning
 
 Category: Misc.
 
-Format: `DBSZ` ipro isize nblk
+Format: `DBSZ` buf size nblk
 
 Defaults: 1 current current
 
 Description:
-`DBSZ` sets the allocated size and partitioning of a processing data buffer.  Each processing buffer may be partitioned
-into multiple blocks of equal size such that the total number of data points in all  blocks does not exceed 8192.  By
+`DBSZ` sets the allocated size and partitioning of a processing data buffer. Each processing buffer may be partitioned
+into multiple blocks of equal size such that the total number of data points in all blocks does not exceed 32768. By
 partitioning the data buffer into two or more segments, multiple data sets may be similarly processed using a single
-RNMR command.  This "vector processing" capability allows multidimensional processing to be performed many blocks at a
+RNMR command. This "vector processing" capability allows multidimensional processing to be performed many blocks at a
 time at a considerable savings in computation time due to the reduction in the number of commands that must be
 interpreted by RNMR.
 
-The first parameter, "ipro" selects which data buffer is to be resized.  If this parameter is omitted, RNMR will prompt
-for its value with a default of 1.  The allowable values of "ipro" are 1 and 2, thus `DBSZ` can resize only the two
-processing buffers; to resize the acquisition buffer, use `DBSZA`.  Note that buffer 1 is the visible processing buffer.
+The first parameter, buf selects which data buffer is to be resized.  If this parameter is omitted, RNMR will prompt
+for its value with a default of 1. The allowable values of buf are 1 and 2, thus `DBSZ` can resize only the two
+processing buffers. Note that buffer 1 is the visible processing buffer.
 
-The second parameter, "isize" sets the allocated size for each block of buffer "ipro".  If this parameter is omitted,
-RNMR will prompt for its value with the current allocated size as the default.  The user may enter any integer from 0 to
-8192 (inclusive) for "isize"; a size value of 0 is interpreted as 8192, the maximum permissible data buffer size.
+The second parameter, size sets the allocated size for each block of buffer buf. If this parameter is omitted, RNMR will
+prompt for its value with the current allocated size as the default.  The user may enter any integer from 0 to 32768 for
+size; a size value of 0 is interpreted as 32768, the maximum permissible data buffer size.
 
-The last parameter, "nblk" sets the number of blocks into which data buffer "ipro" is to be divided.  If this parameter
-is omitted, RNMR will prompt for the number of blocks with the current "nblk" as the default.  The user may enter any
-positive integer including zero for "nblk".  A value of zero for this parameter requests that NBLK be set to 8192/ISIZE,
-which gives the maximum possible number of data blocks for a given choice of "isize". If both "isize" and "nblk" are set
-to zero (`DBSZ * 0 0`), then the appropriate data buffer is partitioned into one block of allocated size 8192.  If no
-modifications were made to "isize" or "nblk", `DBSZ` does nothing.  Otherwise, RNMR verifies that ISIZE X NBLK does not
-exceed the maximum data buffer size of 8192.  Once either the size or number of blocks of the selected data buffer has
-been modified, the active size of the buffer is set to its allocated size and the active number of blocks is set to 1.
-Later on, the active size may be decreased below the allocated size and the number of blocks may be increased.  After
-the size and partitioning have been modified, the data buffer is filled with zeroes.  If the selected processing buffer
-"ibuf" is currently visible, `DBSZ` updates the display.
+The last parameter, nblk sets the number of blocks into which data buffer pro is to be divided. If this parameter is
+omitted, RNMR will prompt for the number of blocks with the current nblk as the default. The user may enter any positive
+integer including zero for nblk. A value of zero for this parameter requests that NBLK be set to 32768/SIZE, which gives
+the maximum possible number of data blocks for a given choice of size. If both size and nblk are set to zero
+(`DBSZ * 0 0`), then the appropriate data buffer is partitioned into one block of allocated size 32768. If no
+modifications were made to size or nblk, `DBSZ` does nothing. Otherwise, RNMR verifies that SIZE X NBLK does not exceed
+the maximum data buffer size of 32768. Once either the size or number of blocks of the selected data buffer has been
+modified, the active size of the buffer is set to its allocated size and the active number of blocks is set to 1. Later
+on, the active size may be decreased below the allocated size and the number of blocks may be increased. After the size
+and partitioning have been modified, the data buffer is filled with zeroes. If the selected processing buffer buf is
+currently visible, `DBSZ` updates the display.
 ## DBSZA
 Set acquisition buffer size and partitioning
 
