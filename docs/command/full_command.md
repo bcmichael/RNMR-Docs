@@ -1917,49 +1917,6 @@ be entered. During execution, <CTRL-Z\> may not be used to cancel the subprocess
 continues without interruption.  If the subprocess exits on error, RNMR will display an error message indicating the
 error condition returned.  If `DCL` was called from within a macro, the current macro error handler (as set by `ONERR`)
 is executed.
-## DEC
-Enable or disable decoupling
-
-Category: Acquisition
-
-Format: `DEC` state
-
-Defaults: current
-
-Prerequisites: Acquisition stopped (HALT); RNMR only
-
-Description:
-`DEC` sets the decouple flag FLAG_DEC on or off.  In all system pulse programs, FLAG_DEC must be on for decoupling to be
-active.  Thus, for these programs, `DEC OFF` deactivates all decoupling.  To turn on decoupling, however, it may be
-necessary to turn on additional decouple flags - see `DECFLG` for more details.  `DEC` takes one parameter, "state"
-which may be either ON or OFF.  If "state" is omitted, RNMR will prompt for a decouple state with the current
-decoupler state as the default.  If the user accepts the current decoupler state, no changes are made.
-## DECFLG
-Enable or disable segments of decoupling during a pulse sequence
-
-Category: Acquisition
-
-Format: `DECFLG` flag state
-
-Defaults: 1 current
-
-Prerequisites: Acquisition stopped (HALT); RNMR only
-
-Description:
-`DECFLG` sets a decouple segment flag on or off.  In system pulse programs, the decouple flags FLAG_DEC1 through
-FLAG_DEC4 turn on and off segments of decoupling, while the main decouple flag FLAG_DEC disables all decoupling when it
-is OFF.  That is, in order to have decoupling on during a segment of a pulse program, one must have FLAG_DEC ON and
-the appropriate segment flag (if any) ON.  To turn FLAG_DEC on or off, use the command `DEC`.  To determine which
-segment flags are used in a given pulse program, examine the PP book entry for that pulse program.
-
-The first parameter of the `DECFLG` command, "flag" selects which decouple flag is to be set.  If this parameter is
-omitted, then RNMR will prompt for its value with a default of 1, i.e. FLAG_DEC1 will be set by default.  The legal
-values of "flag" are the integers 1, 2, 3, and 4.  A particular choice of "flag" directs `DECFLG` to set FLAG_DEC"flag".
-
-The second parameter, "state" specifies whether the selected decouple flag should be turned on or off.  If "state" is
-omitted, RNMR will prompt for a decouple state with the current state of "flag" as the default.  If the user accepts the
-default state by pressing <RETURN\> at the STATE prompt, no changes are made.  The allowable values of "state" are ON
-and OFF.
 ## DF
 Differentiate data
 
