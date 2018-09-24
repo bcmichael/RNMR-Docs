@@ -1835,9 +1835,10 @@ Format: `DCDB` rec ndim ind
 Defaults: last_read 1 1
 
 Description:
-`DCDB` decodes a linear block index ind into a vector of actual values associated with the blocked record. For example
-when used on a dataset from a multi dimensional experiment stored as a blocked record, `DCDB` will convert a block index
-into indirect dimension time values.
+`DCDB` decodes a linear block index ind into a vector of actual values associated with each dimension of the blocked
+record. The conversion uses information about the block layout of a record rec which defaults to the last record that
+was read. For example when used on a dataset from a multi dimensional experiment stored as a blocked record, `DCDB` will
+convert a linear block index into indirect dimension time values.
 
 The value of ndim must not exceed the number of block dimensions. For a 2D dataset this would be 1 for a 3D it would be
 2 etc. ndim specifies how many dimensions are accounted for before the linear index. For example in a 3D data set ndim
