@@ -1825,49 +1825,6 @@ modified, the active size of the buffer is set to its allocated size and the act
 on, the active size may be decreased below the allocated size and the number of blocks may be increased. After the size
 and partitioning have been modified, the data buffer is filled with zeroes. If the selected processing buffer buf is
 currently visible, `DBSZ` updates the display.
-## DBSZA
-Set acquisition buffer size and partitioning
-
-Category: Acquisition
-
-Format: `DBSZA` isize nblk
-
-Defaults: current current
-
-Prerequisites: RNMR only
-
-Description:
-`DBSZA` sets the allocated size and partitioning of the acquisition data buffer.  The buffer may be partitioned into
-multiple blocks of equal size such that the total number of data points in all blocks does not exceed 8192. By
-partitioning the data buffer into two or more segments, multiple FID's may be acquired with different parameters without
-quitting and restarting acquisition between each parameter update.  This procedure assures that FID's with like
-parameters are added together separately so that the averaged data  for each parameter value can be independently
-retrieved after quitting the acquisition.
-
-When there are multiple blocks in the acquisition buffer, successive shots fill up successive blocks until all blocks
-have been stored, at which time the storage sequence repeats itself, adding successive shots to successive blocks.  To
-use acquisition buffer partitioning properly, the user must ensure that successive shots are taken with the appropriate
-parameters and that the parameter sequence repeats every "nblk" shots.
-
-An example of the use of acquisition buffer partitioning is the collection of stepped-gradient spectra using the
-waveform generator.  In such an experiment, the gradient strength is stepped automatically with each shot according to a
-preset cycle (see WFGREF).  If the acquisition buffer contains one block per gradient value, a whole gradient series may
-be taken with signal averaging without quitting and restarting acquisition multiple times.
-
-The first parameter, "isize" sets the allocated size for each block of the acquisition buffer.  If this parameter is
-omitted, RNMR will prompt for its value with the current allocated size as the default.  The user may enter any integer
-from 0 to 8192 (inclusive) for "isize"; a size value of 0 is interpreted as 8192, the maximum permissible data buffer
-size.
-The second parameter, "nblk" sets the number of blocks into which the acquisition buffer is to be divided.  If this
-parameter is omitted, RNMR will prompt for the number of blocks with the current "nblk" as the default.  The user may
-enter any positive integer including zero for "nblk".  A value of zero for this parameter requests that NBLK be set to
-8192/ISIZE, which gives the maximum possible number of data blocks for a given choice of "isize".  If both "isize" and
-"nblk" are set to zero (`DBSZA 0 0`), then the  acquisition buffer is partitioned into one block of allocated size 8192.
- If no modifications were made to "isize" or "nblk", `DBSZA` does nothing. Otherwise, RNMR verifies that ISIZE X NBLK
-does not exceed the maximum data buffer size of 8192.  Once either the size or number of blocks of the acquisition
-buffer has been modified, the active size of the buffer is set to its allocated size and the active number of blocks is
-set to 1.  Later on, the active size may be decreased below the allocated size and the number of blocks may be
-increased.
 ## DCDB
 Decode block limits
 
