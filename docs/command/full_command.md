@@ -1721,12 +1721,11 @@ Format: `CVTMD` sizmd blkmd
 Defaults: current current
 
 Description:
-`CVTMD` sets modes for blocked record index conversion.  The first parameter, "sizmd" is the record size conversion
-mode.  If "sizmd" is omitted, RNMR will prompt for a mode with the current size conversion mode as the default.  The
-legal choices for "sizmd" are SIZEA, SIZE, and CVTSZ.  The second parameter, "blkmd" is the record blocking
-conversion mode.  If "blkmd" is omitted, RNMR will prompt for a mode with the current mode as the default.  The legal
-values for "blkmd" are 0, 1, 2, 3, or 4.
-
+`CVTMD` sets modes for blocked record index conversion. The first parameter, sizmd is the record size conversion mode.
+If sizmd is omitted, RNMR will prompt for a mode with the current size conversion mode as the default. The legal choices
+for sizmd are SIZEA, SIZE, and CVTSZ. The second parameter, blkmd is the record blocking conversion mode. If blkmd is
+omitted, RNMR will prompt for a mode with the current mode as the default. The legal values for blkmd are 0, 1, 2, 3, or
+4.
 ## CVTSZ
 Set sizes for blocked record index conversion
 
@@ -1737,12 +1736,12 @@ Format: `CVTSZ` ndim size(1) size(2) size(3) size(4)
 Defaults: 2 current current current current
 
 Description:
-`CVTSZ` sets the sizes for a blocked record index conversion.  The first parameter, "ndim" is the number of dimensions
-for the conversion. If "ndim" is not specified, RNMR will prompt for its value with a default value of 2.  The allowed
-values of "ndim" are 1, 2, 3, or 4.  The remaining parameters are the sizes in each of the "ndim" dimensions. RNMR
-expects to find "ndim" integers greater than or equal to 1 following "ndim".  These sizes are to be entered in order of
-dimension, starting with dimension 1. If one or more of these is omitted, RNMR will prompt for its value with the
-current conversion size in the appropriate dimension as the default.
+`CVTSZ` sets the sizes for a blocked record index conversion. The first parameter, ndim is the number of dimensions for
+the conversion. If ndim is not specified, RNMR will prompt for its value with a default value of 2. The allowed values
+of ndim are 1, 2, 3, or 4. The remaining parameters are the sizes in each of the ndim dimensions. RNMR expects to find
+ndim integers greater than or equal to 1 following ndim.  These sizes are to be entered in order of dimension, starting
+with dimension 1. If one or more of these is omitted, RNMR will prompt for its value with the current conversion size in
+the appropriate dimension as the default.
 # D
 ---
 ## D
