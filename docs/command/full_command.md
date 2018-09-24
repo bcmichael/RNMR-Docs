@@ -1767,6 +1767,28 @@ Prerequisites: Pulse program loaded (LOAD); RNMRA only
 Description:
 `D` is an old command for setting the length of pulse program delays. It has been replaced with the `DLY` command and is
 currently simply an alias to it. As such `DLY` should be use in place of `D`
+## DATE
+Print the current date and time as an informational message
+
+Category: Misc.
+
+Format: `DATE`
+
+Qualifiers: /DATE /TIME /EPOCH
+
+Qualifier Defaults: /DATE /TIME
+
+Description:
+`DATE` prints information about the current date and time as informational messages. The following pieces of information
+are printed depending on the qualifiers that are used.
+
+Qualifier | Information
+--------- | -----------
+/DATE     | The current date
+/TIME     | The current time of day
+/EPOCH    | The current Unix epoch time
+
+By default `DATE` prints the date and time of day.
 ## DBSZ
 Set data buffer size and partitioning
 
