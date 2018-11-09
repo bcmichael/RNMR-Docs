@@ -1956,10 +1956,76 @@ Differentiation replaces data points in each block of the processing buffer as s
 
 where Io(i) is the original value of the ith data point and I(i) is its updated value.  If the processing buffer is
 currently visible, `DF` always updates the display.
+## DFLGBL
+Define global argument with default value
+
+Category: Arguments
+
+Format: `DFLGBL` nam val prompt
+
+Qualifiers: /FLT /INT /NDEC /STR
+
+Qualifier Defaults: /NDEC=1 /STR
+
+Defaults: temp '' none
+
+Description:
+If a global argument with name nam already exists `DFLGBL` will do nothing, otherwise it will create a global argument
+named nam. If nam is omitted RNMR will prompt for it with TEMP as a default. If no prompt is provided then `DFLGBL` will
+create the argument with value val, otherwise it will prompt the user to enter a value with val as the default.
+
+The qualifiers influence how `DFLGBL` interprets val as follows:
+
+Qualifier | Description
+--------- | -----------
+/FLT      | Treat val as a floating point number
+/INT      | Treat val as an integer
+/NDEC     | Treat val as a string
+/STR      | Set the number of decimal places to keep in /FLT mode
+
+When using /FLT or /INT basic arithmetic operations may be performed (+, - , /, \*). They will be performed in order
+from left to right without regard for order of operations except for parentheses. For example:
+
+    DFLGBL /INT A 2*(2-1)
+
+will create global argument a with a value of 2.
+## DFLLCL
+Define local argument with default value
+
+Category: Arguments
+
+Format: `DFLLCL` nam val prompt
+
+Qualifiers: /FLT /INT /NDEC /STR
+
+Qualifier Defaults: /NDEC=1 /STR
+
+Defaults: temp '' none
+
+Description:
+If a local argument with name nam already exists `DFLLCL` will do nothing, otherwise it will create a local argument
+named nam. If nam is omitted RNMR will prompt for it with TEMP as a default. If no prompt is provided then `DFLLCL` will
+create the argument with value val, otherwise it will prompt the user to enter a value with val as the default.
+
+The qualifiers influence how `DFLLCL` interprets val as follows:
+
+Qualifier | Description
+--------- | -----------
+/FLT      | Treat val as a floating point number
+/INT      | Treat val as an integer
+/NDEC     | Treat val as a string
+/STR      | Set the number of decimal places to keep in /FLT mode
+
+When using /FLT or /INT basic arithmetic operations may be performed (+, - , /, \*). They will be performed in order
+from left to right without regard for order of operations except for parentheses. For example:
+
+    DFLLCL /INT A 2*(2-1)
+
+will create local argument a with a value of 2.
 ## DFLT
 Prompt for local variable with default
 
-Category: Macro
+Category: Arguments
 
 Format: `DFLT` lclnam lclval prompt
 
@@ -1968,33 +2034,9 @@ Defaults: TEMP none none
 Prerequisites: Macro only (MAC)
 
 Description:
-`DFLT` prompts the user for the value of a local argument if that argument has not already been defined.  The first
-parameter, "lclnam" specifies the name of the local argument to be defined.  If this parameter is omitted, RNMR will
-prompt for a local argument name.  The default action is to define a local argument named TEMP.  Legal argument names
-are nonblank strings no more than eight characters long.  These names must be composed from the letters A through Z, the
-numbers 0 through 9, and special characters $ and \_.  Argument names must not contain internal spaces.  If the argument
-"lclnam" already exists, then `DFLT` does nothing.  The user will not be prompted for a new value, and macro execution
-will continue with the next line.
-
-The third parameter, "prompt" specifies a prompt string to use when RNMR prompts for the value of "lclnam".  If "prompt"
-is not blank and "lclnam" is not defined, RNMR will prompt for the value of "lclnam" with "lclval" as the default.  If
-"lclval" is omitted, then the default value of "lclnam" is blank.  If the user presses <RETURN\> at the prompt, "lclnam"
-is defined with value "lclval".  Otherwise, "lclnam" is defined with the value that the user enters.  If "prompt" is
-blank, "lclnam" is defined with value "lclval" and no prompt is made.
-
-For example, if local argument ABC is undefined, the command
-
-    DFLT ABC,123,VALUE
-
-generates the prompt:
-
-    VALUE = 123 _
-
-If the user presses <RETURN\> at this prompt, ABC is defined with value "123". Otherwise, ABC is defined with the value
-entered by the user.  Conversely, the command
-
-    DFLT ABC,123
- defines the local argument ABC with the value 123 and no prompt is made.
+`DFLT` is an old command for creating a local variable if one does not already exist with an optional prompt. It has
+been replaced with the `DFLLCL` command and is currently simply an alias to it. As such `DFLLCL` should be use in place
+of `DFLT`.
 ## DG
 Start acquisition with delay shots
 
