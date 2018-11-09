@@ -2071,6 +2071,145 @@ from left to right without regard for order of operations except for parentheses
     DFLTBL /INT A B 2*(2-1)
 
 will create argument a in name table b with a value of 2.
+## DFNGBL
+Define global argument
+
+Category: Arguments
+
+Format: `DFNGBL` nam val
+
+Qualifiers: /FLT /INT /NDEC /STR
+
+Qualifier Defaults: /NDEC=1 /STR
+
+Defaults: temp current
+
+Description:
+`DFNGBL` creates a global argument with name nam and value val. If nam is not provided RNMR will prompt for it with a
+default of temp. If val is not provided RNMR will prompt for it with the current value of global argument nam as the
+default.
+
+The qualifiers influence how `DFNGBL` interprets val as follows:
+
+Qualifier | Description
+--------- | -----------
+/FLT      | Treat val as a floating point number
+/INT      | Treat val as an integer
+/STR      | Treat val as a string
+/NDEC     | Set the number of decimal places to keep in /FLT mode
+
+When using /FLT or /INT basic arithmetic operations may be performed (+, - , /, \*). They will be performed in order
+from left to right without regard for order of operations except for parentheses. For example:
+
+    DFNGBL /INT A 2*(2-1)
+
+will create global argument a with a value of 2.
+## DFNLCL
+Define local argument
+
+Category: Arguments
+
+Format: `DFNLCL` nam val
+
+Qualifiers: /FLT /INT /NDEC /STR
+
+Qualifier Defaults: /NDEC=1 /STR
+
+Defaults: temp current
+
+Description:
+`DFNLCL` creates a local argument with name nam and value val. If nam is not provided RNMR will prompt for it with a
+default of temp. If val is not provided RNMR will prompt for it with the current value of local argument nam as the
+default.
+
+The qualifiers influence how `DFNLCL` interprets val as follows:
+
+Qualifier | Description
+--------- | -----------
+/FLT      | Treat val as a floating point number
+/INT      | Treat val as an integer
+/STR      | Treat val as a string
+/NDEC     | Set the number of decimal places to keep in /FLT mode
+
+When using /FLT or /INT basic arithmetic operations may be performed (+, - , /, \*). They will be performed in order
+from left to right without regard for order of operations except for parentheses. For example:
+
+    DFNLCL /INT A 2*(2-1)
+
+will create local argument a with a value of 2.
+## DFNLST
+Define list value
+
+Category: Lists
+
+Format: `DFNLST` nam pos val
+
+Defaults: temp 1 current
+
+Description:
+`DFNLST` sets the value at position pos in list nam. If nam is not provided RNMR will prompt for it with a default of
+temp. If pos is not provided RNMR will prompt for it with a default of 1. If val is not provided RNMR will prompt for it
+with the current value at position pos in list nam as the default.
+## DFNSYM
+Define symbol
+
+Category: Arguments
+
+Format: `DFNSYM` nam val
+
+Qualifiers: /FLT /INT /NDEC
+
+Qualifier Defaults: /INT /NDEC=1
+
+Defaults: temp current
+
+Description:
+`DFNSYM` creates a symbol with name nam and value val. If nam is not provided RNMR will prompt for it with a
+default of temp. If val is not provided RNMR will prompt for it with the current value of symbol nam as the
+default.
+
+The qualifiers influence how `DFNSYM` interprets val as follows:
+
+Qualifier | Description
+--------- | -----------
+/FLT      | Treat val as a floating point number
+/INT      | Treat val as an integer
+/NDEC     | Set the number of decimal places to keep in /FLT mode
+
+When using /FLT or /INT basic arithmetic operations may be performed (+, - , /, \*). They will be performed in order
+from left to right without regard for order of operations except for parentheses. For example:
+
+    DFNSYM /INT A 2*(2-1)
+
+will create symbol a with a value of 2.
+## DFNTBL
+Define name table argument
+
+Category: Tables
+
+Format: `DFNTBL` tbl nam val
+
+Defaults: temp temp current
+
+Description:
+`DFNTBL` sets the value of argument nam in table tbl. If tbl or nam is not provided RNMR will prompt for it with a
+default of temp. If val is not provided RNMR will prompt for it with the current value of argument nam in table tbl as
+the default.
+## DFNPPS
+Define pulse programmer symbol table entry
+
+Category: Tables
+
+Format: `DFNPPS` typ nam val
+
+Defaults: temp temp current
+
+Prerequisites: RNMRA only
+
+Description:
+`DFNPPS` sets the value of the pulse programmer symbol of type typ and name nam. If typ or nam is not provided RNMR will
+prompt for it with a default of temp. If val is not provided RNMR will prompt for it with the current value of the pulse
+programmer symbol of type typ and name nam as the default.
 ## DG
 Start acquisition with delay shots
 
