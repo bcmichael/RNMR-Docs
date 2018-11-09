@@ -2325,17 +2325,6 @@ the following must be true:
 3.	The record to be deleted has no owner.  This means that the record has been allocated but never used.
 
 Type `CAT` to check who owns a given record.  To check who is the current user, use the command `USER`.
-## DLTARV
-Delete archive
-
-Category: Data Storage
-
-Format: `DLTARV` archive
-
-Defaults: 1
-
-Description:
-Deletes the specified archive.
 ## DLY
 Set pulse programmer delay
 
