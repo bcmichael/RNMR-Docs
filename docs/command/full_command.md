@@ -2425,22 +2425,6 @@ after executing one or more statements. The range of the `DO`/`ENDDO` loop is th
 statements after the jump out and before the jump back in. Jumps into a `DO` loop are not allowed when that `DO`
 command has not yet been processed, though the error will not be detected until the matching `ENDDO` statement is
 executed.
-## DPS
-Digital peak suppression
-
-Category:
-
-Format: `DPS`
-
-Defaults:
-## DPS2D
-Digital peak suppression for 2D
-
-Category:
-
-Format: `DPS2D`
-
-Defaults:
 ## DW
 Set dwell time for data sampling during acquisition
 
