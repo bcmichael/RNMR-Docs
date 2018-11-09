@@ -2263,26 +2263,26 @@ Format: `DIRB` ndim seq
 Defaults: 2 current
 
 Description:
-`DIRB` sets the order in which the dimensions of a blocked record are accessed.  Dimensions of a multidimensional record
-are always viewed with direction 1 as the "display" dimension and higher directions as the "blocked" dimensions.  `DIRB`
+`DIRB` sets the order in which the dimensions of a blocked record are accessed. Dimensions of a multidimensional record
+are always viewed with direction 1 as the "display" dimension and higher directions as the "blocked" dimensions. `DIRB`
 assigns dimensions to directions, controlling both the orientation in which the data set is viewed in `ZO2D`, `ZO2DC`,
-and `PLOTC` and the order in which the data points are accessed for processing.  For example, it is possible to view a
+and `PLOTC` and the order in which the data points are accessed for processing. For example, it is possible to view a
 two dimensional data set either along the acquisition dimension (dimension 1) or along the blocked dimension (dimension
-2).  Since direction 1 is always the "display" direction, the first view is specified by `DIRB 2 12` and the second view
+2). Since direction 1 is always the "display" direction, the first view is specified by `DIRB 2 12` and the second view
 by `DIRB 2 21`.
 
-The first parameter for `DIRB`, "ndim", is the number of dimensions to be sequenced. Each number of dimensions from one
-to four is assigned a modifiable direction sequence. The "ndim" parameter selects which sequence is to be modified. If
-"ndim" is omitted, RNMR will prompt for the number of dimensions with a default of 2. The legal values of "ndim" are 1,
-2, 3, and 4.
+The first parameter for `DIRB`, ndim, is the number of dimensions to be sequenced. Each number of dimensions from one
+to four is assigned a modifiable direction sequence. The ndim parameter selects which sequence is to be modified. If
+ndim is omitted, RNMR will prompt for the number of dimensions with a default of 2. The legal values of ndim are 1, 2,
+3, and 4.
 
-The second parameter, "seq" assigns each dimension a direction.  If this parameter is omitted, RNMR will prompt for a
-direction sequence with the current sequence for "ndim" dimensions as the default.  This sequence is a string of "ndim"
-integers from 1 to "ndim" with no repeats.  For example, if "ndim" is 2, the legal direction sequences are 12 and 21,
-while for an "ndim" value of 3, "seq" may be 123, 132, 213, 231, 312, or 321.  If "seq" fails to assign each dimension a
-direction, then RNMR completes the sequence with the missing dimensions in ascending order.  Thus, if "ndim" is 4 and
-the user enters the direction sequence 32, RNMR fills in the missing two fields to make the sequence 3214.  If the user
-accepts the current direction sequence for "ndim" dimensions, no changes are made.
+The second parameter, seq assigns each dimension a direction. If this parameter is omitted, RNMR will prompt for a
+direction sequence with the current sequence for ndim dimensions as the default. This sequence is a string of ndim
+integers from 1 to ndim with no repeats. For example, if ndim is 2, the legal direction sequences are 12 and 21, while
+for an ndim value of 3, seq may be 123, 132, 213, 231, 312, or 321.  If seq fails to assign each dimension a direction,
+then RNMR completes the sequence with the missing dimensions in ascending order. Thus, if ndim is 4 and the user enters
+the direction sequence 32, RNMR fills in the missing two fields to make the sequence 3214. If the user accepts the
+current direction sequence for ndim dimensions, no changes are made.
 ## DL
 Delete records
 
