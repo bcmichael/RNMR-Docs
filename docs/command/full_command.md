@@ -1980,8 +1980,8 @@ Qualifier | Description
 --------- | -----------
 /FLT      | Treat val as a floating point number
 /INT      | Treat val as an integer
-/NDEC     | Treat val as a string
-/STR      | Set the number of decimal places to keep in /FLT mode
+/STR      | Treat val as a string
+/NDEC     | Set the number of decimal places to keep in /FLT mode
 
 When using /FLT or /INT basic arithmetic operations may be performed (+, - , /, \*). They will be performed in order
 from left to right without regard for order of operations except for parentheses. For example:
@@ -2013,8 +2013,8 @@ Qualifier | Description
 --------- | -----------
 /FLT      | Treat val as a floating point number
 /INT      | Treat val as an integer
-/NDEC     | Treat val as a string
-/STR      | Set the number of decimal places to keep in /FLT mode
+/STR      | Treat val as a string
+/NDEC     | Set the number of decimal places to keep in /FLT mode
 
 When using /FLT or /INT basic arithmetic operations may be performed (+, - , /, \*). They will be performed in order
 from left to right without regard for order of operations except for parentheses. For example:
@@ -2037,6 +2037,40 @@ Description:
 `DFLT` is an old command for creating a local variable if one does not already exist with an optional prompt. It has
 been replaced with the `DFLLCL` command and is currently simply an alias to it. As such `DFLLCL` should be use in place
 of `DFLT`.
+## DFLTBL
+Define name table argument with default value
+
+Category: Tables
+
+Format: `DFLTBL` tbl nam val prompt
+
+Qualifiers: /FLT /INT /NDEC /STR
+
+Qualifier Defaults: /NDEC=1 /STR
+
+Defaults: temp temp '' none
+
+Description:
+If name table tbl already has an argument with name nam `DFLTBL` will do nothing, otherwise it will create an argument
+named nam in tbl. If tbl or nam is omitted RNMR will prompt for it with TEMP as a default. If no prompt is provided then
+`DFLTBL` will create the argument with value val, otherwise it will prompt the user to enter a value with val as the
+default.
+
+The qualifiers influence how `DFLTBL` interprets val as follows:
+
+Qualifier | Description
+--------- | -----------
+/FLT      | Treat val as a floating point number
+/INT      | Treat val as an integer
+/STR      | Treat val as a string
+/NDEC     | Set the number of decimal places to keep in /FLT mode
+
+When using /FLT or /INT basic arithmetic operations may be performed (+, - , /, \*). They will be performed in order
+from left to right without regard for order of operations except for parentheses. For example:
+
+    DFLTBL /INT A B 2*(2-1)
+
+will create argument a in name table b with a value of 2.
 ## DG
 Start acquisition with delay shots
 
