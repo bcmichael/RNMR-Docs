@@ -2393,71 +2393,36 @@ Description:
 
 Due to restrictions on the speed of the pulse programmer delays are rounded to the nearest 10 microseconds. Delays may be entered with more precision than this limit, but the additional precision will have no effect on the actual length of the delay.
 ## DO
-Begin macro `DO` loop Category:  	Macro
+Begin macro `DO` loop
 
-Format: `DO` [qual] beg end argnam
-	Qualifiers: 	/GBL    /LCL    /IDN
-Qualifier defaults:           /LCL    (if "argnam" is nonblank)             none    (if "argnam" is blank)
-Parameter defaults:                    1       beg     none
+Category: Macro
+
+Format: `DO`  beg end nam
+
+Qualifiers: /GBL /LCL /SYM
+
+Qualifier defaults: /LCL
+
+Defaults: 1 beg none
 
 Prerequisites: Macro only (MAC)
 
 Description:
-`DO` begins a `DO` loop in a macro.  All macro commands between `DO` and `ENDDO` will be repeated according to the
-user's specifications for "beg" and "end".  Optionally, `DO` may create and increment a local or global variable to
-store the current iteration count and this count may also be displayed on the screen as an `IDN` field.  `DO` loops may
-be nested up to a depth of 16.  Jumps out of `DO` loops are permitted, but a jump into a `DO` loop is not allowed except
-as part of an extended range, as described below.
+`DO` begins a `DO` loop in a macro. All macro commands between `DO` and `ENDDO` will be repeated according to the
+user's specifications for beg and end. The loop counter will have the value beg on the first pass through the do loop.
+It will be incremented by one on each subsequent pass and will have the value of end on the final pass. Thus beg and end
+specify how many time to execute the loop. If beg is omitted it will be set to 1. If end is omitted it will be set to
+beg (i.e. one cycle will be done). If end is less than beg no pass through the `DO` loop will occur. Both beg and end
+must be integers.
 
-Any qualifiers to be used with `DO` must be specified before the parameters "beg", "end", and "argnam".  Remember to
-leave a space between the command name "`DO`" and the qualifier, e.g. `DO /LCL` not `DO/LCL`.  Any combination of the
-three qualifiers is permitted.
+Optionally, `DO` may create and increment a local argument, global argument, or symbol to store the current iteration
+count by specifying am. If nam is omitted no loop counter variable will be created Note that any modifications to this
+variable by commands between `DO` and `ENDDO` will not affect the number of repetitions.
 
-If /LCL is specified, RNMR will define a local argument named "argnam" to contain the current iteration count, i.e.
-the number of times the instructions between `DO` and `ENDDO` have been executed plus one.
-
-If /GBL is specified, RNMR will define a global argument named "argnam" to contain the current iteration count.  Note
-that /LCL and /GBL are not mutually exclusive.
-
-If /IDN is specified, the current iteration count will be displayed in the second `IDN` field at the top right hand
-corner of the screen.
-
-The first parameter, "beg" is the value assigned to "argnam" in the first pass through the `DO`/`ENDDO` loop.  Together
-with "end", "beg" determines how many cycles will be executed even if no qualifiers are  specified and no arguments are
-defined.  If "beg" is omitted, the counter will begin at 1; RNMR does not prompt for "beg".  The legal values for "beg"
-are greater than or equal to one.
-
-The second parameter, "end" is the value assigned to "argnam"  during the last `DO`/`ENDDO` cycle.  Together with "beg",
-"end" determines how many cycles will be done.  If "end" is omitted, "end" is set equal to "beg", i.e. one cycle will be
-done with "argnam" defined with value "beg".  The legal values for "end" are -1 and all integers greater than or equal
-to "beg". If "end" is -1, all commands between `DO` and `ENDDO` will be performed repeatedly an unlimited number of
-times; the user must break the cycle manually somewhere inside the loop via a command such as `GOTO`, `ONERR`, or
-`MEXIT` or by pressing <CTRL-Z\>.
-
-The last parameter, "argnam" specifies the name of a local or global argument to contain the current loop count.  If
-"argnam" is omitted, any /LCL and/or /GBL qualifiers will be ignored and no local or global arguments will be created.
-The argument name specified must be nonblank and must be composed from the characters A-Z, 0-9, $ and \_.  Argument
-names may not contain internal blanks.  If "argnam" is present and valid but neither /LCL nor /GBL were specified, RNMR
-defines a local argument "argnam" to contain the loop count.  That is, /LCL is the default qualifier when "argnam" is
-nonblank.
-
-Whether any arguments or `IDN` fields are defined or not by `DO`, the number of `DO` cycles will be:
-
-End Values | Cycles
----------- | ------
-end != -1  | end - beg + 1
-end == -1  | unlimited
-
-If one or more arguments or `IDN` fields are incremented by `DO`, each cycle will increment the appropriate counter by
-one.  Note that any modifications to "argnam" by commands between `DO` and `ENDDO` will not affect the number of
-repetitions.  In addition, the total number of cycles is not affected by any changes made to "beg" and "end" within the
-`DO`/`ENDDO` loop.
-
-`DO`/`ENDDO` loops in RNMR may have extended range.  That is, it is legal to jump out of a `DO`/`ENDDO` loop then jump
-back in again after executing one or more statements.  The range of the `DO`/`ENDDO` loop is thus extended to include
-all the statements after the jump out and before the jump back in.  Unlike FORTRAN, RNMR permits the statements in the
-extended range to change the values of "beg" and/or "end" without effect on the number of cycles that will be executed.
-This is possible because the `DO` command is only processed once.  Jumps into a `DO` loop are not allowed when that `DO`
+`DO` loops may be nested up to a depth of 16. Jumps out of `DO` loops are permitted, but a jump into a `DO` loop is not
+allowed except as part of an extended range. It is legal to jump out of a `DO`/`ENDDO` loop then jump back in again
+after executing one or more statements. The range of the `DO`/`ENDDO` loop is thus extended to include all the
+statements after the jump out and before the jump back in. Jumps into a `DO` loop are not allowed when that `DO`
 command has not yet been processed, though the error will not be detected until the matching `ENDDO` statement is
 executed.
 ## DPS
