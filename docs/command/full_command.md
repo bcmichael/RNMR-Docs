@@ -2325,6 +2325,54 @@ the following must be true:
 3.	The record to be deleted has no owner.  This means that the record has been allocated but never used.
 
 Type `CAT` to check who owns a given record.  To check who is the current user, use the command `USER`.
+## DLTFIL
+Delete file
+
+Category: File IO
+
+Format: `DLTFIL` file
+
+Defaults: temp.dat
+
+Description:
+`DLTFIL` deletes a specified file. If no file is provided RNMR will prompt for a file to delete with temp.dat as a
+default. Be cautious when using `DLTFIL` as RNMR will not prompt for confirmation and will permanently delete the
+specified file.
+## DLTLST
+Delete list
+
+Category: File IO
+
+Format: `DLTLST` nam
+
+Defaults: temp
+
+Description:
+`DLTLST` deletes a specified list. If no list is provided RNMR will prompt for a list to delete with temp as a default.
+## DLTMAC
+Delete list
+
+Category: Macro
+
+Format: `DLTMAC` nam
+
+Defaults: temp
+
+Description:
+`DLTMAC` deletes a specified macro. If no macro is provided RNMR will prompt for a macro to delete with temp as a
+default.
+## DLTTBL
+Delete name table
+
+Category: Tables
+
+Format: `DLTTBL` nam
+
+Defaults: temp
+
+Description:
+`DLTTBL` deletes a specified name table. If no table is provided RNMR will prompt for a table to delete with temp as a
+default.
 ## DLY
 Set pulse programmer delay
 
