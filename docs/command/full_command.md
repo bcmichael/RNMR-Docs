@@ -2290,18 +2290,18 @@ Category: Data Storage
 
 Format: `DL` first last
 
-Defaults: 5 first
+Defaults: iwrec none
 
 Description:
-`DL` deletes all archive records by record number from "first" to "last".  Deleting records marks the appropriate title
-records and blocks of the data file (\*DATA.DAT) as available for reuse.  Neither the size of the title file nor the
-data file is reduced by `DL`; in order to compress the data file by eliminating deallocated blocks, use `SQZ` (an RNMR
-command) or SQZARC (at the `DCL` prompt).
+`DL` deletes all archive records by record number from first to last. Deleting records marks the appropriate title
+records and blocks of the data file (\*DATA.DAT) as available for reuse. Neither the size of the title file nor the data
+file is reduced by `DL`; in order to compress the data file by eliminating deallocated blocks, use `SQZ` (an RNMR
+command) or SQZARC (from the shell).
 
-Since both "first" and "last" are record numbers, each must be an integer from 1 to 200, inclusive.  Further, "last"
-must be greater than or equal to "first".  If "first" and "last" are equal, only one record is deleted.  If "first" is
-omitted, RNMR will prompt for the number of the first record to be deleted with a default of 5.  However, if "last" is
-omitted, RNMR will not prompt for its value and only one record, "first", will be deleted.
+Since both first and last are record numbers, each must be an integer from 1 to 200, inclusive. Further, last must be
+greater than or equal to first. If first and last are equal, only one record is deleted. If first is omitted, RNMR will
+prompt for the number of the first record to be deleted with a default of the last record that was written to. However,
+if last is omitted, RNMR will not prompt for its value and only one record, first, will be deleted.
 
 For example, the command:
 
