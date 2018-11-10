@@ -2524,6 +2524,22 @@ access that record. For example:
 
 will print 2:7 as informational message. 2:7 can be used anywhere a record must be specified to refer to record 7 in
 archive 2. RNMR will prompt for both the archive and record number with a default of 1 if they are not specified.
+## ECHO
+Rearrange buffer to simulate echo data
+
+Category: Data Manipulation
+
+Format: `ECHO` time
+
+Defaults: center
+
+Prerequisites: Time domain
+
+Description:
+`ECHO` takes a time domain buffer with an FID in it and simulates an echo signal from it. The original FID will be
+shifted to the left by an amount specified by time. The portion of the buffer vacated by this shift is filled with the
+complex conjugate of the reverse of the data that was in this region in the original FID. If time is not provided RNMR
+will prompt for it with a time value corresponding to the center of the buffer. 
 ## ELSTST
 Separate the code blocks after a `TST` check
 
