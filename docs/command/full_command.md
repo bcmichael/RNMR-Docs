@@ -2460,13 +2460,31 @@ are zeroed. Finally, if the acquisition buffer is currently visible, `DW` always
 # E
 ---
 ## ECDB
-Encode block limits
+Convert dimension values to linear block index
 
-Category:
+Category: Misc.
 
-Format: `ECDB`
+Format: `ECDB` rec ndim val...
 
-Defaults:
+Defaults: last_read 1 first...
+
+Description:
+`ECDB` takes a series of values (val...) corresponding to each block dimension of a blocked record and converts the
+position they refer to into a linear block index. The conversion uses information about the block layout of a record rec
+which defaults to the last record that was read. For example when used on a dataset from an unprocessed multi
+dimensional experiment stored as a blocked record, `ECDB` will convert a set of indirect dimension time values into a
+linear block index.
+
+The value of ndim must not exceed the number of block dimensions. For a 2D dataset this would be 1 for a 3D it would be
+2 etc. ndim specifies how many dimensions are accounted for before the linear index. For example in a 3D data set ndim
+set to 1 will indicate that only the direct dimension is already accounted for and the linear index is over the last two
+dimensions. This will use two input values corresponding to the positions in the other two dimensions. A value of 2 on
+the other hand would consider the linear index to only be over the final dimension and only one value will be used.
+
+If fewer values are provided than are needed for the conversion RNMR will prompt for the remaining values with the first
+point in the value corresponding to the first point in the relevant dimension as the default. The values will be rounded
+to the nearest point in the block grid for conversion. Values that are outside of the range of dataset will round to the
+point on the edge of the dataset.
 ## ECDBP
 Encode block limits in points
 
