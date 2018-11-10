@@ -2507,6 +2507,23 @@ the other hand would consider the linear index to only be over the final dimensi
 
 If fewer indices are provided than are needed for the conversion RNMR will prompt for the remaining values with 1 as the default
 the first. The indices must not exceed the size of the dataset.
+## ECDREC
+Encode archive index
+
+Category: Data Storage
+
+Format: `ECDREC` arv rec
+
+Defaults: 1 1
+
+Description:
+`ECDREC` takes an archive arv and a record number rec within that archive and encodes it in a form that can be used to
+access that record. For example:
+
+    ECDREC 2 7
+
+will print 2:7 as informational message. 2:7 can be used anywhere a record must be specified to refer to record 7 in
+archive 2. RNMR will prompt for both the archive and record number with a default of 1 if they are not specified.
 ## ELSTST
 Separate the code blocks after a `TST` check
 
