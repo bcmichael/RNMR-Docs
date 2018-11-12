@@ -2647,7 +2647,7 @@ Prerequisites: Macro only (MAC)
 
 Description:
 `ENDSEL` marks the end of a macro `SEL` block. All `CASE` commands for the `SEL` block must precede `ENDSEL`. For usage
-details see the description of `SEL`. 
+details see the description of `SEL`.
 ## ENDTST
 End a macro `TST` block
 
@@ -2665,39 +2665,15 @@ Load a pulse program experiment
 
 Category: Acquisition
 
-Format: `EX` ppnam
+Format: `EX` nam
 
 Defaults: current
 
-Prerequisites: Acquisition stopped (HALT), RNMR only
+Prerequisites: Acquisition stopped (HALT), RNMRA only
 
 Description:
-`EX` loads a pulse program into the pulse programmer.  To load a pulse program, the user must specify the name of that
-program as the parameter "ppnam".  If "ppnam" is omitted, RNMR will prompt for the name of the pulse program to be
-loaded with the currently loaded PP (if any) as the default.  If the user presses <RETURN\> at the `EX` prompt, no
-changes are made.  If a new pulse program is specified, RNMR searches for the object code (\*.PPO) according to the
-following search path:
-
- 	(first) 	 	(current directory)
- 	 	 	RNMR_SPECIFIC:[RNMR.PP]  	 	 	RNMR_GROUP:[RNMR.PP]
- 	(last) 	 	RNMR_COMMON:[RNMR.PP]
-
-When loading a pulse program, `EX` first checks that the version of the pulse program object code for "ppnam" is up to
-date.  If not, the error message:
-
-        (SUPP ) PROGRAM IS INCORRECT VERSION
-
-will be displayed. If this occurs, the user should recompile before attempting to load it again with `EX`.  Once `EX`
-has read the pulse program header, the title of the program (as specified in the PP source code using by the `TITLE`
-statement) is displayed as an informational message.  This title is usually a brief description of the function of the
-pulse program.
-
-`EX` loads the pulse programmer with the current values of `SIZE`, `DW`, `RD`, HETR, `DEC`, and `DECFLG 1` through
-`DECFLG 4`.  Note that the pulse programmer performs the recycle delay in discrete 0.1 second steps, so the actual
-recycle time executed may be slightly different than that requested due to rounding to the nearest multiple of 0.1 sec.
-See documentation under `RD` for more details.  When a pulse program is loaded into the pulse programmer, all the
-default values for pulse lengths, loop counts, etc. specified within the program become active and will be executed
-unless changed from RNMR.
+`EX` is an old command for loading a pulse program. It has been replaced with the `PPEX` command and is currently simply
+an alias to it. As such `PPEX` should be use in place of `EX`.
 ## EXP
 Export data to foreign format
 
@@ -6665,6 +6641,29 @@ Defaults: current
 
 Description:
 Sets lock channel center position.  Minimum position is -50.0.  Maximum position is 50.0.
+## PPEX
+Load a pulse program experiment
+
+Category: Acquisition
+
+Format: `PPEX` nam
+
+Qualifiers: /INIT /NOINIT
+
+Qualifier Defaults: /INIT
+
+Defaults: current
+
+Prerequisites: Acquisition stopped (HALT), RNMRA only
+
+Description:
+`PPEX` loads a pulse program named nam into the pulse programmer. If nam is omitted, RNMR will prompt for it with the
+currently loaded PP (if any) as the default. Once `PPEX` has read the pulse program header, the title of the program (as
+specified in the PP source code using the `TITLE` statement) is displayed as an informational message. This title is
+usually a brief description of the function of the pulse program.
+
+The /INIT qualifier causes the pulse program to be initialized by loading default values into the pulse programmer and
+is active by default.
 ## PPFLG
 Set state of pulse program flag
 
