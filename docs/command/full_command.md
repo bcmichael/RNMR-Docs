@@ -2595,28 +2595,33 @@ Category: Data Manipulation
 
 Format: `EM` lb
 
+Qualifiers: /PROMPT /NOPROMPT
+
+Qualifier Defaults: /NOPROMPT
+
 Defaults: current
 
 Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-`EM` performs exponential multiplication apodization.  In this  apodization, the FID is multiplied by a decaying real
-exponential function.  This results in a broadening of spectral lines after Fourier transformation which masks noise at
-the expense of resolution.  When a perfect, non-decaying complex sine wave is exponentially multiplied and Fourier
-transformed, the result is a perfect Lorentzian line-shape.  While the user need not be currently viewing the processing
- buffer in order to use `EM`, `EM` operates only on processing buffer 1.
+`EM` performs exponential multiplication apodization. In this apodization, the FID is multiplied by a decaying real
+exponential function. This results in a broadening of spectral lines after Fourier transformation which masks noise at
+the expense of resolution. When a perfect, non-decaying complex sine wave is exponentially multiplied and Fourier
+transformed, the result is a perfect Lorentzian line-shape. While the user need not be currently viewing the processing
+buffer in order to use `EM`, `EM` operates only on processing buffer 1.
 
-`EM` takes one argument, "lb" which is the line broadening factor expressed in the current default frequency units (Hz,
-kHz, or MHz), as set and displayed by `UNIT /FREQ` or by `UNIT /FREQ /DFLT` if `UNIT /FREQ` is PPM.  The legal values
-of "lb" are real numbers between -1000 Hz and 1000 Hz, inclusive.  If "lb" is omitted, RNMR will not prompt for a value
-but rather will perform the apodization with the current line broadening factor, as set and displayed by the command
-`LB`. If a legal value of "lb" is specified, the current line broadening factor will be updated before exponential
-multiplication of the data.  `EM` multiplies each block of processing buffer 1 by the real function:
+`EM` takes one argument, lb which is the line broadening factor expressed in the current default frequency units (Hz,
+kHz, or MHz), as set and displayed by `UNIT /FREQ` or by `UNIT /FREQ /DFLT` if `UNIT /FREQ` is PPM. The legal values of
+lb are real numbers between -1000 Hz and 1000 Hz, inclusive.  If lb is omitted, RNMR will not prompt for a value unless
+the /PROMPT qualifier is used but rather will perform the apodization with the current line broadening factor, as set
+and displayed by the command `LB`. If a legal value of lb is specified, the current line broadening factor will be
+updated before exponential multiplication of the data. `EM` multiplies each block of processing buffer 1 by the real
+function:
 
     F(I) = EXP(-PI*(I-1) * LB/SW)
 
 where I is the index of the data point (I=1,2,...), `LB` is the line broadening factor, and `SW` is the buffer sweep
-width.  If the processing buffer is currently visible, `EM` always updates the display.
+width. If the processing buffer is currently visible, `EM` always updates the display.
 ## ENDDO
 End a macro `DO` loop
 
