@@ -2632,27 +2632,8 @@ Format: `ENDDO`
 Prerequisites: Macro only (MAC)
 
 Description:
-`ENDDO` marks the end of a macro `DO` loop.  All commands between `DO` and `ENDDO` are executed repeatedly according to
-the parameters of the `DO` command.  Between `DO` and `ENDDO`, a control statement may cause execution to jump out of
-the loop.  However, jumps into the loop are not legal and result in an error message when `ENDDO` is executed:
-
-    (ENDDO0) NO MATCHING DO
-
-Each time `ENDDO` is executed, RNMR checks whether the current `DO` loop is finished.  The `DO` loop is terminated if
-the "end" parameter in the `DO` statement was not -1 and the current loop count is greater than or equal to "end" (see
-description of the "end" parameter under `DO`).  If "end" was specified as -1 in the `DO` command, then repetition of
-the commands between `DO` and `ENDDO` will continue indefinitely; only a jump out of the loop or <CTRL-Z\> will
-terminate the loop.
-
-If execution of the current `DO`/`ENDDO` cycle is finished, `ENDDO`  decreases the `DO` stack depth by one, thus
-increasing the number of nested `DO` loops that may be added by one.  The maximum depth of `DO`/`ENDDO` nesting that may
-exist at any time is 16 levels.
-
-If execution of the `DO`/`ENDDO` loop is not complete, `ENDDO` causes macro execution to jump to the next line after the
-matching `DO` statement and the current loop count is incremented by 1.  If `DO` specified that a screen identification
-field should be incremented (`DO` /`IDN`), then that field is updated to show the new loop count.  Similarly, any local
-and/or global arguments created by `DO` are incremented by one.  For more details on the use of `DO`/`ENDDO` loops in
-macros, see the description of the `DO` command.
+`ENDDO` marks the end of a macro `DO` loop. All commands between `DO` and `ENDDO` are executed repeatedly according to
+the parameters of the `DO` command. For usage details see the description of `DO`. 
 ## ENDTST
 End a macro `TST` block
 
