@@ -2674,6 +2674,24 @@ Prerequisites: Acquisition stopped (HALT), RNMRA only
 Description:
 `EX` is an old command for loading a pulse program. It has been replaced with the `PPEX` command and is currently simply
 an alias to it. As such `PPEX` should be use in place of `EX`.
+## EXIT
+Exit program
+
+Format: `EXIT` resp
+
+Qualifiers: /ERROR
+
+Qualifier Defaults: none
+
+Defaults: no
+
+Prerequisites: Command line only
+
+Description
+`EXIT` exits RNMR. the argument resp should be a yes/no (or y/n) to indicate whether to actually exit RNMR or not. If
+resp is not provided RNMR will prompt for it with no as a default.
+
+If /ERROR is used RNMR will return with a status of 2 to indicate an error. Otherwise it will exit with a status of 1.
 ## EXP
 Export data to foreign format
 
