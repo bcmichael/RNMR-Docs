@@ -2959,66 +2959,6 @@ Category:
 Format: `FMXEX`
 
 Defaults:
-## FSYN
-Define synthesizer frequency table
-
-Category: Acquisition
-
-Format: `FSYN` syn ifreq freq
-
-Defaults: current 1 current
-
-Prerequisites: Acquisition stopped (HALT) RNMR only
-
-Description:
-`FSYN` defines a frequency in a synthesizer frequency table.  Each synthesizer has a frequency table which specifies a
-sequence of offsets which may be used during the course of a pulse program.  By modifying the entries in the frequency
-tables, `FSYN` permits the user to specify which offset each synthesizer will use at different phases of the pulse
-program.
-
-The first parameter, "syn" selects which synthesizer will be affected.  If "syn" is omitted, RNMR will prompt for a
-synthesizer number with the number of the current observe channel synthesizer as the default.  Since RNMR currently
-supports up to four synthesizers, legal values of "syn" are integers from 1 to 4.  The synthesizer selected must have an
-assigned nucleus.  To assign a nucleus to a synthesizer, use the command `NUC`.
-
-The second parameter, "ifreq" is the entry number to be defined for synthesizer "syn".  For each synthesizer, there are
-16 available frequency table entries.  At the present time the first table entry (ifreq=1) sets the frequency during the
-presaturation period while all other entries are unused.  If "ifreq" is not specified, RNMR will prompt for an entry
-number with 1 as the default, i.e. the default action is to modify the first table entry for the selected nucleus.  The
-legal values of "ifreq" are integers from 1 to 16, inclusive.
-
-The last argument, "freq" specifies the frequency offset to which the selected table entry will be set.  If this
-argument is omitted, RNMR will prompt for a frequency with the current synthesizer table entry as the default.  If the
-specified synthesizer table entry is undefined and "freq" is omitted, RNMR displays the current offset as
-'\*\*\*\*\*\*\*\*'.  When RNMR prompts with the current offset, this offset is expressed in the current frequency units
-for synthesizer "syn" (Hz, kHz, MHz, or PPM) and includes any contribution from the reference frequency of the assigned
-nucleus.  Consequently, whenever the reference frequency for the assigned nucleus is changed by `NUCD`, the offset
-displayed by `FSYN` will be changed to reflect the new reference frequency.  The number of decimal places reported for
-the offset frequency is displayed and set by `NDEC` for the current frequency unit.  If the user accepts the current
-frequency by pressing <RETURN\> at the FREQ prompt, no changes are made.  The frequency offset set by `FSYN` is
-considered to be precise to 0.1 Hz, regardless of the choice of frequency units or number of  decimal places (`NDEC`).
-If the user enters "\*" for "freq", RNMR will mark the specified table entry as undefined. This implies that the
-frequency for that entry will be calculated by:
-
-    Factual(Hz) = 1.0E+06*FPPM(MHz) + FREQ(Hz) + FREF(Hz)
-
-where FPPM and FREF are frequencies defined for each nucleus by `NUCD`  and FREQ is the frequency entered with the F
-command.  That is, a table entry of \* directs RNMR to follow the F command when calculating the corresponding
-frequency.  If a table entry has a value other than \*, the corresponding frequency is calculated by:
-
-    Factual(Hz) = 1.0E+06*FPPM(MHz) + `FSYN`(Hz) + FREF(Hz)
-
-where `FSYN` is the value for "freq" entered into the table with the `FSYN` command.  Note that FREF defines the zero
-point for frequency offsets but changes to FREF (via `NUCD`, `REF`, or `FSYS`) do not change the physical synthesizer
-setting.  Changes to FPPM (via `NUCD` or `FSYS`) do change the synthesizer setting but only after the synthesizer
-hardware is updated by `FSYN`, `F`, or `NUC`.
-
-Once a synthesizer table entry is modified by `FSYN`, RNMR updates the corresponding entry of the synthesizer controller
-hardware immediately.  Thus, the synthesizer is ready to execute the new frequency table immediately after it is
-modified by `FSYN`.  At present, RNMR only examines the first two `FSYN` entries for each synthesizer, so a given pulse
-program may only use these two frequencies.  Execution of each shot always begins with the first frequency in the table.
- Table frequencies are selected from within a pulse program by performing a pulse on GATE_SYN1 (to select the first
-table frequency) or GATE_SYN2.
 ## FSYS
 Set spectrometer system frequency
 
