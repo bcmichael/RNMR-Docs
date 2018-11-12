@@ -2693,183 +2693,171 @@ resp is not provided RNMR will prompt for it with no as a default.
 
 If /ERROR is used RNMR will return with a status of 2 to indicate an error. Otherwise it will exit with a status of 1.
 ## EXP
-Export data to foreign format
+Export buffer to foreign format
 
 Category: Foreign
 
-Format: `EXP` format
+Format: `EXP` format fspec
 
-Defaults: NMR1
+Defaults: ascii default_name
 
 Description:
-`EXP` exports the contents of processing buffer 1 to a disk file in a foreign (non-RNMR) format.  This exportation
-allows one-dimensional data to be transferred from RNMR to another processing program or from one RNMR archive to
-another via `IMP`.
+`EXP` exports the contents of processing buffer 1 to a disk file in a foreign (non-RNMR) format. This exportation allows
+one-dimensional data to be transferred from RNMR to another processing program or from one RNMR archive to another via
+`IMP`.
 
-`EXP` takes one parameter, "format" which specifies the foreign destination format.  If "format" is omitted, RNMR will
-prompt for a  foreign format with NMR1 as the default.  The currently supported foreign formats are:
+If no format is specified RNMR will prompt for it with a default of ASCII. The currently supported foreign formats are:
 
-Format | Description
------- | -----------
-FELIX  | FELIX, complex data
-FTNMR  | FTNMR, complex data
-FTNMRR | FTNMR, real data
-NMR1   | NMR1/NMR2, standard blocks
-NMR1A  | NMR1/NMR2, alternate blocks 	(NMR1 and NMR1A formats are identical for 1D data.)
-VARIAN | Complex data
-BRUKER | Real data
-
-Supported formats for page layout programs (these do not include acquisition parameters):
-
-Format | Description
------- | -----------
-ASCII  | Generic ASCII
-SPYG   | IEEE floating point for Spyglass
+- ASCII
+- BINARY
+- BRUKER
+- MESTRE
+- NV
+- PIPE
+- SIFT
+- UCSF
+- VNMR
 
 Note that while the user need not be viewing the processing buffer to use `EXP`, `EXP` exports only the contents of
-processing buffer 1.  If the `EXP` command is used at console level, RNMR will prompt the user for the name of the file
-to contain the exported data.  The user may enter any valid VMS file name up to 64 characters long.  If the user presses
-<RETURN\> at this prompt, no data is exported and no file is created.  If `EXP` is used from within a macro, RNMR
-expects the foreign format file name to be delimited by two semicolons (;;) on the line following the `EXP` command.
-The entire line after ;; constitutes the file name, as illustrated below:
-
-         	EXP FTNMR
-         	;;MYFILE.DAT
-
-If the double semicolon delimiter ;; is not found on the line after `EXP`, RNMR will prompt for a file name as when
-`EXP` is used from console level.  Conversely, if ;; is present but there is no text on the line after ;;, then `EXP`
-does nothing and the macro execution continues.  The text following ;; may be any valid VMS file name up to 64
-characters long. This text may contain local and global argument substitutions, e.g.
-
- 	        EXP FTNMR
-         	;;MYFILE_&1
-The local and global arguments specified will be evaluated and filled in before the export file is created.
-
-If no VMS file type was specified in the export file name, RNMR uses
-
-Format | File Type
------- | -----------
-FELIX  | .FELIX
-FTNMR  | .FTNMR
-NMR1 or NMR1A | .NMR1
-ASCII  | .ASCII
-SPYG   | .SPYG
+processing buffer 1. If the `EXP` command is used at console level and fspec is not provided, RNMR will prompt the user
+for the name of the file to contain the exported data. The default file name in the prompt will depend upon the archive
+and record currently being viewed in processing buffer 1. By default `EXP` will store data in the user's foreign
+directory.
 
 Unlike `OPNWRT`, `EXP` will create a new version of the output file if there already exists a file in the current
-directory with the name entered by the user.  Note that if processing buffer 1 is divided into two or more blocks, `EXP`
+directory with the name entered by the user. Note that if processing buffer 1 is divided into two or more blocks, `EXP`
 writes out data from the first block only.
+## EXP1D
+Export 1D data to foreign format
+
+Category: Foreign
+
+Format: `EXP1D` format rec slice fspec
+
+Defaults: pipe last_read 1 default_name
+
+Description:
+`EXP1D` exports a one-dimensional slice of a blocked archive record to a file in a foreign (non-RNMR) format. This
+exportation allows one-dimensional data to be transferred from RNMR to another processing program or from one RNMR
+archive to another via `IMP1D`.
+
+If no format is specified RNMR will prompt for it with a default of pipe. The currently supported foreign formats are:
+
+- ASCII
+- BINARY
+- BRUKER
+- NV
+- PIPE
+- SIFT
+- UCSF
+- VNMR
+
+The second parameter, rec specifies the number of a blocked archive record containing the data to be exported. If this
+parameter is omitted, RNMR will prompt for a source record number with the current read record (as displayed and set by
+`PTRA`) as the default.
+
+The last parameter, slice specifies which 1D slice of a 2D, 3D, or 4D source record should be written out in the foreign
+format. If the source record has only one dimension, slice must be 1. If slice is omitted RNMR will not prompt for it
+and will export the first slice. Note that the current mapping of dimensions to directions (as displayed and set by
+`DIRB`) will affect the selection of which one-dimensional block of the record comprises the 1D slice and will thus be
+exported. Slice is interpreted as a linear index over the 2nd/3rd/4th dimensions.
+
+If the `EXP1D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
+file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
+name of the archive the record is in. By default `EXP1D` will store data in the user's foreign directory.
+
+Unlike `OPNWRT`, `EXP1D` will create a new version of the output file if there already exists a file in the current
+directory with the name entered by the user.
+
+Upon completion, the current read block of the record, as set and displayed by `PTRB`, is set to the slice that was
+exported. In addition, the current read record, as set and displayed by `PTRA`, is set to rec.
 ## EXP2D
 Export 2D data to foreign format
 
 Category: Foreign
 
-Format: `EXP2D` format rec blk2d
+Format: `EXP2D` format rec slice fspec
 
-Defaults: NMR1 current 1
+Defaults: pipe last_read 1 default_name
 
 Description:
 `EXP2D` exports a two-dimensional slice of a blocked archive record to a file in a foreign (non-RNMR) format. This
 exportation allows two-dimensional data to be transferred from RNMR to another processing program or from one RNMR
 archive to another via `IMP2D`.
 
-The first parameter, "format" specifies the foreign destination format.  If "format" is omitted, RNMR will prompt for a
-foreign format with NMR1 as the default.  The currently supported foreign formats are:
+If no format is specified RNMR will prompt for it with a default of pipe. The currently supported foreign formats are:
 
-Format | Description
------- | -----------
-FELIX  | FELIX, complex data
-FTNMR  | FTNMR, complex data
-NMR1   | NMR1/NMR2, standard blocks
-NMR1A  | NMR1/NMR2, alternate blocks
+- ASCII
+- BINARY
+- BRUKER
+- NV
+- PIPE
+- SIFT
+- UCSF
+- VNMR
 
-Supported formats for page layout programs (these do not include acquisition parameters):
+The second parameter, rec specifies the number of a blocked archive record containing the data to be exported. If this
+parameter is omitted, RNMR will prompt for a source record number with the current read record (as displayed and set by
+`PTRA`) as the default.
 
-Format | Description
------- | -----------
-SPYG   | IEEE floating point for Spyglass
+The last parameter, slice specifies which 2D slice of a 3D or 4D source record should be written out in the foreign
+format. If the source record has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it
+and will export the first slice. Note that the current mapping of dimensions to directions (as displayed and set by
+`DIRB`) will affect the selection of which one-dimensional blocks of the record comprise the 2D slice and will thus be
+exported. Slice is interpreted as a linear index over the 3rd/4th dimensions.
 
-The second parameter, "rec" specifies the number of a blocked archive record containing the data to be exported.  If
-this parameter is omitted, RNMR will prompt for a source record number with the current read record (as displayed and
-set by `PTRA`) as the default.  The acceptable values of "rec" are integers from 5 to 200; the scratch records (1-4) are
-always one-dimensional. RNMR checks that "rec" is in fact a nonempty blocked record.  If "rec" is not a blocked  record,
-RNMR will display the error message:
-
-        (CHKTYP) RECORD WRONG TYPE
-
-The last parameter, "blk2d" specifies which 2D slice of a 3D or 4D source record should be written out in the foreign
-format. If the source record has only two dimensions, "blk2d" must be 1.  If "blk2d" is omitted, then the first 2D slice
-of the source record will be exported.  That is, the default value of "blk2d" is 1.  RNMR does not prompt for "blk2d".
-The legal values of "blk2d" are the integers 0,1,2,... up to the number of 2D slices in the source record. If "blk2d" is
-zero, then RNMR will export the next 2D slice.  The command `PTRB` displays the current read block for a given record;
-"blk2d" equal to zero directs `EXP2D` to export the block after the current read block.  Note that the current mapping
-of dimensions to directions (as displayed and set by `DIRB`) will affect the selection of which one-dimensional blocks
-of record "rec" comprise the 2D slice "blk2d" and will thus be exported.  When `EXP2D` is used to export 2D slices of a
-four-dimensional record of size A X B X C X D, "blk2d" values from 1 to C select slices from the first cube, C+1 to 2C
-select slices from the second cube, etc.  In this way, selection of 2D slices from a 4D data set can be accomplished
-with one parameter, "blk2d".
-
-If the `EXP2D` command is used at console level, RNMR will prompt the user for the name of the file to contain the
-exported data.  The user may enter any valid VMS file name up to 64 characters long.  If the user presses <RETURN\> at
-this prompt, no data is exported and no file is created.
-
-If `EXP2D` is used from within a macro, RNMR expects the foreign format file name to be delimited by two semicolons (;;)
-on the line following the `EXP2D` command.  The entire line after ;; constitutes the file name, as illustrated below:
-
-        EXP2D FTNMR 25 34
-        ;;MYFILE.DAT
-
-If the double semicolon delimiter ;; is not found on the line after `EXP2D`, RNMR will prompt for a file name as when
-`EXP2D` is used from console level.  Conversely, if ;; is present but there is no text on the line after ;;, `EXP2D`
-does nothing and the macro execution continues.  The text following ;; may be any valid VMS file name up to 64
-characters long.  This text may contain local and global argument substitutions, e.g.
-
-        EXP2D FTNMR 25 34
-        ;;MYFILE_&1
-
-The local and global arguments specified will be evaluated and filled in before the export file is created.
-
-If no VMS file type was specified in the export file name, RNMR uses:
-Format | File Type
------- | -----------
-FELIX  | .FELIX
-FTNMR  | .FTNMR
-NMR1 or NMR1A | .NMR1
-ASCII  | .ASCII
-SPYG   | .SPYG
+If the `EXP2D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
+file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
+name of the archive the record is in. By default `EXP2D` will store data in the user's foreign directory.
 
 Unlike `OPNWRT`, `EXP2D` will create a new version of the output file if there already exists a file in the current
 directory with the name entered by the user.
 
-Upon completion, the current read block of record "rec", as set and displayed by `PTRB`, is set to "blk2d" if "blk2d" is
-nonzero.  If "blk2d" is zero, then the current read block is incremented by 1.  In addition, the current read record, as
-set and displayed by `PTRA`, is set to "rec" by `EXP2D`.
-
-Using the automatic block advance feature of `EXP2D` ("blk2d" equals 0), a 3D data set may conveniently be exported to a
-sequence of 2D foreign format files, as shown in the example below:
-
-    ! EXPORT 3D RECORD #29 TO SEQUENCE OF 2D NMR1 FILES
-    DIRB 3 123       ! SET DIRECTION FOR BLOCKED ACCESS
-    SET IMSG OFF 1 1 ! GET SIZE OF DIMENSION 3
-    SIZEB 29 3
-    SET IMSG ON
-    PTRB 29 0 >        ! SET READ POINTER TO FIRST BLOCK
-    DO /LCL 1,%1,BLK2D ! EXP EACH 2D SLICE TO NMR1 FILE
-    EXP2D NMR1 29 0
-    ;;3DDATA_SLICE&BLK2D
-    ENDDO
-
-This macro exports the first 2D slice of record 29 to 3DDATA_SLICE1.NMR1, the second slice to 3DDATA_SLICE2.NMR1, etc.
+Upon completion, the current read block of the record, as set and displayed by `PTRB`, is set to the slice that was
+exported. In addition, the current read record, as set and displayed by `PTRA`, is set to rec.
 ## EXP3D
-Export 3D data to foreign file format
+Export 3D data to foreign format
 
 Category: Foreign
 
-Format: `EXP3D` format rec blk3d
+Format: `EXP2D` format rec slice fspec
 
-Defaults: NMR1 current 1
+Defaults: pipe last_read 1 default_name
 
 Description:
-Currently supported formats: SPYG
+`EXP3D` exports a three-dimensional slice of a blocked archive record to a file in a foreign (non-RNMR) format. This
+exportation allows three-dimensional data to be transferred from RNMR to another processing program or from one RNMR
+archive to another via `IMP3D`.
+
+If no format is specified RNMR will prompt for it with a default of pipe. The currently supported foreign formats are:
+
+- ASCII
+- BINARY
+- BRUKER
+- NV
+- PIPE
+- SIFT
+- UCSF
+
+The second parameter, rec specifies the number of a blocked archive record containing the data to be exported. If this
+parameter is omitted, RNMR will prompt for a source record number with the current read record (as displayed and set by
+`PTRA`) as the default.
+
+The last parameter, slice specifies which 3D slice of  4D source record should be written out in the foreign format. If
+the source record has only three dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will
+export the first slice. Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will
+affect the selection of which one-dimensional blocks of the record comprise the 3D slice and will thus be
+exported. Slice is interpreted as a linear index over the 4th dimension.
+
+If the `EXP3D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
+file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
+name of the archive the record is in. By default `EXP3D` will store data in the user's foreign directory.
+
+Unlike `OPNWRT`, `EXP3D` will create a new version of the output file if there already exists a file in the current
+directory with the name entered by the user.
+
+Upon completion, the current read block of the record, as set and displayed by `PTRB`, is set to the slice that was
+exported. In addition, the current read record, as set and displayed by `PTRA`, is set to rec.
 # F
 ---
 ## F
