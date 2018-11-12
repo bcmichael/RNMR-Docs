@@ -862,7 +862,9 @@ Defaults: none
 Prerequisites: Macro only (MAC)
 
 Description:
-`CASE` executes the block of commands that falls between it and either the next `CASE` command or `ENDSEL` if the value used in the `SEL` block matches val. If val is omitted then `CASE` will act as if it matches for any value. `CASE` must be between a `SEL` and a matching `ENDSEL`.
+`CASE` executes the block of commands that falls between it and either the next `CASE` command or `ENDSEL` if the value
+used in the `SEL` block matches val. If val is omitted then `CASE` will act as if it matches for any value. `CASE` must
+be between a `SEL` and a matching `ENDSEL`.
 ## CAT
 List catalog of records
 
@@ -2633,7 +2635,19 @@ Prerequisites: Macro only (MAC)
 
 Description:
 `ENDDO` marks the end of a macro `DO` loop. All commands between `DO` and `ENDDO` are executed repeatedly according to
-the parameters of the `DO` command. For usage details see the description of `DO`. 
+the parameters of the `DO` command. For usage details see the description of `DO`.
+## ENDSEL
+End a macro `SEL` block
+
+Category: Macro
+
+Format: `ENDSEL`
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`ENDSEL` marks the end of a macro `SEL` block. All `CASE` commands for the `SEL` block must precede `ENDSEL`. For usage
+details see the description of `SEL`. 
 ## ENDTST
 End a macro `TST` block
 
