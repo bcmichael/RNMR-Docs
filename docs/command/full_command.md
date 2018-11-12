@@ -2925,22 +2925,21 @@ Format: `FLF` factor
 
 Defaults: current
 
-Prerequisites: Acquisition stopped (HALT) RNMR only
+Prerequisites: Acquisition stopped (HALT) RNMRA only
 
 Description:
-On spectrometers with S-bus interfaced acquisition filters, `FLF` sets the filter bandwidth factor.  This factor is used
-to compute the cutoff frequencies for both the real and imaginary channel filters.  `FLF` takes one parameter, "factor"
-which specifies the filter cutoff scaling factor.  If this parameter is omitted, RNMR will prompt for a factor with the
-current filter factor as the default.  The allowable values for "factor" are real numbers from 0.0 to 5.0, inclusive.
-If the user accepts the current filter factor by pressing <RETURN\> at the FACTOR prompt, no changes are made to the
-filter settings.  Since the filter frequencies are digitally programmed, only discrete cutoff values (in increments of
-200.0 Hz up to 50000.0 Hz) are allowed.  Accordingly, RNMR sets the filter cutoffs to the closest available value given
-the current dwell time (as displayed and set by `DW`) and the filter factor (as displayed and set by `FLF`).  If the
-filter factor is 0.0, then the filters are disabled entirely.  Otherwise, they are set to the nearest cutoff setting at
-least as wide as FLF X (SW/2.0). If the calculated filter bandwidth exceeds 50000.0 Hz, then the filters are
-disabled entirely.  Note that larger values of "factor" give wider filter cutoffs.  The filter factor is saved to
-archive records by the commands `SA`, `SB`, and `SS` and is reported for those records by `LP`, even if S-bus filter
-control is not implemented in the spectrometer running RNMR.
+On spectrometers with S-bus interfaced acquisition filters, `FLF` sets the filter bandwidth factor. This factor is used
+to compute the cutoff frequencies for both the real and imaginary channel filters. `FLF` takes one parameter, factor
+which specifies the filter cutoff scaling factor. If this parameter is omitted, RNMR will prompt for a factor with the
+current filter factor as the default. The allowable values for factor are real numbers from 0.0 to 5.0, inclusive. Since
+the filter frequencies are digitally programmed, only discrete cutoff values (in increments of 200.0 Hz up to 50000.0
+Hz) are allowed. Accordingly, RNMR sets the filter cutoffs to the closest available value given the current dwell time
+(as displayed and set by `DW`) and the filter factor (as displayed and set by `FLF`). If the filter factor is 0.0, then
+the filters are disabled entirely. Otherwise, they are set to the nearest cutoff setting at least as wide as
+FLF X (SW/2.0). If the calculated filter bandwidth exceeds 50000.0 Hz, then the filters are disabled entirely. Note that
+larger values of factor give wider filter cutoffs. The filter factor is saved to archive records by the commands `SA`,
+`SB`, and `SS` and is reported for those records by `LP`, even if S-bus filter control is not implemented in the
+spectrometer running RNMR.
 ## FMX
 Frequency modulation
 
