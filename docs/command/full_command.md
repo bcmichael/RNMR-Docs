@@ -2901,6 +2901,21 @@ command. The actual offset will be set to FREQ(Hz) + FREF(Hz), where FREF is the
 assigned to chan. If the processing buffer is currently visible, `F` will update the display whenever the offset is
 modified to show the new frequency scale. All other aspects of the `F` command are identical in RNMR and RNMRP. Thus,
 the `F` command in RNMRP serves to make corrections to the frequency scales stored with experimental spectra.
+## FLAG
+Set pulse program flag on or off
+
+Category: Acquisition
+
+Format: `FLAG` ind val
+
+Defaults: 1 current
+
+Prerequisites: Pulse program loaded (LOAD); RNMRA only
+
+Description:
+`FLAG` sets the pulse program flag specified by ind either on or off based on val. If ind is not provided RNMR will
+prompt for it with a default of 1. If val is not provided RNMR will prompt for it with the current value of the flag as
+the default. The legal values of val are on and off.
 ## FLF
 Set filter factor
 
