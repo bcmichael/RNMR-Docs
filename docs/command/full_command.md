@@ -2539,7 +2539,43 @@ Description:
 `ECHO` takes a time domain buffer with an FID in it and simulates an echo signal from it. The original FID will be
 shifted to the left by an amount specified by time. The portion of the buffer vacated by this shift is filled with the
 complex conjugate of the reverse of the data that was in this region in the original FID. If time is not provided RNMR
-will prompt for it with a time value corresponding to the center of the buffer. 
+will prompt for it with a time value corresponding to the center of the buffer.
+## EDTFIL
+Edit text file
+
+Category: File IO
+
+Format: `EDTFIL` fspec
+
+Defaults: temp.dat
+
+Description:
+`EDTFIL` opens a pop up window to edit the text file specified by fspec. If no file is specified RNMR will prompt for
+one with temp.data as a default.
+## EDTLST
+Edit list
+
+Category: Lists
+
+Format: `EDTLST` nam
+
+Defaults: temp
+
+Description:
+`EDTLST` opens a pop up window to edit the list specified by nam. If no list is specified RNMR will prompt for one with
+temp as a default.
+## EDTMAC
+Edit macro
+
+Category: Lists
+
+Format: `EDTMAC` nam
+
+Defaults: temp
+
+Description:
+`EDTMAC` opens a pop up window to edit the macro specified by nam. If no macro is specified RNMR will prompt for one
+with temp as a default.
 ## ELSTST
 Separate the code blocks after a `TST` check
 
