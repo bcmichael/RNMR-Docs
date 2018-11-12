@@ -2941,15 +2941,23 @@ larger values of factor give wider filter cutoffs. The filter factor is saved to
 `SB`, and `SS` and is reported for those records by `LP`, even if S-bus filter control is not implemented in the
 spectrometer running RNMR.
 ## FMX
-Frequency modulation
+Set frequency modulation value
 
 Category:
 
-Format: `FMX`
+Format: `FMX` chan ind val
 
-Defaults:
+Defaults: 1 1 current
+
+Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
+The transmitter frequency can be changed between different values during a pulse sequence by using the `SETFMX` command
+in the pulse sequence. The offset value that is switched to is set using `FMX`. The chan and ind parameters are used to
+specify which frequency offset is being set. `SETFMX` has an index as a parameter and that index corresponds to ind. The
+offsets are set separately for each channel and chan specifies the logical channel. If chan or ind is not specified RNMR
+will prompt for it with 1 as a default. The offset value to be set is specified by val. If val is not provided RNMR will
+prompt for it with the current offset as the default.
 ## FMXEX
 Load frequency modulation program
 
