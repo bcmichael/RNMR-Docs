@@ -3008,50 +3008,41 @@ Category: Data Manipulation
 
 Format: `FT` size fctr1
 
-Defaults: current 1.0
+Qualifiers: /REAL /SCALE
+
+Qualifier Defaults: /SCALE=NORM
+
+Defaults: next_power_2 0.5
 
 Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-`FT` performs a fast Fourier transform on time domain data in  processing buffer 1.  If the number of active points in
-each block of the processing buffer is not a power of 2, zero filling is performed to increase the size to the next
-power of 2.
+`FT` performs a Fourier transform on time domain data in processing buffer 1. Prior to the transformation the time
+domain data is zero filled to size and the first point is scaled by fctr1.
 
-The first parameter of `FT` is "size", which is the desired number of points after Fourier transformation.  If this
-parameter is omitted, the size after transformation will be the smallest power of 2 greater than or equal to the FID
-size. Thus, if the FID has 200 points, its Fourier transform will have 256 points.  When the size of the FID is not a
-power of 2, RNMR zero fills the FID to the next power of 2 before Fourier transformation.  If "size" is omitted, RNMR
-will not prompt for a size.  If "size" is specified, the value entered must be a power of 2 greater than or equal to the
-FID size and between 4 and SIZEA inclusive, where SIZEA is the allocated size of each block in processing buffer 1.
+If size is provided it must be a power of 2. If size is not provided then RNMR will not prompt for it and will use the
+next power of 2 that is larger than the size of the buffer. If fctr1 is not provided RNMR will not prompt for it and
+will use 0.5. The value of fctr1 must be greater than 0.
 
-The second parameter, "fctr1", specifies the correction factor to be applied to the first point of the FID.  The first
-point is multiplied by 0.5\*fctr1 before Fourier transformation to correct the constant offset of the resulting
-spectrum.  A value of 1.0 for "fctr1" should be appropriate for most applications.  If "fctr1" is omitted, a value of 1
-will be used; RNMR does not prompt for "fctr1".  The legal values of "fctr1" are real numbers strictly greater than 0.0.
+The /REAL qualifier will cause `FT` to perform a real Fourier transform using only the real part of the buffer.
+Otherwise a complex Fourier transform will be applied. /SCALE determines how the result of the transform will be scaled
+as follows:
 
-Before transformation, RNMR checks whether the frequency scale  should be reversed.  Since time domain data is presented
+/SCALE | Description
+------ | -----------
+NORM   | Normalizes buffer
+ABS    | Scales to absolute scale factor
+NONE   | Does not scale
+
+Since time domain data is presented
 with minimum time on the left while frequency data is presented with maximum frequency on the left (by long standing NMR
-convention), the default action of `FT` is to reverse the order of the data after transformation.  This is done by
-conjugating the FID before the Fourier transform is calculated.  If the observe synthesizer has not been defined, the
-FID is always conjugated.  Otherwise, the FID will be conjugated if the observe channel is generated from the lower
-sideband (LSB) of the sum of the synthesizer and intermediate (IF)  frequencies.  After conjugation (if required), the
-FID is zero filled to the  appropriate size if necessary.  Then the first point of the FID is scaled as specified by
-"fctr1" and a fast Fourier transform is performed, replacing the FID with frequency domain data in processing buffer 1.
-Use of `FT` resets the constant and linear phase values of the processing buffer (phi0 and phi1) to zero.  The frequency
-data in each block of the processing buffer is scaled by a constant factor so that the complex magnitude of the largest
-point in the first block is 1.0.  The largest point is the point whose intensity has the largest complex magnitude.  If
-the largest magnitude in block 1 is 0.0, no rescaling of the data is performed.  After any rescaling is complete, the
-buffer scale factor is multiplied by the new size and the rescaling factor:
+convention), the default action of `FT` is to reverse the order of the data after transformation. This is done by
+conjugating the FID before the Fourier transform is calculated. `FT` also negates every other point in the FID.
 
-    SFT = SFT*SIZE/VMAX
-
-where VMAX is the maximum magnitude in block 1 if this magnitude is nonzero or 1.0 otherwise.
-
-If the processing buffer is currently visible, `FT` always updates the display to show the transformed data.  If
-processing buffer 1 is partitioned into two or more blocks, `FT` acts separately on each block.  Thus, multiple FID's
-may be transformed to yield multiple spectra with a invocation of the `FT` command.  `FT` may only be used to transform
-time domain data into the frequency domain.  To perform the reverse transformation, use `IFT`.
-
+If the processing buffer is currently visible, `FT` always updates the display to show the transformed data. If
+processing buffer 1 is partitioned into two or more blocks, `FT` acts separately on each block. Thus, multiple FID's
+may be transformed to yield multiple spectra with a invocation of the `FT` command. `FT` may only be used to transform
+time domain data into the frequency domain. To perform the reverse transformation, use `IFT`.
 # G
 ---
 ## GA
