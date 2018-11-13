@@ -2981,29 +2981,25 @@ specified RNMR will prompt for it with a default of 1. If nsect is equal to 1 th
 ## FSYS
 Set spectrometer system frequency
 
-Category: Freq. Control
+Category: Frequency Control
 
-Format: `FSYS` fsys
+Format: `FSYS` nuc hi lo
 
-Defaults: current
+Defaults: current current current
 
 Description:
-`FSYS` sets the spectrometer system frequency in MHz.  The system  frequency is defined to be the spectrometer frequency
-for protons.  Thus, the system frequency depends only on the strength of the magnetic field for the spectrometer running
-RNMR; "fsys" has one and only one value for each spectrometer.  All nucleus table entries are referenced to the system
-frequency so that when "fsys" is updated, the PPM to Hz conversion factors and reference frequencies of all known nuclei
-are modified appropriately.
+`FSYS` sets the spectrometer system frequency by setting the PPM to Hz conversion factor (hi) and reference frequency
+(lo) in Hz for a particular nucleus (nuc). The system frequency depends only on the strength of the magnetic field for
+the spectrometer running RNMR. All nucleus table entries are referenced to the system frequency so that when `FSYS` is
+called, the PPM to Hz conversion factors and reference frequencies of all known nuclei are modified appropriately.
 
-`FSYS` takes one parameter, "fsys" which is the proton frequency in MHz.  This frequency is considered precise to 0.001
-MHz and is reported by RNMR to three decimal places accordingly.  If "fsys" is omitted from the command line, RNMR will
-prompt for a system frequency with the current frequency as the default.  If the user presses <RETURN\> at the `FSYS`
-prompt or enters a value for "fsys" identical to the current value, no changes to the system frequency or nucleus table
-are made.  Any real number may be entered for "fsys".
+If nuc is not provided RNMR will prompt for it with the curent reference nucleus as the default. If hi or lo is not
+provided RNMR will prompt for them with the current values for the specified nucleus. The hi frequency must be between
+1.0 and 1000.0 inclusive while lo must be between -1E6 and 1E6 inclusive.
 
-When "fsys" is modified, RNMR stores the new system frequency and updates the nucleus table.  Both the reference
-frequency and PPM to Hz conversion factor of each nucleus are updated unless the conversion factor for that nucleus is
-1.0, in which case no change is made to that nucleus entry.  While `FSYS` changes the frequency values of each nucleus,
-the synthesizers are not updated with these new frequencies until the user issues a `NUC`, `F`, or `FSYN` command for each
+`FSYS` stores the new system frequency and updates the nucleus table. Both the reference frequency and PPM to Hz
+conversion factor of each nucleus are updated. While `FSYS` changes the frequency values of each nucleus, the
+synthesizers are not updated with these new frequencies until the user issues a `NUC`, `F`, or `FSYN` command for each
 synthesizer.
 ## FT
 Fourier transform FID
