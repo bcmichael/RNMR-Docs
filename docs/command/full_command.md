@@ -2966,6 +2966,18 @@ Category:
 Format: `FMXEX`
 
 Defaults:
+## FOLD
+Fold data buffer
+
+Category: Data Manipulation
+
+Format: `FOLD` nsect
+
+Defaults: 1
+
+Description:
+`FOLD` divides processing buffer 1 into nsect evenly spaced sections and then averages the sections. If nsect is not
+specified RNMR will prompt for it with a default of 1. If nsect is equal to 1 then `FOLD` has no effect.
 ## FSYS
 Set spectrometer system frequency
 
