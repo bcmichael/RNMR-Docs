@@ -3110,59 +3110,35 @@ Set receiver gain
 
 Category: Acquisition
 
-Format: `GAIN` dB
+Format: `GAIN` gain
 
 Defaults: current
 
-Prerequisites: RNMR only
+Prerequisites: RNMRA only
 
 Description:
-`GAIN` sets the observe channel receiver relative gain.  This command sets the gain only if S-bus receiver gain control
-has been implemented on the spectrometer running RNMR.  Whether gain control has been implemented or not, the gain value
-is written to the archive title records and may be displayed by `LP` once the record has been read into a buffer.
-`GAIN` takes one parameter, "db" which is the relative receiver gain in decibels.  If this parameter is omitted, RNMR
-will prompt for the receiver gain with the current gain as the default.  The receiver gain is a real number between 0.0
-and 100.0 dB, inclusive.  It is considered precise to 0.1 dB.  If the user accepts the current gain value by pressing
-<RETURN\> at the `GAIN` prompt, no changes are made.  Since the receiver gain control is digital, only discrete gain
-settings are allowed.  The currently supported gain values (in dB) are:
- 	60, 50, 40, 30
-
-CHECK THIS
-When the user enters a new gain value, RNMR uses the largest allowed value less than or equal to the user's value
-provided that the user's value is greater than or equal to 44.0 dB.  If the user enters a gain less than 44.0 dB, then
-RNMR sets a receiver gain of 40.0 dB.  When RNMR sets a gain value different from that requested by the user, RNMR
-displays an informational message showing the actual gain value set.
-CHECK THIS
+`GAIN` sets the observe channel receiver gain. `GAIN` takes one parameter, gain which is the relative receiver gain. If
+this parameter is omitted, RNMR will prompt for the receiver gain with the current gain as the default. The receiver
+gain is a real number between 0.0 and 100.0, inclusive and is considered precise to 0.1.
 ## GAINL
 Set lock receiver gain
 
 Category: Lock
 
-Format: `GAINL` dB
+Format: `GAINL` gain
 
 Defaults: current
 
-Prerequisites: `GAINL` requires implementation of RNMR lock control. (RNMR only.)
+Prerequisites: RNMR lock control. (RNMRA only.)
 
 Description:
-`GAINL` sets the lock channel receiver relative gain.  This command sets the gain only if RNMR lock channel control has
-been implemented on the spectrometer running RNMR.  Unlike `GAIN`, the current value of `GAINL` is not stored in the
+`GAINL` sets the lock channel receiver relative gain. This command sets the gain only if RNMR lock channel control has
+been implemented on the spectrometer running RNMR. Unlike `GAIN`, the current value of `GAINL` is not stored in the
 title records and is not available from `LP`.
 
-`GAINL` takes one parameter, "db" which is the relative lock  receiver gain in decibels.  If this parameter is omitted,
-RNMR will prompt for the receiver gain with the current gain as the default.  The receiver gain is a real number between
-0.0 and 100.0 dB, inclusive.  It is considered precise to 1.0 dB. If the user accepts the current gain value by pressing
-<RETURN\> at the `GAIN` prompt, no changes are made.  Since the receiver gain control is digital, only discrete gain
-settings are allowed.  The currently supported gain values (in dB) are:
-
-Fix this gain is wrong
-           100.0  94.0  88.0  82.0
-            76.0  70.0  64.0  58.0
-
-When the user enters a new gain value, RNMR uses the largest allowed value less than or equal to the user's value
-provided that the user's value is greater than or equal to 64.0 dB.  If the user enters a gain less than 64.0 dB, then
-RNMR sets a receiver gain of 58.0 dB.  When RNMR sets a gain value different from that requested by the user, RNMR
-displays an informational message showing the actual gain value set.
+`GAINL` takes one parameter, gain which is the relative receiver gain. If this parameter is omitted, RNMR will prompt
+for the receiver gain with the current gain as the default. The receiver gain is a real number between 0.0 and 100.0,
+inclusive and is considered precise to 1.0.
 ## GAV
 Get data from averager
 
