@@ -3559,22 +3559,8 @@ Defaults: none
 Prerequisites: Macro only (MAC)
 
 Description:
-`GOTO` performs an unconditional jump within a macro.
-
-The parameter "label" is the name of the macro label to which execution should jump.  If "label" is not specified,
-execution will continue at the next line of the current macro.  Remember to specify "label" as a character string of the
-form ".XXXXXXX" where "." is required syntax and X may be any ASCII character.
-
-When a jump to "label" is requested, RNMR first searches ahead from the current macro line to the end of the macro for
-the specified statement label.  If that label is not found, the search begins again at the first line of the macro.
-
-The parameter "label" may contain a positive line offset, as in the command:
-
-    GOTO .XYZ+1
-
-In this example, macro execution jumps to the first line after the label ".XYZ".  Note that line offsets may not be so
-large as to go beyond the end of the macro; the search for lines offset from .XYZ does not wrap around to the beginning
-of the macro.  Also note that the label name and line offset together must be no more than eight characters in length.
+`GOTO` performs an unconditional jump within a macro. The parameter label is the name of the macro label to which
+execution should jump. If label is not specified, execution will continue at the next line of the current macro.
 ## GOTST
 Perform a conditional jump within a macro based on a test
 
