@@ -3405,6 +3405,8 @@ If the processing buffer is currently visible, `GENCS` always updates the displa
 ## GENPWDR
 Generate complex powder pattern
 
+Category: Data Manipulation
+
 Format: `GENPWDR` freq phase sw fctr
 
 Defaults: 1.0 0.0 current 1.0
@@ -3532,6 +3534,8 @@ indicator in the upper right hand corner of the display. If the acquisition bloc
 will be updated on the screen every two seconds or once per shot, whichever is slower.
 ## GOSUB
 Perform call within macro
+
+Category: Macro
 
 Format: `GOSUB` label
 
