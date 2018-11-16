@@ -3530,6 +3530,23 @@ Before acquisition is resumed, `GO` also resets the frequency table pointer for 
 will be generated starting with the first table entry. Once acquisition is restarted, each shot will increment the shot
 indicator in the upper right hand corner of the display. If the acquisition block is visible, the current sum of FID's
 will be updated on the screen every two seconds or once per shot, whichever is slower.
+## GOSUB
+Perform call within macro
+
+Format: `GOSUB` label
+
+Defaults: none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`GOSUB` jumps to a label within a macro much like `GOTO`. When `MEXIT` is encountered after the jump execution will
+return to the line following the `GOSUB` call instead of exiting the macro. This allows for setting up and calling
+subroutines within a macro.
+
+The parameter label is the name of the macro label to which execution should jump. If label is not specified, execution
+will continue at the next line of the current macro. Note that execution will still return to the line after the `GOSUB`
+call at the next `MEXIT` even if no label was provided.
 ## GOTO
 Go to statement label in macro
 
