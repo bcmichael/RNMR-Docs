@@ -3338,17 +3338,11 @@ Category: Arguments
 
 Format: `GBLDL` nam
 
-Defaults: TEMP
+Defaults: temp
 
 Description:
-`GBLDL` deletes the specified global argument from the global argument table.  Once a global argument has been deleted,
-attempts to retrieve its value via the "%" operator will yield an error message, while `GBLARG` will create a new global
-argument with the same name.
-
-`GBLDL` takes one parameter, "nam", which is the name of the argument to be deleted.  If no name is specified,
-RNMR will prompt for a global argument name with "TEMP" as the default.  Pressing <RETURN\> at this prompt results in
-deleting the global argument TEMP if it exists.  If the specified global argument exists, it will be deleted. Otherwise,
-`GBLDL` will simply do nothing and no error message will be displayed.
+`GBLDL` is an old command for deleting global arguments. It has been replaced with the `REMGBL` command and is currently
+simply an alias to it. As such `REMGBL` should be used in place of `GBLDL`.
 ## GENCS
 Generate complex sine wave
 
