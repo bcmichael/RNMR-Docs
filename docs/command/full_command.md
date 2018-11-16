@@ -3488,35 +3488,35 @@ Start or resume acquisition
 
 Category: Acquisition
 
-Format: `GO` NA
+Format: `GO` na
 
 Defaults: current
 
 Prerequisites: (LOAD) by `EX`; the acquisition must be stopped; RNMR only.
 
 Description:
-`GO` instructs RNMR to continue acquisition after acquisition has been stopped by `QUIT`.  Continuing shots will be
+`GO` instructs RNMR to continue acquisition after acquisition has been stopped by `QUIT`. Continuing shots will be
 added to the current averager memory and the shot counter will be incremented upward from its current value.
 
-`GO` takes one parameter, "na", which is the total number of shots to be taken.  Shots already taken before `GO` count
-towards this limit.  If "`NA`" is omitted, the current shot limit as set and displayed by `NA` will determine how many
-additional shots will be taken; RNMR does not prompt for "na".  Legal values for "`NA`" are -1 and integers greater than
-or equal to 1. If "na" is -1, RNMR will continue acquisition with no limit to the number of shots taken; acquisition
-will continue until stopped by `QUIT` or `WAIT`.  Before resuming acquisition, RNMR checks that the number of shots
-already taken is less than the requested shot limit specified by the `NA` command or the "`NA`" parameter of `GO`.
-Unless `NA` or "na" is -1, acquisition will not be started if this condition is not satisfied.  If "`NA`" is specified
-and is greater than the current number of shots completed, RNMR will replace the current shot limit with "na".  When
-acquisition is continued with `GO`, no delay shots are taken even if `NDLY` is greater than zero.  To continue
-acquisition with one or more delay shots, use the command `NG`.  Unless no shots have been taken yet, `GO` will continue
-acquisition until `NA` shots have been completed, regardless of whether `GO` is executed from console ("\>") level or
-from a macro; this is unlike the behavior of `DG`.
+`GO` takes one parameter, na, which is the total number of shots to be taken. Shots already taken before `GO` count
+towards this limit. If na is omitted, the current shot limit as set and displayed by `NA` will determine how many
+additional shots will be taken; RNMR does not prompt for na.  Legal values for na are -1 and integers greater than or
+equal to 1. If na is -1, RNMR will continue acquisition with no limit to the number of shots taken; acquisition will
+continue until stopped by `QUIT` or `WAIT`. Before resuming acquisition, RNMR checks that the number of shots already
+taken is less than the requested shot limit specified by the `NA` command or the na parameter of `GO`. Unless `NA` or na
+is -1, acquisition will not be started if this condition is not satisfied. If na is specified and is greater than the
+current number of shots completed, RNMR will replace the current shot limit with na. When acquisition is continued with
+`GO`, no delay shots are taken even if `NDLY` is greater than zero. To continue acquisition with one or more delay
+shots, use the command `NG`. Unless no shots have been taken yet, `GO` will continue acquisition until `NA` shots have
+been completed, regardless of whether `GO` is executed from console ("\>") level or from a macro; this is unlike the
+behavior of `DG`.
 
 If `GO` is used to start acquisition before any shots have been completed, data will be acquired until `NA` averaged
-shots are complete if `GO` is executed from console level.  If `GO` is called from a macro in this situation,
-acquisition will continue until `NWAIT` or `NA` shots have been taken, whichever is smaller.  If `NWAIT` is 0, then `NA`
-will determine the number of shots taken from a macro, and similarly, `NWAIT` shots will be taken if `NA` is -1 and
-`NWAIT` is nonzero.  In summary, if no shots have been taken, `GO` acts like `ZG` except that neither the averager nor
-the acquisition title parameters nor the display is initialized by `GO`.  `GO` resets the following averager parameters
+shots are complete if `GO` is executed from console level. If `GO` is called from a macro in this situation, acquisition
+will continue until `NWAIT` or `NA` shots have been taken, whichever is smaller. If `NWAIT` is 0, then `NA` will
+determine the number of shots taken from a macro, and similarly, `NWAIT` shots will be taken if `NA` is -1 and `NWAIT`
+is nonzero. In summary, if no shots have been taken, `GO` acts like `ZG` except that neither the averager nor the
+acquisition title parameters nor the display is initialized by `GO`. `GO` resets the following averager parameters
 to their current settings in RNMR:
 
 Parameter | Description
@@ -3527,8 +3527,8 @@ Parameter | Description
 `NDSP`    | Number of shots to take for each display update
 
 Before acquisition is resumed, `GO` also resets the frequency table pointer for each synthesizer so that frequencies
-will be generated starting with the first table entry.  Once acquisition is restarted, each shot will increment the shot
- indicator in the upper right hand corner of the display.  If the acquisition block is visible, the current sum of FID's
+will be generated starting with the first table entry. Once acquisition is restarted, each shot will increment the shot
+indicator in the upper right hand corner of the display. If the acquisition block is visible, the current sum of FID's
 will be updated on the screen every two seconds or once per shot, whichever is slower.
 ## GOTO
 Go to statement label in macro
