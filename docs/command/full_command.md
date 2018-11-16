@@ -3570,7 +3570,7 @@ Perform a conditional jump within a macro based on a test
 
 Category: Macro
 
-Format: `GOTST` [qual] name args... label1 label2
+Format: `GOTST` name args... label1 label2
 
 Qualifiers: /TRUE /FALSE
 
