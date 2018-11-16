@@ -3466,20 +3466,19 @@ Format: `GMV` src dst
 Defaults: 2 1
 
 Description:
-`GMV` computes the geometric mean of a complex source buffer "src" and a complex destination buffer DST and places the
+`GMV` computes the geometric mean of a complex source buffer src and a complex destination buffer dst and places the
 result in the destination buffer:
 
     DST = SIGN(DST) * SQRT(ABS(DST*SRC))
 
-The geometric means of the real and imaginary parts of the data are computed separately.  The arguments "src" and "dst"
-specify the numbers of the buffers to be processed.  Each buffer number may be either 1 or 2; buffer 1 is the visible
-processing buffer.  If either argument is omitted, RNMR will prompt for a buffer number.  The default source is buffer 2
-while the default destination is buffer 1.  While `GMV` operates only on processing buffers, the user need not be
-viewing the processing buffers to perform the computation.  For two buffers to be processed with `GMV`, they must have
-the same domain (time or frequency) and the same active size (though not necessarily the same allocated size).  If the
-destination buffer is partitioned into two or more blocks, each block is separately multiplied with the corresponding
-block of the source buffer.  The number of blocks in the source buffer need not be the same as that in the destination
-buffer.  RNMR uses the formula below to match source blocks with destination blocks:
+The geometric means of the real and imaginary parts of the data are computed separately. The arguments src and dst
+specify the numbers of the buffers to be processed. If either argument is omitted, RNMR will prompt for a buffer number.
+The default source is buffer 2 while the default destination is buffer 1. While `GMV` operates only on processing
+buffers, the user need not be viewing the processing buffers to perform the computation. For two buffers to be processed
+with `GMV`, they must have the same domain (time or frequency) and the same active size (though not necessarily the same
+allocated size). If the destination buffer is partitioned into two or more blocks, each block is separately multiplied
+with the corresponding block of the source buffer. The number of blocks in the source buffer need not be the same as
+that in the destination buffer. RNMR uses the formula below to match source blocks with destination blocks:
 
     IBLK_SRC = MOD(IBLK_DST-1,NBLK_SRC) + 1, IBLK_DST=1,...,NBLK_DST
 
