@@ -3144,62 +3144,42 @@ Get data from averager
 
 Category: Acquisition
 
-Format: `GAV` iblk ipro nblk
+Format: `GAV` iblk ipro
 
-Defaults: 1 1 1
+Defaults: 1 1
 
-Prerequisites: pulse program must currently be loaded and acquisition must be stopped. (RNMR only.)
+Prerequisites: pulse program must currently be loaded and acquisition must be stopped. (RNMRA only.)
 
 Description:
-`GAV` transfers data and parameters from the averager to a processing buffer.  `GAV` must be used in order to process
-data acquired by the spectrometer hardware.  The averager memory may be logically partitioned into two or more blocks so
+`GAV` transfers data and parameters from the averager to a processing buffer. `GAV` must be used in order to process
+data acquired by the spectrometer hardware. The averager memory may be logically partitioned into two or more blocks so
 that multiple FID's with different experimental parameters can be acquired at once, without the need to start and stop
-acquisition many times.  Once acquisition is stopped, `GAV` transfers one or more of these blocks to the processing
-buffer according to the user's choice of "iblk" and "nblk".  Since the total capacity of the averager memory is 64K
-complex points while that of the processing buffer is only 8K; RNMR allows each to independently partitioned, permitting
-transfer of the averager memory to a processing buffer in 8K or smaller segments through multiple calls to `GAV`.  The
-number of averager blocks is displayed and set by the RNMR command `NABLK`, while the number of buffer segments is set
-by `DBSZA` (for the acquisition buffer) and `DBSZ` (for the processing buffers).
+acquisition many times. Once acquisition is stopped, `GAV` transfers one of these blocks to the processing buffer
+according to the user's choice of iblk and ipro. The number of averager blocks is displayed and set by the RNMR command
+`NABLK`, while the number of buffer segments is set by `DBSZA` (for the acquisition buffer) and `DBSZ` (for the
+processing buffers).
 
 `GAV` initially transfers averager data and the first 16 pulse programmer parameters (pulse, delay, loop, and flag
-values) from the averager hardware to RNMR's averager data buffer.  Next, certain averager buffer parameters are
-initialized, as described below.  Finally, the data and all parameters from the acquisition buffer are copied to the
-specified processing buffer.  Because `GAV` transfers all the acquisition buffer parameters to a processing buffer after
+values) from the averager hardware to RNMR's averager data buffer. Next, certain averager buffer parameters are
+initialized, as described below. Finally, the data and all parameters from the acquisition buffer are copied to the
+specified processing buffer. Because `GAV` transfers all the acquisition buffer parameters to a processing buffer after
 spectrometer data has been acquired, setting an acquisition parameter before collecting data ensures that it will be
-inherited by the processing buffer upon completion of the experiment.  For example, one may ensure that data to be
+inherited by the processing buffer upon completion of the experiment. For example, one may ensure that data to be
 collected will be saved to disk with a given title by using `TITLEA` to set the acquisition buffer title before starting
-an experiment.  Once this is done, `GAV` will transfer this title to the processing buffer, so no `TITLE` command need
+an experiment. Once this is done, `GAV` will transfer this title to the processing buffer, so no `TITLE` command need
 be issued before saving the experiment to disk.  This is equivalent to entering the title using the `TITLE` command
 after `GAV` and before saving to disk.  Acquisition buffer commands which may be used to set up an experiment in this
 way include `IDNA`, `OFFA`, `REFA`, and `TITLEA`.
 
-The first parameter, "iblk" specifies the first averager block to be transferred to a processing buffer, while "nblk"
-specifies the number of blocks to be transferred.  If "iblk" is omitted from the command line, the transfer of averager
-blocks to the processing buffer will start with the first averager block. RNMR does not prompt for "iblk".  Legal values
-for "iblk" are integers greater than or equal to one.
+The first parameter, iblk specifies the averager block to be transferred to a processing buffer. If iblk is omitted RNMR
+will not prompt for it and will transfer block 1.
 
-The second parameter, "ipro" specifies which processing buffer is to receive the averager parameters and data. If this
-parameter is omitted, the averager will be transferred to processing buffer 1 (the visible processing buffer).  RNMR
-will not prompt for "ipro".  Since there are two processing buffers, the legal values for "ipro" are 1 and 2.  If "nblk"
-is omitted from the command line, only averager block "iblk" will be transferred to the processing buffer. RNMR does not
-prompt for "nblk".  Acceptable values for "nblk" are integers from 1 to the number of blocks in the acquisition buffer,
-inclusive.  The latter number is displayed and set by the command `DBSZA`.
+The second parameter, ipro specifies which processing buffer is to receive the averager parameters and data. If this
+parameter is omitted, the averager will be transferred to processing buffer 1 (the visible processing buffer). RNMR
+will not prompt for ipro.
 
 Before transferring data, RNMR checks that the size of each averager block (as displayed and set by `DBSZA`) does not
-exceed the size of each block in the averager data buffer (as displayed and set by `SIZE`).  If "iblk" and "nblk" are
-chosen so that the averager blocks requested exceed the number of blocks declared by `NABLK`, RNMR will abort the
-transfer and display an error message:
-
-    (XAVDB ) BLOCK OUT OF BOUNDS
-
-For example, if the averager is partitioned into 4 blocks (`NABLK 4`), the command:
-
-    GAV 2 1 4
-
-will give an error since the transfer begins at block 2 and there is no averager block 5.  Note that even in this
-situation RNMR transfers as many averager memory blocks to the acquisition buffer as possible, updating the acquisition
-buffer parameters.  However, data and parameters will not be transferred from the acquisition to the processing buffer
-if this error is detected.
+exceed the size of each block in the averager data buffer (as displayed and set by `SIZE`).
 
 Each time `GAV` is used, the destination buffer parameters are initialized with constant and linear phase factors (phi0
 and phi1) equal to 0.0 and with buffer scale factor 1.0.  In addition, the following parameters are initialized for the
@@ -3213,31 +3193,11 @@ SIZE      | 1st direction size | Averager size per block
 FIRST     | 1st direction min. time | 0.0
 STEP      | 1st direction step size | `DW` (msec)
 
-The initialization of these parameters is done only once per invocation of `GAV`, regardless of how many averager blocks
-are transferred.
-
 When `GAV` transfers the averager data to the destination buffer, the data are scaled by 1/(IA\*ADCMAX) where IA is the
 number of signal averaged shots actually taken and ADCMAX is the largest intensity that the spectrometer's analog to
 digital converter (ADC) can represent.  If a given ADC yields N-bit signed integer data, then ADCMAX = 2.0\*\*(N-1).  If
-no signal averaged shots were taken, the data are scaled by 1/ADCMAX instead.  The table below lists current values of
-ADCMAX for each spectrometer:
-
-Spectrometer | ADC bits | ADCMAX
------------- | -------- | ------
-A | 12 | 2048
-B | 12 | 2048
-C | 16 | 32768
-D | 12 | 2048
-E | 16 | 32768
-F | 8  | 128
-G | 16 | 32768
-
-Once the data has been scaled, it is converted from complex integer to complex floating point representation.  After
-`GAV` has successfully transferred all the specified averager blocks, the active number of blocks in the processing
-buffer becomes the number of blocks transferred by `GAV`.  Each time `GAV` is used, the TTLFLG parameter of the
-destination buffer is set to FALSE.  This flag is TRUE is the buffer has a confirmed title; if FALSE, RNMR will prompt
-the user for a title before the buffer is plotted with `PLOT` or `STK` or listed with `LP`, `LPK`, or `LPA`.  If the
-processing buffer "ipro" is currently visible, `GAV` updates the display to show the data transferred from the averager.
+no signal averaged shots were taken, the data are scaled by 1/ADCMAX instead. If the processing buffer ipro is currently
+visible, `GAV` updates the display to show the data transferred from the averager.
 ## GB
 Get blocked record data
 
