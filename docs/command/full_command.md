@@ -3324,40 +3324,13 @@ Set value of global argument
 
 Category: Arguments
 
-Format: `GBLARG` nam val prompt
+Format: `GBLARG` nam val
 
-Defaults: TEMP current VALUE
+Defaults: temp current
 
 Description:
-`GBLARG` defines (or redefines) a global argument.  Global arguments are variables available to all RNMR command levels,
-including the console ("\>") level.  At any time there may be at most 64 defined global arguments.  Both the name and
-the value of each argument are 8-byte character strings.
-
-The first parameter, "nam", is the name of the global argument to be defined or redefined.  The name of a global
-argument may not be blank and must use only the characters A-Z, 0-9, $, or \_.  If no argument name is specified, RNMR
-will prompt for the name of the global argument with "TEMP" as the default.
-
-The third parameter, "prompt", specifies a string to be used if  RNMR prompts for the global argument value "val". This
-string may consist of up to 8 characters excluding blanks and commas.  If "prompt" is omitted, RNMR will use the prompt
-"VALUE  ="; RNMR does not ask for a prompt string if one was not specified on the `GBLARG` command line.  If a prompt is
-specified, it will be inserted into an eight character string in which the last two characters are always " =".  Thus,
-if "prompt" is "ABC", RNMR will use the prompt "ABC    =" when asking for the global argument value.  If "val" is
-specified on the `GBLARG` command line, "prompt" will be ignored.
-
-The second parameter, "val" is the value to which RNMR will set the specified global argument.  If "val" is nonblank,
-RNMR will define or redefine the global argument without prompting the user.  If "val" is blank, RNMR will prompt the
-user for a value.  The prompt string requested by the "prompt" parameter (if any) will be used.  The default for this
-prompt will be the current value of the global argument if the argument is already defined, or "        " if the global
-argument "nam" does not yet exist.  Thus, to make `GBLARG` prompt the user for the global argument value, one may use a
-`GBLARG` command  of the form:
-
-    GBLARG XYZ,,XYZ_VAL
-
-This command will cause RNMR to prompt the user for the value of global argument XYZ. If the user presses <RETURN\> at
-this prompt, global argument XYZ will not be defined or redefined and the `GBLARG` command will have changed nothing.
-If a global argument with name "nam" does not exist prior to the execution of the `GBLARG` command, RNMR will create a
-new global argument with the specified non-blank value. Otherwise, the value of the existing global argument "nam" will
-be updated.
+`GBLARG` is an old command for defining global arguments. It has been replaced with the `DFNGBL` command and is
+currently simply an alias to it. As such `DFNGBL` should be used in place of `GBLARG`.
 ## GBLDL
 Delete global argument
 
