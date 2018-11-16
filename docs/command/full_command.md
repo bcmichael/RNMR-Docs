@@ -1768,7 +1768,7 @@ Prerequisites: Pulse program loaded (LOAD); RNMRA only
 
 Description:
 `D` is an old command for setting the length of pulse program delays. It has been replaced with the `DLY` command and is
-currently simply an alias to it. As such `DLY` should be use in place of `D`
+currently simply an alias to it. As such `DLY` should be used in place of `D`
 ## DATE
 Print the current date and time as an informational message
 
@@ -2673,7 +2673,7 @@ Prerequisites: Acquisition stopped (HALT), RNMRA only
 
 Description:
 `EX` is an old command for loading a pulse program. It has been replaced with the `PPEX` command and is currently simply
-an alias to it. As such `PPEX` should be use in place of `EX`.
+an alias to it. As such `PPEX` should be used in place of `EX`.
 ## EXIT
 Exit program
 
