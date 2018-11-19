@@ -3034,15 +3034,16 @@ NORM   | Normalizes buffer
 ABS    | Scales to absolute scale factor
 NONE   | Does not scale
 
-Since time domain data is presented
-with minimum time on the left while frequency data is presented with maximum frequency on the left (by long standing NMR
-convention), the default action of `FT` is to reverse the order of the data after transformation. This is done by
-conjugating the FID before the Fourier transform is calculated. `FT` also negates every other point in the FID.
+Since time domain data is presented with minimum time on the left while frequency data is presented with maximum
+frequency on the left (by long standing NMR convention), the default action of `FT` is to reverse the order of the data
+after transformation. This is done by conjugating the FID before the Fourier transform is calculated. `FT` also negates
+every other point in the FID.
 
 If the processing buffer is currently visible, `FT` always updates the display to show the transformed data. If
 processing buffer 1 is partitioned into two or more blocks, `FT` acts separately on each block. Thus, multiple FID's
 may be transformed to yield multiple spectra with a invocation of the `FT` command. `FT` may only be used to transform
 time domain data into the frequency domain. To perform the reverse transformation, use `IFT`.
+
 # G
 ---
 ## GA
