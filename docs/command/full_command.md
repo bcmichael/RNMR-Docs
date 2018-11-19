@@ -3951,56 +3951,41 @@ Category: Data manipulation
 
 Format: `IFT` size fctr1
 
-Defaults: current 1.0
+Qualifiers: /REAL /SCALE
+
+Qualifier Defaults: /SCALE=NORM
+
+Defaults: next_power_2 1.0
 
 Prerequisites: Frequency domain data in visible processing buffer (FREQ)
 
 Description:
-`IFT` performs a fast Fourier transform on frequency domain data in processing buffer 1. If the number of active points
-in each block of the processing buffer is not a power of 2, zero filling is performed to increase the size to the next
-power of 2.
+`IFT` performs an inverse Fourier transform on frequency domain data in processing buffer 1. Prior to the transformation
+the frequency domain data is zero filled to size and after the transformation the first point is divided by fctr1.
 
-The first parameter of `IFT` is "size", which is the desired number of points after Fourier transformation.  If this
-parameter is omitted, the size after transformation will be the smallest power of 2 greater than or equal to the current
-size.  Thus, if the spectrum has 200 points, its Fourier transform will have 256 points.  The processing buffer must
-have an allocated size at least as large as this adjusted size or an error message will be returned.  When the size of
-the spectrum is not a power of 2, RNMR zero fills the  spectrum to the next power of 2 before Fourier transformation.
-If "size" is omitted, RNMR will not prompt for a size and the current size must be at least 3.  If "size" is specified,
-the value entered must be a power of 2 greater than or equal to the current size and between 4 and SIZEA inclusive,
-where SIZEA is the allocated size of each block in processing buffer 1.  If "size" is explicitly specified, RNMR will
-attempt to use the indicated size without adjustment.
+If size is provided it must be a power of 2. If size is not provided then RNMR will not prompt for it and will use the
+next power of 2 that is larger than the size of the buffer. If fctr1 is not provided RNMR will not prompt for it and
+will use 0.5. The value of fctr1 must be greater than 0.
 
-The second parameter, "fctr1", specifies the correction factor to be applied to the first point of the data.  The first
-point is multiplied by 0.5\*fctr1 before Fourier transformation to correct the constant offset of the resulting FID.  A
-value of 1.0 for "fctr1" should be appropriate for most applications.  If "fctr1" is omitted, a value of 1 will be used;
-RNMR does not prompt for "fctr1".  The legal values of "fctr1" are real numbers strictly greater than 0.0.
+The /REAL qualifier will cause `IFT` to perform a real inverse Fourier transform using only the real part of the buffer.
+Otherwise a complex inverse  Fourier transform will be applied. /SCALE determines how the result of the transform will
+be scaled as follows:
 
-Before inverse Fourier transformation is performed, RNMR zero fills the spectrum if the FID size will be greater than
-the current size.  This zero filling is done to each block of the processing buffer separately.  Next, each block of the
-processing buffer receives an inverse fast Fourier transform.  The first point of each resulting FID is multiplied by
-the real constant 2.0/fctr1, where "fctr1" is an `IFT` command parameter described above.  After transformation, RNMR
-checks whether the time domain data should be conjugated.  Since time domain data is presented with minimum time on the
-left while frequency data is presented with maximum frequency on the left (by long standing NMR convention), the default
-action of `IFT` is to conjugate the data after transformation.  This ensures that performing an `IFT` followed by an
-`FT` will give the same frequency data order.  If the observe synthesizer has not been defined, the data is always
-conjugated.  Otherwise, the resulting FID will be conjugated if the observe channel is generated from the lower sideband
-(LSB) of the sum of the synthesizer and intermediate (IF) frequencies.  If conjugation is required, it is done
-separately to each block of the processing buffer.
+/SCALE | Description
+------ | -----------
+NORM   | Normalizes buffer
+ABS    | Scales to absolute scale factor
+NONE   | Does not scale
 
-Use of `IFT` resets the constant and linear phase values of the  processing buffer (phi0 and phi1) to zero.  The time
-domain data in each block of the processing buffer is scaled by a constant factor so that the complex magnitude of the
-largest point in the first block is 1.0.  The largest point is the point whose intensity has the largest complex
-magnitude. If the largest magnitude in block 1 is 0.0, no rescaling of the data is performed.  After any rescaling is
-complete, the buffer scale factor is divided by the new size and the rescaling factor:
+Since time domain data is presented with minimum time on the left while frequency data is presented with maximum
+frequency on the left (by long standing NMR convention), the default action of `IFT` is to conjugate the data after
+transformation.  This ensures that performing an `IFT` followed by an `FT` will give the same frequency data order.
 
-    SFT = SFT/(VMAX*SIZE)
-
-where VMAX is the maximum magnitude in block 1 if this magnitude is nonzero or 1.0 otherwise.  If the processing buffer
-is currently visible, `IFT` always updates the display to show the transformed data.  If processing buffer 1 is
-partitioned into two or more blocks, `IFT` acts separately on each block.  Thus, multiple spectra may be transformed to
-yield multiple FID's with one invocation of the `IFT` command.  This "vector processing" feature saves processing time
-by decreasing the number of `IFT` commands that RNMR's command interpreter must handle.  `IFT` may only be used to
-transform frequency domain data into the  time domain.  To perform the forward transformation, use `FT`.
+Use of `IFT` resets the constant and linear phase values of the  processing buffer (phi0 and phi1) to zero. If the
+processing buffer is currently visible, `IFT` always updates the display to show the transformed data. If processing
+buffer 1 is partitioned into two or more blocks, `IFT` acts separately on each block. Thus, multiple spectra may be
+transformed to yield multiple FID's with one invocation of the `IFT` command. `IFT` may only be used to transform
+frequency domain data into the  time domain.  To perform the forward transformation, use `FT`.
 ## IMP
 Import data from foreign format
 
