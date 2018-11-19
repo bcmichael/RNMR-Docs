@@ -4204,6 +4204,20 @@ Qualifier | Integrand
 /REAL     | Real part
 
 The default integrand is the same as the current display mode as displayed and set by the `BUF` command.
+## INSLST
+Insert value into list
+
+Category: Lists
+
+Format: `INSLST` nam pos val
+
+Defaults: temp 1 current
+
+Description:
+`INSLST` inserts the value val at position pos in list nam. All of the values in the list from position pos onward are
+moved by one element and val is stored at pos. The parameter pos cannot exceed the largest filled position in the list.
+If nam is omitted RNMR will prompt for it with temp as a default. If pos is omitted RNMR will prompt for it with 1 as a
+default. If val is omitted RNMR will prompt for it with the current value at position pos in list nam.
 ## IXVAL
 Convert from unit value to point index
 
