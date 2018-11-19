@@ -3747,16 +3747,14 @@ Format: `HTR` state
 
 Defaults: current
 
-Prerequisites: RNMR only.
+Prerequisites: RNMR heater control. RNMRA only
 
 Description:
-`HTR` sets the heater enable flag on or off.  This flag enables or disables computer control of the probe temperature.
-When the `HTR` command is issued, RNMR checks the current status of the probe heater.  If the heater is in ERROR status,
-RNMR reports the error and resets the heater status.  `HTR` takes one parameter, "state", which is ON if heater control
-is enabled and OFF otherwise.  If "state" is omitted, RNMR will prompt for the heater enable state with the current
-state as the default.  The legal values of "state" are ON and OFF only.  If the user presses <RETURN\> when prompted
-for a heater state, no changes are made.  Otherwise, the new heater state is written to the spectrometer hardware
-immediately.
+`HTR` sets the heater enable flag on or off. This flag enables or disables computer control of the probe temperature.
+When the `HTR` command is issued, RNMR checks the current status of the probe heater. If the heater is in ERROR status,
+RNMR reports the error and resets the heater status. `HTR` takes one parameter, state, which is ON if heater control
+is enabled and OFF otherwise. If state is omitted, RNMR will prompt for the heater enable state with the current
+state as the default. The legal values of state are ON and OFF only.
 ## HTRSTS
 Return probe heater status
 
@@ -3764,12 +3762,12 @@ Category: Heater
 
 Format: `HTRSTS`
 
-Prerequisites: RNMR only.
+Prerequisites: RNMR heater control. RNMRA only
 
 Description:
-`HTRSTS` returns the current probe heater status in an informational message.  `HTRSTS` directs RNMR to inquire the
-heater status directly from the spectrometer hardware.  If the status returned by the temperature controller indicates
-an error, RNMR will reset the heater status without printing an error message.  The heater status value read from the
+`HTRSTS` returns the current probe heater status in an informational message. `HTRSTS` directs RNMR to inquire the
+heater status directly from the spectrometer hardware. If the status returned by the temperature controller indicates
+an error, RNMR will reset the heater status without printing an error message. The heater status value read from the
 hardware is displayed via an informational message as a two-character hexadecimal string.
 
 # I
