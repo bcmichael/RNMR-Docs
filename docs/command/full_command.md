@@ -3632,62 +3632,57 @@ Format: `GS` rec buf
 Defaults: 1 1
 
 Description:
-`GS` reads data from a scratch record to a processing buffer.  The scratch records are records 1 through 4 and may be
-deleted but may not be allocated with `ALLB` or `ALLCPY`.  Unlike archive records (numbers 5 to 200), scratch records
-may be freely overwritten; new data and parameters may be written to a scratch record without deleting it first, even if
-the record is not owned by the current user.  `GS` replaces the parameters and data of the buffer with corresponding
-values read from the disk record.  Most RNMR commands require that data stored in a disk file be read into a buffer
-before further processing may be performed.
+`GS` reads data from a scratch record to a processing buffer. The scratch records are records 1 through 4 and may be
+deleted but may not be allocated with `ALLB` or `ALLCPY`. Unlike archive records, scratch records may be freely
+overwritten; new data and parameters may be written to a scratch record without deleting it first, even if the record is
+not owned by the current user. `GS` replaces the parameters and data of the buffer with corresponding values read from
+the disk record. Most RNMR commands require that data stored in a disk file be read into a buffer before further
+processing may be performed.
 
-The first parameter, "rec" is the number of the record to be  retrieved.  The allowable values for "rec" are integers
-between 1 and 4, inclusive.  The archive records (5-200) must be read with `GA` or `GB` instead of `GS`. RNMR checks
-that the specified record is not empty and is a scratch record.  If the user attempts to read an archive record using
-`GS`, RNMR will display the error message:
+The first parameter, rec is the number of the record to be retrieved. The allowable values for rec are integers between
+1 and 4, inclusive. The archive records (5-200) must be read with `GA` or `GB` instead of `GS`. If rec is omitted, RNMR
+will read data from scratch record 1; RNMR does not prompt for rec.
 
-    (CHKTYP) RECORD WRONG TYPE
+The second parameter, buf specifies which processing buffer should receive the data and parameters from record rec. If
+buf is omitted, the archive record will be read into processing buffer 1. RNMR does not prompt for buf.
+In order to read record rec into buffer buf, the allocated size of the buffer must be greater than or equal to the size
+of the archive record. To check and, if necessary, modify the allocated buffer size, use the command `DBSZ`.
 
-If "rec" is omitted, RNMR will read data from scratch record 1; RNMR does not prompt for "rec".
-
-The second parameter, "buf" specifies which processing buffer should receive the data and parameters from record
-"rec".  If "buf" is omitted, the scratch record will be read into processing buffer 1.  RNMR does not prompt for "buf".
-Legal values of "buf" are 1 and 2 since there are two processing buffers available.  Note that buffer 1 is the visible
-processing buffer while buffer 2 is invisible.  In order to read record "rec" into buffer "buf", the allocated size of
-the buffer must be greater than or equal to the size of the scratch record.  To check and, if necessary, modify the
-allocated buffer size, use the command `DBSZ` "buf".  If the last record read into buffer "buf" is different from "rec",
-then the following buffer parameters are replaced with new values as described below:
+If the last record read into buffer `BUF` is different from REC, then the following buffer parameters are replaced with
+the new values as described below:
 
 Parameter | Description | Set Value
 --------- | ----------- | ---------
 TTLFLG    | Title flag  | FALSE to indicate that the buffer title should be verified
 RECNO     | Record number | "rec"
-NDIM      | Number of dims. | value in scratch record
-TITLE     | Buffer title | inherited from scratch record
+NDIM      | Number of dims. | value in archive record
+TITLE     | Buffer title | inherited from archive record
 OWNER     | Record owner | "       "
 DATE      | Date created | "       "
 IDN       | Ident. Fields | "       "
 
 `GS` always sets the buffer IDIMX parameter to 1; IDIMX specifies which dimension of a multidimensional source record is
-currently stored in the buffer.  When a new record is read into a processing buffer by `GS`, RNMR checks the nucleus
-assigned to each synthesizer in the disk record.  For each synthesizer with an assigned nucleus, RNMR defines (or
+currently stored in the buffer. When a new record is read into a processing buffer by `GS`, RNMR checks the nucleus
+assigned to each synthesizer in the disk record. For each synthesizer with an assigned nucleus, RNMR defines (or
 redefines) the table entry for that nucleus with its reference frequency and PPM to Hz conversion factor as stored in
-the disk record.  Note that if the record contains one or more nucleus entries which are already in the current RNMR
+the disk record. Note that if the record contains one or more nucleus entries which are already in the current RNMR
 nucleus table or if the nucleus table is full, RNMR will redefine `NUC UNKN` with the nucleus parameters stored with the
-disk archive.  For each synthesizer, the buffer frequency table is initialized with all values marked as undefined (\*)
-and the buffer inherits the nucleus, offset, and phase sense (SR flag) assigned to that synthesizer.  Other hardware
+disk archive. For each synthesizer, the buffer frequency table is initialized with all values marked as undefined (\*)
+and the buffer inherits the nucleus, offset, and phase sense (SR flag) assigned to that synthesizer. Other hardware
 acquisition parameters (e.g. `PWR`, `GAIN`, `DW`, etc.) are inherited by the buffer without change so that the user may
-list the parameters for a given scratch record by entering `GS` then `LP`.  Note that the title entries for each scratch
-record store the values of only the first eight pulses, delays, and loops, so the values of P 9  through P 16, etc. will
-not be transferred to the buffer's parameter table and will not be printed out by `LP`.  Despite this, the values of all
+list the parameters for a given scratch record by entering `GS` then `LP`. Note that the title entries for each scratch
+record store the values of only the first eight pulses, delays, and loops, so the values of P 9 through P 16, etc. will
+not be transferred to the buffer's parameter table and will not be printed out by `LP`. Despite this, the values of all
 32 PP flags are stored on disk and are transferred by `GS`.
 
-Whether record "rec" has already been read into buffer "buf" or not, RNMR sets the observe (direction 1) synthesizer
-number of the buffer equal to the corresponding value for the record.  When a new record is read into the buffer, the
-software acquisition parameters (e.g. `NAMD`, `NA`, `NWAIT`, etc.) are transferred from the source record to the buffer
-parameter table.  `GS` always updates the buffer to reflect the scratch record's first direction size, domain, time or
-frequency scale, and dimension, and phase and scale factors.  After the data is read from the scratch record to the
-processing buffer, the active size of the buffer becomes the size of the record. `GS` updates the display if processing
-buffer "buf" is currently visible.  Unlike `GA`, `GS` does not update the record read pointer, which is set and
-displayed by the command `PTRA`.
+Whether record rec has already been read into buffer buf or not, RNMR sets the observe (direction 1) synthesizer number
+of the buffer equal to the corresponding value for the record.  When a new record is read into the buffer, the software
+acquisition parameters (e.g. `NAMD`, `NA`, `NWAIT`, etc.) are transferred from the source record to the buffer parameter
+table. `GS` always updates the buffer to reflect the scratch record's first direction size, domain, time or frequency
+scale, and dimension, and phase and scale factors. After the data is read from the scratch record to the processing
+buffer, the active size of the buffer becomes the size of the record. `GS` updates the display if processing buffer buf
+is currently visible. Unlike `GA`, `GS` does not update the record read pointer, which is set and displayed by the
+command `PTRA`.
 ## GSA
 Get averager scratch record data
 
