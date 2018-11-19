@@ -3066,9 +3066,7 @@ record does cause RNMR to refresh the buffer. `GA` cannot be used to read scratc
 `GS` or blocked records which must be accessed with `GB`.
 
 The second parameter, buf specifies which processing buffer should receive the data and parameters from record rec. If
-buf is omitted, the archive record will be read into processing buffer 1. RNMR does not prompt for buf. Legal values of
-buf are 1 and 2 since there are two processing buffers available. Note that buffer 1 is the visible processing buffer
-while buffer 2 is invisible.
+buf is omitted, the archive record will be read into processing buffer 1. RNMR does not prompt for buf.
 
 In order to read record rec into buffer buf, the allocated size of the buffer must be greater than or equal to the size
 of the archive record. To check and, if necessary, modify the allocated buffer size, use the command `DBSZ`.
