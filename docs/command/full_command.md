@@ -4145,61 +4145,25 @@ Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
 `INTG` calculates and displays the indefinite integral (antiderivative) of the data in the visible processing buffer
-(buffer 1) within the current display limits, as displayed and set by `LIM`.  By integrating a spectrum, one may measure
-the total intensity of each peak.  For calculating the integrated intensity of individual peaks, one may compute the
-definite integral within specified frequency limits using the command `INTRG`.  `INTG` acts only on the first processing
-buffer.  The user need not be currently viewing this buffer (`VIEW PRO`) to use `INTG`.  Only the portion of the data
-lying between the current display limits will be integrated by `INTG`.  If the left display limit is currently "\*",
-`INTG` will begin the integration at the leftmost point in the data buffer.  Similarly, if the right display limit is
-"\*", `INTG` will integrate up to the last point in the buffer.  To prepare the data for integration, `INTG` performs a
-baseline fix apodization.  This step eliminates any constant offset after integration.  If the processing buffer is
-divided into two or more blocks, a separate baseline fix is performed for each block.  The baseline is corrected before
-integration by subtracting a straight line from the data between the left and right display limits.  The following
-algorithm is used to obtain the equation of the line to subtract from the spectrum:
-
-1.	Starting at the current left display limit, take the complex  average of the first five points toward the right
-(including the point at the display limit).  If there are fewer than five points to the right in the spectrum (including
-any points beyond the right display limit), average over all the points from the left display limit to the last point in
-the spectrum instead.
-
-2.	Starting at the current right display limit, take the complex average of the first five points toward the left
-(including the point at the display limit).  If there are fewer than five points to the left in the spectrum (including
-any points beyond the left display limit), average over all points from the right display limit to the first point in
-the spectrum instead.
-
-3.	Calculate complex polynomial coefficients P1 and P2:
-
-        P1 = (Ravg - Lavg)/(Rlim - Llim)
-        P2 = Lavg - P1*Llim
-where Lavg and Ravg are the averages of the first few and last few points on either side of the display, as described in
-(1) and (2), respectively, and Rlim and Llim are the point numbers corresponding to the right and left display limits.
-
-4.	Calculate the value of a complex polynomial function Z at each point in the current display:
-
-        Z(I) = (P1 X I) + P2
-where I is the data point number (I=1 is the first point in the spectrum, regardless of display limits).  Note that this
-polynomial describes a straight line in both its real and imaginary parts.
-
-5.	For each point of the spectrum in the current display, subtract the value of the corresponding point of Z(I), the
-baseline correction polynomial.  This corrects both the real and imaginary parts of each data point within the display
-limits, but does not affect any points outside those limits.
+(buffer 1) within the current display limits, as displayed and set by `LIM`. By integrating a spectrum, one may measure
+the total intensity of each peak. For calculating the integrated intensity of individual peaks, one may compute the
+definite integral within specified frequency limits using the command `INTRG`. `INTG` acts only on the first processing
+buffer. The user need not be currently viewing this buffer (`VIEW PRO`) to use `INTG`. Only the portion of the data
+lying between the current display limits will be integrated by `INTG`. If the left display limit is currently "\*",
+`INTG` will begin the integration at the leftmost point in the data buffer. Similarly, if the right display limit is
+"\*", `INTG` will integrate up to the last point in the buffer. To prepare the data for integration, `INTG` performs a
+baseline fix apodization. This step eliminates any constant offset after integration. If the processing buffer is
+divided into two or more blocks, a separate baseline fix is performed for each block. The baseline is corrected before
+integration by subtracting a straight line from the data between the left and right display limits.
 
 After baseline fixing, each block of the processing buffer is separately integrated.  This integration consists of
 replacing each data point within the region to be integrated by the sum of all points from the left display limit to
-that data point, including the endpoints:
-
-        DATA(LLIM) 	= DATA(LLIM)
-        DATA(LLIM+1) = DATA(LLIM)+DATA(LLIM+1)
-        DATA(LLIM+2) = DATA(LLIM)+DATA(LLIM+1)+DATA(LLIM+2)
+that data point, including the endpoints.
 
 After integration, the data is normalized so that the largest point in the first block (between the current display
-limits) has a real absolute value intensity of 1.  If the largest real absolute value intensity is zero, the data is not
-rescaled.  If the data is rescaled, RNMR updates the buffer scale factor, as displayed by `SC`:
-
-    SFT = SFT*SF
-
-where SF is the factor by which the data was multiplied to normalize the first block of the processing buffer.  If the
-processing buffer is currently visible, RNMR updates the display after executing `INTG`.
+limits) has a real absolute value intensity of 1. If the largest real absolute value intensity is zero, the data is not
+rescaled. If the data is rescaled, RNMR updates the buffer scale factor, as displayed by `SC`. If the processing buffer
+is currently visible, RNMR updates the display after executing `INTG`.
 ## INTRG
 Integrate region of spectrum
 
@@ -4207,28 +4171,39 @@ Category: Data Analysis
 
 Format: `INTRG` llim rlim
 
+Qualifiers: /COMPLEX,/IMAG,/REAL
+
+Qualifier Defaults: current_display
+
 Defaults: current_display_limits
 
 Description:
-`INTRG` calculates the definite integral of the real part of the data in the visible processing buffer (buffer 1) within
-specified time or frequency limits.  To calculate and display the indefinite integral of a  spectrum within the current
-display limits, use the command `INTG`.  `INTRG` acts only on the first processing buffer.  The user need not be
-currently viewing this buffer (`VIEW PRO`) to use `INTRG`.  The parameters of the `INTRG` command are "llim" and "rlim",
-the left and right integration limits, respectively.  If either or both of these limits are omitted from the command
-line, RNMR will prompt for the missing limit(s).  The left and right integration limits default to the current left and
-right display limits, which RNMR will report to the user in the current time or frequency unit, as set and displayed by
-the `UNIT` command, with the current maximum number of decimal places, as set and displayed by `NDEC` for that unit.
-For each display limit, the user should enter a value expressed in the current time or frequency unit or "\*" to select
-the leftmost left limit or the rightmost right limit.  If the user requests an integration limit to the left of the
-leftmost point in the data buffer, the integration will begin at the leftmost data point.  Similarly, if the right
-integration limit specified is beyond the rightmost  data point, the integration will proceed to the rightmost data
-point.  If the user specifies an integration limit that is within the range of the data buffer but which does not
-correspond to a specific data point, RNMR will set that limit to the time or frequency of the closest data point to the
-right of the value specified.  `INTRG` calculates the definite integral between the adjusted left and right limits in
-the first block of the visible processing buffer.  This integral is defined as the sum of the real parts of each data
-point between "llim" and "rlim", inclusive.  The integral is reported as an informational message with a maximum of two
-decimal places.  If the integral cannot be reported as a floating point number in an eight character field, it is
-reported in scientific notation.
+`INTRG` calculates the definite integral of the data in the visible processing buffer (buffer 1) within specified time
+or frequency limits. To calculate and display the indefinite integral of a spectrum within the current display limits,
+use the command `INTG`. While `INTRG` acts only on the first processing buffer, he user need not be currently viewing
+this buffer (`VIEW PRO`) to use `INTRG`.
+
+The parameters of the `INTRG` command are llim and rlim, the left and right integration limits. These limits are
+specified in the current time or frequency unit, as set and displayed by the `UNIT` command. If either or both of these
+limits are omitted RNMR will not prompt for them and will use the current display limits. If either limit is beyond the
+size of the dataset, the first/last point in the data set will be the integration limit instead.
+
+If the integration limits are within the range of the data buffer but do not correspond to a specific data point, RNMR
+will set that limit to the time or frequency of the closest data point to the right of the value specified. `INTRG`
+calculates the definite integral between the adjusted left and right limits in the first block of the visible processing
+buffer. This integral is defined as the sum of each data point between llim and rlim, inclusive. The integral is
+reported as an informational message with a maximum of two decimal places. If the integral cannot be reported as a
+floating point number in an eight character field, it is reported in scientific notation.
+
+The qualifiers determine which part of a complex buffer is integrated as follows:
+
+Qualifier | Integrand
+--------- | ---------
+/COMPLEX  | Complex magnitude
+/IMAG     | Imaginary part
+/REAL     | Real part
+
+The default integrand is the same as the current display mode as displayed and set by the `BUF` command.
 ## IXVAL
 Convert from unit value to point index
 
