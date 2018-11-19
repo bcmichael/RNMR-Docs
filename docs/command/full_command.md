@@ -2843,7 +2843,7 @@ The second parameter, rec specifies the number of a blocked archive record conta
 parameter is omitted, RNMR will prompt for a source record number with the current read record (as displayed and set by
 `PTRA`) as the default.
 
-The last parameter, slice specifies which 3D slice of  4D source record should be written out in the foreign format. If
+The last parameter, slice specifies which 3D slice of a 4D source record should be written out in the foreign format. If
 the source record has only three dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will
 export the first slice. Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will
 affect the selection of which one-dimensional blocks of the record comprise the 3D slice and will thus be
@@ -3997,381 +3997,129 @@ Format: `IMP` format
 Defaults: NMR1
 
 Description:
-`IMP` imports the contents of a disk file in a foreign (non-RNMR) format to processing buffer 1.  This importation
-allows one-dimensional data to be transferred to RNMR from another processing program or from one RNMR archive to
-another via `EXP`.  Since the foreign data is only read into memory by `IMP`, the user must use `SA`, `SB`, or `SS` to
-store the imported data permanently.
+`IMP` imports the contents of a disk file in a foreign (non-RNMR) format to processing buffer 1. This importation allows
+one-dimensional data to be transferred to RNMR from another processing program or from one RNMR archive to another via
+`EXP`.  Since the foreign data is only read into memory by `IMP`, the user must use `SA`, `SB`, or `SS` to store the
+imported data permanently.
 
-`IMP` takes one parameter, "format" which specifies the foreign source format.  If "format" is omitted, RNMR will prompt
-for a  foreign format with NMR1 as the default.  The currently supported foreign formats are:
+If no format is specified RNMR will prompt for it with a default of ASCII. The currently supported foreign formats are:
 
-Format | Description
------- | -----------
-FELIX  | FELIX, complex data
-FTNMR  | FTNMR, complex data
-FTNMRR | FTNMR, real data
-NMR1   | NMR1/NMR2, standard blocks
-NMR1A  | NMR1/NMR2, alternate blocks
+- ASCII
+- BINARY
+- BRUKER
+- SIFT
+- VNMR
 
-For the importation of one-dimensional data, NMR1 and NMR1A formats are identical.  Note that while the user need not be
-viewing the processing buffer to use `IMP`, `IMP` imports data only to processing buffer 1.  If the `IMP` command is
-used at console level, RNMR will prompt the user for the name of the file which contains the data to be imported.  The
-user may enter any valid VMS file name up to 64 characters long.  If the user presses <RETURN\> at this prompt, no data
-is imported to the processing buffer.  If `IMP` is used from within a macro, RNMR expects the foreign format file name
-to be delimited by two semicolons (;;) on the line following the `IMP` command.  The entire line after ;; constitutes
-the file name, as illustrated below:
+Note that while the user need not be viewing the processing buffer to use `IMP`, `IMP` imports data only to processing
+buffer 1. If the `IMP` command is used at console level and fspec is not provided, RNMR will prompt the user for the
+name of the file containing the data to be imported. The default file name in the prompt will depend upon the archive
+and record that was last written to. By default `IMP` will search for data in the user's foreign
+directory.
 
-    IMP FTNMR
-    ;;MYFILE.DAT
+If the processing buffer is currently visible on the screen, RNMR will update the display once the `IMP` operation is
+complete.
+## IMP1D
+Import data from foreign format
 
-If the double semicolon delimiter ;; is not found on the line after `IMP`, RNMR will prompt for a file name as when
-`IMP` is used from console level.  Conversely, if ;; is present but there is no text on the line after ;;, `IMP` does
-nothing and the macro execution continues.  The text following ;; may be any valid VMS file name up to 64 characters
-long.  This text may contain local and global argument substitutions, e.g.
+Category: Foreign
 
-    IMP FTNMR
-    ;;MYFILE_&1
+Format: `IMP1D` format rec slice fspec
 
-The local and global arguments specified will be evaluated and filled in before the import file is read in.  If no VMS
-file type was specified in the import file name, RNMR uses:
+Defaults: sift last_written 1 default_name
 
-Format | File Type
------- | -----------
-FELIX  | .FELIX
-FTNMR  | .FTNMR
-NMR1 or NMR1A | .NMR1
+Description:
+`IMP1D` imports the contents of a disk file in a foreign (non-RNMR) format and saves it in a specified one-dimensional
+slice of blocked record rec. This importation allows one-dimensional data to be transferred to RNMR from another
+processing program or from one RNMR archive to another via `EXP1D`.
 
-RNMR will attempt to read the most recent version of the foreign format file in the current default directory (e.g.
-USERA:[JONES]) unless an explicit version number and/or directory were specified by the user.  The foreign format file
-is opened for read-only access.
-FTNMR Importation
-RNMR supports importation of FTNMR files with or without header records.  If RNMR finds a header record in an FTNMR file
-being imported, the encoded header parameters will be used to establish the processing buffer size, domain, etc. and
-RNMR will display the message "USING SUPPLIED FILE HEADER".  If no header is found in the FTNMR file, RNMR will set the
-processing buffer parameters to default values, as described below.  In this case, the message "USING DEFAULT FILE
-HEADER" will be displayed.  If the specified FTNMR file has a header record, the buffer size will be set to the size
-value encoded in the file header.  Otherwise, the buffer size will be set to the number of data points (real or complex)
-in the first file record.  This size must be at least 2 and no greater than 8192, which is the largest data buffer size
-currently supported by RNMR.  The buffer domain (TIME or FREQ) and sweep width are obtained from the values encoded in
-the FTNMR file header, if this header exists.  If there is no header, the buffer domain and sweep width are left
-unchanged from their current values.  `IMP` FTNMR sets the buffer title to the name of the FTNMR file read in.  RNMR
-marks this title as unconfirmed, so when the user saves the buffer to disk with `SA` or `SB` (but not `SS`), RNMR will
-ask for a title, with the FTNMR file name as the default.  When FTNMR data is read into the processing buffer, the
-buffer owner and date fields are set to the current user and date.
+If no format is specified RNMR will prompt for it with a default of sift. The currently supported foreign formats are:
 
-`IMP` FTNMR sets the processing buffer parameters to default values since none of these values are available from the
-FTNMR file header:
+- SIFT
 
-Parameter | Description | IMP FTNMR default
---------- | ----------- | -----------------
-RECNO     | Archive record number | 0
-BLKNO     | Archive block number | 0 each
-IDN       | Identifier field | '       ' each
-SYN       | Buffer synthesizer | 1
-PWR       | Transmitter power | 0.0 each
-GAIN      | Receiver gain | 0.0
-FLF       | Receiver filter factor | 1.0
-PPNAM     | Pulse program name | '       '
-PLS       | Pulse length | 0.0 each
-DLY       | Delay length | 0.0 each
-LOOP      | Loop value | 0 each
-FLAG      | PP flag state (`PPFLG`) | .FALSE. each
-FLDEC     | Decouple flag (`DEC`) | .FALSE.
-FLHETR    | Heteronuclear decouple | .FALSE.
-FLDECX    | Decouple flag (`DECFLG`) | .FALSE. each
-RD        | Recycle delay | 0.0
-NAMD      | Number of acq modes | 1
-AMD       | Acquisition mode list | 0
-PPMD      | PP mode list | 0 each
-NA        | Total number of scans | 1
-IA        | Number of scans taken | 1
-NWAIT     | Number of scans to `WAIT` | 0
-NDLY      | Number of dummy scans | 0
-NDSP      | #scans/screen update | 0
-DIM       | Buffer dimension | 1
-IPHI0     | Constant phase value | 0
-IPHI1     | Linear phase value | 0
-SFT       | Buffer scale factor | 1.0
+The second parameter, rec specifies the number of a blocked archive record in which the imported data should be stored.
+If this parameter is omitted, RNMR will prompt for a source record number with the current write record (as displayed
+and set by `PTRA`) as the default.
 
-Note that RNMR ignores any PPM to Hz conversion parameters and constant and linear phase values encoded in the FTNMR
-file header in favor of the default values listed above.  If the FTNMR file has a parameter header record, RNMR reads
-the next record in the file to obtain the buffer data. RNMR checks that the FTNMR record length in the second record
-matches the size value encoded in the header. If they do not agree, an error message:
+The last parameter, slice specifies which 1D slice of a 2D, 3D, or 4D source record the foreign data should be written
+to. If the source record has only one dimension, slice must be 1. If slice is omitted RNMR will not prompt for it and
+will write to the first slice. Note that the current mapping of dimensions to directions (as displayed and set by
+`DIRB`) will affect the selection of which one-dimensional block of the record comprises the 1D slice and will thus be
+written to. Slice is interpreted as a linear index over the 2nd/3rd/4th dimensions.
 
-    (RDAT_FTNMR  ) ILLEGAL RECORD SIZE
+If the `IMP1D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
+file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
+and the name of the archive the record is in. By default `IMP1D` will search for data in the user's foreign directory.
 
-will be displayed along with the second record's length.
-
-If the imported FTNMR file has no header, RNMR reads only the first record of the file to obtain the buffer data.  RNMR
-can read FTNMR data in either complex (FTNMR) or real-only (FTNMRR) format.  When data is read from an FTNMRR file, the
-imaginary part of the processing buffer is set to zero.  If the processing buffer is currently visible on the screen,
-RNMR will update the display once the `IMP` operation is complete.
-NMR1 Importation
-RNMR supports importation of NMR1 files in either standard (NMR1) or alternate-block (NMR1A) formats.  For purposes of
-importing one-dimensional data, NMR1 and NMR1A files are handled identically.  Consequently, in the description below,
-"NMR1" will refer to both the NMR1 and NMR1A formats.
-
-When importing NMR1 data, RNMR sets the processing buffer size to the size value encoded in the NMR1 file header. This
-size is required to be at least 64 and no greater than 8192.  RNMR obtains the sweep width in the first dimension from
-the NMR1 header parameter fdSweepWidth.  The title field in the NMR1 header becomes the buffer title and RNMR marks the
-buffer title as unconfirmed.  Thus, when the user saves the buffer to disk with `SA` or `SB` (but not `SS`), RNMR will
-ask for a title, with the NMR1 title field as the default. Any control characters in the NMR1 title field (characters
-less than "`SP`") are replaced by blanks in composing the buffer title.  When NMR1 data is read into the processing
-buffer, the buffer owner and date fields are set to the current user and date.  If the spectrometer frequency field in
-the NMR1 header (fdSpecFreq) is not zero, RNMR defines the nucleus OBS with the NMR and reference frequencies encoded in
-the header.  If OBS is already defined or if there is no more room in the nucleus table, the nucleus UNKN is redefined
-with these frequencies.  RNMR sets the buffer observe synthesizer nucleus parameter to OBS or UNKN accordingly.  If the
-NMR1 spectrometer frequency field is zero, RNMR does not update any nuclei, and the buffer observe nucleus is set to '
-'.  The frequency value (SYNVAL) for synthesizer 1 is set to 0.0 and all synthesizer table entries for that synthesizer
-(SYNFRQ) are marked as unused.  Similarly, if the decoupler frequency field in the NMR1 header (fdDecouplerFreq) is not
-zero, RNMR defines the nucleus DEC with the NMR and reference frequencies encoded in the header.  If DEC is already
-defined or if there is no more room in the nucleus table, the nucleus UNKN is redefined with these frequencies.  RNMR
-sets the buffer decouple synthesizer nucleus parameter to DEC or UNKN accordingly.  If the NMR1 decoupler frequency
-field is zero, RNMR does not update any nuclei, and the buffer decouple nucleus is set to ' '.  The frequency value
-(SYNVAL) for synthesizer 2 is set to 0.0 and all synthesizer table entries for that synthesizer (SYNFRQ) are marked as
-unused.  For synthesizers 3 and 4, RNMR sets the synthesizer nucleus buffer parameter to ' ' and the synthesizer value
-buffer parameter to 0.0.  The synthesizer table entries for these synthesizers are initialized with all fields marked as
-unused.  The pulse program name for the processing buffer is obtained from the NMR1 header experiment name parameter,
-fdexnamel.  Both the total number of scans (`NA`) and the actual number of scans taken (IA) are set to the value of
-fdnscan, the number of scans parameter in the NMR1 file header.
-
-`IMP` NMR1 always sets the processing buffer DIM parameter to 1 to indicate that the buffer will contain NMR1 data from
-the first (acquisition) dimension. The size and domain (time or frequency) of the buffer are set to their corresponding
-values in the NMR1 header (fdsize and fdFtFlag).  `IMP` NMR1 sets certain processing buffer parameters to default values
-since their values are not available from the NMR1 file header:
-
-Parameter | Description | IMP FTNMR default
---------- | ----------- | -----------------
-RECNO     | Archive record number | 0
-BLKNO     | Archive block number | 0 each
-IDN       | Identifier field | '       ' each
-SYN       | Buffer synthesizer | 1
-PWR       | Transmitter power | 0.0 each
-GAIN      | Receiver gain | 0.0
-FLF       | Receiver filter factor | 1.0
-PPNAM     | Pulse program name | '       '
-PLS       | Pulse length | 0.0 each
-DLY       | Delay length | 0.0 each
-LOOP      | Loop value | 0 each
-FLAG      | PP flag state (`PPFLG`) | .FALSE. each
-FLDEC     | Decouple flag (`DEC`) | .FALSE.
-FLHETR    | Heteronuclear decouple | .FALSE.
-FLDECX    | Decouple flag (`DECFLG`) | .FALSE. each
-RD        | Recycle delay | 0.0
-NAMD      | Number of acq modes | 1
-AMD       | Acquisition mode list | 0
-PPMD      | PP mode list | 0 each
-NA        | Total number of scans | 1
-IA        | Number of scans taken | 1
-NWAIT     | Number of scans to `WAIT` | 0
-NDLY      | Number of dummy scans | 0
-NDSP      | #scans/screen update | 0
-DIM       | Buffer dimension | 1
-IPHI0     | Constant phase value | 0
-IPHI1     | Linear phase value | 0
-SFT       | Buffer scale factor | 1.0
-
-When RNMR imports data from an NMR1 format file, the data is multiplied by a factor C as defined below:
-
-C | Condition
-- | ---------
-SF | `NA` is less than or equal to 0 and time domain
-SF/SIZE | `NA` is less than or equal to 0 and freq. domain
-SF/(2048\*NA) | `NA` is greater than 0 and time domain
-SF/(2048\*NA\*SIZE) | `NA` is greater than 0 and frequency domain
-
- where SF is the NMR1 scale factor:
-
- SF = 2.0^(-IPWR), IPWR = fdAbsScale
-
-If the number of spectra in the source file, fdSpecNum, is greater than 1, `IMP` NMR1 will refuse to read the data, and
-an error message:
-
-    (IMP_NMR1 ) FILE NOT 1D
-
-will be displayed. If this occurs, use `IMP2D` NMR1 to import the NMR1 data into an RNMR archive record.  If the
-processing buffer is currently visible on the screen, RNMR will update the display once the `IMP` operation is complete.
+Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
+exported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
 ## IMP2D
-Import 2D data from foreign format
-
+Import data from foreign format
 
 Category: Foreign
 
-Format: `IMP2D` format rec blk
+Format: `IMP2D` format rec slice fspec
 
-Defaults: NMR1 next 1
-
+Defaults: sift last_written 1 default_name
 
 Description:
-`IMP2D` imports a two-dimensional data set from a foreign (non-RNMR) format file to a pre-allocated blocked archive
-record.  This importation allows two-dimensional data to be transferred from a foreign processing program to RNMR or
-from one RNMR archive to another via `EXP2D`.  The first parameter, "format" specifies the foreign source format. If
-"format" is omitted, RNMR will prompt for a foreign format with NMR1 as the default.  The currently supported foreign
-formats are:
+`IMP2D` imports the contents of a disk file in a foreign (non-RNMR) format and saves it in a specified two-dimensional
+slice of blocked record rec. This importation allows two-dimensional data to be transferred to RNMR from another
+processing program or from one RNMR archive to another via `EXP2D`.
 
-Format | Description
------- | -----------
-FELIX  | FELIX, complex data
-FTNMR  | FTNMR, complex data
-FTNMRR | FTNMR, real data
-NMR1   | NMR1/NMR2, standard blocks
-NMR1A  | NMR1/NMR2, alternate blocks
+If no format is specified RNMR will prompt for it with a default of sift. The currently supported foreign formats are:
 
+- SIFT
 
-The second parameter, "rec" specifies the number of a blocked archive record to receive the imported data.  If this
-parameter is omitted, RNMR will prompt for a destination record number with the current archive record (as displayed and
-set by `PTRA`) as the default.  The acceptable values of "rec" are integers from 5 to 200; the scratch records (1-4) are
-always one-dimensional. RNMR checks that "rec" is in fact a nonempty blocked record.  If "rec" is not a blocked record,
-RNMR will display the error message:
+The second parameter, rec specifies the number of a blocked archive record in which the imported data should be stored.
+If this parameter is omitted, RNMR will prompt for a source record number with the current write record (as displayed
+and set by `PTRA`) as the default.
 
-    (CHKTYP) RECORD WRONG TYPE
+The last parameter, slice specifies which 2D slice of a 3D or 4D source record the foreign data should be written to. If
+the source record has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will
+write to the first slice. Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`)
+will affect the selection of which one-dimensional blocks of the record comprises the 2D slice and will thus be
+written to. Slice is interpreted as a linear index over the 3rd/4th dimensions.
 
-The last parameter, "blk2d" specifies which 2D slice of a 3D or 4D destination record "rec" should receive the foreign
-format data. If the record "rec" has only two dimensions, "blk2d" must be 1.  If "blk2d" is omitted, then the data will
-be written to the first 2D slice of record "rec".  That is, the default value of "blk2d" is 1.  RNMR does not prompt for
-"blk2d".  The legal values of "blk2d" are the integers 0,1,2,... up to the number of 2D slices allocated for the
-destination record.  If "blk2d" is zero, then RNMR will write the imported data to the next 2D slice in the destination
-record.  The command `PTRB` "rec" displays the current write block for a given record; "blk2d" equal to zero directs
-`IMP2D` to write to the block after the current write block.  Note that the current mapping of dimensions to directions
-(as displayed and set by `DIRB`) will affect the selection of which one-dimensional blocks of record "rec" comprise the
-2D slice "blk2d" and will thus receive the foreign data.  When `IMP2D` is used to import 2D slices to a four-dimensional
-record of size A X B X C X D, "blk2d" values from 1 to C select slices from the first cube, C+1 to 2C select slices from
-the second cube, etc.  In this way, selection of 2D slices from a 4D data set can be accomplished with one parameter,
-"blk2d".  In order for record "rec" to receive data from `IMP2D`, the record must have been allocated with at least two
-dimensions.  If the record has only one dimension allocated, RNMR will display the error message:
+If the `IMP2D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
+file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
+and the name of the archive the record is in. By default `IMP2D` will search for data in the user's foreign directory.
 
-    (CVTBB ) TOO FEW DIMENSIONS
-
-If the `IMP2D` command is used at console level, RNMR will prompt the user for the name of the file which contains the
-data to be imported.  The user may enter any valid VMS file name up to 64 characters long.  If the user presses
-<RETURN\> at this prompt, no data is imported to the processing buffer.  If `IMP2D` is used from within a macro, RNMR
-expects the foreign format file name to be delimited by two semicolons (;;) on the line following the `IMP` command.
-The entire line after ;; constitutes the file name, as illustrated below:
-
-    IMP2D FTNMR 25
-    ;;MYFILE.DAT
-
-If the double semicolon delimiter ;; is not found on the line after `IMP2D`, RNMR will prompt for a file name as when
-`IMP2D` is used from console level.  Conversely, if ;; is present but there is no text on the line after ;;, `IMP2D`
-does nothing and the macro execution continues.  The text following ;; may be any valid VMS file name up to 64
-characters long.  This text may contain local and global argument substitutions, e.g.
-
-    IMP2D FTNMR 25
-    ;;MYFILE_&1
-
-The local and global arguments specified will be evaluated and filled in before the import file is read in.  If no VMS
-file type was specified in the import file name, RNMR uses:
-
-Format | File Type
------- | -----------
-FELIX  | .FELIX
-FTNMR  | .FTNMR
-NMR1 or NMR1A | .NMR1
-
-RNMR will attempt to read the most recent version of the foreign format file in the current default directory (e.g.
-USERA:[JONES]) unless an explicit version number and/or directory were specified by the user.  The foreign format file
-is opened for read-only access.
-NMR1 Importation
-RNMR supports importation of NMR1 files in either standard (NMR1) or alternate-block (NMR1A) formats.
-Except as noted, "NMR1" will refer to both NMR1 and NMR1A formats in the discussion below.  When importing NMR1 data
-(standard blocks), RNMR requires that the first-dimension size of the foreign data set (as encoded by the NMR1 header
-parameter fdsize) be at least 64 and no greater than 8192.  For the NMR1A format, RNMR requires fdsize to be at least
-128 and no more than 16384.  Failure to satisfy these constraints will result in an error message:
-
-    (RPRM_NMR1) SIZE OUT OF BOUNDS
-
-RNMR determines the number of 1D slices in the NMR1 data set by examining the header parameter fdSpecNum.  This
-parameter must be greater than 1 to use `IMP2D` NMR1.  If fdSpecNum is less than or equal to one, RNMR will display the
-error message:
-
-    (IMP2D_NMR1  ) FILE NOT 2D
-
-If fdSpecNum is greater than 1, RNMR assumes that the NMR1 data set is two-dimensional.  If "format" is NMR1, RNMR
-expects that fdSpecNum is the number of 1D slices in the NMR1 format file.  Conversely, if "format" is
-NMR1A, there should be 2\*fdSpecNum slices, with alternate slices belonging to the real and imaginary parts of the
-2D data set.  RNMR obtains the sweep width in the first dimension from the NMR1 header parameter fdSweepWidth.  The
-title field in the NMR1 header becomes the record title and RNMR marks the record title as unconfirmed.  Thus, when
-`IMP2D` transfers the first 1D block of data to record "rec", RNMR will ask for a title, with the NMR1 title field as
-the default.  Any control characters in the NMR1 title field (characters less than "`SP`") are replaced by blanks in
-composing the buffer title.  When NMR1 data is read into the processing buffer, the buffer owner and date fields are set
-to the current user and date.  If the spectrometer frequency field in the NMR1 header (fdSpecFreq) is not zero, RNMR
-defines the nucleus OBS with the NMR and reference frequencies encoded in the header.  If OBS is already defined or if
-there is no more room in the nucleus table, the nucleus UNKN is redefined with these frequencies.  RNMR sets the record
-observe synthesizer nucleus parameter to OBS or UNKN accordingly.  If the NMR1 spectrometer frequency field is zero,
-RNMR does not update any nuclei, and the buffer observe nucleus is set to ' '.  The record's frequency value (SYNVAL)
-for synthesizer 1 is set to 0.0 and all synthesizer table entries for that synthesizer (SYNFRQ) stored for record "rec"
-are marked as unused. Similarly, if the decoupler frequency field in the NMR1 header (fdDecouplerFreq) is not zero, RNMR
-defines the nucleus DEC with the NMR and reference frequencies encoded in the header.  If DEC is already defined or
-if there is no more room in the nucleus table, the nucleus UNKN is redefined with these frequencies.  RNMR sets the
-record decouple synthesizer nucleus parameter to DEC or UNKN accordingly.  If the NMR1 decoupler frequency field is
-zero, RNMR does not update any nuclei, and the record's decouple nucleus is set to ' '.  The record's frequency value
-(SYNVAL) for synthesizer 2 is set to 0.0 and all synthesizer table entries for that synthesizer (SYNFRQ) stored for
-record "rec" are marked as unused.  For synthesizers 3 and 4, RNMR sets the synthesizer nucleus title parameter to ' '
-and the synthesizer value title parameter to 0.0.  The synthesizer table entries for these synthesizers are initialized
-with all fields marked as unused. The pulse program name for the destination record is obtained from the NMR1 header
-experiment name parameter, fdexnamel.  Both the total number of scans (`NA`) and the actual number of scans taken (IA)
-are set to the value of fdnscan, the number of scans parameter in the NMR1 file header.
-
-`IMP2D` NMR1 always sets the record DIM parameter to 1 to indicate that the record will contain NMR1 data from the first
-(acquisition) dimension.  The first dimension size and domain (time or frequency) of the record are set to their
-corresponding values in the NMR1 header (fdsize and fdFtFlag).  `IMP2D` NMR1 sets certain processing buffer parameters
-to default values since their values are not available from the NMR1 file header:
-
-Parameter | Description | IMP FTNMR default
---------- | ----------- | -----------------
-IDN       | Identifier field | '       ' each
-SYN       | Buffer synthesizer | 1
-PWR       | Transmitter power | 0.0 each
-GAIN      | Receiver gain | 0.0
-FLF       | Receiver filter factor | 1.0
-PPNAM     | Pulse program name | '       '
-PLS       | Pulse length | 0.0 each
-DLY       | Delay length | 0.0 each
-LOOP      | Loop value | 0 each
-FLAG      | PP flag state (`PPFLG`) | .FALSE. each
-FLDEC     | Decouple flag (`DEC`) | .FALSE.
-FLHETR    | Heteronuclear decouple | .FALSE.
-FLDECX    | Decouple flag (`DECFLG`) | .FALSE. each
-RD        | Recycle delay | 0.0
-NAMD      | Number of acq modes | 1
-AMD       | Acquisition mode list | 0
-PPMD      | PP mode list | 0 each
-NA        | Total number of scans | 1
-NWAIT     | Number of scans to `WAIT` | 0
-NDLY      | Number of dummy scans | 0
-NDSP      | #scans/screen update | 0
-DIM       | Buffer dimension | 1
-IPHI0     | Constant phase value | 0
-IPHI1     | Linear phase value | 0
-SFT       | Buffer scale factor | 1.0
-
-When RNMR imports data from an NMR1 format file, the data is multiplied by a factor C as defined below:
-
-C | Condition
-- | ---------
-SF | `NA` is less than or equal to 0 and time domain
-SF/SIZE | `NA` is less than or equal to 0 and freq. domain
-SF/(2048\*NA) | `NA` is greater than 0 and time domain
-SF/(2048\*NA\*SIZE) | `NA` is greater than 0 and frequency domain
-
-where SF is the NMR1 scale factor:
-
-    SF = 2.0^(-IPWR), IPWR = fdAbsScale
-
-RNMR reads each 1D slice from the NMR1 format file and writes it (after scaling the data by the factor C above) to a
-block in record "rec".
+Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
+exported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
 ## IMP3D
-Import 3D data from foreign file format
-
+Import data from foreign format
 
 Category: Foreign
 
-Format: `IMP3D` format rec blk
+Format: `IMP3D` format rec slice fspec
 
-Defaults: NMR1 next 1
-
+Defaults: sift last_written 1 default_name
 
 Description:
+`IMP3D` imports the contents of a disk file in a foreign (non-RNMR) format and saves it in a specified three-dimensional
+slice of blocked record rec. This importation allows two-dimensional data to be transferred to RNMR from another
+processing program or from one RNMR archive to another via `EXP3D`.
+
+If no format is specified RNMR will prompt for it with a default of sift. The currently supported foreign formats are:
+
+- SIFT
+
+The second parameter, rec specifies the number of a blocked archive record in which the imported data should be stored.
+If this parameter is omitted, RNMR will prompt for a source record number with the current write record (as displayed
+and set by `PTRA`) as the default.
+
+The last parameter, slice specifies which 2D slice of a 4D source record the foreign data should be written to. If the
+source record has only three dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will write
+to the first slice. Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will
+affect the selection of which one-dimensional blocks of the record comprises the 3D slice and will thus be written to.
+Slice is interpreted as a linear index over the 4th dimension.
+
+If the `IMP3D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
+file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
+and the name of the archive the record is in. By default `IMP3D` will search for data in the user's foreign directory.
+
+Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
+exported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
 ## INTG
 Compute integral of spectrum
 
