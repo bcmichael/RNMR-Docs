@@ -3775,11 +3775,15 @@ hardware is displayed via an informational message as a two-character hexadecima
 ## IBOX
 Set volume parameters for nD volume integration
 
-Category:
+Category: Data Manipulation
 
-Format: `IBOX`
+Format: `IBOX` dim size
 
-Defaults:
+Defaults: 1 current
+
+Description:
+`IBOX` sets the integration block size for a dimension dim to size. If dim is omitted RNMR will prompt for it with a
+default of 1. If size is omitted RNMR will prompt for it with a default of the current integration block size for dim.
 ## IDN
 Set buffer identification fields
 
