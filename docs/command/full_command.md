@@ -4224,23 +4224,24 @@ Convert from unit value to point index
 Category: Data Analysis
 
 Format: `IXVAL` xval
-Default : 	        current_cursor_position Description:
-`IXVAL` returns the point number (index value) of the specified time or frequency point.  This command may be used with
+Default : current_cursor_position
+
+Description:
+`IXVAL` returns the point number (index value) of the specified time or frequency point. This command may be used with
 `XVAL`, which returns the time or frequency value given a point number, to locate and examine data points in a buffer
-one by one within a specific time or frequency range.  `IXVAL` returns a point number using the time or frequency scale
-of the visible processing buffer (buffer 1).  `IXVAL` takes one parameter, "xval", which is the time or frequency value
-to be converted to a point number.  This value should be specified in the current time or frequency unit for processing
-buffer 1.  If "xval" is not specified on the command line, RNMR will prompt for a time or frequency value with the
-current cursor 1 position in buffer 1 as the default.  The cursor position is reported in the current time or frequency
-unit (`UNIT`) with the current maximum number of decimal places for that unit (`NDEC`).  If the current cursor position
-is "\*", then the default for "xval" is the time or frequency of the leftmost data point.  If the requested value of
-"xval" is to the left of the leftmost data point, `IXVAL` will return the number 1.  Similarly, if "xval" is to the
-right of the rightmost data point or if "xval" is "\*", `IXVAL` will return the number of data points in buffer 1.  If
-the user specifies an "xval" value that is within the range of  the data buffer but which does not correspond to a
-specific data point, RNMR will return the point number of the first data point to the right of the time or frequency
-specified.  The point number corresponding to the adjusted time or frequency  value "xval" is reported to the user as an
-informational message.  Note that "xval" need not lie within the current display limits, as set and displayed by the
-`LIM` command.
+one by one within a specific time or frequency range.
+
+`IXVAL` returns a point number using the time or frequency scale of the visible processing buffer (buffer 1). `IXVAL`
+takes one parameter, xval, which is the time or frequency value to be converted to a point number. This value should be
+specified in the current time or frequency unit for processing buffer 1. If xval is not specified RNMR will prompt it
+with the current cursor 1 position in buffer 1 as the default. If the current cursor position is \*, then the default
+for xval is the time or frequency of the leftmost data point.
+
+If xval is outside of the dataset then `IXVAL` will return either 1 or the size of the buffer. If xval is within the
+range of the data buffer but does not correspond to a specific data point, RNMR will return the point number of the
+first data point to the right of the time or frequency specified. The point number corresponding to the adjusted time or
+frequency  value xval is reported to the user as an informational message. Note that xval need not lie within the
+current display limits, as set and displayed by the `LIM` command.
 
 # L
 ---
