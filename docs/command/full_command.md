@@ -3590,6 +3590,40 @@ commands between `ELSTST` and `ENDTST` cause `GOTST` to jump to label2.
 `GOTST` is the most direct replacement for the behavior of the old if commands such as `IFEQ`. `GOTST` should only be
 used when there is a need to jump to labels in different parts of a macro. `TST` should be used for conditional
 execution of blocks of commands.
+## GREF
+Restore processing buffer reference from nucleus table
+
+Category: Frequency Control
+
+Format: `GREF` nuc
+
+Defaults: *
+
+Description:
+`GREF` changes the reference frequency (or frequencies) in a processing buffer to match what is stored in the nucleus
+table. If nuc is * `GREF` changes the frequency for every channel. Otherwise a valid nucleus must be passed. If nuc is
+omitted RNMR will prompt for it with a default of \*. `GREF` only changes the reference frequency parameter for the
+processing buffers and does not update the synthesizers.
+## GREFA
+Restore acqusition buffer reference from nucleus table
+
+Category: Frequency Control
+
+Format: `GREFA` nuc
+
+Qualifiers: /RESET
+
+Qualifier Defaults: none
+
+Prerequisites: RNMRA only
+
+Defaults: *
+
+Description:
+`GREFA` changes the reference frequency (or frequencies) in the acquisition buffer to match what is stored in the
+nucleus table. If nuc is * `GREFA` changes the frequency for every channel. Otherwise a valid nucleus must be passed. If
+nuc is omitted RNMR will prompt for it with a default of \*. `GREFA` only changes the reference frequency parameter for
+the acquisition buffer. If /RESET is used `GREFA` will also change the synthesizer frequency and FMU frequency.
 ## GS
 Get data from scratch record
 
