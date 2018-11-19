@@ -4120,6 +4120,20 @@ and the name of the archive the record is in. By default `IMP3D` will search for
 
 Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
 exported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
+## INFLVL
+Set info level
+
+Category: Misc.
+
+Format: `INFLVL` nam lev
+
+Defaults: none current
+
+Description:
+`INFLVL` sets info levels that are then used by other RNMR commands to decide how much information to print to the
+console. The first parameter, nam, specifies which info level to set. If nam is omitted RNMR will prompt for it with no
+default. The second parameter, lev, is the level to set and should be an integer that is 0 or greater. If lev is omitted
+RNMR will prompt for it with the current value as a default.
 ## INTG
 Compute integral of spectrum
 
