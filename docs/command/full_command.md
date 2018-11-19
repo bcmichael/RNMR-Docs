@@ -3785,49 +3785,30 @@ Description:
 `IBOX` sets the integration block size for a dimension dim to size. If dim is omitted RNMR will prompt for it with a
 default of 1. If size is omitted RNMR will prompt for it with a default of the current integration block size for dim.
 ## IDN
-Set buffer identification fields
+Set processing buffer identification fields
 
 Category: Data Storage
 
 Format: `IDN` idn val prompt
 
-Defaults: 1 current VAL
+Defaults: 1 current 'Enter identifier value:'
 
 Description:
-`IDN` sets the value of an identifier field for the visible processing buffer.  These values are saved in the title
+`IDN` sets the value of an identifier field for the visible processing buffer. These values are saved in the title
 record when the data is saved and may be used to store any desired ancillary information about an experiment, such as
-pH, temperature, or sample spinning speed.  Currently, there are four identifiers available.  `IDN` modifies only the
+pH, temperature, or sample spinning speed. Currently, there are four identifiers available. `IDN` modifies only the
 visible processing buffer (buffer 1), however the user need not be viewing this buffer to use `IDN`.
 
-The first parameter, "idn", selects which identifier field is to be modified. The legal values for "idn" are the
-integers
-1,2,3, and 4. If "idn" is not specified, RNMR will prompt for an identifier number with a default value of 1.
+The first parameter, idn, selects which identifier field is to be modified. The legal values for idn are the integers 1
+through 4. If idn is not specified, RNMR will prompt for an identifier number with a default value of 1.
 
-The third parameter, "prompt", specifies a prompt string to use for inquiring the value of the specified `IDN` field.
-This parameter is used only if "val" is omitted from the `IDN` command line. The purpose of the "prompt" parameter is to
-facilitate interactive input of `IDN` values from a macro, as in the command:
-
-    IDN 1 7.0    ! set default value for idn 1
-    IDN 1,,PH    ! prompt user for new IDN 1 value
-
-which prompts for the value of `IDN` number 1 as shown below:
-
-    PH     = 7.0
-
-If "prompt" is omitted, RNMR will use the prompt string "VAL    ="; RNMR does not ask the user for "prompt" if it is
-not specified on the command line.  Values for "prompt" should be strings of 1 to 6 characters; RNMR will always use "
-=" as the last two characters of an `IDN` prompt string.
-
-The second parameter, "val", specifies a new value for the `IDN` field selected by "idn".  If no value is specified,
-RNMR will ask the user for a value using the prompt selected by the "prompt" parameter and the current value of the
-`IDN` field as the default.  Thus, entering "`IDN` 1" in RNMR will display the current value of the first identifier
-field and ask the user for a new value.  If the user presses <RETURN\> at this prompt, no changes are made.  Otherwise,
-RNMR sets the specified `IDN` field to the value entered.  If the "val" parameter is specified on the `IDN` command
-line, RNMR will update the value of the identifier field and no prompt will be made.
+The second parameter, val, is the value to set the identifier field to. If val is omitted, RNMR will prompt for it with
+the current value as a default and the third parameter, prompt, as the prompt string. If prompt is omitted the default
+prompt string is 'Enter identifier value:'.
 
 Each `IDN` field stores a maximum of 8 characters and is written to the appropriate title record when the visible
-processing buffer is saved to disk using the `SA`, `SB`, and `SS` commands.  Thus, the identifier fields may be used to
-note user-defined conditions for each record.  When RNMR starts up, each identifier field is blank.  Processing buffer
+processing buffer is saved to disk using the `SA`, `SB`, and `SS` commands. Thus, the identifier fields may be used to
+note user-defined conditions for each record. When RNMR starts up, each identifier field is blank. Processing buffer
 identifier fields may be displayed and modified only by the `IDN` command.
 ## IDNA
 Set acquisition buffer identification fields
@@ -3836,45 +3817,29 @@ Category: Acquisition
 
 Format: `IDNA` idn val prompt
 
-Defaults: 1 current VAL
+Defaults: 1 current 'Enter identifier value:'
 
-Prerequisites: RNMR only.
+Prerequisites: RNMRA only.
 
 Description:
-`IDNA` sets the value of an identifier field for the acquisition buffer.  Following the get averager (`GAV`) command,
+`IDNA` sets the value of an identifier field for the acquisition buffer. Following the get averager (`GAV`) command,
 these values are saved in the title record when the data is saved and may be used to store any desired ancillary
-information about an experiment, such as pH, temperature, or MAS spinning speed.  Currently, there are four identifiers
-available.  `IDNA` modifies only the acquisition buffer, however the user need not be viewing this buffer to use `IDNA`.
- When the user transfers averager data and parameters to a processing buffer with `GAV`, the `IDNA` fields are saved to
-the corresponding `IDN` fields of that processing buffer.  Thus, the user may set up identifier field values (to be
+information about an experiment, such as pH, temperature, or MAS spinning speed. Currently, there are four identifiers
+available. `IDNA` modifies only the acquisition buffer, however the user need not be viewing this buffer to use `IDNA`.
+When the user transfers averager data and parameters to a processing buffer with `GAV`, the `IDNA` fields are saved to
+the corresponding `IDN` fields of that processing buffer. Thus, the user may set up identifier field values (to be
 saved to disk after acquisition) before beginning an experiment.
 
-The first parameter, "idn", selects which identifier field is to be modified.  The legal values for "idn" are the
-integers 1,2,3, and 4. If "idn" is not specified, RNMR will prompt for an identifier number with a default value of 1.
+The first parameter, idn, selects which identifier field is to be modified. The legal values for idn are the integers 1
+through 4. If idn is not specified, RNMR will prompt for an identifier number with a default value of 1.
 
-The third parameter, "prompt", specifies a prompt string to use for inquiring the value of the specified `IDNA` field.
-This parameter is used only if "val" is omitted from the `IDNA` command line.  The purpose of the "prompt" parameter is
-to facilitate interactive input of `IDNA` values from a macro, as in the command:
+The second parameter, val, is the value to set the identifier field to. If val is omitted, RNMR will prompt for it with
+the current value as a default and the third parameter, prompt, as the prompt string. If prompt is omitted the default
+prompt string is 'Enter identifier value:'.
 
-    IDNA 1 7.0   	! set default value for idn 1
-    IDNA 1,,PH   	! prompt user for new IDNA 1 value
-
-which prompts for the value of `IDNA` number 1 as shown below:
-
-    PH     = 7.0
-
-If "prompt" is omitted, RNMR will use the prompt string "VAL    ="; RNMR does not ask the user for "prompt" if it is
-not specified on the command line.  Values for "prompt" should be strings of 1 to 6 characters; RNMR will always use "
-=" as the last two characters of an `IDNA` prompt string.
-
-The second parameter, "val", specifies a new value for the `IDNA` field selected by "idn".  If no value is specified,
-RNMR will ask the user for a value using the prompt selected by the "prompt" parameter and the current value of the
-`IDNA` field as the default.  Thus, entering "`IDNA` 1" in RNMR will display the current value of the first identifier
-field and ask the user for a new value.  If the user presses <RETURN\> at this prompt, no changes are made.  Otherwise,
-RNMR sets the specified `IDNA` field to the value entered. If the "val" parameter is specified on the `IDNA` command
-line, RNMR will update the value of the identifier field and no prompt will be made.  Each `IDNA` field stores a maximum
-of 8 characters and is a parameter of the acquisition buffer.  When RNMR starts up, each identifier field is blank.
-Acquisition buffer identifier fields may be displayed and modified only by the `IDNA` command.
+Each `IDNA` field stores a maximum of 8 characters and is a parameter of the acquisition buffer. When RNMR starts up,
+each identifier field is blank. Acquisition buffer identifier fields may be displayed and modified only by the `IDNA`
+command.
 ## IFCND
 Branch on condition flag
 
