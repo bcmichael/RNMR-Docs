@@ -4243,6 +4243,33 @@ first data point to the right of the time or frequency specified. The point numb
 frequency  value xval is reported to the user as an informational message. Note that xval need not lie within the
 current display limits, as set and displayed by the `LIM` command.
 
+# K
+---
+## KEYARG
+Declare names of macro keyword arguments
+
+Category: Arguments
+
+Format: `KEYARG` nam...
+
+Defaults: none
+
+Description:
+`KEYARG` is used to declare the names of the keyword arguments passed to a macro. Keywords are passed to macros much
+like qualifiers are passed to RNMR commands. For example:
+
+    TEMP /A=2 /B
+
+calls macro TEMP and passes two keyword arguments A and B and a value of 2 for argument A. This will create the
+following local arguments within macro TEMP.
+
+- A=2
+- B=''
+- KEY$1='/VAR=2'
+- KEY$2='/B'
+
+Calling `KEYARG A B` within TEMP will delete KEY$1 and KEY$2 and leave A and B untouched.
+
 # L
 ---
 ## LB
