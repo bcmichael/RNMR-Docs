@@ -4180,7 +4180,7 @@ Defaults: current_display_limits
 Description:
 `INTRG` calculates the definite integral of the data in the visible processing buffer (buffer 1) within specified time
 or frequency limits. To calculate and display the indefinite integral of a spectrum within the current display limits,
-use the command `INTG`. While `INTRG` acts only on the first processing buffer, he user need not be currently viewing
+use the command `INTG`. While `INTRG` acts only on the first processing buffer, the user need not be currently viewing
 this buffer (`VIEW PRO`) to use `INTRG`.
 
 The parameters of the `INTRG` command are llim and rlim, the left and right integration limits. These limits are
