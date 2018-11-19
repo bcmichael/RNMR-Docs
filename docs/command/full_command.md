@@ -3683,40 +3683,6 @@ scale, and dimension, and phase and scale factors. After the data is read from t
 buffer, the active size of the buffer becomes the size of the record. `GS` updates the display if processing buffer buf
 is currently visible. Unlike `GA`, `GS` does not update the record read pointer, which is set and displayed by the
 command `PTRA`.
-## GSA
-Get averager scratch record data
-
-Category: Acquisition
-
-Format: `GSA` rec buf
-
-Defaults: 1 1
-
-Prerequisites: RNMR only
-
-Description:
-`GSA` reads data from an averager scratch record to a processing buffer.  The averager scratch records are stored in the
-files TITLEA.DAT and DATAA.DAT in the directory [`USER`] for each spectrometer.  `GSA` replaces the parameters and
-data of the buffer with corresponding values read from the disk record.  Most RNMR commands require that data stored in
-a disk file be read into a buffer before further processing may be performed.
-
-The first parameter, "rec" is the number of the averager scratch record to be retrieved.  The allowable values for "rec"
-are integers between 1 and the number of averager scratch records, which is a dynamic quantity.  If "rec" is omitted,
-RNMR will read data from averager scratch record 1; RNMR does not prompt for "rec".
-
-The second parameter, "buf" specifies which processing buffer should receive the data and parameters from record
-"rec". If "buf" is omitted, the scratch record will be read into processing buffer 1.  RNMR does not prompt for "buf".
-Legal values of "buf" are 1 and 2 since there are two processing buffers available.  Note that buffer 1 is the visible
-processing buffer while buffer 2 is invisible.  In addition to transferring data from DATAA.DAT to the processing
-buffer, `GSA` initializes the following buffer parameters:
-
-Parameter | Description | Set Value
---------- | ----------- | ---------
-TTLFLG    | Title flag  | FALSE to indicate that the buffer title should be verified
-RECNO     | Record number | 0
-BLKNO     | block number | All 0
-
-When `GSA` completes successfully, the display is updated if "buf" is 1.
 
 # H
 ---
