@@ -3689,35 +3689,11 @@ command `PTRA`.
 ## HELP
 Get online help
 
-Format: `HELP` lib key1 ... key9
-
-Defaults: none none ... none
+Format: `HELP`
 
 Description:
-`HELP` obtains information from the RNMR on-line help library. Information is currently available on both RNMR commands
-(`HELP RNMR`) and writing pulse programs (`HELP PPROG`).
-
-The first parameter, "lib", specifies which RNMR help module is to be accessed.  Currently, the two modules available
-are RNMR (for help on data acquisition and processing) and PPROG (for help on pulse programming).  If "lib" is omitted,
-the system will ask for a help module once the help window is displayed.  There is no default value for "lib".  The
-parameters "key1" through "key9" provide keywords to specify the desired help library topic.  Each successive keyword
-selects a topic from a lower level of the `HELP` tree.  RNMR processes all keywords from left to right up to the first
-blank keyword; keywords after a blank value are ignored.  The entire `HELP` specification, including "lib" and all
-nonblank keywords must be no more than 80 characters long, including a single space between each token.  The `HELP`
-keywords are optional and have no default values.
-
-When the `HELP` command is executed, RNMR pushes its graphics window into the background so the text terminal window is
-visible.  While the user views the contents of the RNMR help library, CTRL-Y interrupts are disabled.  This ensures that
-any acquisition or processing running in the background will not be accidentally stopped.  After parsing by RNMR, the
-`HELP` command is run in a spawned subprocess by VAX/VMS; RNMR continues to execute any scheduled activities in the main
-process.  Once the `HELP` session is complete, RNMR resets the CTRL-Y state to its original value; i.e. if CTRL-Y
-interrupts were allowed before `HELP`, they will be re-enabled.  The RNMR graphics window is then popped to the
-foreground, hiding the text window.
-
-The RNMR command help library is structured so that one may obtain help on a command XYZ by entering `HELP RNMR XYZ`.
-Retrieving other information about RNMR or PPROG requires navigating through the `HELP` tree interactively or specifying
-additional keywords "key2" through "key9".  For assistance in navigating through a VMS `HELP` library, enter (at the
-`DCL` prompt "$") `HELP HELP`.
+`HELP` obtains information from the RNMR on-line help library. Instructions on navigating the help library are shown at
+the bottom of the help window. Note that the information in the help library may not be fully up to date.
 ## HILB
 Perform Hilbert transform on spectrum
 
