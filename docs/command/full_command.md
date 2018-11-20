@@ -4279,27 +4279,17 @@ Category: Data Manipulation
 
 Format: `LB` lb
 
-Defaults: current_lb_factor
+Defaults: current
 
 Description:
-`LB` displays and sets the line broadening factor for exponential and Gaussian multiplication apodizations (`EM` and
-`GM`).  This factor can either be set with the `LB` command or by entering the line broadening factor as a parameter
-with the `EM` or `GM` commands.  Thus, `EM 1`, `GM 1`, and `LB 1` all set the line broadening factor to 1.0 for
-all subsequent apodizations.
+`LB` sets the line broadening factor used for exponential and Gaussian multiplication apodizations (`EM` and `GM`). This
+factor can either be set with the `LB` command or by entering the line broadening factor as a parameter with the `EM` or
+`GM` commands. Thus, `EM 1`, `GM 1`, and `LB 1` all set the line broadening factor to 1.0 for subsequent apodizations.
 
-`LB` has one parameter, "lb", which is the line broadening factor, expressed in the current default frequency unit.
-This unit is set by the command "`UNIT /FREQ /DFLT`" and can be any frequency unit except PPM.  If "lb" is not
-specified on the command line, RNMR will display the current line broadening factor and prompt for a value.  If the user
-presses <RETURN\> at this prompt, the line broadening factor will not be updated.  The current line broadening factor is
-expressed in the current default frequency unit with the current number of decimal places for that unit (`NDEC`).  The
-line broadening parameter "lb" should be expressed in the current default frequency unit and may be either positive or
-negative.  RNMR requires that the line broadening factor be no greater than 1000 Hz and no less than -1000 Hz,
-regardless of the user's choice of default frequency unit.  An attempt to enter a line broadening factor outside this
-range will result in an error message:
-
-    (LB0    ) ARGUMENT ERROR
-
-Once the line broadening factor has been updated, the new factor will be used for all future line broadening operations.
+`LB` has one parameter, lb, which is the line broadening factor, expressed in the current default frequency unit. This
+unit is set by the command `UNIT /FREQ /DFLT` and can be any frequency unit except PPM. If lb is omitted, RNMR will
+prompt for it with the current line broadening factor as the default. the line broadening factor must be between -1000
+and 1000.
 ## LCK
 Enable or disable lock feedback loop
 
