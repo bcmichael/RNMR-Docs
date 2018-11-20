@@ -4377,33 +4377,47 @@ Description:
 `LI` is an old command for incrementing a loop value by an integer incr. It has been replaced with the `LOOP /INCR`
 command and is currently simply an alias to it. As such `LOOP /INCR` should be used in place of `LI`.
 ## LIM
-Set display limits
+Set processing buffer display limits
 
 Category: Display Control
 
 Format: `LIM` llim rlim
 
-Defaults: current_display_limits
+Defaults: current current
 
 Description:
-`LIM` sets the display limits for the currently visible buffer, as selected by the `VIEW` command.  `LIM` takes two
-parameters, "llim" and "rlim", which are the left and right display limits, respectively.  These limits are expressed in
-the current unit for the visible buffer (ACQ, PRO, or LCK) with the current maximum number of decimal places for that
-unit.  The current unit is set and displayed by the `UNIT` command and the maximum number of decimal places is set and
-displayed by `NDEC`.  If "llim" or "rlim" is missing from the command line, RNMR will display the current value for the
-missing limit and prompt for a new value.  If the user omits both "llim" and "rlim" on the command line and presses
-<RETURN\> when prompted for each limit, RNMR will not update the display; in all other cases, the display will be
-updated to reflect the new limits.
+`LIM` sets the display limits for the visible processing buffer. `LIM` takes two parameters, llim and rlim, which are
+the left and right display limits, respectively. These limits are expressed in the current unit for the visible
+processing buffer. The current unit is set and displayed by the `UNIT` command. If llim or rlim is omitted RNMR will
+prompt for it with the current left or right display limit as a default. A value outside of the dataset or "\*" will use
+the leftmost or rightmost point in the buffer. Values that are within the range of the dataset but that do not
+correspond exactly to a point will use the closest point to the right of the specified value.
 
-For each display limit, the user should enter a value expressed in  the current time or frequency unit or "\*" to select
-the leftmost left limit or the rightmost right limit.  If the user requests a display limit to the left of the leftmost
-point in the data buffer, the display will begin at the leftmost data point.  Similarly, if the right display limit
-specified is beyond the rightmost data point, the display will extend to the rightmost data point.  If the user
-specifies an display limit that is within the range of the data buffer but which does not correspond to a specific data
-point, RNMR will set that limit to the time or frequency of the closest data point to the right of the value specified.
 Note that the command `LIM * *` directs RNMR to set the display limits so that all points in the data buffer are
-visible.  Unless display updating has been set off with the `SET DSP` command, RNMR will update the display to show the
-data between "llim" and "rlim", whether the user is currently viewing the acquisition or the processing buffer.
+visible. Unless display updating has been set off with the `SET DSP` command, RNMR will update the display to show the
+data between llim and rlim.
+## LIMA
+Set acquisition buffer display limits
+
+Category: Display Control
+
+Format: `LIMA` llim rlim
+
+Defaults: current current
+
+Prerequisites: RNMRA only.
+
+Description:
+`LIMA` sets the display limits for the acquisition buffer. `LIMA` takes two parameters, llim and rlim, which are the
+left and right display limits, respectively. These limits are expressed in the current unit for the acquisition buffer.
+The current unit is set and displayed by the `UNIT` command. If llim or rlim is omitted RNMR will prompt for it with the
+current left or right display limit as a default. A value outside of the dataset or "\*" will use the leftmost or
+rightmost point in the buffer. Values that are within the range of the dataset but that do not correspond exactly to a
+point will use the closest point to the right of the specified value.
+
+Note that the command `LIM * *` directs RNMR to set the display limits so that all points in the data buffer are
+visible. Unless display updating has been set off with the `SET DSP` command, RNMR will update the display to show the
+data between llim and rlim.
 ## LIMB
 Set blocked record display limits
 
