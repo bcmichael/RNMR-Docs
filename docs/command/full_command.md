@@ -3335,9 +3335,9 @@ Delete global argument
 
 Category: Arguments
 
-Format: `GBLDL` nam
+Format: `GBLDL` first last
 
-Defaults: temp
+Defaults: temp first
 
 Description:
 `GBLDL` is an old command for deleting global arguments. It has been replaced with the `REMGBL` command and is currently
