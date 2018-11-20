@@ -4367,50 +4367,15 @@ Increment pulse programmer loop value
 
 Category: Acquisition
 
-Format: `LI` loop incr.
+Format: `LI` loop incr
 
 Defaults: 1 1
 
-Prerequisites: Pulse program loaded (LOAD), RNMR Only
+Prerequisites: Pulse program loaded (LOAD), RNMRA Only
 
 Description:
-`LI` increments a pulse program loop by a specified positive or negative integer value.  This function is particularly
-useful in acquisition macros for multidimensional experiments or relaxation studies, where successive spectra are taken
-with regularly incremented timings.  The pulse programs used in these experiments are written so that the timings to be
-incremented consist of a pulse or delay within a loop.  The pulse or delay is then set to the desired time per point and
-is left constant while the surrounding loop is incremented with `LI`.
-
-Pulse program loops are specified in the PP source code by LOOP statements and assigned default values by DEF
-statements.  Upon loading a pulse program with the RNMR command `EX`, these loops are initialized with any default
-values that were declared in the source code.  To modify or check the current value of a loop, the RNMR commands `LI`
-and `LS` may be entered whenever a pulse program is loaded; the acquisition need not be stopped to use these commands.
-
-The first parameter of `LI` is "loop", the number of the loop to be incremented.  If "loop" is not specified on the
-command line, RNMR will prompt for a loop number.  If the user presses <RETURN\> at this prompt, RNMR will increment
-loop 1.  The legal values for "loop" are integers between 1 and 16, inclusive.  While the pulse programmer supports 32
-loops, only the first 16 can be set from RNMR; loops 17 through 32 may be used internally in a pulse program but are not
-accessible to RNMR.
-
-The second parameter, "incr.", is the number by which the specified loop is to be incremented. If "incr." is not
-specified on the command line, the loop will be incremented by 1; RNMR will not prompt for "incr." if it is omitted.
-Legal values for "incr." are positive or negative integers between -32767 and 32767, inclusive.  Note that RNMR will
-update the pulse programmer hardware even if "incr." is zero.
-
-Once "loop" and "incr." have been entered, RNMR looks up the current value of the loop and tests that the incremented
-value is between zero and 32767, inclusive. If the incremented value would fall outside this range, the loop is not
-updated, and RNMR prints the error message:
-
-    (PPLI0 ) VALUE OUT OF BOUNDS
-
-followed by the rejected incremented loop value. If the incremented value falls within the legal range, RNMR updates the
-loop in the pulse programmer parameter buffer and prints an informational message such as:
-
-    CURRENT LOOP VALUE = 64
-
-After incrementing a loop with the `LI` command during acquisition, several seconds will usually elapse before the pulse
-programmer responds to the change.  However, if the loop value is modified before acquisition is started, the first shot
-should reflect the incremented loop setting.  If the incremented loop value is zero, the pulse programmer will simply
-skip all instructions within that loop as soon as the hardware is updated.
+`LI` is an old command for incrementing a loop value by an integer incr. It has been replaced with the `LOOP /INCR`
+command and is currently simply an alias to it. As such `LOOP /INCR` should be used in place of `LI`.
 ## LIM
 Set display limits
 
@@ -4450,6 +4415,28 @@ Defaults: current 1 current current
 
 Description:
 `LIMB` sets display limits for blocked record
+## LOOP
+Set or increment pulse program loop counter
+
+Category: Acquisition
+
+Format: `LOOP` loop val
+
+Qualifiers: /INCR
+
+Qualifier Defaults: none
+
+Defaults: 1 current/1
+
+Prerequisites: Pulse program loaded (LOAD), RNMRA Only
+
+Description:
+`LOOP` either sets a pulse program loop to val or if /INCR is used increments it by val. If loop is omitted RNMR will
+prompt for it with 1 as a default. If val is omitted RNMR will prompt for it with the current loop value as the default
+unless /INCR is used in which case RNMR will not prompt for val and will set it to 1.
+
+The final loop value must be between 0 and 65,535 inclusive. If /INCR is used `LOOP` will display the final loop value
+as an informational message.
 ## LP
 List buffer parameters
 
