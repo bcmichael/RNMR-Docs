@@ -4297,15 +4297,25 @@ Category: Lock
 
 Format: `LCK` state
 
-Defaults: current_lock_state
+Defaults: current
 
-Prerequisites: `LCK` requires implementation of RNMR lock control. It is available in RNMR only.
+Prerequisites: RNMR lock control. RNMRA only.
 
 Description:
-`LCK` enables or disables the magnetic field-frequency lock on spectrometers with software lock control enabled.  `LCK`
-takes one parameter, "state", which may be specified as  either ON or OFF to enable or disable the lock, respectively.
- If "state" is omitted from the command line, RNMR will display the current lock enable status and prompt for "state".
-If the user presses <RETURN\> at this prompt, RNMR exits `LCK` without updating the hardware lock state.
+`LCK` enables or disables the magnetic field-frequency lock on spectrometers with software lock control enabled. `LCK`
+takes one parameter, state, which may be specified as  either ON or OFF to enable or disable the lock, respectively.
+If "state" is omitted RNMR will prompt for it with the current lock state as the default.
+## LCKCTL
+Open lock control pop up menu
+
+Category: Lock
+
+Format: `LCKCTL`
+
+Prerequisites: RNMR lock control. RNMRA only.
+
+Description:
+`LCKCTL` opens a pop-up menu containing lock controls.
 ## LCLARG
 Set local argument value
 
