@@ -4316,61 +4316,52 @@ Prerequisites: RNMR lock control. RNMRA only.
 
 Description:
 `LCKCTL` opens a pop-up menu containing lock controls.
+## LCKMTR
+Enable lock meter
+
+Category: Lock
+
+Format: `LCKMTR`
+
+Prerequisites: RNMR lock control. RNMRA only.
+
+Description:
+`LCKMTR` enables the lock meter.
+## LCKVAL
+Read lock value
+
+Category: Lock
+
+Format: `LCKVAL`
+
+Prerequisites: RNMR lock control. RNMRA only.
+
+Description:
+`LCKVAL` displays the real and imaginary components of the current lock value as informational messages.
 ## LCLARG
 Set local argument value
 
 Category: Arguments
 
-Format: `LCLARG` nam val prompt
+Format: `LCLARG` nam val
 
-Defaults: TEMP current VALUE
+Defaults: temp current
 
 Description:
-`LCLARG` defines (or redefines) a local argument. Local arguments are  variables available only within the current
-command level.  At any time there may be at most 128 defined local arguments at all levels.  Both the name and the value
-of each local argument are 8-byte character strings.
-
-The first parameter, "nam", is the name of the local argument to be defined or redefined.  The name of a local argument
-may not be blank and must use only the characters A-Z, 0-9, $, or \_.  If no argument name is specified, RNMR will
-prompt for the name of the local argument with "TEMP" as the default.
-
-The third parameter, "prompt", specifies a string to be used if  RNMR prompts for the local argument value "val".  This
-string may consist of up to 8 characters excluding blanks and commas.  If "prompt" is omitted, RNMR will use the prompt
-"VALUE  ="; RNMR does not ask for a prompt string if one was not specified on the `LCLARG` command line.  If a prompt is
-specified, it will be inserted into an eight character string in which the last two characters are always  " =".  Thus,
-if "prompt" is "ABC", RNMR will use the prompt "ABC    =" when asking for the local argument value.  If "val" is
-specified on the `LCLARG` command line, "prompt" will be ignored.
-
-The second parameter, "val" is the value to which RNMR will set the specified local argument.  If "val" is nonblank,
-RNMR will define or redefine the local argument without prompting the user.  If "val" is blank, RNMR will prompt the
-user for a value.  The prompt string requested by the "prompt" parameter (if any) will be used.  The default for this
-prompt will be the current value of the local argument if the argument is already defined, or "        " if the local
-argument "nam" does not yet exist.  Thus, to make `LCLARG` prompt the user for the local argument value, one may use a
-`LCLARG` command  of the form:
-
-    LCLARG XYZ,,XYZ_VAL
-
-This command will cause RNMR to prompt the user for the value of local argument XYZ.  If the user presses <RETURN\> at
-this prompt, local argument XYZ will not be defined or redefined and the `LCLARG` command will have changed nothing.  If
-a local argument with name "nam" does not exist prior to the execution of the `LCLARG` command, RNMR will create a new
-local argument with the specified non-blank value.  Otherwise, the value of the existing local argument "nam" will be
-updated.
+`LCLARG` is an old command for defining local arguments. It has been replaced with the `DFNLCL` command and is
+currently simply an alias to it. As such `DFNLCL` should be used in place of `LCLARG`.
 ## LCLDL
 Delete local argument
 
 Category: Arguments
 
-Format: `LCLDL` lclnam
+Format: `LCLDL` first last
 
-Defaults: TEMP
+Defaults: temp first
 
 Description:
-`LCLDL` deletes the specified local argument from the local argument table. Once a local argument has been deleted,
-attempts to retrieve its value via the "&" operator  will yield an error message, while `LCLARG` will create a new local
-argument with the same name.  `LCLDL` takes one parameter, "nam", which is the name of the argument to be deleted.  If
-no name is specified, RNMR will prompt for a local argument name with "TEMP" as the default.  Pressing <RETURN\> at this
-prompt results in deleting the local argument TEMP if it exists.  If the specified local argument exists, it will be
-deleted.  Otherwise, `LCLDL` will simply do nothing and no error message will be displayed.
+`LCLDL` is an old command for deleting global arguments. It has been replaced with the `REMLCL` command and is currently
+simply an alias to it. As such `REMLCL` should be used in place of `LCLDL`.
 ## LI
 Increment pulse programmer loop value
 
