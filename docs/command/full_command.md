@@ -4435,6 +4435,20 @@ The value of dim cannot exceed the number of dimensions in the blocked record. I
 prompt for it with the current left or right display limit as a default. A value outside of the dataset or "\*" will use
 the leftmost or rightmost point available. Values that are within the range of the dataset but that do not correspond
 exactly to a point will use the closest point to the right of the specified value.
+## LOG
+Write line to log file
+
+Category: Misc.
+
+Format: `LOG` line
+
+Defaults: none
+
+Prerequisites: Logging enabled
+
+Description:
+`LOG` writes a line to the log file. If no line is specified RNMR will prompt for it. `LOG` cannot be used unless
+logging is enabled.
 ## LOOP
 Set or increment pulse program loop counter
 
