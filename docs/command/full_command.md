@@ -4472,7 +4472,7 @@ unless /INCR is used in which case RNMR will not prompt for val and will set it 
 The final loop value must be between 0 and 65,535 inclusive. If /INCR is used `LOOP` will display the final loop value
 as an informational message.
 ## LP
-List buffer parameters
+List processing buffer parameters
 
 Category: Data Storage
 
@@ -4481,172 +4481,98 @@ Format: `LP` buf
 Defaults: 1
 
 Description:
-`LP` prints a summary of processing buffer parameter values on the current printer, as selected with the command
-`LPDEV`.  When processing spectrometer data offline, many experimental parameters can only be determined from the `LP`
-summary since RNMRP lacks commands to display and set pulse lengths, loop values, and other acquisition parameters.  The
-exact format of the `LP` summary varies from spectrometer to spectrometer due to differences in implementation of
-RNMR-controlled hardware.  `LP` takes one parameter, "buf", which is the number of the processing buffer whose
-parameters will be listed.  This parameter may be set to either 1 or 2. Processing buffer 1 is the visible buffer while
-the contents of buffer 2 are not visible on the display.  If "buf" is omitted from the command line, RNMR will list the
-parameters of buffer 1; RNMR does not prompt the user for "buf".
+`LP` displays a summary of processing buffer parameter values in a pop up window. When processing spectrometer data
+offline, many experimental parameters can only be determined from the `LP` summary since RNMRP lacks commands to display
+and set many acquisition parameters. The exact format of the `LP` summary varies from spectrometer to spectrometer due
+to differences in implementation of RNMR-controlled hardware. `LP` takes one parameter, buf, which is the number of the
+processing buffer whose parameters will be listed. Processing buffer 1 is the visible buffer while the contents of the
+other processing buffers are not visible on the display. If buf is omitted from the command line, RNMR will list the
+parameters of buffer 1; RNMR does not prompt the user for buf.
 
-If a title has been specified earlier for this buffer (e.g. by a `SA`, `SS`, or `SB` operation), RNMR will use this
-title on the printout. At console (\>) level, if no title has been specified,  RNMR will prompt the user for a title
-after the `LP` command is entered.  Similarly, an `LP` command in a macro will prompt the user for a missing title if
-the `LP` command is followed by the text line operator ";;" as shown below:
+The following buffer parameters are listed in the `LP` display:
 
-    LP
-    ;;
+CURRENT BUFFER TITLE
 
-If `LP` is issued from a macro without a subsequent ";;" text substitution command, RNMR will use the buffer's current
-title on the `LP` printout.  If a new, nonblank title is entered for the `LP` printout and "buf" is currently visible,
-RNMR will display the new title at the top of the screen.  Each time `LP` is executed, RNMR opens a new ASCII text file
-called `LP`.TMP to store the parameter summary until it can be printed.  If the printing is successful, `LP`.TMP is
-deleted on completion of the print job.  If the print job is aborted or otherwise fails to complete successfully, the
-`LP`.TMP will remain on disk and may be printed manually.
-
-The following buffer parameters are listed in the `LP` printout:
-
-    CURRENT BUFFER TITLE
-
-RECORD AND BLOCK NUMBER, OWNER, AND DATE
+ARCHIVE, RECORD, BLOCK NUMBER, OWNER, AND DATE:
 Direction 1 is always indicated by "\*" in the block number display and corresponds to the dimension visible on the
-screen for one-dimensional displays.  For example, if record 5 is a two-dimensional blocked record and `DIRB` 2 is
+screen for one-dimensional displays. For example, if record 5 is a two-dimensional blocked record and `DIRB` 2 is
 currently 12, the `LP` summary will include the line:
 
-    REC     5     (*    ,   1)
+    TEMP     5     (*    ,   1)
 
-when listing block 1 of record 5.  Conversely, if `DIRB` 2 is set to 21, the summary will include:
+when listing block 1 of record 5 in archive TEMP. Conversely, if `DIRB` 2 is set to 21, the summary will include:
 
-    REC     5     (1    ,   * )
+    TEMP     5     (1    ,   * )
 
-to indicate that direction 1 is mapped to dimension 2.  If the record containing the data in buffer "buf" is
-onedimensional, no block numbers will be reported.
+to indicate that direction 1 is mapped to dimension 2. If the record containing the data in buffer buf is one
+dimensional, no block numbers will be reported.
 
-NUCLEUS
-For each synthesizer that has been assigned a nucleus, RNMR lists that nucleus, its Hertz-to-PPM multiplicative factor
-(nominal NMR frequency), offset (as set by the F command), and PPM reference frequency.  RNMR also indicates which
-synthesizer is mapped to dimension 1 (the observe dimension).  Both the offset and the PPM reference frequency are
-reported in Hz to a maximum of one decimal place.  The PPM reference frequency is defined as the frequency in Hz of zero
-PPM.
+SYNTHESIZER PARAMETERS:
+For each synthesizer, RNMR lists its nucleus, its Hertz-to-PPM multiplicative factor (nominal NMR frequency), PPM
+reference frequency, and offset (as set by the `F` command). Both the offset and the PPM reference frequency are
+reported in Hz to a maximum of one decimal place. The PPM reference frequency is defined as the frequency in Hz of zero
+PPM. RNMR also indicates the mapping between physical and logical channels (as set by the `CHN` command) and which
+synthesizer is mapped to dimension 1 (the observe dimension).
 
-POWER LEVELS
-If computer controlled transmitter power has been implemented on the current spectrometer, RNMR will list the power
-levels in dB for each channel, as set by the `PWR` command.  Each channel (OBS and DEC) has two independent power
-levels (1 and 2), so four power levels will be reported.
+TRANSMITTER PARAMETERS:
+A series of parameters are listed for each transmitter. Three categories of parameters (FMX, PSX, and PWX) are presented
+in a similar format. First the name of the program (the last loaded by `FMXEX` etc) is listed. Then the value of 64
+FMX/PSWX/PWX values are listed. Finally the low and high coarse power levels as set by `PWR` are listed. These
+parameters are listed separately for each transmitter.
 
-RECEIVER GAIN (`GAIN`)
-RNMR reports the receiver gain in dB only if S-bus gain control has been implemented on the current spectrometer.
+RECEIVER PARAMETERS:
+The following set of receiver parameters will be listed:
 
-SWEEP WIDTH (`SW`)
-The sweep width reported by `LP` is identically equal to 1.0E+06 divided by the hardware dwell time in microseconds.
-RNMR reports the sweep width in the current frequency unit (`UNIT /FREQ`) to the current number of decimal places for
-that unit (`NDEC`).
+- Gain
+- Spectral width
+- Filter factor
+- Size
+- Acquisition time
 
-FILTER FACTOR (`FLF`)
-The filter factor is a measurement of the bandwidth of the audio filters used to acquire the data.  If the filter factor
-is 0.0, then the filters were disabled entirely.  Otherwise, they were set to the nearest cutoff setting at least as
-wide as FLF X (SW/2.0). If the calculated filter bandwidth exceeds 50000.0 Hz, then the filters were disabled
-entirely.  Note that larger values of "factor" give wider filter cutoffs.  If S-bus filter bandwidth control is not
-implemented on the current spectrometer, RNMR will always report an `FLF` of 1.0.
+PULSE PROGRAMMER PARAMETERS:
+The pulse program name will be listed followed by 64 pulse values, 64 delay values, 64 loop values, and 64 flag states.
+The recycle delay is also listed.
 
-ACQUIRED SIZE (`SIZE`)
-This parameter is the number of points actually acquired by the spectrometer hardware, regardless of truncation of
-extension after executing `GAV`.
-
-ACQUISITION TIME (AT)
-The acquisition time is defined as the total length of the FID acquired by the spectrometer hardware and is equal to the
-hardware dwell time (`DW`) times the acquired size (`SIZE`).  This value does not reflect any changes in the number of
-buffer data points made by truncating or extending the FID after executing `GAV`.  The acquisition time is reported in
-seconds to a maximum of 3 decimal places.
-
- PULSE PROGRAM NAME (`EX`)
-This parameter is the name of the pulse program that was loaded when the buffer data was read from the averager with
-`GAV`.  When an NMR1-format file is read into a buffer and `LP` is then executed, RNMR will list the NMR1 header
-parameter "fdExperimentName" as the pulse program name.
-
-PULSE LENGTHS
-In an RNMRP `LP` summary, the first eight pulse lengths (P 1 through P 8) are listed as they were set when the buffer
-data was acquired.  Pulses 1 through 4 are listed from left to right on the first line of the pulse length summary,
-while the second line lists the values of pulses 5 through 8.  All pulse lengths are reported in microseconds.  An `LP`
-summary of pulse lengths in RNMR has a similar format, except that all 16 RNMR-accessible pulses are listed.
-
-DELAY LENGTHS
-In an RNMRP `LP` summary, the first eight delay lengths (D 1 through D 8) are listed as they were set when the buffer
-data was acquired.  Delays 1 through 4 are listed from left to right on the first line of the delay length summary,
-while the second line lists the values of delays 5 through 8.  All delay lengths are reported in milliseconds.  An `LP`
-summary of delay lengths in RNMR has a similar format, except that all 16 RNMR-accessible delays are listed.
-
-LOOP VALUES
-RNMRP lists the values of loops 1 through 4 (`LS 1` through `LS 4`) from  left to right. RNMR lists all 16 accessible
-loop values on the `LP` summary sheet.
-
-PP FLAG STATES
-The logical states of pulse programmer flags 1 through 16 (`PPFLG 1` through `PPFLG 16`) are indicated from left to
-right on the `LP` summary sheet.  If a particular flag was in the ON state when the buffer data was acquired, it is
-marked as "T" on the `LP` summary; if the flag was OFF, it is marked as "F".
-
-DECOUPLER ENABLE STATE (`DEC`)
-This parameter indicates whether decoupling was enabled (`DEC ON`)  or disabled (`DEC OFF`) when the buffer data was
-acquired.
-
-DECOUPLE FLAG STATES (`DECFLG`)
-RNMR reports the state of the four decouple flags (`DECFLG 1` through `DECFLG 4`) from left to right on the `LP` summary
-sheet.  By convention, these flags are used in pulse programs to enable or disable decoupling during individual sections
-of a pulse sequence, while `DEC` enables or disables all decoupling throughout the sequence.
-
-RECYCLE DELAY (RDLY)
-
-ACQUISITION MODES
+ACQUISITION MODES:
 The averager acquisition modes (`AMD /ACQ`, or simply `AMD`) are listed so that the number of modes is equal to the
-buffer `NAMD /ACQ` value.  That is, regardless of how the `AMD` modes were entered by the user, `NAMD` modes will be
-displayed.  These modes represent the sequence of complex numbers by which successive FID's are multiplied before signal
-averaging.  For a given experiment, the `AMD` modes are selected so that the desired NMR signal adds constructively from
-shot to shot.
+buffer `NAMD /ACQ` value. That is, regardless of how the `AMD` modes were entered by the user, `NAMD` modes will be
+displayed. These modes represent the receiver phase cycle sequence.
 
-BLOCKED ACQUISITION MODES
+BLOCKED ACQUISITION MODES:
 The blocked acquisition modes (`AMD /BLK`) are listed so that the number of modes is equal to the buffer `NAMD /BLK`
-value.  That is, regardless of how the `AMD /BLK` modes were entered by the user, `NAMD /BLK` modes will be displayed.
-These modes represent the sequence of complex numbers by which FID's in are multiplied before signal averaging.  For a
-given experiment, the `AMD` modes are selected so that the desired NMR signal adds constructively from shot to shot.
+value. That is, regardless of how the `AMD /BLK` modes were entered by the user, `NAMD /BLK` modes will be displayed.
+These modes represent the hypercomplex acquisition receiver phase cycling sequence.
 
- PULSE PROGRAMMER MODES
+PULSE PROGRAMMER MODES:
+The ppmd values for each step of the phase cycle are listed. There will be 16 lists of values.
 
-NUMBER OF DELAY SHOTS (`NDLY`)
-This parameter is the number of delay shots taken before the beginning of signal acquisition.  These shots are used to
-reach equilibrium when the recycle delay is not long compared to the spin-lattice relaxation time T1.  The delay shots
-do not contribute to the time-averaged NMR signal.
+BLOCKED ACQUISITION PULSE PROGRAMMER MODES:
+The block ppmd values for each step of the phase cycle are listed. There will be 16 lists of values.
 
-NUMBER OF SHOTS TAKEN (NACQ)
-NACQ need not be equal to either the `NA` or `NWAIT` settings at the time the data was acquired.  NACQ is the value of
-the shot counter when the acquisition was terminated.
+NAMD PARAMETERS:
+The following set of receiver parameters will be listed:
 
-CURRENT BUFFER DIMENSION (DIM)
-This parameter specifies which dimension of a multidimensional data set is stored in buffer "ibuf".  The buffer
-dimension will depend on mapping between directions and dimensions at the time data was written into the buffer.  This
-mapping is displayed and modified by the command `DIRB`.
+- Number of acquisition phase cycle modes
+- Number of block phase cycle modes
+- Number of TPPI modes
+- Number of incr modes
 
-BUFFER DOMAIN (DOM)
-The buffer domain parameter is the domain (TIME or FREQ) of the data in buffer "ibuf".  This should agree with the
-output of the command `SHOW BUF DOM`.
+ACCUMULATION PARAMETERS:
+The following set of accumulation parameters will be listed:
 
-CURRENT BUFFER SIZE (`SIZE`)
-This is the current number of data points in each block of the processing buffer.  Due to truncation operations such as
-`XT` and extension operations such as `ZF`, this size may not agree with the acquisition size listed earlier in the `LP`
-summary.  The `SIZE` value reported in the summary should agree with the output of the command `SHOW BUF SIZE`.
+- Number of dummy scans performed
+- Number of scans averaged
 
-TIME OR FREQUENCY LIMITS (LLIM and RLIM)
-RNMR lists the left and right time or frequency limits for the buffer data in the current unit with the current maximum
-number of decimal places for that unit.  These limits pertain to the entire contents of the buffer and may or may not be
-equal to the current display limits, as shown by the `LIM` command.
+PROCESSING PARAMETERS:
+The following set of processing parameters will be listed:
 
-CONSTANT AND LINEAR PHASE FACTORS (PHI0 and PHI1)
-The current buffer phasing parameters are reported in degrees.  These parameter may also be displayed by using the `TP`
-command.
+- Number of dimensions
+- Domain,
+- Size
+- Display limits
+- Phase correction factors
+- Scale factor
 
-BUFFER SCALE FACTOR (SF)
-This parameter stores the relative intensity of a spectrum, permitting spectra to be presented on an absolute intensity
-scale.  The buffer scale factor is also available by using the command `SC`.
 ## LPA
 List acquisition buffer parameters
 
