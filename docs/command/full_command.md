@@ -4423,12 +4423,18 @@ Set blocked record display limits
 
 Category: Display Control
 
-Format: `LIMB` rec direc llim rlim
+Format: `LIMB` rec dim llim rlim
 
 Defaults: current 1 current current
 
 Description:
-`LIMB` sets display limits for blocked record
+`LIMB` sets display limits for a blocked record rec along dimension dim. The parameters llim and rlim are the left and
+right display limits. If rec is omitted RNMR will prompt for it with the current read record pointer as set by `PTRA` as
+the default. `LIMB` may only be used on blocked records. If dim is omitted RNMR will prompt for it with 1 as a default.
+The value of dim cannot exceed the number of dimensions in the blocked record. If llim or rlim is omitted RNMR will
+prompt for it with the current left or right display limit as a default. A value outside of the dataset or "\*" will use
+the leftmost or rightmost point available. Values that are within the range of the dataset but that do not correspond
+exactly to a point will use the closest point to the right of the specified value.
 ## LOOP
 Set or increment pulse program loop counter
 
