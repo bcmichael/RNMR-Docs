@@ -4580,26 +4580,13 @@ Category: Acquisition
 
 Format: `LPA`
 
-Prerequisites: RNMR only
+Prerequisites: RNMRA only
 
 Description:
-`LPA` prints a summary of acquisition parameter values on the current printer, as selected with the command `LPDEV`.
+`LPA` displays a summary of processing buffer parameter values in a pop up window.
 These parameters are the latest settings of the pulse programmer, averager, and other spectrometer hardware.  The exact
 format of the `LPA` summary varies from spectrometer to spectrometer due to differences in implementation of
-RNMR-controlled hardware.  If a title has been specified earlier using the `TITLEA` command, RNMR  will use this title
-on the printout.  At console (\>) level, if no title has been specified, RNMR will prompt the user for a title after the
-`LPA` command is entered.  Similarly, an `LPA` command in a macro will prompt the user for a missing title if the `LPA`
-command is followed by the text line operator ";;" as shown below:
-
-    LPA
-    ;;
-
-If `LPA` is issued from a macro without a subsequent ";;" text substitution command, RNMR will use the current `TITLEA`
-value on the `LPA` printout.  If a new, nonblank title is entered for the `LPA` printout and the acquisition buffer is
-currently visible, RNMR will display the new title at the top of the screen.  Each time `LPA` is executed, RNMR opens a
-new ASCII text file called `LP`.TMP to store the parameter summary until it can be printed.  If the printing is
-successful, `LP`.TMP is deleted on completion of the print job.  If the print job is aborted or otherwise fails to
-complete successfully, the `LP`.TMP will remain on disk and may be printed manually.
+RNMR-controlled hardware.
 
 The following buffer parameters are listed in the `LPA` printout:
 
@@ -4607,145 +4594,83 @@ CURRENT BUFFER TITLE
 
 USER AND DATE
 
-NUCLEUS
-For each synthesizer that has been assigned a nucleus, RNMR lists that nucleus, its Hertz-to-PPM multiplicative factor
-(nominal NMR frequency), offset (as set by the F command), and PPM reference frequency.  RNMR also indicates which
-synthesizer is mapped to dimension 1 (the observe dimension).  Both the offset and the PPM reference frequency are
-reported in Hz to a maximum of one decimal place.  The PPM reference frequency is defined as the frequency in Hz of zero
-PPM.
+SYNTHESIZER PARAMETERS:
+For each synthesizer, RNMR lists its nucleus, its Hertz-to-PPM multiplicative factor (nominal NMR frequency), PPM
+reference frequency, and offset (as set by the `F` command). Both the offset and the PPM reference frequency are
+reported in Hz to a maximum of one decimal place. The PPM reference frequency is defined as the frequency in Hz of zero
+PPM. RNMR also indicates the mapping between physical and logical channels (as set by the `CHN` command) and which
+synthesizer is mapped to dimension 1 (the observe dimension).
 
-POWER LEVELS
-If computer controlled transmitter power has been implemented on the current spectrometer, RNMR will list the power
-levels in dB for each channel, as set by the `PWR` command.  Each channel (OBS and `DEC`) has two independent power
-levels (1 and 2), so four power levels will be reported.
+TRANSMITTER PARAMETERS:
+A series of parameters are listed for each transmitter. Three categories of parameters (FMX, PSX, and PWX) are presented
+in a similar format. First the name of the program (the last loaded by `FMXEX` etc) is listed. Then the value of 64
+FMX/PSWX/PWX values are listed. Finally the low and high coarse power levels as set by `PWR` are listed. These
+parameters are listed separately for each transmitter.
 
-RECEIVER GAIN (`GAIN`)
-RNMR reports the receiver gain in dB only if S-bus gain control has been implemented on the current spectrometer.
+RECEIVER PARAMETERS:
+The following set of receiver parameters will be listed:
 
-SWEEP WIDTH (`SW`)
-The sweep width reported by `LPA` is identically equal to 1.0E+06 divided by the hardware dwell time in microseconds.
-RNMR reports the sweep width in the current frequency unit (`UNIT /FREQ`) to the current number of decimal places for
-that unit (`NDEC`).
+- Gain
+- Spectral width
+- Filter factor
+- Size
+- Acquisition time
 
-FILTER FACTOR (`FLF`)
-The filter factor is a measurement of the bandwidth of the  audio filters used to acquire the data.  If the filter
-factor is 0.0, then the filters were disabled entirely.  Otherwise, they were set to the nearest cutoff setting at least
-as wide as FLF X (SW/2.0).  If the calculated filter bandwidth exceeds 50000.0 Hz, then the filters were disabled
-entirely.  Note that larger values of "factor" give wider filter cutoffs.  If S-bus filter bandwidth control is not
-implemented on the current spectrometer, RNMR will always report an `FLF` of 1.0.
+LOCK PARAMETERS:
+The following set of lock parameters will be listed:
 
-ACQUIRED SIZE (`SIZE`)
-This parameter is the number of points actually acquired by the spectrometer hardware.
+- Status (ON/OFF)
+- Sweep (ON/OFF)
+- Power
+- Gain
+- Sweep width
+- Position
+- Receiver phase
+- TC
+- PID values
+- Meter values (min and max)
 
-ACQUISITION TIME (AT)
-The acquisition time is defined as the total length of the FID acquired by the spectrometer hardware and is equal to the
-hardware dwell time (`DW`) times the acquired size (`SIZE`). The acquisition time is  reported in seconds to a maximum
-of 3 decimal places.
+PULSE PROGRAMMER PARAMETERS:
+The pulse program name will be listed followed by 64 pulse values, 64 delay values, 64 loop values, and 64 flag states.
+The recycle delay is also listed.
 
-The following parameters are reported by `LPA` only if S-bus lock control has been implemented on the current
-spectrometer.
+WAVEFORM GENERATOR PARAMETERS:
+The WRF program as set by `WRFEX` is listed followed by the 64 WRF values for each WFG. Then the WWF program as set by
+`WWFEX` is listed followed by the 64 WWF values for each WFG.
 
-LOCK STATUS (`LCK`)
-If the lock was enabled when the `LPA` command was issued, RNMR will report `LCK    = ON`, otherwise the summary will
-specify `LCK    = OFF`.
-
-LOCK SWEEP ENABLE STATUS (`SWP`)
-If the lock sweep was enabled when the `LPA` command was issued, RNMR  will report "`SWP    = ON`", otherwise the
-summary will specify "`SWP    = OFF`".
-
-LOCK POWER (`PWRL`)
-RNMR reports the lock power setting in dB to one decimal place.
-
-LOCK RECEIVER GAIN (`GAINL`)
-RNMR reports the lock receiver gain setting in dB to one decimal place.
-
-LOCK SWEEP WIDTH (`SWL`)
-The lock sweep width is reported on an arbitrary scale from 0 to 100 with a precision of one decimal place.
-
-LOCK POSITION (`POSL`)
-The lock position is the frequency of the center of the lock sweep range, expressed as a between -500 and 500 inclusive
-and reported to two decimal places.
-
-LOCK RECEIVER PHASE (`PHL`)
-The lock receiver phase is adjusted using the `PHL` command to make the lock signal positive and absorptive.  This phase
-is reported in degrees with a resolution of +/- 1 degree.
-
-LOCK LEVEL METER LIMITS (MTRMIN and MTRMAX)
-MTRMIN and MTRMAX are the minimum and maximum lock level meter settings, measured in percent and reported to one decimal
-place.
-
-PULSE PROGRAM NAME (`EX`)
-This parameter is the name of the pulse program that was loaded when the `LPA` command was executed.
-
-PULSE LENGTHS
-In the `LPA` summary, all 32 pulse lengths are listed, including the  RNMR-accessible pulse lengths (P 1 through P 16)
-and the lengths of the internal pulses (numbers 17 through 32).  These pulse lengths are listed in groups of four from
-left to right and top to bottom.  All pulse lengths are  reported in microseconds with a precision of 0.1 microseconds.
-
-DELAY LENGTHS
-In the `LPA` summary, all 32 delay lengths are listed, including the RNMR-accessible delay lengths (D 1 through D 16)
-and the lengths of the internal delays (numbers 17 through 32).  These delay lengths are listed in groups of four from
-left to right and top to bottom.  All delay lengths are  reported in milliseconds with a precision of 0.1 milliseconds.
-
-LOOP VALUES
-In the `LPA` summary, all 32 loop values are listed, including the RNMR-accessible loop values (`LS` 1 through `LS` 16)
-and the values of the internal loops (numbers 17 through 32).  These loop values are listed in groups of four from left
-to right and top to bottom.
-
-PP FLAG STATES
-The logical states of all 32 pulse programmer flags are indicated from left to right and from top to bottom on the
-`LPA` summary sheet.  These include both the flags which may be set with the `PPFLG` command (`PPFLG 1` through
-`PPFLG 16`) and the flags which are reserved for use within pulse programs.  If a particular flag was in the ON
-state when the `LPA` command was issued, it is marked as "T" on the `LPA` summary; if the flag was OFF, it is marked
-as "F".
-
-DECOUPLER ENABLE STATE (`DEC`)
-This parameter indicates whether decoupling was enabled (`DEC ON`) or disabled (`DEC OFF`) when the `LPA` command was
-issued.
-
-DECOUPLE FLAG STATES (`DECFLG`)
-RNMR reports the state of the four decouple flags (`DECFLG 1` through `DECFLG 4`) from left to right on the `LPA`
-summary sheet.  By convention, these flags are used in pulse programs to enable or disable decoupling during individual
-sections of a pulse sequence, while `DEC` enables or disables all decoupling throughout the sequence.
-
-RECYCLE DELAY (RDLY)
-
-ACQUISITION MODES
+ACQUISITION MODES:
 The averager acquisition modes (`AMD /ACQ`, or simply `AMD`) are listed so that the number of modes is equal to the
-current `NAMD /ACQ` value.  That is, regardless of how the `AMD` modes were entered by the user, `NAMD` modes will be
-displayed.  These modes represent the sequence of complex numbers by which successive FID's are multiplied before signal
-averaging.  For a given experiment, the `AMD` modes are selected so that the desired NMR signal adds constructively from
-shot to shot.
+buffer `NAMD /ACQ` value. That is, regardless of how the `AMD` modes were entered by the user, `NAMD` modes will be
+displayed. These modes represent the receiver phase cycle sequence.
 
-BLOCKED ACQUISITION MODES
+BLOCKED ACQUISITION MODES:
 The blocked acquisition modes (`AMD /BLK`) are listed so that the number of modes is equal to the buffer `NAMD /BLK`
-value.  That is, regardless of how the `AMD` /BLK modes were entered by the user, `NAMD /BLK` modes will be displayed.
-These modes represent the sequence of complex numbers by which FID's in are multiplied before signal averaging.  For a
-given experiment, the `AMD` modes are selected so that the desired NMR signal adds constructively from shot to shot.
+value. That is, regardless of how the `AMD /BLK` modes were entered by the user, `NAMD /BLK` modes will be displayed.
+These modes represent the hypercomplex acquisition receiver phase cycling sequence.
 
-PULSE PROGRAMMER MODES
+PULSE PROGRAMMER MODES:
+The ppmd values for each step of the phase cycle are listed. There will be 16 lists of values.
 
-NUMBER OF SHOTS BETWEEN DISPLAY UPDATES (`NDSP`)
-If `NDSP` is zero, the display was not updated during acquisition.  Otherwise, the display was updated once every `NDLY`
-shots while acquisition was in progress.
+BLOCKED ACQUISITION PULSE PROGRAMMER MODES:
+The block ppmd values for each step of the phase cycle are listed. There will be 16 lists of values.
 
-NUMBER OF DELAY SHOTS (`NDLY`)
-This parameter is the number of delay shots taken before the beginning of signal acquisition.  These shots are used to
-reach equilibrium when the recycle delay is not long compared to the spin-lattice relaxation time T1.  The delay shots
-do not contribute to the time-averaged NMR signal.
+NAMD PARAMETERS:
+The following set of receiver parameters will be listed:
 
-NUMBER OF SHOTS BETWEEN WAITS (`NWAIT`)
-When the `WAIT` command is issued during a signal acquisition, RNMR takes `NWAIT` shots before exiting `WAIT` and
-returning control to the user or executing the next line in the current macro.  If the number of shots to acquire (`NA`)
-is not -1 and is less than `NWAIT`, or if `NWAIT` is zero, `NA`  shots are taken instead.
+- Number of acquisition phase cycle modes
+- Number of block phase cycle modes
+- Number of TPPI modes
+- Number of incr modes
 
-NUMBER OF SHOTS TO ACQUIRE (`NA`)
-When acquisition is started with `DG`, `ZG`, `NG`, or `GO`, acquisition will be terminated automatically after `NA`
-shots have been acquired.  The acquisition may be terminated earlier by a subsequent `QUIT` or `ABORT` command.
+ACCUMULATION PARAMETERS:
+The following set of accumulation parameters will be listed:
 
-NUMBER OF SHOTS TAKEN (NACQ)
-NACQ need not be equal to either the `NA` or `NWAIT` settings at the time the data was acquired. NACQ is the value of
-the shot counter when the acquisition was terminated.
+- Number of shots between display update
+- Number of dummy scans performed
+- Number of scans to wait with `WAIT` command
+- Number of scans to acquire (`NA`)
+- Number of scans acquired
+
 ## LPB
 Perform backward linear prediction on FID
 
