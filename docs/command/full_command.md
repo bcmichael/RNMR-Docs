@@ -4676,83 +4676,44 @@ Perform backward linear prediction on FID
 
 Category: Data Manipulation
 
-Format: `LPB` irlim nmm m
+Format: `LPB` rlim m n
 
-Defaults: 1 MIN((ISIZE-IRLIM)/4,8) (ISIZE-IRLIM)-NMM
+Defaults: 1 MIN((SIZE-RLIM)/4,8) Min((SIZE-RLIM)-M,512)
 
 Prerequisites: Time domain data in processing buffer 1 (TIME)
 
 Description:
-`LPB` performs backwards linear prediction.  Based on the specified number of current data points, `LPB` calculates the
-values of the FID at earlier times.  In a linear prediction calculation, the FID is modeled as the sum of a finite
-number of exponentially damped complex sine waves with different intensities, phases, and damping factors.  Determining
-the best fit for the parameters of these components is done by diagonalizing a matrix of numbers with dimension N-M by
-N-M, where N-M is the number of components and M is the number of data points to fit.  The elements of the diagonalized
-matrix are then used to calculate the complex intensities of a small number of points at the beginning of the FID.
-`LPB` replaces these points with their calculated values, leaving the total number of points in the FID constant.  By
-using backward linear prediction, one may correct FID data points which were corrupted by probe or filter ring-down.
-`LPB` operates only on the data in the visible processing buffer (buffer 1).  The user need not be viewing this buffer
-to use `LPB`.
+`LPB` performs backwards linear prediction. Based on the specified number of current data points, `LPB` calculates the
+values of the FID at earlier times. In a linear prediction calculation the points in the FID are modelled as a linear
+combination of an adjacent series of points in the FID. In the case of backwards linear prediction these points come
+after the point to be predicted. A set of coefficients used in this linear combination is fit such that this linear
+combination is accurate for a set of known good points in the FID and then in the case of backward linear prediction,
+they are used to replace points at the beginning of the FID.
 
-The first parameter of `LPB`, "irlim", is the point number of the  rightmost point to be updated by linear prediction.
-`LPB` will replace data points 1 through "irlim" with values calculated from a certain number of the remaining points.
-If "irlim" is not specified on the command line, RNMR will correct only the leftmost point of the FID; the default value
-of "irlim" is 1 and RNMR will not prompt for "irlim" if it is omitted.  Legal values for "irlim" are positive integers
-from 1 to one-eighth (1/8) the number of points in the FID.
+The first parameter, rlim, is the number of points to replace at the beginning of the FID. If rlim is omitted RNMR will
+not prompt for it and will replace only the first point in the FID. The value of rlim cannot exceed an eighth of the
+size of the FID.
 
-The second parameter, "nmm", is the number of spectral components to be used in the linear prediction calculation, N-M.
-This parameter also determines the size of the matrix that RNMR must diagonalize in order to calculate the intensities
-of points 1 through "irlim".  Thus, larger values of "nmm" will result in much longer calculation times.  If "nmm" is
-not specified on the command line, RNMR will set "nmm" to either the largest integer less than or equal to
-(ISIZE-IRLIM)/4 or to 8, whichever is smaller.  For example, if "irlim" was set to its default value of 1 and the size
-of the FID is 512, the default value of "nmm" will be 8.  Conversely, if "irlim" is 1 and there are only 32 points in
-the FID, "nmm" will default to MIN((32-1)/4,8)=MIN(7,8)=7.  When "nmm" is omitted, RNMR uses the default value without
-prompting the user. Legal values of "nmm" are positive integers from 1 to 32.  Consequently, the maximum size of the
-matrix to be diagonalized in the linear prediction algorithm is 32.
+The second parameter, m, specifies how many known points are used for fitting the linear prediction coefficients. If m
+is omitted RNMR will not prompt for it and will use either a quarter of the points that are not to be replaced or 8
+whichever is smaller. The value of m may not exceed 32 or the number of points that are not being replaced.
 
-The third parameter, "m", is the number of points to the right of each predicted point that will be used in the linear
-prediction calculation.  That is, "m" determines the number of data points that `LPB` must fit. For example, if "irlim"
-is 2, point 2 will be calculated from the complex intensities of points 3 through 2+M, and point 1 will be calculated
-from points 2 through 1+M, using the predicted value of point 2.  If "m" is omitted from the command line, RNMR sets "m"
-to ISIZE-IRLIM-NMM where ISIZE is the number of data points in the FID; RNMR does not prompt for a value for "m" if one
-was not supplied on the command line.  Legal values of "m" are positive integers greater than or equal to "nmm" such
-that NMM+M is less than or equal to ISIZE-IRLIM.  That is, the number of data points to fit must be at least the number
-of components (to ensure a unique fit) and N must be no greater than the number of points NOT replaced by `LPB`.
-Once the values of "irlim", "nmm", and "m" have been selected, `LPB` performs backward linear prediction
-on each block of buffer 1 independently. The following algorithm is used for each block:
+The third parameter, n, is the number of points to take a linear combination of and therefore the number of coefficients
+to fit. For example if rlim is 1 then the first point will be replaced with a linear combination of points 2 to m+1. If
+n is not specified RNMR will not prompt for it and will use either the number of points that are not to be replaced
+minus m or 512 whichever is smaller.
 
-1.	RNMR multiples the matrix X by its transpose, where X is defined by:
+The linear prediction process is based around the following linear equation:
 
-        X(I,J)=DATA(I+J), I=1,2,...,NMM, J=1,2,...,M
+    X*COEF=DATA(RLIM+1:RLIM+M)
 
-2.	The resulting matrix, (X)\*(XT) is diagonalized to give its eigenvalues and eigenvectors.
-
-3.	RNMR counts the number of nonzero eigenvalues, yielding the rank of the diagonalized matrix.  An eigenvalue is
-considered nonzero if it is greater than NMM\*LAMBDA(NMM)/10000, where NMM is the number of spectral components in the
-fit and LAMBDA is the vector of eigenvalues returned by the diagonalization routine.  The rank of the diagonalized
-matrix is an integer between zero and NMM.
-
-4.	A vector is constructed with length equal to the rank determined in step 3.  This vector is equal to the product:
-
-        (TEMP1)=(LAMBDA^-1)*(UT)*(DATA)
-where LAMBDA^-1 is the inverse of the vector of eigenvalues of rank NMM-RANK+1 to NMM and UT is the transpose of the
-eigenvector matrix.
-
-5.	The vector calculated in step 4 is used to compute an NMM-element vector:
-
-        (TEMP2)=(U)*(LAMBDA^-1)*(UT)*(DATA)               =(U)*(TEMP1)
-
-6.	The linear prediction coefficients are calculated by multiplying the conjugate of the data vector DATA with the
-vector TEMP2.  These coefficients are factors by which the first M data points to the right of each predicted point are
-multiplied and summed to give the data points 1 through IRLIM.
-
-7.	Starting with the rightmost data point to be predicted, IRLIM, RNMR calculates data points IRLIM to 1 by summing the
-products of the linear prediction coefficients with the first M points to the right of the point to be predicted.  As
-each point is calculated, from left to right, the updated data is used to calculate the next point, u0ntil the first
-data point in the buffer has been updated.  Thus, each point from IRLIM to 1 is calculated from the coefficient vector
-computed in step 6 and the first M points to the right of that point.
-
-If the processing buffer is currently visible, RNMR will update the display to show the data as updated by `LPB`.
+X is a M by N matrix where X(I,J)=DATA(I+J+RLIM). COEF is a N element vector of unknown coefficients. This models each
+of the M points after rlim as a linear combination of the N points that follow it. The COEFF values are solved for using
+a singular value decomposition (SVD) of X. Once the coefficients are known RNMR fills in the points from rlim back to
+the beginning of the FID. That is the point rlim is predicted using the N points after it and then the point to the left
+of rlim is predicted using the N points after it (including the predicted value of point rlim) and so on until all the
+points are predicted. If the processing buffer is currently visible, RNMR will update the display to show the data as
+updated by `LPB`.
 ## LPC
 Perform long pulse phase and amplitude correction
 
