@@ -4821,22 +4821,20 @@ Format: `LPDEV` device
 Defaults: current
 
 Description:
-`LPDEV` selects the printer to be used for text output from the commands `LP`, `LPA`, `LPK`, `LPK2D`.  The choice of
-printers is the same for each spectrometer, but each spectrometer may be assigned a different default  printer when RNMR
-is initialized.  The file RNMR:[RNMR]CFGQUE.DAT contains a list of all printers that may be selected by `LPDEV`.  The
-"LPDEV" parameter in the file RNMR:[RNMR]CFGTBL.DAT sets the default print device  at RNMR startup time.
+`LPDEV` selects the printer to be used for text output. The choice of printers is the same for each spectrometer, but
+each spectrometer may be assigned a different default printer when RNMR is initialized. The file
+/opt/rnmr/spec/common/rnmra/cfgque.dat contains a list of all printers that may be selected by `LPDEV`.
 
-`LPDEV` takes one parameter, "device", which is the name of the print device to be selected for all subsequent text
-printing.  If this argument is missing from the command line, RNMR will prompt for a device with the current print
-device as the default.  This default will be the device assigned to the current spectrometer in CFGTBL.DAT unless the
-print device has been modified by an earlier `LPDEV` command in the current RNMR or RNMRP session.  The legal choices of
-text printer device are currently:
+`LPDEV` takes one parameter, device, which is the name of the print device to be selected for all subsequent text
+printing. If this argument is missing from the command line, RNMR will prompt for a device with the current print
+device as the default. The legal choices of text printer device are currently:
 
-Device Name | Printer | Location
------------ | ------- | --------
-LJ3 | HP LJ3 | 4119
-LJ4 | HP LJ4 | 5119
-LJ5 | HP LJ5 | 0249
+- E460A
+- E460B
+- LJ2430
+- LJ2430B
+- LJ4050
+- LJ5
 
 ## LPF
 Perform forward linear prediction on FID
