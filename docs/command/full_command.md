@@ -4841,89 +4841,50 @@ Perform forward linear prediction on FID
 
 Category: Data Manipulation
 
-Format: `LPF` irlim nmm m
+Format: `LPF` rlim m n
 
-Defaults: ISIZE+1 MIN(ISIZE/4,8) ISIZE-NMM
+Defaults: ISIZE+1 MIN(SIZE/4,8) MIN(SIZE-M,512)
 
 Prerequisites: Time domain data in processing buffer 1 (TIME)
 
 Description:
-`LPF` performs forward linear prediction.  Based on a specified number of current data points, `LPF` calculates the
-values of the FID at later times.  In a linear prediction calculation, the FID is modeled as the sum of a finite number
-of exponentially damped complex sine waves with different intensities, phases, and damping factors.  Determining the
-best fit for the parameters of these components is done by diagonalizing a matrix of numbers with dimension NM by N-M,
-where N-M is the number of components and M is the number of data points to fit.  The elements of the diagonalized
-matrix are then used to calculate the complex intensities of points to be added to the end of the FID, increasing the
-total number of points in the buffer.  Unlike `LPB`, forward linear prediction does not modify the values of any of the
-original data points.  By using `LPF`, one may decrease the number of data points in a given dimension that must be
-acquired to avoid truncation errors.  This ability is particularly useful in obtaining multidimensional data sets since
-the number of slices that must be physically acquired, and thus the spectrometer time required, is reduced.  For
-well-behaved FID's, the number of data points may often be doubled with forward linear prediction.  `LPF` operates only
+`LPF` performs forward linear prediction. Based on the specified number of current data points, `LPF` calculates
+values oto extend the FID. In a linear prediction calculation the points in the FID are modelled as a linear
+combination of an adjacent series of points in the FID. In the case of forward linear prediction these points come
+before the point to be predicted. A set of coefficients used in this linear combination is fit such that this linear
+combination is accurate for a set of known good points in the FID and then in the case of forward linear prediction,
+they to extend the FID.
+
+By using forward linear prediction, one may decrease the number of data points in a given dimension that must be
+acquired to avoid truncation errors. This ability is particularly useful in obtaining multidimensional data sets since
+the number of slices that must be physically acquired, and thus the spectrometer time required, is reduced. For
+well-behaved FID's, the number of data points may often be doubled with forward linear prediction. `LPF` operates only
 on the data in the visible processing buffer (buffer 1). The user need not be viewing this buffer to use `LPF`.
 
-The first parameter of `LPF`, "irlim", is the number of points desired after linear prediction.  `LPF` will calculate
-points SIZE+1 through "irlim" based on a specified number of points in the original FID.  If "irlim" is not specified
-on the command line, `LPF` will predict only one point at the end of the FID, increasing the number of data points by
-one. Note that RNMR will not prompt for "irlim" if it is omitted.  Legal values of "irlim" are positive integers from
-SIZE to SIZEA, where SIZE is the number of points in the current FID, as displayed by the command `SHOW BUF SIZE`
-and SIZEA is the number of points allocated in buffer 1, as displayed and set by `DBSZ`.
+The first parameter, rlim, is the number of points desired after linear prediction. `LPF` will calculate points SIZE+1
+through rlim based on a specified number of points in the original FID. if rlim is omitted only one point will be
+predicted. The value of rlim cannot be smaller than the current size of the FID as shown by `SHOW BUF SIZE` or larger
+than the allocated size of the buffer as displayed and set by `DBSZ`.
 
-The second parameter, "nmm", is the number of spectral components to be used in the linear prediction calculation, N-M.
-This parameter also determines the size of the matrix that RNMR must diagonalize in order to calculate the intensities
-of points SIZE+1 through "irlim".  Thus, larger values of "nmm" will result in much longer calculation times.  If
-"nmm" is not specified on the command line, RNMR will set "nmm" to either the largest integer less than or equal to
-SIZE/4 or to 8, whichever is smaller.  For example, if there are currently 512 points in the FID, the default value of
-"nmm" will be 8.  Conversely, if there are only 16 points in the FID, then "nmm" will default to MIN(4,8)=4.  When "nmm"
-is omitted, RNMR uses the default value without prompting the user.  Legal values of "nmm" are positive integers from 1
-to 32.  Consequently, the maximum size of the matrix to be diagonalized in the linear prediction algorithm is 32.
+The second parameter, m, specifies how many known points are used for fitting the linear prediction coefficients. If m
+is omitted RNMR will not prompt for it and will use either a quarter of the FID or 8 whichever is smaller. The value of
+m may not exceed 32 or the number of points in the FID.
 
-The third parameter, "m", is the number of points to the left of each predicted point that will be used in the linear
-prediction calculation.  That is, "m" determines the number of data points that `LPF` must fit.  For example, if "irlim"
-is 514 and SIZE is 512, point 513 will be calculated from the complex intensities of points 513-M through 512, and
-point 514 will be calculated from points 514-M through 513, using the predicted value of point 513.  If "m" is omitted
-from the command line, RNMR sets "m" to SIZE-NMM where SIZE is the number of data points in the FID and NMM is the
-value for the N-M parameter described above; RNMR does not prompt for a value for "m" if one was not supplied on the
-command line.  Legal values of "m" are positive integers greater than or equal to "nmm" such that NMM+M is less than or
-equal to the current size.  That is, the number of data points to fit must be at least the number of components (to
-ensure a unique fit) and N must be no greater than the current number of points in the FID.
+The third parameter, n, is the number of points to take a linear combination of and therefore the number of coefficients
+to fit. If n is not specified RNMR will not prompt for it and will use either the size of the FID minus m or 512
+whichever is smaller.
 
-Once the values of "irlim", "nmm", and "m" have been selected, `LPF` performs forward linear prediction on each block of
-buffer 1 independently.  The following algorithm is used for each block:
+The linear prediction process is based around the following linear equation:
 
-1.	RNMR multiples the matrix X by its transpose, where X is defined by:
+    X*COEF=DATA(N+1:N+M)
 
-        X(I,J)=DATA(I+M-J), I=1,2,...,NMM                            J=1,2,...,M
-
-2.	The resulting matrix, (X)\*(XT) is diagonalized to give its eigenvalues and eigenvectors.
-
-3.	RNMR counts the number of nonzero eigenvalues, yielding the rank of the diagonalized matrix.  An eigenvalue is
-considered nonzero if it is greater than NMM\*LAMBDA(NMM)/10000, where NMM is the number of spectral components in the
-fit and LAMBDA is the vector of eigenvalues returned by the diagonalization routine.  The rank of the diagonalized
-matrix is an integer between zero and NMM.
-
-4.	A vector is constructed with length equal to the rank determined in step 3. This vector is equal to the product:
-
-        (TEMP1)=(LAMBDA^-1)*(UT)*(DATA)
-where LAMBDA^-1 is the inverse of the vector of eigenvalues of rank NMM-RANK+1 to NMM and UT is the transpose of the
-eigenvector matrix.
-
-5.	The vector calculated in step 4 is used to compute an NMM-element vector:
-
-        (TEMP2)=(U)*(LAMBDA^-1)*(UT)*(DATA)
-               =(U)*(TEMP1)
-
-6.	The linear prediction coefficients are calculated by multiplying the conjugate of the data vector DATA with the
-vector TEMP2. These coefficients are factors by which the data points at the end of the FID are multiplied and summed to
-give the data points SIZE+1 through IRLIM.
-
-7.	Starting with the leftmost data point to be predicted, SIZE+1, RNMR calculates data points SIZE+1 to IRLIM by
-summing the products of the linear prediction coefficients with the first M points to the left of the point to be
-predicted. As each point is calculated, from right to left, the updated data is used to calculate the next point, until
-point IRLIM has been calculated. Thus, each point from SIZE+1 to IRLIM is calculated from the coefficient vector
-computed in step 6 and the first M points to the left of that point.
-
-If the processing buffer is currently visible, RNMR will update the display to show the data as extended by `LPF`. `LPF`
-increases the active size of buffer 1 to IRLIM.
+X is a M by N matrix where X(I,J)=DATA(I+J-1). COEF is a N element vector of unknown coefficients. This models each of
+the M points after point N as a linear combination of the N points that precede it. The COEFF values are solved for
+using a singular value decomposition (SVD) of X. Once the coefficients are known RNMR fills in the points from SIZE+1 to
+rlim. That is the point just after the FID is predicted using the N before after it and then point SIZE+2 is predicted
+using the N points before it (including the predicted value of point SIZE+1) and so on until all the points out to rlim
+are predicted. This process will change the active size of the buffer to rlim. If the processing buffer is currently
+visible, RNMR will update the display to show the data as updated by `LPF`.
 ## LPK
 List Peaks
 
