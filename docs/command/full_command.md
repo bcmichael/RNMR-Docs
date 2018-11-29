@@ -5260,7 +5260,8 @@ Category: Data Manipulation
 Format: `MAG`
 
 Description:
-Obtains magnitude of data.
+`MAG` calculates the magnitude of the data in the visible processing buffer. The magnitude is placed in the real part of
+the buffer and the imaginary part of the buffer is set to 0. The magnitude is defined as follows:
 
     MAG = SQRT(REAL^2 + IMAG^2)
 ## MAPN
