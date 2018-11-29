@@ -5121,35 +5121,6 @@ Prerequisites: Pulse program loaded (LOAD) RNMR only
 Description:
 `LS` is an old command for setting a pulse programmer loop value. It has been replaced with the `LOOP` command and is
 currently simply an alias to it. As such `LOOP` should be used in place of `LS`.
-## LSTDP
-Define global list using Processing Display
-
-Category: Lists
-
-Format: `LSTDP` list#
-
-Defaults: 1
-
-Prerequisites: PRO
-
-Description:
-Creates global list of time or freq values. There are 4 lists available
-
-Subcommands:
-
-Command | Description
-------- | -----------
-CR      | Terminate
-B       | Move to bottom of list
-C       | Display current entry
-D       | Delete entry
-I       | Insert entry
-L       | Display last entry
-N       | Display next entry
-Q       | Terminate
-T       | Move to top of list
-Z       | Call `ZO`
-
 ## LW
 Calculate line width 	              1
 
