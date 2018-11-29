@@ -4888,67 +4888,65 @@ visible, RNMR will update the display to show the data as updated by `LPF`.
 ## LPK
 List Peaks
 
-Category: Printing
+Category: Data Analysis
 
 Format: `LPK`
 
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
 Description:
-`LPK` prints a list of peak positions and intensities for the first 50 peaks within the current display limits (`LIM`)
-above the current peak pick threshold (`TH`).  The peak list is printed on the current text output device, as selected
-by the command `LPDEV`.  `LPK` only lists peaks within the current display limits for the data in processing buffer 1.
-Recall that buffer 1 is the visible buffer, while the data in buffer 2 cannot be viewed directly.  The user need not be
-viewing the processing buffer to use `LPK`.  If a title has been specified earlier for this buffer (e.g. by a `SA`,
-`SS`, or `SB` operation), RNMR will use this title on the printout.  At console (\>) level, if no title has been
-specified,  RNMR will prompt the user for a title after the `LPK` command is entered.  Similarly, an `LPK` command in a
-macro will prompt the user for a missing title if the `LPK` command is followed by the text line operator ";;" as shown
-below:
+`LPK` displays a list of peak positions and intensities for the first 50 peaks within the current display limits (`LIM`)
+above the current peak pick threshold (`TH`). `LPK` only lists peaks within the current display limits for the data in
+processing buffer 1. The user need not be viewing the processing buffer to use `LPK`.
 
-    LPK
-    ;;
+The first line displayed by `LPK` will be the current buffer title. The following line will contain the archive, record,
+block number, owner, and date. Direction 1 is always indicated by "\*" in the block number display and corresponds to
+the dimension visible on the screen for one-dimensional displays. For example, if record 5 is a two-dimensional blocked
+record and `DIRB` 2 is currently 12, the `LPK` display will include the line:
 
-If `LPK` is issued from a macro without a subsequent ";;" text substitution command, RNMR will use the buffer's current
-title on the `LPK` printout.  If a new, nonblank title is entered for the `LPK` printout and "buf" is currently visible,
-RNMR will display the new title at the top of the screen.
+    TEMP     5     (*    ,   1)
 
-Each time `LPK` is executed, RNMR opens a new ASCII text file called LPK.TMP to store the peak summary until it can be
-printed. If the printing is successful, `LPK`.TMP is deleted on completion of the print job.  If the print job is
-aborted or otherwise fails to complete successfully, the LPK.TMP will remain on disk and may be printed manually.
+when listing block 1 of record 5 in archive TEMP. Conversely, if `DIRB` 2 is set to 21, the display will include:
+
+    TEMP     5     (1    ,   * )
+
+to indicate that direction 1 is mapped to dimension 2. If the record containing the data in buffer buf is one
+dimensional, no block numbers will be reported.
 
 `LPK` lists peaks in the real part of the data in processing buffer 1 unless the user has selected the imaginary part by
-entering `BUF IMAG`.  Peaks are located and listed only for the first block of buffer 1 between the current display
+entering `BUF IMAG`. Peaks are located and listed only for the first block of buffer 1 between the current display
 limits, as set and displayed by the `LIM` command.
-To abort the peak listing in progress, the user may press <CTRL-Z\> or "Q" at any time before the console prompt ("\>")
-is returned.  If the user aborts `LPK` before the first peak is located, then no listing will be printed.  Otherwise,
-RNMR will print a listing of all the peaks it found prior to the interrupt.
 
 `LPK` uses the following algorithm to find peaks within the current display limits:
 
 1.	Starting with the first point to right of the left cursor and proceeding to the last point to the left of the right
-cursor, `LPK` examines each visible point in processing buffer 1.  Consequently, neither of the current cursor positions
+cursor, `LPK` examines each visible point in processing buffer 1. Consequently, neither of the current cursor positions
 can be a peak.
 
 2.	RNMR examines the intensities of the two points on either side of the current point and decides whether the current
-point is a peak.  If I is the intensity of the test point and IL and IR are the intensities of the first points to the
+point is a peak. If I is the intensity of the test point and IL and IR are the intensities of the first points to the
 left and right of the test point, respectively, then the test point is a peak if:
 
         (ABS(I) .GT. IL) .AND. (ABS(I) .GE. IR)      .AND. (ABS(I) .GE. TH)   if I .GE. 0
     or
 
         (ABS(I) .GT. -IL) .AND. (ABS(I) .GE. -IR)      .AND. (ABS(I) .GE. TH)   if I .LT. 0
-where `TH` is the current peak pick threshold, as set and displayed by the command `TH`.  That is, for a positive point
+where `TH` is the current peak pick threshold, as set and displayed by the command `TH`. That is, for a positive point
 to be a peak, its intensity must be greater than or equal to the peak pick threshold, greater than the intensity of the
-adjacent point on the left, and greater than or equal to the intensity of the point on the right.  Conversely, for a
+adjacent point on the left, and greater than or equal to the intensity of the point on the right. Conversely, for a
 negative point to be a peak, its intensity must be less than or equal to the negative of the peak pick threshold, less
 than the intensity of the first point to the left, and less than or equal to the intensity of the first point to the
 right.
 
-3.	For each peak found, RNMR writes a line to `LP`.TMP.  The first column in the `LPK` printout will specify the peak
-number, starting at one for the leftmost peak.  If the current unit is PPM, the second column of the `LPK` printout will
-list the peak position in PPM while the third column will list this position in the current default frequency unit, as
-set by the command `UNIT /FREQ /DFLT`.  If the current unit is not PPM, the second column will list the peak
-position in the current unit while the third column will specify "--------" for each peak. RNMR will list all peak
-positions with the maximum number of decimal places currently set for the appropriate units at RNMR startup time or as
-modified by the `NDEC` command.  The fourth column of the `LPK` printout specifies the peak height for each peak,
+3.	For each peak found, RNMR displays a line corresponding to the peak. The first column in the `LPK` printout will
+specify the peak number, starting at one for the leftmost peak. If the current unit is PPM, the second column of the
+`LPK` printout will list the peak position in PPM while the third column will list this position in the current default
+frequency unit, as set by the command `UNIT /FREQ /DFLT`. If the current unit is not PPM, the second column will list
+the peak position in the current unit while the third column will specify "--------" for each peak. RNMR will list all
+peak positions with the maximum number of decimal places currently set for the appropriate units at RNMR startup time or
+as modified by the `NDEC` command. The fourth column of the `LPK` printout specifies the peak height for each peak,
 reported to a maximum of 3 decimal places.
 
 4.	RNMR stops listing peaks after finding the first 50 peaks or after testing the next to the last point currently
@@ -4959,31 +4957,25 @@ In this case, RNMR does not print a peak list.  Conversely, if more  than 50 pea
 message:
 
         (LPK   ) TOO MANY PEAKS
-along with the number of peaks actually found between the display limits.  When this occurs, RNMR prints a listing of
+along with the number of peaks actually found between the display limits. When this occurs, RNMR displays a listing of
 the first 50 peaks from left to right and does not list the remaining peaks.
 
-Each `LPK` printout begins with a header which includes the buffer title, record and block numbers, record owner, and
-date, as well as titles for each column specifying the domain (time or frequency) and units for the peak data to follow.
- When reading the record and block number at the top of the `LPK` printout, note that direction 1 is always indicated by
-"\*" in the block number display and corresponds to the dimension visible on the screen for onedimensional displays.
-For example, if buffer 1 contains data from record 5, which is two-dimensional, and `DIRB` 2 is currently 12, the `LPK`
-summary will include the line:
-
-        REC     5       (*    ,   1)
-
-when listing the peaks in block 1 of record 5.  Conversely, if `DIRB` 2 is set  to 21, the summary will include:
-
-    REC     5       (1    ,   * )
-
-to indicate that direction 1 is mapped to dimension 2.  If buffer 1 contains data from a one-dimensional record, RNMR
-will not list any block numbers.
-
 Wherever possible, `LPK` lists peak positions and intensities as floating point numbers with the maximum number of
-decimal places: 3 for intensity and "ndec" for peak position, where "ndec" is the value returned by the `NDEC` command
-for the appropriate time or frequency unit.  However, when a time, frequency or intensity value is too large or too
+decimal places: 3 for intensity and ndec for peak position, where ndec is the value returned by the `NDEC` command
+for the appropriate time or frequency unit. However, when a time, frequency or intensity value is too large or too
 small to represent with this number of decimal places, RNMR will begin to drop decimal places to fit the number into an
-8-character field.  If RNMR cannot write the number into an eight character field after dropping all decimal places
+8-character field. If RNMR cannot write the number into an eight character field after dropping all decimal places
 (`NDEC 0`), the number will be written in scientific notation.
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## LPK2D
 List peaks in two dimensions
 
