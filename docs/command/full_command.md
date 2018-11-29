@@ -5119,30 +5119,8 @@ Defaults: 1 current
 Prerequisites: Pulse program loaded (LOAD) RNMR only
 
 Description:
-`LS` sets the value of a specified pulse program loop counter.  Pulse program loops are specified in the PP source code
-by LOOP statements and assigned default values by DEF statements.  Upon loading a pulse program with the RNMR command
-`EX`, these loops are initialized with any default values that were declared in the PP source code.  To modify or check
-the current value of a loop, the RNMR commands `LS` and `LI` may be entered whenever a pulse program is loaded; the
-acquisition need not be stopped to use these commands.
-
-The first parameter of `LS` is "loop", the number of the loop to be set.  If "loop" is not specified on the command
-line, RNMR will prompt for a loop number. If the user presses <RETURN\> at this prompt, RNMR will select loop 1.  The
-legal values for "loop" are integers between 1 and 16, inclusive.  While the pulse programmer supports 32 loops, only
-the first 16 can be set from RNMR; loops 17 through 32 may be used internally in a pulse program but are not accessible
-to RNMR.
-
-The second parameter, "val", is the value to which the specified loop will be set.  If "val" is not specified on the
-command line, RNMR will prompt for a loop value with the current value as the default.  That is, entering `LS` without a
-loop value "val" will display the current value of that loop.  Legal values for "val" are positive integers between 0
-and 32767, inclusive.  Note that RNMR will update the pulse programmer hardware unless the user omits "val" on the
-command line and  presses <RETURN\> at the loop value prompt, even if the user entered the  current value for the
-selected loop.
-
-Once "loop" and "val" have been entered, RNMR updates the loop in  the pulse programmer parameter buffer   After
-adjusting a loop with the `LS` command during acquisition, several seconds will usually elapse before the pulse
-programmer responds to the change.  However, if the loop value is modified before acquisition is started, the first shot
-should reflect the new loop setting.  If the new loop value is zero, the pulse programmer will simply skip all
-instructions within that loop as soon as the hardware is updated.
+`LS` is an old command for setting a pulse programmer loop value. It has been replaced with the `LOOP` command and is
+currently simply an alias to it. As such `LOOP` should be used in place of `LS`.
 ## LSTD
 Define global list
 
