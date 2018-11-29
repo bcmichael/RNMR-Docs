@@ -4476,17 +4476,21 @@ List processing buffer parameters
 
 Category: Data Storage
 
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
 Format: `LP` buf
 
 Defaults: 1
 
 Description:
-`LP` displays a summary of processing buffer parameter values in a pop up window. When processing spectrometer data
-offline, many experimental parameters can only be determined from the `LP` summary since RNMRP lacks commands to display
-and set many acquisition parameters. The exact format of the `LP` summary varies from spectrometer to spectrometer due
-to differences in implementation of RNMR-controlled hardware. `LP` takes one parameter, buf, which is the number of the
-processing buffer whose parameters will be listed. Processing buffer 1 is the visible buffer while the contents of the
-other processing buffers are not visible on the display. If buf is omitted from the command line, RNMR will list the
+`LP` displays a summary of processing buffer parameter values. When processing spectrometer data offline, many
+experimental parameters can only be determined from the `LP` summary since RNMRP lacks commands to display and set many
+acquisition parameters. The exact format of the `LP` summary varies from spectrometer to spectrometer due to differences
+in implementation of RNMR-controlled hardware. `LP` takes one parameter, buf, which is the number of the processing
+buffer whose parameters will be listed. Processing buffer 1 is the visible buffer while the contents of the other
+processing buffers are not visible on the display. If buf is omitted from the command line, RNMR will list the
 parameters of buffer 1; RNMR does not prompt the user for buf.
 
 The following buffer parameters are listed in the `LP` display:
@@ -4573,6 +4577,15 @@ The following set of processing parameters will be listed:
 - Phase correction factors
 - Scale factor
 
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## LPA
 List acquisition buffer parameters
 
@@ -4580,13 +4593,16 @@ Category: Acquisition
 
 Format: `LPA`
 
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
 Prerequisites: RNMRA only
 
 Description:
-`LPA` displays a summary of processing buffer parameter values in a pop up window.
-These parameters are the latest settings of the pulse programmer, averager, and other spectrometer hardware.  The exact
-format of the `LPA` summary varies from spectrometer to spectrometer due to differences in implementation of
-RNMR-controlled hardware.
+`LPA` displays a summary of processing buffer parameter values. These parameters are the latest settings of the pulse
+programmer, averager, and other spectrometer hardware.  The exact format of the `LPA` summary varies from spectrometer
+to spectrometer due to differences in implementation of RNMR-controlled hardware.
 
 The following buffer parameters are listed in the `LPA` printout:
 
@@ -4670,6 +4686,15 @@ The following set of accumulation parameters will be listed:
 - Number of scans to wait with `WAIT` command
 - Number of scans to acquire (`NA`)
 - Number of scans acquired
+
+The qualifiers specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
 ## LPB
 Perform backward linear prediction on FID
