@@ -5121,6 +5121,78 @@ Prerequisites: Pulse program loaded (LOAD) RNMR only
 Description:
 `LS` is an old command for setting a pulse programmer loop value. It has been replaced with the `LOOP` command and is
 currently simply an alias to it. As such `LOOP` should be used in place of `LS`.
+## LSTFIL
+List contents of a text file
+
+Category: File IO
+
+Format: `LSTFIL` fspec
+
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
+Defaults: temp.dat
+
+Description:
+`LSTFIL` lists the contents of a text file fspec. If fspec is omitted RNMR will prompt for it with temp.dat as a
+default. `LSTFIL` displays the contents of a file in a read only fashion; the file cannot be changed. The qualifiers
+specify how the list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+## LSTLST
+List contents of a list
+
+Category: Lists
+
+Format: `LSTLST` nam
+
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
+Defaults: temp
+
+Description:
+`LSTLST` lists the contents of a list nam. If nam is omitted RNMR will prompt for it with temp as a default. `LSTLST`
+displays the contents of a list in a read only fashion; the list cannot be changed. The qualifiers specify how the list
+is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+## LSTMAC
+List contents of a macro
+
+Category: Macros
+
+Format: `LSTMAC` nam
+
+Qualifiers: /PRT /TTY /WND /WRT
+
+Qualifier Defaults: /WND
+
+Defaults: temp
+
+Description:
+`LSTMAC` lists the contents of a macro nam. If nam is omitted RNMR will prompt for it with temp as a default. `LSTMAC`
+displays the contents of a macro in a read only fashion; the macro cannot be changed. The qualifiers specify how the
+list is output as follows:
+
+Qualifier | Output
+--------- | ------
+/PRT      | Print the list to the printer device as specified by `LPDEV`
+/TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
+/WND      | Display the list in a pop-up window. This is the default behavior.
+/WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 ## LW
 Calculate line width 	              1
 
