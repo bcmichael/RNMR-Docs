@@ -5238,6 +5238,20 @@ height at which the linewidth is measured. If pcnt_ht is omitted RNMR will not p
 
 # M
 ---
+## MACARG
+Redefine names of positional macro arguments
+
+Category: Macros
+
+Format: `MACARG` nam...
+
+Defaults: none
+
+Description:
+`MACARG` renames local arguments created to hold the positional arguments passed into a macro. By default when a macro
+is called with positional arguments they are stored in local arguments 1, 2, 3, etc. `MACARG` accepts a series of names
+as arguments. The default argument names are replaced with the names passed to `MACARG`. The number of names need not
+match the number of numbered arguments. Any names with no corresponding number local will be ignored.
 ## MAG
 Calculate magnitude of data
 
