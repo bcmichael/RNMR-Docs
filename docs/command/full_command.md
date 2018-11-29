@@ -5269,12 +5269,13 @@ Append text to macro
 
 Category: Macro
 
-Format: `MAPN` macnam
+Format: `MAPN` nam
 
 Defaults: TEMP
 
 Description:
-Appends text to end of macro.
+`MAPN` is an old command for appending lines of text to a macro. It has been replaced with the `APNMAC` command and is
+currently simply an alias to it. As such `APNMAC` should be used in place of `MAPN`.
 ## MAXV
 Calculate maximum
 
