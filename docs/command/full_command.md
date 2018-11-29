@@ -5170,6 +5170,7 @@ Qualifier | Output
 /TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## LSTLST
 List contents of a list
 
@@ -5194,6 +5195,7 @@ Qualifier | Output
 /TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## LSTMAC
 List contents of a macro
 
@@ -5218,6 +5220,7 @@ Qualifier | Output
 /TTY      | Print the list to the RNMR command line, one line at a time. Press <RETURN\> or <SPACE\> to print the next line. Press "Q" or <CTRL-Z\> to quit.
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
+
 ## LW
 Calculate line width
 
