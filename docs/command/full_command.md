@@ -5121,17 +5121,6 @@ Prerequisites: Pulse program loaded (LOAD) RNMR only
 Description:
 `LS` is an old command for setting a pulse programmer loop value. It has been replaced with the `LOOP` command and is
 currently simply an alias to it. As such `LOOP` should be used in place of `LS`.
-## LSTD
-Define global list
-
-Category: Lists
-
-Format: `LSTD` list
-
-Defaults:
-
-Description: 1
-Creates global list. There are 4 lists available.
 ## LSTDP
 Define global list using Processing Display
 
@@ -5161,44 +5150,6 @@ Q       | Terminate
 T       | Move to top of list
 Z       | Call `ZO`
 
-## LSTE
-Edit global list
-
-Category: Lists
-
-Format: `LSTE` list#
-
-Defaults: 1
-
-Description:
-Edit global list.
-
-Subcommands:
-
-Command | Description
-------- | -----------
-CR      | Terminate
-B       | Move to bottom of list
-C       | Display current entry
-D       | Delete entry
-I       | Insert entry
-L       | Display last entry
-N       | Display next entry
-Q       | Terminate
-R       | Replace entry
-T       | Move to top of list
-
-## LSTL
-List global list
-
-Category: Lists
-
-Format: `LSTL` list#
-
-Defaults:
-
-Description:
-Lists global list.
 ## LW
 Calculate line width 	              1
 
