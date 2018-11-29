@@ -5194,17 +5194,19 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 ## LW
-Calculate line width 	              1
+Calculate line width
 
 Category: Data Analysis
 
-Format: `LW` left_lim right_lim pcnt_ht
+Format: `LW` llim rlim pcnt_ht
 
-Defaults: left_cur right_cur 50
+Defaults: lcursor rcursor 50
 
 Description:
-Obtains width of line at specified height in the current unit.  If arguments are not specified, they will be prompted
-for.  Only the first peak (above threshold) encountered, going from left to right, will be evaluated.
+`LW` calculates the width of a peak. `LW` will search from left to right between llim and rlim and selects the first
+peak above the peak picking threshold as set and displayed by `TH`. If llim or rlim is not specified RNMR will not
+prompt for it and will use the current cursor positions. The third parameter pcnt_ht is a the percentage of the peak
+height at which the linewidth is measured. If pcnt_ht is omitted RNMR will not prompt for it and will use 50 percent.
 
 # M
 ---
