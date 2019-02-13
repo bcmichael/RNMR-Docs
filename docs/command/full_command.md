@@ -5738,6 +5738,18 @@ Prerequisites: (LOAD) by `EX`; the acquisition must be stopped (HALT); RNMRA onl
 Description:
 `NG` continues an experiment much like `GO` but performs dummy scans. If either ndly or na is omitted RNMR will use the
 stored values to determine the number of dummy scans/the scan limit respectively without prompting for values.
+## NOISE
+Generate complex random noise
+
+Category: Data Manipulation
+
+Format: `NOISE` sf
+
+Defaults: 1.0
+
+Description:
+`NOISE` fills the visible processing buffer with randomly generated noise. The parameter sf is a scaling factor that is
+applied to the noise. If sf is omitted RNMR will not prompt for it and will use 1.0 as the scalinf factor.
 ## NOP
 Null operation
 
