@@ -1114,7 +1114,7 @@ Qualifier | Output
 ## CATSYM
 List catalog of nuclei
 
-Category: Nuclei
+Category: Arguments
 
 Format: `CATSYM` first last
 
