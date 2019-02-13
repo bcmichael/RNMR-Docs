@@ -5822,7 +5822,9 @@ Format: `NWAIT` nwait
 Defaults: current
 
 Description:
-Sets number of shots to wait before `WAIT` is satisfied. nwait = 0 indicates na.
+`NWAIT` sets the number of shots to wait before `WAIT` is satisfied. If nwait is omitted RNMR will prompt for it with
+the current value as a default. If nwait is set to 0 `WAIT` will wait for na shots as set and displayed by the `NA`
+command.
 
 # O
 ---
