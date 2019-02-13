@@ -5758,7 +5758,7 @@ Category: Misc.
 Format: `NOP`
 
 Description:
-Performs null operation.
+`NOP` performs no operation.
 ## NORM
 Set scale to normalize display
 
