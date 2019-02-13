@@ -5425,16 +5425,18 @@ Calculates minimum
 
 Category: Data Manipulation
 
-Format: `MINV` src# dst#
+Format: `MINV` src dst
 
 Defaults: 2 1
 
 Description:
-Obtains minimum of complex source buffer and complex destination buffer.
+`MINV` replaces the contents of buffer dst with the minimum of buffers src and dst.
 
         DST = MIN(DST,SRC)
 
-Comparison is based on magnitudes.
+The comparison is pointwise and based on magnitudes. If either argument is omitted, RNMR will prompt for a buffer
+number. The default source is buffer 2 while the default destination is buffer 1. The src and dst buffers must have the
+same domain and active size (though not necessarily the same allocated size).
 ## ML
 List contents of a macro
 
