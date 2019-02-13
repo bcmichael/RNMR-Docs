@@ -5729,14 +5729,15 @@ Continue acquisition
 
 Category: Acquisition
 
-Format: `NG` ndly `NA`
+Format: `NG` ndly na
 
 Defaults: current current
 
-Prerequisites: LOAD HALT
+Prerequisites: (LOAD) by `EX`; the acquisition must be stopped (HALT); RNMRA only.
 
 Description:
-Continues acquisition after delay.
+`NG` continues an experiment much like `GO` but performs dummy scans. If either ndly or na is omitted RNMR will use the
+stored values to determine the number of dummy scans/the scan limit respectively without prompting for values.
 ## NOP
 Null operation
 
