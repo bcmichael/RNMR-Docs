@@ -5343,12 +5343,13 @@ Define macro
 
 Category: Macro
 
-Format: `MD` macnam
+Format: `MD` nam
 
-Defaults:
+Defaults: temp
 
 Description:
-Defines macro.
+`MD` is an old command for defining to a macro. It has been replaced with the `CRTMAC` command and is currently simply
+an alias to it. As such `CRTMAC` should be used in place of `MD`.
 ## MDL
 Delete macro 	            TEMP
 
