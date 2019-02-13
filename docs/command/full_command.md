@@ -5536,6 +5536,20 @@ Moves complex source buffer to complex destination buffer.  DST = SRC
 If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
+## MRGFS
+Merge default file with file
+
+Category: File IO
+
+Format `MRGFS` fspecd fspec
+
+Defaults: none
+
+Description:
+`MRGFS` merges a default file specification fspecd with fspec. A file consists of a name and extension (separated by the
+last period). The parts of the merged file specification are obtained by preferentially selecting the parts from fspec.
+If a part is not present in fspec, the part in fspecd is used. If the part is not present in either input it is omitted.
+The merged file specification is printed as an informational message.
 ## MRN
 Rename macro
 
