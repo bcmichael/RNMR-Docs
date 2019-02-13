@@ -5331,12 +5331,13 @@ Copy macro
 
 Category: Macro
 
-Format: `MCPY` macnam1 macnam2
+Format: `MCPY` name1 name2
 
-Defaults:
+Defaults: temp temp
 
 Description:
-Copies macro. 	                TEMP    TEMP
+`MCPY` is an old command for copying a macro. It has been replaced with the `CPYMAC` command and is currently simply an
+alias to it. As such `CPYMAC` should be used in place of `MCPY`.
 ## MD
 Define macro
 
