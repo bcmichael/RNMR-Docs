@@ -2871,7 +2871,7 @@ Format: `F` chan freq
 
 Defaults: 1 current
 
-Prerequisites: For RNMRA: Acquisition stopped (HALT). For RNMRP:	no restrictions
+Prerequisites: For RNMRA: Acquisition stopped (HALT). For RNMRP: no restrictions
 
 Description:
 `F` sets the frequency offset of a spectrometer synthesizer. When `F` is used in RNMRA `F` resets the actual output
