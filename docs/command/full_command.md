@@ -5767,7 +5767,8 @@ Category: Display Control
 Format: `NORM`
 
 Description:
-Normalizes data so that largest peak within display limits has magnitude 1.0.
+`NORM` rescales the data in the visible processing buffer such that the point within the display limits that has the
+largest magnitude has magnitude 1.0.
 ## NUC
 Set synthesizer nucleus
 
