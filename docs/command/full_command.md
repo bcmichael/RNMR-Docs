@@ -5808,8 +5808,10 @@ Category: Nuclei
 
 Format: `NUCDL` nucnam
 
+Defaults: none
+
 Description:
-Deletes nucleus table entry.
+`NUCDL` deletes the nucleus entry table for nucnam. If nucnam is not specified RNMR will prompt for it.
 ## NWAIT
 Set number of shots to wait
 
