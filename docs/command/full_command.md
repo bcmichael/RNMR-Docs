@@ -5715,6 +5715,15 @@ Prerequisites: RNMRA only
 Description:
 `NDSP` sets the number of shots to acquire between display updates. If ndsp is omitted RNMR will prompt for it with the
 current value as a default.
+## NEG
+Negates buffer
+
+Category: Data Manipulation
+
+Format: `NEG`
+
+Description:
+`NEG` replaces the contents of the visible processing buffer with itself multiplied by -1.
 ## NG
 Continue acquisition
 
