@@ -885,7 +885,7 @@ and last record numbers to be displayed. If these are omitted, the listing will 
 
 Any value corresponding to a record in an open archive may be provided for first-rec. Records in archives other than 1
 can be specified by either pre-pending the archive number and a ":" or specifying numbers larger than 200. For example
-record # in archive can be specified either as 2:# or by adding 200 to #. Similarly, last-rec may be any integer from
+record # in archive 2 can be specified either as 2:# or by adding 200 to #. Similarly, last-rec may be any integer from
 the record number within an archive specified in first-rec to 200, inclusive. If only one argument is specified, `CAT`
 will list information about only that single record. For each nonempty record, `CAT` returns the record  number, owner,
 record length, record position within the archive, date, and title. Note that `CAT` reports record length and position
