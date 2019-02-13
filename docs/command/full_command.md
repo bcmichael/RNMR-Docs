@@ -5548,17 +5548,6 @@ Defaults: temp temp
 Description:
 `MRN` is an old command for renaming a macro. It has been replaced with the `RENMAC` command and is currently
 simply an alias to it. As such `RENMAC` should be used in place of `MRN`.
-## MTR
-Set lock meter limits
-
-Category: Lock
-
-Format: `MTR` minlim maxlim
-
-Defaults: current current
-
-Description:
-Sets lock meter limits.  Minimum limit is 0.0.  Maximum limit is 100.0.
 ## MULV
 Multiply buffer
 
