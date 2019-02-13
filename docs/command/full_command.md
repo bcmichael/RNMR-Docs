@@ -5384,21 +5384,21 @@ Format: `MEDBF` window std_dev
 Defaults: 70 5.0
 
 Description:
-Baseline fix spectrum based on algorithm presented by M. Friedrichs, J. Biomol. NMR 5 147-153 (1995)  The algorithm
+Baseline fix spectrum based on algorithm presented by M. Friedrichs, J. Biomol. NMR 5 147-153 (1995). The algorithm
 tracks the baseline by calculating, at each point, the median of the extrema within a certain window size set by the
-argument window.  This set of median values is then convoluted with a Gaussian of standard deviation given by the
-argument std_dev.  These final values are then subtracted from the data values.  The values of the window and the
-standard deviation are both in terms of points, rather than the current units.  The user will be prompted for both
-values if they are not given.
+argument window. This set of median values is then convoluted with a Gaussian of standard deviation given by the
+argument std_dev. These final values are then subtracted from the data values. The values of the window and the standard
+deviation are both in terms of points, rather than the current units. The user will be prompted for both values if they
+are not given.
 
-The success of this method depends on proper choice of the window size.  The window should be chosen such that the
-number of local extrema arising from noise dominates the median statistic.  If the window is too small and the number of
+The success of this method depends on proper choice of the window size. The window should be chosen such that the
+number of local extrema arising from noise dominates the median statistic. If the window is too small and the number of
 signal peaks in a given window is comparable to the number of noise peaks, the algorithm will be biased upwards and
-attempt to bring the signals down to the baseline.  On the other hand, if the window is too large, the baseline will not
-reflect the local baseline structure.  Likewise, the standard deviation should be chosen such that it is not too large
-and thus broadening out the local correction over too wide a region.  The user should be careful in the use of this
+attempt to bring the signals down to the baseline.  n the other hand, if the window is too large, the baseline will not
+reflect the local baseline structure. Likewise, the standard deviation should be chosen such that it is not too large
+and thus broadening out the local correction over too wide a region. The user should be careful in the use of this
 algorithm in cases where zero filling before Fourier transformation has taken place, since such a procedure in effect
-increases the number of points between noise extrema.  Zero filling to sizes 4 or more times the acquired FID are cause
+increases the number of points between noise extrema. Zero filling to sizes 4 or more times the acquired FID are cause
 for caution.
 ## MEXIT
 Exit macro
