@@ -5644,8 +5644,20 @@ Description:
 not provided RNMR will prompt for it with the current value as a default. The /BLK qualifier is used to set the number
 of block acquisition modes and is typically used to set the number of steps in hypercomplex acquisition of
 multidimensional spectra. The /TPPI qualifier is used to set the number of modes for TPPI acquisition.
+## NCHN
+Set number of channels
+
+Category: Acquisition
+
+Format: `NCHN` nchn
+
+Defaults: current
+
+Prerequisites: RNMRA only
+
 Description:
-Sets number of acquisition and pulse program modes to use, i.e. the length of the phase cycle.
+`NCHN` sets the number of channels to be used. If nchn is not provided RNMR will prompt for it with the current value as
+a default. Note that the number of channels is also set implicitly by the `CHN` command.
 ## NCON
 Set number of contour levels
 
