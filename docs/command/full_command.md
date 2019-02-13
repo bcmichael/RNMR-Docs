@@ -5351,27 +5351,17 @@ Description:
 `MD` is an old command for defining to a macro. It has been replaced with the `CRTMAC` command and is currently simply
 an alias to it. As such `CRTMAC` should be used in place of `MD`.
 ## MDL
-Delete macro 	            TEMP
+Delete macro
 
 Category: Macro
 
-Format: `MDL` macnam
+Format: `MDL` nam
 
-Defaults:
-
-Description:
-Deletes macro.
-## MDMP
-Dump macro 	             TEMP
-
-Category: Macro
-
-Format: `MDMP` filnam
-
-Defaults: TEMP
+Defaults: temp
 
 Description:
-Dumps macro instructions to file in current directory.  File type will be TXT.
+`MDL` is an old command for deleting a macro. It has been replaced with the `REMMAC` command and is currently simply an
+alias to it. As such `REMMAC` should be used in place of `MDL`.
 ## ME
 Edit macro
 
@@ -5379,26 +5369,11 @@ Category: Macro
 
 Format: `ME` macnam
 
-Defaults:
+Defaults: temp
 
 Description:
-Edits macro. 	            TEMP
-
-Subcommands:
-
-Command | Description
-------- | -----------
-CR      | Terminate
-B       | Move to bottom of macro
-C       | Display current line
-D       | Delete line
-I       | Insert line
-L       | Display last line
-N       | Display next line
-Q       | Terminate
-R       | Replace line
-T       | Move to top of macro
-
+`ME` is an old command for editing a macro. It has been replaced with the `EDTMAC` command and is currently simply an
+alias to it. As such `EDTMAC` should be used in place of `ME`.
 ## MEDBF
 Median baseline fix spectrum
 
@@ -5450,28 +5425,17 @@ Obtains minimum of complex source buffer and complex destination buffer.
 
 Comparison is based on magnitudes.
 ## ML
-List macro
+List contents of a macro
 
 Category: Macro
 
-Format: `ML` macnam
+Format: `ML` nam
 
-Defaults:
-
-Description:
-Lists macro.
-## MLOA
-Load macro 	           TEMP
-
-Category: Macro
-
-Format: `MLOA` filename
-
-Defaults: TEMP
+Defaults: temp
 
 Description:
-Loads macro instructions from file in current directory.  File type must be TXT.  File can contain one or more macro
-definitions.
+`ML` is an old command for listing the contents a macro. It has been replaced with the `LSTMAC` command and is currently
+simply an alias to it. As such `LSTMAC` should be used in place of `ML`.
 ## MNMX
 Calculate minimum and maximum
 
@@ -5511,14 +5475,15 @@ Rename macro
 
 Category: Macro
 
-Format: `MRN` macnam1 macnam2
+Format: `MRN` nam1 nam2
 
-Defaults:
+Defaults: temp temp
 
 Description:
-Renames macro.
+`MRN` is an old command for renaming a macro. It has been replaced with the `RENMAC` command and is currently
+simply an alias to it. As such `RENMAC` should be used in place of `MRN`.
 ## MTR
-Set lock meter limits 	             TEMP    TEMP
+Set lock meter limits
 
 Category: Lock
 
