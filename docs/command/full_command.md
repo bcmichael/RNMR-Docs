@@ -5663,14 +5663,17 @@ Set number of contour levels
 
 Category: `ZO2DC`
 
-Format: `NCON` [qual] ncon
-	Qualifiers: 	/LIN    /LOG
- 	Qualifier defaults:        current (originally /LOG)
+Format: `NCON` ncon
+
+Qualifiers: /LIN /LOG
+
+Qualifier defaults: current
 
 Defaults: current
 
 Description:
-Sets number of contour levels.  Contour level spacing is determined by qualifiers.
+`NCON` sets the number of contour levels to use. If ncon is omitted RNMR will prompt for it with the current value as a
+default. /LIN is used for linearly spaced contours while /LOG is used for logarithmically spaced contours.
 ## NDEC
 Set number of decimal places
 
