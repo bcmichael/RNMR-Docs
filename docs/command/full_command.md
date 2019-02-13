@@ -5710,8 +5710,11 @@ Format: `NDSP` ndsp
 
 Defaults: current
 
+Prerequisites: RNMRA only
+
 Description:
-Sets number of shots to acquire before display update.
+`NDSP` sets the number of shots to acquire between display updates. If ndsp is omitted RNMR will prompt for it with the
+current value as a default.
 ## NG
 Continue acquisition
 
