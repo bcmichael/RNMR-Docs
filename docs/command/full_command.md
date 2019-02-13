@@ -5696,8 +5696,11 @@ Format: `NDLY` ndly
 
 Defaults: current
 
+Prerequisites: RNMRA only
+
 Description:
-Sets number of shots to discard before acquiring.
+`NDLY` sets the number of dummy scans to run before starting acquisition. If ndly is omitted RNMR will prompt for it
+with the current value as a default.
 ## NDSP
 Set number of shots between display update
 
