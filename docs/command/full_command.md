@@ -5618,8 +5618,12 @@ Format: `NABLK` nablk
 
 Defaults: current
 
+Prerequisites: Acquisition stopped (HALT), RNMRA only
+
 Description:
-Sets number of acquisition blocks. `NABLK` 0 indicates maximum possible  number of acquisition blocks.
+`NABLK` sets the number of blocks into which the aquisition buffer is partitioned. If nablk is not provided RNMR will
+prompt for it with the current value as a default. If nablk is 0 the maximum possible number of acquisition blocks will
+be used.
 ## NAMD
 Set number of acquisition modes
 
