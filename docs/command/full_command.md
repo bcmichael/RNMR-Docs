@@ -5631,8 +5631,19 @@ Category: Acquisition
 
 Format: `NAMD` namd
 
+Qualifiers: /ACQ /BLK /TPPI
+
+Qualifier Defaults: /ACQ
+
 Defaults: current
 
+Prerequisites: RNMRA only
+
+Description:
+`NAMD` sets the number of acquisition and pulse program modes to use, i.e. the length of the phase cycle. If nablk is
+not provided RNMR will prompt for it with the current value as a default. The /BLK qualifier is used to set the number
+of block acquisition modes and is typically used to set the number of steps in hypercomplex acquisition of
+multidimensional spectra. The /TPPI qualifier is used to set the number of modes for TPPI acquisition.
 Description:
 Sets number of acquisition and pulse program modes to use, i.e. the length of the phase cycle.
 ## NCON
