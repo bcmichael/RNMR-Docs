@@ -2677,6 +2677,8 @@ an alias to it. As such `PPEX` should be used in place of `EX`.
 ## EXIT
 Exit program
 
+Category: Misc.
+
 Format: `EXIT` resp
 
 Qualifiers: /ERROR
@@ -5488,16 +5490,17 @@ Qualifier | Integrand
 
 The default integrand is the same as the current display mode as displayed and set by the `BUF` command.
 ## MO
-Exit
+Exit program
 
 Category: Misc.
 
-Format: `MO`
+Format: `MO` resp
 
-Prerequisites: HALT
+Defaults: no
 
 Description:
-Terminates program.
+`MO` is an old command for exiting RNMR. It has been replaced with the `EXIT` command and is currently simply an alias
+to it. As such `EXIT` should be used in place of `MO`.
 ## MOVV
 Move buffer
 
