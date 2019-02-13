@@ -5405,10 +5405,21 @@ Exit macro
 
 Category: Macro
 
-Format: `MEXIT`
+Format: `MEXIT` vals...
+
+Qualifiers: /ERROR
+
+Qualifier Defaults: none
+
+Defaults: none
+
+Prerequisites: Macro only (MAC)
 
 Description:
-Performs unconditional exit from current macro.  All remaining repeats are cancelled.
+`MEXIT` performs unconditional exit from current macro. All remaining repeats are cancelled. The values provided as
+arguments to `MEXIT` will be stored as local variables at the site where the macro was called. They will be named RTN$1,
+RTN$2, RT$3 etc. `RTNARG` can be used to easily rename these local variables. The /ERROR causes the macro to return as
+an error causing the calling site to jump to the label set by `ONERR`.
 ## MINV
 Calculates minimum
 
