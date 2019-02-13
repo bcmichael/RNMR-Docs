@@ -5562,6 +5562,17 @@ Defaults: temp temp
 Description:
 `MRN` is an old command for renaming a macro. It has been replaced with the `RENMAC` command and is currently
 simply an alias to it. As such `RENMAC` should be used in place of `MRN`.
+## MSG
+Write message line to console
+
+Category: Misc.
+
+Format: `MSG` msgln
+
+Defaults: None
+
+Description:
+`MSG` writes the contents of msgln to the console. If msgln is omitted RNMR will prompt for it.
 ## MULV
 Multiply buffer
 
