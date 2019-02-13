@@ -3495,7 +3495,7 @@ Format: `GO` na
 
 Defaults: current
 
-Prerequisites: (LOAD) by `EX`; the acquisition must be stopped; RNMR only.
+Prerequisites: (LOAD) by `EX`; the acquisition must be stopped (HALT); RNMRA only.
 
 Description:
 `GO` instructs RNMR to continue acquisition after acquisition has been stopped by `QUIT`. Continuing shots will be
