@@ -5825,6 +5825,18 @@ Description:
 `NWAIT` sets the number of shots to wait before `WAIT` is satisfied. If nwait is omitted RNMR will prompt for it with
 the current value as a default. If nwait is set to 0 `WAIT` will wait for na shots as set and displayed by the `NA`
 command.
+## NXTDO
+Cycle macro `DO` loop
+
+Category: Macro
+
+Format: `NXTDO`
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`NXTDO` skips to the beginning of the next iteration of a macro `DO` loop without executing the rest of the commands in
+the loop. `NXTDO` must fall between an instance of `DO` and its matching `ENDDO`.
 
 # O
 ---
