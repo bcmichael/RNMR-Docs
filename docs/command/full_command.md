@@ -5501,6 +5501,22 @@ Defaults: no
 Description:
 `MO` is an old command for exiting RNMR. It has been replaced with the `EXIT` command and is currently simply an alias
 to it. As such `EXIT` should be used in place of `MO`.
+## MOV
+Move record
+
+Category: Data Storage
+
+Format: `MOV` src dst
+
+Defaults: irrec iwrec
+
+Description:
+`MOV` moves data from src record to dst record. If not provided RNMR will promt for src with the last read record as a
+default. RNMR will not prompt for dst and will use the next available record as a default. Both src and dst must be
+records in the same archive.
+
+Records in archives other than 1 can be specified by either pre-pending the archive number and a ":" or specifying
+numbers larger than 200. For example record # in archive 2 can be specified either as 2:# or by adding 200 to #.
 ## MOVV
 Move buffer
 
