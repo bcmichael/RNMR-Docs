@@ -5434,7 +5434,7 @@ Defaults: 2 1
 Description:
 `MINV` replaces the contents of buffer dst with the minimum of buffers src and dst.
 
-        DST = MIN(DST,SRC)
+    DST = MIN(DST,SRC)
 
 The comparison is pointwise and based on magnitudes. If either argument is omitted, RNMR will prompt for a buffer
 number. The default source is buffer 2 while the default destination is buffer 1. The src and dst buffers must have the
@@ -5522,12 +5522,20 @@ Move buffer
 
 Category: Data Manipulation
 
-Format: `MOVV` src# dst#
+Format: `MOVV` src dst
 
 Defaults: 2 1
 
 Description:
 Moves complex source buffer to complex destination buffer.  DST = SRC
+
+`MOVV` replaces the contents of buffer dst with the contents of buffer src.
+
+    DST = SRC
+
+If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
+destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
+same allocated size).
 ## MRN
 Rename macro
 
