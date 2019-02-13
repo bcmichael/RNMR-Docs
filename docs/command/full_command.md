@@ -5578,15 +5578,20 @@ Multiply buffer
 
 Category: Data Manipulation
 
-Format: `MULV` src# dst#
+Format: `MULV` src dst
 
 Defaults: 2 1
 
 Description:
-Real multiplies complex destination buffer by complex source buffer.
+`MULV` replaces the real and imaginary parts of buffer dst with the product of the respective parts of buffers src and
+dst.
 
-        REAL(DST) = REAL(DST) * REAL(SRC)
-        IMAG(DST) = IMAG(DST) * IMAG(SRC)
+    REAL(DST) = REAL(DST) * REAL(SRC)
+    IMAG(DST) = IMAG(DST) * IMAG(SRC)
+
+The multiplication is pointwise. If either argument is omitted, RNMR will prompt for a buffer number. The default source
+is buffer 2 while the default destination is buffer 1. The src and dst buffers must have the same domain and active size
+(though not necessarily the same allocated size).
 ## MXEQ
 Macro execute
 
