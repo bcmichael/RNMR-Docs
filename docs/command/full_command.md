@@ -5684,7 +5684,9 @@ Format: `NDEC` unit ndec
 Defaults: current current
 
 Description:
-Sets number of decimal places to be displayed for unit.
+`NDEC` sets the number of decimal places to use when displaying values with a given unit. If unit is omitted then RNMR
+will prompt for it with the current time unit as a default. If ndec is omitted RNMR will prompt for it with the current
+value as a default.
 ## NDLY
 Set number of shots to discard
 
