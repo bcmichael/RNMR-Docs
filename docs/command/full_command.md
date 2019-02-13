@@ -5276,6 +5276,39 @@ Defaults: TEMP
 Description:
 `MAPN` is an old command for appending lines of text to a macro. It has been replaced with the `APNMAC` command and is
 currently simply an alias to it. As such `APNMAC` should be used in place of `MAPN`.
+## MASCMD
+Send command to MAS controller
+
+Category: Hardware
+
+Format: `MASCMD` cmd arg
+
+Defaults: test
+
+Description:
+`MASCMD` sends a command to the MAS controller and for some commands prints the response as an informational message.
+Some commands require additional arguments to be sent to the MAS controller. If no command is specified RNMR will prompt
+for one with test as a default. The following commands are available:
+
+Command | Description | Args | Responses
+------- | ----------- | ---- | ---------
+AUTO    | Switch to auto mode | 0 | 0
+BEAR    | Set bearing pressure | 1 | 0
+BEAR_A  | Get bearing pressure | 0 | 1
+BEAR_D  | Get bearing set point | 0 | 1
+BEARS_A | Get bearing sense pressure | 0 | 1
+DRIVE   | Set drive pressure | 1 | 0
+DRIVE_A | Get drive pressure | 0 | 1
+DRIVE_D | Get drive set point | 0 | 1
+GOSET   | Go to the set spin rate | 0 | 0
+MAIN_A  | Get main pressure | 0 | 1
+MANUAL  | Switch to manual mode | 0 | 0
+MINMAIN | Set minimum main pressure | 1 | 0
+SPIN    | Set spin rate | 1 | 0
+SPIN_A  | Get spin rate | 0 | 1
+SPIN_D  | Get set spin rate | 0 | 1
+TEST    | Test connection | 0 | 0
+
 ## MAXV
 Calculate maximum
 
