@@ -5871,12 +5871,13 @@ Category: Macro
 
 Format: `ONERR` label
 
-Defaults: no default
+Defaults: none
 
 Prerequisites: Macro only (MAC)
 
 Description:
-Specifies a statement label to which a macro will jump in the event of an error condition or control-z.
+`ONERR` specifies a statement label to jump to in the event of an error condition or control-z. If no label is provided
+RNMR will not prompt for it and any previous error label set using `ONERR` will be unset.
 ## OPNARV
 Open archive
 
