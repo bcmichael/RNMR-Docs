@@ -5948,11 +5948,16 @@ Category: File IO
 
 Format: `OPNWRT` filename
 
-Defaults: DATA
+Qualifiers: /APPEND
+
+Qualifier Defaults: none
+
+Defaults: temp.wrt
 
 Description:
-Opens `WRT` file.  The file type will be WRT. All write commands between `OPNWRT` and `CLSWRT` will appear in one
-file.
+`OPNWRT` opens a an ASCII file with write access. All write commands between `OPNWRT` and `CLSWRT` will appear in one
+file. By default the file will be overridden if it already exists, but the /APPEND qualifier can be used to make write
+commands append to the file instead.
 
 # P
 ---
