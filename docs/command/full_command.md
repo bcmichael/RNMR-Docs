@@ -5930,13 +5930,17 @@ Format: `OPNPLT`
 Description:
 `OPNPLT` opens a plot stream. All plots between `OPNPLT` and `CLSPLT` will appear on one sheet of paper.
 ## OPNRD
-Open file stream for reading
+Open file for reading
 
 Category: File IO
 
 Format: `OPNRD` filename
-Default : 	             TEMP Description:
-`OPNRD` opens an ASCII file for read-only access by the command `RDWRT`.
+
+Default : temp.wrt
+
+Description:
+`OPNRD` opens an ASCII file for read-only access by the command `RDWRT`. If no file is specified RNMR will prompt for it
+with a default of temp.wrt.
 ## OPNWRT
 Open file stream for writing
 
