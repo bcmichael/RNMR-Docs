@@ -4030,6 +4030,9 @@ name of the file containing the data to be imported. The default file name in th
 and record that was last written to. By default `IMP` will search for data in the user's foreign
 directory.
 
+If an import file has been opened with `OPNIMP` the data will be stored in that file and `IMP` will neither use nor
+prompt for fspec. The format must match the format specified in `OPNIMP`.
+
 If the processing buffer is currently visible on the screen, RNMR will update the display once the `IMP` operation is
 complete.
 ## IMP1D
@@ -4063,6 +4066,9 @@ written to. Slice is interpreted as a linear index over the 2nd/3rd/4th dimensio
 If the `IMP1D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
 and the name of the archive the record is in. By default `IMP1D` will search for data in the user's foreign directory.
+
+If an import file has been opened with `OPNIMP` the data will be stored in that file and `IMP1D` will neither use nor
+prompt for fspec. The format must match the format specified in `OPNIMP`.
 
 Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
 exported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
@@ -4098,6 +4104,9 @@ If the `IMP2D` command is used at console level and fspec is not provided, RNMR 
 file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
 and the name of the archive the record is in. By default `IMP2D` will search for data in the user's foreign directory.
 
+If an import file has been opened with `OPNIMP` the data will be stored in that file and `IMP2D` will neither use nor
+prompt for fspec. The format must match the format specified in `OPNIMP`.
+
 Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
 exported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
 ## IMP3D
@@ -4131,6 +4140,9 @@ Slice is interpreted as a linear index over the 4th dimension.
 If the `IMP3D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
 and the name of the archive the record is in. By default `IMP3D` will search for data in the user's foreign directory.
+
+If an import file has been opened with `OPNIMP` the data will be stored in that file and `IMP3D` will neither use nor
+prompt for fspec. The format must match the format specified in `OPNIMP`.
 
 Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
 exported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
@@ -5953,6 +5965,28 @@ currently supported by `OPNEXP` are:
 - SIFT
 
 All export commands using this file must use the same format as specified in `OPNEXP`. If no fspec is provided RNMR will
+prompt for a file name with temp.<format> as the default. The file extension of this default is determined by the
+format.
+## OPNIMP
+Open import file
+
+Category: Foreign
+
+Format: `OPNIMP` format fspec
+
+Defaults: ascii temp.<format>
+
+Description:
+`OPNIMP` opens a file for data import. All import commands (`IMP`, `IMP1D`, etc.) between `OPNIMP` and `CLSIMP` will
+import from this file. If no format is specified RNMR will prompt for it with a default of ASCII. The foreign formats
+currently supported by `OPNIMP` are:
+
+- ASCII
+- BINARY
+- BRUKER
+- SIFT
+
+All import commands using this file must use the same format as specified in `OPNIMP`. If no fspec is provided RNMR will
 prompt for a file name with temp.<format> as the default. The file extension of this default is determined by the
 format.
 ## OPNPLT
