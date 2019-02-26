@@ -5883,12 +5883,27 @@ Open archive
 
 Category: Data Storage
 
-Format: `OPNARV` [qual] archive name
-	Qualifiers: 	 	   /RD /WRT
-Qualifier defaults: 	 	   /RD   	Defaults : 	 	               1     TEMP
+Format: `OPNARV` arv name
+
+Qualifiers: /RD /WRT /FORCE
+
+Qualifier Defaults: /WRT for arv 1: /RD for others
+
+Defaults: 1 TEMP
 
 Description:
-Opens an archive with access specified by the qualifiers /RD and /WRT.
+`OPNARV` opens an archive for access by RNMR. The archive number is specified by arv and must be an integer from 1 to 4.
+If no archive number is specified RNMR will prompt for it with a default of 1. The parameter name specifies the name of
+the archive file that is to be opened. If no name is specified RNMR will prompt for it with a default of temp. The /RD
+and /WRT qualifiers alter the access to the archive. /RD will cause the archive to be opened with read access. /WRT will
+cause the archive to be opened with read and write access. If neither /RD or /WRT is specified then `OPNARV` will use
+/WRT for archive 1 and /RD for all other archive numbers.
+
+/FORCE will allow RNMR to open an archive with write access even if there is already a lock file present for it. These
+lock files are intended to prevent multiple instances of RNMR from trying to write to the same archive simultaneously.
+Use of /FORCE might be necessary if RNMR crashed and was unable to delete the lock file. This option should be used
+carefully as opening an archive with write access in multiple instances of RNMR at the same time can lead to corruption
+of data.
 ## OPNB
 Open block parameters
 
