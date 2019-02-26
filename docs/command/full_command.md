@@ -5845,24 +5845,24 @@ Set offset from reference frequency
 
 Category: Acquisition
 
-Format: `OFF` syn# off
+Format: `OFF` syn off
 
 Defaults: current current
 
 Description:
-Defines nucleus reference frequency by assigning value to synthesizer offset frequency.  The nucleus reference frequency
+Defines nucleus reference frequency by assigning value to synthesizer offset frequency. The nucleus reference frequency
 modified is that associated with the processing buffer synthesizer.
 ## OFFA
 Set offset from reference frequency
 
 Category: Acquisition
 
-Format: `OFFA` syn# off
+Format: `OFFA` syn off
 
 Defaults: current current
 
 Description:
-Defines nucleus reference frequency by assigning value to synthesizer offset frequency.  The nucleus reference frequency
+Defines nucleus reference frequency by assigning value to synthesizer offset frequency. The nucleus reference frequency
 modified is that associated with the acquisition buffer synthesizer.
 ## ONERR
 Set macro error handler
