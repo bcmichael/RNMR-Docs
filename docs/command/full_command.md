@@ -5921,14 +5921,14 @@ Format:
 
 Defaults:
 ## OPNPLT
-Open plot stream 	`OPNDSP`
+Open plot stream 	
 
 Category: Printing
 
-Format:
+Format: `OPNPLT`
 
-Description: `OPNPLT`
-Opens plotter file.  All plots between `OPNPLT` and `CLSPLT` will appear on one sheet of paper.
+Description:
+`OPNPLT` opens a plot stream. All plots between `OPNPLT` and `CLSPLT` will appear on one sheet of paper.
 ## OPNRD
 Open file stream for reading
 
