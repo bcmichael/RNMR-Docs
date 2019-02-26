@@ -2726,6 +2726,9 @@ for the name of the file to contain the exported data. The default file name in 
 and record currently being viewed in processing buffer 1. By default `EXP` will store data in the user's foreign
 directory.
 
+If an export file has been opened with `OPNEXP` the data will be stored in that file and `EXP` will neither use nor
+prompt for fspec. The format must match the format specified in `OPNEXP`.
+
 Unlike `OPNWRT`, `EXP` will create a new version of the output file if there already exists a file in the current
 directory with the name entered by the user. Note that if processing buffer 1 is divided into two or more blocks, `EXP`
 writes out data from the first block only.
@@ -2767,6 +2770,9 @@ exported. Slice is interpreted as a linear index over the 2nd/3rd/4th dimensions
 If the `EXP1D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
 name of the archive the record is in. By default `EXP1D` will store data in the user's foreign directory.
+
+If an export file has been opened with `OPNEXP` the data will be stored in that file and `EXP1D` will neither use nor
+prompt for fspec. The format must match the format specified in `OPNEXP`.
 
 Unlike `OPNWRT`, `EXP1D` will create a new version of the output file if there already exists a file in the current
 directory with the name entered by the user.
@@ -2812,6 +2818,9 @@ If the `EXP2D` command is used at console level and fspec is not provided, RNMR 
 file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
 name of the archive the record is in. By default `EXP2D` will store data in the user's foreign directory.
 
+If an export file has been opened with `OPNEXP` the data will be stored in that file and `EXP2D` will neither use nor
+prompt for fspec. The format must match the format specified in `OPNEXP`.
+
 Unlike `OPNWRT`, `EXP2D` will create a new version of the output file if there already exists a file in the current
 directory with the name entered by the user.
 
@@ -2854,6 +2863,9 @@ exported. Slice is interpreted as a linear index over the 4th dimension.
 If the `EXP3D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
 name of the archive the record is in. By default `EXP3D` will store data in the user's foreign directory.
+
+If an export file has been opened with `OPNEXP` the data will be stored in that file and `EXP2D` will neither use nor
+prompt for fspec. The format must match the format specified in `OPNEXP`.
 
 Unlike `OPNWRT`, `EXP3D` will create a new version of the output file if there already exists a file in the current
 directory with the name entered by the user.
@@ -5920,6 +5932,29 @@ Category: `OPNB`
 Format:
 
 Defaults:
+## OPNEXP
+Open export file
+
+Category: Foreign
+
+Format: `OPNEXP` format fspec
+
+Defaults: ascii temp.<format>
+
+Description:
+`OPNEXP` opens a file for data export. All export commands (`EXP`, `EXP1D`, etc.) between `OPNEXP` and `CLSEXP` will
+export to this file. If no format is specified RNMR will prompt for it with a default of ASCII. The foreign formats
+currently supported by `OPNEXP` are:
+
+- ASCII
+- BINARY
+- BRUKER
+- PIPE
+- SIFT
+
+All export commands using this file must use the same format as specified in `OPNEXP`. If no fspec is provided RNMR will
+prompt for a file name with temp.<format> as the default. The file extension of this default is determined by the
+format.
 ## OPNPLT
 Open plot stream 	
 
