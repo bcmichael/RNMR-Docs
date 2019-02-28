@@ -6157,13 +6157,14 @@ Format: `PLDEV` device
 Defaults: current
 
 Description:
-Sets plotter device.  The legal choices of plotter device are currently:
+`PLDEV` sets the device to use for plotting. The currently available plotting devices are:
 
-Device Name | Printer | Location
------------ | ------- | --------
-LJ3 | HP LJ3 | 4119
-LJ4 | HP LJ4 | 5119
-LJ5 | HP LJ5 | 0249
+- E460A
+- E460B
+- LJ2430
+- LJ2430B
+- LJ4050
+- LJ5
 
 ## PLOT
 Plot current 1D display
