@@ -1768,7 +1768,7 @@ Prerequisites: Pulse program loaded (LOAD); RNMRA only
 
 Description:
 `D` is an old command for setting the length of pulse program delays. It has been replaced with the `DLY` command and is
-currently simply an alias to it. As such `DLY` should be used in place of `D`
+currently simply an alias to it. As such `DLY` should be used in place of `D`.
 ## DATE
 Print the current date and time as an informational message
 
@@ -2391,9 +2391,13 @@ Defaults: 1 current
 Prerequisites: Pulse program loaded (LOAD); RNMRA only
 
 Description:
-`DLY` sets the length of a pulse program delay indicated by name. /DLY will interpret time in milliseconds while /PLS will interpret time in microseconds. The length of a delay can range from 0 to 40 seconds. A pulse program must be loaded using `PPEX` in order for `DLY` to be used to set the length of any delays.
+`DLY` sets the length of a pulse program delay indicated by name. /DLY will interpret time in milliseconds while /PLS
+will interpret time in microseconds. The length of a delay can range from 0 to 40 seconds. A pulse program must be
+loaded using `PPEX` in order for `DLY` to be used to set the length of any delays.
 
-Due to restrictions on the speed of the pulse programmer delays are rounded to the nearest 10 microseconds. Delays may be entered with more precision than this limit, but the additional precision will have no effect on the actual length of the delay.
+Due to restrictions on the speed of the pulse programmer delays are rounded to the nearest 10 microseconds. Delays may
+be entered with more precision than this limit, but the additional precision will have no effect on the actual length of
+the delay.
 ## DO
 Begin macro `DO` loop
 
