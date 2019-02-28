@@ -6069,7 +6069,9 @@ Format: `PC` dphi0 dphi1
 Defaults: 0 0
 
 Description:
-Performs incremental phase correction.
+`PC` performs an incremental phase correction using the provided zero order (dphi0) and first order (dphi1) phase
+factors. The correction is incremental in the sense that it alters the current phase parameters by these values. RNMR
+will not prompt for either of the arguments and will use 0 if they are omitted.
 ## PEN
 Select plot pen
 
