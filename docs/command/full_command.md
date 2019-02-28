@@ -6035,14 +6035,15 @@ Set pulse length
 
 Category: Acquisition
 
-Format: `P` pls# usec
+Format: `P` pls usec
 
 Defaults: 1 current
 
-Prerequisites: LOAD
+Prerequisites: Pulse program loaded (LOAD); RNMRA only
 
 Description:
-Sets pulse time in usec.
+`P` is an old command for setting the length of pulses. It has been replaced with the `PLS` command and is currently
+simply an alias to it. As such `PLS` should be used in place of `P`.
 ## PADJ
 Interactively adjust pulse length
 
@@ -6184,6 +6185,24 @@ Defaults: current
 
 Description:
 Plots two-dimensional contour display.  Q and <CNTL-Z\> will abort plot.
+#PLS
+Set pulse length
+
+Category: Acquisition
+
+Format: `PLS` name time
+
+Qualifiers: /DLY /PLS
+
+Qualifier Defaults: /PLS
+
+Defaults: 1 current
+
+Prerequisites: Pulse program loaded (LOAD); RNMRA only
+
+`PLS` sets the length of a pulse indicated by name. /DLY will interpret time in milliseconds while /PLS will interpret
+time in microseconds. The length of a pulse can range from 0 to 1200 micsoseconds. A pulse program must be loaded using
+`PPEX` in order for `PLS` to be used to set the length of any pulses.
 ## PLSIZE
 Set plot size
 
