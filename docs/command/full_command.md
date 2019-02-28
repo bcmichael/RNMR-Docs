@@ -6099,7 +6099,8 @@ Format: `PGSIZE` xsiz ysiz
 Defaults: current current
 
 Description:
-Sets plotter page size in inches.  Plot size is reset to maximum.
+`PGSIZE` sets the size of a plot in inches. If either xsiz or ysiz are not provided RNMR will prompt for them with the
+current value as a default.
 ## PH
 Interactive phase correction
 
