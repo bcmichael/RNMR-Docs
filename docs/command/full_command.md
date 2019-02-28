@@ -6048,19 +6048,6 @@ Prerequisites: Pulse program loaded (LOAD); RNMRA only
 Description:
 `P` is an old command for setting the length of pulses. It has been replaced with the `PLS` command and is currently
 simply an alias to it. As such `PLS` should be used in place of `P`.
-## PADJ
-Interactively adjust pulse length
-
-Category: Acquisition
-
-Format: `PADJ` pls#
-
-Defaults: 1
-
-Prerequisites: ACQ LOAD
-
-Description:
-Sets pulse time in usec after prompt.
 ## PARB
 Set blocked record parameters
 
