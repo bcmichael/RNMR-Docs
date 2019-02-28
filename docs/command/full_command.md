@@ -6130,28 +6130,6 @@ Z  | Call `ZO` to enable moving the cursor
 Either the zero or first order phase parameter can be changed up or down in steps of 1, 10, or 100. To move the pivot
 point, use Z to call `ZO`. Then move the cursor and press enter to exit `ZO`. Finally press P to move the pivot to the
 cursor.
-## PHL
-Interactive lock channel phase correction
-
-Category: Lock
-
-Format: `PHL`
-
-Prerequisites: LCK
-
-Description:
-Performs interactive lock channel phase correction.
-
-Subcommands:
-
-Command | Description
-------- | -----------
-CR | Terminate with current phase values
-D  | Select decrement direction
-I  | Select increment direction
-Q  | Terminate with original phase values
-V  | Change phase value after prompt
-
 ## PLDEV
 Select plotting device
 
