@@ -6053,12 +6053,12 @@ Set blocked record parameters
 
 Category: Blocked Records
 
-Format: `PARB` rec# dir dim dom syn first step
+Format: `PARB` rec dir dim dom syn first step
 
 Defaults: irrec 1 current current current current current
 
 Description:
-Sets parameters for blocked record.
+`PARB` sets the parameters for interpreting a blocked record.
 ## PC
 Incremental phase correction
 
