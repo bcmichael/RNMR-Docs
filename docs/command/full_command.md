@@ -6130,6 +6130,23 @@ Z  | Call `ZO` to enable moving the cursor
 Either the zero or first order phase parameter can be changed up or down in steps of 1, 10, or 100. To move the pivot
 point, use Z to call `ZO`. Then move the cursor and press enter to exit `ZO`. Finally press P to move the pivot to the
 cursor.
+## PIDL
+Set lock PID gain factors
+
+Format: `PIDL` fctrp fctri
+
+Qualifiers: /P /I
+
+Qualifier Defaults: /P /I
+
+Defaults: current current
+
+Prerequisites: RNMR lock control. RNMRA only.
+
+Description:
+`PIDL` sets the proportional and integral gain factors for the lock PID. /P and /I can be used to select which parameter
+to update. If no qualifier is supplied RNMR will set both parameters. If a gain factor to be set is not provided RNMR
+will prompt for it with the current value as a default.
 ## PLDEV
 Select plotting device
 
