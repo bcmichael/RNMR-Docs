@@ -6077,12 +6077,18 @@ Select plot pen
 
 Category: Printing
 
-Format: `PEN` pen#
+Format: `PEN` pen
 
 Defaults: current
 
+Qualifiers: /DATA /LABEL
+
+Qualifier Defaults: /DATA
+
 Description:
-Selects pen for plotting.  For laser plotters, pen#=1 selects a thin line and pen#=2 selects a thick line.
+`PEN` selects a pen for plotting. For laser plotters, pen#=1 selects a thin line and pen#=2 selects a thick line. /DATA
+and /LABEL can be used to separately set the pen for the data and the labels in a plot. If no pen parameter is provided
+RNMR will prompt for it with the current value as a default.
 ## PGSIZE
 Set page size for plot
 
