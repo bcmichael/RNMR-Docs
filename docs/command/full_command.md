@@ -6186,7 +6186,7 @@ Defaults: current
 
 Description:
 Plots two-dimensional contour display.  Q and <CNTL-Z\> will abort plot.
-#PLS
+## PLS
 Set pulse length
 
 Category: Acquisition
@@ -6201,8 +6201,9 @@ Defaults: 1 current
 
 Prerequisites: Pulse program loaded (LOAD); RNMRA only
 
+Description:
 `PLS` sets the length of a pulse indicated by name. /DLY will interpret time in milliseconds while /PLS will interpret
-time in microseconds. The length of a pulse can range from 0 to 1200 micsoseconds. A pulse program must be loaded using
+time in microseconds. The length of a pulse can range from 0 to 1200 microseconds. A pulse program must be loaded using
 `PPEX` in order for `PLS` to be used to set the length of any pulses.
 ## PLSIZE
 Set plot size
