@@ -6522,6 +6522,23 @@ Description:
 prompt for them and will use the current global values. The global values are updated anytime a spectrum is phased. Thus
 `PS` with no arguments can be used to phase a new data set after `FT` to the same phase values as the last thing that
 was phased.
+## PSHLST
+Push a value to a list
+
+Category: Lists
+
+Format: `PSHLST` nam val
+
+Qualifiers: /HEAD /TAIL
+
+Qualifier Defaults: /TAIL
+
+Defaults: temp none
+
+Description:
+`PSHLST` pushes a value to the end of a list specified by nam. If no list is specified RNMR will prompt for it with temp
+as a default. If the values is omitted RNMR will prompt for it with no default. /HEAD or /TAIL may be used to determine
+which end of the list to push a value to. By default RNMR pushes to the tail of the list.
 ## PSX
 Set acquisition transmitter phase
 
