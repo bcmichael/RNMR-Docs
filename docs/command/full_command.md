@@ -6505,7 +6505,7 @@ Format: `PRTARG` arg1 arg2 ... arg10
 Defaults: none none none
 
 Description:
-The specified arguments are printed.
+`PRTARG` prints its arguments to standard out.
 ## PS
 Set phase
 
