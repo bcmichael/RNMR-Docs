@@ -6396,6 +6396,18 @@ Defaults: temp
 Description:
 `PRGLST` removes all of the values from list nam. If nam is not specified RNMR will prompt for it with a default of
 temp.
+## PRGTBL
+Purge name table
+
+Category: Tables
+
+Format: `PRGTBL` nam
+
+Defaults: temp
+
+Description:
+`PRGTBL` removes all of the entries from name table nam. If nam is not specified RNMR will prompt for it with a default
+of temp.
 ## PROF
 Calculate profile of blocked 2D record
 
