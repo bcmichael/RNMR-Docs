@@ -6644,13 +6644,16 @@ Set transmitter fine power level
 
 Category: Acquisition
 
-Format: `PWR` chan index db
+Format: `PWR` chan nam pwr
 
 Defaults: 1 1 current
 
+Prerequisites: Acquisition stopped (HALT); RNMRA only
+
 Description:
-Sets observe or decouple channel transmitter relative power level in decibels.  The index value corresponds to a
-specified level used in the command SETPWX in the pulse program.  The maximum power is 100.0 db.
+`PWX` sets the fine power level for a pulse on a given channel. If either the channel or the name of the power level to
+set is omitted RNMR will prompt for them with a default of 1. The power level must be between 0.0 and 100.0 inclusive.
+If no power level is provided RNMR will prompt for it with the current value as a default.
 ## PWXEX
 Load power program  	Category:
 
