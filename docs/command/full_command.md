@@ -2575,7 +2575,7 @@ temp as a default.
 ## EDTMAC
 Edit macro
 
-Category: Lists
+Category: Macro
 
 Format: `EDTMAC` nam
 
