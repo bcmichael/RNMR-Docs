@@ -6558,18 +6558,21 @@ If either argument is omitted, RNMR will prompt for a buffer number. The default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
 ## PSX
-Set acquisition transmitter phase
+Set transmitter phase
 
 Category: Acquisition
 
-Format: `PSX` ichan ipsx phase
+Format: `PSX` chan psx phase
 
-Defaults: 1 current current
+Defaults: 1 1 current
+
+Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
-Sets acquisition transmitter phase.
+`PSX` sets a transmitter phase. If chan or psx are omitted RNMR will prompt for them with a default of 1. If phase is
+omitted RNMR will prompt for it with the current phase of that psx on that channel as a default.
 ## PSXEX
-Load transmitter phase program from PAM memory
+Load transmitter phase program from PAM memory.
 
 Category:
 
