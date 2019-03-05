@@ -6349,17 +6349,41 @@ Set pulse program phase mode
 
 Category: Acquisition
 
-Format: `PPMD` gate# spec1 spec2 ... spec8
+Format: `PPMD` nam spec1 spec2 ... spec8
 
 Defaults: 1 none none ... none
 
-Prerequisites: HALT
+Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
-Sets phase of pulse program gate for acquisition. Each spec can specify 1,2,4 or 8 modes.  Each mode is an integer from
-1 to 4.  The meaning of the mode is determined by the definition of the pulse program.  The total number of modes
-specified must be a power of 2, .le. 64.  Modes entered are replicated to define full set of 64 modes.  If no modes are
-entered current modes are printed, 16 at a time.
+`PPMD` sets pulse program phase cycling. The parameter nam specifies which phase cycle to set. These phase cycles are
+mapped to pulses in the pulse program. If no name is provided RNMR will prompt for it with 1 as a default. /MOD defines
+the number of different phase values to be used. These phase values will be equally spaced so the default value of 4
+yields 90° phase steps while for example 6 would yield 60° steps. Each element or mode of the `PPMD` sequence is a
+number from 1 to the value specified by /MOD. With the default qualifier /ACQ these modes indicate a sequence of phase
+shifts to apply on sequential shots.
+
+The default value is /MOD=4, which yields phase values of (0°, 90°, 180°, 270°) corresponding to the numbers 1 through 4.
+The maximum number of acquisition modes in a sequence is 64. If the number of modes entered is less than 64, the
+specified modes will be replicated to a 64 mode sequence. For example, if the user specifies:
+
+        PPMD 1111 3333
+
+the eight modes specified are replicated by RNMR to give a full 64 step phase cycle:
+
+     11113333 11113333 11113333 11113333
+     11113333 11113333 11113333 11113333
+
+While all sequences are replicated to 64 modes internally, only a number of steps equal to the active phase cycle length
+(set by `NAMD`) are actually used. The sequence of modes may be broken up across multiple command line arguments as
+shown in the example above. This can help improve readability.
+
+If `PPMD` is called with no modes specifiers RNMR will not prompt for modes. Instead it will print the current phase
+cycle out to the active phase cycle length with 16 modes per line.
+
+The /BLK qualifier is used to setup additional phase shifts for different blocks of acquisition. The number of blocks
+can be set using `NAMD /BLK`. This capability is typically used to set up phase differences used for the different steps
+in hypercomplex acquisition of multi-dimensional spectra.
 ## PROF
 Calculate profile of blocked 2D record
 
