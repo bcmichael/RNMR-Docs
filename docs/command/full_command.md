@@ -6625,12 +6625,6 @@ value of 1. Each transmitter has two coarse power levels that can be used in a p
 to pwrh and an index of 2 indicates pwrl. If no index is specified RNMR will prompt for it with a default of 1. The
 power level must be between 0.0 and 100.0 inclusive. If no power level is provided RNMR will prompt for it with the
 current value as a default.
-## PWXEX
-Load power program  	Category:
-
-Format: `PWXEX`
-
-Defaults:
 ## PWRL
 Set lock channel power level
 
@@ -6654,6 +6648,12 @@ Defaults: 1 1 current
 Description:
 Sets observe or decouple channel transmitter relative power level in decibels.  The index value corresponds to a
 specified level used in the command SETPWX in the pulse program.  The maximum power is 100.0 db.
+## PWXEX
+Load power program  	Category:
+
+Format: `PWXEX`
+
+Defaults:
 
 # Q
 ---
