@@ -6281,6 +6281,32 @@ Prerequisites: RNMR lock control. (RNMRA only.)
 Description:
 `POSL` sets the position of the center of the lock. The value must be between -50.0 and 50.0 inclusive. If no position
 is specified RNMR will prompt for it with the current position as a default.
+## PP
+Interactive peak picking
+
+Category: Data Manipulation
+
+Format: `PP`
+
+Description:
+`PP` performs interactive peak picking. While `PP` is active the following subcommands can be used to manipulate the
+spectrum.
+
+Subcommands:
+
+Command | Description
+------- | -----------
+Enter | Terminate
+L  | Move left one peak
+Q  | Terminate
+R  | Move right one peak
+T  | Set peak picking threshold
+Z  | Call `ZO`
+
+RNMR selects peaks based upon the following criteria. In order to be a peak a point must have an absolute intensity
+greater than the threshold. If the intensity is negative it must be less than the intensity of the points immediately to
+the left and right of it. If the intensity is positive it must be greater than the intensity of the points immediately
+to the left and right of it.
 ## PPEX
 Load a pulse program experiment
 
