@@ -1632,7 +1632,7 @@ Create text file
 
 Category: File IO
 
-Format: `APNFIL` fspec
+Format: `CRTFIL` fspec
 
 Qualifiers: /END=<end\>
 
