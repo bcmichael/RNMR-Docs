@@ -6252,6 +6252,21 @@ Format: `POLAR`
 Description:
 `POLAR` converts the data in the visible processing buffer into polar coordinates. The magnitude of the data is placed
 in the real part of the buffer and the phase in the imaginary part of the buffer.
+## POPLST
+Pop a value from a list
+
+Category: Lists
+
+Format: `POPLST` nam
+
+Qualifiers: /HEAD /TAIL
+
+Qualifier Defaults: /TAIL
+
+Description:
+`POPLST` pops a value from the end of a list specified by nam. If no list is specified RNMR will propmt for it with temp
+as a default. /HEAD or /TAIL may be used to determine which end of the list to pop a value from. By default RNMR pops
+from the tail of the list. The value is removed from the list and printed as an informational message.
 ## POSL
 Set lock channel center position
 
