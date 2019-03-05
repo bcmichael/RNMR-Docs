@@ -6335,14 +6335,15 @@ Set state of pulse program flag
 
 Category: Acquisition
 
-Format: `PPFLG` flag# state
+Format: `PPFLG` ind val
 
 Defaults: 1 current
 
-Prerequisites: LOAD HALT
+Prerequisites: Pulse program loaded (LOAD); RNMRA only
 
 Description:
-Sets state of specified pulse program flag.  State may be ON or OFF.  There are 16 flags available.
+`PPFLG` is an old command for setting the state of pulse program flags. It has been replaced with the `FLAG` command and is
+currently simply an alias to it. As such `FLAG` should be used in place of `PPFLG`.
 ## PPMD
 Set pulse program phase mode
 
