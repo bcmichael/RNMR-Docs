@@ -6613,13 +6613,18 @@ Set transmitter coarse power level
 
 Category: Acquisition
 
-Format: `PWR` chan index db
+Format: `PWR` chan index pwr
 
 Defaults: 1 1 current
 
+Prerequisites: Acquisition stopped (HALT); RNMRA only
+
 Description:
-Sets observe or decouple channel transmitter relative power level in decibels.  The allowed values for index are 1 (for
-high power values) and 2 (for low power values).  The range of db is 70.0 to 100.0 in increments of 10.0.
+`PWR` sets a coarse power level for a transmitter. If no channel is specified RNMR will prompt for it with a default
+value of 1. Each transmitter has two coarse power levels that can be used in a pulse sequence. An index of 1 corresponds
+to pwrh and an index of 2 indicates pwrl. If no index is specified RNMR will prompt for it with a default of 1. The
+power level must be between 0.0 and 100.0 inclusive. If no power level is provided RNMR will prompt for it with the
+current value as a default.
 ## PWXEX
 Load power program  	Category:
 
