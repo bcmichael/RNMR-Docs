@@ -6630,12 +6630,15 @@ Set lock channel power level
 
 Category: Lock
 
-Format: `PWRL` dB
+Format: `PWRL` pwr
 
 Defaults: current
 
+Prerequisites: RNMR lock control. RNMRA only.
+
 Description:
-Sets lock channel transmitter relative power level in decibels.  The maximum power is 100.0 db.
+`PWRL` sets the lock channel power level. The power level must be between 0.0 and 100.0 inclusive. If no power level is
+provided RNMR will prompt for it with the current value as a default.
 ## PWX
 Set transmitter fine power level
 
