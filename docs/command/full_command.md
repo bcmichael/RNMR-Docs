@@ -6166,6 +6166,20 @@ Description:
 - LJ4050
 - LJ5
 
+## PLFIL
+Set plot file
+
+Category: Printing
+
+Format: `PLFIL` fspec
+
+Defaults: current
+
+Description:
+`PLFIL` selects a file to be the destination for plotting. If a file is set using `PLFIL` plotting commands will write
+plots to the file in a postscript format instead of sending the plots to a printer. Subsequent plotting commands that
+are not between `OPNPLT` and `CLSPLT` will overwrite the plot file. To go back to printing plots call `PLDEV` and select
+a plotting device. If no file is specified RNMR will prompt for it with the last plot file as a default.
 ## PLOT
 Plot current 1D display
 
