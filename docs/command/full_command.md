@@ -6428,13 +6428,24 @@ Note that the current mapping of dimensions to directions (as displayed and set 
 which one-dimensional blocks of the record comprise the 2D slice and will thus be used to calculate the profile. Slice
 is interpreted as a linear index over the 3rd/4th dimensions.
 ## PROFB
-Calculate profile of blocked 3D or 4D record
+Calculate profile of blocked record along a dimension
 
 Category: Data Manipulation
 
-Format: `PROFB`
+Format: `PROFB` src dst dim
+
+Defaults: current next last
 
 Defaults:
+`PROJB` calculates the profile of a blocked record src along dimension dim and stores the result in blocked record dst.
+If no source record is provided RNMR will prompt for it with the current read record as a default. The source record
+must be a blocked record with size greater than one in the chosen dimension. Additionally the source record must have a
+large enough NDIMX to access the record along the specified dimension. NDIMX is specified when the record is allocated
+and determines along which directions the blocked record may be accessed. If no destination record is provided RNMR will
+not prompt for it and will store the results in the next available record. If no dimension is passed RNMR will prompt
+for it with the last accessible dimensions as a default. The interpretation of the dim parameter is also affected by the
+dimension order set by `DIRB`. The result of the projection operation will have a size of one along the projection
+dimension. Each point in the destination record will be set to the maximum value at that point across all of the blocks.
 ## PROJ
 Calculate projection of blocked 2D record
 
