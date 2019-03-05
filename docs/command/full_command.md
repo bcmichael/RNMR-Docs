@@ -6384,6 +6384,18 @@ cycle out to the active phase cycle length with 16 modes per line.
 The /BLK qualifier is used to setup additional phase shifts for different blocks of acquisition. The number of blocks
 can be set using `NAMD /BLK`. This capability is typically used to set up phase differences used for the different steps
 in hypercomplex acquisition of multi-dimensional spectra.
+## PRGLST
+Purge list
+
+Category: Lists
+
+Format: `PRGLST` nam
+
+Defaults: temp
+
+Description:
+`PRGLST` removes all of the values from list nam. If nam is not specified RNMR will prompt for it with a default of
+temp.
 ## PROF
 Calculate profile of blocked 2D record
 
