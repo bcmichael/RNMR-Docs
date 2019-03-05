@@ -6188,18 +6188,27 @@ Category: Printing
 Format: `PLOT`
 
 Description:
-Plots current display. Q and <CNTL-Z\> will abort plot.
+`PLOT` plots the current one dimensional display to either the plotting device specified by `PLDEV` or the file
+specified by `PLFIL`.
 ## PLOTC
-Plot contour display
+Plot 2D contours
 
 Category: Printing
 
-Format: `PLOTC` rec#
+Format: `PLOTC` rec slice
 
-Defaults: current
+Defaults: current 1
 
 Description:
-Plots two-dimensional contour display.  Q and <CNTL-Z\> will abort plot.
+`PLOTC` plots a two dimensional contour plot of a blocked record to either the plotting device specified by `PLDEV` or
+the file specified by `PLFIL`. If no record is specified RNMR will prompt for it with the current read record as a
+default. The selected record must be a blocked record.
+
+The last parameter, slice specifies which 2D slice of a 3D or 4D source record should be plotted. If the source record
+has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will plot the first slice.
+Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will affect the selection of
+which one-dimensional blocks of the record comprise the 2D slice and will thus be plotted. Slice is interpreted as a
+linear index over the 3rd/4th dimensions.
 ## PLS
 Set pulse length
 
