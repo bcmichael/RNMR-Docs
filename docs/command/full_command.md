@@ -6683,10 +6683,8 @@ Category: Acquisition
 Format: `QUIT`
 
 Description:
-Halts acquisition after next complete cycle.
-
-Subcommands:
-   	Q       Halt after next shot.
+`QUIT` Halts acquisition after the next complete phase cycle. Pressing Q while `QUIT` is waiting to finish a phase cycle
+causes RNMR to halt immediately after the next shot.
 
 # R
 ---
