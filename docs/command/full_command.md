@@ -6584,12 +6584,14 @@ Set read and write archive pointers
 
 Category: Data Storage
 
-Format: `PTRA` read_rec# write_rec#
+Format: `PTRA` read_rec write_rec
 
 Defaults: current current
 
 Description:
-Sets "current" archive record.
+`PTRA` sets the read and write archive pointers. These pointers are the default values for most commands involving
+records. If either pointer is omitted RNMR will prompt for it with the current value as a default. The read and write
+archive pointers are also set anytime a command reads from or writes to a record respectively.
 ## PTRB
 Set read and write blocked record pointers
 
