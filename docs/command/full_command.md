@@ -1678,6 +1678,8 @@ Category: Macro
 
 Format: `CRTMAC` nam
 
+Qualifiers: /END=<end\>
+
 Qualifier Defaults: /END=''
 
 Defaults: temp
