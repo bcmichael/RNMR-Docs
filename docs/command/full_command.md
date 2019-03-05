@@ -6238,7 +6238,8 @@ Format: `PLSIZE` xsiz ysiz
 Defaults: current current
 
 Description:
-Sets plot size in inches.
+`PLSIZE` sets the size of a plot in inches. If either xsiz or ysiz are not provided RNMR will prompt for them with
+the current value as a default.
 ## POSL
 Set lock channel center position
 
