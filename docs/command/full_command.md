@@ -6263,8 +6263,10 @@ Qualifiers: /HEAD /TAIL
 
 Qualifier Defaults: /TAIL
 
+Defaults: temp
+
 Description:
-`POPLST` pops a value from the end of a list specified by nam. If no list is specified RNMR will propmt for it with temp
+`POPLST` pops a value from the end of a list specified by nam. If no list is specified RNMR will prompt for it with temp
 as a default. /HEAD or /TAIL may be used to determine which end of the list to pop a value from. By default RNMR pops
 from the tail of the list. The value is removed from the list and printed as an informational message.
 ## POSL
