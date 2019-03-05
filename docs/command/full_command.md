@@ -6461,13 +6461,20 @@ Calculate projection of blocked 2D record
 
 Category: Data Manipulation
 
-Format: `PROJ` rec#
+Format: `PROJ` rec slice
 
-Defaults: current
+Defaults: current 1
 
 Description:
-The projection of a blocked record is obtained.  Each point of the result is the sum of all corresponding points in the
-blocks.
+`PROJ` calculates a one dimensional projection of a two dimensional slice of a blocked record. Each point in the
+projection will be set to the sum of the values at that point across all of the blocks. If no record is specified RNMR
+will prompt for it with the current read record as a default. The selected record must be a blocked record.
+
+The last parameter, slice specifies which 2D slice of a 3D or 4D source record should be included. If the source record
+has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will use the first slice.
+Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will affect the selection of
+which one-dimensional blocks of the record comprise the 2D slice and will thus be used to calculate the projection.
+Slice is interpreted as a linear index over the 3rd/4th dimensions.
 ## PROJB
 Calculate projection of blocked 3D or 4D record
 
