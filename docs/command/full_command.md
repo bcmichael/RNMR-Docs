@@ -6240,6 +6240,16 @@ Defaults: current current
 Description:
 `PLSIZE` sets the size of a plot in inches. If either xsiz or ysiz are not provided RNMR will prompt for them with
 the current value as a default.
+## POLAR
+Convert buffer to poalr coordinates
+
+Category: Data Manipulation
+
+Format: `POLAR`
+
+Description:
+`POLAR` converts the data in the visible processing buffer into polar coordinates. The magnitude of the data is placed
+in the real part of the buffer and the phase in the imaginary part of the buffer.
 ## POSL
 Set lock channel center position
 
