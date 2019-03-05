@@ -6516,7 +6516,10 @@ Format: `PS` phi0 phi1
 Defaults: cur_gbl cur_gbl
 
 Description:
-Performs phase correction to specified phase values.
+`PS` phases the spectrum to the specified absolute phase values. If either phase parameter is omitted RNMR will not
+prompt for them and will use the current global values. The global values are updated anytime a spectrum is phased. Thus
+`PS` with no arguments can be used to phase a new data set after `FT` to the same phase values as the last thing that
+was phased.
 ## PSX
 Set acquisition transmitter phase
 
