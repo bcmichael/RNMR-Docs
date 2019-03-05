@@ -6670,10 +6670,10 @@ Category: Data Manipulation
 
 Format: `QC`
 
-Prerequisites: TIME
+Prerequisites: Time domain only (TIME)
 
 Description:
-Software quadrature phase detection is performed.  The cross correlation coefficient between the real and imaginary
+`QC` performs software quadrature phase correction. The cross correlation coefficient between the real and imaginary
 buffers is obtained and the appropriate fraction of the imaginary buffer subtracted from the real buffer.
 ## QUIT
 Quit acquisition
