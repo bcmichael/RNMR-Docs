@@ -6446,6 +6446,16 @@ not prompt for it and will store the results in the next available record. If no
 for it with the last accessible dimensions as a default. The interpretation of the dim parameter is also affected by the
 dimension order set by `DIRB`. The result of the projection operation will have a size of one along the projection
 dimension. Each point in the destination record will be set to the maximum value at that point across all of the blocks.
+## PROG
+Identify program
+
+Category: Misc.
+
+Format: `PROG`
+
+Description:
+`PROG` prints the identity of the program (RNMRA or RNMRP) and the modification time of the corresponding file to the
+console.
 ## PROJ
 Calculate projection of blocked 2D record
 
