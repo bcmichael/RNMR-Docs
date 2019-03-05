@@ -6413,13 +6413,20 @@ Calculate profile of blocked 2D record
 
 Category: Data Manipulation
 
-Format: `PROF` rec#
+Format: `PROF` rec slice
 
-Defaults: current
+Defaults: current 1
 
 Description:
-The profile of a blocked record is obtained.  Each point of the result is the maximum of all corresponding points in the
-blocks.  Comparison is based on magnitudes.
+`PROF` calculates a one dimensional profile of a two dimensional slice of a blocked record. Each point in the profile
+will be set to the maximum value at that point across all of the blocks. If no record is specified RNMR will prompt for
+it with the current read record as a default. The selected record must be a blocked record.
+
+The last parameter, slice specifies which 2D slice of a 3D or 4D source record should be included. If the source record
+has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will use the first slice.
+Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will affect the selection of
+which one-dimensional blocks of the record comprise the 2D slice and will thus be used to calculate the profile. Slice
+is interpreted as a linear index over the 3rd/4th dimensions.
 ## PROFB
 Calculate profile of blocked 3D or 4D record
 
