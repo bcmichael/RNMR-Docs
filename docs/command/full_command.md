@@ -6539,6 +6539,24 @@ Description:
 `PSHLST` pushes a value to the end of a list specified by nam. If no list is specified RNMR will prompt for it with temp
 as a default. If the values is omitted RNMR will prompt for it with no default. /HEAD or /TAIL may be used to determine
 which end of the list to push a value to. By default RNMR pushes to the tail of the list.
+## PSUBV
+Subtract polar buffers
+
+Category: Data Manipulation
+
+Format: `PSUBV` src dst
+
+Defaults: 2 1
+
+Description:
+`PSUBV` subtracts a polar src buffer from a polar dst buffer and stores the result in dst:
+
+    REAL(DST)=SQRT(REAL(DST) * REAL(SRC))
+    IMAG(DST)=IMAG(DST) - IMAG(SRC)
+
+If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
+destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
+same allocated size).
 ## PSX
 Set acquisition transmitter phase
 
