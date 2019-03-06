@@ -6877,6 +6877,19 @@ will instead cause an error.
 
 After `RDWRT` has executed the file position will be have moved such that calling `RDWRT` will read the next line. To
 return to the beginning of the file use `RWDRD`.
+## REMGBL
+Remove global arguments
+
+Category: Arguments
+
+Format : `REMGBL` first last
+
+Defaults: temp <first>
+
+Description:
+`REMGBL` removes all global variables that alphabetically fall between first and last inclusive. If first is not
+specified RNMR will prompt for it with a default of temp. If last is not specified RNMR will not prompt for it and will
+remove only an argument whose name exactly matches first.
 ## RGPIB
 Read string from GPIB device
 
