@@ -7051,6 +7051,19 @@ Prerequisites: Pulse programmer spectrometer bus control implemented (CGFSB2); R
 Description:
 `RPPSB` reads a data byte from the pulse programmer spectrometer bus. The adr parameter specifies the address to read
 the byte from and may range of 0 to 255 inclusive. If adr is omitted RNMR will prompt for it with a default of 0.
+## RPTDO
+Repeat iteration of macro `DO` loop
+
+Category: Macro
+
+Format: `RPTDO`
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`RPTDO` repeats an iteration of a macro `DO` loop. It returns to the beginning of the loop without executing the rest of
+the commands in the loop or incrementing the loop counter. Take care as this behavior can easily lead to an infinite
+loop. `RPTDO` must fall between an instance of `DO` and itsmatching `ENDDO`.
 ## RSB
 Read data byte from spectrometer bus
 
