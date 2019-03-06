@@ -6890,6 +6890,19 @@ Description:
 `REMGBL` removes all global variables that alphabetically fall between first and last inclusive. If first is not
 specified RNMR will prompt for it with a default of temp. If last is not specified RNMR will not prompt for it and will
 remove only an argument whose name exactly matches first.
+## REMLCL
+Remove local arguments
+
+Category: Arguments
+
+Format : `REMLCL` first last
+
+Defaults: temp <first>
+
+Description:
+`REMLCL` removes all local variables that alphabetically fall between first and last inclusive. If first is not
+specified RNMR will prompt for it with a default of temp. If last is not specified RNMR will not prompt for it and will
+remove only an argument whose name exactly matches first.
 ## RGPIB
 Read string from GPIB device
 
