@@ -7104,6 +7104,19 @@ Description:
 `RSTBUF` restores buffer values from a file fspec written using `SAVBUF` and applies them to processing buffer buf. If
 no fspec is provided RNMR will prompt for it with temp as a default. If no bufer is specified RNMR will not prompt for
 it and will apply the loaded values to processing buffer 1 (the visible process buffer).
+## RSTGBL
+Restore global arguments from file
+
+Category: Arguments
+
+Format: `RSTGBL` fspec
+
+Defaults: temp
+
+Description:
+`RSTGBL` restores global arguments from a file fspec written using `SAVGBL`. If no fspec is provided RNMR will prompt
+for it with temp as a default. Note that global arguments from the file will overwrite existing arguments with the same
+name.
 ## RSTLCK
 Restore lock values from file
 
