@@ -6795,6 +6795,28 @@ either a global or local argument (as selected by the /LCL or /GBL qualifiers) n
 to a local variable. If no argnam is provided RNMR will not prompt for it and will print the value as an informational
 message instead of saving it to an argument. /ERR can be used to set a label to jump to in the event that the pulse
 program symbol value cannot be read.
+## RDPPSNAM
+Read PP symbol name
+
+Category: Pulse Program
+
+Format: `RDPPSNAM` typ ind argnam
+
+Qualifiers: /LCL /GBL /ERR=<label>
+
+Qualifier Defaults: /LCL
+
+Defaults: none 1 none
+
+Prerequisites: RNMRA only
+
+Description:
+`RDPPSNAM` reads the name of a pulse program symbol specified by its index. The type of the symbol is specified by typ
+and the index of the symbol by ind. If nam parameters is omitted RNMR will prompt for them with no default. If ind is
+omitted RNMR will prompt for it with a default of 1. The name can be saved in either a global or local argument (as
+selected by the /LCL or /GBL qualifiers) named argnam. By default it will be saved to a local variable. If no argnam is
+provided RNMR will not prompt for it and will print the name as an informational message instead of saving it to an
+argument. /ERR can be used to set a label to jump to in the event that the pulse program symbol name cannot be read.
 ## RDWRT
 Read `WRT` file opened by `OPNRD`
 
