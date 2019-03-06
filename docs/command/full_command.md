@@ -6955,6 +6955,19 @@ Description:
 `REMSYM` removes all symbols that alphabetically fall between first and last inclusive. If first is not specified RNMR
 will prompt for it with a default of temp. If last is not specified RNMR will not prompt for it and will remove only a
 symbol whose name exactly matches first.
+## REMTBL
+Remove name table entries
+
+Category: Tables
+
+Format : `REMTBL` nam first last
+
+Defaults: temp temp <first>
+
+Description:
+`REMTBL` removes all entries in name table nam that alphabetically fall between first and last inclusive. If nam or
+first are not specified RNMR will prompt for them with a default of temp. If last is not specified RNMR will not prompt
+for it and will remove only an entry whose name exactly matches first.
 ## RGPIB
 Read string from GPIB device
 
