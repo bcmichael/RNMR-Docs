@@ -6903,6 +6903,19 @@ Description:
 `REMLCL` removes all local variables that alphabetically fall between first and last inclusive. If first is not
 specified RNMR will prompt for it with a default of temp. If last is not specified RNMR will not prompt for it and will
 remove only an argument whose name exactly matches first.
+## REMLST
+Remove list value
+
+Category: Lists
+
+Format: `REMLST` nam ind
+
+Defaults: temp 1
+
+Description:
+`REMLST` removes the value at position ind from list nam. If nam is not specified RNMR will prompt for it with a default
+of temp. If ind is not specified RNMR will prompt for it with a default of 1. The specified ind should not exceed the
+number of values in the list.
 ## RGPIB
 Read string from GPIB device
 
