@@ -6968,6 +6968,17 @@ Description:
 `REMTBL` removes all entries in name table nam that alphabetically fall between first and last inclusive. If nam or
 first are not specified RNMR will prompt for them with a default of temp. If last is not specified RNMR will not prompt
 for it and will remove only an entry whose name exactly matches first.
+## RENMAC
+Rename macro
+
+Category: Macro
+
+Format: `RENMAC` nam1 nam2
+
+Defaults: temp temp
+
+Description:
+`REMMAC` renames macro nam1 to nam2. If either name is omitted RNMR will prompt for it with a default of temp.
 ## RGPIB
 Read string from GPIB device
 
