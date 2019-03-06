@@ -7024,6 +7024,19 @@ Description:
 `ROT` rotates the visible processing buffer by an amount (drot) specified in the current units of that buffer. A portion
 of the buffer drot wide is moved from the left edge of the buffer to the right edge of the buffer. If drot is not
 specified RNMR will prompt for it with a default that is equal to a single point rotation.
+## ROTP
+Rotate spectrum
+
+Category: Data Manipulation
+
+Format: `ROTP` nrot
+
+Defaults: 1
+
+Description:
+`ROTP` rotates the visible processing buffer by an amount (nrot) specified in points. A portion of the buffer nrot
+points wide is moved from the left edge of the buffer to the right edge of the buffer. If nrot is not specified RNMR
+will prompt for it with a default of 1.
 ## RPPSB
 Read data byte from pulse programmer spectrometer bus
 
