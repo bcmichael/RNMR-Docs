@@ -7042,14 +7042,15 @@ Read data byte from pulse programmer spectrometer bus
 
 Category: Hardware
 
-Format: `RPPSB` iadr
+Format: `RPPSB` adr
 
-Default : 	              0
+Default: 0
 
-Prerequisites: Pulse programmer spectrometer bus control implemented (CGFSB2).
+Prerequisites: Pulse programmer spectrometer bus control implemented (CGFSB2); RNMRA only
 
 Description:
-`RPPSB` reads a data byte from the pulse programmer spectrometer bus.
+`RPPSB` reads a data byte from the pulse programmer spectrometer bus. The adr parameter specifies the address to read
+the byte from and may range of 0 to 255 inclusive. If adr is omitted RNMR will prompt for it with a default of 0.
 ## RSB
 Read data byte from spectrometer bus
 
