@@ -7014,11 +7014,16 @@ buffer. The computed value will be printed as an informational message.
 ## ROT
 Rotate spectrum
 
-Category:
+Category: Data Manipulation
 
-Format: `ROT`
+Format: `ROT` drot
 
-Defaults:
+Defaults: dstep
+
+Description:
+`ROT` rotates the visible processing buffer by an amount (drot) specified in the current units of that buffer. A portion
+of the buffer drot wide is moved from the left edge of the buffer to the right edge of the buffer. If drot is not
+specified RNMR will prompt for it with a default that is equal to a single point rotation.
 ## RPPSB
 Read data byte from pulse programmer spectrometer bus
 
