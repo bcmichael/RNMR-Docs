@@ -7082,12 +7082,15 @@ Read data byte from spectrometer bus
 
 Category: Hardware
 
-Format: `RSB` addr
+Format: `RSB` adr
 
 Defaults: 0
 
+Prerequisites: Spectrometer bus control implemented (CGFSB1); RNMRA only
+
 Description:
-Reads data byte from specified spectrometer bus address.
+`RSB` reads a data byte from the spectrometer bus. The adr parameter specifies the address to read the byte from and may
+range of 0 to 255 inclusive. If adr is omitted RNMR will prompt for it with a default of 0.
 ## RSTLCK
 Restore lock values from file
 
