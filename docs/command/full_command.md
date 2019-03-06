@@ -7158,6 +7158,19 @@ Description:
 `RSTLST` restores all lists from a file fspec written using `SAVLST`. If no fspec is provided RNMR will prompt for it
 with temp as a default. `RSTLST` will replace the full set of lists and their values as viewed by `CATLST /VAL` with the
 contents of fspec. Any lists that were already populated will be lost.
+## RSTTBL
+Restore name tables from file
+
+Category: Tables
+
+Format: `RSTTBL` fspec
+
+Defaults: temp
+
+Description:
+`RSTTBL` restores all name tables from a file fspec written using `SAVTBL`. If no fspec is provided RNMR will prompt for
+it with temp as a default. `RSTTBL` will replace the full set of name tables and their values as viewed by `CATTBL /VAL`
+with the contents of fspec. Any tables that were already populated will be lost.
 ## RSTSHM
 Restore shim values from file
 
