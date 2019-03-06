@@ -2364,7 +2364,8 @@ Defaults: temp
 
 Description:
 `DLTMAC` deletes a specified macro. If no macro is provided RNMR will prompt for a macro to delete with temp as a
-default.
+default. `DLTMAC` will delete the file in which the macro is stored. To Remove the macro from RNMR without deleting the
+file use `REMMAC`
 ## DLTTBL
 Delete name table
 
@@ -6916,6 +6917,18 @@ Description:
 `REMLST` removes the value at position ind from list nam. If nam is not specified RNMR will prompt for it with a default
 of temp. If ind is not specified RNMR will prompt for it with a default of 1. The specified ind should not exceed the
 number of values in the list.
+## REMMAC
+Remove macro table entry
+
+Category: Macro
+
+Format: `REMMAC` nam
+
+Defaults: temp
+
+Description:
+`REMMAC` removes macro nam from the macro table. The macro will be removed from RNMR and cannot be used without being
+reloaded, but unlike `DLTMAC` the macro file will not be deleted.
 ## RGPIB
 Read string from GPIB device
 
