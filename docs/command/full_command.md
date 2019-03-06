@@ -7064,6 +7064,19 @@ Description:
 `RPTDO` repeats an iteration of a macro `DO` loop. It returns to the beginning of the loop without executing the rest of
 the commands in the loop or incrementing the loop counter. Take care as this behavior can easily lead to an infinite
 loop. `RPTDO` must fall between an instance of `DO` and itsmatching `ENDDO`.
+## RRKC
+Read data from an RKC device
+
+Category: Hardware
+
+Format: `RRKC` device
+
+Defaults: none
+
+Prerequisites: RKC device implemented; RNMRA only
+
+Description:
+`RRKC` reads data from a RKC device. If no device is specified RNMR will prompt for one with no default.
 ## RSB
 Read data byte from spectrometer bus
 
