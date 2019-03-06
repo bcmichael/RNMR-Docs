@@ -6691,13 +6691,22 @@ causes RNMR to halt immediately after the next shot.
 ## RCVMIX
 Set receiver quadrature mixing
 
-Category:
+Category: Acquisition
 
-Format: `RCVMIX`
+Format: `RCVMIX` valr vali
 
-Defaults:
+Qualifiers: /REAL /IMAG
 
-Description: Staff only!
+Qualifier Defaults: /REAL /IMAG
+
+Defaults: current current
+
+Prerequisites: RNMRA only
+
+Description:
+`RCVMIX` sets the receiver mix correction values for the real and imaginary channels. This operation should generally
+only be performed by the staff. /REAL and /IMAG determine whether to set the real or imaginary value. If no qualifier is
+used both will be set.
 ## RCVOFF
 Set receiver offset
 
