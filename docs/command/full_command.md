@@ -7176,14 +7176,15 @@ Restore shim values from file
 
 Category: Shim
 
-Format: `RSTSHM` file-name
+Format: `RSTSHM` fspec
 
-Defaults: TEMP
+Defaults: temp
 
-Prerequisites: Spectrometer configured for RNMR shim control
+Prerequisites: RNMR shim control; RNMRA only
 
 Description:
-Restores shim values from a file.
+`RSTSHM` restores shim values from a file fspec written using `SAVSHM`. If no fspec is provided RNMR will prompt
+for it with temp as a default.
 ## RWDRD
 Rewind `WRT` file opened by `OPNRD`
 
