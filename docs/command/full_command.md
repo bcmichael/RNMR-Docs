@@ -6836,6 +6836,20 @@ local arguments (as selected by the /LCL or /GBL qualifiers) whose names are set
 first token to save. By default this is set to 1 and the first token is saved to nam1 and the second to nam2 and so on.
 It can be set to higher values so as to skip some number of tokens. RNMR will not prompt for any of the arguments to
 `RDSTR`.
+## RDTBL
+Read name table values from file
+
+Category: Tables
+
+Format: `RDTBL` nam fspec
+
+Defaults: temp <nam>
+
+Description:
+`RDTBL` reads values into a name table from a file. This can be used to reload values saved using `WRTTBL`. The table
+must have already been allocated using `CRTTBL` prior to using `RDTBL`. If no table name is specified RNMR will prompt
+for it with a default of temp. If no file is specified RNMR will prompt for it with the table name as a default. If the
+file name has no extension RNMR will add .wrt to it.
 ## RDWRT
 Read `WRT` file opened by `OPNRD`
 
