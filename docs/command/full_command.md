@@ -6759,6 +6759,20 @@ default of 1. The name can be saved in either a global or local argument (as sel
 named argnam. By default it will be saved to a local variable. If no argnam is provided RNMR will not prompt for it and
 will print the archive name as an informational message instead of saving it to an argument. /ERR can be used to set a
 label to jump to in the event that the archive name cannot be read.
+## RDLST
+Read list from file
+
+Category: Lists
+
+Format: `RDLST` nam fspec
+
+Defaults: temp <nam>
+
+Description:
+`RDLST` reads values into a list from a file. This can be used to reload values saved using `WRTLST`. The list must have
+already been allocated using `CRTLST` prior to using `RDLST`. If no list name is specified RNMR will prompt for it with
+default of temp. If no file is specified RNMR will prompt for it with the list name as a default. If the file name has
+no extension RNMR will add .wrt to it.
 ## RDWRT
 Read `WRT` file opened by `OPNRD`
 
