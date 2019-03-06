@@ -6942,6 +6942,19 @@ Description:
 `REMPPS` removes all pulse programmer symbols of a specified type that alphabetically fall between first and last
 inclusive. If typ or first is not specified RNMR will prompt for it with a default of temp. If last is not specified
 RNMR will not prompt for it and will remove only a pulse programmer symbol whose name exactly matches first.
+## REMSYM
+Remove symbols
+
+Category: Arguments
+
+Format : `REMSYM` first last
+
+Defaults: temp <first>
+
+Description:
+`REMSYM` removes all symbols that alphabetically fall between first and last inclusive. If first is not specified RNMR
+will prompt for it with a default of temp. If last is not specified RNMR will not prompt for it and will remove only a
+symbol whose name exactly matches first.
 ## RGPIB
 Read string from GPIB device
 
