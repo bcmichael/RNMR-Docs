@@ -7185,6 +7185,18 @@ Prerequisites: RNMR shim control; RNMRA only
 Description:
 `RSTSHM` restores shim values from a file fspec written using `SAVSHM`. If no fspec is provided RNMR will prompt
 for it with temp as a default.
+## RTNARG
+Renames return arguments
+
+Category: Macro
+
+Format: `RTNARG` nam1 nam2...
+
+Defaults: none
+
+Description:
+`RTNARG` renames values that are returned from a macro via `MEXIT` arguments. These return arguments are initially
+stored in local arguments RTN$1, RTN$2, RT$3 etc. `RTNARG` renames these arguments to nam1, nam2, nam3 etc.
 ## RWDRD
 Rewind `WRT` file opened by `OPNRD`
 
