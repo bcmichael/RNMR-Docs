@@ -7117,6 +7117,20 @@ Description:
 `RSTGBL` restores global arguments from a file fspec written using `SAVGBL`. If no fspec is provided RNMR will prompt
 for it with temp as a default. Note that global arguments from the file will overwrite existing arguments with the same
 name.
+## RSTHTR
+Restore heater values from file
+
+Category: Heater
+
+Format: `RSTHTR` fspec
+
+Defaults: temp
+
+Prerequisites: RNMR heater control; RNMRA only
+
+Description:
+`RSTHTR` restores heater values from a file fspec written using `SAVHTR`. If no fspec is provided RNMR will prompt
+for it with temp as a default.
 ## RSTLCK
 Restore lock values from file
 
