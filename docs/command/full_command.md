@@ -6773,6 +6773,28 @@ Description:
 already been allocated using `CRTLST` prior to using `RDLST`. If no list name is specified RNMR will prompt for it with
 default of temp. If no file is specified RNMR will prompt for it with the list name as a default. If the file name has
 no extension RNMR will add .wrt to it.
+## RDPPS
+Read PP symbol
+
+Category: Pulse Program
+
+Format: `RDPPS` typ nam argnam
+
+Qualifiers: /LCL /GBL /ERR=<label>
+
+Qualifier Defaults: /LCL
+
+Defaults: none
+
+Prerequisites: RNMRA only
+
+Description:
+`RDPPS` reads the value of a pulse program symbol. The type of the symbol is specified by typ and the name of the symbol
+by nam. If either of these parameters is omitted RNMR will prompt for them with no default. The value can be saved in
+either a global or local argument (as selected by the /LCL or /GBL qualifiers) named argnam. By default it will be saved
+to a local variable. If no argnam is provided RNMR will not prompt for it and will print the value as an informational
+message instead of saving it to an argument. /ERR can be used to set a label to jump to in the event that the pulse
+program symbol value cannot be read.
 ## RDWRT
 Read `WRT` file opened by `OPNRD`
 
