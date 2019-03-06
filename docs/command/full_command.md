@@ -6986,10 +6986,12 @@ Category: Hardware
 
 Format: `RGPIB` device
 
-Defaults: no default
+Defaults: none
+
+Prerequisites: RNMRA only
 
 Description:
-Reads string from GPIB device.
+`RGPIB` reads a string from a GPIB device. If no device is specified RNMR will prompt for one with no default.
 ## RMS
 Calculate root-mean-square value of data
 
