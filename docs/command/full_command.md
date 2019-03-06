@@ -7145,9 +7145,19 @@ Prerequisites: RNMR lock control; RNMRA only
 Description:
 `RSTLCK` restores lock values from a file fspec written using `SAVLCK`. If no fspec is provided RNMR will prompt
 for it with temp as a default.
+## RSTLST
+Restore lists from file
+
+Category: Lists
+
+Format: `RSTLST` fspec
+
+Defaults: temp
 
 Description:
-Restores lock values from a file.
+`RSTLST` restores all lists from a file fspec written using `SAVLST`. If no fspec is provided RNMR will prompt for it
+with temp as a default. `RSTLST` will replace the full set of lists and their values as viewed by `CATLST /VAL` with the
+contents of fspec. Any lists that were already populated will be lost.
 ## RSTSHM
 Restore shim values from file
 
