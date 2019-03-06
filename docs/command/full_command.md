@@ -6877,28 +6877,6 @@ will instead cause an error.
 
 After `RDWRT` has executed the file position will be have moved such that calling `RDWRT` will read the next line. To
 return to the beginning of the file use `RWDRD`.
-## REF
-Set reference frequency
-
-Category: Frequency Control
-
-Format: `REF` nucnam ref
-
-Defaults: current current
-
-Description:
-Sets processing buffer nucleus reference frequency.  ref is nucleus reference frequency in current units.
-## REFA
-Set reference frequency for acquisition buffer
-
-Category: Acquisition
-
-Format: `REFA` nucnam ref
-
-Defaults: current current
-
-Description:
-Sets acquisition buffer nucleus reference frequency.  ref is nucleus reference frequency in current units.
 ## RGPIB
 Read string from GPIB device
 
