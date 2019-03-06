@@ -7208,14 +7208,15 @@ Description:
 `RWDRD` rewinds a file that was opened by `OPNRD`. This returns to the beginning of the file such that the next call to
 `RDWRT` will read the first line in the file.
 ## RWDWRT
-Rewind `WRT` file opened by `OPNRD`
+Rewind file opened by `OPNWRT`
 
 Category: File IO
 
 Format: `RWDWRT`
 
 Description:
-Rewinds a file opened by the `OPNWRT` command.
+`RWDWRT` rewinds a file that was opened by `OPNWRT`. This returns to the beginning of the file such that the next call
+to `WRT` will write to the beginning of the file.
 
 # S
 ---
