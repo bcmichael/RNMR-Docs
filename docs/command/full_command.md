@@ -6817,6 +6817,25 @@ omitted RNMR will prompt for it with a default of 1. The name can be saved in ei
 selected by the /LCL or /GBL qualifiers) named argnam. By default it will be saved to a local variable. If no argnam is
 provided RNMR will not prompt for it and will print the name as an informational message instead of saving it to an
 argument. /ERR can be used to set a label to jump to in the event that the pulse program symbol name cannot be read.
+## RDSTR
+Read tokens from a string
+
+Category: Misc.
+
+Format: `RDSTR` str nam1 nam2...
+
+Qualifiers: /LCL /GBL /FIRST=<ind>
+
+Qualifier Defaults: /LCL /FIRST=1
+
+Defaults: none
+
+Description:
+`RDSTR` reads individual tokens from a string supplied by the str argument. The tokens are saved in either global or
+local arguments (as selected by the /LCL or /GBL qualifiers) whose names are set by nam1, nam2, etc. /FIRST selects the
+first token to save. By default this is set to 1 and the first token is saved to nam1 and the second to nam2 and so on.
+It can be set to higher values so as to skip some number of tokens. RNMR will not prompt for any of the arguments to
+`RDSTR`.
 ## RDWRT
 Read `WRT` file opened by `OPNRD`
 
