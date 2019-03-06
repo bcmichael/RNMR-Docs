@@ -6929,6 +6929,19 @@ Defaults: temp
 Description:
 `REMMAC` removes macro nam from the macro table. The macro will be removed from RNMR and cannot be used without being
 reloaded, but unlike `DLTMAC` the macro file will not be deleted.
+## REMPPS
+Remove pulse programmer symbols
+
+Category: Pulse Program
+
+Format : `REMPPS` typ first last
+
+Defaults: temp temp <first>
+
+Description:
+`REMPPS` removes all pulse programmer symbols of a specified type that alphabetically fall between first and last
+inclusive. If typ or first is not specified RNMR will prompt for it with a default of temp. If last is not specified
+RNMR will not prompt for it and will remove only a pulse programmer symbol whose name exactly matches first.
 ## RGPIB
 Read string from GPIB device
 
