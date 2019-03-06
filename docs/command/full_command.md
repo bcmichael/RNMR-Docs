@@ -7198,14 +7198,15 @@ Description:
 `RTNARG` renames values that are returned from a macro via `MEXIT` arguments. These return arguments are initially
 stored in local arguments RTN$1, RTN$2, RT$3 etc. `RTNARG` renames these arguments to nam1, nam2, nam3 etc.
 ## RWDRD
-Rewind `WRT` file opened by `OPNRD`
+Rewind file opened by `OPNRD`
 
 Category: File IO
 
 Format: `RWDRD`
 
 Description:
-Rewinds a file opened by the `OPNRD` command.
+`RWDRD` rewinds a file that was opened by `OPNRD`. This returns to the beginning of the file such that the next call to
+`RDWRT` will read the first line in the file.
 ## RWDWRT
 Rewind `WRT` file opened by `OPNRD`
 
