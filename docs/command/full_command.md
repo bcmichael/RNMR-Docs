@@ -6740,6 +6740,25 @@ Prerequisites: Acquisition stopped (HALT); RNMRA only
 Description:
 `RD` sets the recycle delay in seconds. The recycle delay is precise to the nearest tenth of a second. If no value is
 provided RNMR will prompt for it with the current recycle delay as a default.
+## RDARV
+Read archive name
+
+Category: Data Storage
+
+Format: `RDARV` arv argnam
+
+Qualifiers: /LCL /GBL /ERR=<label>
+
+Qualifier Defaults: /LCL
+
+Defaults: 1 none
+
+Description:
+`RDARV` reads the name of an open archive specified by arv. If arv is not specified RNMR will prompt for it with a
+default of 1. The name can be saved in either a global or local argument (as selected by the /LCL or /GBL qualifiers)
+named argnam. By default it will be saved to a local variable. If no argnam is provided RNMR will not prompt for it and
+will print the archive name as an informational message instead of saving it to an argument. /ERR can be used to set a
+label to jump to in the event that the archive name cannot be read.
 ## RDWRT
 Read `WRT` file opened by `OPNRD`
 
