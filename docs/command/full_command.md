@@ -7091,6 +7091,19 @@ Prerequisites: Spectrometer bus control implemented (CGFSB1); RNMRA only
 Description:
 `RSB` reads a data byte from the spectrometer bus. The adr parameter specifies the address to read the byte from and may
 range of 0 to 255 inclusive. If adr is omitted RNMR will prompt for it with a default of 0.
+## RSTBUF
+Restore buffer values from file
+
+Category: Misc.
+
+Format: `RSTBUF` fspec buf
+
+Defaults: temp 1
+
+Description:
+`RSTBUF` restores buffer values from a file fspec written using `SAVBUF` and applies them to processing buffer buf. If
+no fspec is provided RNMR will prompt for it with temp as a default. If no bufer is specified RNMR will not prompt for
+it and will apply the loaded values to processing buffer 1 (the visible process buffer).
 ## RSTLCK
 Restore lock values from file
 
