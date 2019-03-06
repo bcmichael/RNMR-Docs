@@ -6851,30 +6851,32 @@ must have already been allocated using `CRTTBL` prior to using `RDTBL`. If no ta
 for it with a default of temp. If no file is specified RNMR will prompt for it with the table name as a default. If the
 file name has no extension RNMR will add .wrt to it.
 ## RDWRT
-Read `WRT` file opened by `OPNRD`
+Read line from file
 
 Category: File IO
 
-Format: `RDWRT` arg1 arg2 arg3 ...
+Format: `RDWRT` nam1 nam2...
+
+Qualifiers: /EOF=<lab> /FIRST=<ind> /LINE=<nam> /GBL /LCL
+
+Qualifier Defaults: /LCL /FIRST=1
 
 Defaults: none
 
-Qualifiers:
-
-Qulaifier | Description
---------- | -----------
-/EOF=label | jump to (label) if end-of-file detected
-/ERR=label | jump to (label) on error
-/GBL | transfer tokens to global arguments
-/LCL | transfer tokens to local arguments (default)
+Prerequisites: File open via `OPNRD`
 
 Description:
-Reads a record from a file opened by `OPNRD`.  Tokens are transferred to arguments arg1, arg2, arg3, etc.  `RDWRT`
-accepts spaces, commas, or tabs as token delimiters in a record.  Multiple qualifiers may be specified.  Qualifiers /EOF
-and /ERR may only be used in a macro.  Labels specified with /EOF and /ERR are checked for syntax but not for existence
-when the `RDWRT` command is issued.  If qualifier /EOF is not specified with a label, then an end-of-file condition will
-produce an error.  Similarly, an unhandled read error will give an RNMR error message.  Note that the comment characters
-";" and "!" will be removed  from the record before its tokens are transferred into local or global arguments.
+`RDWRT` reads a line from a file that was opened with `OPNRD`. The line is split into tokens that are saved in either
+global or local arguments (as selected by the /LCL or /GBL qualifiers) whose names are set by nam1, nam2, etc. /FIRST
+selects the first token to save. By default this is set to 1 and the first token is saved to nam1 and the second to nam2
+and so on. It can be set to higher values so as to skip some number of tokens. /LINE skips this tokenizing behavior and
+saves the whole line as a global or local argument whose name is the nam specified via /LINE=<nam>.
+
+/EOF can be used to set a label to jump to in the event end of file is encountered. If this qualifier is not used EOF
+will instead cause an error.
+
+After `RDWRT` has executed the file position will be have moved such that calling `RDWRT` will read the next line. To
+return to the beginning of the file use `RWDRD`.
 ## REF
 Set reference frequency
 
