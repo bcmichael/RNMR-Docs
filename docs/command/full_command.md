@@ -7136,11 +7136,15 @@ Restore lock values from file
 
 Category: Lock
 
-Format: `RSTLCK` file-name
+Format: `RSTLCK` fspec
 
-Defaults: TEMP
+Defaults: temp
 
-Prerequisites: Spectrometer configured for RNMR lock control
+Prerequisites: RNMR lock control; RNMRA only
+
+Description:
+`RSTLCK` restores lock values from a file fspec written using `SAVLCK`. If no fspec is provided RNMR will prompt
+for it with temp as a default.
 
 Description:
 Restores lock values from a file.
