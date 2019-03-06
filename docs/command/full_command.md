@@ -187,7 +187,7 @@ Qualifier Defaults: /ACQ /MOD=4
 
 Defaults: none none ... none
 
-Prerequisites: Acquisition stopped (HALT) RNMRA only
+Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
 `AMD` sets the receiver phase cycling. /MOD defines the number of different phase values to be used. These phase values
@@ -6735,11 +6735,11 @@ Format: `RD` sec
 
 Defaults: current
 
-Prerequisites: HALT
-
+Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
-Sets pulse program recycle delay in seconds.
+`RD` sets the recycle delay in seconds. The recycle delay is precise to the nearest tenth of a second. If no value is
+provided RNMR will prompt for it with the current recycle delay as a default.
 ## RDWRT
 Read `WRT` file opened by `OPNRD`
 
