@@ -7364,6 +7364,18 @@ Prerequisites: RNMR shim control; RNMRA only
 Description:
 `SAVSHM` saves shim values to a file on disk fspec which can be later be loaded using `RSTSHM`. If no file is
 specified RNMR will prompt for it with temp as a default.
+## SAVTBL
+Save name tables to file
+
+Category: Tables
+
+Format: `SAVTBL` fspec
+
+Defaults: temp
+
+Description:
+`SAVTBL` saves all current name tables to a file on disk fspec which can be later be loaded using `RSTTBL`. If no file
+is specified RNMR will prompt for it with temp as a default.
 ## SB
 Save data to blocked record
 
