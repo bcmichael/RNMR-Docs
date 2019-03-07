@@ -7243,12 +7243,21 @@ Save data and parameters to averager
 
 Category: Acquisition
 
-Format: `SAV` buf#
+Format: `SAV` blk buf
 
-Prerequisites: TIME HALT
+Prerequisites: Acquisition stopped (HALT); Time domain only (TIME); RNMRA only
 
 Description:
-Transfers buffer data and parameters to averager.
+`SAV` transfers data and parameters from a processing buffer to the averager. The averager memory may be logically
+partitioned into two or more blocks so that multiple FID's with different experimental parameters can be acquired at
+once, without the need to start and stop acquisition many times. `SAV` transfers data to one of these blocks from a
+processing buffer according to the user's choice of blk and buf.
+
+The first parameter, blk specifies the averager block to transfer the data to. If blk is omitted RNMR will not prompt
+for it and will transfer to block 1.
+
+The second parameter, buf specifies which processing buffer to send data from. If no buffer is specified RNMR will not
+prompt for it and will transfer data from process buffer 1 (the visible processing buffer).
 ## SAVARV
 Save archive
 
