@@ -7263,12 +7263,15 @@ Save archive
 
 Category: Data Storage
 
-Format: `SAVARV` archive
+Format: `SAVARV` arv
 
 Defaults: 1
 
 Description:
-Saves any changes made to the specified archive to the file containing that archive.
+`SAVARV` saves an archive to disk. If no archive is specified RNMR will prompt for it with a default of 1. Archives will
+be automatically saved in a number of situations, but it can be useful to manually save an archive especially when
+opening an archive in read only mode in RNMRP while it is open with write access in RNMRA. Using `SAVARV` in RNMRA and
+then `UPDARV` in RNMRP ensures that all changes made from RNMRA are visible in RNMRP.
 ## SAVLCK
 Save lock values to file
 
