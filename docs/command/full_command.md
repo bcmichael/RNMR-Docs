@@ -7316,14 +7316,15 @@ Save lock values to file
 
 Category: Lock
 
-Format: `SAVLCK` file-name
+Format: `SAVLCK` fspec
 
-Defaults: TEMP
+Defaults: temp
 
-Prerequisites: Spectrometer configured for RNMR lock control
+Prerequisites: RNMR lock control; RNMRA only
 
 Description:
-Saves lock values to a file.
+`SAVLCK` saves lock values to a file on disk fspec which can be later be loaded using `RSTLCK`. If no file is
+specified RNMR will prompt for it with temp as a default.
 ## SAVSHM
 Save shim values to file
 
