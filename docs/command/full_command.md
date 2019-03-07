@@ -7225,12 +7225,19 @@ Save data to archive record
 
 Category: Data Storage
 
-Format: `SA` rec# buf#
+Format: `SA` rec buf
 
-Defaults: next 1
+Defaults: wrec 1
 
 Description:
-Writes data to archive record from buffer.
+`SA` saves the date in a processing buffer to an archive record. The record must be in an archive which RNMR has read
+access to. If no record is provided RNMR will not prompt for it and will use the next available record. Records in
+archives other than 1 can be specified by either pre-pending the archive number and a ":" or specifying numbers larger
+than 200. For example record # in archive 2 can be specified either as 2:# or by adding 200 to #. `SA` cannot write to
+scratch records which must be written using `SS` or to blocked records which must be written using `SB`.
+
+If no buffer is specified RNMR will not prompt for it and will save the data from processing buffer 1 (the visible
+processing buffer).
 ## SAV
 Save data and parameters to averager
 
