@@ -7272,6 +7272,19 @@ Description:
 be automatically saved in a number of situations, but it can be useful to manually save an archive especially when
 opening an archive in read only mode in RNMRP while it is open with write access in RNMRA. Using `SAVARV` in RNMRA and
 then `UPDARV` in RNMRP ensures that all changes made from RNMRA are visible in RNMRP.
+## SAVBUF
+Save buffer value to file
+
+Category: Misc.
+
+Format: `SAVBUF` fspec buf
+
+Defaults: temp 1
+
+Description:
+`SAVBUF` saves values from a specified processing buffer buf to a file on disk fspec which can be later be loaded using
+`RSTBUF`. If no file is specified RNMR will prompt for it with temp as a default. If no buffer is specified RNMR will
+not prompt for it and will save values from processing buffer 1 (the visible processing buffer).
 ## SAVLCK
 Save lock values to file
 
