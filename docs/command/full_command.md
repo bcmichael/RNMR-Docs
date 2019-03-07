@@ -7338,6 +7338,18 @@ Prerequisites: Logging enabled
 
 Description:
 `SAVLOG` saves logging to a file on disk fspec. If no file is specified RNMR will prompt for it with temp as a default.
+## SAVLST
+Save lists to file
+
+Category: Lists
+
+Format: `SAVLST` fspec
+
+Defaults: temp
+
+Description:
+`SAVLST` saves all current lists to a file on disk fspec which can be later be loaded using `RSTLST`. If no file is
+specified RNMR will prompt for it with temp as a default.
 ## SAVSHM
 Save shim values to file
 
