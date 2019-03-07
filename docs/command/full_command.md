@@ -7419,6 +7419,28 @@ Description:
 `SC` vertically scales data in the visible processing buffer. By default `SC` uses the /REL option which multiplies the
 data by the alue of sf. /ABS sets the absolute scale factor of the data. After scaling RNMR will print the new absolute
 scale factor as an informational message. If sf is omitted RNMR will not prompt for it and will a scale factor of 1.0.
+## SEL
+Begin macro `SEL` block
+
+Category: Macro
+
+Format: `SEL` nam
+
+Qualifiers: /LCL /GBL
+
+Qualifier Defaults: /LCL
+
+Defaults: none
+
+Prerequisites: Macro only
+
+Description:
+`SEL` begins a macro `SEL` block which is ended by `ENDSEL`. The block uses a global or local argument (as selected by
+the /LCL or /GBL qualifiers) named nam. By default a local argument is used. If no nam is provided RNMR will prompt for
+it with no default. RNMR iterates sequentially through each instance of `CASE` between `SEL` and `ENDSEL`. For each
+`CASE` the value of argument nam is compared to the value of the `CASE`. The first time a match is found all of the
+commands are executed that fall between that `CASE` and either the next `CASE` or `ENDSEL` whichever comes first. Then
+execution proceeds from the line after `ENDSEL`
 ## SET
 Set system state
 
