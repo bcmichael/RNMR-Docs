@@ -7355,14 +7355,15 @@ Save shim values to file
 
 Category: Shim
 
-Format: `SAVSHM` file-name
+Format: `SAVSHM` fspec
 
-Defaults: TEMP
+Defaults: temp
 
-Prerequisites: Spectrometer configured for RNMR shim control
+Prerequisites: RNMR shim control; RNMRA only
 
 Description:
-Saves shim values in a file.
+`SAVSHM` saves shim values to a file on disk fspec which can be later be loaded using `RSTSHM`. If no file is
+specified RNMR will prompt for it with temp as a default.
 ## SB
 Save data to blocked record
 
