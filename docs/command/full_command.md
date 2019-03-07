@@ -7381,12 +7381,27 @@ Save data to blocked record
 
 Category: Blocked Record
 
-Format: `SB` rec# blk# buf#
+Format: `SB` rec blk buf nblk
 
-Defaults: current next 1
+Defaults: wrec next 1 1
 
 Description:
-Writes data to block of blocked record from buffer.
+`SB` saves the data in a processing buffer to a blocked record. The record must be in an archive which RNMR has read
+access to. If no record is provided RNMR will not prompt for it and will use the next available record. Records in
+archives other than 1 can be specified by either pre-pending the archive number and a ":" or specifying numbers larger
+than 200. For example record # in archive 2 can be specified either as 2:# or by adding 200 to #. `SB` cannot write to
+scratch records which must be written using `SS` or to archive records which must be written using `SA`.
+
+The second parameter, blk, determines which block within the record the data is saved to. If blk is omitted or set to 0
+RNMR will write to the next block of the record as specified by the blocked record write pointer. The blocked record
+write pointer can be set and viewed using `PTRB`. After `SB` is complete this blocked record write pointer will point to
+the block after the final block that was written to.
+
+If no buffer is specified RNMR will not prompt for it and will save the data from processing buffer 1 (the visible
+processing buffer).
+
+A processing buffer may be partitioned into multiple blocks. The final parameter, nblck, determines how many of these
+processing buffer blocks should be saved. If nblk is omitted RNMR will not prompt for it and will save only 1 block.
 ## SC
 Scale data
 
