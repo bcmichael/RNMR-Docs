@@ -7297,6 +7297,20 @@ Defaults: temp
 Description:
 `SAVGBL` saves the value of all current global arguments to a file on disk fspec which can be later be loaded using
 `RSTGBL`. If no file is specified RNMR will prompt for it with temp as a default.
+## SAVHTR
+Save heater values to file
+
+Category: Heater
+
+Format: `SAVHTR` fspec
+
+Defaults: temp
+
+Prerequisites: RNMR heater control; RNMRA only
+
+Description:
+`SAVHTR` saves heater values to a file on disk fspec which can be later be loaded using `RSTHTR`. If no file is
+specified RNMR will prompt for it with temp as a default.
 ## SAVLCK
 Save lock values to file
 
