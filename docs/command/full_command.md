@@ -7325,6 +7325,19 @@ Prerequisites: RNMR lock control; RNMRA only
 Description:
 `SAVLCK` saves lock values to a file on disk fspec which can be later be loaded using `RSTLCK`. If no file is
 specified RNMR will prompt for it with temp as a default.
+## SAVLOG
+Save logging to file
+
+Category: Misc.
+
+Format: `SAVLOG` fspec
+
+Defaults: temp
+
+Prerequisites: Logging enabled
+
+Description:
+`SAVLOG` saves logging to a file on disk fspec. If no file is specified RNMR will prompt for it with temp as a default.
 ## SAVSHM
 Save shim values to file
 
