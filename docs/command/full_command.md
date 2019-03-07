@@ -7285,6 +7285,18 @@ Description:
 `SAVBUF` saves values from a specified processing buffer buf to a file on disk fspec which can be later be loaded using
 `RSTBUF`. If no file is specified RNMR will prompt for it with temp as a default. If no buffer is specified RNMR will
 not prompt for it and will save values from processing buffer 1 (the visible processing buffer).
+## SAVGBL
+Save global arguments to file
+
+Category: Arguments
+
+Format: `SAVGBL` fspec
+
+Defaults: temp
+
+Description:
+`SAVGBL` saves the value of all current global arguments to a file on disk fspec which can be later be loaded using
+`RSTGBL`. If no file is specified RNMR will prompt for it with temp as a default.
 ## SAVLCK
 Save lock values to file
 
