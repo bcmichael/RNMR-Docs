@@ -4880,13 +4880,7 @@ Format: `LPDEV` device
 Defaults: current
 
 Description:
-`LPDEV` selects the printer to be used for text output. The choice of printers is the same for each spectrometer, but
-each spectrometer may be assigned a different default printer when RNMR is initialized. The file
-/opt/rnmr/spec/common/rnmra/cfgque.dat contains a list of all printers that may be selected by `LPDEV`.
-
-`LPDEV` takes one parameter, device, which is the name of the print device to be selected for all subsequent text
-printing. If this argument is missing from the command line, RNMR will prompt for a device with the current print
-device as the default. The legal choices of text printer device are currently:
+`LPDEV` sets the device to use for text printing. The currently available printing devices are:
 
 - E460A
 - E460B
@@ -4895,6 +4889,10 @@ device as the default. The legal choices of text printer device are currently:
 - LJ4050
 - LJ5
 
+If no device is specified RNMR will prompt for it with the current text printing device as a default. If the text
+printing device is changed (device is not the current device) RNMR will set the text printing flag (as set and displayed
+by `SET LP`) on, indicating that text should be physically printed by the printing device rather than saved to the text
+printing file (as set and displayed by `LPFIL`).
 ## LPF
 Perform forward linear prediction on FID
 
@@ -4944,6 +4942,23 @@ rlim. That is the point just after the FID is predicted using the N before after
 using the N points before it (including the predicted value of point SIZE+1) and so on until all the points out to rlim
 are predicted. This process will change the active size of the buffer to rlim. If the processing buffer is currently
 visible, RNMR will update the display to show the data as updated by `LPF`.
+## LPFIL
+Set text printer file
+
+Category: Printing
+
+Format: `LPFIL` fspec
+
+Defaults: current
+
+Description:
+`LPFIL` selects a file to use as the destination for printing text. Commands that would print text can write to the file
+instead of sending the text to a printer. Subsequent text printing commands will overwrite the file. If no file is
+specified RNMR will prompt for it with the current text printer file as a default.
+
+If the text printer file is changed (fspec is not the current fspec) RNMR will set the text printer flag (as set and
+displayed by `SET LP`) off, indicating that text should be saved to the text printing file rather than physically
+printed by the printer device (as set and displayed by `LPDEV`).
 ## LPK
 List Peaks
 
