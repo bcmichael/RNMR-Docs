@@ -6170,6 +6170,10 @@ Description:
 - LJ4050
 - LJ5
 
+If no device is specified RNMR will prompt for it with the current plotting device as a default. If the plotting device
+is changed (device is not the current device) RNMR will set the plotter flag (as set and displayed by `SET PL`) on,
+indicating that plots should be physically printed by the plotting device rather than saved to the plot file (as set and
+displayed by `PLFIL`).
 ## PLFIL
 Set plot file
 
@@ -6180,10 +6184,14 @@ Format: `PLFIL` fspec
 Defaults: current
 
 Description:
-`PLFIL` selects a file to be the destination for plotting. If a file is set using `PLFIL` plotting commands will write
-plots to the file in a postscript format instead of sending the plots to a printer. Subsequent plotting commands that
-are not between `OPNPLT` and `CLSPLT` will overwrite the plot file. To go back to printing plots call `PLDEV` and select
-a plotting device. If no file is specified RNMR will prompt for it with the last plot file as a default.
+`PLFIL` selects a file to use as the destination for plotting. Plotting commands can write plots to the file in a
+postscript format instead of sending the plots to a printer. Subsequent plotting commands that are not between `OPNPLT`
+and `CLSPLT` will overwrite the plot file. If no file is specified RNMR will prompt for it with the last plot file as a
+default.
+
+If the plot file is changed (fspec is not the current fspec) RNMR will set the plotter flag (as set and displayed by
+`SET PL`) off, indicating that plots should be saved to the plot file rather than physically printed by the plotting
+device (as set and displayed by `PLDEV`).
 ## PLOT
 Plot current 1D display
 
