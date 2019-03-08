@@ -4481,8 +4481,8 @@ Defaults: none
 Prerequisites: Logging enabled
 
 Description:
-`LOG` writes a line to the log file. If no line is specified RNMR will prompt for it. `LOG` cannot be used unless
-logging is enabled.
+`LOG` writes a line to the logging window. If no line is specified RNMR will prompt for it. `LOG` cannot be used unless
+logging is enabled (`SET LOG ON`).
 ## LOOP
 Set or increment pulse program loop counter
 
@@ -7360,7 +7360,8 @@ Defaults: temp
 Prerequisites: Logging enabled
 
 Description:
-`SAVLOG` saves logging to a file on disk fspec. If no file is specified RNMR will prompt for it with temp as a default.
+`SAVLOG` saves the contents of the logging window to a file on disk fspec. If no file is specified RNMR will prompt for
+it with temp as a default. `SAVLOG` cannot be used unless logging is enabled (`SET LOG ON`).
 ## SAVLST
 Save lists to file
 
