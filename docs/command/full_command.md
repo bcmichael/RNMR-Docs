@@ -7836,6 +7836,18 @@ Defaults: temp
 Description:
 `SIZLST` prints the size of a list and its allocated size as informational messages. If no list is specified RNMR will
 prompt for it with a default of temp.
+## SIZTBL
+Display size of name table
+
+Category: Tables
+
+Format: `SIZTBL` tbl
+
+Defaults: temp
+
+Description:
+`SIZTBL` prints the size of a name table and its allocated size as informational messages. If no table is specified RNMR
+will prompt for it with a default of temp.
 ## SP
 Display archive space information
 
