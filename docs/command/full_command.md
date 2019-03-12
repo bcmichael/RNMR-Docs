@@ -7824,8 +7824,18 @@ direction is between 1 and the number of dimensions in the blocked record RNMR w
 the blocked record in that direction as informational messages. If dir is 0 RNMR will print the number of segments in
 the record and the number ofallocated segments. If dir is * RNMR will print the total number of blocks and total number
 of allocated blocks in the record. No other values of dir are permitted.
+## SIZLST
+Display size of list
 
+Category: Lists
 
+Format: `SIZLST` list
+
+Defaults: temp
+
+Description:
+`SIZLST` prints the size of a list and its allocated size as informational messages. If no list is specified RNMR will
+prompt for it with a default of temp.
 ## SP
 Display archive space information
 
