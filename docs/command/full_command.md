@@ -7642,10 +7642,10 @@ Category: Acquisition
 
 Format: `SG`
 
-Prerequisites: LOAD HALT
+Prerequisites: Experiment loaded (LOAD); Acquisition  stopped (HALT); RNMRA only
 
 Description:
-Starts acquisition with no accumulation of data.
+`SG` starts acquisition but does not accumulate data from multiple shots.
 ## SHFT
 Shift data
 
