@@ -7801,10 +7801,11 @@ Format: `SIZE` size
 
 Defaults: current
 
-Prerequisites: HALT
+Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
-Sets size of acquisition in points. size must be a power of 2 less than or equal to 8192.
+`SIZE` sets the number of point in signal to be acquired. If size is omitted RNMR will prompt for it with the current
+size as a default. The value of size must be between 1 and 32768 inclusive.
 ## SIZEB
 Displays size of blocked record
 
