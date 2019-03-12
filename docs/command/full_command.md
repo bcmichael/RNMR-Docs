@@ -7697,6 +7697,18 @@ Description:
 `SHM` sets the value of a particular shim specified by name. If name is omitted RNMR will prompt for it with no default.
 If value is omitted RNMR will prompt for it with the current value of the specified shim as a default. The shim value
 may be between -100.0 and 100.0 inclusive.
+## SHMCTL
+Open interactive shim controls
+
+Category: Shim
+
+Format: `SHMCTL`
+
+Prerequisites: RNMR shim control; RNMRA only
+
+Description:
+`SHMCTL` opens a pop up window for viewing and adjusting shim values. The same window is available via the shim option
+in the controls drop down menu.
 ## SHOW
 Show information
 
