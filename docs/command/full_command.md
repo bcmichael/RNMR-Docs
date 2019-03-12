@@ -395,7 +395,7 @@ Description:
 `AUTOZ` sets up automatic Z shimming in RNMRA. In order for this to function RNMR must have access to both the lock and
 shim controls. In order for `AUTOZ` to have any effect the automatic Z shimming flag (as set and displayed by
 `SET AUTOZ`) must be on. If either the step or time is omitted RNMR will prompt for them with the current values as a
-defualt. The step must be between 0.0 and 1.0 inclusive, while time must be between 4.0 and 100.0 inclusive. 
+defualt. The step must be between 0.0 and 1.0 inclusive, while time must be between 4.0 and 100.0 inclusive.
 # B
 ---
 ## BC
@@ -7472,29 +7472,112 @@ Set system state
 
 Category: Misc.
 
-Format: `SET` flgnam ...
+Format: `SET` nam ...
+
+Defaults: none
 
 Description:
-Sets state of system flag. Arguments may be one of the following:
+`SET` sets the state of a variety of aspects RNMR. The parameter nam specifies what state to set. If nam is not
+specified RNMR will prompt for it with no default. The majority of the options available for `SET` are flags which may
+be set to either ON or OFF. If not specified RNMR will prompt for the state of the flag with the current value as a
+default.
 
-Flag | Description
+The following flags may be set only from RNMRA:
+
+Name   | Flag | Description
+----   | ---- | -----------
+AUTOZ  | Automatic Z shimming | Turns automatic Z shimming (controlled via `AUTOZ`) on and off
+HTR    | Heater computer control | Turns remote heater control on and off
+MAS    | MAS controller computer control | Turns remot spinning control on and off
+RKC    | RKC computer control | Turns remote RKC control on and off
+RRI    | RRI computer control | turns remote RRI control on and off
+SHM    | Shim computer control | Turns remote shim control on and off
+TRM    | Terminal communication | Turns terminal communication on and off
+WRFBUF | WRF buffer
+WWF    | WWF buffer
+
+RNMRA also has flags which are set on a per channel basis. When setting these flags RNMR will prompt for a channel with
+1 as a default if no channel is specified. Then RNMR will prompt for a flag state with the current state as a default.
+The following flags may be set in this fashion from RNMRA:
+
+Name   | Flag | Description
+----   | ---- | -----------
+FMXBUF | FMX buffer
+PSXBUF | PSX buffer
+PWXBUF | PWX buffer
+
+The following flags may be set from both RNMRA and RNMRP:
+
+Name  | Flag | Description
+----  | ---- | -----------
+DSP   | Display enable |
+LOG   | Logging window | When set on a window opens and `LOG` can be used to write logging lines to it that can be saved via `SAVLOG`. Closing the logging window will set the flag off.
+LP    | Text printer | When the text printer flag is on text is printed to the printer device as set and displayed by `LPDEV`. When the flag is off text printed by commands is saved to the text printer file as set and displayed by `LPFIL`. Changing `LPDEV` or `LPFIL` sets the flag to on or off respectively.
+MSG   | Message window | When set on a windows opens and all informational messages and messages written using `MSG` will appear in the window rather that being written to the console. Closing the message window will set the flag off.
+PL    | Plotter | When the plotter flag is on plots are printed to the plotting device as set and displayed by `PLDEV`. When the flag is off plots are saved to the plot file as set and displayed by `PLFIL`. Changing `PLDEV` or `PLFIL` sets the flag to on or off respectively.
+REF   | Display reference | When set on the current contents of the visible processing buffer are set to be the display reference. Whenever any dataset in the same domain (time or frequency) as the reference is displayed the reference data will also be shown. This reference data stays set until a different display reference is set or the flag is set off.
+TIMER | Timer | When set off the amount of time since it was last set on in seconds is printed as an informational message.
+TRACE | Trace | When enabled all commands that are executed as well as the command level they are executed from are printed as informational messages. This is very useful for tracing the execution of macros for debugging purposes.
+
+There are also several other options that are not simply flags that can be turned on/off. The following options are
+available in both RNMRA and RNMRP:
+
+BUF item val
+
+`SET BUF` sets various parameters of the visible processing buffer. The following items may be set with `SET BUF`:
+
+Item  | Description
+----  | -----------
+DIM   | Buffer dimension
+DOM   | Buffer domain (TIME, FREQ, UNKN)
+FIRST | Position of first point
+NACQ  | Number of acquisitions
+SF    | Scale factor
+SIZE  | Size in points
+STEP  | Difference between position of sequential points
+TITLE | Buffer title
+
+INFO typ [nam] nam1...
+
+`SET INFO` sets up handling of informational messages from the next command that is executed. The typ parameter
+determines what type of location to send the message. The LST and TBL options use a nam parameter which determines
+which list or name table to send values to. There can be multiple parameters nam1, nam2, etc. to setup multiple
+informational messages from the same command. The following typ parameters are supported:
+
+Item | Description
 ---- | -----------
-AUTOZ  | Sets state of background hardware auto-shimming routine. State my be ON or OFF. Z1 is optimized based on the lock level.
-DSP    | Sets state of display enable flag. State may be ON or OFF. Flag is set on when lowest console level is reached.
-IMSG   | Sets state of informational message flag.  State may be ON or OFF. Flag is set on when lowest console level is reached. If flag is off any values which would have been printed by the message are transferred to successive global arguments beginning with gbl#1 and ending with gbl#2, if gbl#1 and gbl#2 are nonzero.
-LCKMTR | Sets state of lock meter display.  State may be ON or OFF. The lock meter is displayed as both graphically (a horizontal bar which monitors the lock level) and numerically.
-TIMER  | Sets state of timer. State may be ON or OFF. An informational message is written when timer is set to OFF.
-TRACE  | Sets state of DEBUG trace enable flag.  State may be ON or OFF. Flag is set off when lowest console level is reached. If flag is on each macro line will be listed before being executed.
+GBL  | Save to global variables named nam1, nam2, etc.
+LCL  | Save to local variables named nam1, nam2, etc.
+LST  | Save to position nam1, nam2, etc. in list nam
+OFF  | Do not print messages
+ON   | Print messages
+SYM  | Save to symbols named nam1, nam2, etc.
+TBL  | Save to entry nam1, nam2, etc. in name table nam
 
-System flags DSP, IMSG, EMSG,
+REC rec dir item val
 
-Each system flag is stored within RNMR as via counters that are incremented or decremented by the `SET` commands.  For
-each function (IMSG, EMSG, DSP, etc.) there are two counters: one for console level and one for all macro levels.  The
-console counter is initialized with the value 1 when RNMR starts up and its current value becomes the macro counter
-level whenever a macro is called.  `SET` commands at console level increment or decrement the appropriate console
-counter, while `SET` commands within a macro level increment or decrement the macro counter.  When an event (such as a
-display update or an error or informational message) is processed, RNMR takes action according to the current value of
-the counter at the current command level.
+`SET REC` sets the value of various parameters in the title information of a record. It takes several arguments. The
+first is a record to set a parameter for. Records in archives other than 1 can be specified by either pre-pending the
+archive number and a ":" or specifying numbers larger than 200. For example record # in archive 2 can be specified
+either as 2:# or by adding 200 to #. The second parameter is a direction which may be an integer from 1 and the number
+of dimensions the record has. The third argument is which item to set the value of. Some items have only a single value
+for the entire record which will be set regardless of which dimension is specified. The following items may be set with
+`SET REC`:
+
+Item   | Description
+----   | -----------
+ACQTYP | Acquisition type
+DIM    | Dimension corresponding to the direction
+DOM    | Domain of the direction (TIME, FREQ, UNKN)
+FIRST  | Position of first point
+NACQ   | Number of acquisitions (single parameter for all directions)
+NSEG   | Number of segments (single parameter for all directions)
+SF     | Scale factor to use when loading data (single parameter for all directions)
+SIZE   | Size in points
+STEP   | Difference between position of sequential points
+SYN    | Synthesizer associated with direction
+TITLE  | Title of record (single parameter for all directions)
+
 ## SETIDN
 Set identification values
 
