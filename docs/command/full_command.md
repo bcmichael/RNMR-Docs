@@ -7715,11 +7715,64 @@ Show information
 Category: Misc.
 
 Format: `SHOW` option
-Default : 	              `BUF`
+
+Default: none
 
 Description:
-`SHOW` shows information on various RNMR entities.  At present, the only option available is BUF; `SHOW BUF`
-displays various attributes of the visible processing buffer.
+`SHOW` shows information on various RNMR entities. The following options are available in RNMRA and RNMRP:
+
+BUF item
+
+`SHOW BUF` displays various attributes of the visible processing buffer. The following items may be displayed with
+`SHOW BUF`:
+
+Item  | Description
+----  | -----------
+DIM   | Buffer dimension
+DOM   | Buffer domain (TIME, FREQ, UNKN)
+FIRST | Position of first point
+LAST  | Position of last point
+NACQ  | Number of acquisitions
+SF    | Scale factor
+SIZE  | Size in points
+SIZEA | Allocated size in points
+STEP  | Difference between position of sequential points
+
+REC rec dir item
+
+`SHOW REC` displays the value of various parameters in the title information of a record. It takes several arguments.
+The first is a record to show a parameter for. Records in archives other than 1 can be specified by either pre-pending
+the archive number and a ":" or specifying numbers larger than 200. For example record # in archive 2 can be specified
+either as 2:# or by adding 200 to #. The second parameter is a direction which may be an integer from 1 and the number
+of dimensions the record has. The third argument is which item to show the value of. Some items have only a single value
+for the entire record which will be displayed regardless of which dimension is specified. The following items may be
+displayed with `SHOW REC`:
+
+Item   | Description
+----   | -----------
+ACQTYP | Acquisition type
+DIM    | Dimension corresponding to the direction
+DOM    | Domain of the direction (TIME, FREQ, UNKN)
+FIRST  | Position of first point
+NACQ   | Number of acquisitions (single parameter for all directions)
+NDIM   | Number of dimensions (single parameter for all directions)
+NDIMX  | Number of simultaneously accessible dimensions (single parameter for all directions)
+NSEG   | Number of segments (single parameter for all directions)
+NSEGA  | Number of allocated segments (single parameter for all directions)
+NUC    | Nucleus
+OFF    | Offset frequency
+PPM    | PPM to Hz conversion factor
+REF    | Reference frequency
+SF     | Scale factor to use when loading data (single parameter for all directions)
+SIZE   | Size in points
+SIZEA  | Allocated size in points
+SIZEB  | Size in blocks
+STEP   | Difference between position of sequential points
+SYN    | Synthesizer associated with direction
+TITLE  | Title of record (single parameter for all directions)
+
+In RNMRA the BUFA option is also available. BUFA behaves exactly the same as BUF but displays information about the
+acquisition buffer instead of the visible processing buffer.
 ## SINEB
 Perform Sine-bell apodization
 
