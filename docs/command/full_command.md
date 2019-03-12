@@ -7646,6 +7646,15 @@ Prerequisites: Experiment loaded (LOAD); Acquisition  stopped (HALT); RNMRA only
 
 Description:
 `SG` starts acquisition but does not accumulate data from multiple shots.
+## SHELL
+Spawn shell
+
+Category: Misc.
+
+Format: `SHELL`
+
+Description:
+`SHELL` spawns a new terminal from which shell commands can be executed.
 ## SHFT
 Shift data
 
