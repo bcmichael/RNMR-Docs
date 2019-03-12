@@ -7782,15 +7782,16 @@ Format: `SINEB` factor time
 
 Defaults: 0.0 (size+1)\*step
 
-Prerequisites: TIME
-
+Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-Performs sine-bell apodization.  The phase of the initial point of the apodization function is defined by:
-
-    PHI=ATAN2(factor,1.0-factor^2)
-
-time is the time value at which the apodization function becomes zero.
+`SINEB` performs a sinebell apodization. The first parameter, factor, must be between 0.0 and 1.0 inclusive and
+determines the initial phase of the sinebell. The initial phase is the arcsine of the factor. Thus a value of 0.0
+indicates a sine function and a value of 1.0 indicates a cosine function. If factor is omitted RNMR will prompt for it
+with 0.0 as a default. The second argument, time, indicates the time at which the sinebell reaches 0 thereby stretching
+or squeezing the sinebell. All points from time on are set to 0. If time is omitted RNMR will prompt for it with
+(size+1)\*step as a default. This default will end the sinebell at the last data point. RNMR multiplies the time domain
+data in the visible processing buffer by the specified sinebell.
 ## SIZE
 Set acquisition size
 
