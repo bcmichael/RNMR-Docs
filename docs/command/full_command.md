@@ -7581,15 +7581,19 @@ TITLE  | Title of record (single parameter for all directions)
 ## SETIDN
 Set identification values
 
-Category: Data Storage
+Category: Display
 
 Format: `SETIDN` idn1 idn2
 
 Defaults: none none
 
+Prerequisites: Macro only
+
 Description:
-Sets display identification section values.  The display identification section is the upper left corner of the display.
-idn=\* indicates no change.
+`SETIDN` sets the text in the identification fields in the top left of the RNMR display. `SETIDN` may only be called
+from within a macro and the text set with it will be unset when the macro exits. The two arguments idn1 and idn2 are the
+text for the two available identification fields. If these arguments are omitted RNMR will not prompt for them and will
+not change the corresponding fields.
 ## SETV
 Set data values between limits
 
