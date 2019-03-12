@@ -7599,12 +7599,21 @@ Set data values between limits
 
 Category: Data Manipulation
 
-Format: `SETV` llim rlim valr vali
+Format: `SETV` val llim rlim
 
-Defaults: current display 0.0 0.0 Qualifiers: /REAL (default) /IMAG (default)
+Qualifiers: /COMPLEX /IMAG /REAL
+
+Qualifier Defaults: current_display
+
+Defaults: 0.0 current_display_limits
 
 Description:
-`SETV` sets data values for all points in a specified region of an FID or spectrum to a given complex number.
+`SETV` sets the data values for all points in a specified region (between llim and rlim) of the visible processing
+buffer to a given value. If val is omitted RNMR will prompt for it with 0.0 as a default. If either limit is omitted
+RNMR will not prompt for them and will use the current display limits. The limits are specified in the current units of
+the visible processing buffer. The /REAL, /IMAG, and /COMPLEX qualifiers select whether to set the real part, imaginary
+part, or both parts of the buffer to the specified value. The default behavior is to set the currently visible part of
+buffer as selected and shown by the `BUF` command.
 ## SETVP
 Set data values for specified points
 
