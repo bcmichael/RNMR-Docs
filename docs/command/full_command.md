@@ -7683,18 +7683,20 @@ Description:
 RNMR will prompt for it with 1 as a default. Shift values greater than zero will shift to the left while values less
 than zero will shift to the right. The portion of the buffer left empty after the shift will be filled with zeros.
 ## SHM
-Set shim values
+Set shim value
 
 Category: Shim
 
-Format: `SHM` shim-name value
+Format: `SHM` name value
 
-Defaults: Z1 current
+Defaults: none current
 
-Prerequisites: Spectrometer configured for RNMR shim control
+Prerequisites: RNMR shim control; RNMRA only
 
 Description:
-Sets the value of a particular shim.
+`SHM` sets the value of a particular shim specified by name. If name is omitted RNMR will prompt for it with no default.
+If value is omitted RNMR will prompt for it with the current value of the specified shim as a default. The shim value
+may be between -100.0 and 100.0 inclusive.
 ## SHOW
 Show information
 
