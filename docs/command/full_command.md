@@ -7619,12 +7619,22 @@ Set data values for specified points
 
 Category: Data Manipulation
 
-Format: `SETV` llim npt valr vali
+Format: `SETVP` val llim npt
 
-Defaults: current display 0.0 0.0
-Qualifiers: 	/REAL (default)       /IMAG (default) Description:
-`SETVP` sets data values for all points in a specified region of an FID or spectrum to a given complex number.  The
-region to be modified begins at "llim" and is "npt" points long.
+Qualifiers: /COMPLEX /IMAG /REAL
+
+Qualifier Defaults: current_display
+
+Defaults: 0.0 current_display_limit 1
+
+Description:
+`SETVP` sets the data values for all points in a specified region (npt points starting from llim) of the visible
+processing buffer to a given value. If val is omitted RNMR will prompt for it with 0.0 as a default. If llim is omitted
+RNMR will not prompt for them and will use the current display limit. The limit is specified in the current units of the
+visible processing buffer. If the number of points to set, npt, is omitted RNMR will not prompt for it and will set a
+single point. The /REAL, /IMAG, and /COMPLEX qualifiers select whether to set the real part, imaginary part, or both
+parts of the buffer to the specified value. The default behavior is to set the currently visible part of buffer as
+selected and shown by the `BUF` command.
 ## SG
 Start acquisition without accumulation
 
