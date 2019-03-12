@@ -7662,11 +7662,13 @@ Category: Data Manipulation
 
 Format: `SHFT` shft
 
-Defaults: dstep
+Defaults: step
 
 Description:
-Shifts data left or right specified amount with zero filling.
-         	shft    <0      indicates right shift          	shft    \>0      indicates left shift
+`SHFT` shifts the data in the visible processing buffer by an amount shft specified in the current buffer units. If shft
+is not specified RNMR will prompt for it with the current step, the value corresponding to a single point, as a default.
+Shift values greater than zero will shift to the left while values less than zero will shift to the right. The portion
+of the buffer left empty after the shift will be filled with zeros.
 ## SHM
 Set shim values
 
