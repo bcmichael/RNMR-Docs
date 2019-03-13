@@ -7936,17 +7936,6 @@ Description:
 `SREFA` stores the reference frequency (or frequencies) in the acquisition buffer in the nucleus table. If nuc is *
 `SREFA` saves the frequency for every channel. Otherwise a valid nucleus must be passed. If nuc is omitted RNMR will
 prompt for it with a default of \*.
-## SRFLG
-Set spectrum reverse flag
-
-Category: Misc.
-
-Format: `SRFLG` syn# state
-
-Defaults: current current
-
-Description:
-Sets state of specified spectrum reverse flag.  State may be ON or OFF.
 ## SS
 Save data to scratch record
 
