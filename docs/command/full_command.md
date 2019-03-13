@@ -7961,8 +7961,14 @@ Category: Printing
 
 Format: `STK`
 
+Prerequisites: Plot stream open
+
 Description:
-Stack plots current display.
+`STK` allows plotting multiple 1D spectra offset from one another on a single plot. `STK` must fall between `OPNPLT` and
+`CLSPLOT`. Each invocation of `STK` plots the current contents of the visible processing buffer offset from the previous
+plot in X and Y by the values set by `STKOFF`. There are limits to the area of a plot which `STK` cannot exceed. Reduce
+the size of the plots using `PLSIZE` and offsets using `STKOFF` to ensure that all of the stack plots fit within a 9x6
+area.
 ## STKOFF
 Set stack plot offset
 
