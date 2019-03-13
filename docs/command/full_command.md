@@ -8073,8 +8073,11 @@ Format: `SWL` width
 
 Defaults: current
 
+Prerequisites: RNMR lock control; RNMRA only
+
 Description:
-Sets lock channel total sweep width.  Maximum sweep width is 1000.0.
+`SWL` sets lock sweep width. If width is omitted RNMR will prompt for it with the current value as a default. The sweep
+width must be between 0.0 and 100.0 inclusive.
 ## SWP
 Enable or disable lock sweep
 
