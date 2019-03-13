@@ -7853,27 +7853,30 @@ Display archive space information
 
 Category: Data Storage
 
-Format: `SP` [qual] archive type
-	Qualifiers: 	         /SYSTEM /USER
-Qualifier defaults:         /USER
+Format: `SP` arv
 
-Defaults: 1 FREE
+Qualifiers: /DATA /FILE /FREE /MAX /TITLE /USED
+
+Qualifier defaults: /DATA /USED
+
+Defaults: 1
 
 Description:
-Lists archive space information.
+`SP` prints information about the space in an archive as informational messages. If no archive is specified RNMR will
+not prompt for it and will display information about archive 1. The qualifiers are used to determine what information to
+display. /DATA and /TITLE select the type of information to return. /DATA returns information about the size of various
+aspects of the archive in 512 byte blocks. /TITLE returns information about the number of records in the archive.
 
- /SYSTEM qualifier refers to largest possible archive.  /USER qualifier refers to current archive.
+The other qualifiers determine the quantity to print as follows:
 
-type may be one of the following:
+Name | /DATA | /TITLE
+---- | ----- | ------
+FILE | Allocated size of file | Number of allocated records
+FREE | Allowed usable space (MAX-USED) | Allowed usable records (MAX-USED)
+MAX  | Maximum allowable size | Maximum allowable number of records
+USED | Size of filled space | Number of records in use
 
-Type | Description
----- | -----------
-FREE | Free space in blocks
-MAX  | Largest free space in blocks
-TITLE | Free titles
-TOTAL | Total size of archive in blocks
-USED | Used space in blocks
-
+By default `SP` uses /DATA /USED and prints the size of the filled space in blocks as an informational message.
 ## SPAWN
 Spawn subprocess
 
