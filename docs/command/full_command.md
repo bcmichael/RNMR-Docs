@@ -7978,8 +7978,11 @@ Format: `STKOFF` xoff yoff
 
 Defaults: current current
 
+Prerequisites: Plot stream closed
+
 Description:
-Sets plotter stack offset values in inches.
+`STKOFF` sets the offset values in inches to be used when creating stack plots with `STK`. If either offset is omitted
+RNMR will prompt for it with the current value as a default. `STK` cannot be used between `OPNPLT` and `CLSPLT`.
 ## SUBV
 Subtract data buffers
 
