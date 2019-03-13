@@ -7877,15 +7877,6 @@ MAX  | Maximum allowable size | Maximum allowable number of records
 USED | Size of filled space | Number of records in use
 
 By default `SP` uses /DATA /USED and prints the size of the filled space in blocks as an informational message.
-## SPAWN
-Spawn subprocess
-
-Category: Pipe OS
-
-Format: `SPAWN`
-
-Description:
-Spawns subprocess to execute `DCL` commands. Enter LOGOUT at `DCL` prompt to return to RNMR.
 ## SPLN
 Perform cubic spline correction
 
