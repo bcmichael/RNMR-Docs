@@ -8018,12 +8018,18 @@ Subtract data buffers
 
 Category: Data Manipulation
 
-Format: `SUBV` src# dst#
+Format: `SUBV` src dst
 
 Defaults: 2 1
 
 Description:
-Subtracts complex source buffer from complex destination buffer.        DST = DST - SRC
+`SUBV` replaces the contents of buffer dst with the difference between the contents of buffers src and dst.
+
+    DST = SRC - DST
+
+If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
+destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
+same allocated size).
 ## SW
 Set sweep width
 
