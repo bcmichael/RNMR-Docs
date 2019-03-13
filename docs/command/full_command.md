@@ -7900,10 +7900,14 @@ Squeeze archive (de-allocate unused space)
 
 Category: Data Storage
 
-Format: `SQZ`
+Format: `SQZ` arv
+
+Defaults 1
 
 Description:
-Squeezes archive.  All unused space in the archive is removed.
+`SQZ` squeezes and archive to reduce the size of the file stored on disk. After `SQZ` the number of records and data
+blocks allocated in the file will match the number of used records and data blocks (`SP /USED` will equal `SP /FILE`).
+If no archive is specified RNMR will prompt for it with 1 as a default.
 ## SRFLG
 Set spectrum reverse flag
 
