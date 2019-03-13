@@ -7878,18 +7878,23 @@ USED | Size of filled space | Number of records in use
 
 By default `SP` uses /DATA /USED and prints the size of the filled space in blocks as an informational message.
 ## SPLN
-Perform cubic spline correction
+Spline baseline fix spectrum
 
 Category: Data Manipulation
 
-Format: `SPLN` list#
+Format: `SPLN` list
 
-Defaults: 1
+Defaults: temp
 
-Prerequisites: FREQ
+Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
-Performs cubic spline baseline correction.  Specified list contains knot positions from left to right.
+`SPLN` takes a list of points and subtracts a cubic spline fit to those points from the data in the visible processing
+buffer. The list should contain numerical points from left to right specified in the current units of the buffer. If no
+list is specified RNMR will prompt for it with temp as a default. `SPLN` can provide more accurate baseline subtraction
+than `BF` if the baseline of a spectrum is not linear. The baseline subtraction will be affected by the selection of the
+list of points used to fit the spline, so it is important to choose points that are not on peaks and cover all of the
+features of the baseline.
 ## SQZ
 Squeeze archive (de-allocate unused space)
 
