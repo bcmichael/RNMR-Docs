@@ -8046,6 +8046,24 @@ Description:
 freq is omitted RNMR will prompt for it with the current sweep width as a default. The sweep width is in the current
 frequency units. Due to limitations of the hardware RNMR may adjust the desired sweep width to the closest possible
 sweep width. If such an adjustment occurs RNMR will print an informational message containing the adjusted sweep width.
+## SWAPV
+Swap data buffers
+
+ategory: Data Manipulation
+
+Format: `SUBV` src dst
+
+Defaults: 2 1
+
+Description:
+`SWAPV` exchanges the contents of two processing buffers.
+
+    SRC = DST
+    DST = SRC
+
+If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
+destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
+same allocated size).
 ## SWL
 Set lock channel sweep width
 
