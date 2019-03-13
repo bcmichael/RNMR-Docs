@@ -7954,17 +7954,6 @@ cannot write to archive records which must be written using `SA` or to blocked r
 
 If no buffer is specified RNMR will not prompt for it and will save the data from processing buffer 1 (the visible
 processing buffer).
-## SSA
-Save data to averager scratch record
-
-Category: Acquisition
-
-Format: `SSA` rec# buf#
-
-Defaults: 1 1
-
-Description:
-Writes buffer to averager scratch record.
 ## STK
 Add to plot stream stack
 
