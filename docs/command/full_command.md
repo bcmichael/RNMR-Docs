@@ -8092,17 +8092,6 @@ Prerequisites: RNMR lock control; RNMRA only
 Description:
 `SWP` sets the state of the lock channel sweep. The state may be either ON or OFF. If no state is specified RNMR will
 prompt for it witht hte current value as a default.
-## SYM2D
-Symmetrize 2D data set
-
-Category: Data Manipulation
-
-Format: `SYM2D` rec#
-
-Defaults: current
-
-Description:
-Symmetrizes 2D data in blocked record.  Record must be square.  Symmetrization is performed with `MINV` function.
 
 # T
 ---
