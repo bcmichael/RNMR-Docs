@@ -8087,8 +8087,11 @@ Format: `SWP` state
 
 Defaults: current
 
+Prerequisites: RNMR lock control; RNMRA only
+
 Description:
-Sets state of lock channel sweep.  State may be ON or OFF.
+`SWP` sets the state of the lock channel sweep. The state may be either ON or OFF. If no state is specified RNMR will
+prompt for it witht hte current value as a default.
 ## SYM2D
 Symmetrize 2D data set
 
