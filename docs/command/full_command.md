@@ -7983,6 +7983,36 @@ Prerequisites: Plot stream closed
 Description:
 `STKOFF` sets the offset values in inches to be used when creating stack plots with `STK`. If either offset is omitted
 RNMR will prompt for it with the current value as a default. `STK` cannot be used between `OPNPLT` and `CLSPLT`.
+## STR
+Perform string operation
+
+Category: Misc.
+
+Format: `STR` string beg end
+
+Qualifiers: /DLT /EXT /INSBEG=<str> /INSEND=<str> /LC /LEN /LOC=<str> /REPL=<str> /UC
+
+Qualifier Defaults: /EXT
+
+Defaults: none <beg> <end>
+
+Description:
+`STR` performs a variety of operations on an input string and prints the result as an informational message. If any of
+the arguments are omitted RNMR will not prompt for them. By default RNMR will use an empty string and the beginning and
+ending of the string. The qualifiers control what operation is performed on the string as follows:
+
+Qualifier | Description
+--------- | -----------
+/DLT      | Delete characters from beg to end
+/EXT      | Extract characters from beg to end
+/INSBEG   | Insert str before beg
+/INSEND   | Insert str after end
+/LC       | Convert characters from beg to end to lower case
+/LEN      | Print length of substring from beg to end
+/LOC      | Print index where str matches between beg and end (0 if no match)
+/REPL     | Replace region between beg and end with str
+/UC       | Convert characters from beg to end to upper case
+
 ## SUBV
 Subtract data buffers
 
