@@ -7908,6 +7908,34 @@ Description:
 `SQZ` squeezes and archive to reduce the size of the file stored on disk. After `SQZ` the number of records and data
 blocks allocated in the file will match the number of used records and data blocks (`SP /USED` will equal `SP /FILE`).
 If no archive is specified RNMR will prompt for it with 1 as a default.
+## SREF
+Save processing buffer reference to nucleus table
+
+Category: Frequency Control
+
+Format: `SREF` nuc
+
+Defaults: *
+
+Description:
+`SREF` stores the reference frequency (or frequencies) in the visible processing buffer in the nucleus table. If nuc is
+* `SREF` saves the frequency for every channel. Otherwise a valid nucleus must be passed. If nuc is omitted RNMR will
+prompt for it with a default of \*.
+## SREFA
+Save acquisition buffer reference to nucleus table
+
+Category: Frequency Control
+
+Format: `SREFA` nuc
+
+Defaults: *
+
+Prerequisites: RNMRA only
+
+Description:
+`SREFA` stores the reference frequency (or frequencies) in the acquisition buffer in the nucleus table. If nuc is *
+`SREFA` saves the frequency for every channel. Otherwise a valid nucleus must be passed. If nuc is omitted RNMR will
+prompt for it with a default of \*.
 ## SRFLG
 Set spectrum reverse flag
 
