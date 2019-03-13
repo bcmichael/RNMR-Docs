@@ -8035,14 +8035,17 @@ Set sweep width
 
 Category: Acquisition
 
-Format: `SW` freq.
+Format: `SW` freq
 
 Defaults: current
 
-Prerequisites: HALT
+Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
-Sets total sweep width for acquisition.
+`SW` sets the sweep width for acquisition to freq. This also changes the dwell time as set and displayed by `DW`. If
+freq is omitted RNMR will prompt for it with the current sweep width as a default. The sweep width is in the current
+frequency units. Due to limitations of the hardware RNMR may adjust the desired sweep width to the closest possible
+sweep width. If such an adjustment occurs RNMR will print an informational message containing the adjusted sweep width.
 ## SWL
 Set lock channel sweep width
 
