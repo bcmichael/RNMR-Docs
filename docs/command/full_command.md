@@ -8516,11 +8516,20 @@ Category: Acquisition
 
 Format: `WAIT`
 
-Description:
-Halts acquisition after nwait satisfied.
+Qualifiers: /ERR=<label>
 
-Subcommands:
-          	1st Q    Halt after next complete cycle           	2nd Q    Halt after next shot
+Qualifier Defaults: none
+
+Prerequisites: Acquisition running; RNMRA only
+
+Description:
+`WAIT` halts acquisition after nwait shots. /ERR may be used to specify a label to jump to in the event of an error.
+
+Pressing Q while `WAIT` is active calls `QUIT` to halt acquisition after the phase cycle is completed. Remember that
+another Q while `QUIT` is finishing the phase cycle halts immediately.
+
+Pressing ^ while `WAIT` is active pauses the acquisition and returns control to the user at the command line. Entering
+exit from this command line resumes acquisition.
 ## WAVV
 Perform weighted addition of data
 
