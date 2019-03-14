@@ -8583,16 +8583,25 @@ Description:
 `WGPIB` writes a command line to a GPIB device. If no device is specified RNMR will prompt for it with no default. If no
 command line is provided RNMR will prompt for one with no default.
 ## WNDLIM
-Set vertical window limits
+Set processing view vertical window limits
 
 Category: Display Control
 
-Format: `WNDLIM` wndmin wndmax
+Format: `WNDLIM` min max
+
+Qualifiers: /FREQ /TIME /UNKN
+
+Qualifier Defaults: /TIME
 
 Defaults: current current
 
 Description:
-Sets vertical window limits.  wndmin=\* indicates current data minimum.  wndmax=\* indicates current data maximum.
+`WNDLIM` sets the vertical window limits when viewing the processing buffer. The min and max parameters set the lower
+and upper bounds of the display. The value of max must be greater than the value of min. If either min or max is omitted
+RNMR will prompt for it with the current window limit.
+
+The window limits are set separately for data in different domains. /FREQ, /TIME, and /UNKN select which domain to set
+the limits for.
 ## WPK
 Write peaks in current display to `WRT` file
 
