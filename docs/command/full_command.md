@@ -8469,8 +8469,8 @@ Defaults: current
 Description:
 `USER` sets the user name that is used for record protection. Usually this is set by the login macro on startup. If no
 user is specified RNMR will prompt for it with the current user as a default. If there is no current user (as is the
-case when first starting RNMR) the default will be ********. RNMR will continue to prompt until the user is not
-********.
+case when first starting RNMR) the default will be \*\*\*\*\*\*\*. RNMR will continue to prompt until the user is not
+\*\*\*\*\*\*\*\*.
 
 # V
 ---
