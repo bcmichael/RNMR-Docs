@@ -8193,9 +8193,10 @@ Format: `TM` lfract rfract
 Defaults: 0.0 0.0
 
 Description:
-Performs trapazoidal multiplication apodization.  lfract selects the leftmost fraction of the data to be multiplied by a
-linearly increasing function from 0.0 to 1.0.  rfract selects the rightmost fraction of the data to be multiplied by a
-linearly decreasing function from 1.0 to 0.0.
+`TM` performs a trapazoidal multiplication apodization. A fraction of the data on the left is multiplied by a linear
+function that increases from 0.0 to 1.0 and a fraction of the data on the right is multiplied by a linear function that
+decreases from 1.0 to 0.0. The parameters lfract an rfract determine what fraction of the data each linear function is
+applied to. If either of these arguments is omitted RNMR will prompt for it with 0.0 as a default.
 ## TP
 Show phase correction values
 
