@@ -8453,7 +8453,10 @@ Format: `UPDARV` archive
 Defaults: 1
 
 Description:
-Updates any changes made to the specified archive from the file containing that archive.
+`UPDARV` updates an archive from its file on disk. This makes any changes that have been made to the file visible from
+RNMR. If no archive is specified RNMR will prompt for it with a default of 1. This can be useful when using an archive
+in read only mode in RNMRP while it is open with write access in RNMRA. Using `SAVARV` in RNMRA and then `UPDARV` in
+RNMRP ensures that all changes made from RNMRA are visible in RNMRP.
 ## USER
 Set user name
 
