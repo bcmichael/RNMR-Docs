@@ -8430,12 +8430,19 @@ Set units
 
 Category: Display Control
 
-Format: `UNIT` [qual] unit
-	Qualifiers: 	            /DFLT   /DIM1   /DIM2   /FREQ   /TIME
-Qualifier defaults:         current dimension         current domain Defaults:          current Description:
-Sets time or frequency unit.  Valid time domain units are USEC, MSEC, and SEC.  Valid frequency domain units are HZ,
-kHz, MHz, and PPM.  The /DFLT qualifier is used to specify a unit to be used when the primary unit is not acceptable.
-All primary units are valid default units with the exception of PPM.
+Format: `UNIT` unit
+
+Qualifiers: /DFLT /FREQ /TIME /UNKN
+
+Qualifier defaults: /TIME
+
+Defaults: current
+
+Description:
+`UNIT` sets the unit for a given domain. /FREQ, /TIME, and /UNKN select which domain to set the unit for. /DFLT is used
+to set the default unit for the selected domain. If no unit is specified RNMR will prompt for it with the current unit.
+
+Valid time domain units are USEC, MSEC, and SEC. Valid frequency domain units are HZ, kHz, MHz, and PPM.
 ## UPDARV
 Update archive
 
