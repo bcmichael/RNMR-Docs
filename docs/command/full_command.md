@@ -8693,6 +8693,19 @@ Format: `WRFEX`
 Defaults:
 
 Prerequisites: Waveform generator implemented and HALT
+## WRKC
+Write data byte to RKC device
+
+Category: Hardware
+
+Format: `WRKC` dev data
+
+Defaults: none
+
+Prerequisites: RKC device implemented; RNMRA only
+
+Description:
+`WRKC` writes data from a RKC device. If no device  or data is specified RNMR will prompt for it with no default.
 ## WRT
 Write to `WRT` file opened by `OPNWRT`
 
