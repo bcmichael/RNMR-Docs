@@ -8547,21 +8547,27 @@ default. `WAVB` performs the average over blocks first to last. If first is omit
 default. If last is omitted RNMR will prompt for it with the number of blocks in the record as a default. Setting last
 to 0 indicates to use the last block in the record.
 ## WAVV
-Perform weighted addition of data
+Perform weighted addition of buffers
 
 Category: Data Manipulation
 
-Format: `WAVV` isrc idst
+Format: `WAVV` src dst
 
-Defaults: 1 2
+Defaults: 2 1
 
 Description:
-`WAVV` performs a weighted addition of two complex buffers, "isrc" and "idst", modifying the destination buffer:
+`WAVV` replaces the contents of buffer dst with the weighted average of buffers src and dst. The buffers are weighted
+based upon the number of acquisitions in each buffer. The data from the src buffer is also scaled to the scale factor of
+the dst buffer for averaging purposes.
 
     DST = DST*NA_DST/(NA_DST+NA_SRC) + SRC*NA_SRC/(NA_DST+NA_SRC) * (SF_DST/SF_SRC)
 
-This addition permits the proper addition of two FID's or spectra with different scale factors and/or number of
+This permits the proper addition of two FID's or spectra with different scale factors and/or number of
 acquisitions; each data set is weighted appropriately.
+
+If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
+destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
+same allocated size).
 ## WGPIB
 Write to GPIB device
 
