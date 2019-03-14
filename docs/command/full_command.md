@@ -8503,7 +8503,9 @@ Format: `VIEW` view
 Defaults: current
 
 Description:
-Sets display source.  The options are be ACQ, LCK, or PRO.
+`VIEW` selects the buffer to view on the display. The valid options in RNMRA are pro or acq for the visible processing
+buffer or acquisition buffer respectively. In RNMRP only pro is allowed. If no view is provided RNMR will prompt for it
+with the current value.
 
 # W
 ---
