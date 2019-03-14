@@ -8225,14 +8225,15 @@ Set heater set-point temperature
 
 Category: Heater
 
-Format: `TSET` temperature
+Format: `TSET` temp
 
 Defaults: current
 
-Prerequisites: Spectrometer configured for RNMR temperature control
+Prerequisites: RNMR heater control; RNMRA only
 
 Description:
-Sets desired heater temperature.
+`TSET` sets the target temperature for the heater. If no temperature is specified RNMR will prompt for it with the
+current target temperature as a default.
 ## TST
 Conditionally execute a block of commands based on a test
 
