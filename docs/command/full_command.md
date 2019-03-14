@@ -8396,6 +8396,22 @@ will use a value of 1.0. The value of tfctr may be between 0.0 and 1.0 inclusive
 
 # U
 ---
+## UNECHO
+Rearrange buffer to simulate FID from echo
+
+Category: Data Manipulation
+
+Format `UNECHO` time
+
+Defaults: center
+
+Prerequisites: Time domain
+
+Description:
+`UNECHO` takes echo signal in the visible processing buffer and simulates an FID from it. The parameter time should be
+set to the middle of the echo. `UNECHO` will use a mixture of the data from the left anf right halves of the echo to
+generate the FID. The part of the buffer beyond the size of the larger half of the echo will be set to 0. If time is not
+provided RNMR will prompt for it with a time value corresponding to the center of the buffer.
 ## UNIT
 Set units
 
