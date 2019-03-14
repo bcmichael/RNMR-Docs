@@ -8207,16 +8207,19 @@ Format: `TP`
 Description:
 `TP` prints the current zero order and first order phase correction values as informational messages.
 ## TPPI
-Convert TPP`-format FID to complex FID
+Convert TPPI-format FID to complex FID
 
 Category: Foreign
 
 Format: `TPPI`
 
-Prerequisites: Time domain data in processing buffer 1 (TIME)
+Prerequisites: Time domain data in visible processing buffer (TIME)
 
 Description:
-`TPPI` converts a TPPI-format FID to a complex FID.
+`TPPI` converts a TPPI-format FID to a complex FID. This process uses only the real data in the visible processing
+buffer. It treats every other point starting with point 1 as the real data and every other point starting with point 2
+as the imaginary data. As a result the size of the visible processing buffer will be reduced by a factor of two.
+Additionally, after combining the data into complex numbers every other point starting with point 2 is negated.
 ## TSET
 Set heater set-point temperature
 
