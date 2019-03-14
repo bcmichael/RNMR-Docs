@@ -8582,12 +8582,6 @@ Prerequisites: RNMRA only
 Description:
 `WGPIB` writes a command line to a GPIB device. If no device is specified RNMR will prompt for it with no default. If no
 command line is provided RNMR will prompt for one with no default.
-## WTTIM
-Wait for specified number of seconds
-
-Category: Timing
-
-Format: `WTTIM`
 ## WNDLIM
 Set vertical window limits
 
@@ -8675,6 +8669,12 @@ Prerequisites: Spectrometer configured for RNMR temperature control.
 
 Description:
 Waits for heater to stabilize at setpoint temperature.
+## WTTIM
+Wait for specified number of seconds
+
+Category: Timing
+
+Format: `WTTIM`
 ## WWASH
 Set state of plot whitewash flag
 
