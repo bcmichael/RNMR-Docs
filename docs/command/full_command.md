@@ -8174,10 +8174,15 @@ Set acquisition title
 
 Category: Acquisition
 
-Format: `TITLEA`
+Format: `TITLEA` title
+
+Defaults: current
+
+Prerequisites: RNMRA only
 
 Description:
-Changes acquisition buffer title.
+`TITLE` sets the title of the acquisition buffer. If no title is provided RNMR will prompt for it with the
+current acquisition buffer title as a default.
 ## TM
 Perform trapezoidal multiplication apodization
 
