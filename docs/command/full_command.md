@@ -8667,6 +8667,22 @@ Description:
 `WPPSB` writes a data byte from the pulse programmer spectrometer bus. The adr parameter specifies the address to write
 the byte to and may range from 0 to 255 inclusive. The data parameter specifies what value to write to the bus and may
 range from 0 to 255 inclusive. If adr or data is omitted RNMR will prompt for it with a default of 0.
+## WRF
+Set waveform reference values
+
+Category: Waveform
+
+Format: `WRF` chan ind val1 val2
+
+Defaults: 1 1 current current
+
+Prerequisites: Waveform generator implemented; Acquisition stopped (HALT); RNMRA only
+
+Description:
+`WRF` sets a wave form generator reference values. The chan and ind parameters are used to set which value on which
+channel to adjust. If either chan or ind are omitted RNMR will prompt for them with a default of 1. The parameters val1
+and val2 are the reference values. If either val1 or val2 are omitted RNMR will prompt for them with the current value
+as a default.
 ## WRFEX
 Load waveform RF program
 
