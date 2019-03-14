@@ -8158,16 +8158,17 @@ The final parameter, tfctr, determines what angle to tilt the record by. The ang
 is omitted RNMR will not prompt for it and will use a value of 1.0 (45 degree tilt). The value of tfctr may be between
 0.0 and 1.0 inclusive.
 ## TITLE
-Set title
+Set processing buffer title
 
 Category: Data Storage
 
-Format: `TITLE` buf#
+Format: `TITLE` title
 
-Defaults: 1
+Defaults: current
 
 Description:
-Changes processing buffer title.
+`TITLE` sets the title of the visible processing buffer. If no title is provided RNMR will prompt for it with the
+current processing buffer title as a default.
 ## TITLEA
 Set acquisition title
 
