@@ -8623,7 +8623,11 @@ Category: File IO
 Format: `WPK`
 
 Description:
-Writes peaks in current display to `WRT` file.  A maximum of 50 peaks will be written.
+`WPK` writes a list of peaks in the current display to a file opened with `WRT`. The peaks will be written in order from
+left to right in the display. For each peak a line will be written with four values (peak number, position in current
+frequency units, position in default frequency units, intensity). A maximum of 50 peaks will be written to the file. A
+point is considered a peak if its magnitude is greater than the peak picking threshold (as set and displayed by `TH`)
+and it is either a local maximum or minimum if its intensity is greater or less than zero respectively.
 ## WPK2D
 Write 2D peaks to `WRT` file
 
