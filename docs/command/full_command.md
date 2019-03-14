@@ -8602,6 +8602,19 @@ RNMR will prompt for it with the current window limit.
 
 The window limits are set separately for data in different domains. /FREQ, /TIME, and /UNKN select which domain to set
 the limits for.
+## WNDLIMA
+Set acquisition view vertical window limits
+
+Category: Display Control
+
+Format: `WNDLIMA` min max
+
+Defaults: current current
+
+Description:
+`WNDLIMA` sets the vertical window limits when viewing the acquisition buffer. The min and max parameters set the lower
+and upper bounds of the display. The value of max must be greater than the value of min. If either min or max is omitted
+RNMR will prompt for it with the current window limit.
 ## WPK
 Write peaks in current display to `WRT` file
 
