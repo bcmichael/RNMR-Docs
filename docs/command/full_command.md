@@ -8479,13 +8479,20 @@ Set data value
 
 Category: Data Manipulation
 
-Format: `VAL` xval valr vali
+Format: `VAL` pos valr vali
+
+Qualifiers: /REAL /IMAG
+
+Qualifier Defaults: /REAL /IMAG
 
 Defaults: current_cursor current current
 
 Description:
-`VAL` sets the data value of a specific FID or spectrum point to a specified complex number (valr,vali).  The point to
-be modified is selected by its time or frequency value "xval" rather than its point number.
+`VAL` sets the data value of a specific point in the visible processing buffer to a specified complex number
+(valr+i*vali). The point to be modified is selected by its position in the current buffer units. If no position is
+specified RNMR will prompt for it with the current cursor position as a default. /REAL and /IMAG select whether to
+set the value of the real or imaginary part of the data point respectively. If neither is set `VAL` will set both. If
+a value to set is omitted RNMR will prompt for it with the current value as a default.
 ## VIEW
 Set display source
 
