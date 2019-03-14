@@ -8239,7 +8239,7 @@ Conditionally execute a block of commands based on a test
 
 Category: Macro
 
-Format: `TST` [qual] name args...
+Format: `TST` test args...
 
 Qualifiers: /TRUE /FALSE
 
@@ -8252,14 +8252,8 @@ Prerequisites: Macro only (MAC)
 Description:
 `TST` begins a `TST` block which is then ended by `ENDTST` and may optionally contain an `ELSTST` command. `TST` checks
 a condition and then either runs the commands between `TST` and `ELSTST` or the commands between `ELSTST` and `ENDTST`.
-It is good practice to indent these commands in order to improve readability. `TST` accepts a qualifier which is /TRUE
-by default and a name which determines what type of test `TST` performs. This is followed by a variable number of
-parameters depending on which type of test is being performed. Certain tests will also accept additional qualifiers,
-which should be specified after name.
 
-When the qualifier is /TRUE, `TST` will run the commands between `TST` and `ELSTST` if the test returns true and the
-commands between `ELSTST` and `ENDTST` if it returns false. /FALSE reverses this behaviour. /FALSE is mostly useful when
-you only have one set of commands that you want to execute commands when the test is false. For example, the following:
+For example, the following:
 
     tst lcl a
       msg "The value of a is &a"
@@ -8268,6 +8262,15 @@ you only have one set of commands that you want to execute commands when the tes
     endtst
 
 will test if local argument a exists and then either print its value or the fact that it does not exist.
+
+/TRUE and /FALSE determine which block executed for which test result. With /TRUE `TST` will run the commands between
+`TST` and `ELSTST` if the test returns true and the commands between `ELSTST` and `ENDTST` if it returns false. /FALSE
+reverses this behavior. /FALSE is mostly useful when you only have one set of commands that you want to execute when the
+test is false.
+
+The argument test determines which type of test to perform. Depending on the test there are additional arguments and
+additional qualifiers. The additional qualifiers should be passed after the test name but before the test arguments. If
+no test name is specified RNMR will not prompt for it and will treat the test as having been true.
 
 The following tests are available in both RNMRA and RNMRP:
 
@@ -8301,7 +8304,7 @@ CFG       | Checks for existence of subsystem | NAM | None | None | None
 PPS       | Checks for existence of pp symbol | TYP, NAM | None, None | None | None
 SIG       | Checks for signal | NAM | None | None | None
 
-The flags for `TST ARV` have the following meanings:
+The qualifiers for `TST ARV` have the following meanings:
 
 Flag | Description
 ---- | -----------
@@ -8310,7 +8313,7 @@ Flag | Description
 /WRT | Check for read access
 /CLS | Check if the archive is closed
 
-The flags for `TST REC` have the following meanings:
+The qualifiers for `TST REC` have the following meanings:
 
 Flag | Description
 ---- | -----------
@@ -8324,14 +8327,14 @@ Flag | Description
 /ARC | Check if it is a non-blocked record written with `SA`
 /BLK | Check if it is a blocked record written using `SB`
 
-The flags for `TST ASKYN` have the following meanings:
+The qualifiers for `TST ASKYN` have the following meanings:
 
 Flag | Description
 ---- | -----------
 /NO  | Default value of the prompt is NO
 /YES  | Default value of the prompt is YES
 
-The flags for `TST EQ` have the following meanings:
+The qualifiers for `TST EQ` have the following meanings:
 
 Flag | Description
 ---- | -----------
@@ -8345,25 +8348,18 @@ Flag | Description
 /PAD | Pad strings with spaces before comparison
 /NOPAD | Don't pad strings with spaces before comparison
 
-The flags for `TST LCL` have the following meanings:
+The qualifiers for `TST LCL` have the following meanings:
 
 Flag | Description
 ---- | -----------
 /LEV | Select the command level to check for the local argument. 1 indicates the current macro, 2 the macro that called the current macro, 3 the macro that called that macro, etc. The value must be an integer ranging from 1 to the depth of the call stack.
 
-The flags for `TST LIM` have the following meanings:
+The qualifiers for `TST LIM` have the following meanings:
 
 Flag | Description
 ---- | -----------
 /FLT | Use floating point numbers
 /INT | Use integers
-
-Note that these qualifiers are evaluated in the order they are provided and can override each other's behavior. For
-example in the command:
-
-    tst eq /log /str &a &b
-
-/STR will override /LOG and `TST` will do string comparison.
 
 `TST` is a replacement for the old if commands such as `IFEQ`. If you need the old behavior of jumping to labels instead
 of executing code blocks use `GOTST`.
