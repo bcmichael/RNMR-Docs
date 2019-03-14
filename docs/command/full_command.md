@@ -8569,16 +8569,19 @@ If either argument is omitted, RNMR will prompt for a buffer number. The default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
 ## WGPIB
-Write to GPIB device
+Write line to GPIB device
 
 Category: Hardware
 
-Format: `WGPIB` device
+Format: `WGPIB` dev cmd
 
-Defaults: no defaults
+Defaults: none
+
+Prerequisites: RNMRA only
 
 Description:
-Writes string to GPIB device.
+`WGPIB` writes a command line to a GPIB device. If no device is specified RNMR will prompt for it with no default. If no
+command line is provided RNMR will prompt for one with no default.
 ## WTTIM
 Wait for specified number of seconds
 
