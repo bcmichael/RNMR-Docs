@@ -2549,7 +2549,7 @@ Prerequisites: Time domain
 
 Description:
 `ECHO` takes a time domain buffer with an FID in it and simulates an echo signal from it. The original FID will be
-shifted to the left by an amount specified by time. The portion of the buffer vacated by this shift is filled with the
+shifted to the right by an amount specified by time. The portion of the buffer vacated by this shift is filled with the
 complex conjugate of the reverse of the data that was in this region in the original FID. If time is not provided RNMR
 will prompt for it with a time value corresponding to the center of the buffer.
 ## EDTFIL
