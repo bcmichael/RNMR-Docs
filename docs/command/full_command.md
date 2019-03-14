@@ -8633,12 +8633,25 @@ Write 2D peaks to `WRT` file
 
 Category: File IO
 
-Format: `WPK2D` rec#
+Format: `WPK2D` rec slice
 
-Defaults: current
+Defaults: rrec 1
 
 Description:
-Writes two-dimensional peaks to `WRT` file.  A maximum of 250 peaks will be written.
+`WPK2D` writes a list within a 2D slice of a blocked record and within in the current display limits to a file opened
+with `WRT`. For each peak a line will be written to the file containing the peak number, the position in each dimension
+in the current and default frequency units and the peak intensity. A maximum of 250 peaks will be written to the file.
+
+If no record is specified RNMR will prompt for it with the current read record pointer (as set and displayed by `PTRA`)
+as a default. The second parameter, slice, specifies which 2D slice of a 3D or 4D source record to write peaks from. If
+the source record has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will
+write peaks from the first slice. Note that the current mapping of dimensions to directions (as displayed and set by
+`DIRB`) will affect the selection of which one-dimensional blocks of the record comprise the 2D slice and will thus be
+searched for peaks. Slice is interpreted as a linear index over the 3rd/4th dimensions.
+
+A point is considered a peak if its magnitude is greater than the peak picking threshold (as set and displayed by `TH`)
+and it is either a local maximum or minimum if its intensity is greater or less than zero respectively. By setting
+`CONMD` to POS, NEG, or ABS beforehand, the user may modify the selection of 2D peaks for a given threshold value.
 ## WPPSB
 Write to pulse programmer spectrometer bus
 
