@@ -8205,7 +8205,7 @@ Category: Display Control
 Format: `TP`
 
 Description:
-Lists current phase correction values.
+`TP` prints the current zero order and first order phase correction values as informational messages.
 ## TPPI
 Convert TPP`-format FID to complex FID
 
