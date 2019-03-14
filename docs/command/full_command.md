@@ -8412,6 +8412,19 @@ Description:
 set to the middle of the echo. `UNECHO` will use a mixture of the data from the left anf right halves of the echo to
 generate the FID. The part of the buffer beyond the size of the larger half of the echo will be set to 0. If time is not
 provided RNMR will prompt for it with a time value corresponding to the center of the buffer.
+## UNFOLD
+Unfold data buffer
+
+Category: Data Manipulation
+
+Format: `UNFOLD` nsect
+
+Defaults: 1
+
+Description:
+`UNFOLD` grows the visible processing buffer to hold nsect sections each with the prior size of the buffer. The data in
+the buffer is then copied into each section. If nsect is not specified RNMR will prompt for it with a default of 1. If
+nsect is equal to 1 then `UNFOLD` has no effect.
 ## UNIT
 Set units
 
