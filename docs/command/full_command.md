@@ -8653,18 +8653,20 @@ A point is considered a peak if its magnitude is greater than the peak picking t
 and it is either a local maximum or minimum if its intensity is greater or less than zero respectively. By setting
 `CONMD` to POS, NEG, or ABS beforehand, the user may modify the selection of 2D peaks for a given threshold value.
 ## WPPSB
-Write to pulse programmer spectrometer bus
+Write data byte to pulse programmer spectrometer bus
 
 Category: Hardware
 
-Format: `WPPSB` iadr data
+Format: `WPPSB` adr data
 
 Defaults: 0 0
 
-Prerequisites: Pulse programmer spectrometer bus control implemented (CGFSB2).
+Prerequisites: Pulse programmer spectrometer bus control implemented (CGFSB2); RNMRA only
 
 Description:
-`WPPSB` writes a data byte to the pulse programmer spectrometer bus.
+`WPPSB` writes a data byte from the pulse programmer spectrometer bus. The adr parameter specifies the address to write
+the byte to and may range from 0 to 255 inclusive. The data parameter specifies what value to write to the bus and may
+range from 0 to 255 inclusive. If adr or data is omitted RNMR will prompt for it with a default of 0.
 ## WRFEX
 Load waveform RF program
 
