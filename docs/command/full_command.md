@@ -8706,6 +8706,20 @@ Prerequisites: RKC device implemented; RNMRA only
 
 Description:
 `WRKC` writes data from a RKC device. If no device  or data is specified RNMR will prompt for it with no default.
+## WRRI
+Write command line to RRI device and read response
+
+Category: Hardware
+
+Format: `WRRI` cmd
+
+Defaults: none
+
+Prerequisites: RRI device implemented; RNMRA only
+
+Description:
+`WRRI` writes data from a RRI device. If no command is specified RNMR will prompt for it with no default. The response
+will be printed as an informational message.
 ## WRT
 Write to `WRT` file opened by `OPNWRT`
 
