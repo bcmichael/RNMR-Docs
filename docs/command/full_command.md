@@ -8363,12 +8363,6 @@ Flag | Description
 
 `TST` is a replacement for the old if commands such as `IFEQ`. If you need the old behavior of jumping to labels instead
 of executing code blocks use `GOTST`.
-## TSTEX
-Test pulse program
-
-Category:
-
-Format: `TSTEX`
 ## TVAL
 Show heater temperature
 
