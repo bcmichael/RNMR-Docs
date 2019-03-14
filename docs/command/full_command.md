@@ -8370,10 +8370,10 @@ Category: Heater
 
 Format: `TVAL`
 
-Prerequisites: Spectrometer configured for RNMR temperature control
+Prerequisites: RNMR heater control; RNMRA only
 
 Description:
-Returns actual heater temperature.
+`TVAL` prints the current heater temperature as an informational message.
 ## TWIST
 Twist blocked record
 
