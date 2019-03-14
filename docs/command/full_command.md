@@ -8377,16 +8377,22 @@ Description:
 ## TWIST
 Twist blocked record
 
-
 Category: Data Manipulation
 
-Format: `TWIST` rec#
+Format: `TWIST` rec slice tfctr
 
-Defaults: current
+Defaults: wrec 1 1.0
 
 Description:
-Twists blocked record.  Strictly speaking this is a shearing operation.  Each DIM2 FID is twisted by an amount equal to
-its DIM1 frequency.
+`TWIST` twists a two-dimensional slice of a blocked record. If no record is specified RNMR will prompt for it with the
+current write record pointer (as set and displayed by `PTRA`) as a default. The first dimension of the blocked record
+must be frequency domain and the second dimension must be time domain. The second parameter, slice, specifies which 2D
+slice of a 3D or 4D source record should be twisted. If the source record has only two dimensions, slice must be 1. If
+slice is omitted RNMR will not prompt for it and will twist the first slice. Slice is interpreted as a linear index over
+the 3rd/4th dimensions.
+
+The final parameter, tfctr, determines how much to twist the record. If tfctr is omitted RNMR will not prompt for it and
+will use a value of 1.0. The value of tfctr may be between 0.0 and 1.0 inclusive.
 
 # U
 ---
