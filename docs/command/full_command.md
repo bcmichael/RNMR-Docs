@@ -8115,12 +8115,14 @@ Set lock channel time constant
 Category: Lock
 
 Format: `TCL` tc
-	Default : 	        current
 
-Prerequisites: RNMR lock channel control implemented (CFGLK)
+Default: current
+
+Prerequisites: RNMR lock control; RNMRA only
 
 Description:
-`TCL` sets the lock channel time constant.
+`TCL` sets the lock channel time constant. If the time constant is omitted RNMR will prompt for it with the current
+value as a default.
 ## TH
 Set threshold for peak selection
 
