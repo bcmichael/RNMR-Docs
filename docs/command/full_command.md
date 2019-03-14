@@ -8100,14 +8100,15 @@ Set temperature for probe heater alarm
 
 Category: Heater
 
-Format: `TALARM` temperature
+Format: `TALARM` temp
 
 Defaults: current
 
-Prerequisites: Spectrometer configured for RNMR heater control
+Prerequisites: RNMR heater control; RNMRA only
 
 Description:
-Sets heater alarm temperature.
+`TALARM` sets the temperature limit for the heater alarm. If no temperature is provided RNMR will prompt for it with the
+current alaram temperature as a default.
 ## TCL
 Set lock channel time constant
 
