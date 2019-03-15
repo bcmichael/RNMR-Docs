@@ -8888,17 +8888,6 @@ in the current units of the buffer. If the left limit is omitted RNMR not prompt
 display limit. If the number of points to extract is not specified RNMR will not prompt for it and will extract a single
 point. All of the data outside of the specified points will be discarded. The size of the visible processing buffer will
 shrink to match the size of the extracted data points.
-## XTPC
-Extract number of points at specified center
-
-Category: Data Manipulation
-
-Format: `XTPC` cntr npt
-
-Defaults: display display
-
-Description:
-Region centered at cntr, npt points in length, is extracted from data.  All other data points are discarded.
 ## XVAL
 Convert from point index to unit value
 
