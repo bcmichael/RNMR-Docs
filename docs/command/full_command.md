@@ -8777,6 +8777,21 @@ Description:
 `WSB` writes a data byte to the spectrometer bus. The adr parameter specifies the address to write the byte to and may
 range from 0 to 255 inclusive. The data parameter specifies what value to write to the bus and may range from 0 to 255
 inclusive. If adr or data is omitted RNMR will prompt for it with a default of 0.
+## WTRM
+Write command line to terminal and read response
+
+Category: Hardware
+
+Format: `WTRM` ind cmd
+
+Defaults: 1 none
+
+Prerequisites: RNMRA only
+
+Description:
+`WTRM` writes a command to a terminal and reads a response. The terminal is specified by its index. If no index is
+specified RNMR will prompt for it with a default of 1. If no command is provided RNMR will prompt for it with no
+default. THe response read form the terminal will be printed as an informational message.
 ## WTSET
 Wait for heater to stabilize at setpoint
 
