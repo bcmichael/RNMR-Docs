@@ -8763,16 +8763,20 @@ Description:
 no table name is specified RNMR will prompt for it with a default of temp. If no file is specified RNMR will prompt for
 it with the table name as a default. If the file name has no extension RNMR will add .wrt to it.
 ## WSB
-Write to spectrometer bus
+Write data byte to spectrometer bus
 
 Category: Hardware
 
-Format: `WSB` addr data
+Format: `WSB` adr data
 
 Defaults: 0 0
 
+Prerequisites: Spectrometer bus control implemented (CGFSB1); RNMRA only
+
 Description:
-Writes data byte to specified spectrometer bus address.
+`WSB` writes a data byte to the spectrometer bus. The adr parameter specifies the address to write the byte to and may
+range from 0 to 255 inclusive. The data parameter specifies what value to write to the bus and may range from 0 to 255
+inclusive. If adr or data is omitted RNMR will prompt for it with a default of 0.
 ## WTSET
 Wait for heater to stabilize at setpoint
 
