@@ -8896,16 +8896,26 @@ rightmost point). The converted value is printed as an informational message.
 # Z
 ---
 ## ZER
-Zero averager and shot counter
+Zero visible processing buffer
 
-Category: Acquisition
+Category: Misc.
 
 Format: `ZER`
 
-Prerequisites: HALT
+Description:
+`ZERA` sets the data in the visible processing buffer to 0 and initializes the buffer parameters.
+## ZERA
+Zero acquisition buffer and shot counter
+
+Category: Acquisition
+
+Format: `ZERA`
+
+Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
-Averager and shot counter are zeroed.
+`ZERA` sets the data in the acquisition buffer and the shot counter to 0 and initializes the acquisition buffer
+parameters.
 ## ZF
 Zero fill FID to number of points
 
