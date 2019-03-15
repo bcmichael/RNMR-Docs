@@ -8831,15 +8831,21 @@ specified RNMR will prompt for it with the current state of the flag as a defaul
 that are behind peaks in the previous plots are not drawn. If the whitewash flag is off the whole plot is drawn for each
 stacked plot.
 ## WWF
-Waveform program
+Set waveform values
 
 Category: Waveform
 
-Format: `WWF`
+Format: `WWF` chan ind val1 val2
 
-Defaults:
+Defaults: 1 1 current current
 
-Prerequisites: Waveform generator implemented
+Prerequisites: Waveform generator implemented; Acquisition stopped (HALT); RNMRA only
+
+Description:
+`WWF` sets wave form generator values. The chan and ind parameters are used to set which value on which channel to
+adjust. If either chan or ind are omitted RNMR will prompt for them with a default of 1. The parameters val1 and val2
+are the waveform values. If either val1 or val2 are omitted RNMR will prompt for them with the current value as a
+default.
 ## WWFEX
 Load waveform program
 
