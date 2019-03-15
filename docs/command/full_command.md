@@ -8825,7 +8825,11 @@ Format: `WWASH` state
 Defaults: current
 
 Description:
-Sets state of stacked plot whitewash flag.  State may be ON or OFF.
+`WWASH` sets the state of the white wash flag for stack plotting. The flag may be either on or off. If no state is
+specified RNMR will prompt for it with the current state of the flag as a default. When stack plots are created with
+`STK` subsequent plots are considered to be behind previous plots. If the whitewash flag is on the portions of the line
+that are behind peaks in the previous plots are not drawn. If the whitewash flag is off the whole plot is drawn for each
+stacked plot.
 ## WWF
 Waveform program
 
