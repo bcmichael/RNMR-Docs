@@ -8936,14 +8936,16 @@ Zero averager and begin acquisition
 
 Category: Acquisition
 
-Format: `ZG` NA
+Format: `ZG` na
 
 Defaults: current
 
-Prerequisites: LOAD HALT
+Prerequisites: Acquisition stopped (HALT); Pulse program loaded (LOAD); RNMRA only
 
 Description:
-Starts acquisition.
+`ZG` zeros the averager and starts acquisition without dummy scans. The parameter na sets the number of scans to
+perform. If na is omitted RNMR will not prompt for it and will use the current value as set and displayed by `NA`. If na
+is provided then the value shown by `NA` will also be updated.
 ## ZO
 Zoom
 
