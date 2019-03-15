@@ -9023,39 +9023,49 @@ Zoom on 2D contour display
 
 Category: `ZO2DC`
 
-Format: `ZO2DC` rec#
+Format: `ZO2DC` rec slice
 
-Defaults: current
+Defaults: rrec 1
 
-Prerequisites: PRO
+Prerequisites: Processing buffer visible (VIEW PRO)
 
 Description:
-Performs two-dimensional contour zooming on blocked record.
+`ZO2DC` displays a contour plot of a two-dimensional slice of a blocked record and provides subcommands to manipulate
+the contour display. If no record is specified RNMR will prompt for it with the current read record pointer (as set and
+displayed by `PTRA`) as a default. The last parameter, slice specifies which 2D slice of a 3D or 4D source record should
+be used. If the source record has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it
+and will use the first slice. Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`)
+will affect the selection of which one-dimensional blocks of the record comprise the 2D slice. Slice is interpreted as a
+linear index over the 3rd/4th dimensions.
 
-Subcommands:
+The number of accessible dimensions in the blocked record must be large enough that the first two directions are
+accessible. The number of dimensions is set when the record is allocated and can be view using `SHOW REC rec 1 NDIMX`.
+
+The following subcommands are available:
 
 Command | Description
 ------- | -----------
-CR      | Terminate
-0-3     | Move 10^digit points
+BI      | View imaginary part of data
+BR      | View real part of data
 D       | Select down movement
 E       | Expand display between cursors
-F       | Contract to display full record
-H       | List point values on line printer
+Enter   | Terminate
+F       | Contract to display full contour plot
+IB      | Integrate box centered on cursor (box size set by `IBOX`)
+IR      | Integrate region between cursors
 L       | Select left movement
-M 1     | Select 1 cursor display
-M 2     | Select 2 cursor display (shows expand region)
-M C     | Select contour mode
-M I     | Select image mode
-O       | Enter offset value after prompt
+M1      | Select 1 cursor display
+M2      | Select 2 cursor display
 P       | Move to next peak
+O       | Enter offset value after prompt
 Q       | Terminate
 R       | Select right movement
-S       | Switch active cursors
+S       | Switch cursors
 T       | Enter threshold value after prompt
 U       | Select up movement
-V       | Enter cursor value after prompt
-W       | Write point values to `WRT` file
+V       | Enter cursor position after prompt
+W       | Write point values to file opened with `OPNWRT` (number, position1 in current units, position1 in default units, position2 in current units, position2 in default units, intensity)
+0-3     | Move 10^N points
 
 ## ZOA
 Zoom on acquisition display
