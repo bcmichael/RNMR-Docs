@@ -8984,29 +8984,39 @@ Zoom on 2D data set
 
 Category: Display Control
 
-Format: `ZO2D` rec#
+Format: `ZO2D` rec slice
 
-Defaults: current
+Defaults: rrec 1
 
-Prerequisites: PRO
+Prerequisites: Processing buffer visible (VIEW PRO)
 
 Description:
-Performs two-dimensional zooming on blocked record.
+`ZO2D` performs two-dimensional zooming on a slice of a blocked record. If no record is specified RNMR will prompt for
+it with the current read record pointer (as set and displayed by `PTRA`) as a default. The last parameter, slice
+specifies which 2D slice of a 3D or 4D source record should be used. If the source record has only two dimensions, slice
+must be 1. If slice is omitted RNMR will not prompt for it and will use the first slice. Note that the current mapping
+of dimensions to directions (as displayed and set by `DIRB`) will affect the selection of which one-dimensional blocks
+of the record comprise the 2D slice. Slice is interpreted as a linear index over the 3rd/4th dimensions.
 
-Subcommands:
+The number of accessible dimensions in the blocked record must be large enough that the first two directions are
+accessible. The number of dimensions is set when the record is allocated and can be view using `SHOW REC rec 1 NDIMX`.
+
+`ZO2D` will display a single block along one of the first two dimensions at a time. Various subcommands allow for
+manipulation of which block along which dimension is displayed. Whenever the visible dimension is switched the block to
+display will be determined by the position of the cursor. The following subcommands are available:
 
 Command | Description
 ------- | -----------
-CR      | Terminate
-0-3     | Move 10^digit blocks
-D1      | Select 1st dimension
-D2      | Select 2nd dimension
-F       | Select forward direction
+D1      | View dimension 1
+D2      | View dimension 2
+Enter   | Terminate
+F       | Select forward movement
 Q       | Terminate
-R       | Select reverse direction
-S       | Switch dimensions
-V       | Enter other dimension value after prompt
-Z       | Call `ZO`
+R       | Select reverse movement
+S       | Switch dimension
+V       | Select position in unviewed dimension in its units after prompt
+Z       | Call `ZO` to manipulate 1D display and cursor
+0:3     | Move in unviewed dimension by 10^N blocks
 
 ## ZO2DC
 Zoom on 2D contour display
