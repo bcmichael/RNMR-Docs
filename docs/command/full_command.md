@@ -8721,16 +8721,21 @@ Description:
 `WRRI` writes data from a RRI device. If no command is specified RNMR will prompt for it with no default. The response
 will be printed as an informational message.
 ## WRT
-Write to `WRT` file opened by `OPNWRT`
+Write line to file opened by `OPNWRT`
 
 Category: File IO
 
-Format: `WRT` arg1 arg2 ... arg10
+Format: `WRT` arg...
 
-Defaults: none none ... none
+Defaults: none
 
 Description:
-Writes arguments to `WRT` file. If no arguments are specified a line will be prompted for and written.
+`WRT` writes a line to a file opened by `OPNWRT`. When multiple arguments are passed to `WRT` they are all written to
+the same line. Arguments are padded with spaces in multiples of 8. This means that for example if the first argument has
+7 or less characters the second argument will start at the 9th character in the line. If it had 8-15 characters the
+second argument would start at the 17th character and so on. The total length of the line cannot exceed 80 characters,
+so `WRT` can accept a maximum of 10 arguments when each argument is less than 8 characters long. If no arguments are
+provided RNMR will prompt for a single value to write.
 ## WSB
 Write to spectrometer bus
 
