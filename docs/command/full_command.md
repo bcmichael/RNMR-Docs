@@ -8866,10 +8866,13 @@ Category: Data Manipulation
 
 Format: `XT` llim rlim
 
-Defaults: current current
+Defaults: current_display_limits
 
 Description:
-Region from llim to rlim is extracted from data.  All other data points are discarded.
+`XT` extracts the data in the visible processing buffer that lies between llim and rlim. The limits are specified in the
+current units of the buffer. If either limit is omitted RNMR not prompt for it and will use the corresponding current
+display limit. All of the data outside of the specified limits will be discarded. The size of the visible processing
+buffer will shrink to match the size of the extracted data points.
 ## XTP
 Extract data for specified number of points
 
