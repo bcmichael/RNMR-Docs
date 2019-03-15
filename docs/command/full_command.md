@@ -8953,31 +8953,31 @@ Category: Display Control
 
 Format: `ZO`
 
-Prerequisites: PRO
+Prerequisites: Processing buffer visible (VIEW PRO)
 
 Description:
-Positions cursors on display.
-
-Subcommands:
+`ZO` enters the zoom subroutine. While `ZO` is active the currently selected cursor may be moved by clicking and
+dragging on the display. The following subcommands are available:
 
 Command | Description
 ------- | -----------
-CR      | Terminate
-0-3     | Move 10^digit points
+BI      | View imaginary part of buffer
+BR      | View real part of buffer
 E       | Expand display between cursors
+Enter   | Terminate
 F       | Contract to display full buffer
-H       | List point values on line printer
 L       | Select left movement
-M 1     | Select 1 cursor display
-M 2     | Select 2 cursor display (shows expand region)
+M1      | Select 1 cursor display
+M2      | Select 2 cursor display
 O       | Enter offset value after prompt
 P       | Move to next peak
 Q       | Terminate
 R       | Select right movement
-S       | Switch active cursor
+S       | Switch cursors
 T       | Enter threshold value after prompt
-V       | Enter cursor value after prompt
-W       | Write point values to `WRT` file
+V       | Enter cursor position after prompt
+W       | Write point values to file opened with `OPNWRT` (number, position in current units, position in default units, intensity)
+0-3     | Move cursor by 10^N points
 
 ## ZO2D
 Zoom on 2D data set
