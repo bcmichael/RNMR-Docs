@@ -8799,10 +8799,10 @@ Category: Heater
 
 Format: `WTSET`
 
-Prerequisites: Spectrometer configured for RNMR temperature control.
+Prerequisites: RNMR heater control; RNMRA only
 
 Description:
-Waits for heater to stabilize at setpoint temperature.
+`WTSET` waits for the heater temperature to reach its set point. Press Q while `WTSET` is active to quit waiting.
 ## WTTIM
 Wait for specified number of seconds
 
