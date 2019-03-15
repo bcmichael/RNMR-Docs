@@ -8736,6 +8736,19 @@ the same line. Arguments are padded with spaces in multiples of 8. This means th
 second argument would start at the 17th character and so on. The total length of the line cannot exceed 80 characters,
 so `WRT` can accept a maximum of 10 arguments when each argument is less than 8 characters long. If no arguments are
 provided RNMR will prompt for a single value to write.
+## WRTLST
+Write list to file
+
+Category: Lists
+
+Format: `WRTLST` nam fspec
+
+Defaults: temp <nam>
+
+Description:
+`WRTLST` writes the contents of a list to a file. The values can be reloaded into a list using `RDLST`. If no list name
+is specified RNMR will prompt for it with a default of temp. If no file is specified RNMR will prompt for it with the
+list name as a default. If the file name has no extension RNMR will add .wrt to it.
 ## WSB
 Write to spectrometer bus
 
