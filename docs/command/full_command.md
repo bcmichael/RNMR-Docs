@@ -8917,7 +8917,7 @@ Description:
 `ZERA` sets the data in the acquisition buffer and the shot counter to 0 and initializes the acquisition buffer
 parameters.
 ## ZF
-Zero fill FID to number of points
+Zero fill visible processing buffer
 
 Category: Data Manipulation
 
@@ -8925,10 +8925,12 @@ Format: `ZF` size
 
 Defaults: current
 
-Prerequisites: TIME
-
 Description:
-FID is zero filled up to size. Size must be power of 2 less than or equal to 32768.
+`ZF` zero fills the data in the visible processing buffer to a new size. The size must be greater than or equal to the
+current number of data points in the buffer and must be a power of 2. The buffer will be extended to the new size and
+all of the points beyond the original data are set to zero. If size is omitted RNMR will prompt for it with the smallest
+power of 2 that is greater than the current data size. The current maximum size for a processing buffer is 32768, so
+size may not exceed this value.
 ## ZG
 Zero averager and begin acquisition
 
