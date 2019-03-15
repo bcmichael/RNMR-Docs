@@ -8895,15 +8895,6 @@ rightmost point). The converted value is printed as an informational message.
 
 # Z
 ---
-## ZE
-Zero processing buffer
-
-Category: Data Manipulation
-
-Format: `ZE`
-
-Description:
-Processing buffer is zeroed.
 ## ZER
 Zero averager and shot counter
 
