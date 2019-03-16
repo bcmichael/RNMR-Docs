@@ -42,3 +42,17 @@ crash or power loss) these lock files may not be properly deleted. When RNMR is 
 archives for which lock files are still present. This can be circumvented by manually deleting the lock files in the
 users archive folder or by using `OPNARV /FORCE`. Be careful to only take these actions if you are sure that the archive
 is not in fact open in an instance of RNMR to avoid data corruption.
+
+# Records
+Archives consist of individual numbered records that hold data. An archive may have up to 200 records. When a command
+accepts a record as an argument the record number should be used. Records in archive 1 can simply be specified by their
+record number within the archive. Records in archives other than 1 can be selected in two ways. Records in archive 2 are
+mapped to record numbers 201-400, archive 3 401-600, and archive 4 601-800. Any numbers in these ranges specify a record
+in the corresponding archive. The other method is to prepend the record number with the archive number and a colon. For
+example 2:12 refers to record number 12 in archive 2.
+
+There are three types of record: scratch records, archive records, and blocked records. Many commands that deal with
+records can only accept one of these types of records. The first four records in an archive are scratch records. They
+are meant as a temporary place to keep data while working with it. The other record numbers (5-200) may hold either
+archive records or blocked records. An archive record stores a single one dimensional data set. A blocked record is a
+multi dimensional set of blocks that can each store a one dimensional data set.
