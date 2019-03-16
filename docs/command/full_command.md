@@ -9093,31 +9093,3 @@ R       | Select right movement
 S       | Switch cursors
 V       | Enter cursor position after prompt
 0:3     | Move cursor by 10^N points
-
-## ZOL
-Zoom on lock display
-
-Category: Lock
-
-Format: `ZOL`
-
-Prerequisites: `LCK`
-
-
-Description:
-Positions cursors on lock display.
-
-Subcommands:
-
-Command | Description
-------- | -----------
-CR      | Terminate
-0-2     | Move 10^digit points
-C       | Contract display by factor of 2
-E       | Expand display by factor of 2
-F       | Contract to display maximum sweep width
-L       | Select left movement
-P       | Enter position value after prompt
-Q       | Terminate
-R       | Select right movement
-W       | Enter sweep width value after prompt
