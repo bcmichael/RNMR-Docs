@@ -9074,29 +9074,25 @@ Category: Acquisition
 
 Format: `ZOA`
 
-Prerequisites: ACQ
+Prerequisites: Acquisition buffer visible (VIEW ACQ)
 
 Description:
-Positions cursors on acquisition display.
-
-Subcommands:
+`ZOA` enters the zoom subroutine for the acquisition buffer. While `ZOA` is active the currently selected cursor may be
+moved by clicking and dragging on the display. The following subcommands are available:
 
 Command | Description
 ------- | -----------
-CR      | Terminate
-0-3     | Move 10^digit points
+BI      | View imaginary part of buffer
+BR      | View real part of buffer
 E       | Expand display between cursors
+Enter   | Terminate
 F       | Contract to display full buffer
-H       | List point values on line printer
 L       | Select left movement
-O       | Enter offset value after prompt
-P       | Move to next peak
 Q       | Terminate
 R       | Select right movement
-S       | Switch active cursor
-T       | Enter threshold value after prompt
-V       | Enter cursor value after prompt
-W       | Write point values to `WRT` file
+S       | Switch cursors
+V       | Enter cursor position after prompt
+0:3     | Move cursor by 10^N points
 
 ## ZOL
 Zoom on lock display
