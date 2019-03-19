@@ -1138,14 +1138,16 @@ console.
 The /LOG and /PHY qualifiers are used to set the mapping for a single channel while the /SEQ option sets all the
 channels at once. /LOG accepts two arguments: the first being a logical channel and the second being a physical channel
 to map it to. /PHY works the same as /LOG but the first argument should be the physical channel and the second argument
-should be the logical channel.
+should be the logical channel. With these qualifiers if the first argument is omitted RNMR will prompt for it with 1 as
+a default. If the second argument is omitted RNMR will prompt for it with the current mapped value as a default.
 
 /SEQ, which is the default qualifier, expects a sequence of physical channels consisting of up to the number of channels
 in the system. The sequence of channels will be mapped to the logical channels starting from 1. For example:
 
     CHN 31
 
-will map logical channel 1 to physical channel 3 and logical channel 2 to physical channel 1.
+will map logical channel 1 to physical channel 3 and logical channel 2 to physical channel 1. If the sequence is omitted
+RNMR will prompt for it with the current mapping sequence as a default.
 ## CLSARV
 Close archive
 
