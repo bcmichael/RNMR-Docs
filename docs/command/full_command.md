@@ -771,12 +771,10 @@ Defaults: current
 Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-This command is used with the `CALIB` pulse program to calibrate spectrometer phases. It is to be used only by the
-support staff. `CALIB` does not require the user to be viewing the processing block (`VIEW PRO`), but all manipulations
-are performed on the processing block. The argument "fcalib" is a real number interpreted in the current frequency unit
-of the processing buffer (PPM or absolute units). If "fcalib" is omitted from the command line, RNMR will prompt for a
-frequency, with the current calibration frequency as the default. After conversion to Hz, the calibration frequency
-must be nonzero.
+`CALIB` is used with the calib pulse program to calibrate spectrometer phases. It is to be used only by the support
+staff. The argument fcalib is a real number interpreted in the current frequency unit of the visible processing buffer.
+If fcalib is omitted  RNMR will prompt for it with the current calibration frequency as a default. After conversion to
+Hz, the calibration frequency must be nonzero.
 ## CASE
 Process `CASE` clause of `SEL` block
 
