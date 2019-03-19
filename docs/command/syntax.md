@@ -34,6 +34,7 @@ RNMR data is saved in archives and a number of RNMR commands take archives as ar
 an instance of RNMR at any one time. Each archive has an associated archive number (1-4). These archive numbers are what
 are passed as arguments to commands rather than the archive name.
 
+<a name="archive_access"></a>
 At the time that an archive is opened (by `OPNARV`) the level of access RNMR has to that archive is set. RNMR will
 always have read access to an open archive, but not necessarily write access. A given archive may be open in multiple
 instances of RNMR but only one may have write access to it. This enforced by lock files which are created when RNMR
@@ -51,6 +52,7 @@ mapped to record numbers 201-400, archive 3 401-600, and archive 4 601-800. Any 
 in the corresponding archive. The other method is to prepend the record number with the archive number and a colon. For
 example 2:12 refers to record number 12 in archive 2.
 
+<a name="record_type"></a>
 There are three types of record: scratch records, archive records, and blocked records. Many commands that deal with
 records can only accept one of these types of records. The first four records in an archive are scratch records. They
 are meant as a temporary place to keep data while working with it. The other record numbers (5-200) may hold either
@@ -64,6 +66,7 @@ record may have up to four dimensions. The size of each dimension is set at the 
 allocated. Space within the archive file is also reserved when a blocked record is allocated. Space is reserved in
 blocks of 512 bytes each. Therefore the allocated space may exceed the actual amount of data.
 
+<a name="ndimx"></a>
 The layout of the blocked record in the archive file depends upon the parameter NDIMX which determines the dimensions in
 which RNMR will be able to access the data in the blocked record. If NDIMX is 1 (the typical default) RNMR will only be
 able to access the data along the first dimension. The data will be stored in sequential order as one dimensional
@@ -72,6 +75,7 @@ blocks. The trend continues for larger values of NDIMX. The value of NDIMX canno
 allocated. Commands which must access data from a blocked along a particular dimension will fail if the value of NDIMX
 for that record is not large enough.
 
+<a name="slice"></a>
 When RNMR commands need to access some number of dimensions in a blocked record they access the first directions of the
 record. These directions are not necessarily the first dimensions of the record. The mapping of directions to dimensions
 is set by `DIRB`. This mapping is set separately for each possible dimensionality. When RNMR commands access some number
@@ -79,6 +83,7 @@ of directions they will access a n-dimensional slice of the record. They will ge
 which slice. If the record has the same number of dimensions as are being accessed this slice must be 1. Otherwise the
 slice parameter is interpreted as a linear index along the other directions.
 
+<a name="nseg"></a>
 Blocked records may have multiple segments. These segments are typically used to store the different channels of the
 hypercomplex acquisition used for multi-dimensional spectra. When loading data from or saving data to a blocked record
 a particular segment can be selected by appending a period and the segment number to the record number.
