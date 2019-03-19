@@ -54,10 +54,9 @@ Format: `AK` sfa
 Defaults: current
 
 Description:
-`AK` sets the current absolute scale factor. This scale factor is  a global parameter. If the absolute scale factor
-"sfa" is omitted, `AK` will prompt for the scale factor. The default value for this parameter is the current global
-scale factor. The argument "sfa" is a floating point number greater than or equal to 0. If the value of sfa is 0, i.e.
-`AK 0`, then the global scale factor will be set equal to the scale factor of the visible processing buffer (buffer 1).
+`AK` sets the global absolute scale factor. If the absolute scale factor sfa is omitted RNMR will prompt for it with the
+current global scale factor as a default. The global scale factor must be greater than 0.0. If a scale factor of 0 is
+passed to `AK` the current scale factor of the visible processing buffer will be used.
 ## ALLB
 Allocate a blocked record
 
