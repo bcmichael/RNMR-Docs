@@ -389,15 +389,14 @@ Defaults: first (fnyq-orgn)/2+orgn
 Prerequisites: Frequency data in processing buffer (FREQ)
 
 Description:
-`BINCP` performs the phase portion of a binary pulse correction. When used with the `BINCP` solvent suppression pulse
-sequence, this command corrects the phase of the off-resonant component of the magnetization, which is preserved while
-the on-resonance solvent peak is cancelled out. `BINCP` does not require the user to be viewing the processing block
-(`VIEW PRO`), but phase correction is only performed on the processing block. The parameters fnyq and fmax are the
-nyquist frequency of the processing buffer and the max frequency to be used for the correction. Both parameters are
-specified in terms of current frequency units including the frequency offset of the origin of the buffer (orgn). The
-default value of fnyq will be correspond to the frequency of the first point in the buffer. The default of fmax is
-(fnyq-orgn)/2+orgn. Internally `BINCP` subtracts the origin from the values before using them. In order to make the
-calculations more understandable all references to these parameters going forward will refer to the corrected values
+`BINCP` performs the phase portion of a binary pulse correction on data in the visible processing buffer. When used with
+the `BINCP` solvent suppression pulse sequence, this command corrects the phase of the off-resonant component of the
+magnetization, which is preserved while the on-resonance solvent peak is cancelled out. The parameters fnyq and fmax are
+the nyquist frequency of the visible processing buffer and the max frequency to be used for the correction. Both
+parameters are specified in terms of current frequency units including the frequency offset of the origin of the buffer
+(orgn). The default value of fnyq will be correspond to the frequency of the first point in the buffer. The default of
+fmax is (fnyq-orgn)/2+orgn. Internally `BINCP` subtracts the origin from the values before using them. In order to make
+the calculations more understandable all references to these parameters going forward will refer to the corrected values
 with the origin subtracted out. The corrected fnyq must be greater than 0. The absolute value of the corrected fmax
 divided by the corrected fnyq must be between 0.1 and 2.0.
 
@@ -413,12 +412,8 @@ Each point I ranging from 1 to the size of the buffer is multiplied by a complex
 
     EXP(i*(PHI + (I-1)* DPHI))
 
-The data in each block of the processing buffer is phase corrected independently.
-
 If the data point closest to zero frequency (without offset) is not the last point in the spectrum, then all points
 in each block from zero to minimum (most negative) frequency are negated.
-
-If the processing buffer is currently visible, `BINCP` always updates the display upon completion.
 ## BRKDO
 Break out of a macro `DO` loop
 
