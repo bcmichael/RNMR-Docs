@@ -1349,9 +1349,7 @@ Category: Data Manipulation
 Format: `CONJG`
 
 Description:
-`CONJG` complex conjugates processing buffer 1. The user need not be viewing the processing buffer in order to use
-`CONJG`. If the buffer is partitioned into two or more blocks, `CONJG` separately conjugates each block. If the
-processing buffer is currently visible, `CONJG` always updates the display upon completion.
+`CONJG` complex conjugates the data in the visible processing buffer updating the buffer.
 ## CONLIM
 Set contour plot height limits
 
