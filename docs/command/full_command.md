@@ -1481,7 +1481,8 @@ Format: `CRTARV` archive name
 Defaults: 1 TEMP
 
 Description:
-`CRTARV`creates and opens a new archive with read/write access.
+`CRTARV` creates and opens a new [archive](syntax#archives) with read/write access. If no archive is specified RNMR will
+prompt for it with 1 as a default. If no name is specified RNMR will prompt for it with temp as a default.
 ## CRTFIL
 Create text file
 
