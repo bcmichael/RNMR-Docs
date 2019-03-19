@@ -454,7 +454,7 @@ FID.
 5.	Starting with the second point, every other point in the FID is negated.
 
 ## BUF
-View real or imaginary buffer
+View real or imaginary processing buffer
 
 Category: Display Control
 
@@ -463,29 +463,24 @@ Format: `BUF` nam
 Defaults: current
 
 Description:
-`BUF` selects whether the real or imaginary part of the current buffer should be displayed. The current buffer (PRO,
-ACQ, or LCK) is selected using the command `VIEW`. For the parameter nam, the user may enter either REAL or IMAG to
-display the real or imaginary part of the buffer, respectively or COMPLEX to view both. If this parameter is omitted
-from the command line, RNMR will prompt for a response with the current buffer display type as the default. If the user
-accepts the default buffer display mode, `BUF` does nothing. Otherwise, the display is updated if it is currently
-visible.
+`BUF` selects whether the real or imaginary part of the visible processing buffer should be displayed. The parameter
+nam may be set to real, imag, or complex to display the real part, imaginary part or both parts of the buffer
+respectively. If nam is omitted RNMR will prompt for a response with the current buffer display type as a default.
 ## BUFA
 View real or imaginary acquisition buffer
 
 Category: Display Control
 
-Format: `BUF` nam
+Format: `BUFA` nam
 
 Defaults: current
 
 Prerequisites: RNMRA only
 
 Description:
-`BUFA` selects whether the real or imaginary part of the acquisition buffer should be displayed. For the parameter nam,
-the user may enter either REAL or IMAG to display the real or imaginary part of the buffer, respectively or COMPLEX to
-view both. If this parameter is omitted from the command line, RNMR will prompt for a response with the current buffer
-display type as the default. If the user accepts the default buffer display mode, `BUFA` does nothing. Otherwise, the
-display is updated if it is currently visible.
+`BUFA` selects whether the real or imaginary part of the acquisition buffer should be displayed. The parameter nam may
+be set to real, imag, or complex to display the real part, imaginary part or both parts of the buffer respectively. If
+nam is omitted RNMR will prompt for a response with the current buffer display type as a default.
 # C
 ---
 ## CALC
