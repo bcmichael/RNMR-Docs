@@ -1175,12 +1175,12 @@ specified record is not an open blocked record.
 ## CLSDSP
 Close display
 
-Category: Display
+Category: Display Handling
 
 Format: `CLSDSP`
 
 Description:
-Close display opened with `OPNDSP`. `CLSDSP` will error if no export file is open.
+Close display opened with `OPNDSP`. `CLSDSP` will error if the display is not open.
 ## CLSEXP
 Close export file
 
