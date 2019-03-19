@@ -437,18 +437,11 @@ Format: `BRUK`
 Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-`BRUK` converts a BRUKER format (real) FID into a complex FID. `BRUK` does not require the user to be viewing the
-processing block (`VIEW PRO`), but data conversion is only performed on the processing block. Upon conversion from
+`BRUK` converts a BRUKER format (real) FID in the visible processing buffer into a complex FID. Upon conversion from
 BRUKER to complex format, the size of the FID (number of points) is adjusted to the smallest power of 2 greater than or
 equal to the original size. `BRUK` will convert the data only if this adjusted size is at least 4 points and not
-greater than the allocated buffer size (ISIZEA); otherwise an error message will be
-displayed.
-
-If the adjusted FID size is within limits, the data is zero filled from the current size to the adjusted size.  Thus, a
-100 point FID is zero filled to 256 points.  If the processing buffer is divided into two or more blocks, each block is
-zero filled separately.
-
-The actual conversion from BRUKER (real) to complex data follows the  algorithm below:
+greater than the allocated buffer size (`SHOW BUF SIZEA`). The data is zero filled from the current size to the adjusted
+size. The actual conversion from BRUKER (real) to complex data follows the  algorithm below:
 
 1.	The entire zero-filled BRUKER FID is conjugated.
 2.	Starting with the second point, every other point in the FID is negated.
@@ -460,8 +453,6 @@ FID.
 
 5.	Starting with the second point, every other point in the FID is negated.
 
-If the processing buffer is divided into two or more blocks, each block is transformed separately. If the processing
-buffer is currently visible, `BRUK` always updates the display upon completion.
 ## BUF
 View real or imaginary buffer
 
