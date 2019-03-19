@@ -1446,35 +1446,31 @@ Set cursor positions
 
 Category: Display Control
 
-Format: `CRS` cursor1_pos cursor2_pos
+Format: `CRS` pos1 pos2
 
 Defaults: current current
 
 Description:
-`CRS` takes two parameters, crs1 and crs2, which are cursor 1 and 2 positions, respectively. These positions are
-expressed in the current unit for the visible buffer (ACQ, PRO, or LCK) with the current maximum number of decimal
-places for that unit. The current unit is set and displayed by the `UNIT` command and the maximum number of decimal
-places is set and displayed by `NDEC`. If crs1 or crs2 is missing from the command line, RNMR will display the current
-value for the missing position and prompt for a new value. For each display limit, the user should enter a value
-expressed in  the current time or frequency unit or "\*" to select the leftmost position. If the user requests a
-position to the left of the leftmost point in the data buffer, the cursor will be positioned at the leftmost data point.
-Similarly, if the position specified is beyond the rightmost data point, the cursor will be position at the rightmost
-data point. If the user specifies a position that is within the range of the data buffer but which does not correspond
-to a specific data point, RNMR will set that position to the time or frequency of the closest data point to the right of
-the value specified.
+`CRS` sets the positions of the two cursors for the visible processing buffer. If either position is omitted RNMR will
+prompt for it with the current cursor position as a default. The positions are specified in the current units of the
+buffer. The cursors will be set to the points closest to the specified position. Thus if the position is beyond the
+range of the data in the buffer the cursor will be position at the edge of the buffer.
 ## CRSA
 Set acquisition cursor positions
 
 Category: Display Control
 
-Format: `CRS` cursor1_pos cursor2_pos
+Format: `CRSA` pos1 pos2
 
 Defaults: current current
 
 Prerequisites: RNMRA only
 
 Description:
-`CRSA` functions identically to `CRS`, but sets the position of cursors visible during acquisition.
+`CRSA` sets the positions of the two cursors for the acquisition buffer. If either position is omitted RNMR will prompt
+for it with the current cursor position as a default. The positions are specified in the current units of the buffer.
+The cursors will be set to the points closest to the specified position. Thus if the position is beyond the range of the
+data in the buffer the cursor will be position at the edge of the buffer.
 ## CRTARV
 Create archive
 
