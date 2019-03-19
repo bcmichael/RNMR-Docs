@@ -1439,7 +1439,8 @@ Format: `CPYMAC` name1 name2
 Defaults: temp temp
 
 Description
-`CPYMAC` copies the contents of macro name1 into a new macro name2.
+`CPYMAC` copies the contents of macro name1 into a new macro name2. If either name is omitted RNMR will prompt for it
+with temp as a default.
 ## CRS
 Set cursor positions
 
