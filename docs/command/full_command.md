@@ -1563,15 +1563,16 @@ Text written when `CRTMAC` is called from a macro will be all caps regardless of
 ## CRTTBL
 Create name table
 
-Category: Table
+Category: Tables
 
 Format: `CRTTBL` nam maxval
 
 Defaults: temp 32
 
 Description:
-`CRTTBL` creates a new name table named nam that can hold a maximum of maxval entries. RNMR will prompt for nam and
-maxval if they are not provided. If a name table with the same name already exists `CRTTBL` will error.
+`CRTTBL` creates a new name table named nam that can hold a maximum of maxval entries. If no name is specified RNMR will
+prompt for it with temp as a default. If no max size is specified RNMR will prompt for it with 32 as a default. If a
+name table with the same name already exists `CRTTBL` will error.
 ## CVTMD
 Set modes for blocked record index conversion
 
