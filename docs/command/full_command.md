@@ -1238,28 +1238,20 @@ Multiply buffer by complex constant
 
 Category: Data Manipulation
 
-Format: `CMUL` valr valphi buf
+Format: `CMUL` mag phi buf
 
 Defaults: 1.0 0.0 1
 
 Description:
-`CMUL` multiplies the contents of a buffer by a complex constant, updating the buffer. This constant is specified in
-polar form:
+`CMUL` multiplies the contents of a [processing buffer](syntax#buffers) by a complex constant, updating the buffer. This
+constant is specified in polar form:
 
-    REAL(CONST) = VALR*COS(VALPHI*PI/2)
-    IMAG(CONST) = VALR*SIN(VALPHI*PI/2)
+    REAL(CONST) = MAG*COS(PHI*PI/2)
+    IMAG(CONST) = MAG*SIN(PHI*PI/2)
 
-The first parameter, "valr" is a real number which is the magnitude of the complex constant. If this parameter is
-omitted, the magnitude will be 1.0; RNMR will not prompt for "valr". The second parameter, "valphi" is a real number
-which is the polar angle phi of the complex constant in degrees. If this parameter is omitted, this angle will be 0.0;
-RNMR will not prompt for "valphi". The last parameter, "buf" selects which processing buffer should be multiplied and
-updated; the visible buffer is buffer 1. The buffer number may be either 1 or 2. If "buf" is omitted, buffer 1 will be
-processed; RNMR will not prompt for "buf". `CMUL` multiplies each block of the selected processing buffer by the
-specified constant:
-
-    BUFFER = BUFFER*CONST
-
-If the processing buffer is currently visible and "buf" is 1, `CMUL` always updates the display upon completion.
+If the magnitude is omitted RNMR will not prompt for it and will use 1.0. If the phase, phi, is omitted RNMR will not
+prompt for it and will use 0.0. The phase is specified in degrees. If no buffer is specified RNMR will not prompt for it
+and will operate on the visible processing buffer.
 ## CMULV
 Complex multiply two buffers
 
