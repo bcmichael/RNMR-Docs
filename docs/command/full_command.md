@@ -1158,8 +1158,8 @@ Format: `CLSARV` archive
 Defaults: 1
 
 Description:
-`CLSARV` closes an archive. The archive is specified as an integer ranging from 1 to 4. An attempt to close an archive
-which is not open will result in an error.
+`CLSARV` closes an archive. If no [archive](syntax#archives) is specified RNMR will prompt for it with 1 as a default.
+An attempt to close an archive which is not open will result in an error.
 ## CLSB
 Close blocked record
 
