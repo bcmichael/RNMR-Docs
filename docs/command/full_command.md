@@ -336,13 +336,13 @@ Format: `AUTOZ` step time
 
 Defaults: current
 
-Prerequisites: RNMRA only. Spectrometer must have lock and shim setup to run via RNMR.
+Prerequisites: RNMR lock control; RNMR shim control; RNMRA only
 
 Description:
 `AUTOZ` sets up automatic Z shimming in RNMRA. In order for this to function RNMR must have access to both the lock and
 shim controls. In order for `AUTOZ` to have any effect the automatic Z shimming flag (as set and displayed by
 `SET AUTOZ`) must be on. If either the step or time is omitted RNMR will prompt for them with the current values as a
-defualt. The step must be between 0.0 and 1.0 inclusive, while time must be between 4.0 and 100.0 inclusive.
+default. The step must be between 0.0 and 1.0 inclusive, while time must be between 4.0 and 100.0 inclusive.
 # B
 ---
 ## BC
