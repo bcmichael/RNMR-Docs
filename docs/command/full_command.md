@@ -300,8 +300,8 @@ Prerequisites: RNMRA only
 
 Description:
 Signals are events that occur asynchronously to the macro execution. They are only present in RNMRA. Signals are
-primarily used for multi dimensional acquisition. `ASIG` acknowledges a signal and resets it. The following signals are
-available:
+primarily used for multi dimensional acquisition. `ASIG` acknowledges a signal and resets it. If no signal is specified
+RNMR will prompt for it with a default of temp. The following signals are available:
 
 Signal | Meaning
 ------ | -------
