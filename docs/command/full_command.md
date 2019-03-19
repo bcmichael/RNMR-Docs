@@ -1202,18 +1202,16 @@ Close import file opened with `OPNIMP`. `CLSIMP` will error if no import file is
 ## CLSPLT
 Close plotter stream and print
 
-Category: Printing
+Category: Plotting
 
 Format: `CLSPLT`
 
 Description:
 `CLSPLT` writes out the current plot buffer and submits the resulting file for printing or plotting, terminating the
-plot sequence that began with `OPNPLT`. All plots between `OPNPLT` and `CLSPLT` will appear on one sheet of paper.
-`CLSPLT` is legal only if the plot file is currently open. If the plotter or printer selected by `PLDEV` is not
-currently idle, `CLSPLT` sends the appropriate control sequences to put it in idle mode. Next, the current plot buffer,
-containing the code for each spectrum or FID to be plotted, is written out to a temporary plot file, PL.TMP, in the
-user's directory. This plot file is then submitted to the appropriate queue for printing or plotting. Upon successful
-generation of the plot, the plot file is deleted.
+plot sequence that began with `OPNPLT`. All plots between `OPNPLT` and `CLSPLT` will appear as one plot.
+`CLSPLT` will error if no plot is currently open. Depending on the state of the plotter flag (as set and displayed by
+`SET PL`) the plot will either be saved to the plotter file (as set and displayed by `PLFIL`) or printed by the plotting
+device (as set and displayed by `PLDEV`).
 ## CLSRD
 Close file opened for read
 
