@@ -355,13 +355,11 @@ Format: `BC`
 Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-`BC` performs a baseline correction to a complex FID by subtracting the average of the last 1/8th of the data points
-from the entire FID. `BC` does not require the user to be viewing the processing block (`VIEW PRO`), but baseline
-correction is only performed on the processing block. To calculate the constant complex offset to be subtracted from
-the entire FID, `BC` examines the final 1/8th of the FID data points with a minimum of 1 point if there are less than 8
-points. The average of these points (a complex number) is subtracted from each (complex) point of the entire
-FID, yielding a baseline corrected FID. A separate baseline correction is performed on each block of the processing
-buffer. If the processing buffer is currently visible, `BC` always updates the display upon completion.
+`BC` performs a baseline correction to a complex FID in the visible processing buffer by subtracting the average of the
+last 1/8th of the data points from the entire FID. To calculate the constant complex offset to be subtracted from the
+entire FID, `BC` examines the final 1/8th of the FID data points with a minimum of 1 point if there are less than 8
+points. The average of these points (a complex number) is subtracted from each (complex) point of the entire FID,
+yielding a baseline corrected FID.
 ## BF
 Baseline fix spectrum
 
