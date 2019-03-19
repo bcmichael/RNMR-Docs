@@ -866,10 +866,8 @@ Defaults: none ZZZZZZZZZZZZZZZZ
 
 Description:
 `CATGBL` displays a catalog of the currently defined global arguments by name from first to last in alphabetical order.
-If first is omitted from the command line, then the catalog will begin with the first entry in the global argument
-table. RNMR will not prompt for first. Similarly, if last is not specified, `CATGBL` will list all global arguments. If
-only one argument is specified, `CATGBL` will list information about only that single argument. Each global argument is
-listed by name along with its current value.
+If both arguments are omitted `CATGBL` will list all global arguments. If only one argument is specified, `CATGBL` will
+list information about only that single argument. Each global argument is listed by name along with its current value.
 
 The qualifiers specify how the list is output as follows:
 
@@ -895,10 +893,8 @@ Defaults: none ZZZZZZZZZZZZZZZZ
 
 Description:
 `CATLCL` displays a catalog of the currently defined local arguments by name from first to last in alphabetical order.
-If first is omitted from the command line, then the catalog will begin with the first entry in the local argument table.
-RNMR will not prompt for first. Similarly, if last is not specified, `CATLCL` will list all local arguments. If only one
-argument is specified, `CATLCL` will list information about only that single argument. Each local argument is listed by
-name along with its current value.
+If both arguments are omitted `CATLCL` will list all local arguments. If only one argument is specified, `CATLCL` will
+list information about only that single argument. Each local argument is listed by name along with its current value.
 
 The qualifiers specify how the list is output as follows:
 
@@ -923,11 +919,9 @@ Qualifier Defaults: /WND
 Defaults: none ZZZZZZZZZZZZZZZZ
 
 Description:
-`CATLST` displays a catalog of the currently defined lists by name from first to last in alphabetical order.
-If first is omitted from the command line, then the catalog will begin with the first entry in the list table.
-RNMR will not prompt for first. Similarly, if last is not specified, `CATLST` will list all lists. If only one
-argument is specified, `CATLST` will list information about only that single list. Each list is listed by
-name along with its maximum size and its current size.
+`CATLST` displays a catalog of the currently defined lists by name from first to last in alphabetical order. If both
+arguments are omitted `CATLST` will list all lists. If only one argument is specified, `CATLST` will list information
+about only that single list. Each list is listed by name along with its maximum size and its current size.
 
 The qualifiers specify how the list is output as follows:
 
@@ -953,12 +947,10 @@ Qualifier Defaults: /WND
 Defaults: none ZZZZZZZZZZZZZZZZ
 
 Description:
-`CATMAC` displays a catalog of the currently defined macros by name from first to last in alphabetical order.
-If first is omitted from the command line, then the catalog will begin with the first entry in the macro table.
-RNMR will not prompt for first. Similarly, if last is not specified, `CATMAC` will list all macros. If only one
-argument is specified, `CATMAC` will list information about only that single macro. Each macro is listed by
-name along with whether it is a user or system macro and the file where it is stored. The file will only be listed if
-the macro has been called during the current RNMR session.
+`CATMAC` displays a catalog of the currently defined macros by name from first to last in alphabetical order. If both
+arguments are omitted `CATMAC` will list all macros. If only one argument is specified, `CATMAC` will list information
+about only that single macro. Each macro is listed by name along with whether it is a user or system macro and the file
+where it is stored. The file will only be listed if the macro has been called during the current RNMR session.
 
 The qualifiers specify how the list is output as follows:
 
@@ -987,11 +979,10 @@ Qualifier Defaults: /WND
 Defaults: none ZZZZZZZZZZZZZZZZ
 
 Description:
-`CATNUC` displays a catalog of the currently defined nuclei by name from first to last in alphabetical order. If first
-is omitted from the command line, then the catalog will begin with the first entry in the nucleus table. RNMR will not
-prompt for first. Similarly, if last is not specified, `CATNUC` will list all nuclei. If only one argument is specified,
-`CATNUC` will list information about only that single nucleus. Each nucleus is listed by name along with its current
-frequency (value used to convert between PPM and Hz) in MHz and its reference frequency in Hz.
+`CATNUC` displays a catalog of the currently defined nuclei by name from first to last in alphabetical order. If both
+arguments are omitted `CATNUC` will list all nuclei. If only one argument is specified, `CATNUC` will list information
+about only that single nucleus. Each nucleus is listed by name along with its current frequency (value used to convert
+between PPM and Hz) in MHz and its reference frequency in Hz.
 
 The qualifiers specify how the list is output as follows:
 
@@ -1015,15 +1006,15 @@ Qualifier Defaults: /WND
 
 Defaults: none none ZZZZZZZZZZZZZZZZ
 
+Prerequisites: RNMRA only
+
 Description:
 `CATPPS` displays a catalog of the currently defined PP symbols. The catalog is organized by PP symbol type and then
 each type section is organized by name from first to last in alphabetical order. If type is omitted from the command
 line then `CATPPS` will display all types of symbols. If a type is specified then only the section of the catalog
-corresponding to that type will be listed. If first is omitted from the command line, then the catalog will begin with
-the first entry in each included section. RNMR will not prompt for first. Similarly, if last is not specified, `CATPPS`
-will list all entries in each included section. If only one of first and last is specified, `CATPPS` will list
-information about only that single PP symbol in each included section. Each PP symbol is listed by name along with its
-location.
+corresponding to that type will be listed. If both first and last are omitted `CATPPS` will list all entries in each
+included section. If only one of first and last is specified, `CATPPS` will list information about only that single PP
+symbol in each included section. Each PP symbol is listed by name along with its location.
 
 The qualifiers specify how the list is output as follows:
 
@@ -1035,7 +1026,7 @@ Qualifier | Output
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
 ## CATSYM
-List catalog of nuclei
+List catalog of symbols
 
 Category: Arguments
 
@@ -1048,11 +1039,10 @@ Qualifier Defaults: /NDEC=1 /WND
 Defaults: none ZZZZZZZZZZZZZZZZ
 
 Description:
-`CATSYM` displays a catalog of the currently defined symbols by name from first to last in alphabetical order. If first
-is omitted from the command line, then the catalog will begin with the first entry in the symbol table. RNMR will not
-prompt for first. Similarly, if last is not specified, `CATSYM` will list all symbols. If only one argument is specified,
-`CATSYM` will list information about only that single symbol. Each symbol is listed by name along with its current
-value. Floating point symbols will be displayed with a number of decimal places set by /NDEC.
+`CATSYM` displays a catalog of the currently defined symbols by name from first to last in alphabetical order. If both
+arguments are omitted `CATSYM` will list all symbols. If only one argument is specified `CATSYM` will list information
+about only that single symbol. Each symbol is listed by name along with its current value. Floating point symbols will
+be displayed with a number of decimal places set by /NDEC.
 
 The qualifiers specify how the list is output as follows:
 
@@ -1071,7 +1061,7 @@ specified.
 ## CATTBL
 List catalog of name tables
 
-Category: Table
+Category: Tables
 
 Format: `CATTBL` tbl first last
 
@@ -1082,12 +1072,11 @@ Qualifier Defaults: /WND
 Defaults: none ZZZZZZZZZZZZZZZZ
 
 Description:
-`CATTBL` displays a catalog of the currently defined tables by name from first to last in alphabetical order. A single
-table to display may be selected using the tbl argument. /VAL will cause `CATTBL` to list the values in the tables. If
-first is omitted from the command line, then the values will begin with the first entry in the table. RNMR will not
-prompt for first. Similarly, if last is not specified, `CATTBL` will list all values in the table. If only one of first
-and last is specified, `CATTBL` will list information about only that single value. Each table is listed by name along
-with its maximum size and its current size.
+`CATTBL` displays a catalog of the currently defined tables. A single table to display may be selected using the tbl
+argument. If no tbl is specified all of the currently defined tables will be listed. /VAL will cause `CATTBL` to list
+the values in the tables by name from first to last in alphabetical order. If both first and last are omitted `CATTBL`
+will list all values in the tables. If only one of first and last is specified, `CATTBL` will list information about
+only that single value. Each table is listed by name along with its maximum size and its current size.
 
 The qualifiers specify how the list is output as follows:
 
