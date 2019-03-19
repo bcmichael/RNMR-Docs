@@ -370,15 +370,13 @@ Format: `BF`
 Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
-`BF` performs a linear baseline fix by subtracting a straight line from the data between the current display limits.
-`BF` does not require the user to be viewing the processing block (`VIEW PRO`), but baseline fixing is only performed
-on the processing block.
+`BF` performs a linear baseline fix by subtracting a straight line from the data in the visible processing buffer
+between the current display limits.
 
 `BF` uses the average of the leftmost and rightmost 5 points between the current display limits to determine the line to
 subtract. If there are fewer than 5 points between the current display limits `BF` subtracts the average over all the
 points instead of calculating a line. `BF` only subtracts from the points between the current display limits, leaving
-everything outside of those limits untouched. If the processing buffer is currently visible, `BF` always updates the
-display upon completion.
+everything outside of those limits untouched.
 ## BINCP
 Perform binary pulse phase correction
 
