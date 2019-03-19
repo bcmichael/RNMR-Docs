@@ -1297,8 +1297,9 @@ Qualifier Defaults: /KRNL=GAUSS /PASS=HIGH /END=EXT
 Defaults: 8
 
 Description:
-`CNVFL` convolves the data in processing buffer 1 with a filter kernel. The argument kmax sets the maximum filter
-component. The filter kernel will contain nkrnl=2\*kmax+1 points. kmax can range from 1 to 32.
+`CNVFL` convolves the data in the visible processing buffer with a filter kernel. The argument kmax sets the maximum
+filter component. The filter kernel will contain nkrnl=2\*kmax+1 points. If kmax is omitted RNMR will prompt for it with
+8 as a default. The value of kmax can range from 1 to 32 inclusive.
 
 /KRNL selects either a gaussian or sinebell function to use for the filter kernel. A convolution filter cannot calculate
 values at the edges of the data. /END determines what is done with these points. The minimum size of the buffer relative
