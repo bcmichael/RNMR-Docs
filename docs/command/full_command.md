@@ -837,10 +837,10 @@ Qualifier Defaults: /WND
 Defaults: 1 4
 
 Description:
-Displays a list of archives from first-archive to last-archive which must be integers between 1 and 4. If only one
-argument is specified, `CATARV` will list information about only that single archive. `CATARV` shows the archive number
-and if the archive is open it also shows flags indicating the presence of read access and write access, as well as the
-name of the archive.
+`CATARV` displays a list of [archives](syntax#archives) from first-archive to last-archive. If only one argument is
+specified, `CATARV` will list information about only that single archive. `CATARV` shows the archive number and if the
+archive is open it also shows flags indicating the presence of read access and write access, as well as the name of the
+archive.
 
 The qualifiers specify how the list is output as follows:
 
