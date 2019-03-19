@@ -1198,7 +1198,7 @@ Category: File IO
 Format: `CLSIMP`
 
 Description:
-Close import file opened with `OPNIMP`. `CLSIMP` will error if no export file is open.
+Close import file opened with `OPNIMP`. `CLSIMP` will error if no import file is open.
 ## CLSPLT
 Close plotter stream and print
 
