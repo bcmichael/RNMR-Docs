@@ -801,20 +801,18 @@ Qualifiers: /PRT /TTY /WND /WRT
 
 Qualifier Defaults: /WND
 
-Defaults: 5 200
+Defaults: 0 200
 
 Description:
-`CAT` displays a catalog of archive records from first-rec to last-rec. `CAT` takes two parameters, which are the first
-and last record numbers to be displayed. If these are omitted, the listing will begin with record 5 and end at record
-200; RNMR will not prompt for "first-rec" and "last-rec".
+`CAT` displays a catalog of records from first-rec to last-rec within a single archive. `CAT` takes two parameters,
+which are the first and last [record numbers](syntax#records) to be displayed. If first-rec is set to record 0 (which
+does not exist) in an archive, all of the records in that archive up to last-rec will be listed. In this case if
+last-rec is omitted all the records in the archive are listed. If neither parameter is specified the default behavior is
+to list all records in archive 1. If first rec is set to any other value and last-rec is omitted only that record will
+be listed. The value of last-rec should be specified by the number within the archive even if it is not in archive 1.
 
-Any value corresponding to a record in an open archive may be provided for first-rec. Records in archives other than 1
-can be specified by either pre-pending the archive number and a ":" or specifying numbers larger than 200. For example
-record # in archive 2 can be specified either as 2:# or by adding 200 to #. Similarly, last-rec may be any integer from
-the record number within an archive specified in first-rec to 200, inclusive. If only one argument is specified, `CAT`
-will list information about only that single record. For each nonempty record, `CAT` returns the record  number, owner,
-record length, record position within the archive, date, and title. Note that `CAT` reports record length and position
-in units of blocks, which are 512 bytes long each.
+For each nonempty record, `CAT` returns the record  number, owner, record length, record position within the archive,
+date, and title. Note that `CAT` reports record length and position in units of blocks, which are 512 bytes long each.
 
 The qualifiers specify how the list is output as follows:
 
