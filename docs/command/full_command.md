@@ -1100,28 +1100,19 @@ Defaults: 0.0 0.0 0.0
 Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-`CD` performs a convolution difference apodization on an FID.  The apodization function applied to the FID is given by:
+`CD` performs a convolution difference apodization on an FID in the visible processing buffer. The apodization function
+applied to the FID is given by:
 
     apodization = EM(narrow) - wfract*EM(wide)
 
 Note that `CD` yields the same result as separately exponentially line broadening the original FID using `EM`, scaling
 the wide result using `SC` and subtracting the two resulting FID's. This apodization is useful for separating out
-spectral components with greatly different line widths and for masking the effects of probe ring-down. `CD` does not
-require the user to be viewing the processing block (`VIEW PRO`), but apodization is only performed on the processing
-block. The narrow line broadening narrow and the wide line broadening wide are real numbers expressed in the current
-default frequency units (as displayed and set by `UNIT /FREQ /DFLT`). If either of these parameters are not specified,
-RNMR will prompt for its value with 0.0 as the default. Each linewidth entered must be between -1000 Hz and 1000 Hz,
-inclusive. The parameter wfract specifies the fraction of the wide component (with linewidth "wide") in the
-apodization. This fraction is a real number between 0.0 and 1.0, inclusive. If wfract is not specified, then RNMR
-will prompt for its value with 0.000 as the default.
-
-The apodization vector is calculated for each data point according to the formula:
-
-    VEC(N) = EXP(-PI*L1*T(N)) - WFRACT*EXP(-PI*L2*T(N))         N=1,...,SIZE
-
-where L1 and L2 are the narrow and wide line widths, respectively, and T(N) is the time value of data point N in the
-FID. Each block of the processing buffer is separately multiplied by the apodization vector VEC(N), yielding an
-apodized complex FID. If the processing buffer is currently visible, `CD` always updates the display upon completion.
+spectral components with greatly different line widths and for masking the effects of probe ring-down. The narrow line
+broadening and the wide line broadening are expressed in the current default frequency units (as displayed and set by
+`UNIT /FREQ /DFLT`). If either of these parameters are not specified, RNMR will prompt for it with 0.0 as a default.
+Each linewidth entered must be between -1000 Hz and 1000 Hz, inclusive. The parameter wfract specifies the fraction of
+the wide component in the apodization. This fraction is a real number between 0.0 and 1.0, inclusive. If wfract is not
+specified RNMR will prompt for it with 0.0 as the default.
 ## CHN
 Map logical and physical channels to one another
 
