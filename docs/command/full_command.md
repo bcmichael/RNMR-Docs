@@ -1362,11 +1362,9 @@ Defaults: current current
 Description:
 `CONLIM` sets intensity limits for contour plotting. Contours will only be drawn for intensities between these limits.
 If either min or max is omitted from the command line, RNMR will prompt for the contour limit with its current value as
-the default. Contour levels are real numbers and are displayed to a maximum of three decimal places. If the user accepts
-the defaults for both min and max, no changes are made to the current contour limits. If both min and max are 0.0
-(`CONLIM` 0 0), then RNMR sets max to 1.0; min remains 0.0. Thus, `CONLIM 0 0` resets the contour limits to their system
-default values. If min and max are not both zero, max must be strictly greater than min. When a contour plot is
-generated, the maximum contour level will be max while the minimum contour level will approach but not equal min.
+the default. If both min and max are 0.0 RNMR sets max to 1.0; min remains 0.0. If min and max are not both zero, max
+must be greater than min. When a contour plot is generated, the maximum contour level will be max while the minimum
+contour level will approach but not equal min.
 ## CONMD
 Set contour plotting mode
 
