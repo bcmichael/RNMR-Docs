@@ -1262,22 +1262,14 @@ Format: `CMULV` src dst
 Defaults: 2 1
 
 Description:
-`CMULV` complex multiplies the destination buffer DST by the source buffer SRC changing the destination buffer:
+`CMULV` complex multiplies the contents of [processing buffers](syntax.md#buffers) src and dst and stores the result in
+dst.
 
     DST = DST * SRC
 
-The arguments "SRC" and "DST" specify the numbers of the buffers to be multiplied. Each buffer number may be either 1
-or 2; buffer 1 is the visible processing buffer. If either argument is omitted, RNMR will prompt for a buffer number.
-The default source is buffer 2 while the default destination is buffer 1. While `CMULV` operates only on processing
-buffers, the user need not be viewing the processing buffers to perform the multiplication. For two buffers to be
-multiplied, they must have the same domain (time or frequency) and the same active size (though not necessarily the
-same allocated size). If the destination buffer is partitioned into two or more blocks, each block is separately
-multiplied by the corresponding block of the source buffer. The number of blocks in the source buffer need not be the
-same as that in the destination buffer. RNMR uses the formula below to match source blocks with destination blocks:
-
-    IBLK_SRC = MOD(IBLK_DST-1,NBLK_SRC) + 1,    IBLK_DST=1,...,NBLK_DST
-
-If the processing buffer is currently visible and "dst" is 1, `CMULV` always updates the display upon completion.
+If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
+destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
+same allocated size).
 ## CND
 Set condition flag
 
