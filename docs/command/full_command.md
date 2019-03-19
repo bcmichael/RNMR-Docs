@@ -23,22 +23,13 @@ Format: `ADDV` src dst
 Defaults: 2 1
 
 Description:
-`ADDV` adds the source buffer SRC to the destination buffer DST changing the destination buffer:
+`ADDV` adds the contents of [processing buffers](syntax.md#buffers) src and dst and stores the result in dst.
 
         DST = DST + SRC
 
-The arguments "SRC" and "DST" specify the numbers of the buffers to be added. Each buffer number may be either 1 or 2;
-buffer 1 is the visible processing buffer.  If either argument is omitted, RNMR will prompt for a buffer number. The
-default source is buffer 2 while the default destination is buffer 1.  While `ADDV` operates only on processing buffers,
-the user need not be viewing the processing buffers to perform the addition.  For two buffers to be added, they must
-have the same domain (time or frequency) and the same active size (though not necessarily the same allocated size).  If
-the destination buffer is partitioned into two or more blocks, each block is separately added with the corresponding
-block of the source buffer.  The number of blocks in the source buffer need not be the same as that in the destination
-buffer.  RNMR uses the formula below to match source blocks with destination blocks:
-
-        IBLK_SRC = MOD(IBLK_DST-1,NBLK_SRC) + 1, IBLK_DST=1,...,NBLK_DST
-
-If the processing buffer is currently visible and "DST" is 1, `ADDV` always updates the display upon completion.
+If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
+destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
+same allocated size).
 ## AI
 Scale to absolute intensity
 
