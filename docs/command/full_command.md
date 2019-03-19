@@ -92,49 +92,33 @@ Allocate a copy of a blocked record
 
 Category: Blocked Records
 
-Format: `ALLCPY` inrec outrec isize(1) ... isize(4) ndimx nsega
+Format: `ALLCPY` srcrec dstrec isize(1) ... isize(ndim) ndimx nsega
 
-Defaults: current 0 insize(1)...insize(4) 1
+Defaults: rrec wrec insize(1)...insize(ndim) <ndim> 1
 
 Description:
-`ALLCPY` allocates a copy of an existing blocked record. Parameters of the existing record are copied to the new record,
-but the data is not copied. To copy both parameters and data, use the command `CPY`. In allocating a copy of a given
-record, `ALLCPY` may be given new sizes and NDIMX in place of those used in the original record.
+`ALLCPY` allocates a [blocked record](syntax#blocked_records) dstrec copying the parameters but not the data from
+blocked record srcrec. To copy both parameters and data, use the command `CPY`. The destination record may be given new
+sizes, [number of accessible dimensions](syntax#ndimx), and [number of segments](syntax#nseg) in place of those used
+in the source record.
 
-INREC is the number of the record which `ALLCPY` is to copy. If this parameter is not supplied, RNMR will prompt for it
-with the current record number (as displayed by `PTRA`) as the default. INREC is an integer between 5 and 200; scratch
-records (numbers 1 to 4) cannot be copied with `ALLCPY`. The record specified by INREC must be a blocked record.
+If no source [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer
+(as displayed and set by `PTRA`) as a default. If no destination record is specified RNMR will not prompt for it and
+will use the write record pointer (as displayed and set by `PTRA`). If the specified destination record is already in
+use RNMR will use the next available record. If RNMR selects the destination record for either of the above reasons the
+record number will be printed as an informational message after allocation is complete.
 
-OUTREC is the record number that will contain the copy of INREC. If OUTREC is omitted or is 0 then RNMR will allocate
-the next available record as a copy of record INREC. In this case, the destination record number will be printed as an
-informational message once the allocation is complete. When OUTREC is missing or 0, an error message (FOUNDTA ) NO
-AVAILABLE TITLE RECORD indicates that there are no more empty title records available to be allocated. If this message
-is encountered, the user should either delete one or more existing records in the current archive or create a new, empty
-archive ($ CRTARC) before retrying the allocation. If OUTREC is specified and is not 0, it must have a value between 5
-and 200; the scratch records (1-4) cannot be allocated. Furthermore, OUTREC must be empty before it may be allocated.
+`ALLCPY` can accept a number of sizes up to the number of dimensions in the source record. These sizes will be used in
+place of the some or all of the sizes from the source record. If any sizes are not specified RNMR will not prompt for
+them and will use the sizes from the source record for those dimensions.
 
-ISIZE(1) through ISIZE(4) are the sizes (in points) of the allocated copy in dimensions 1 through 4. These sizes are
-optional parameters; if one or more sizes are omitted, RNMR will use the sizes of the input record INREC to allocate the
-copy OUTREC. However, if the user wishes to make one or more sizes different in OUTREC from their corresponding sizes
-in INREC, RNMR expects to find NDIM size arguments following OUTREC, where NDIM is the number of dimensions. Each of
-these arguments must be an integer greater than or equal to one.
+The next parameter, ndimx, is the number of dimensions of the blocked record that will be simultaneously accessible. If
+ndimx is omitted RNMR will not prompt for it and will use the number of dimensions regardless of the value of ndimx in
+the source record. The final parameter, nsega, is the number of segments to allocate in the records. If nsega is not
+specified RNMR will not prompt for it and will allocate 1 segment regardless of the value of nsega in the source record.
 
-NDIMX is the number of simultaneously accessible dimensions for the allocated copy OUTREC.  See the description of the
-command `ALLB` for more information.  If this parameter is not specified, only one dimension of the resulting record may
-be accessed at a time, i.e. NDIMX always defaults to 1, regardless of its value in the source record INREC. Once record
-OUTREC has been allocated, it is impossible to reset its NDIMX value.  If NDIMX is specified, it must be an integer
-between 1 and NDIM inclusive, where NDIM is the number of dimensions.
-
-NSEGA is the number of aquisition segments. If NSEGA is not specified RNMR will not prompt for a value and it will
-default to 1.
-
-If the physical size of the data file \*DATA.DAT must be increased to allocate the requested record, RNMR will write a
-message to the screen reporting the new, extended size in blocks (512 bytes = 1 block).
-
-If the allocation is successful and no record
-number (or record number "0") was specified, RNMR will return the record number for the allocated blocked record in an
-informational message.  After a successful allocation, the current record pointer will be updated.  Thus, `PTRA` may be
-used to check which record was just allocated.
+In order for a blocked record to be successfully allocated there must be enough space in the archive (as displayed by
+`SP`).
 ## AMD
 Set acquisition modes
 
