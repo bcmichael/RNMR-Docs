@@ -40,11 +40,10 @@ Format: `AI` sfa
 Defaults: current
 
 Description:
-`AI` scales data in the visible processing buffer (buffer 1) to make the scale factor equal to a specified absolute
-scale factor. This absolute scale factor, "sfa", is a floating point number greater than 0. If sfa is equal to the
-buffer scale factor, `AI` does nothing.  If sfa is not equal to the buffer scale factor, the buffer data is scaled by
-sfa/(buffer_sf) and the current scale factor, buffer scale factor, and display are updated. If the sfa parameter is
-omitted, `AI` will scale to the current absolute scale factor.
+`AI` scales data in the visible processing buffer to make the scale factor equal to a specified absolute scale factor,
+sfa. If sfa is omitted RNMR will not prompt for it and will use the current absolute scale factor (as set and displayed
+by `AK`). The scale factor must be greater than 0.0. The absolute scale factor (as set and displayed by `AK`) will also
+be updated to the value of sfa.
 ## AK
 Set absolute scale factor
 
