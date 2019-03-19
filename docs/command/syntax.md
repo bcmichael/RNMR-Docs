@@ -56,3 +56,29 @@ records can only accept one of these types of records. The first four records in
 are meant as a temporary place to keep data while working with it. The other record numbers (5-200) may hold either
 archive records or blocked records. An archive record stores a single one dimensional data set. A blocked record is a
 multi dimensional set of blocks that can each store a one dimensional data set.
+
+# Blocked Records
+Blocked records store multi dimensional data sets as a collection of blocks that each hold a one dimensional data set.
+Blocked records must be allocated (by commands such as `ALLB` and `ALLCPY`) before data can be stored in them. A blocked
+record may have up to four dimensions. The size of each dimension is set at the time that the blocked record is
+allocated. Space within the archive file is also reserved when a blocked record is allocated. Space is reserved in
+blocks of 512 bytes each. Therefore the allocated space may exceed the actual amount of data.
+
+The layout of the blocked record in the archive file depends upon the parameter NDIMX which determines the dimensions in
+which RNMR will be able to access the data in the blocked record. If NDIMX is 1 (the typical default) RNMR will only be
+able to access the data along the first dimension. The data will be stored in sequential order as one dimensional
+blocks. If NDIMX is 2 RNMR will be able to access data along the first two dimensions and will store the data in square
+blocks. The trend continues for larger values of NDIMX. The value of NDIMX cannot be changed after the record is
+allocated. Commands which must access data from a blocked along a particular dimension will fail if the value of NDIMX
+for that record is not large enough.
+
+When RNMR commands need to access some number of dimensions in a blocked record they access the first directions of the
+record. These directions are not necessarily the first dimensions of the record. The mapping of directions to dimensions
+is set by `DIRB`. This mapping is set separately for each possible dimensionality. When RNMR commands access some number
+of directions they will access a n-dimensional slice of the record. They will generally take an argument to indicate
+which slice. If the record has the same number of dimensions as are being accessed this slice must be 1. Otherwise the
+slice parameter is interpreted as a linear index along the other directions.
+
+Blocked records may have multiple segments. These segments are typically used to store the different channels of the
+hypercomplex acquisition used for multi-dimensional spectra. When loading data from or saving data to a blocked record
+a particular segment can be selected by appending a period and the segment number to the record number.
