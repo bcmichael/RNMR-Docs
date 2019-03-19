@@ -1535,14 +1535,14 @@ Category: Macro
 
 Format: `CRTMAC` nam
 
-Qualifiers: /END=<end\>
+Qualifiers: /END=<end\> /TTY
 
 Qualifier Defaults: /END=''
 
 Defaults: temp
 
 Description:
-`CRTMAC` creates a macro with the name nam. /END sets a string which marks the end of what is to be written to the macro.
+`CRTMAC` creates a macro with name nam. /END sets a string which marks the end of what is to be written to the macro.
 `CRTMAC` behaves slightly differently if called at the command line or in a macro. At the command line if no name is
 specified RNMR will prompt for a name with temp as a default. If the macro does not already exist and RNMR succeeds
 in creating it, RNMR will pop up a window where text can be entered to write to the macro. Otherwise an error will be
@@ -1551,9 +1551,9 @@ thrown.
 When called from a macro `CRTMAC` will not prompt for a macro name. The lines to be written should be provided on the
 lines following `CRTMAC` in the macro and should start with ;;. The first line will be interpreted as a macro name if
 none is provided as an argument. `CRTMAC` will stop writing lines when it either reaches a line that matches <end\> or
-runs out of lines. /TTY will make RNMR pop up a window much like the behavior at the command line even
-when `CRTMAC` is called from a macro. RNMR will still expect the macro name to passed in the same way as when /TTY is
-not used. An example of use in a macro is given here:
+runs out of lines. /TTY will make RNMR pop up a window much like the behavior at the command line even when `CRTMAC` is
+called from a macro. RNMR will still expect the macro name to passed in the same way as when /TTY is not used. An
+example of use in a macro is given here:
 
     CRTmac TEMP
     ;;This will me in macro temp
