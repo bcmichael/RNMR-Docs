@@ -62,59 +62,31 @@ Allocate a blocked record
 
 Category: Blocked Records
 
-Format: `ALLB` rec# ndim isize(1)...isize(ndim) ndimx nsega
+Format: `ALLB` rec ndim size(1)...size(ndim) ndimx nsega
 
-Defaults: 0 2 64 ... 64 1
+Defaults: wrec 2 64 ... 64 <ndim> 1
 
 Description:
-`ALLB` allocates a blocked record for 2D to 4D records. By allocating multidimensional records in advance, the user is
-assured that there will be adequate disk space to hold all the data to be acquired.  Blocked records must be allocated
-using `ALLB`, `ALLCPY`, or `CPY` before data may be written into them. The parameter "rec#" is the record number to be
-allocated. If 0 is entered for this parameter or if the parameter is omitted form the command line, then RNMR will
-allocate the next available record and print out the record number as an informational message once the allocation is
-complete. When "rec#" is missing or 0, an error message (FNDTA ) NO AVAILABLE TITLE RECORD indicates that there are no
-more empty title records available to be allocated. If this message is encountered, the user should either delete one or
-more existing records in the current archive or create a new, empty  archive ($ CRTARC) before retrying the allocation.
-If "rec#" is specified and is not 0, the specified record must be empty (i.e. not previously allocated). Only records 5
-through 200 may be allocated with `ALLB`; scratch records (numbers 1-4) may not be allocated. The parameter NDIM
-specifies the number of dimensions. NDIM may be chosen from 1 to 4. If NDIM is not specified on the command line, RNMR
-will prompt for it with a default value of 2.
+`ALLB` allocates a [blocked record](syntax#blocked_records). By allocating multidimensional records in advance, the user
+is assured that there will be adequate disk space to hold all the data to be acquired.
 
-The parameters ISIZE(1), ISIZE(2), ISIZE(3), and ISIZE(4) give the number of points in dimensions 1 through 4,
-respectively.  For a particular choice of NDIM, RNMR expects the user to supply NDIM arguments describing the size of
-each dimension, starting with dimension 1.  If insufficiently many sizes are specified for the requested number of
-dimensions, RNMR will prompt for the missing sizes; the default size for each dimension is 64 points.  The minimum size
-that may be specified for any dimension is 1.
+The parameter rec is the [record number](syntax#records) to be allocated. If 0 is entered for this parameter or if no
+record is specified RNMR will not prompt for it and will use the write record pointer (as displayed and set by `PTRA`).
+If the specified record is already in use RNMR will use the next available record. If RNMR selects the record for either
+of the above reasons the record number will be printed as an informational message after allocation is complete.
 
-NDIMX is the number of dimensions that will be simultaneously accessible. NDIMX is an integer between 1 and NDIM,
-inclusive.  This parameter controls the manner in which the blocks of the allocated record are physically stored on
-disk.  If NDIMX is 1, data is written in sequential order, as appropriate for a one-dimensional read operation.
-However, if NDIMX is 2, data is written in 64 X 64 point blocks to facilitate simultaneous retrieval in two dimensions.
-Similarly, NDIMX values of 3 and 4 direct RNMR to store data in a manner optimized for 3 and 4 dimensional retrieval.
-If NDIMX is not specified on the command line, RNMR will prompt for its value; the default value of this parameter is
-always 1, regardless of NDIM.  Note that once a record has been allocated, it is impossible to reset  its NDIMX value.
+The parameter ndim specifies the number of dimensions and must be between 1 and 4 inclusive. If ndim is not specified
+RNMR will prompt for it with 2 as a default. `ALLB` accepts ndim arguments to set the size of the allocated record along
+each dimension. If any of these sizes are omitted RNMR will prompt for them with 64 as a default. The sizes must be
+positive integers.
 
-When NDIMX is greater than 1, data is stored physically in units of a specific size, which depends only on the value of
-NDIMX.  Since the user may allocate only an integer number of these units, RNMR will sometimes create a blocked record
-with more blocks than the number requested by the user.  For example, a request to allocate a blocked record with 5
-blocks of 4096 points each and NDIMX 1 gives `SIZEB` 2 of 5, i.e. RNMR returns exactly the number of blocks requested.
-However, if the same request is made with NDIMX 2, 8 blocks will be allocated since 8 X 4096 corresponds to the smallest
-number of storage units greater than equal to the number required.
+The next parameter, [ndimx](syntax#ndimx), is the number of dimensions of the blocked record that will be simultaneously
+accessible. If ndimx is omitted RNMR will prompt for it with ndim as a default. The final parameter,
+[nsega](syntax#nseg), is the number of segments to allocate in the records. If nsega is not specified RNMR will not
+prompt for it and will allocate 1 segment.
 
-NSEGA is the number of aquisition segments. If NSEGA is not specified RNMR will not prompt for a value and it will
-default to 1.
-
-If the physical size of the data file \*DATA.DAT must be increased to allocate the requested record, RNMR will write a
-message to the screen reporting the new, extended size in blocks (512 bytes = 1 block).  Note that the total allocated
-space occupied by an RNMR archive (including any deleted blocks that have not been squeezed) is limited to 524288 disk
-blocks (268.4 MB or 33554432 complex data points).
-
-If the allocation is successful and no record number (or record  number "0") was specified, RNMR will return the record
-number for the allocated blocked record.  After a successful allocation, the current record pointer will be updated.
-Thus, `PTRA` may be used to check which record was just allocated.
-
-See command `PARB` for establishing the parameters (e.g. time step in each dimension) of a blocked record allocated with
-`ALLB`.
+In order for a blocked record to be successfully allocated there must be enough space in the archive (as displayed by
+`SP`). The other parameters of the blocked record can be set using `PARB` or `SET REC`.
 ## ALLCPY
 Allocate a copy of a blocked record
 
