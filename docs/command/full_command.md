@@ -1389,7 +1389,8 @@ Defaults: (size+1)\*step
 Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-`COSSQ` multiplies processing buffer 1 by a cosine squared function which goes to zero at time0.
+`COSSQ` multiplies the data in the visible processing buffer by a cosine squared function which goes to zero at time0
+updating the buffer.
 ## CPXV
 Complex merge two buffers
 
