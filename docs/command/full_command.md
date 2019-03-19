@@ -1599,11 +1599,10 @@ Defaults: 2 current current current current
 
 Description:
 `CVTSZ` sets the sizes for a blocked record index conversion. The first parameter, ndim is the number of dimensions for
-the conversion. If ndim is not specified, RNMR will prompt for its value with a default value of 2. The allowed values
-of ndim are 1, 2, 3, or 4. The remaining parameters are the sizes in each of the ndim dimensions. RNMR expects to find
-ndim integers greater than or equal to 1 following ndim.  These sizes are to be entered in order of dimension, starting
-with dimension 1. If one or more of these is omitted, RNMR will prompt for its value with the current conversion size in
-the appropriate dimension as the default.
+the conversion. If ndim is not specified RNMR will prompt for its value with a default value of 2. The number of
+dimensions may be from 1 to 4 inclusive. The remaining parameters are the sizes in each of the dimensions. If one or
+more of these is omitted RNMR will prompt for its value with the current conversion size in the appropriate dimension as
+a default.
 ##CVTUNIT
 Convert a value between units
 
