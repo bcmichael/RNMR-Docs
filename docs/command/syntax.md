@@ -82,3 +82,24 @@ slice parameter is interpreted as a linear index along the other directions.
 Blocked records may have multiple segments. These segments are typically used to store the different channels of the
 hypercomplex acquisition used for multi-dimensional spectra. When loading data from or saving data to a blocked record
 a particular segment can be selected by appending a period and the segment number to the record number.
+
+# Buffers
+Data in RNMR is kept in buffers. There are two types of buffers in RNMR: acquisition and processing. The acquisition
+buffer is only available in RNMRA and holds the same values as the averager. Data will initially be in the acquisition
+buffer when it is collected and it can then be transferred to a processing buffer for further manipulation and analysis.
+There are currently four processing buffers available in RNMR. Processing buffer 1 is the visible processing buffer and
+its contents may be displayed on the screen. Many commands operate only on the visible processing buffer. Others will
+accept processing buffers as arguments. Processing buffers are specified by their indexes (1-4).
+
+Processing buffers can be divided into multiple blocks using `DBSZ`. Multiple blocks of data can be read into these
+processing buffer blocks from a blocked record. Most commands that process data will operate on all of these blocks
+independently with a single RNMR command. This approach to data processing can increase efficiency by reducing the
+overhead of interpreting RNMR commands.
+
+There are a series of commands that perform mathematical operations on the data in two processing buffers. These will
+typically have a source and destination buffer as their arguments. The operation is performed on the data from the two
+buffers and the result is stored in the destination buffer. For these operations it is required that the two records
+have the same active size and domain. They are not required to be partitioned into the same number of blocks. RNMR uses
+the following formula to match source and destination blocks.
+
+    SRC_BLCK = MOD(DTS_BLCK-1, NBLK_SRC)+1
