@@ -1611,7 +1611,9 @@ Category: Data Manipulation
 Format: `CVTUNIT` srcunit dstunit val
 
 Description:
-`CVTUNIT` converts val from srcunit to dstunit.
+`CVTUNIT` converts a value from srcunit to dstunit. If either unit is omitted RNMR will prompt for it with the current
+unit of the visible processing buffer as a default. Both units must be the same domain. If no value is specified RNMR
+will prompt for it with 0.0 as a default. The result of the conversion is printed as an informational message.
 # D
 ---
 ## D
