@@ -1518,15 +1518,16 @@ Text written when `CRTFIL` is called from a macro will be all caps regardless of
 ## CRTLST
 Create list
 
-Category: List Handling
+Category: Lists
 
 Format: `CRTLST` nam maxval
 
 Defaults: temp 32
 
 Description:
-`CRTLST` creates a new list named nam that can hold a maximum of maxval entries. RNMR will prompt for nam and maxval if
-they are not provided. If a list with the same name already exists `CRTLST` will error.
+`CRTLST` creates a new list named nam that can hold a maximum of maxval entries. If no name is specified RNMR will
+prompt for it with temp as a default. If no max size is specified RNMR will prompt for it with 32 as a default. If a
+list with the same name already exists `CRTLST` will error.
 ## CRTMAC
 Create macro
 
