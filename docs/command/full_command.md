@@ -1327,7 +1327,8 @@ Qualifier defaults: /REAL
 Defaults: current current current
 
 Description:
-`COLOR` sets the color of elements of the display. /BG sets the color of the background and /CURSOR sets the color of all cursors. /REAL and /IMAG set the color of the real and imaginary data respectively.
+`COLOR` sets the color of elements of the display. /BG sets the color of the background and /CURSOR sets the color of
+all cursors. /REAL and /IMAG set the color of the real and imaginary data respectively.
 
 The red/green/blue values may each range from 0 to 100. That is, to specify pure red, use 100 0 0.
 
