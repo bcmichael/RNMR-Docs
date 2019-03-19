@@ -197,7 +197,7 @@ Text written by `APNFIL` will be all caps regardless of the capitalization provi
 ## APNLST
 Append values to list
 
-Category: List Handling
+Category: Lists
 
 Format: `APNLST` nam
 
@@ -208,16 +208,17 @@ Qualifier Defaults: /END=''
 Defaults: temp
 
 Description:
-`APNLST` appends lines list specified by nam. /END sets a string which marks the end of what is to be appended. If no list is specified RNMR will prompt for a list name with a default of temp. The list must already exist or an error will be thrown. A list can be created using `CRTLST` if needed.
-`APNLST` behaves slightly differently if called at the command line or in a macro. At the command line
+`APNLST` appends lines to a list specified by nam. /END sets a string which marks the end of what is to be appended. If
+no list is specified RNMR will prompt for a list name with a default of temp. The list must already have been created
+using `CRTLST`. `APNLST` behaves slightly differently if called at the command line or in a macro. At the command line
 RNMR will prompt for a line to append to the list with a default of <end\>. Otherwise an error will be thrown. RNMR
 will continue to prompt for lines until a line is entered which matches <end\>. By default <end\> is an empty string and
 `APNLST` will end if an empty line is provided.
 
-When called from a macro `APNLST` will not prompt for a line to append unless the /TTY qualifier is used. Instead the lines to be appended should be provided on the
-lines following `APNLST` in the macro and should start with ;;. `APNLST` will stop appending lines when it either reaches a line that matches <end\> or
-runs out of lines. /TTY will make RNMR prompt for the lines to enter much like the behavior at the command line even
-when `APNLST` is called from a macro.
+When called from a macro `APNLST` will not prompt for a line to append unless the /TTY qualifier is used. Instead the
+lines to be appended should be provided on the lines following `APNLST` in the macro and should start with ;;. `APNLST`
+will stop appending lines when it either reaches a line that matches <end\> or runs out of lines. /TTY will make RNMR
+prompt for the lines to enter much like the behavior at the command line even when `APNLST` is called from a macro.
 used. An example of use in a macro is given here:
 
     APNLST TEMP
