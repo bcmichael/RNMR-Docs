@@ -1653,7 +1653,7 @@ Qualifier | Information
 
 By default `DATE` prints the date and time of day.
 ## DBSZ
-Set data buffer size and partitioning
+Set processing buffer partitioning
 
 Category: Misc.
 
@@ -1662,32 +1662,17 @@ Format: `DBSZ` buf size nblk
 Defaults: 1 current current
 
 Description:
-`DBSZ` sets the allocated size and partitioning of a processing data buffer. Each processing buffer may be partitioned
-into multiple blocks of equal size such that the total number of data points in all blocks does not exceed 32768. By
-partitioning the data buffer into two or more segments, multiple data sets may be similarly processed using a single
-RNMR command. This "vector processing" capability allows multidimensional processing to be performed many blocks at a
-time at a considerable savings in computation time due to the reduction in the number of commands that must be
-interpreted by RNMR.
+`DBSZ` sets up the partitioning of a [processing buffer](syntax#buffers) into blocks. The number of blocks and the block
+size for the specified buffer will be set. This allows loading and processing multiple data sets in the processing
+buffer at once. This can reduce the overhead from interpreting RNMR commands when processing a large number of data
+sets. The buffer will be zeroed after it is partitioned.
 
-The first parameter, buf selects which data buffer is to be resized.  If this parameter is omitted, RNMR will prompt
-for its value with a default of 1. The allowable values of buf are 1 and 2, thus `DBSZ` can resize only the two
-processing buffers. Note that buffer 1 is the visible processing buffer.
-
-The second parameter, size sets the allocated size for each block of buffer buf. If this parameter is omitted, RNMR will
-prompt for its value with the current allocated size as the default.  The user may enter any integer from 0 to 32768 for
-size; a size value of 0 is interpreted as 32768, the maximum permissible data buffer size.
-
-The last parameter, nblk sets the number of blocks into which data buffer pro is to be divided. If this parameter is
-omitted, RNMR will prompt for the number of blocks with the current nblk as the default. The user may enter any positive
-integer including zero for nblk. A value of zero for this parameter requests that NBLK be set to 32768/SIZE, which gives
-the maximum possible number of data blocks for a given choice of size. If both size and nblk are set to zero
-(`DBSZ * 0 0`), then the appropriate data buffer is partitioned into one block of allocated size 32768. If no
-modifications were made to size or nblk, `DBSZ` does nothing. Otherwise, RNMR verifies that SIZE X NBLK does not exceed
-the maximum data buffer size of 32768. Once either the size or number of blocks of the selected data buffer has been
-modified, the active size of the buffer is set to its allocated size and the active number of blocks is set to 1. Later
-on, the active size may be decreased below the allocated size and the number of blocks may be increased. After the size
-and partitioning have been modified, the data buffer is filled with zeroes. If the selected processing buffer buf is
-currently visible, `DBSZ` updates the display.
+If no buffer is specified RNMR will prompt for it with 1 (the visible processing buffer) as a default. If the size or
+number of blocks is omitted RNMR will prompt for them with their current values. If the specified size is not a power of
+two the actual block size will be the next power of 2. The total combined size of all of the blocks must not exceed the
+maximum buffer size of 32768. If the size is set to 0 RNMR will use the maximum possible block size of 32768. If the
+number of blocks is set to 0 RNMR will use the largest possible number of blocks such that the total size does not
+exceed the maximum buffer size.
 ## DCDB
 Convert block indices to values
 
