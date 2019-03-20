@@ -1680,22 +1680,25 @@ Category: Misc.
 
 Format: `DCDB` rec ndim ind
 
-Defaults: last_read 1 1
+Defaults: rrec 1 1
 
 Description:
-`DCDB` decodes a linear block index ind into a vector of actual values associated with each dimension of the blocked
-record. The conversion uses information about the block layout of a record rec which defaults to the last record that
-was read. For example when used on a dataset from a multi dimensional experiment stored as a blocked record, `DCDB` will
-convert a linear block index into indirect dimension time values.
+`DCDB` decodes a linear block index ind into a vector of actual values representing positions in each dimension of a
+[blocked record](syntax#blocked_records). The conversion uses information about the block layout of a record to perform
+this conversion. If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record
+pointer (as displayed and set by `PTRA`) as a default. For example when used on a dataset from a multi dimensional
+experiment stored as a blocked record, `DCDB` will convert a linear block index into indirect dimension time values.
 
-The value of ndim must not exceed the number of block dimensions. For a 2D dataset this would be 1 for a 3D it would be
-2 etc. ndim specifies how many dimensions are accounted for before the linear index. For example in a 3D data set ndim
-set to 1 will indicate that only the direct dimension is already accounted for and the linear index is over the last two
-dimensions. The result will be two values corresponding to the position of the other two dimensions. A value of 2 on the
-other hand would consider the linear index to only be over the final dimension and only one value will be printed.
+The second parameter, ndim, specifies how many dimensions are accounted for before the linear index. For example in a 3D
+data set ndim set to 1 will indicate that only the direct dimension is already accounted for and the linear index is
+over the last two dimensions. The result will be two values corresponding to the positions in the other two dimensions.
+A value of 2 on the other hand would consider the linear index to only be over the final dimension and only one value
+will be printed. If ndim is omitted RNMR will prompt for it with 1 as a default. The value of ndim must be greater than
+0 and less than the number of dimensions in the blocked record.
 
-The value of ind must not exceed the product of the sizes of the dimensions that the linear index is over. For example
-in a 3D data set with 32X64 blocks ind can be up to 2048 when ndim is 1 but only up to 64 if ndim is 2.
+If no index is specified RNMR will prompt for it with 1 as a default. The value of ind must not exceed the product of
+the sizes of the dimensions that the linear index is over. For example in a 3D data set with 32X64 blocks ind can be up
+to 2048 when ndim is 1 but only up to 64 if ndim is 2.
 ## DCDBP
 Convert linear block index to vector indices
 
@@ -1706,17 +1709,21 @@ Format: `DCDBP` rec ndim ind
 Defaults: last_read 1 1
 
 Description:
-`DCDBP` converts a linear block index ind into a vector of indices for each block dimension. The conversion uses
-information about the block layout of a record rec which defaults to the last record that was read.
+`DCDBP` converts a linear block index ind into a vector of individual indices representing each blocked dimension in a
+[blocked record](syntax#blocked_records). The conversion uses information about the block layout of a record to perform
+this conversion. If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record
+pointer (as displayed and set by `PTRA`) as a default.
 
-The value of ndim must not exceed the number of block dimensions. For a 2D dataset this would be 1 for a 3D it would be
-2 etc. ndim specifies how many dimensions are accounted for before the linear index. For example in a 3D data set ndim
-set to 1 will indicate that only the direct dimension is already accounted for and the linear index is over the last two
-dimensions. The result will be two values corresponding to the position of the other two dimensions. A value of 2 on the
-other hand would consider the linear index to only be over the final dimension and only one value will be printed.
+The second parameter, ndim, specifies how many dimensions are accounted for before the linear index. For example in a 3D
+data set ndim set to 1 will indicate that only the direct dimension is already accounted for and the linear index is
+over the last two dimensions. The result will be two values corresponding to the indexes in the other two dimensions. A
+value of 2 on the other hand would consider the linear index to only be over the final dimension and only one index will
+be printed. If ndim is omitted RNMR will prompt for it with 1 as a default. The value of ndim must be greater than 0 and
+less than the number of dimensions in the blocked record.
 
-The value of ind must not exceed the product of the sizes of the dimensions that the linear index is over. For example
-in a 3D data set with 32X64 blocks ind can be up to 2048 when ndim is 1 but only up to 64 if ndim is 2.
+If no index is specified RNMR will prompt for it with 1 as a default. The value of ind must not exceed the product of
+the sizes of the dimensions that the linear index is over. For example in a 3D data set with 32X64 blocks ind can be up
+to 2048 when ndim is 1 but only up to 64 if ndim is 2.
 ## DCDREC
 Convert record number into archive and archive record index
 
