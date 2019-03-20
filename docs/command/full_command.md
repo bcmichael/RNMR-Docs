@@ -1734,10 +1734,8 @@ Format: `DCDREC` rec
 Defaults: 1
 
 Description:
-`DCDREC` accepts a record rec as an argument. It then prints the archive number that that record is in and the index of
-the record within that archive. Since record numbers in archives other than 1 are represented by adding 200 for each
-archive this can be a useful conversion back to just the archive and record number. For example if rec is 205 it will
-print that the archive is 2 and the record index is 5.
+`DCDREC` prints the [archive](syntax#archives) and [record number](syntax#records) within that archive of a specified
+record. If no record is specified RNMR will prompt for it with 1 as a default.
 ## DCL
 Execute a shell command in background
 
