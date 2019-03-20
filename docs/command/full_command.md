@@ -1787,25 +1787,8 @@ Format: `DF`
 Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
-`DF` differentiates data in the visible processing buffer (buffer 1). While the user is not required to view the
-processing buffer in order to use `DF`, `DF` acts only on that buffer. Differentiation of a spectrum is often useful in
+`DF` differentiates the data in the visible processing buffer. Differentiation of a spectrum is often useful in
 resolving subtle features on broad lines since inflection points on the source spectrum become peaks in its derivative.
-If the processing buffer is partitioned into two or more blocks, `DF` differentiates each block independently. If the
-active size of each block in the processing buffer is 0 or 1, `DF` does nothing.
-
-Differentiation replaces data points in each block of the processing buffer as shown below:
-
-         	I(1) = Io(1)
-         	I(2) = Io(3) - Io(2)
-         	I(3) = (Io(4) - Io(2))/2
-         	I(4) = (Io(5) - Io(3))/2
-                .
-                .                 .
-         	I(ISIZE-1) = (Io(ISIZE) - Io(ISIZE-2))/2
-         	I(ISIZE) = Io(ISIZE) - Io(ISIZE-1)
-
-where Io(i) is the original value of the ith data point and I(i) is its updated value.  If the processing buffer is
-currently visible, `DF` always updates the display.
 ## DFLGBL
 Define global argument with default value
 
