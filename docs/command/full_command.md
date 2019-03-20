@@ -1741,34 +1741,31 @@ Execute a shell command in background
 
 Category: Misc.
 
-Format: `DCL`
+Format: `DCL` cmd
+
+Defaults none
 
 Description:
 `DCL` spawns a subprocess to execute a single shell command. This command is useful for performing background tasks
- which do not require a separate terminal session. `DCL` also allows a macro to compose and execute commands
- transparently. If the `DCL` command is used at console level, RNMR will prompt the user for the command line to be
- executed. This may be any valid shell command up to 80 characters long. If the user presses <RETURN\> when prompted for
- a command, no subprocess is created and the console prompt is returned. If `DCL` is used from within a macro, RNMR
- expects the command to be delimited by two semicolons on the line following `DCL`. The entire line after ;; constitutes
- the command string, as illustrated below:
+which do not require a separate terminal session. `DCL` also allows a macro to compose and execute commands
+transparently.
+
+When `DCL` command is used at console level and the command is omitted RNMR will prompt for it with no default. When
+`DCL` is used from within a macro RNMR expects the command to be delimited by two semicolons on the line following
+`DCL`. The entire line after ;; constitutes the command string, as illustrated below:
 
     DCL
     ;;CP XYZ.DAT NEW_NAME.DAT
 
-If the double semicolon delimiter ;; is not found on the line after `DCL`, or if there are no characters on the line
-following ;;, `DCL` does nothing and the macro execution continues. The command line may contain local and global
-argument substitutions, e.g.
+If no command is entered when prompted for, the double semicolon delimiter ;; is not found on the line after `DCL`, or
+there are no characters on the line following ;;, `DCL` does not spawn a subprocess and does nothing.
 
-    DCL
-    ;;SOME_COMMAND &ABC %XYZ
-
-The local and global arguments specified will be evaluated and filled in before the command line is passed to `DCL`.
 The subprocess created by `DCL` is unable to either read from or write to the terminal. Consequently, any attempt by the
 spawned process to read from the terminal will result in an immediate end of file during read condition, and any data
 directed to the terminal will be lost. While the subprocess is executing the specified command, no new RNMR commands may
 be entered. During execution, <CTRL-Z\> may not be used to cancel the subprocess, but any acquisition in progress
-continues without interruption.  If the subprocess exits on error, RNMR will display an error message indicating the
-error condition returned.  If `DCL` was called from within a macro, the current macro error handler (as set by `ONERR`)
+continues without interruption. If the subprocess exits on error, RNMR will display an error message indicating the
+error condition returned. If `DCL` was called from within a macro, the current macro error handler (as set by `ONERR`)
 is executed.
 ## DEPAKE
 Perform depaking of powder pattern spectrum
