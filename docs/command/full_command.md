@@ -1800,7 +1800,7 @@ Qualifiers: /FLT /INT /NDEC /STR
 
 Qualifier Defaults: /NDEC=1 /STR
 
-Defaults: temp '' none
+Defaults: temp none none
 
 Description:
 If a global argument with name nam already exists `DFLGBL` will do nothing, otherwise it will create a global argument
@@ -1833,7 +1833,7 @@ Qualifiers: /FLT /INT /NDEC /STR
 
 Qualifier Defaults: /NDEC=1 /STR
 
-Defaults: temp '' none
+Defaults: temp none none
 
 Description:
 If a local argument with name nam already exists `DFLLCL` will do nothing, otherwise it will create a local argument
@@ -1881,7 +1881,7 @@ Qualifiers: /FLT /INT /NDEC /STR
 
 Qualifier Defaults: /NDEC=1 /STR
 
-Defaults: temp temp '' none
+Defaults: temp temp none none
 
 Description:
 If name table tbl already has an argument with name nam `DFLTBL` will do nothing, otherwise it will create an argument
