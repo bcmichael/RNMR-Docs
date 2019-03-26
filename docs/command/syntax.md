@@ -133,3 +133,18 @@ first and last acquisition groups to acquire. The groups are specified as a line
 example in a 2D experiment with two blocks for two steps of hypercomplex acquisition group 3 refers to the first block
 of the second indirect dimension time step. If the last group is set to 0 only the first group will be run.
 
+<a name="signals"></a>
+When acquiring multiple acquisition groups RNMR will pause at certain steps in the acquisition process and use signals
+to indicate what step of the process it is at. These signals can also indicate that certain actions should be taken.
+Once the signal is acknowledged by `ASIG` acquisition will proceed. The following signals are used:
+
+Signal | Meaning
+------ | -------
+GAV    | Indicates a slice is ready to be read from the averager and written to a blocked record
+SAV    | Indicates a slice is ready to be read from a blocked record and written to the averager for further averaging
+SGO    | Indicates that acquisition is ready to begin for a slice
+
+The SAV signal will only be used by `GO` and `NG` as only they are used for doing additional averaging on existing data.
+The appropriate data should be read from a (typically blocked) record and sent to the averager with `SAV` before this
+signal is acknowledged. Likewise data should be fetched from the averager with `GAV` to save to a (typically blocked)
+record before the GAV signal is acknowledged.

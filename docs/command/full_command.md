@@ -299,17 +299,10 @@ Defaults: temp
 Prerequisites: RNMRA only
 
 Description:
-Signals are events that occur asynchronously to the macro execution. They are only present in RNMRA. Signals are
-primarily used for multi dimensional acquisition. `ASIG` acknowledges a signal and resets it. If no signal is specified
-RNMR will prompt for it with a default of temp. The following signals are available:
-
-Signal | Meaning
------- | -------
-GAV    | Indicates a slice is ready to be read from the averager and written to a blocked record
-SAV    | Indicates a slice is ready to be read from a blocked record and written to the averager for further averaging
-SGO    | Indicates that acquisition has begun for the slice
-
-A particular signal can also be tested for using `TST SIG`.
+`ASIG` acknowledges and resets a [signal](syntax#signals). Signals occur asynchronously to macro execution during
+acquisition and are primarily used for multi dimensional acquisition. If no signal is specified RNMR will prompt for it
+with a default of temp. The specified signal must have been sent in order to acknowledge it. The presence of a signal
+can be tested for using `TST SIG`.
 ## ASKYN
 Ask yes or no
 
