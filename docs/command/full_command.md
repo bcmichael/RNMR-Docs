@@ -5495,11 +5495,15 @@ Description:
 will prompt for it with the current time unit as a default. If ndec is omitted RNMR will prompt for it with the current
 value as a default.
 ## NDLY
-Set number of shots to discard
+Set number of dummy scans
 
 Category: Acquisition
 
 Format: `NDLY` ndly
+
+Qualifiers: /FIRST
+
+Qualifier Defaults: none
 
 Defaults: current
 
@@ -5507,7 +5511,9 @@ Prerequisites: RNMRA only
 
 Description:
 `NDLY` sets the number of dummy scans to run before starting acquisition. If ndly is omitted RNMR will prompt for it
-with the current value as a default.
+with the current value as a default. The /FIRST qualifier allows for setting up a different number of dummy scans to be
+used for the first [acquisition group](syntax#acqgrp) collected by a given acquisition command. This /FIRST number of
+dummy scans is only used when multiple groups are to be collected by an acquisition command.
 ## NDSP
 Set number of shots between display update
 
