@@ -1976,6 +1976,32 @@ Description:
 `DFNLST` sets the value at position pos in list nam. If nam is not provided RNMR will prompt for it with a default of
 temp. If pos is not provided RNMR will prompt for it with a default of 1. If val is not provided RNMR will prompt for it
 with the current value at position pos in list nam as the default.
+## DFNMAC
+Define macro table entry
+
+Category: Macro
+
+Format: `DFNMAC` nam eqvnam
+
+Qualifiers: /FORCE /SYS /USR
+
+Qualifier Defaults: none
+
+Defaults: temp none
+
+Description:
+`DFNMAC` defines an entry in the macro table. The parameter nam specifies the name of the macro. If nam is omitted RNMR
+will prompt for it with temp as a default. The parameter eqvnam sets an equivalence name used for looking up the macro
+file. The first time a macro is used in an RNMR session it is loaded from a file. When loading the macro RNMR will
+search for a file as if it were named eqvnam. /FORCE purges the macro entry for nam if it already exists and then
+defines a new entry in its place. This will force RNMR to reload the macro from its file. This makes any changes made to
+the macro file by an external text editor available to RNMR.
+
+/SYS and /USR can be used to manually set whether the macro is a system or user macro. If neither of these qualifiers is
+used RNMR will first search for the macro file in the user macro folders. If the file is found the macro is a user
+macro; otherwise it is a system macro. Note that `DFNMAC` does not actually search the system macro folders. No search
+for the file occurs if the type is specified manually. Thus if the file does not exist an error will not occur until the
+first time the macro is called.
 ## DFNSYM
 Define symbol
 
