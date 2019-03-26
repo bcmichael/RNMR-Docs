@@ -108,3 +108,28 @@ have the same active size and domain. They are not required to be partitioned in
 the following formula to match source and destination blocks.
 
     SRC_BLCK = MOD(DTS_BLCK-1, NBLK_SRC)+1
+
+# Acquisition
+RNMR has several commands that start the collection and averaging of data: `DG`, `GO`, `NG`, and `ZG`. There are two
+parameters that determine the number of shots these acquisition commands will average: na (as displayed and set by `NA`)
+and nwait (as displayed and set by `NWAIT`). If the acquisition command is called from the console or nwait is 0 the
+number of shots will be based on na. If na is -1 an indefinite number of shots will be performed until the acquisition
+is halted manually by `QUIT`. Otherwise shots will be acquired until the shot counter reaches na. If the acquisition
+command is called from a macro and nwait is not 0 then shots will be acquired until the shot counter reaches either the
+next integer multiple of nwait or na (if it is not -1) whichever is smaller. The shot counter is visible in the top
+right corner of the display and is incremented by every shot. Dummy scans will be indicated by negative numbers while
+averaged shots will be indicated with positive numbers.
+
+<a name="acqgrp"></a>
+Acquisition using these commands can consist of multiple acquisition groups. These acquisition groups are primarily used
+when running multi-dimensional experiments. Each one corresponds to a separately averaged one dimensional slice within
+the larger experiment. When iterating through all of the necessary acquisition groups RNMR first iterates through each
+block of acquisition (the number of these being displayed and set by `NAMD /BLCK`) using the phase shifts set up by
+`AMD /BLCK` and `PPMD /BLCK`. These blocks are typically used to set up the steps of hypercomplex acquisition. After all
+the blocks are performed RNMR returns to the beginning of the sequence of blocks and increments the time step in the
+first indirect dimension. Once the maximum time in the first indirect dimension is reached it is set back to the first
+time step and the next indirect dimension is incremented etc. The acquisition commands all accept two arguments: the
+first and last acquisition groups to acquire. The groups are specified as a linear index into this whole process. For
+example in a 2D experiment with two blocks for two steps of hypercomplex acquisition group 3 refers to the first block
+of the second indirect dimension time step. If the last group is set to 0 only the first group will be run.
+

@@ -2048,44 +2048,20 @@ Start acquisition with delay shots
 
 Category: Acquisition
 
-Format: `DG` ndly na
+Format: `DG` first_group last_group
 
-Defaults: current current
+Defaults: 1 0
 
-Prerequisites: Acquisition must be stopped (LOAD and HALT); RNMR only.
+Prerequisites: Experiment loaded (LOAD); Acquisition stopped (HALT); RNMRA only
 
 Description:
-`DG` starts acquisition after `NDLY` dummy shots.  By starting the averaging of FID's after one or more dummy shots, the
-initial magnetization is allowed to come to an equilibrium value before data is acquired.  When the pulse cycle
-repetition is significantly faster than the longest relaxation time in the sample, the first several shots will show a
-fluctuation due to saturation.  With sufficiently many dummy shots, the initial FID intensity comes to some equilibrium
-value, so succeeding shots will start with a stable initial magnetization.
+`DG` zeroes the averager and shot counter then [starts acquisition](syntax#acquisition) with dummy scans. The dummy
+scans allow the initial magnetization to reach an equilibrium based on relaxation rates and the recycle delay before
+averaging begins. The number of dummy scans is set by `NDLY`.
 
-The first parameter of the `DG` command, "ndly" is the number of dummy shots to take before beginning signal averaging.
-If this parameter is omitted, the current number of dummy shots (as displayed and set by `NDLY`) will be taken. RNMR
-does not prompt for "ndly".  The legal values of "ndly" are the positive integers including zero.
-
-The second parameter, "na" specifies the number of shots that will be taken with signal averaging.  Once "na" shots have
-been taken, acquisition will stop automatically.  Before "na" shots have been taken, the user may stop acquisition
-manually using the `QUIT` command.  If "na" is omitted from the command line, the current number of averaged shots (as
-displayed and set by `NA`) will be taken.  RNMR does not prompt for "na".  The legal values of "na" are -1 and positive
-integers excluding zero.  If "na" is -1, there will be no automatic limit to the number of shots taken, i.e. acquisition
-will continue until halted by `QUIT` or `WAIT`.
-
-`DG` always zeroes the acquisition buffer (averager) and shot counter.  If the acquisition buffer is currently visible,
-then `DG` updates the display.  The acquisition parameters `NA` and `NDLY` are updated with the values specified for
-"na" and "ndly" on the command line, if any.  The new settings override any values specified previously with the `NA`
-and `NDLY` commands.
-
-The number of averaged shots that will be taken is always `NA` if `DG` is executed at console level.  However, if `DG`
-is called from a macro, either `NWAIT` or `NA` shots will be taken, whichever is smaller.  If `NWAIT` is 0, then `NA`
-will determine the number of shots taken from a macro, and similarly, `NWAIT` shots will be taken if `NA` is -1 and
-`NWAIT` is nonzero.
-
-Once acquisition is started, each shot will increment the shot indicator in the upper right hand corner of the display.
-If the acquisition block is visible, the current sum of FID's will be updated on the screen every two seconds or once
-per shot, whichever is slower.  Note that the shot indicator counts off dummy shots with negative integers starting with
--1 and decreasing, while averaged shots are counted off with positive integers starting with 1.
+The arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
+parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
+0 then only first_group will be acquired.
 ## DIRB
 Set blocked record access sequence
 
@@ -3339,48 +3315,21 @@ Start or resume acquisition
 
 Category: Acquisition
 
-Format: `GO` na
+Format: `GO` first_group last_group
 
-Defaults: current
+Defaults: 1 0
 
-Prerequisites: (LOAD) by `EX`; the acquisition must be stopped (HALT); RNMRA only.
+Prerequisites: Experiment loaded (LOAD); Acquisition stopped (HALT); RNMRA only
 
 Description:
-`GO` instructs RNMR to continue acquisition after acquisition has been stopped by `QUIT`. Continuing shots will be
-added to the current averager memory and the shot counter will be incremented upward from its current value.
+`GO` [starts acquisition](syntax#acquisition) without zeroing the shot counter or averager and without performing dummy
+scans. This permits continued averaging of existing data. This can be used to resume acquisition that was halted. If the
+number of shots to acquire, na, (as displayed and set by `NA`) is not -1 the number of shots already acquired must be
+less than na. If the current shot counter is at 0 then `GO` will behave like `ZG` instead of its normal behavior.
 
-`GO` takes one parameter, na, which is the total number of shots to be taken. Shots already taken before `GO` count
-towards this limit. If na is omitted, the current shot limit as set and displayed by `NA` will determine how many
-additional shots will be taken; RNMR does not prompt for na.  Legal values for na are -1 and integers greater than or
-equal to 1. If na is -1, RNMR will continue acquisition with no limit to the number of shots taken; acquisition will
-continue until stopped by `QUIT` or `WAIT`. Before resuming acquisition, RNMR checks that the number of shots already
-taken is less than the requested shot limit specified by the `NA` command or the na parameter of `GO`. Unless `NA` or na
-is -1, acquisition will not be started if this condition is not satisfied. If na is specified and is greater than the
-current number of shots completed, RNMR will replace the current shot limit with na. When acquisition is continued with
-`GO`, no delay shots are taken even if `NDLY` is greater than zero. To continue acquisition with one or more delay
-shots, use the command `NG`. Unless no shots have been taken yet, `GO` will continue acquisition until `NA` shots have
-been completed, regardless of whether `GO` is executed from console ("\>") level or from a macro; this is unlike the
-behavior of `DG`.
-
-If `GO` is used to start acquisition before any shots have been completed, data will be acquired until `NA` averaged
-shots are complete if `GO` is executed from console level. If `GO` is called from a macro in this situation, acquisition
-will continue until `NWAIT` or `NA` shots have been taken, whichever is smaller. If `NWAIT` is 0, then `NA` will
-determine the number of shots taken from a macro, and similarly, `NWAIT` shots will be taken if `NA` is -1 and `NWAIT`
-is nonzero. In summary, if no shots have been taken, `GO` acts like `ZG` except that neither the averager nor the
-acquisition title parameters nor the display is initialized by `GO`. `GO` resets the following averager parameters
-to their current settings in RNMR:
-
-Parameter | Description
---------- | -----------
-`NABLK`   | Number of averager blocks (logical avg. memory partitions)
-`NAMD`    | Length of phase cycle
-`NDLY`    | Number of dummy shots to take on `DG` or `NG`
-`NDSP`    | Number of shots to take for each display update
-
-Before acquisition is resumed, `GO` also resets the frequency table pointer for each synthesizer so that frequencies
-will be generated starting with the first table entry. Once acquisition is restarted, each shot will increment the shot
-indicator in the upper right hand corner of the display. If the acquisition block is visible, the current sum of FID's
-will be updated on the screen every two seconds or once per shot, whichever is slower.
+The arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
+parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
+0 then only first_group will be acquired.
 ## GOSUB
 Perform call within macro
 
@@ -5590,19 +5539,27 @@ Format: `NEG`
 Description:
 `NEG` replaces the contents of the visible processing buffer with itself multiplied by -1.
 ## NG
-Continue acquisition
+Start or resume acquisition with dummy scans
 
 Category: Acquisition
 
-Format: `NG` ndly na
+Format: `NG` first_group last_group
 
-Defaults: current current
+Defaults: 1 0
 
-Prerequisites: (LOAD) by `EX`; the acquisition must be stopped (HALT); RNMRA only.
+Prerequisites: Experiment loaded (LOAD); Acquisition stopped (HALT); RNMRA only
 
 Description:
-`NG` continues an experiment much like `GO` but performs dummy scans. If either ndly or na is omitted RNMR will use the
-stored values to determine the number of dummy scans/the scan limit respectively without prompting for values.
+`NG` [starts acquisition](syntax#acquisition) without zeroing the shot counter or averager with dummy scans. This
+permits continued averaging of existing data. This can be used to resume acquisition that was halted. The dummy scans
+allow the initial magnetization to reach an equilibrium based on relaxation rates and the recycle delay before averaging
+begins. The number of dummy scans is set by `NDLY`. If the number of shots to acquire, na, (as displayed and set by
+`NA`) is not -1 the number of shots already acquired must be less than na. If the current shot counter is at 0 then `NG`
+will behave like `DG` instead of its normal behavior.
+
+The arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
+parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
+0 then only first_group will be acquired.
 ## NOISE
 Generate complex random noise
 
@@ -7458,10 +7415,11 @@ Category: Acquisition
 
 Format: `SG`
 
-Prerequisites: Experiment loaded (LOAD); Acquisition  stopped (HALT); RNMRA only
+Prerequisites: Experiment loaded (LOAD); Acquisition stopped (HALT); RNMRA only
 
 Description:
-`SG` starts acquisition but does not accumulate data from multiple shots.
+`SG` starts acquisition but does not accumulate data from multiple shots. An indefinite number of scans will be
+performed until acquisition is halted manually with `QUIT`.
 ## SHELL
 Spawn shell
 
@@ -8758,20 +8716,21 @@ all of the points beyond the original data are set to zero. If size is omitted R
 power of 2 that is greater than the current data size. The current maximum size for a processing buffer is 32768, so
 size may not exceed this value.
 ## ZG
-Zero averager and begin acquisition
+Start acquisition
 
 Category: Acquisition
 
-Format: `ZG` na
+Format: `ZG` first_group last_group
 
-Defaults: current
+Defaults: 1 0
 
-Prerequisites: Acquisition stopped (HALT); Pulse program loaded (LOAD); RNMRA only
+Prerequisites: Experiment loaded (LOAD); Acquisition stopped (HALT); RNMRA only
 
 Description:
-`ZG` zeros the averager and starts acquisition without dummy scans. The parameter na sets the number of scans to
-perform. If na is omitted RNMR will not prompt for it and will use the current value as set and displayed by `NA`. If na
-is provided then the value shown by `NA` will also be updated.
+`ZG` zeroes the averager and shot counter then [starts acquisition](syntax#acquisition) without dummy scans. The
+arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
+parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
+0 then only first_group will be acquired.
 ## ZO
 Zoom
 
