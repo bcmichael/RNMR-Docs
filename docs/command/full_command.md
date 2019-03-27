@@ -2207,7 +2207,7 @@ Qualifiers: /GBL /LCL /SYM
 
 Qualifier defaults: /LCL
 
-Defaults: 1 beg none
+Defaults: 1 <beg> none
 
 Prerequisites: Macro only (MAC)
 
@@ -2220,7 +2220,8 @@ beg (i.e. one cycle will be done). If end is less than beg no pass through the `
 must be integers.
 
 Optionally, `DO` may create and increment a local argument, global argument, or symbol to store the current iteration
-count by specifying am. If nam is omitted no loop counter variable will be created Note that any modifications to this
+count by specifying nam. The type of this loop counter is selected by the qualifiers and by default it will be a local
+argument. If nam is omitted no loop counter variable will be created. Note that any modifications to this
 variable by commands between `DO` and `ENDDO` will not affect the number of repetitions.
 
 `DO` loops may be nested up to a depth of 16. Jumps out of `DO` loops are permitted, but a jump into a `DO` loop is not
