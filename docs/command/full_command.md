@@ -2108,43 +2108,22 @@ Delete records
 
 Category: Data Storage
 
-Format: `DL` first last
+Format: `DL` first-rec last-rec
 
-Defaults: iwrec none
+Defaults: wrec none
 
 Description:
-`DL` deletes all archive records by record number from first to last. Deleting records marks the appropriate title
-records and blocks of the data file (\*DATA.DAT) as available for reuse. Neither the size of the title file nor the data
-file is reduced by `DL`; in order to compress the data file by eliminating deallocated blocks, use `SQZ` (an RNMR
-command) or SQZARC (from the shell).
+`DL` deletes records from first-rec to last-rec within a single archive. `DL` takes two parameters, which are the first
+and last [record numbers](syntax#records) to be deleted. If first-rec is omitted RNMR will prompt for it with the
+current write record pointer (as displayed and set by `PTRA`) as a default. If first-rec is set to record 0 (which does
+not exist) in an archive, all of the records in that archive up to last-rec will be deleted. In this case if last-rec is
+omitted all the records in the archive are deleted. If first-rec is set to any other value and last-rec is omitted only
+that record will be deleted. The value of last-rec should be specified by the number within the archive even if it is
+not in archive 1.
 
-Since both first and last are record numbers, each must be an integer from 1 to 200, inclusive. Further, last must be
-greater than or equal to first. If first and last are equal, only one record is deleted. If first is omitted, RNMR will
-prompt for the number of the first record to be deleted with a default of the last record that was written to. However,
-if last is omitted, RNMR will not prompt for its value and only one record, first, will be deleted.
-
-For example, the command:
-
-    DL 5 20
-
-directs RNMR to mark all records from 5 to 20 for deletion, while the commands
-
-    DL 10 10
-
-and
-
-    DL 10
-
-simply delete record 10.
-
-Any records between "first" and "last" which are already empty are skipped by `DL`.  In order to delete a record, one of
-the following must be true:
-
-1.	The user owns the record to be deleted      (`USER`=OWNER).
-2.	The current user is \*SYSTEM\*.
-3.	The record to be deleted has no owner.  This means that the record has been allocated but never used.
-
-Type `CAT` to check who owns a given record.  To check who is the current user, use the command `USER`.
+Deleting records marks the appropriate title records and blocks of the data file as available for reuse. Neither the
+size of the title file nor the data file is reduced by `DL`; to compress the data file by eliminating deallocated
+blocks use `SQZ`.
 ## DLTFIL
 Delete file
 
