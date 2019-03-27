@@ -2235,7 +2235,7 @@ Set dwell time for data sampling during acquisition
 
 Category: Acquisition
 
-Format: `DW` usec
+Format: `DW` time
 
 Defaults: current
 
@@ -2243,15 +2243,14 @@ Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
 `DW` sets the dwell time for analog-to-digital conversion, in microseconds. The dwell time is defined to be the time
-per point used in digitizing the FID. This time is related to the sweep width after Fourier transformation by
-SW=1.0E+06/DW. The `DW` command takes one parameter, "usec" which is the dwell time in microseconds. If this parameter
-is omitted, RNMR will prompt for a dwell time with the current `DW` as the default. Note that although pulselengths are
-specified only to one decimal place in microseconds, dwell times are considered precise to 0.01 usec. If the user
-accepts the current dwell time (by pressing <RETURN\> at the `DW` prompt), no changes are made. Otherwise, the user must
-enter the new dwell time as a floating point number strictly greater than zero. The dwell time "usec" requested by the
-user may be adjusted by RNMR to meet certain analog-to-digital converter (ADC) restrictions. If RNMR is forced to adjust
-the dwell time from the value requested by the user, an informational message is displayed reporting the adjusted dwell
-time.
+per point used in digitizing the FID. This time is related to the sweep width after Fourier transformation by:
+
+    SW=1.0E+06/DW.
+
+If no dwell time is specified RNMR will prompt for it with the current dwell time as a default. Note that although pulse
+lengths are specified only to one decimal place in microseconds, dwell times are considered precise to 0.01 usec. The
+dwell time may be adjusted to meet certain analog-to-digital converter (ADC) restrictions. If RNMR is forced to adjust
+the dwell time, an informational message is displayed reporting the adjusted dwell time.
 
 On spectrometers with audio filters under computer control via S-bus, changing the dwell time resets the filter cutoff
 frequencies. The filter setting is identical for the real and imaginary channels. Since the filter frequencies are
@@ -2260,7 +2259,7 @@ RNMR sets the filters to the closest available values given the new dwell time a
 displayed and set by `FLF`). If the filter factor is 0.0, then the filters are disabled entirely. Otherwise, they are
 set to the nearest cutoff setting at least as wide as FLF X (SW/2.0). If the calculated filter bandwidth exceeds
 50000.0 Hz, then the filters are disabled entirely. Whenever the dwell time is changed, the shot counter and averager
-are zeroed. Finally, if the acquisition buffer is currently visible, `DW` always updates the display.
+are zeroed.
 
 # E
 ---
