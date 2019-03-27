@@ -2160,7 +2160,7 @@ Defaults: temp
 Description:
 `DLTMAC` deletes a specified macro. If no macro is provided RNMR will prompt for a macro to delete with temp as a
 default. `DLTMAC` will delete the file in which the macro is stored. To Remove the macro from RNMR without deleting the
-file use `REMMAC`
+file use `REMMAC`.
 ## DLTTBL
 Delete name table
 
