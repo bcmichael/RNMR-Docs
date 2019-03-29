@@ -2668,35 +2668,19 @@ Defaults: 1 current
 Prerequisites: For RNMRA: Acquisition stopped (HALT). For RNMRP: no restrictions
 
 Description:
-`F` sets the frequency offset of a spectrometer synthesizer. When `F` is used in RNMRA `F` resets the actual output
-frequency as well as the scale offset for processing. In RNMRP, the `F` command only affects the frequency scale offset.
+`F` sets the frequency offset for a logical channel. When `F` is used in RNMRA it sets the actual output frequency as
+well as the offset in the processing buffers. In RNMRP, the `F` command only affects the processing buffer offset.
 
-The synthesizer to be set is selected by chan which refers to a logical channel. If chan is omitted, RNMR will prompt
-for a synthesizer number with 1 as the default. Since RNMR currently supports up to four synthesizers, legal values of
-chan are integers from 1 to 4. The synthesizer selected must have an assigned nucleus. To assign a nucleus to a
-synthesizer, use the command `NUC`.
+If no channel is specified RNMR will prompt for it with 1 as a default. The channel must have a nucleus assigned to it
+by `NUC`. If the frequency offset is omitted RNMR will prompt for it with the current offset as a default. The offset is
+in the current frequency unit, and takes into account the reference frequency for the nucleus assigned to the channel.
+The frequency offset precise to 0.1 Hz, regardless of the current frequency units.
 
-The frequency offset will be set to freq. If freq is omitted RNMR will prompt for it with the current offset as the
-default. The offset is in the current frequency unit as set and displayed by `UNIT /FREQ`, and takes into account the
-reference frequency for the nucleus assigned to the channel. The frequency offset set by `F` is considered to be precise
-to 0.1 Hz, regardless of the choice of frequency units or number of decimal places (`NDEC`).
-
-The actual frequency output by the spectrometer is a function of the reference frequency and PPM to Hz conversion factor
-of the synthesized nucleus as well as the offset selected by the `F` command:
+The actual frequency output by the spectrometer is a function of freq, the reference frequency (fref), and the PPM to Hz
+conversion factor (fppm) of the assigned nucleus:
 
     Factual(Hz) = 1.0E+06*FPPM(MHz) + FREQ(Hz) + FREF(Hz)
 
-where FPPM is the PPM to Hz conversion factor and FREF is the reference frequency of the nucleus assigned to the
-selected synthesizer and FREQ is the frequency entered with the `F` command. Thus, if `NUC 1` is H1 with
-`NUCD H1 359.600 250.0`, and `UNIT /FREQ` is Hz, entering `F 1 1000.0` gives an actual channel 1 frequency of
-359.6012500 MHz. The PPM to Hz conversion factor thus provides the base frequency, which is offset by small amounts
-using the `F` command.
-
-In RNMRP, `F` modifies the offset of processing buffer 1. The user need not be viewing this buffer to use the `F`
-command. The actual offset will be set to FREQ(Hz) + FREF(Hz), where FREF is the reference frequency for the nucleus
-assigned to chan. If the processing buffer is currently visible, `F` will update the display whenever the offset is
-modified to show the new frequency scale. All other aspects of the `F` command are identical in RNMR and RNMRP. Thus,
-the `F` command in RNMRP serves to make corrections to the frequency scales stored with experimental spectra.
 ## FLAG
 Set pulse program flag on or off
 
