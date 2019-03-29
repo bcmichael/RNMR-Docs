@@ -2359,7 +2359,7 @@ Defaults: temp.dat
 
 Description:
 `EDTFIL` opens a pop up window to edit the text file specified by fspec. If no file is specified RNMR will prompt for
-one with temp.data as a default.
+one with temp.dat as a default.
 ## EDTLST
 Edit list
 
