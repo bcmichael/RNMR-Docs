@@ -2780,7 +2780,7 @@ provided RNMR will prompt for them with the current values for the specified nuc
 
 `FSYS` stores the new system frequency and updates the nucleus table. Both the reference frequency and PPM to Hz
 conversion factor of each nucleus are updated. While `FSYS` changes the frequency values of each nucleus, the
-synthesizers are not updated with these new frequencies until the user issues a `NUC`, `F`, or `FSYN` command for each
+synthesizers are not updated with these new frequencies until the user issues a `NUC` or `F` command for each
 synthesizer.
 ## FT
 Fourier transform FID
