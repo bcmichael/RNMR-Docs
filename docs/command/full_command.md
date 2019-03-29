@@ -2325,8 +2325,8 @@ Format: `ECDREC` arv rec
 Defaults: 1 1
 
 Description:
-`ECDREC` takes an archive arv and a record number rec within that archive and encodes it in a form that can be used to
-access that record. For example:
+`ECDREC` takes an [archive](syntax#archives) and a [record number](syntax#records) within that archive and
+encodes it in a form that can be used to access that record. For example:
 
     ECDREC 2 7
 
