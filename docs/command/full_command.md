@@ -2705,7 +2705,7 @@ Format: `FLF` factor
 
 Defaults: current
 
-Prerequisites: Acquisition stopped (HALT) RNMRA only
+Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
 On spectrometers with S-bus interfaced acquisition filters, `FLF` sets the filter bandwidth factor. This factor is used
