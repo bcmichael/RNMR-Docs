@@ -2798,8 +2798,8 @@ Defaults: next_power_2 0.5
 Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-`FT` performs a Fourier transform on time domain data in processing buffer 1. Prior to the transformation the time
-domain data is zero filled to size and the first point is scaled by fctr1.
+`FT` performs a Fourier transform on time domain data in the visible processing buffer. Prior to the transformation the
+time domain data is zero filled to size and the first point is scaled by fctr1.
 
 If size is provided it must be a power of 2. If size is not provided then RNMR will not prompt for it and will use the
 next power of 2 that is larger than the size of the buffer. If fctr1 is not provided RNMR will not prompt for it and
@@ -2819,11 +2819,6 @@ Since time domain data is presented with minimum time on the left while frequenc
 frequency on the left (by long standing NMR convention), the default action of `FT` is to reverse the order of the data
 after transformation. This is done by conjugating the FID before the Fourier transform is calculated. `FT` also negates
 every other point in the FID.
-
-If the processing buffer is currently visible, `FT` always updates the display to show the transformed data. If
-processing buffer 1 is partitioned into two or more blocks, `FT` acts separately on each block. Thus, multiple FID's
-may be transformed to yield multiple spectra with a invocation of the `FT` command. `FT` may only be used to transform
-time domain data into the frequency domain. To perform the reverse transformation, use `IFT`.
 
 # G
 ---
