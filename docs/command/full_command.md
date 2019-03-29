@@ -2506,9 +2506,9 @@ Format: `EXP` format fspec
 Defaults: ascii default_name
 
 Description:
-`EXP` exports the contents of processing buffer 1 to a disk file in a foreign (non-RNMR) format. This exportation allows
-one-dimensional data to be transferred from RNMR to another processing program or from one RNMR archive to another via
-`IMP`.
+`EXP` exports the contents of the visible processing buffer to a disk file in a foreign (non-RNMR) format. This
+exportation allows one-dimensional data to be transferred from RNMR to another processing program or from one RNMR
+archive to another via `IMP`.
 
 If no format is specified RNMR will prompt for it with a default of ASCII. The currently supported foreign formats are:
 
@@ -2522,11 +2522,9 @@ If no format is specified RNMR will prompt for it with a default of ASCII. The c
 - UCSF
 - VNMR
 
-Note that while the user need not be viewing the processing buffer to use `EXP`, `EXP` exports only the contents of
-processing buffer 1. If the `EXP` command is used at console level and fspec is not provided, RNMR will prompt the user
-for the name of the file to contain the exported data. The default file name in the prompt will depend upon the archive
-and record currently being viewed in processing buffer 1. By default `EXP` will store data in the user's foreign
-directory.
+If the `EXP` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
+file to contain the exported data. The default file name in the prompt will depend upon the archive and record currently
+being viewed in processing buffer 1. By default `EXP` will store data in the user's foreign directory.
 
 If an export file has been opened with `OPNEXP` the data will be stored in that file and `EXP` will neither use nor
 prompt for fspec. The format must match the format specified in `OPNEXP`.
@@ -2541,10 +2539,10 @@ Category: Foreign
 
 Format: `EXP1D` format rec slice fspec
 
-Defaults: pipe last_read 1 default_name
+Defaults: pipe rrec 1 default_name
 
 Description:
-`EXP1D` exports a one-dimensional slice of a blocked archive record to a file in a foreign (non-RNMR) format. This
+`EXP1D` exports a one-dimensional slice of a blocked record to a file in a foreign (non-RNMR) format. This
 exportation allows one-dimensional data to be transferred from RNMR to another processing program or from one RNMR
 archive to another via `IMP1D`.
 
@@ -2559,15 +2557,9 @@ If no format is specified RNMR will prompt for it with a default of pipe. The cu
 - UCSF
 - VNMR
 
-The second parameter, rec specifies the number of a blocked archive record containing the data to be exported. If this
-parameter is omitted, RNMR will prompt for a source record number with the current read record (as displayed and set by
-`PTRA`) as the default.
-
-The last parameter, slice specifies which 1D slice of a 2D, 3D, or 4D source record should be written out in the foreign
-format. If the source record has only one dimension, slice must be 1. If slice is omitted RNMR will not prompt for it
-and will export the first slice. Note that the current mapping of dimensions to directions (as displayed and set by
-`DIRB`) will affect the selection of which one-dimensional block of the record comprises the 1D slice and will thus be
-exported. Slice is interpreted as a linear index over the 2nd/3rd/4th dimensions.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
+export the first 1D slice of the record.
 
 If the `EXP1D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
@@ -2588,7 +2580,7 @@ Category: Foreign
 
 Format: `EXP2D` format rec slice fspec
 
-Defaults: pipe last_read 1 default_name
+Defaults: pipe rrec 1 default_name
 
 Description:
 `EXP2D` exports a two-dimensional slice of a blocked archive record to a file in a foreign (non-RNMR) format. This
@@ -2606,15 +2598,9 @@ If no format is specified RNMR will prompt for it with a default of pipe. The cu
 - UCSF
 - VNMR
 
-The second parameter, rec specifies the number of a blocked archive record containing the data to be exported. If this
-parameter is omitted, RNMR will prompt for a source record number with the current read record (as displayed and set by
-`PTRA`) as the default.
-
-The last parameter, slice specifies which 2D slice of a 3D or 4D source record should be written out in the foreign
-format. If the source record has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it
-and will export the first slice. Note that the current mapping of dimensions to directions (as displayed and set by
-`DIRB`) will affect the selection of which one-dimensional blocks of the record comprise the 2D slice and will thus be
-exported. Slice is interpreted as a linear index over the 3rd/4th dimensions.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
+export the first 2D slice of the record.
 
 If the `EXP2D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
@@ -2635,7 +2621,7 @@ Category: Foreign
 
 Format: `EXP2D` format rec slice fspec
 
-Defaults: pipe last_read 1 default_name
+Defaults: pipe rrec 1 default_name
 
 Description:
 `EXP3D` exports a three-dimensional slice of a blocked archive record to a file in a foreign (non-RNMR) format. This
@@ -2652,15 +2638,9 @@ If no format is specified RNMR will prompt for it with a default of pipe. The cu
 - SIFT
 - UCSF
 
-The second parameter, rec specifies the number of a blocked archive record containing the data to be exported. If this
-parameter is omitted, RNMR will prompt for a source record number with the current read record (as displayed and set by
-`PTRA`) as the default.
-
-The last parameter, slice specifies which 3D slice of a 4D source record should be written out in the foreign format. If
-the source record has only three dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will
-export the first slice. Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will
-affect the selection of which one-dimensional blocks of the record comprise the 3D slice and will thus be
-exported. Slice is interpreted as a linear index over the 4th dimension.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
+export the first 3D slice of the record.
 
 If the `EXP3D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
