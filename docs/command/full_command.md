@@ -2270,25 +2270,27 @@ Category: Misc.
 
 Format: `ECDB` rec ndim val...
 
-Defaults: last_read 1 first...
+Defaults: rrec 1 first...
 
 Description:
-`ECDB` takes a series of values (val...) corresponding to each block dimension of a blocked record and converts the
-position they refer to into a linear block index. The conversion uses information about the block layout of a record rec
-which defaults to the last record that was read. For example when used on a dataset from an unprocessed multi
-dimensional experiment stored as a blocked record, `ECDB` will convert a set of indirect dimension time values into a
-linear block index.
+`ECDB` encodes a series of values (val...) corresponding to positions in each block dimension of a
+[blocked record](syntax#blocked_records) into a linear block index. The conversion uses information about the block
+layout of a record to perofrm the conversion. If no [record number](syntax#records) is specified RNMR will prompt for it
+with the current read record pointer (as displayed and set by `PTRA`) as a default. For example when used on a dataset
+from an unprocessed multi dimensional experiment stored as a blocked record, `ECDB` will convert a set of indirect
+dimension time values into a linear block index.
 
-The value of ndim must not exceed the number of block dimensions. For a 2D dataset this would be 1 for a 3D it would be
-2 etc. ndim specifies how many dimensions are accounted for before the linear index. For example in a 3D data set ndim
-set to 1 will indicate that only the direct dimension is already accounted for and the linear index is over the last two
-dimensions. This will use two input values corresponding to the positions in the other two dimensions. A value of 2 on
-the other hand would consider the linear index to only be over the final dimension and only one value will be used.
+The second parameter, ndim, specifies how many dimensions are accounted for before the linear index. For example in a 3D
+data set ndim set to 1 will indicate that only the direct dimension is already accounted for and the linear index is
+over the last two dimensions. The arguments will be two values corresponding to the positions in the other two
+dimensions. A value of 2 on the other hand would consider the linear index to only be over the final dimension and only
+one value will be used. If ndim is omitted RNMR will prompt for it with 1 as a default. The value of ndim must be
+greater than 0 and less than the number of dimensions in the blocked record.
 
-If fewer values are provided than are needed for the conversion RNMR will prompt for the remaining values with the first
-point in the value corresponding to the first point in the relevant dimension as the default. The values will be rounded
-to the nearest point in the block grid for conversion. Values that are outside of the range of dataset will round to the
-point on the edge of the dataset.
+If fewer values are provided than are needed for the conversion RNMR will prompt for the remaining values with the value
+corresponding to the first point in the relevant dimension as the default. The values will be rounded to the nearest
+point in the block grid for conversion. Values that are outside of the range of dataset will round to the point on the
+edge of the dataset.
 ## ECDBP
 Convert vector indices to linear block index
 
@@ -2296,21 +2298,23 @@ Category: Misc.
 
 Format: `ECDBP` rec ndim ind...
 
-Defaults: last_read 1 1...
+Defaults: rrec 1 1...
 
 Description:
-`ECDBP` takes a series of indices (ind...) corresponding to each block dimension of a blocked record and converts the
-position they refer to into a linear block index. The conversion uses information about the block layout of a record rec
-which defaults to the last record that was read.
+`ECDBP` encodes a series of indices (ind...) corresponding to positions in each block dimension of a
+[blocked record](syntax#blocked_records) into a linear block index. The conversion uses information about the block
+layout of a record to perofrm the conversion. If no [record number](syntax#records) is specified RNMR will prompt for it
+with the current read record pointer (as displayed and set by `PTRA`) as a default.
 
-The value of ndim must not exceed the number of block dimensions. For a 2D dataset this would be 1 for a 3D it would be
-2 etc. ndim specifies how many dimensions are accounted for before the linear index. For example in a 3D data set ndim
-set to 1 will indicate that only the direct dimension is already accounted for and the linear index is over the last two
-dimensions. This will use two input indices corresponding to the positions in the other two dimensions. A value of 2 on
-the other hand would consider the linear index to only be over the final dimension and only one index will be used.
+The second parameter, ndim, specifies how many dimensions are accounted for before the linear index. For example in a 3D
+data set ndim set to 1 will indicate that only the direct dimension is already accounted for and the linear index is
+over the last two dimensions. The arguments will be two indices corresponding to the positions in the other two
+dimensions. A value of 2 on the other hand would consider the linear index to only be over the final dimension and only
+one index will be used. If ndim is omitted RNMR will prompt for it with 1 as a default. The value of ndim must be
+greater than 0 and less than the number of dimensions in the blocked record.
 
-If fewer indices are provided than are needed for the conversion RNMR will prompt for the remaining values with 1 as the default
-the first. The indices must not exceed the size of the dataset.
+If fewer indices are provided than are needed for the conversion RNMR will prompt for the remaining values with 1 as a
+default. The indices must not exceed the size of the dataset.
 ## ECDREC
 Encode archive index
 
