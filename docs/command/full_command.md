@@ -3594,25 +3594,13 @@ Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
 `INTG` calculates and displays the indefinite integral (antiderivative) of the data in the visible processing buffer
-(buffer 1) within the current display limits, as displayed and set by `LIM`. By integrating a spectrum, one may measure
+within the current display limits (as displayed and set by `LIM`). By integrating a spectrum, one may measure
 the total intensity of each peak. For calculating the integrated intensity of individual peaks, one may compute the
-definite integral within specified frequency limits using the command `INTRG`. `INTG` acts only on the first processing
-buffer. The user need not be currently viewing this buffer (`VIEW PRO`) to use `INTG`. Only the portion of the data
-lying between the current display limits will be integrated by `INTG`. If the left display limit is currently "\*",
-`INTG` will begin the integration at the leftmost point in the data buffer. Similarly, if the right display limit is
-"\*", `INTG` will integrate up to the last point in the buffer. To prepare the data for integration, `INTG` performs a
-baseline fix apodization. This step eliminates any constant offset after integration. If the processing buffer is
-divided into two or more blocks, a separate baseline fix is performed for each block. The baseline is corrected before
-integration by subtracting a straight line from the data between the left and right display limits.
+definite integral within specified frequency limits using the command `INTRG`.
 
-After baseline fixing, each block of the processing buffer is separately integrated.  This integration consists of
-replacing each data point within the region to be integrated by the sum of all points from the left display limit to
-that data point, including the endpoints.
-
-After integration, the data is normalized so that the largest point in the first block (between the current display
-limits) has a real absolute value intensity of 1. If the largest real absolute value intensity is zero, the data is not
-rescaled. If the data is rescaled, RNMR updates the buffer scale factor, as displayed by `SC`. If the processing buffer
-is currently visible, RNMR updates the display after executing `INTG`.
+A baseline fix apodization (`BF`) is performed prior to integration to eliminate any constant offset after integration.
+Then each point between the display limits is replaced with the sum of all the points from the left display limit to
+that data point, including the endpoints. After the integration is complete the buffer is normalized (`NORM`).
 ## INTRG
 Integrate region of spectrum
 
