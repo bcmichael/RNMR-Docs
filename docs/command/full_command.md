@@ -3421,20 +3421,21 @@ Qualifiers: /REAL /SCALE
 
 Qualifier Defaults: /SCALE=NORM
 
-Defaults: next_power_2 1.0
+Defaults: next_power_2 0.5
 
-Prerequisites: Frequency domain data in visible processing buffer (FREQ)
+Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
-`IFT` performs an inverse Fourier transform on frequency domain data in processing buffer 1. Prior to the transformation
-the frequency domain data is zero filled to size and after the transformation the first point is divided by fctr1.
+`IFT` performs an inverse Fourier transform on frequency domain data in the visible processing buffer. Prior to the
+transformation the frequency domain data is zero filled to size and after the transformation the first point is divided
+by fctr1.
 
 If size is provided it must be a power of 2. If size is not provided then RNMR will not prompt for it and will use the
 next power of 2 that is larger than the size of the buffer. If fctr1 is not provided RNMR will not prompt for it and
 will use 0.5. The value of fctr1 must be greater than 0.
 
 The /REAL qualifier will cause `IFT` to perform a real inverse Fourier transform using only the real part of the buffer.
-Otherwise a complex inverse  Fourier transform will be applied. /SCALE determines how the result of the transform will
+Otherwise a complex inverse Fourier transform will be applied. /SCALE determines how the result of the transform will
 be scaled as follows:
 
 /SCALE | Description
@@ -3445,13 +3446,7 @@ NONE   | Does not scale
 
 Since time domain data is presented with minimum time on the left while frequency data is presented with maximum
 frequency on the left (by long standing NMR convention), the default action of `IFT` is to conjugate the data after
-transformation.  This ensures that performing an `IFT` followed by an `FT` will give the same frequency data order.
-
-Use of `IFT` resets the constant and linear phase values of the  processing buffer (phi0 and phi1) to zero. If the
-processing buffer is currently visible, `IFT` always updates the display to show the transformed data. If processing
-buffer 1 is partitioned into two or more blocks, `IFT` acts separately on each block. Thus, multiple spectra may be
-transformed to yield multiple FID's with one invocation of the `IFT` command. `IFT` may only be used to transform
-frequency domain data into the  time domain.  To perform the forward transformation, use `FT`.
+transformation. This ensures that performing an `IFT` followed by an `FT` will give the same frequency data order.
 ## IMP
 Import data from foreign format
 
