@@ -3185,14 +3185,6 @@ pointer (as displayed and set by `PTRA`).
 
 # H
 ---
-## HELP
-Get online help
-
-Format: `HELP`
-
-Description:
-`HELP` obtains information from the RNMR on-line help library. Instructions on navigating the help library are shown at
-the bottom of the help window. Note that the information in the help library may not be fully up to date.
 ## HILB
 Perform Hilbert transform on spectrum
 
