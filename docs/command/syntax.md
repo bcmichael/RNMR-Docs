@@ -55,9 +55,10 @@ example 2:12 refers to record number 12 in archive 2.
 <a name="record_type"></a>
 There are three types of record: scratch records, archive records, and blocked records. Many commands that deal with
 records can only accept one of these types of records. The first four records in an archive are scratch records. They
-are meant as a temporary place to keep data while working with it. The other record numbers (5-200) may hold either
-archive records or blocked records. An archive record stores a single one dimensional data set. A blocked record is a
-multi dimensional set of blocks that can each store a one dimensional data set.
+are meant as a temporary place to keep data while working with it. Data in scratch records may be overwritten without
+first being explicitly deleted. The other record numbers (5-200) may hold either archive records or blocked records. An
+archive record stores a single one dimensional data set. A blocked record is a multi dimensional set of blocks that can
+each store a one dimensional data set.
 
 # Blocked Records
 Blocked records store multi dimensional data sets as a collection of blocks that each hold a one dimensional data set.
