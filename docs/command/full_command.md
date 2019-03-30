@@ -3452,15 +3452,15 @@ Import data from foreign format
 
 Category: Foreign
 
-Format: `IMP` format
+Format: `IMP` format fspec
 
-Defaults: NMR1
+Defaults: ASCII
 
 Description:
-`IMP` imports the contents of a disk file in a foreign (non-RNMR) format to processing buffer 1. This importation allows
-one-dimensional data to be transferred to RNMR from another processing program or from one RNMR archive to another via
-`EXP`.  Since the foreign data is only read into memory by `IMP`, the user must use `SA`, `SB`, or `SS` to store the
-imported data permanently.
+`IMP` imports the contents of a disk file in a foreign (non-RNMR) format to the visible processing buffer. This
+importation allows one-dimensional data to be transferred to RNMR from another processing program or from one RNMR
+archive to another via `EXP`.  Since the foreign data is only read into memory by `IMP`, the user must use `SA`, `SB`,
+or `SS` to store the imported data permanently.
 
 If no format is specified RNMR will prompt for it with a default of ASCII. The currently supported foreign formats are:
 
@@ -3470,17 +3470,12 @@ If no format is specified RNMR will prompt for it with a default of ASCII. The c
 - SIFT
 - VNMR
 
-Note that while the user need not be viewing the processing buffer to use `IMP`, `IMP` imports data only to processing
-buffer 1. If the `IMP` command is used at console level and fspec is not provided, RNMR will prompt the user for the
-name of the file containing the data to be imported. The default file name in the prompt will depend upon the archive
-and record that was last written to. By default `IMP` will search for data in the user's foreign
-directory.
+If the `IMP` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
+file containing the data to be imported. The default file name in the prompt will be temp with an extension based upon
+the format. By default `IMP` will search for data in the user's foreign directory.
 
 If an import file has been opened with `OPNIMP` the data will be stored in that file and `IMP` will neither use nor
 prompt for fspec. The format must match the format specified in `OPNIMP`.
-
-If the processing buffer is currently visible on the screen, RNMR will update the display once the `IMP` operation is
-complete.
 ## IMP1D
 Import data from foreign format
 
@@ -3488,26 +3483,20 @@ Category: Foreign
 
 Format: `IMP1D` format rec slice fspec
 
-Defaults: sift last_written 1 default_name
+Defaults: sift rrec 1 default_name
 
 Description:
 `IMP1D` imports the contents of a disk file in a foreign (non-RNMR) format and saves it in a specified one-dimensional
-slice of blocked record rec. This importation allows one-dimensional data to be transferred to RNMR from another
-processing program or from one RNMR archive to another via `EXP1D`.
+slice of a [blocked record](syntax#blocked_records). This importation allows one-dimensional data to be transferred to
+RNMR from another processing program or from one RNMR archive to another via `EXP1D`.
 
 If no format is specified RNMR will prompt for it with a default of sift. The currently supported foreign formats are:
 
 - SIFT
 
-The second parameter, rec specifies the number of a blocked archive record in which the imported data should be stored.
-If this parameter is omitted, RNMR will prompt for a source record number with the current write record (as displayed
-and set by `PTRA`) as the default.
-
-The last parameter, slice specifies which 1D slice of a 2D, 3D, or 4D source record the foreign data should be written
-to. If the source record has only one dimension, slice must be 1. If slice is omitted RNMR will not prompt for it and
-will write to the first slice. Note that the current mapping of dimensions to directions (as displayed and set by
-`DIRB`) will affect the selection of which one-dimensional block of the record comprises the 1D slice and will thus be
-written to. Slice is interpreted as a linear index over the 2nd/3rd/4th dimensions.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
+import data to the first 1D slice of the record.
 
 If the `IMP1D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
@@ -3517,7 +3506,7 @@ If an import file has been opened with `OPNIMP` the data will be stored in that 
 prompt for fspec. The format must match the format specified in `OPNIMP`.
 
 Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
-exported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
+imported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
 ## IMP2D
 Import data from foreign format
 
@@ -3525,26 +3514,20 @@ Category: Foreign
 
 Format: `IMP2D` format rec slice fspec
 
-Defaults: sift last_written 1 default_name
+Defaults: sift rrec 1 default_name
 
 Description:
 `IMP2D` imports the contents of a disk file in a foreign (non-RNMR) format and saves it in a specified two-dimensional
-slice of blocked record rec. This importation allows two-dimensional data to be transferred to RNMR from another
-processing program or from one RNMR archive to another via `EXP2D`.
+slice of a [blocked record](syntax#blocked_records). This importation allows two-dimensional data to be transferred to
+RNMR from another processing program or from one RNMR archive to another via `EXP2D`.
 
 If no format is specified RNMR will prompt for it with a default of sift. The currently supported foreign formats are:
 
 - SIFT
 
-The second parameter, rec specifies the number of a blocked archive record in which the imported data should be stored.
-If this parameter is omitted, RNMR will prompt for a source record number with the current write record (as displayed
-and set by `PTRA`) as the default.
-
-The last parameter, slice specifies which 2D slice of a 3D or 4D source record the foreign data should be written to. If
-the source record has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will
-write to the first slice. Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`)
-will affect the selection of which one-dimensional blocks of the record comprises the 2D slice and will thus be
-written to. Slice is interpreted as a linear index over the 3rd/4th dimensions.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
+import data to the first 2D slice of the record.
 
 If the `IMP2D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
@@ -3554,7 +3537,7 @@ If an import file has been opened with `OPNIMP` the data will be stored in that 
 prompt for fspec. The format must match the format specified in `OPNIMP`.
 
 Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
-exported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
+imported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
 ## IMP3D
 Import data from foreign format
 
@@ -3562,26 +3545,20 @@ Category: Foreign
 
 Format: `IMP3D` format rec slice fspec
 
-Defaults: sift last_written 1 default_name
+Defaults: sift rrec 1 default_name
 
 Description:
 `IMP3D` imports the contents of a disk file in a foreign (non-RNMR) format and saves it in a specified three-dimensional
-slice of blocked record rec. This importation allows two-dimensional data to be transferred to RNMR from another
-processing program or from one RNMR archive to another via `EXP3D`.
+slice of a [blocked record](syntax#blocked_records). This importation allows two-dimensional data to be transferred to
+RNMR from another processing program or from one RNMR archive to another via `EXP3D`.
 
 If no format is specified RNMR will prompt for it with a default of sift. The currently supported foreign formats are:
 
 - SIFT
 
-The second parameter, rec specifies the number of a blocked archive record in which the imported data should be stored.
-If this parameter is omitted, RNMR will prompt for a source record number with the current write record (as displayed
-and set by `PTRA`) as the default.
-
-The last parameter, slice specifies which 2D slice of a 4D source record the foreign data should be written to. If the
-source record has only three dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will write
-to the first slice. Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will
-affect the selection of which one-dimensional blocks of the record comprises the 3D slice and will thus be written to.
-Slice is interpreted as a linear index over the 4th dimension.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
+import data to the first 3D slice of the record.
 
 If the `IMP3D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
@@ -3591,7 +3568,7 @@ If an import file has been opened with `OPNIMP` the data will be stored in that 
 prompt for fspec. The format must match the format specified in `OPNIMP`.
 
 Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
-exported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
+imported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
 ## INFLVL
 Set info level
 
