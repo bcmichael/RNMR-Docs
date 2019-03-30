@@ -3192,21 +3192,18 @@ Category: Data Manipulation
 
 Format: `HILB`
 
-Prerequisites: Frequency domain data in processing buffer 1 (FREQ)
+Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
-`HILB` performs a Hilbert transform on a spectrum. As a consequence of Fourier transformation, the real and imaginary
-parts of a complex spectrum are Hilbert transform pairs. Thus, it should be possible to discard the imaginary channel
-and then recreate it by performing a Hilbert transform on the real part of the data. Typically, this is done after a
-spectrum has received linear phase correction, cubic spline baseline correction, or any other manipulation that results
-in the real and imaginary channels no longer being Hilbert transform pairs. Without correction by `HILB`, the inverse
-Fourier transform of this data would be incorrect, as evidenced by divergence of the data at long times. `HILB` replaces
-the imaginary part of the buffer data with the Hilbert transform of the real part, and leaves the real part of the
-buffer unchanged.
-
-The active size of the visible processing buffer must be a power of two greater than or equal to 4. RNMR performs a
-Hilbert transform on each block of the visible processing buffer. If the processing buffer is currently visible
-(`VIEW PRO`), then RNMR updates the screen display following `HILB`.
+`HILB` performs a Hilbert transform on a spectrum in the visible processing buffer. As a consequence of Fourier
+transformation, the real and imaginary parts of a complex spectrum are Hilbert transform pairs. Thus, it should be
+possible to discard the imaginary channel and then recreate it by performing a Hilbert transform on the real part of the
+data. Typically, this is done after a spectrum has received linear phase correction, cubic spline baseline correction,
+or any other manipulation that results in the real and imaginary channels no longer being Hilbert transform pairs.
+Without correction by `HILB`, the inverse Fourier transform of this data would be incorrect, as evidenced by divergence
+of the data at long times. `HILB` replaces the imaginary part of the buffer data with the Hilbert transform of the real
+part, and leaves the real part of the buffer unchanged. The active size of the visible processing buffer must be a power
+of two greater than or equal to 4.
 ## HILBZ
 Perform Hilbert transform on zero-filled spectrum
 
@@ -3214,21 +3211,18 @@ Category: Data Manipulation
 
 Format: `HILBZ`
 
-Prerequisites: Frequency domain data in processing buffer 1 (FREQ)
+Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
-`HILBZ` performs a Hilbert transform on a zero filled spectrum. As a consequence of Fourier transformation, the real and
-imaginary parts of a complex spectrum are Hilbert transform pairs. Thus, it should be possible to discard the imaginary
-channel and then recreate it by performing a Hilbert transform on the real part of the data. Typically, this is done
-after a spectrum has received linear phase correction, cubic spline baseline correction, or any other manipulation that
-results in the real and imaginary channels no longer being Hilbert transform pairs. Without correction by `HILBZ`, the
-inverse Fourier transform of this data would be incorrect, as evidenced by divergence of the data at long times. `HILBZ`
-replaces the imaginary part of the buffer data with the Hilbert transform of the real part, and leaves the real part of
-the buffer unchanged.
-
-The active size of the visible processing buffer must be a power of two greater than or equal to 4. RNMR performs a
-Hilbert transform on each block of the visible processing buffer. If the processing buffer is currently visible
-(`VIEW PRO`), then RNMR updates the screen display following `HILBZ`.
+`HILBZ` performs a Hilbert transform on a zero filled spectrum in the visible processing buffer. As a consequence of
+Fourier transformation, the real and imaginary parts of a complex spectrum are Hilbert transform pairs. Thus, it should
+be possible to discard the imaginary channel and then recreate it by performing a Hilbert transform on the real part of
+the data. Typically, this is done after a spectrum has received linear phase correction, cubic spline baseline
+correction, or any other manipulation that results in the real and imaginary channels no longer being Hilbert transform
+pairs. Without correction by `HILBZ`, the inverse Fourier transform of this data would be incorrect, as evidenced by
+divergence of the data at long times. `HILBZ` replaces the imaginary part of the buffer data with the Hilbert transform
+of the real part, and leaves the real part of the buffer unchanged. The active size of the visible processing buffer
+must be a power of two greater than or equal to 4.
 ## HTR
 Enable or disable probe heater
 
