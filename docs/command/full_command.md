@@ -2992,15 +2992,15 @@ Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
 `GENPWDR` generates a complex time domain signal corresponding to a powder pattern. This signal has unit amplitude and
-replaces any data currently in the visible processing buffer (buffer 1). The parameter freq sets the width of the powder
-pattern in the current frequency units. If freq is omitted RNMR will prompt for it with a default of 1. The parameter
-phase controls the phase of the generated signal. If phase is omitted RNMR will not prompt for it and will use a phase
-of 0. THe parameter sw is the sweep width in the current frequency units and determines the time per point of the
-generated signal. If sw is omitted RNMR will not prompt for it and will use the current buffer sweep width. Legal values
-for sw are real numbers strictly greater than zero. If a valid value of sw is entered, RNMR resets the sweep width of
-the visible processing buffer to sw. The parameter fctr is a factor controlling the number of orientations that are
-considered when generating the signal. The number of orientations is equal to 3*freq*dstep*1e-3*fctr*size or 1 whichever
-is larger. Values of fctr must be between 0.5 and 2.0 inclusive.
+replaces any data currently in the visible processing buffer. The parameter freq sets the width of the powder pattern in
+the current frequency units (as displayed and set by `UNIT /FREQ`). If freq is omitted RNMR will prompt for it with a
+default of 1. The phase of the sine wave should be specified in degrees. If the phase is omitted RNMR will not prompt
+for it and will use a phase of 0.0. The  parameter sw is the sweep width of the generated signal. If sw is not specified
+RNMR will not prompt for it and will use the current sweep width of the visible processing buffer. If a value of sw is
+entered then the time step in the buffer will be altered to match the requested sweep width. The final parameter, fctr,
+is a factor controlling the number of orientations that are considered when generating the signal. The number of
+orientations is equal to 3*freq*dstep*1e-3*fctr*size or 1 whichever is larger. Values of fctr must be between 0.5 and
+2.0 inclusive.
 ## GM
 Gaussian multiply FID
 
