@@ -4391,99 +4391,20 @@ Qualifiers: /PRT /TTY /WND /WRT
 
 Qualifier Defaults: /WND
 
-Defaults: current 1
+Defaults: rrec 1
 
 Description:
-`LPK2D` displays a list of peak positions and intensities for the first 250 peaks found within a 2D slice of a blocked
-record above the current peak pick threshold (`TH`). By setting `CONMD` to POS, NEG, or ABS beforehand, the user may
-modify the selection of 2D peaks for a given threshold value. Only peaks within the current display limits (as set and
-shown by the command `LIMB`) will be listed by `LPK2D`.
+`LPK2D` displays a list of peak positions and intensities for the first 250 peaks found within a 2D slice of a
+[blocked record](syntax#blocked_records) above the current peak pick threshold (`TH`). Only peaks within the current
+display limits (as set and shown by the command `LIMB`) will be listed by `LPK2D`.
 
-The first argument, rec, is the record number of a blocked record of dimension 2 or higher. If a value for rec is not
-specified RNMR will prompt for a record number with the current read record as displayed by `PTRA` as a default.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
+list peaks from the first 2D slice of the record.
 
-The second parameter, slice, specifies which 2D slice of a 3D or 4D source record to list peaks from. If the source
-record has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will list peaks
-from the first slice. Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will
-affect the selection of which one-dimensional blocks of the record comprise the 2D slice and will thus be searched for
-peaks. Slice is interpreted as a linear index over the 3rd/4th dimensions.
-
-The user must ensure that the record can be accessed for two dimensional processing with the current `DIRB` mapping. If
-the NDIMX parameter was set  equal to the number of dimensions when the record was allocated, then this is guaranteed.
-However, if NDIMX is less than the number of dimensions in the record, not all choices of `DIRB` will allow peak listing
-with `LPK2D`. If `DIRB` is not set to a legal value for processing record rec, RNMR will yield the error message:
-
-    (INI2DX) DIMENSION INACCESSIBLE
-
-followed by the number of the inaccessible dimension. The available choices for `DIRB` will depend on the NDIMX value
-with which the record was allocated; `ALLB` always maps directions 1,2,3, and 4 to dimensions 1,2,3, and 4 respectively,
-regardless of the `DIRB` setting at allocation time. For example, if a three dimensional record was allocated with NDIMX
-2, the user will be able to list 2D peaks in planes of the data cube with `DIRB 3` set to 123, 132, 213, or 231 but not
-312 or 321. That is, any `DIRB` setting beginning with 1 or 2 is acceptable but 3 may not be used since the third
-dimension is not accessible. Similarly, for 4D records allocated with NDIMX 2, `DIRB 4` may be any sequence beginning
-with 1 or 2 and if NDIMX was 3, the `DIRB` sequence may begin with 1, 2, or 3. Thus, the legal choices of `DIRB` are
-those in which the first direction is accessible (the accessible directions for a given blocked record are those mapped
-to dimensions 1 to NDIMX). In order to remind the user of which dimensions will be searched for 2D peaks, RNMR displays
-the dimensions assigned to directions 1 and 2 as two informational messages.
-
-RNMR limits the number of points in direction 1 to a maximum of 4096. This size can be checked using the `SIZEB`
-command. `LPK2D` lists 2D peaks in the real part of rec unless the user has selected the imaginary part by entering
-`BUF IMAG`.
-
-`LPK2D` uses the following algorithm to find peaks within the current display limits:
-
-1.	Each 1D slice from the first slice above the bottom display limit to the last slice below the top display limit is
-examined sequentially. For each of these slices, RNMR examines the data points starting with the first point to the
-right of the left display limit and proceeding to the last point to the left of the right display limit. Consequently,
-no point lying on the current left, right, top, or bottom cursors can be a point.
-
-2.	RNMR examines the intensities of the four points above, below, to the left, and to the right of each point in the
-search region described above. If the current contour mode setting is positive (`CONMD POS`), then RNMR tests the
-actual intensity of the current point. If the `CONMD` setting is negative (NEG) then the negative of the data
-point is tested. Finally, if the contour mode is currently set to absolute (`CONMD ABS`), RNMR examines the
-absolute value of the data point.
-
-3.	The test value is compared to the current peak pick threshold, as set and displayed by the command `TH`. If
-TEST is less than the peak pick threshold, the current point is not listed as a peak and RNMR proceeds to the next point
-to the right or to the next slice upward in search of 2D peaks. Note that the current `CONMD` setting modifies the
-effect of the peak pick threshold. For `CONMD POS`, the intensity of a point must be greater than or equal to the
-threshold for that point to be a peak, but for `CONMD NEG`, the intensity must be less than or equal to minus the
-threshold.
-
-4.	If the original value of the current point, I, is positive or zero, that point will be listed as a peak if:
-
-        (I .GT. L) .AND. (I .GE. R) .AND. (I .GT. D) .AND. (I .GE. U)
-where L, R, D, and U are the intensities of the nearest points to the left, right, below, and above the current point.
-Conversely, if the original value of the current point is negative, the current point will be listed as a peak if:
-
-        (I .GT. -L) .AND. (I .GE. -R) .AND. (I .GT. -D) .AND. (I .GE. -U)
-where L, R, D, and U are the intensities of the nearest points to the left, right, below, and above the current point.
-
-5.	For each peak found, RNMR displays a line corresponding to the peak. The first column in the `LPK2D` printout will
-specify the peak number, starting at one for the leftmost, bottom peak. If the current unit in direction 1 is PPM, the
-second column of the `LPK2D` display will list the peak position in PPM while the third column will list this position
-in the current default frequency unit, as set by the command `UNIT /DFLT`. If the direction 1 unit is not PPM, the
-second column will list the peak position in the current unit while the third column will specify "--------" for each
-peak. Similarly, columns 4 and 5 will contain the peak position along direction 2 in current and default units,
-respectively. Again, if the current unit for direction 2 is not PPM, column 5 will specify "--------" for each peak.
-RNMR will list all peak positions with the maximum number of decimal places currently set for the appropriate units at
-RNMR startup time or as modified by the `NDEC` command. The sixth column of the `LPK2D` printout specifies the peak
-height for each peak, reported to a maximum of 3 decimal places.
-
-6.  RNMR stops listing peaks after finding the first 250 peaks or after testing the last point in the search range
-described above. If no peaks were found, an error message is displayed:
-
-    (LPK2D   ) NO PEAKS
-Conversely, if more  than 250 peaks were found, RNMR displays the
-message:
-
-    (LPK2D   ) TOO MANY PEAKS
-along with the number of peaks actually found between the display limits. When this occurs, RNMR display a listing of
-the first 250 peaks from left to right, bottom to top, and does not list the remaining peaks.
-
-Each `LPK2D` printout begins with a header which includes the buffer title, record and block numbers, record owner, and
+Each `LPK2D` display begins with a header which includes the buffer title, record and block numbers, record owner, and
 date, as well as titles for each column specifying the domain (time or frequency) in each direction and units for the
-peak data to follow.  When reading the record and block number at the top of the `LPK2D` printout, note that directions
+peak data to follow.  When reading the record and block number at the top of the `LPK2D` display, note that directions
 1 and 2 are always indicated by "\*" in the block number display and correspond to the dimensions searched for peaks by
 `LPK2D`. For example, if record 5 has three dimensions and `DIRB 3` is currently 123, the `LPK2D` summary will include
 the line:
@@ -4495,12 +4416,15 @@ when listing the peaks in block 1 of record 5. Conversely, if `DIRB 3` is set  t
     REC     5       (1    ,*    ,* )
 
 to indicate that direction 3 is mapped to dimension 1. If rec has only two dimensions, RNMR will not display any block
-numbers. Wherever possible, `LPK2D` lists peak positions and intensities as floating point numbers with the maximum
-number of decimal places: 3 for intensity and ndec for peak position, where ndec is the value returned by the `NDEC`
-command for the appropriate time or frequency unit. However, when a time, frequency or intensity value is too large or
-too small to represent with this number of decimal places, RNMR will begin to drop decimal places to fit the number into
-an 8-character field. If RNMR cannot write the number into an eight character field after dropping all decimal places
-(`NDEC 0`), the number will be written in scientific notation.
+numbers.
+
+RNMR limits the number of points in direction 1 to a maximum of 4096. This size can be checked using `SIZEB`. `LPK2D`
+lists 2D peaks in the real part of the record unless currently viewing the imaginary part of the visible processing
+buffer (`BUF IMAG`). A point is considered a peak if its magnitude is greater than the peak picking threshold (as set
+and displayed by `TH`) and it is either a local maximum or minimum if its intensity is greater or less than zero
+respectively. By setting `CONMD` to POS, NEG, or ABS beforehand, the user may modify the selection of 2D peaks for a
+given threshold value. For each peak a line will be displayed containing the peak number, the position in each dimension
+in the current and default frequency units and the peak intensity.
 
 The qualifiers specify how the list is output as follows:
 
