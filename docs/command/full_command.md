@@ -2856,9 +2856,8 @@ Defaults: current
 Prerequisites: RNMRA only
 
 Description:
-`GAIN` sets the observe channel receiver gain. `GAIN` takes one parameter, gain which is the relative receiver gain. If
-this parameter is omitted, RNMR will prompt for the receiver gain with the current gain as the default. The receiver
-gain is a real number between 0.0 and 100.0, inclusive and is considered precise to 0.1.
+`GAIN` sets the observe channel receiver gain. If no gain is specified RNMR will prompt for it with the current receiver
+gain as a default. The receiver gain must be between 0.0 and 100.0 inclusive and is considered precise to 0.1.
 ## GAINL
 Set lock receiver gain
 
@@ -2868,16 +2867,12 @@ Format: `GAINL` gain
 
 Defaults: current
 
-Prerequisites: RNMR lock control. (RNMRA only.)
+Prerequisites: RNMR lock control; RNMRA only
 
 Description:
-`GAINL` sets the lock channel receiver relative gain. This command sets the gain only if RNMR lock channel control has
-been implemented on the spectrometer running RNMR. Unlike `GAIN`, the current value of `GAINL` is not stored in the
-title records and is not available from `LP`.
-
-`GAINL` takes one parameter, gain which is the relative receiver gain. If this parameter is omitted, RNMR will prompt
-for the receiver gain with the current gain as the default. The receiver gain is a real number between 0.0 and 100.0,
-inclusive and is considered precise to 1.0.
+`GAINL` sets the lock channel receiver relative gain. If no gain is specified RNMR will prompt for it with the current
+lock channel receiver gain as a default. The receiver gain must be between 0.0 and 100.0 inclusive and is considered
+precise to 1.0.
 ## GAV
 Get data from averager
 
