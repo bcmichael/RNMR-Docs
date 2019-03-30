@@ -3008,33 +3008,29 @@ Category: Data Manipulation
 
 Format: `GM` lb
 
-Qualifiers: /PROMPT /NOPROMPT
+Qualifiers: /PROMPT
 
-Qualifier Defaults: /NOPROMPT
+Qualifier Defaults: none
 
 Defaults: current
 
 Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-`GM` performs a Gaussian multiplication apodization. In this  apodization, the FID is multiplied by a decaying real
-Gaussian function. This results in a broadening of spectral lines after Fourier transformation which masks noise at the
-expense of resolution. When Gaussian multiplication is applied to a perfect, non-decaying complex sine wave and a
-Fourier transform is performed, the result will be a perfect Gaussian line shape. While the user need not be currently
-viewing the processing buffer in order to use `GM`, `GM` operates only on processing buffer 1.
+`GM` performs a Gaussian multiplication apodization on an FID in the visible processing buffer. In this  apodization,
+the FID is multiplied by a decaying real Gaussian function. This results in a broadening of spectral lines after Fourier transformation which masks noise at the expense of resolution. When Gaussian multiplication is applied to a perfect,
+non-decaying complex sine wave and a Fourier transform is performed, the result will be a perfect Gaussian line shape.
 
-`GM` takes one argument, lb which is the line broadening factor expressed in the current default frequency units (Hz,
-kHz, or MHz), as set and displayed by `UNIT /FREQ` or by `UNIT /FREQ /DFLT` if `UNIT /FREQ` is PPM. The legal values of
-lb are real numbers between -1000 Hz and 1000 Hz, inclusive. If lb is omitted, RNMR will not prompt for a value unless
-the /PROMPT qualifier is used but rather will perform the apodization with the current line broadening factor, as set
-and displayed by the command `LB`. If a legal value of "lb" is specified, the current line broadening factor will be
-updated before Gaussian multiplication of the data. `GM` multiplies each block of processing buffer 1 by the real
-function:
+`GM` takes one argument, lb, which is the line broadening factor. This parameter is expressed in the current frequency
+units (Hz, kHz, or MHz) unless that unit is ppm in which case it is in the default frequency units. The value of lb must
+be between -1000 and 1000. If lb is omitted, RNMR will not prompt for a value unless the /PROMPT qualifier is used and
+will perform the apodization with the global line broadening factor, as set and displayed by the command `LB`. If a
+legal value of lb is specified, the global line broadening factor will be updated before gaussian multiplication of the
+data. `GM` multiplies each block of processing buffer 1 by the real function:
 
     F(I) = EXP-(0.5*PI*(I-1)* LB/SW)^2)
 
-where I is the index of the data point (I=1,2,...), `LB` is the line broadening factor, and `SW` is buffer sweep width.
-If the processing buffer is currently visible, `GM` always updates the display.
+where I is the index of the data point (I=1,2,...), LB is the line broadening factor, and SW is buffer sweep width.
 ## GMV
 Calculate geometric mean
 
