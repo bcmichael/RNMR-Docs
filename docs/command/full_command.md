@@ -4122,15 +4122,15 @@ Format: `LPB` rlim m n
 
 Defaults: 1 MIN((SIZE-RLIM)/4,8) Min((SIZE-RLIM)-M,512)
 
-Prerequisites: Time domain data in processing buffer 1 (TIME)
+Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-`LPB` performs backwards linear prediction. Based on the specified number of current data points, `LPB` calculates the
-values of the FID at earlier times. In a linear prediction calculation the points in the FID are modelled as a linear
-combination of an adjacent series of points in the FID. In the case of backwards linear prediction these points come
-after the point to be predicted. A set of coefficients used in this linear combination is fit such that this linear
-combination is accurate for a set of known good points in the FID and then in the case of backward linear prediction,
-they are used to replace points at the beginning of the FID.
+`LPB` performs backwards linear prediction on an FID in the visible processing buffer. Based on the specified number of
+current data points, `LPB` calculates the values of the FID at earlier times. In a linear prediction calculation the
+points in the FID are modelled as a linear combination of an adjacent series of points in the FID. In the case of
+backwards linear prediction these points come after the point to be predicted. A set of coefficients used in this
+linear combination is fit such that this linear combination is accurate for a set of known good points in the FID and
+then in the case of backward linear prediction, they are used to replace points at the beginning of the FID.
 
 The first parameter, rlim, is the number of points to replace at the beginning of the FID. If rlim is omitted RNMR will
 not prompt for it and will replace only the first point in the FID. The value of rlim cannot exceed an eighth of the
@@ -4154,8 +4154,7 @@ of the M points after rlim as a linear combination of the N points that follow i
 a singular value decomposition (SVD) of X. Once the coefficients are known RNMR fills in the points from rlim back to
 the beginning of the FID. That is the point rlim is predicted using the N points after it and then the point to the left
 of rlim is predicted using the N points after it (including the predicted value of point rlim) and so on until all the
-points are predicted. If the processing buffer is currently visible, RNMR will update the display to show the data as
-updated by `LPB`.
+points are predicted.
 ## LPC
 Perform long pulse phase and amplitude correction
 
@@ -4285,26 +4284,25 @@ Format: `LPF` rlim m n
 
 Defaults: ISIZE+1 MIN(SIZE/4,8) MIN(SIZE-M,512)
 
-Prerequisites: Time domain data in processing buffer 1 (TIME)
+Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
-`LPF` performs forward linear prediction. Based on the specified number of current data points, `LPF` calculates
-values oto extend the FID. In a linear prediction calculation the points in the FID are modelled as a linear
-combination of an adjacent series of points in the FID. In the case of forward linear prediction these points come
-before the point to be predicted. A set of coefficients used in this linear combination is fit such that this linear
-combination is accurate for a set of known good points in the FID and then in the case of forward linear prediction,
-they to extend the FID.
+`LPF` performs forward linear prediction on an fid in the visible processing buffer. Based on the specified number of
+current data points, `LPF` calculates values to extend the FID. In a linear prediction calculation the points in the FID
+are modelled as a linear combination of an adjacent series of points in the FID. In the case of forward linear
+prediction these points come before the point to be predicted. A set of coefficients used in this linear combination is
+fit such that this linear combination is accurate for a set of known good points in the FID and then in the case of
+forward linear prediction, they are used to extend the FID.
 
 By using forward linear prediction, one may decrease the number of data points in a given dimension that must be
 acquired to avoid truncation errors. This ability is particularly useful in obtaining multidimensional data sets since
 the number of slices that must be physically acquired, and thus the spectrometer time required, is reduced. For
-well-behaved FID's, the number of data points may often be doubled with forward linear prediction. `LPF` operates only
-on the data in the visible processing buffer (buffer 1). The user need not be viewing this buffer to use `LPF`.
+well-behaved FID's, the number of data points may often be doubled with forward linear prediction.
 
 The first parameter, rlim, is the number of points desired after linear prediction. `LPF` will calculate points SIZE+1
 through rlim based on a specified number of points in the original FID. if rlim is omitted only one point will be
-predicted. The value of rlim cannot be smaller than the current size of the FID as shown by `SHOW BUF SIZE` or larger
-than the allocated size of the buffer as displayed and set by `DBSZ`.
+predicted. The value of rlim cannot be smaller than the current size of the FID (as shown by `SHOW BUF SIZE`) or larger
+than the allocated size of the buffer (as displayed and set by `DBSZ`).
 
 The second parameter, m, specifies how many known points are used for fitting the linear prediction coefficients. If m
 is omitted RNMR will not prompt for it and will use either a quarter of the FID or 8 whichever is smaller. The value of
@@ -4323,8 +4321,7 @@ the M points after point N as a linear combination of the N points that precede 
 using a singular value decomposition (SVD) of X. Once the coefficients are known RNMR fills in the points from SIZE+1 to
 rlim. That is the point just after the FID is predicted using the N before after it and then point SIZE+2 is predicted
 using the N points before it (including the predicted value of point SIZE+1) and so on until all the points out to rlim
-are predicted. This process will change the active size of the buffer to rlim. If the processing buffer is currently
-visible, RNMR will update the display to show the data as updated by `LPF`.
+are predicted. This process will change the active size of the buffer to rlim.
 ## LPFIL
 Set text printer file
 
