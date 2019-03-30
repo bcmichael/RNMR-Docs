@@ -4449,6 +4449,35 @@ Prerequisites: Pulse program loaded (LOAD) RNMR only
 Description:
 `LS` is an old command for setting a pulse programmer loop value. It has been replaced with the `LOOP` command and is
 currently simply an alias to it. As such `LOOP` should be used in place of `LS`.
+## LSTDP
+Define list from display
+
+Category: Lists
+
+Format: `LSTDP` nam
+
+Defaults: temp
+
+Prerequisites: Processing buffer visible (VIEW PRO)
+
+Description:
+`LSTDP` is used to fill a list nam with time or frequency values specified interactively via the display. If nam is
+omitted RNMR will prompt for it with temp as a default. The contents of the specified list will be overwritten. The
+following subcommands are available:
+
+Command | Description
+------- | -----------
+B       | Move to bottom of list
+D       | Delete entry
+Enter   | Terminate
+I       | Insert current cursor position into list
+L       | Move up one entry
+N       | Move down one entry
+T       | Move to top of list
+Q       | Terminate
+Z       | Call `ZO` to enable moving the cursor
+
+The list cannot exceed ten entries and attempts to add more values to it will fail.
 ## LSTFIL
 List contents of a text file
 
