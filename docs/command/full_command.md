@@ -3723,12 +3723,12 @@ Format: `LCK` state
 
 Defaults: current
 
-Prerequisites: RNMR lock control. RNMRA only.
+Prerequisites: RNMR lock control; RNMRA only
 
 Description:
 `LCK` enables or disables the magnetic field-frequency lock on spectrometers with software lock control enabled. `LCK`
-takes one parameter, state, which may be specified as  either ON or OFF to enable or disable the lock, respectively.
-If "state" is omitted RNMR will prompt for it with the current lock state as the default.
+takes one parameter, state, which may be specified as either ON or OFF to enable or disable the lock, respectively.
+If state is omitted RNMR will prompt for it with the current lock state as the default.
 ## LCKCTL
 Open lock control pop up menu
 
@@ -3736,7 +3736,7 @@ Category: Lock
 
 Format: `LCKCTL`
 
-Prerequisites: RNMR lock control. RNMRA only.
+Prerequisites: RNMR lock control; RNMRA only
 
 Description:
 `LCKCTL` opens a pop-up menu containing lock controls.
@@ -3747,7 +3747,7 @@ Category: Lock
 
 Format: `LCKMTR`
 
-Prerequisites: RNMR lock control. RNMRA only.
+Prerequisites: RNMR lock control; RNMRA only
 
 Description:
 `LCKMTR` enables the lock meter.
@@ -3758,7 +3758,7 @@ Category: Lock
 
 Format: `LCKVAL`
 
-Prerequisites: RNMR lock control. RNMRA only.
+Prerequisites: RNMR lock control; RNMRA only
 
 Description:
 `LCKVAL` displays the real and imaginary components of the current lock value as informational messages.
