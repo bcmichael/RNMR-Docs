@@ -3615,15 +3615,13 @@ Qualifier Defaults: current_display
 Defaults: current_display_limits
 
 Description:
-`INTRG` calculates the definite integral of the data in the visible processing buffer (buffer 1) within specified time
-or frequency limits. To calculate and display the indefinite integral of a spectrum within the current display limits,
-use the command `INTG`. While `INTRG` acts only on the first processing buffer, the user need not be currently viewing
-this buffer (`VIEW PRO`) to use `INTRG`.
+`INTRG` calculates the definite integral of the data in the visible processing buffer within specified limits. To
+calculate and display the indefinite integral of a spectrum within the current display limits, use the command `INTG`.
 
 The parameters of the `INTRG` command are llim and rlim, the left and right integration limits. These limits are
-specified in the current time or frequency unit, as set and displayed by the `UNIT` command. If either or both of these
-limits are omitted RNMR will not prompt for them and will use the current display limits. If either limit is beyond the
-size of the dataset, the first/last point in the data set will be the integration limit instead.
+specified in the current buffer units (as displayed and set by `UNIT`). If either or both of these limits are omitted
+RNMR will not prompt for them and will use the current display limits. If either limit is beyond the size of the
+dataset, the first/last point in the data set will be the integration limit instead.
 
 If the integration limits are within the range of the data buffer but do not correspond to a specific data point, RNMR
 will set that limit to the time or frequency of the closest data point to the right of the value specified. `INTRG`
@@ -3640,7 +3638,7 @@ Qualifier | Integrand
 /IMAG     | Imaginary part
 /REAL     | Real part
 
-The default integrand is the same as the current display mode as displayed and set by the `BUF` command.
+The default integrand is the same as the current display mode (as displayed and set by `BUF`).
 ## INSLST
 Insert value into list
 
