@@ -3812,14 +3812,10 @@ Defaults: current current
 Description:
 `LIM` sets the display limits for the visible processing buffer. `LIM` takes two parameters, llim and rlim, which are
 the left and right display limits, respectively. These limits are expressed in the current unit for the visible
-processing buffer. The current unit is set and displayed by the `UNIT` command. If llim or rlim is omitted RNMR will
-prompt for it with the current left or right display limit as a default. A value outside of the dataset or "\*" will use
-the leftmost or rightmost point in the buffer. Values that are within the range of the dataset but that do not
-correspond exactly to a point will use the closest point to the right of the specified value.
-
-Note that the command `LIM * *` directs RNMR to set the display limits so that all points in the data buffer are
-visible. Unless display updating has been set off with the `SET DSP` command, RNMR will update the display to show the
-data between llim and rlim.
+processing buffer. If llim or rlim is omitted RNMR will prompt for it with the current left or right display limit as a
+default. A value outside of the dataset or "\*" will use the leftmost or rightmost point in the buffer. Values that are
+within the range of the dataset but that do not correspond exactly to a point will use the closest point to the right of
+the specified value.
 ## LIMA
 Set acquisition buffer display limits
 
@@ -3829,19 +3825,15 @@ Format: `LIMA` llim rlim
 
 Defaults: current current
 
-Prerequisites: RNMRA only.
+Prerequisites: RNMRA only
 
 Description:
 `LIMA` sets the display limits for the acquisition buffer. `LIMA` takes two parameters, llim and rlim, which are the
 left and right display limits, respectively. These limits are expressed in the current unit for the acquisition buffer.
-The current unit is set and displayed by the `UNIT` command. If llim or rlim is omitted RNMR will prompt for it with the
-current left or right display limit as a default. A value outside of the dataset or "\*" will use the leftmost or
-rightmost point in the buffer. Values that are within the range of the dataset but that do not correspond exactly to a
-point will use the closest point to the right of the specified value.
-
-Note that the command `LIM * *` directs RNMR to set the display limits so that all points in the data buffer are
-visible. Unless display updating has been set off with the `SET DSP` command, RNMR will update the display to show the
-data between llim and rlim.
+If llim or rlim is omitted RNMR will prompt for it with the current left or right display limit as a default. A value
+outside of the dataset or "\*" will use the leftmost or rightmost point in the buffer. Values that are within the range
+of the dataset but that do not correspond exactly to a point will use the closest point to the right of the specified
+value.
 ## LIMB
 Set blocked record display limits
 
