@@ -3879,12 +3879,12 @@ Qualifier Defaults: none
 
 Defaults: 1 current/1
 
-Prerequisites: Pulse program loaded (LOAD), RNMRA Only
+Prerequisites: Pulse program loaded (LOAD); RNMRA Only
 
 Description:
 `LOOP` either sets a pulse program loop to val or if /INCR is used increments it by val. If loop is omitted RNMR will
 prompt for it with 1 as a default. If val is omitted RNMR will prompt for it with the current loop value as the default
-unless /INCR is used in which case RNMR will not prompt for val and will set it to 1.
+unless /INCR is used in which case RNMR will not prompt for val and will increment the loop by 1.
 
 The final loop value must be between 0 and 65,535 inclusive. If /INCR is used `LOOP` will display the final loop value
 as an informational message.
