@@ -3853,7 +3853,7 @@ right display limit as a default. A value outside of the dataset or "\*" will us
 available. Values that are within the range of the dataset but that do not correspond exactly to a point will use the
 closest point to the right of the specified value.
 ## LOG
-Write line to log file
+Write line to log
 
 Category: Misc.
 
