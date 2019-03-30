@@ -2905,122 +2905,32 @@ Get blocked record data
 
 Category: Data Storage
 
-Format: `GB` rec blk buf nblk
+Format: `GB` rec slice buf nslice
 
-Defaults: current next 1 1
+Defaults: rrec next 1 1
 
 Description:
-`GB` reads data from a blocked record to a processing buffer. The parameters and data of the buffer are replaced with
-corresponding values read from the disk record. Most RNMR commands require that data stored in a blocked record be read
-into a buffer before further processing may be performed. Since processing buffers are one-dimensional, the user must
-specify which one-dimensional slice(s) of the blocked record is to be read into the buffer. In RNMR, this specification
-is accomplished with one parameter, the block number. As the block number is incremented from 1, 1D slices along the
-first direction are selected for increasing depth in the second direction and minimum height in directions 3 and 4.
-Next, 1D slices are read from the next lowest plane in direction 3 with minimum height in direction 4.  When all slices
-have been read for minimum height in direction 4, retrieval continues with the next lowest cube. In this way, every
-slice along direction 1 is read out with depth in direction 2 varying fastest and height in direction 4 varying most
-slowly. Thus, if the block number is incremented to a adequately large number, all data points in the record will have
-been selected. Note that the assignment of data points to block numbers is dependent on the direction-to-dimension
-mapping set and displayed for each number of dimensions by `DIRB`. As a result, neither the number of blocks in a
-record nor the mapping of data points to block numbers is constant.
+`GB` reads 1D slices from a [blocked record](syntax#blocked_records) to a [processing buffer](syntax#buffers). The
+parameters and data of the buffer are replaced with corresponding values read from the disk record. Most RNMR commands
+require that data stored in a blocked record be read into a buffer before further processing may be performed.
 
-The first parameter, rec is the record to be retrieved. Scratch records (1-4) must be read with `GS` instead of `GB`.
-Archive records (created by `SA` or `CPY` with an archive record source) must be read with `GA`. If rec is omitted, RNMR
-will prompt for a record number with the current read record (as displayed and set by `PTRA`) as the default.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. `GB` can only be used on [blocked records](syntax#record_type) and cannot be
+used to read scratch records which must be accessed with `GS` or archive records which must be accessed with `GA`.
 
-The second parameter, blk is used to select the first block of record rec to be transferred. If this parameter is
-omitted, RNMR will not prompt for a block number. Instead, blk will default to zero. When blk is set to zero, either
-explicitly or by default, the first record block transferred will be determined by the current `PTRB` setting. The
-`PTRB` command displays and sets a pointer which marks the current read and write blocks of a given blocked record.
-When blk is 0, RNMR begins the transfer with the first block after the current read block (`PTRB`+1).
+Since processing buffers are one-dimensional, the user must specify which one-dimensional [slice(s)](syntax#slice) of
+the blocked record to read into the buffer. If no slice is specified RNMR will not prompt for it and will get the next
+slice after the current read blocked record pointer (as displayed and set by `PTRB`).
 
-The third parameter, buf specifies which processing buffer should receive the data and parameters from record rec. If
-buf is omitted, the specified blocks of the source record will be read into processing buffer 1. RNMR does not prompt
-for buf.
-
-The final parameter, nblk specifies the number of blocks to read from record rec into buffer buf. Since the processing
-buffer may be partitioned into two or more segments using the command `DBSZ`, one may read more than one block from rec
-into buf with a single invocation of `GB`. This feature is particularly useful when performing operations uniformly on a
-multidimensional data set. For example, one may perform a 1K Fourier transform on a blocked record eight blocks at a
-time by partitioning the processing buffer into eight segments (e.g. `DBSZ` 1 1024 8) and reading in data eight blocks
-at a time (e.g. `GB` 29 0 1 8) for transformation. In this manner, the number of commands to be executed by the
-processing macro is reduced by a factor of eight, greatly decreasing the required computation time. If nblk is omitted,
-`GB` will transfer only one block, blk, from rec to buf. RNMR does not prompt for the nblk parameter.
-
-Before each block is transferred from rec to buf, RNMR checks that the requested block number is not greater than the
-number of blocks in the specified record. The requested block must also have been used, that is it not only must have
-been allocated but data must have been stored in it.
-
-Since blocks are transferred one at a time, RNMR reads in as many blocks as possible from those requested by the user.
-If at any point one of the error conditions described above occurs, the transfer stops. In this case, all the blocks
-that transferred successfully may be processed as usual, but the screen display is not updated.
-
-In order to read one-dimensional slices from a blocked record, RNMR requires that the record has NDIMX sufficiently
-large that direction 1 is accessible. NDIMX is the number of dimensions that may be simultaneously accessed in a
-blocked record and is a permanent attribute of the record set at allocation time. Regardless of NDIMX, it is always
-possible to access a block of data along the first dimension of any given record, but accessing one-dimensional slices
-along the higher dimensions requires higher values of NDIMX. In conclusion, in order to read slices along dimension N,
-one must have allocated the source record with NDIMX at least N. When NDIMX is too small to allow the requested
-retrieval, RNMR displays the error message:
-
-    (RARCX ) DIMENSION INACCESSIBLE
-
-If this error occurs, the user should make sure that direction 1 is assigned the desired dimension by using the `DIRB`
-command. If the current `DIRB` setting is correct, then it will be necessary to allocate a copy of the source record
-with higher NDIMX using `ALLCPY` and to then copy the data from the source record to the new record using `GB` with an
-allowed `DIRB` setting.
-
-The number of points actually used in direction 1 must not exceed the allocated size of each partition in processing
-buffer buf. This restriction is enforced because RNMR will attempt to transfer each requested block of the record rec to
-a block of the processing buffer. When there are too many points in each block to perform the transfer, RNMR gives an
-error message:
-
-    (CKTBPB) SIZE TOO LARGE
-
- To check and set the allocated size of the processing buffer, use the command `DBSZ` buf.
-
-If the last record read into buffer buf is different from rec, then the following buffer parameters are replaced
-with the new values as described below:
-
-Parameter | Description | Set Value
---------- | ----------- | ---------
-TTLFLG    | Title flag  | FALSE to indicate that the buffer title should be verified
-RECNO     | Record number | "rec"
-NDIM      | Number of dims. | value in archive record
-TITLE     | Buffer title | inherited from archive record
-OWNER     | Record owner | "       "
-DATE      | Date created | "       "
-IDN       | Ident. Fields | "       "
-
-`GB` always sets the buffer IDIMX parameter to the direction 1 dimension; IDIMX specifies which dimension of a
-multidimensional source record is currently stored in the buffer. Thus, `GB` marks the buffer as containing data from
-direction 1 of rec.
-
-When a new record is read into a processing buffer by `GB`, RNMR checks the nucleus assigned to each synthesizer in the
-disk archive. For each synthesizer with an assigned nucleus, RNMR defines (or redefines) the table entry for that
-nucleus with its reference frequency and PPM to Hz conversion factor as stored in the disk archive. Note that if the
-archive contains one or more nucleus entries which are already in the current RNMR nucleus table or if the nucleus table
-is full, RNMR will redefine `NUC UNKN` with the nucleus parameters stored with the disk archive. For each synthesizer,
-the buffer frequency table is initialized with all values marked as undefined (\*) and the buffer inherits the nucleus,
-offset, and phase sense (SR flag) assigned to that synthesizer. Other hardware acquisition parameters (e.g. `PWR`,
-`GAIN`, `DW`, etc.) are inherited by the buffer without change so that the user may list the parameters for a given
-blocked record by entering `GB` then `LP`. Note that the title entries for each record store the values of only the
-first eight pulses, delays, and loops, so the values of P 9 through P 16, etc. will not be transferred to the buffer's
-parameter table and will not be printed out by `LP`. However, the values of all 32 PP flags are stored on disk and are
-transferred by `GB`. The parameters stored with a given blocked record are set when the first block is stored using `SB`
-and are not updated or augmented as additional blocks are written to disk.  Thus, when `LP` lists the parameters of a
-blocked record, the parameters reported may not be correct for blocks other than the first stored block.
-
-Whether record rec has already been read into buffer buf or not, RNMR sets the observe (direction 1) synthesizer number
-of the buffer equal to the corresponding value for the record. When a new record is read into the buffer, the software
-acquisition parameters (e.g. `NAMD`, `NA`, `NWAIT`, etc.) are transferred from the source record to the buffer parameter
-table. `GB` always updates the buffer to reflect the archive record's first direction size, domain, time or frequency
-scale, and dimension, and phase and scale factors. After the data is read from the archive record to the processing
-buffer, the active size of the buffer becomes the size of the record. As each block is successfully transferred from
-record rec to buffer `BUF`, RNMR sets the block read pointer to the number of the block just read. This pointer
-indicates the current block of a given record and may be set as desired manually with the command `PTRB`. Upon
-successful completion, `GB` updates the current read record pointer (as displayed and set by `PTRA`) to rec and updates
-the display if processing buffer buf is currently visible.
+If no buffer is specified RNMR will not prompt for it and will read the data into the visible processing buffer.
+Multiple slices from a blocked record may be read into multiple blocks of the buffer. The final parameter, nslice,
+specifies how many slices to read starting from the specified slice. If nslice is omitted RNMR will not prompt for it
+and will read only a single slice. The value of nslice may not exceed the number of blocks the processing buffer is
+partitioned into (as displayed and set by `DBSZ`). Additionally the size of each slice must not exceed the size of each
+block of the buffer. In order for a slice to be read it must not exceed the size of the blocked record and it must have
+been used (data stored in it). If a requested slice cannot be read for the above reasons all of the requested slices
+that come before it will still be successfully read. The read blocked record pointer (as displayed and set by `PTRB`)
+will be updated to point to the last slice read.
 ## GBLARG
 Set value of global argument
 
