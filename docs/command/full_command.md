@@ -2829,57 +2829,21 @@ Category: Data Storage
 
 Format: `GA` rec buf
 
-Defaults: current 1
+Defaults: rrec 1
 
 Description:
-`GA` reads data from an archive record to a processing buffer. The parameters and data of the buffer are replaced with
-corresponding values read from the disk record. Most RNMR commands require that data stored in an archive file be read
-into a buffer before further processing may be performed.
+`GA` reads data from an [archive record](syntax#record_type) to a [processing buffer](syntax#buffers). The parameters
+and data of the buffer are replaced with corresponding values read from the disk record. Most RNMR commands require that
+data stored in an archive file be read into a buffer before further processing may be performed.
 
-The first parameter, rec specifies the number of a archive record containing the data to be exported. If this
-parameter is omitted, RNMR will prompt for a source record number with the current read record (as displayed and set by
-`PTRA`) as the default. Unlike most other RNMR commands, pressing <RETURN\> at the REC prompt to accept the current read
-record does cause RNMR to refresh the buffer. `GA` cannot be used to read scratch records which must be accessed with
-`GS` or blocked records which must be accessed with `GB`.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. `GA` cannot be used to read scratch records which must be accessed with `GS`
+or blocked records which must be accessed with `GB`. If no buffer is specified RNMR will not prompt for it and will read
+the record into the visible processing buffer.
 
-The second parameter, buf specifies which processing buffer should receive the data and parameters from record rec. If
-buf is omitted, the archive record will be read into processing buffer 1. RNMR does not prompt for buf.
-
-In order to read record rec into buffer buf, the allocated size of the buffer must be greater than or equal to the size
-of the archive record. To check and, if necessary, modify the allocated buffer size, use the command `DBSZ`.
-
-If the last record read into buffer `BUF` is different from REC, then the following buffer parameters are replaced with
-the new values as described below:
-
-Parameter | Description | Set Value
---------- | ----------- | ---------
-TTLFLG    | Title flag  | FALSE to indicate that the buffer title should be verified
-RECNO     | Record number | "rec"
-NDIM      | Number of dims. | value in archive record
-TITLE     | Buffer title | inherited from archive record
-OWNER     | Record owner | "       "
-DATE      | Date created | "       "
-IDN       | Ident. Fields | "       "
-
-`GA` always sets the buffer IDIMX parameter to 1; IDIMX specifies which dimension of a multidimensional source record is
-currently stored in the buffer.  When a new record is read into a processing buffer by `GA`, RNMR checks the nucleus
-assigned to each synthesizer in the disk archive. For each synthesizer with an assigned nucleus, RNMR defines (or
-redefines) the table entry for that nucleus with its reference frequency and PPM to Hz conversion factor as stored in
-the disk archive.  For each synthesizer, the buffer frequency table is initialized with all values marked as undefined
-(\*) and the buffer inherits the nucleus, offset, and phase sense (SR flag) assigned to  that synthesizer. Other
-hardware acquisition parameters (e.g. `PWR`, `GAIN`, `DW`, etc.) are inherited by the buffer without change so that the
-user may list the parameters for a given archive record by entering `GA` then `LP`. Note that the title entries for
-each archive record store the values of only the first eight pulses, delays, and loops, so the values of P 9 through P
-16, etc. will not be transferred to the buffer's parameter table and will not be printed out by `LP`. Despite this, the
-values of all 32 PP flags are stored on disk and are transferred by `GA`.
-
-Whether record rec has already been read into buffer buf or not, RNMR sets the observe (direction 1) synthesizer number
-of the buffer equal to the corresponding value for the record. When a new record is read into the buffer, the software
-acquisition parameters (e.g. `NAMD`, `NA`, `NWAIT`, etc.) are transferred from the source record to the buffer parameter
-table. `GA` always updates the buffer to reflect the archive record's first direction size, domain, time or frequency
-scale, and dimension, and phase and scale factors.  After the data is read from the archive record to the processing
-buffer, the active size of the buffer becomes the size of the record. `GA` updates the current read record pointer (as
-displayed and set by `PTRA`) to rec and updates the display if processing buffer buf is currently visible.
+In order to read the record into the buffer, the allocated size of the buffer must be greater than or equal to the size
+of the archive record. To check and, if necessary, modify the allocated buffer size, use the command `DBSZ`. The active
+size of the buffer will change to the size of the data read from the record.
 ## GAIN
 Set receiver gain
 
