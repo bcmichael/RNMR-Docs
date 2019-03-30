@@ -4164,13 +4164,12 @@ Format: `LPC` flip fnyq fnull
 
 Defaults: 90.0 first -fnyq
 
-Prerequisites: Frequency domain data in processing buffer 1 (FREQ)
+Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
-`LPC` performs a long pulse correction apodization, correcting both the amplitude and phase of the spectrum. This
-apodization is intended to alleviate distortions caused by incomplete excitation of the spectrum by weak pulses. `LPC`
-operates only on data in the visible processing buffer (buffer 1). The user need not be viewing this buffer to use
-`LPC`.
+`LPC` performs a long pulse correction apodization, correcting both the amplitude and phase of a spectrum in the visible
+processing buffer. This apodization is intended to alleviate distortions caused by incomplete excitation of the spectrum
+by weak pulses.
 
 The first argument of `LPC` is flip, the on-resonance flip angle of the pulse used to excite the spectrum. If this
 parameter is not specified on the command line, RNMR will prompt for a flip angle with a default of 90 degrees. The
@@ -4186,8 +4185,7 @@ as a default. The value of fnull is restricted such that the following relations
 
     0.1 ≤ ABS(FNULL-OFFSET)/(FNYQ-OFFSET) ≤ 2.0
 
-Both fnyq and fnull are specified in the current frequency unit as set and displayed by `UNIT /FREQ`. If the processing
-buffer is currently visible, RNMR will update the display after performing the apodization.
+Both fnyq and fnull are specified in the current frequency unit (as set and displayed by `UNIT /FREQ`).
 ## LPCA
 Perform long pulse amplitude correction
 
@@ -4197,12 +4195,12 @@ Format: `LPCA` flip fnyq fnull
 
 Defaults: 90.0 first -fnyq
 
-Prerequisites: Frequency domain data in processing buffer 1 (FREQ)
+Prerequisites: Frequency domain data in processing buffer (FREQ)
 
 Description:
-`LPCA` performs the amplitude portion of long pulse correction apodization. This apodization is intended to alleviate
-distortions caused by incomplete excitation of the spectrum by weak pulses. `LPCA` operates only on data in the visible
-processing buffer (buffer 1). The user need not be viewing this buffer to use `LPCA`.
+`LPCA` performs the amplitude portion of long pulse correction apodization on a spectrum in the visible processing
+buffer. This apodization is intended to alleviate distortions caused by incomplete excitation of the spectrum by weak
+pulses.
 
 The first argument of `LPCA` is flip, the on-resonance flip angle of the pulse used to excite the spectrum. If this
 parameter is not specified on the command line, RNMR will prompt for a flip angle with a default of 90 degrees. The
@@ -4218,8 +4216,7 @@ as a default. The value of fnull is restricted such that the following relations
 
     0.1 ≤ ABS(FNULL-OFFSET)/(FNYQ-OFFSET) ≤ 2.0
 
-Both fnyq and fnull are specified in the current frequency unit as set and displayed by `UNIT /FREQ`. If the processing
-buffer is currently visible, RNMR will update the display after performing the apodization.
+Both fnyq and fnull are specified in the current frequency unit (as set and displayed by `UNIT /FREQ`).
 ## LPCP
 Perform long pulse phase correction
 
@@ -4232,9 +4229,8 @@ Defaults: 90.0 first -fnyq
 Prerequisites: Frequency domain data in processing buffer 1 (FREQ)
 
 Description:
-`LPCP` performs the phase portion of long pulse correction apodization. This apodization is intended to alleviate
-distortions caused by incomplete excitation of the spectrum by weak pulses. `LPCP` operates only on data in the visible
-processing buffer (buffer 1). The user need not be viewing this buffer to use `LPCP`.
+`LPCP` performs the phase portion of long pulse correction apodization on a spectrum in the visible processing buffer.
+This apodization is intended to alleviate distortions caused by incomplete excitation of the spectrum by weak pulses.
 
 The first argument of `LPCP` is flip, the on-resonance flip angle of the pulse used to excite the spectrum. If this
 parameter is not specified on the command line, RNMR will prompt for a flip angle with a default of 90 degrees. The
@@ -4250,8 +4246,7 @@ as a default. The value of fnull is restricted such that the following relations
 
     0.1 ≤ ABS(FNULL-OFFSET)/(FNYQ-OFFSET) ≤ 2.0
 
-Both fnyq and fnull are specified in the current frequency unit as set and displayed by `UNIT /FREQ`. If the processing
-buffer is currently visible, RNMR will update the display after performing the apodization.
+Both fnyq and fnull are specified in the current frequency unit (as set and displayed by `UNIT /FREQ`).
 ## LPDEV
 Select text printer device
 
