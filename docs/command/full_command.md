@@ -3151,9 +3151,9 @@ Qualifiers: /RESET
 
 Qualifier Defaults: none
 
-Prerequisites: RNMRA only
-
 Defaults: *
+
+Prerequisites: RNMRA only
 
 Description:
 `GREFA` changes the reference frequency (or frequencies) in the acquisition buffer to match what is stored in the
