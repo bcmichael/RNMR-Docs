@@ -4346,9 +4346,8 @@ Qualifiers: /PRT /TTY /WND /WRT
 Qualifier Defaults: /WND
 
 Description:
-`LPK` displays a list of peak positions and intensities for the first 50 peaks within the current display limits (`LIM`)
-above the current peak pick threshold (`TH`). `LPK` only lists peaks within the current display limits for the data in
-processing buffer 1. The user need not be viewing the processing buffer to use `LPK`.
+`LPK` displays a list of peak positions and intensities for the first 50 peaks in the visible processing buffer within
+the current display limits (`LIM`) above the current peak pick threshold (`TH`).
 
 The first line displayed by `LPK` will be the current buffer title. The following line will contain the archive, record,
 block number, owner, and date. Direction 1 is always indicated by "\*" in the block number display and corresponds to
@@ -4361,60 +4360,16 @@ when listing block 1 of record 5 in archive TEMP. Conversely, if `DIRB` 2 is set
 
     TEMP     5     (1    ,   * )
 
-to indicate that direction 1 is mapped to dimension 2. If the record containing the data in buffer buf is one
+to indicate that direction 1 is mapped to dimension 2. If the record containing the data in the buffer is one
 dimensional, no block numbers will be reported.
 
-`LPK` lists peaks in the real part of the data in processing buffer 1 unless the user has selected the imaginary part by
-entering `BUF IMAG`. Peaks are located and listed only for the first block of buffer 1 between the current display
-limits, as set and displayed by the `LIM` command.
-
-`LPK` uses the following algorithm to find peaks within the current display limits:
-
-1.	Starting with the first point to right of the left cursor and proceeding to the last point to the left of the right
-cursor, `LPK` examines each visible point in processing buffer 1. Consequently, neither of the current cursor positions
-can be a peak.
-
-2.	RNMR examines the intensities of the two points on either side of the current point and decides whether the current
-point is a peak. If I is the intensity of the test point and IL and IR are the intensities of the first points to the
-left and right of the test point, respectively, then the test point is a peak if:
-
-        (ABS(I) .GT. IL) .AND. (ABS(I) .GE. IR)      .AND. (ABS(I) .GE. TH)   if I .GE. 0
-    or
-
-        (ABS(I) .GT. -IL) .AND. (ABS(I) .GE. -IR)      .AND. (ABS(I) .GE. TH)   if I .LT. 0
-where `TH` is the current peak pick threshold, as set and displayed by the command `TH`. That is, for a positive point
-to be a peak, its intensity must be greater than or equal to the peak pick threshold, greater than the intensity of the
-adjacent point on the left, and greater than or equal to the intensity of the point on the right. Conversely, for a
-negative point to be a peak, its intensity must be less than or equal to the negative of the peak pick threshold, less
-than the intensity of the first point to the left, and less than or equal to the intensity of the first point to the
-right.
-
-3.	For each peak found, RNMR displays a line corresponding to the peak. The first column in the `LPK` printout will
-specify the peak number, starting at one for the leftmost peak. If the current unit is PPM, the second column of the
-`LPK` printout will list the peak position in PPM while the third column will list this position in the current default
-frequency unit, as set by the command `UNIT /FREQ /DFLT`. If the current unit is not PPM, the second column will list
-the peak position in the current unit while the third column will specify "--------" for each peak. RNMR will list all
-peak positions with the maximum number of decimal places currently set for the appropriate units at RNMR startup time or
-as modified by the `NDEC` command. The fourth column of the `LPK` printout specifies the peak height for each peak,
-reported to a maximum of 3 decimal places.
-
-4.	RNMR stops listing peaks after finding the first 50 peaks or after testing the next to the last point currently
-displayed. If no peaks were found, an error message is displayed:
-
-        (LPK   ) NO PEAKS
-In this case, RNMR does not print a peak list.  Conversely, if more  than 50 peaks were found, RNMR displays the
-message:
-
-        (LPK   ) TOO MANY PEAKS
-along with the number of peaks actually found between the display limits. When this occurs, RNMR displays a listing of
-the first 50 peaks from left to right and does not list the remaining peaks.
-
-Wherever possible, `LPK` lists peak positions and intensities as floating point numbers with the maximum number of
-decimal places: 3 for intensity and ndec for peak position, where ndec is the value returned by the `NDEC` command
-for the appropriate time or frequency unit. However, when a time, frequency or intensity value is too large or too
-small to represent with this number of decimal places, RNMR will begin to drop decimal places to fit the number into an
-8-character field. If RNMR cannot write the number into an eight character field after dropping all decimal places
-(`NDEC 0`), the number will be written in scientific notation.
+`LPK` lists peaks in the real part of the buffer unless viewing the imaginary part (`BUF IMAG`). Peaks are located and
+listed only for the first block of the visible processing buffer between the current display limits (as set and
+displayed by `LIM`). The peaks will be listed in order from left to right in the display. For each peak a line will be
+displayed with four values (peak number, position in current frequency units, position in default frequency units,
+intensity). A point is considered a peak if its magnitude is greater than the peak picking threshold (as set and
+displayed by `TH`) and it is either a local maximum or minimum if its intensity is greater or less than zero
+respectively.
 
 The qualifiers specify how the list is output as follows:
 
