@@ -6570,9 +6570,9 @@ Format: `SAVBUF` fspec buf
 Defaults: temp 1
 
 Description:
-`SAVBUF` saves values from a specified processing buffer buf to a file on disk fspec which can be later be loaded using
-`RSTBUF`. If no file is specified RNMR will prompt for it with temp as a default. If no buffer is specified RNMR will
-not prompt for it and will save values from processing buffer 1 (the visible processing buffer).
+`SAVBUF` saves values from a specified [processing buffer](syntax#buffers) to a file on disk fspec which can be later be
+loaded using `RSTBUF`. If no file is specified RNMR will prompt for it with temp as a default. If no buffer is specified
+RNMR will not prompt for it and will save values from the visible processing buffer.
 ## SAVGBL
 Save global arguments to file
 
