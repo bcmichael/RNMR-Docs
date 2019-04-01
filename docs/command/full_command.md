@@ -5486,18 +5486,16 @@ Category: Printing
 
 Format: `PLOTC` rec slice
 
-Defaults: current 1
+Defaults: rrec 1
 
 Description:
-`PLOTC` plots a two dimensional contour plot of a blocked record to either the plotting device specified by `PLDEV` or
-the file specified by `PLFIL`. If no record is specified RNMR will prompt for it with the current read record as a
-default. The selected record must be a blocked record.
+`PLOTC` plots a contour plot of a two-dimensional slice of a blocked record to either the plotting device specified by
+`PLDEV` or the file specified by `PLFIL`. The number of contours is set by `NCON`, the contour height limits by
+`CONLIM`, the type of contours by `CONMD`, and the plot limits by `LIMB`.
 
-The last parameter, slice specifies which 2D slice of a 3D or 4D source record should be plotted. If the source record
-has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will plot the first slice.
-Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will affect the selection of
-which one-dimensional blocks of the record comprise the 2D slice and will thus be plotted. Slice is interpreted as a
-linear index over the 3rd/4th dimensions.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
+plot the first 2D slice of the record.
 ## PLS
 Set pulse length
 
