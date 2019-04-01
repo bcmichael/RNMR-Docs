@@ -4948,10 +4948,10 @@ Format: `NABLK` nablk
 
 Defaults: current
 
-Prerequisites: Acquisition stopped (HALT), RNMRA only
+Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
-`NABLK` sets the number of blocks into which the aquisition buffer is partitioned. If nablk is not provided RNMR will
+`NABLK` sets the number of blocks into which the acquisition buffer is partitioned. If nablk is not provided RNMR will
 prompt for it with the current value as a default. If nablk is 0 the maximum possible number of acquisition blocks will
 be used.
 ## NAMD
