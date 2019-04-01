@@ -5229,15 +5229,15 @@ Format: `OPNARV` arv name
 
 Qualifiers: /RD /WRT /FORCE
 
-Qualifier Defaults: /WRT for arv 1: /RD for others
+Qualifier Defaults: /WRT for arv 1; /RD for others
 
 Defaults: 1 TEMP
 
 Description:
-`OPNARV` opens an archive for access by RNMR. The archive number is specified by arv and must be an integer from 1 to 4.
-If no archive number is specified RNMR will prompt for it with a default of 1. The parameter name specifies the name of
-the archive file that is to be opened. If no name is specified RNMR will prompt for it with a default of temp. The /RD
-and /WRT qualifiers alter the access to the archive. /RD will cause the archive to be opened with read access. /WRT will
+`OPNARV` opens an archive for access by RNMR. If no [archive number](syntax#archives) is specified RNMR will prompt for
+it with a default of 1. The parameter name specifies the name of the archive file that is to be opened. If no name is
+specified RNMR will prompt for it with a default of temp. The /RD and /WRT qualifiers alter the
+[access](syntax#archive_access) to the archive. /RD will cause the archive to be opened with read access. /WRT will
 cause the archive to be opened with read and write access. If neither /RD or /WRT is specified then `OPNARV` will use
 /WRT for archive 1 and /RD for all other archive numbers.
 
