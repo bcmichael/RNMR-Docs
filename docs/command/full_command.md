@@ -5528,7 +5528,7 @@ Description:
 `PLSIZE` sets the size of a plot in inches. If either xsiz or ysiz are not provided RNMR will prompt for them with
 the current value as a default.
 ## POLAR
-Convert buffer to poalr coordinates
+Convert buffer to polar coordinates
 
 Category: Data Manipulation
 
