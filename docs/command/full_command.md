@@ -6791,7 +6791,9 @@ available in both RNMRA and RNMRP:
 
 BUF item val
 
-`SET BUF` sets various parameters of the visible processing buffer. The following items may be set with `SET BUF`:
+`SET BUF` sets various parameters of the visible processing buffer. If no item is specified RNMR will not prompt for it
+and will do nothing. If an item is selected but no value is specified RNMR will prompt for it with the current value.
+The following items may be set with `SET BUF`:
 
 Item  | Description
 ----  | -----------
