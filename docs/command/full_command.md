@@ -1153,15 +1153,6 @@ Defaults: 1
 Description:
 `CLSARV` closes an archive. If no [archive](syntax#archives) is specified RNMR will prompt for it with 1 as a default.
 An attempt to close an archive which is not open will result in an error.
-## CLSDSP
-Close display
-
-Category: Display Handling
-
-Format: `CLSDSP`
-
-Description:
-Close display opened with `OPNDSP`. `CLSDSP` will error if the display is not open.
 ## CLSEXP
 Close export file
 
@@ -5234,14 +5225,6 @@ lock files are intended to prevent multiple instances of RNMR from trying to wri
 Use of /FORCE might be necessary if RNMR crashed and was unable to delete the lock file. This option should be used
 carefully as opening an archive with write access in multiple instances of RNMR at the same time can lead to corruption
 of data.
-## OPNDSP
-Open display
-
-Category: `OPNB`
-
-Format:
-
-Defaults:
 ## OPNEXP
 Open export file
 
