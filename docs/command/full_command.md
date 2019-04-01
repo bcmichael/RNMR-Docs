@@ -6709,8 +6709,9 @@ Defaults: 1.0
 
 Description:
 `SC` vertically scales data in the visible processing buffer. By default `SC` uses the /REL option which multiplies the
-data by the alue of sf. /ABS sets the absolute scale factor of the data. After scaling RNMR will print the new absolute
-scale factor as an informational message. If sf is omitted RNMR will not prompt for it and will a scale factor of 1.0.
+data by the value of sf. /ABS sets the absolute scale factor of the data. After scaling RNMR will print the new absolute
+scale factor as an informational message. If sf is omitted RNMR will not prompt for it and will use a scale factor of
+1.0.
 ## SEL
 Begin macro `SEL` block
 
