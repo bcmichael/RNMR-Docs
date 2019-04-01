@@ -4765,7 +4765,7 @@ Format: `MINV` src dst
 Defaults: 2 1
 
 Description:
-`MINV` replaces the contents of buffer dst with the minimum of buffers src and dst.
+`MINV` replaces the contents of [processing buffer](syntax.md#buffers) dst with the minimum of buffers src and dst.
 
     DST = MIN(DST,SRC)
 
