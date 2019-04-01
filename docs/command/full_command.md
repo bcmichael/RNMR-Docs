@@ -6356,7 +6356,7 @@ Prerequisites: Macro only (MAC)
 Description:
 `RPTDO` repeats an iteration of a macro `DO` loop. It returns to the beginning of the loop without executing the rest of
 the commands in the loop or incrementing the loop counter. Take care as this behavior can easily lead to an infinite
-loop. `RPTDO` must fall between an instance of `DO` and itsmatching `ENDDO`.
+loop. `RPTDO` must fall between an instance of `DO` and its matching `ENDDO`.
 ## RRKC
 Read data from an RKC device
 
