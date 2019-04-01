@@ -1153,18 +1153,6 @@ Defaults: 1
 Description:
 `CLSARV` closes an archive. If no [archive](syntax#archives) is specified RNMR will prompt for it with 1 as a default.
 An attempt to close an archive which is not open will result in an error.
-## CLSB
-Close blocked record
-
-Category: Data Storage
-
-Format: `CLSB` record
-
-Defaults: wrec
-
-Description:
-`CLSB` closes an open blocked record. The default value is the most recently written to record. `CLSB` will error if the
-specified record is not an open blocked record.
 ## CLSDSP
 Close display
 
@@ -5246,14 +5234,6 @@ lock files are intended to prevent multiple instances of RNMR from trying to wri
 Use of /FORCE might be necessary if RNMR crashed and was unable to delete the lock file. This option should be used
 carefully as opening an archive with write access in multiple instances of RNMR at the same time can lead to corruption
 of data.
-## OPNB
-Open block parameters
-
-Category:
-
-Format:
-
-Defaults:
 ## OPNDSP
 Open display
 
