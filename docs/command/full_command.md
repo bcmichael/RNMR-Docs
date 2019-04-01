@@ -5838,7 +5838,8 @@ Format: `PSUBV` src dst
 Defaults: 2 1
 
 Description:
-`PSUBV` subtracts a polar src buffer from a polar dst buffer and stores the result in dst:
+`PSUBV` subtracts a the polar contents of [processing buffer](syntax.md#buffers) src from dst and stores the result in
+dst.
 
     REAL(DST)=SQRT(REAL(DST) * REAL(SRC))
     IMAG(DST)=IMAG(DST) - IMAG(SRC)
