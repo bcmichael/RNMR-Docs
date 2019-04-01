@@ -5583,17 +5583,15 @@ Subcommands:
 
 Command | Description
 ------- | -----------
-Enter | Terminate
-L  | Move left one peak
-Q  | Terminate
-R  | Move right one peak
-T  | Set peak picking threshold
-Z  | Call `ZO`
+Enter   | Terminate
+L       | Move left one peak
+Q       | Terminate
+R       | Move right one peak
+T       | Set peak picking threshold
+Z       | Call `ZO`
 
-RNMR selects peaks based upon the following criteria. In order to be a peak a point must have an absolute intensity
-greater than the threshold. If the intensity is negative it must be less than the intensity of the points immediately to
-the left and right of it. If the intensity is positive it must be greater than the intensity of the points immediately
-to the left and right of it.
+A point is considered a peak if its magnitude is greater than the peak picking threshold (as set and displayed by `TH`)
+and it is either a local maximum or minimum if its intensity is greater or less than zero respectively.
 ## PPEX
 Load a pulse program experiment
 
