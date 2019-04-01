@@ -6540,16 +6540,12 @@ Format: `SAV` blk buf
 Prerequisites: Acquisition stopped (HALT); Time domain only (TIME); RNMRA only
 
 Description:
-`SAV` transfers data and parameters from a processing buffer to the averager. The averager memory may be logically
-partitioned into two or more blocks so that multiple FID's with different experimental parameters can be acquired at
-once, without the need to start and stop acquisition many times. `SAV` transfers data to one of these blocks from a
-processing buffer according to the user's choice of blk and buf.
-
-The first parameter, blk specifies the averager block to transfer the data to. If blk is omitted RNMR will not prompt
-for it and will transfer to block 1.
-
-The second parameter, buf specifies which processing buffer to send data from. If no buffer is specified RNMR will not
-prompt for it and will transfer data from process buffer 1 (the visible processing buffer).
+`SAV` transfers data and parameters from a [processing buffer](syntax#buffers) to the averager for further averaging.
+The averager memory may be logically partitioned into two or more blocks by `NABLK` so that multiple FID's with
+different experimental parameters can be acquired at once, without the need to start and stop acquisition many times.
+`SAV` transfers data from a processing buffer to one of these blocks. If no block is specified RNMR will not prompt for
+it and will transfer to block 1. If no buffer is specified RNMR will not prompt for it and will transfer from the
+visible processing buffer.
 ## SAVARV
 Save archive
 
