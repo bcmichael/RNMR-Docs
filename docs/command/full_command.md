@@ -6670,27 +6670,30 @@ Save data to blocked record
 
 Category: Blocked Record
 
-Format: `SB` rec blk buf nblk
+Format: `SB` rec slice buf nblk
 
 Defaults: wrec next 1 1
 
 Description:
-`SB` saves the data in a processing buffer to a blocked record. The record must be in an archive which RNMR has read
-access to. If no record is provided RNMR will not prompt for it and will use the next available record. Records in
-archives other than 1 can be specified by either pre-pending the archive number and a ":" or specifying numbers larger
-than 200. For example record # in archive 2 can be specified either as 2:# or by adding 200 to #. `SB` cannot write to
-scratch records which must be written using `SS` or to archive records which must be written using `SA`.
+`SB` saves the data in a [processing buffer](syntax#buffers) to 1D slices if a [blocked record](syntax#blocked_records).
+If no [record number](syntax#records) is provided RNMR will not prompt for it and will use the current write record
+pointer (as displayed and set by `PTRA`). The record must be in an archive which RNMR has write access to. `SB` cannot
+write to [scratch records](syntax#record_types) which must be written using `SS` or to archive records which must be
+written using `SA`.
 
-The second parameter, blk, determines which block within the record the data is saved to. If blk is omitted or set to 0
-RNMR will write to the next block of the record as specified by the blocked record write pointer. The blocked record
-write pointer can be set and viewed using `PTRB`. After `SB` is complete this blocked record write pointer will point to
-the block after the final block that was written to.
+Since processing buffers are one-dimensional, the user must specify which one-dimensional [slice(s)](syntax#slice) of
+the blocked record to save the data from the buffer to. If no slice is specified RNMR will not prompt for it and will
+write to the slice after the current write blocked record pointer (as displayed and set by `PTRB`).
 
-If no buffer is specified RNMR will not prompt for it and will save the data from processing buffer 1 (the visible
-processing buffer).
-
-A processing buffer may be partitioned into multiple blocks. The final parameter, nblck, determines how many of these
-processing buffer blocks should be saved. If nblk is omitted RNMR will not prompt for it and will save only 1 block.
+If no buffer is specified RNMR will not prompt for it and will save the data in the visible processing buffer.
+Multiple blocks of the buffer may be saved to multiples slices of the blocked record. The final parameter, nslice,
+specifies how many slices to save starting from the specified slice. If nslice is omitted RNMR will not prompt for it
+and will save only a single slice. The value of nslice may not exceed the number of blocks the processing buffer is
+partitioned into (as displayed and set by `DBSZ`). The active size of each block of the processing buffer must match the
+size of the blocked record along direction 1. In order for a slice to be read it must not exceed the size of the blocked
+record. If a requested slice cannot be written for the above reasons all of the requested slices that come before it
+will still be successfully saved. The write blocked record pointer (as displayed and set by `PTRB`) will be updated to
+point to the last slice written.
 ## SC
 Scale data
 
