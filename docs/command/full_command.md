@@ -5947,7 +5947,9 @@ Description:
 set is omitted RNMR will prompt for them with a default of 1. The power level must be between 0.0 and 100.0 inclusive.
 If no power level is provided RNMR will prompt for it with the current value as a default.
 ## PWXEX
-Load power program  	Category:
+Load power program
+
+Category:
 
 Format: `PWXEX`
 
