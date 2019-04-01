@@ -5332,10 +5332,14 @@ Category: Blocked Records
 
 Format: `PARB` rec dir dim dom syn first step
 
-Defaults: irrec 1 current current current current current
+Defaults: wrec 1 current current current current current
 
 Description:
-`PARB` sets the parameters for interpreting a blocked record.
+`PARB` sets parameters for interpreting a [blocked record](syntax#blocked_records). This command works essentially the
+same as `SET REC` but sets many parameters for a specified direction at once. If no [record number](syntax#records) is
+specified RNMR will prompt for it with the current write record pointer (as displayed and set by `PTRA`) as a default.
+If no direction is specified RNMR will prompt for it with 1 as a default. If any other argument is omitted RNMR will
+prompt for it with the current value as a default.
 ## PC
 Incremental phase correction
 
