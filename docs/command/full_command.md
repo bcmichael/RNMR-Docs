@@ -5926,7 +5926,7 @@ Format: `PWRL` pwr
 
 Defaults: current
 
-Prerequisites: RNMR lock control. RNMRA only.
+Prerequisites: RNMR lock control; RNMRA only
 
 Description:
 `PWRL` sets the lock channel power level. The power level must be between 0.0 and 100.0 inclusive. If no power level is
