@@ -5563,7 +5563,7 @@ Format: `POSL` pos
 
 Defaults: current
 
-Prerequisites: RNMR lock control. (RNMRA only.)
+Prerequisites: RNMR lock control; RNMRA only
 
 Description:
 `POSL` sets the position of the center of the lock. The value must be between -50.0 and 50.0 inclusive. If no position
