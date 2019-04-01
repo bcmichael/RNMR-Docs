@@ -4798,14 +4798,13 @@ Qualifier Defaults: current_display
 Defaults: current_display_limits
 
 Description:
-`MNMX` calculates the minimum and maximum of the data in the visible processing buffer (buffer 1) within specified time
-or frequency limits. While `MNMX` acts only on the first processing buffer, the user need not be currently viewing
-this buffer (`VIEW PRO`) to use `MNMX`.
+`MNMX` calculates the minimum and maximum of the data in the visible processing buffer within specified time or
+frequency limits.
 
-The parameters of the `MNMX` command are llim and rlim, the left and right integration limits. These limits are
-specified in the current time or frequency unit, as set and displayed by the `UNIT` command. If either or both of these
-limits are omitted RNMR will not prompt for them and will use the current display limits. If either limit is beyond the
-size of the dataset, the first/last point in the data set will be the limit instead.
+The parameters of the `MNMX` command are llim and rlim, the left and right data limits. These limits are specified in
+the current time or frequency unit, as set and displayed by the `UNIT` command. If either or both of these limits are
+omitted RNMR will not prompt for them and will use the current display limits. If either limit is beyond the size of the
+dataset, the first/last point in the data set will be the limit instead.
 
 If the limits are within the range of the data buffer but do not correspond to a specific data point, RNMR will set that
 limit to the time or frequency of the closest data point to the right of the value specified. `MNMX` calculates the
@@ -4813,7 +4812,7 @@ maximum and minimum values between the adjusted limits. The values are reported 
 of two decimal places. If the values cannot be reported as floating point numbers in an eight character field, they are
 reported in scientific notation.
 
-The qualifiers determine which part of a complex buffer is integrated as follows:
+The qualifiers determine which part of a complex buffer is considered as follows:
 
 Qualifier | Integrand
 --------- | ---------
@@ -4821,7 +4820,7 @@ Qualifier | Integrand
 /IMAG     | Imaginary part
 /REAL     | Real part
 
-The default integrand is the same as the current display mode as displayed and set by the `BUF` command.
+The default part of the buffer is the same as the current display mode as displayed and set by the `BUF` command.
 ## MO
 Exit program
 
