@@ -5636,6 +5636,10 @@ Category: Acquisition
 
 Format: `PPMD` nam spec1 spec2 ... spec8
 
+Qualifiers: /ACQ /BLK /MOD=MODMD
+
+Qualifier Defaults: /ACQ /MOD=4
+
 Defaults: 1 none none ... none
 
 Prerequisites: Acquisition stopped (HALT); RNMRA only
