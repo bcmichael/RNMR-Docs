@@ -5286,7 +5286,7 @@ Category: File IO
 
 Format: `OPNRD` filename
 
-Default : temp.wrt
+Default: temp.wrt
 
 Description:
 `OPNRD` opens an ASCII file for read-only access by the command `RDWRT`. If no file is specified RNMR will prompt for it
