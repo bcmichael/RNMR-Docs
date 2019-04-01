@@ -5886,18 +5886,19 @@ a record respectively.
 ## PTRB
 Set read and write blocked record pointers
 
-Category: Blocked Record
+Category: Blocked Records
 
 Format: `PTRB` rec rblk wblk
 
-Defaults: current current current
+Defaults: rrec current current
 
 Description:
-`PTRB` sets the read and write pointers for a blocked record. These pointers are used to determine the default values
-for most commands involving loading from or saving to blocked records. If no record is specified RNMR will prompt for it
-with the current read record as a default. The record must be a blocked record. If either pointer is omitted RNMR will
-prompt for it with the current value as a default. The read and write blocked record pointers are also set anytime a
-command reads from or writes to the blocked record respectively. Most commands that rely on these pointers will
+`PTRB` sets the read and write pointers for a [blocked record](syntax#blocked_records). These pointers are used to
+determine the default values for most commands involving loading from or saving to blocked records. If no
+[record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as displayed
+and set by `PTRA`) as a default. The record must be a blocked record. If either pointer is omitted RNMR will
+prompt for it with the current value as a default. The read and write blocked record pointers are also set by most
+commands that read from or write to the blocked record respectively. Most commands that rely on these pointers will
 increment them before use, so entering 0 for either pointer indicates to start from the beginning of the blocked record.
 ## PWR
 Set transmitter coarse power level
