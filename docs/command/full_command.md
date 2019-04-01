@@ -5118,18 +5118,17 @@ Set synthesizer nucleus
 
 Category: Acquisition
 
-Format: `NUC` chan nucnam
+Format: `NUC` chan nuc
 
 Defaults: 1 current
 
 Prerequisites: For RNMRA: Acquisition stopped (HALT). For RNMRP: no restrictions
 
 Description:
-`NUC` assigns a nucleus nucnam to a synthesizer. The synthesizer is selected by chan which refers to a logical channel.
-If chan is omitted, RNMR will prompt for a synthesizer number with 1 as the default. Since RNMR currently supports up to
-four synthesizers, legal values of chan are integers from 1 to 4. If nucnam is omitted RNMR will promt for it with the
-current nucleus as a default. The nucleus is used to look up the parameters used for tasks such as converting Hz to ppm.
-In RNMRA this includes determining the frequency used for the pulses.
+`NUC` assigns a nucleus to a logical. If chan is omitted, RNMR will prompt for it with 1 as a default. If no nucleus is
+specified RNMR will prompt for it with the current nucleus assigned to the specified channel as a default. The nucleus
+is used to look up the parameters used for tasks such as converting Hz to ppm. In RNMRA this includes determining the
+frequency used for the pulses.
 ## NUCD
 Define nucleus table entry
 
