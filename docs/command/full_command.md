@@ -5698,24 +5698,21 @@ Description:
 `PRGTBL` removes all of the entries from name table nam. If nam is not specified RNMR will prompt for it with a default
 of temp.
 ## PROF
-Calculate profile of blocked 2D record
+Calculate profile of 2D data
 
 Category: Data Manipulation
 
 Format: `PROF` rec slice
 
-Defaults: current 1
+Defaults: rrec 1
 
 Description:
-`PROF` calculates a one dimensional profile of a two dimensional slice of a blocked record. Each point in the profile
-will be set to the maximum value at that point across all of the blocks. If no record is specified RNMR will prompt for
-it with the current read record as a default. The selected record must be a blocked record.
+`PROF` calculates a one dimensional profile of a two dimensional slice of a [blocked record](synatx#blocked_records).
+Each point in the profile will be set to the maximum value at that point along direction 2.
 
-The last parameter, slice specifies which 2D slice of a 3D or 4D source record should be included. If the source record
-has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will use the first slice.
-Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will affect the selection of
-which one-dimensional blocks of the record comprise the 2D slice and will thus be used to calculate the profile. Slice
-is interpreted as a linear index over the 3rd/4th dimensions.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
+calculate the profile of the first 2D slice of the record.
 ## PROFB
 Calculate profile of blocked record along a dimension
 
@@ -5746,24 +5743,21 @@ Description:
 `PROG` prints the identity of the program (RNMRA or RNMRP) and the modification time of the corresponding file to the
 console.
 ## PROJ
-Calculate projection of blocked 2D record
+Calculate projection of 2D data
 
 Category: Data Manipulation
 
 Format: `PROJ` rec slice
 
-Defaults: current 1
+Defaults: rrec 1
 
 Description:
-`PROJ` calculates a one dimensional projection of a two dimensional slice of a blocked record. Each point in the
-projection will be set to the sum of the values at that point across all of the blocks. If no record is specified RNMR
-will prompt for it with the current read record as a default. The selected record must be a blocked record.
+`PROJ` calculates a one dimensional projection of a two dimensional slice of a [blocked record](synatx#blocked_records).
+Each point in the projection will be set to the sum of the values at that point along direction 2.
 
-The last parameter, slice specifies which 2D slice of a 3D or 4D source record should be included. If the source record
-has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it and will use the first slice.
-Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`) will affect the selection of
-which one-dimensional blocks of the record comprise the 2D slice and will thus be used to calculate the projection.
-Slice is interpreted as a linear index over the 3rd/4th dimensions.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
+calculate the profile of the first 2D slice of the record.
 ## PROJB
 Calculate projection of blocked record along a dimension
 
