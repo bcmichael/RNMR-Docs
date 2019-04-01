@@ -5605,13 +5605,13 @@ Qualifier Defaults: /INIT
 
 Defaults: current
 
-Prerequisites: Acquisition stopped (HALT), RNMRA only
+Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
 `PPEX` loads a pulse program named nam into the pulse programmer. If nam is omitted, RNMR will prompt for it with the
-currently loaded PP (if any) as the default. Once `PPEX` has read the pulse program header, the title of the program (as
-specified in the PP source code using the `TITLE` statement) is displayed as an informational message. This title is
-usually a brief description of the function of the pulse program.
+currently loaded pulse program (if any) as the default. Once `PPEX` has read the pulse program header, the title of the
+program (as specified in the PP source code using the `TITLE` statement) is displayed as an informational message. This
+title is usually a brief description of the function of the pulse program.
 
 The /INIT qualifier causes the pulse program to be initialized by loading default values into the pulse programmer and
 is active by default.
