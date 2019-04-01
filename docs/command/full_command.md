@@ -6394,9 +6394,9 @@ Format: `RSTBUF` fspec buf
 Defaults: temp 1
 
 Description:
-`RSTBUF` restores buffer values from a file fspec written using `SAVBUF` and applies them to processing buffer buf. If
-no fspec is provided RNMR will prompt for it with temp as a default. If no bufer is specified RNMR will not prompt for
-it and will apply the loaded values to processing buffer 1 (the visible process buffer).
+`RSTBUF` restores buffer values from a file fspec written using `SAVBUF` and applies them to a
+[processing buffer](syntax#buffers). If no fspec is provided RNMR will prompt for it with temp as a default. If no
+buffer is specified RNMR will not prompt for it and will apply the loaded values to the visible processing buffer.
 ## RSTGBL
 Restore global arguments from file
 
