@@ -6300,7 +6300,7 @@ Qualifier Defaults: current display
 Defaults: current current
 
 Description:
-`RMS` computes the root mean square of the data in the visual processing buffer between llim and rlim. If either limit
+`RMS` computes the root mean square of the data in the visible processing buffer between llim and rlim. If either limit
 is omitted RNMR will not prompt for it and will use the current left or right display limit. /REAL or /IMAG will compute
 the rms of the real or imaginary part of the buffer respectively. /COMPLEX will compute the rms of the magnitude of the
 buffer. The computed value will be printed as an informational message.
