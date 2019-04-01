@@ -5397,19 +5397,19 @@ Subcommands:
 
 Command | Description
 ------- | -----------
-Enter | Terminate with current phase values
-C  | Select constant phase value for change
-D  | Select decrement direction
-I  | Select increment direction
-L  | Select linear phase value for change
-P  | Select current cursor position as pivot for linear value
-Q  | Terminate with original phase values
-V  | Change phase value after prompt
-Z  | Call `ZO` to enable moving the cursor
-0-2 | Change current value by 10^N degrees
+Enter   | Terminate with current phase values
+C       | Select constant phase value for change
+D       | Select decrement direction
+I       | Select increment direction
+L       | Select linear phase value for change
+P       | Select current cursor position as pivot for linear value
+Q       | Terminate with original phase values
+V       | Change phase value after prompt
+Z       | Call `ZO` to enable moving the cursor
+0-2     | Change current value by 10^N degrees
 
 Either the zero or first order phase parameter can be changed up or down in steps of 1, 10, or 100. To move the pivot
-point, use Z to call `ZO`. Then move the cursor and press enter to exit `ZO`. Finally press P to move the pivot to the
+point, use Z to call `ZO`, then move the cursor and press enter to exit `ZO`. Finally press P to move the pivot to the
 cursor.
 ## PIDL
 Set lock PID gain factors
