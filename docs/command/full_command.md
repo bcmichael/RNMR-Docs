@@ -3824,7 +3824,7 @@ Defaults: rrec 1 current current
 
 Description:
 `LIMB` sets display limits for a [blocked record](syntax#blocked_records) along a specified dimension. The parameters
-llim and rlim are the left and right display limits. If no [record number](syntax#record) is specified RNMR will prompt
+llim and rlim are the left and right display limits. If no [record number](syntax#records) is specified RNMR will prompt
 for it with the current read record pointer (as displayed and set by `PTRA`) as the default. `LIMB` may only be used on
 blocked records. If dim is omitted RNMR will prompt for it with 1 as a default. The value of dim cannot exceed the
 number of dimensions in the blocked record. If llim or rlim is omitted RNMR will prompt for it with the current left or
