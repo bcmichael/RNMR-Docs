@@ -4858,9 +4858,7 @@ Format: `MOVV` src dst
 Defaults: 2 1
 
 Description:
-Moves complex source buffer to complex destination buffer.  DST = SRC
-
-`MOVV` replaces the contents of buffer dst with the contents of buffer src.
+`MOVV` replaces the contents of [processing buffer](syntax.md#buffers) dst with the contents of buffer src.
 
     DST = SRC
 
