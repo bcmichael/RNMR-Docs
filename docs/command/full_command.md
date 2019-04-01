@@ -6026,11 +6026,11 @@ Set recycle delay
 
 Category: Acquisition
 
-Format: `RD` sec
+Format: `RD` time
 
 Defaults: current
 
-Prerequisites: Acquisition stopped (HALT); RNMRA only
+Prerequisites: RNMRA only
 
 Description:
 `RD` sets the recycle delay in seconds. The recycle delay is precise to the nearest tenth of a second. If no value is
