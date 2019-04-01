@@ -5720,18 +5720,22 @@ Category: Data Manipulation
 
 Format: `PROFB` src dst dim
 
-Defaults: current next last
+Defaults: rrec iwrec last
 
 Defaults:
-`PROJB` calculates the profile of a blocked record src along dimension dim and stores the result in blocked record dst.
-If no source record is provided RNMR will prompt for it with the current read record as a default. The source record
-must be a blocked record with size greater than one in the chosen dimension. Additionally the source record must have a
-large enough NDIMX to access the record along the specified dimension. NDIMX is specified when the record is allocated
-and determines along which directions the blocked record may be accessed. If no destination record is provided RNMR will
-not prompt for it and will store the results in the next available record. If no dimension is passed RNMR will prompt
-for it with the last accessible dimensions as a default. The interpretation of the dim parameter is also affected by the
-dimension order set by `DIRB`. The result of the profile operation will have a size of one along the profile
-dimension. Each point in the destination record will be set to the maximum value at that point across all of the blocks.
+`PROFB` calculates the profile of a [blocked record](sybtax#blocked_records) src along dimension dim and stores the
+result in blocked record dst. If no source [record number](syntax#records) is specified RNMR will prompt for it with the
+current read record pointer (as displayed and set by `PTRA`) as a default. If no destination
+[record number](syntax#records) is specified RNMR will not prompt for it and will use the current write record pointer
+(as displayed and set by `PTRA`) as a default. The dimension to calculate the profile along is a dimension and not a
+direction and is not affected by `DIRB`. The source record must be [accessible](syntax#ndimx) along the specified
+dimension. If no dimension is specified RNMR will prompt for it with the last accessible dimension of the source record
+as a default.
+
+If the specified destination record is not free the next available record will be used and the actual destination record
+will be printed as an informational message. The destination record will have the same dimensionality and size as the
+source record except that the profile dimension will have size 1. Each point in the destination record will be set to
+the maximum value at that point across all of the blocks along the specified dimension in the source record.
 ## PROG
 Identify program
 
@@ -5763,20 +5767,24 @@ Calculate projection of blocked record along a dimension
 
 Category: Data Manipulation
 
-Format: `PROFB` src dst dim
+Format: `PROJB` src dst dim
 
-Defaults: current next last
+Defaults: rrec wrec last
 
 Defaults:
-`PROJB` calculates the projection of a blocked record src along dimension dim and stores the result in blocked record
-dst. If no source record is provided RNMR will prompt for it with the current read record as a default. The source
-record must be a blocked record with size greater than one in the chosen dimension. Additionally the source record must
-have a large enough NDIMX to access the record along the specified dimension. NDIMX is specified when the record is
-allocated and determines along which directions the blocked record may be accessed. If no destination record is provided
-RNMR will not prompt for it and will store the results in the next available record. If no dimension is passed RNMR will
-prompt for it with the last accessible dimensions as a default. The interpretation of the dim parameter is also affected
-by the dimension order set by `DIRB`. The result of the projection operation will have a size of one along the
-projection dimension. Each point in the destination record will be set to the sum of the values at that point across all
+`PROJB` calculates the projection of a [blocked record](sybtax#blocked_records) src along dimension dim and stores the
+result in blocked record dst. If no source [record number](syntax#records) is specified RNMR will prompt for it with the
+current read record pointer (as displayed and set by `PTRA`) as a default. If no destination
+[record number](syntax#records) is specified RNMR will not prompt for it and will use the current write record pointer
+(as displayed and set by `PTRA`) as a default. The dimension to calculate the projection along is a dimension and not a
+direction and is not affected by `DIRB`. The source record must be [accessible](syntax#ndimx) along the specified
+dimension. If no dimension is specified RNMR will prompt for it with the last accessible dimension of the source record
+as a default.
+
+If the specified destination record is not free the next available record will be used and the actual destination record
+will be printed as an informational message. The destination record will have the same dimensionality and size as the
+source record except that the projection dimension will have size 1. Each point in the destination record will be set to
+the sum of the values at that point across all of the blocks along the specified dimension in the source record.
 of the blocks.
 ## PRTARG
 Print arguments
