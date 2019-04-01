@@ -4840,15 +4840,14 @@ Category: Data Storage
 
 Format: `MOV` src dst
 
-Defaults: irrec iwrec
+Defaults: rrec wrec
 
 Description:
-`MOV` moves data from src record to dst record. If not provided RNMR will promt for src with the last read record as a
-default. RNMR will not prompt for dst and will use the next available record as a default. Both src and dst must be
-records in the same archive.
-
-Records in archives other than 1 can be specified by either pre-pending the archive number and a ":" or specifying
-numbers larger than 200. For example record # in archive 2 can be specified either as 2:# or by adding 200 to #.
+`MOV` moves data from one [record](syntax#records) to another within the same archive. If no source record is specified
+RNMR will prompt for it with the current read record pointer (as displayed and set by `PTRA`) as a default. If no
+destination record is specified RNMR prompt will not prompt for it and will use the current write record pointer (as
+displayed and set by `PTRA`) as a default. If the destination record is not free the record will be moved to the next
+available record and the actual destination record will be printed as an informational message.
 ## MOVV
 Move buffer
 
