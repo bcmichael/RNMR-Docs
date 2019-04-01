@@ -5134,12 +5134,12 @@ Define nucleus table entry
 
 Category: Nuclei
 
-Format: `NUCD` nucnam hi lo
+Format: `NUCD` nuc hi lo
 
-Defaults: none current(1.0) current(0.0)
+Defaults: unkn current(1.0) current(0.0)
 
 Description:
-`NUCD` defines or modifies a nucleus table entry for nucnam. If nucnam is omitted RNMR will prompt for it with UNKN as a
+`NUCD` defines or modifies a nucleus table entry. If no nucleus is specified RNMR will prompt for it with UNKN as a
 default. The PPM to Hz conversion factor in MHz for the nucleus is set by hi. If hi is omitted RNMR will prompt for it
 with a default of either the current value if the nucleus already exists or 1.0 if it does not. The reference frequency
 in Hz for the nucleus is set by lo. If lo is omitted RNMR will prompt for it with a default of either the current value
