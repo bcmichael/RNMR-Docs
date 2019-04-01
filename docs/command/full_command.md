@@ -5165,9 +5165,8 @@ Format: `NWAIT` nwait
 Defaults: current
 
 Description:
-`NWAIT` sets the number of shots to wait before `WAIT` is satisfied. If nwait is omitted RNMR will prompt for it with
-the current value as a default. If nwait is set to 0 `WAIT` will wait for na shots as set and displayed by the `NA`
-command.
+`NWAIT` sets the number of shots to [acquire](syntax#acquisition) when starting acquisition from a macro. If nwait is
+omitted RNMR will prompt for it with the current value as a default.
 ## NXTDO
 Cycle macro `DO` loop
 
