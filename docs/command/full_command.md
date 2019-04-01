@@ -5149,12 +5149,12 @@ Delete nucleus table entry
 
 Category: Nuclei
 
-Format: `NUCDL` nucnam
+Format: `NUCDL` nuc
 
 Defaults: none
 
 Description:
-`NUCDL` deletes the nucleus entry table for nucnam. If nucnam is not specified RNMR will prompt for it.
+`NUCDL` deletes the nucleus entry table for a nucleus. If nuc is not specified RNMR will prompt for it.
 ## NWAIT
 Set number of shots to wait
 
