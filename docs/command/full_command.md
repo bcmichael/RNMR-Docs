@@ -4936,8 +4936,9 @@ Defaults: current
 Prerequisites: RNMRA only
 
 Description:
-`NA` sets the number of shots to acquire to na. If na is not provided RNMR will prompt for it with the current value as
-a default. If na is -1 an indefinite number of scans will be collected until the user halts the acquisition.
+`NA` sets the number of shots to [acquire](syntax#acquisition) to na. If na is not provided RNMR will prompt for it with
+the current value as a default. If na is -1 an indefinite number of scans will be collected until the user halts the
+acquisition.
 ## NABLK
 Set number of acquisition blocks
 
