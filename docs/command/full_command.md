@@ -5093,7 +5093,7 @@ Defaults: 1.0
 
 Description:
 `NOISE` fills the visible processing buffer with randomly generated noise. The parameter sf is a scaling factor that is
-applied to the noise. If sf is omitted RNMR will not prompt for it and will use 1.0 as the scalinf factor.
+applied to the noise. If sf is omitted RNMR will not prompt for it and will use 1.0 as the scaling factor.
 ## NOP
 Null operation
 
