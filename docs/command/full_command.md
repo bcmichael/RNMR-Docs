@@ -5826,7 +5826,7 @@ Defaults: temp none
 
 Description:
 `PSHLST` pushes a value to the end of a list specified by nam. If no list is specified RNMR will prompt for it with temp
-as a default. If the values is omitted RNMR will prompt for it with no default. /HEAD or /TAIL may be used to determine
+as a default. If the value is omitted RNMR will prompt for it with no default. /HEAD or /TAIL may be used to determine
 which end of the list to push a value to. By default RNMR pushes to the tail of the list.
 ## PSUBV
 Subtract polar buffers
