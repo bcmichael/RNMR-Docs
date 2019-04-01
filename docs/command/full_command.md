@@ -5627,8 +5627,8 @@ Defaults: 1 current
 Prerequisites: Pulse program loaded (LOAD); RNMRA only
 
 Description:
-`PPFLG` is an old command for setting the state of pulse program flags. It has been replaced with the `FLAG` command and is
-currently simply an alias to it. As such `FLAG` should be used in place of `PPFLG`.
+`PPFLG` is an old command for setting the state of pulse program flags. It has been replaced with the `FLAG` command and
+is currently simply an alias to it. As such `FLAG` should be used in place of `PPFLG`.
 ## PPMD
 Set pulse program phase mode
 
