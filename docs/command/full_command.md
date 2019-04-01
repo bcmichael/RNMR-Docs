@@ -5967,8 +5967,9 @@ Format: `QC`
 Prerequisites: Time domain only (TIME)
 
 Description:
-`QC` performs software quadrature phase correction. The cross correlation coefficient between the real and imaginary
-buffers is obtained and the appropriate fraction of the imaginary buffer subtracted from the real buffer.
+`QC` performs software quadrature phase correction on an FID in the visible processing buffer. The cross correlation
+coefficient between the real and imaginary parts of the buffer is obtained and the appropriate fraction of the imaginary
+part subtracted from the real part.
 ## QUIT
 Quit acquisition
 
