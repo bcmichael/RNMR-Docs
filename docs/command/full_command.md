@@ -4651,7 +4651,7 @@ Format: `MAXV` src dst
 Defaults: 2 1
 
 Description:
-`MAXV` replaces the contents of buffer dst with the maximum of buffers src and dst.
+`MAXV` replaces the contents of [processing buffer](syntax.md#buffers) dst with the maximum of buffers src and dst.
 
     DST = MAX(DST,SRC)
 
