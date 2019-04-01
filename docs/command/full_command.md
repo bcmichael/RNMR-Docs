@@ -6824,12 +6824,13 @@ TBL  | Save to entry nam1, nam2, etc. in name table nam
 REC rec dir item val
 
 `SET REC` sets the value of various parameters in the title information of a record. It takes several arguments. The
-first is a record to set a parameter for. Records in archives other than 1 can be specified by either pre-pending the
-archive number and a ":" or specifying numbers larger than 200. For example record # in archive 2 can be specified
-either as 2:# or by adding 200 to #. The second parameter is a direction which may be an integer from 1 and the number
-of dimensions the record has. The third argument is which item to set the value of. Some items have only a single value
-for the entire record which will be set regardless of which dimension is specified. The following items may be set with
-`SET REC`:
+first is a record to set a parameter for. If no record number is specified RNMR will prompt for it with the current
+write record pointer (as displayed and set by `PTRA`) as a default. The second parameter is a direction which may be an
+integer from 1 and the number of dimensions the record has. If no direction is specified RNMR will prompt for it with 1
+as a default. The third argument is which item to set the value of. If no item is specified RNMR will prompt for it with
+no default. Some items have only a single value for the entire record which will be set regardless of which dimension is
+specified. If no value is specified RNMR will prompt for it with the current value as a default. The following items may
+be set with `SET REC`:
 
 Item   | Description
 ----   | -----------
