@@ -7662,15 +7662,12 @@ Format: `TWIST` rec slice tfctr
 Defaults: wrec 1 1.0
 
 Description:
-`TWIST` twists a two-dimensional slice of a blocked record. If no record is specified RNMR will prompt for it with the
-current write record pointer (as set and displayed by `PTRA`) as a default. The first dimension of the blocked record
-must be frequency domain and the second dimension must be time domain. The second parameter, slice, specifies which 2D
-slice of a 3D or 4D source record should be twisted. If the source record has only two dimensions, slice must be 1. If
-slice is omitted RNMR will not prompt for it and will twist the first slice. Slice is interpreted as a linear index over
-the 3rd/4th dimensions.
-
-The final parameter, tfctr, determines how much to twist the record. If tfctr is omitted RNMR will not prompt for it and
-will use a value of 1.0. The value of tfctr may be between 0.0 and 1.0 inclusive.
+`TWIST` twists a two-dimensional slice of a [blocked record](syntax#blocked_records). If no
+[record number](syntax#records) is specified RNMR will prompt for it with the current write record pointer (as displayed
+and set by `PTRA`) as a default. The first direction of the blocked record must be frequency domain and the second
+direction must be time domain. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will twist the
+first 2D slice of the record. The final parameter, tfctr, determines how much to twist the record. If tfctr is omitted
+RNMR will not prompt for it and will use a value of 1.0. The value of tfctr may be between 0.0 and 1.0 inclusive.
 
 # U
 ---
