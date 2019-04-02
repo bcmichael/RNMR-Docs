@@ -7680,11 +7680,11 @@ Format `UNECHO` time
 
 Defaults: center
 
-Prerequisites: Time domain
+Prerequisites: Time domain data in visible processing buffer (TIME)
 
 Description:
-`UNECHO` takes echo signal in the visible processing buffer and simulates an FID from it. The parameter time should be
-set to the middle of the echo. `UNECHO` will use a mixture of the data from the left anf right halves of the echo to
+`UNECHO` takes an echo signal in the visible processing buffer and simulates an FID from it. The parameter time should
+be set to the middle of the echo. `UNECHO` will use a mixture of the data from the left and right halves of the echo to
 generate the FID. The part of the buffer beyond the size of the larger half of the echo will be set to 0. If time is not
 provided RNMR will prompt for it with a time value corresponding to the center of the buffer.
 ## UNFOLD
