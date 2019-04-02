@@ -7090,21 +7090,21 @@ size as a default. The value of size must be between 1 and 32768 inclusive.
 ## SIZEB
 Displays size of blocked record
 
-Category: Blocked Record
+Category: Blocked Records
 
-Format: `SIZEB` rec dir
+Format: `SIZEB` rec dim
 
 Defaults: rrec 1
 
 Description:
-`SIZEB` displays information about the size of a blocked record. If no record is specified RNMR will prompt for it with
-the current read record pointer as the default. Records in archives other than 1 can be specified by either pre-pending
-the archive number and a ":" or specifying numbers larger than 200. For example record # in archive 2 can be specified
-either as 2:# or by adding 200 to #. If no direction is specified RNMR will prompt for it with 1 as a default. If the
-direction is between 1 and the number of dimensions in the blocked record RNMR will print the size and allocated size of
-the blocked record in that direction as informational messages. If dir is 0 RNMR will print the number of segments in
-the record and the number ofallocated segments. If dir is * RNMR will print the total number of blocks and total number
-of allocated blocks in the record. No other values of dir are permitted.
+`SIZEB` displays information about the size of a [blocked record](syntax#blocked_records) along a particular dimension.
+If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no dimension is specified RNMR will prompt for it with 1 as a default.
+This parameter is a dimension not a direction and is unaffected by `DIRB`. If the dimension is between 1 and the number
+of dimensions in the blocked record RNMR will print the size and allocated size of the blocked record in that dimension
+as informational messages. If dir is 0 RNMR will print the number of segments in the record and the number of allocated
+segments. If dir is * RNMR will print the total number of blocks and total number of allocated blocks in the record. No
+other values of dim are permitted. 
 ## SIZLST
 Display size of list
 
