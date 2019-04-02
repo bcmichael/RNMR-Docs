@@ -7104,7 +7104,7 @@ This parameter is a dimension not a direction and is unaffected by `DIRB`. If th
 of dimensions in the blocked record RNMR will print the size and allocated size of the blocked record in that dimension
 as informational messages. If dir is 0 RNMR will print the number of segments in the record and the number of allocated
 segments. If dir is * RNMR will print the total number of blocks and total number of allocated blocks in the record. No
-other values of dim are permitted. 
+other values of dim are permitted.
 ## SIZLST
 Display size of list
 
@@ -7143,10 +7143,11 @@ Qualifier defaults: /DATA /USED
 Defaults: 1
 
 Description:
-`SP` prints information about the space in an archive as informational messages. If no archive is specified RNMR will
-not prompt for it and will display information about archive 1. The qualifiers are used to determine what information to
-display. /DATA and /TITLE select the type of information to return. /DATA returns information about the size of various
-aspects of the archive in 512 byte blocks. /TITLE returns information about the number of records in the archive.
+`SP` prints information about the space in an archive as informational messages. If no [archive number](syntax#archives)
+is specified RNMR will not prompt for it and will display information about archive 1. The qualifiers are used to
+determine what information to display. /DATA and /TITLE select the type of information to return. /DATA returns
+information about the size of various aspects of the archive in 512 byte blocks. /TITLE returns information about the
+number of records in the archive.
 
 The other qualifiers determine the quantity to print as follows:
 
