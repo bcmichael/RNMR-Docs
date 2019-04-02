@@ -7303,7 +7303,7 @@ Format: `SUBV` src dst
 Defaults: 2 1
 
 Description:
-`SUBV` replaces the contents of buffer dst with the difference between the contents of buffers src and dst.
+`SUBV` subtracts the contents of [processing buffers](syntax.md#buffers) dst from src and stores the result in dst.
 
     DST = SRC - DST
 
