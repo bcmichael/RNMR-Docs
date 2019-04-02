@@ -3120,7 +3120,7 @@ table. If nuc is * `GREF` changes the frequency for every channel. Otherwise a v
 omitted RNMR will prompt for it with a default of \*. `GREF` only changes the reference frequency parameter for the
 processing buffers and does not update the synthesizers.
 ## GREFA
-Restore acqusition buffer reference from nucleus table
+Restore acquisition buffer reference from nucleus table
 
 Category: Frequency Control
 
