@@ -16,7 +16,7 @@ Aborts acquisition. If acquisition is not currently active, an error message wil
 ## ADDV
 Add buffers
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `ADDV` src dst
 
@@ -122,7 +122,7 @@ In order for a blocked record to be successfully allocated there must be enough 
 ## AMD
 Set acquisition modes
 
-Category: Acquisition
+Category: Pulse Control
 
 Format: `AMD` spec1 spec2 ... spec8
 
@@ -229,7 +229,7 @@ Text appended by `APNLST` will be all caps regardless of the capitalization prov
 ## APNMAC
 Append text to macro
 
-Category: Macro
+Category: Macros
 
 Format: `APNMAC` nam
 
@@ -306,7 +306,7 @@ can be tested for using `TST SIG`.
 ## ASKYN
 Ask yes or no
 
-Category: Macro
+Category: Control Flow
 
 Format: `ASKYN` default labelt labelf
 
@@ -341,7 +341,7 @@ default. The step must be between 0.0 and 1.0 inclusive, while time must be betw
 ## BC
 Baseline correct FID
 
-Category: Data Manipulation
+Category: Baseline
 
 Format: `BC`
 
@@ -356,7 +356,7 @@ yielding a baseline corrected FID.
 ## BF
 Baseline fix spectrum
 
-Category: Data Manipulation
+Category: Baseline
 
 Format: `BF`
 
@@ -410,7 +410,7 @@ in each block from zero to minimum (most negative) frequency are negated.
 ## BRKDO
 Break out of a macro `DO` loop
 
-Category: Macro
+Category: Control Flow
 
 Format: `BRKDO`
 
@@ -771,7 +771,7 @@ Hz, the calibration frequency must be nonzero.
 ## CASE
 Process `CASE` clause of `SEL` block
 
-Category: Macro
+Category: Control Flow
 
 Format: `CASE` val
 
@@ -961,7 +961,7 @@ specified.
 ## CATNUC
 List catalog of nuclei
 
-Category: Nuclei
+Category: Frequency Control
 
 Format: `CATNUC` first last
 
@@ -989,7 +989,7 @@ Qualifier | Output
 ## CATPPS
 List catalog of PP symbols
 
-Category: Pulse Program
+Category: Pulse Program Symbols
 
 Format: `CATPPS` type first last
 
@@ -1084,7 +1084,7 @@ Qualifier | Output
 ## CD
 Perform convolution difference apodization
 
-Category: Data Manipulation
+Category: Apodization
 
 Format: `CD` narrow wide wfract
 
@@ -1109,7 +1109,7 @@ specified RNMR will prompt for it with 0.0 as the default.
 ## CHN
 Map logical and physical channels to one another
 
-Category: Acquisition
+Category: Experiment
 
 Format: `CHN` args
 
@@ -1156,7 +1156,7 @@ An attempt to close an archive which is not open will result in an error.
 ## CLSEXP
 Close export file
 
-Category: File IO
+Category: Foreign
 
 Format: `CLSEXP`
 
@@ -1165,7 +1165,7 @@ Close export file opened with `OPNEXP`. `CLSEXP` will error if no export file is
 ## CLSIMP
 Close import file
 
-Category: File IO
+Category: Foreign
 
 Format: `CLSIMP`
 
@@ -1208,7 +1208,7 @@ display an error message.
 ## CMUL
 Multiply buffer by complex constant
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `CMUL` mag phi buf
 
@@ -1227,7 +1227,7 @@ and will operate on the visible processing buffer.
 ## CMULV
 Complex multiply two buffers
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `CMULV` src dst
 
@@ -1316,7 +1316,7 @@ Option | Default Color
 ## CONJG
 Complex conjugate data
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `CONJG`
 
@@ -1325,7 +1325,7 @@ Description:
 ## CONLIM
 Set contour plot height limits
 
-Category: `ZO2DC`
+Category: Contours
 
 Format: `CONLIM` min max
 
@@ -1340,7 +1340,7 @@ contour level will approach but not equal min.
 ## CONMD
 Set contour plotting mode
 
-Category: `ZO2DC`
+Category: Contours
 
 Format: `CONMD` mode
 
@@ -1352,7 +1352,7 @@ will prompt for a contour plotting mode with the current mode as a default.
 ## COSSQ
 Perform cosine squared apodization
 
-Category: Data Manipulation
+Category: Apodization
 
 Format: `COSSQ` time0
 
@@ -1366,7 +1366,7 @@ updating the buffer.
 ## CPXV
 Complex merge two buffers
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `CPXV` src dst
 
@@ -1404,7 +1404,7 @@ reasons the record number will be printed as an informational message after copy
 ## CPYMAC
 Copy macro
 
-Category: Macro
+Category: Macros
 
 Format: `CPYMAC` name1 name2
 
@@ -1503,7 +1503,7 @@ list with the same name already exists `CRTLST` will error.
 ## CRTMAC
 Create macro
 
-Category: Macro
+Category: Macros
 
 Format: `CRTMAC` nam
 
@@ -1578,7 +1578,7 @@ a default.
 ##CVTUNIT
 Convert a value between units
 
-Category: Data Manipulation
+Category: Misc.
 
 Format: `CVTUNIT` srcunit dstunit val
 
@@ -1591,7 +1591,7 @@ will prompt for it with 0.0 as a default. The result of the conversion is printe
 ## D
 Set pulse programmer delay
 
-Category: Acquisition
+Category: Pulse Control
 
 Format: `D` dly msec
 
@@ -1648,7 +1648,7 @@ exceed the maximum buffer size.
 ## DCDB
 Convert block indices to values
 
-Category: Misc.
+Category: Blocked Records
 
 Format: `DCDB` rec ndim ind
 
@@ -1674,7 +1674,7 @@ to 2048 when ndim is 1 but only up to 64 if ndim is 2.
 ## DCDBP
 Convert linear block index to vector indices
 
-Category: Misc.
+Category: Blocked Records
 
 Format: `DCDBP` rec ndim ind
 
@@ -1699,7 +1699,7 @@ to 2048 when ndim is 1 but only up to 64 if ndim is 2.
 ## DCDREC
 Convert record number into archive and archive record index
 
-Category: Misc.
+Category: Data Storage
 
 Format: `DCDREC` rec
 
@@ -1742,7 +1742,9 @@ is executed.
 ## DEPAKE
 Perform depaking of powder pattern spectrum
 
-Format `DEPAKE`
+Category: Data Manipulation
+
+Format: `DEPAKE`
 
 Prerequisites: Frequency domain data in processing buffer (FREQ)
 
@@ -1958,7 +1960,7 @@ with the current value at position pos in list nam as the default.
 ## DFNMAC
 Define macro table entry
 
-Category: Macro
+Category: Macros
 
 Format: `DFNMAC` nam eqvnam
 
@@ -2029,7 +2031,7 @@ the default.
 ## DFNPPS
 Define pulse programmer symbol table entry
 
-Category: Tables
+Category: Pulse Program Symbols
 
 Format: `DFNPPS` typ nam val
 
@@ -2119,7 +2121,7 @@ specified file.
 ## DLTLST
 Delete list
 
-Category: File IO
+Category: Lists
 
 Format: `DLTLST` nam
 
@@ -2130,7 +2132,7 @@ Description:
 ## DLTMAC
 Delete list
 
-Category: Macro
+Category: Macros
 
 Format: `DLTMAC` nam
 
@@ -2155,7 +2157,7 @@ default.
 ## DLY
 Set pulse programmer delay
 
-Category: Acquisition
+Category: Pulse Control
 
 Format: `DLY` name time
 
@@ -2178,7 +2180,7 @@ the delay.
 ## DO
 Begin macro `DO` loop
 
-Category: Macro
+Category: Control Flow
 
 Format: `DO`  beg end nam
 
@@ -2212,7 +2214,7 @@ executed.
 ## DW
 Set dwell time for data sampling during acquisition
 
-Category: Acquisition
+Category: Experiment
 
 Format: `DW` time
 
@@ -2245,7 +2247,7 @@ are zeroed.
 ## ECDB
 Convert dimension values to linear block index
 
-Category: Misc.
+Category: Blocked Records
 
 Format: `ECDB` rec ndim val...
 
@@ -2273,7 +2275,7 @@ edge of the dataset.
 ## ECDBP
 Convert vector indices to linear block index
 
-Category: Misc.
+Category: Blocked Records
 
 Format: `ECDBP` rec ndim ind...
 
@@ -2314,7 +2316,7 @@ archive 2. RNMR will prompt for both the archive and record number with a defaul
 ## ECHO
 Rearrange buffer to simulate echo data
 
-Category: Data Manipulation
+Category: Signal Generation
 
 Format: `ECHO` time
 
@@ -2354,7 +2356,7 @@ temp as a default.
 ## EDTMAC
 Edit macro
 
-Category: Macro
+Category: Macros
 
 Format: `EDTMAC` nam
 
@@ -2366,7 +2368,7 @@ with temp as a default.
 ## ELSTST
 Separate the code blocks after a `TST` check
 
-Category: Macro
+Category: Control Flow
 
 Format: `ELSTST`
 
@@ -2378,7 +2380,7 @@ For usage details see the description of `TST`.
 ## EM
 Exponential multiply FID
 
-Category: Data Manipulation
+Category: Apodization
 
 Format: `EM` lb
 
@@ -2408,7 +2410,7 @@ where I is the index of the data point (I=1,2,...), LB is the line broadening fa
 ## ENDDO
 End a macro `DO` loop
 
-Category: Macro
+Category: Control Flow
 
 Format: `ENDDO`
 
@@ -2420,7 +2422,7 @@ the parameters of the `DO` command. For usage details see the description of `DO
 ## ENDSEL
 End a macro `SEL` block
 
-Category: Macro
+Category: Control Flow
 
 Format: `ENDSEL`
 
@@ -2432,7 +2434,7 @@ details see the description of `SEL`.
 ## ENDTST
 End a macro `TST` block
 
-Category: Macro
+Category: Control Flow
 
 Format: `ENDTST`
 
@@ -2444,7 +2446,7 @@ description of `TST`.
 ## EX
 Load a pulse program experiment
 
-Category: Acquisition
+Category: Experiment
 
 Format: `EX` nam
 
@@ -2663,7 +2665,7 @@ conversion factor (fppm) of the assigned nucleus:
 ## FLAG
 Set pulse program flag on or off
 
-Category: Acquisition
+Category: Experiment
 
 Format: `FLAG` ind val
 
@@ -2678,7 +2680,7 @@ the default. The legal values of val are on and off.
 ## FLF
 Set filter factor
 
-Category: Acquisition
+Category: Experiment
 
 Format: `FLF` factor
 
@@ -2702,7 +2704,7 @@ spectrometer running RNMR.
 ## FMX
 Set frequency modulation value
 
-Category:
+Category: Pulse Control
 
 Format: `FMX` chan ind val
 
@@ -2720,7 +2722,7 @@ prompt for it with the current offset as the default.
 ## FMXEX
 Load frequency modulation program
 
-Category:
+Category: Pulse Control
 
 Format: `FMXEX`
 
@@ -2764,7 +2766,7 @@ synthesizer.
 ## FT
 Fourier transform FID
 
-Category: Data Manipulation
+Category: Data Transforms
 
 Format: `FT` size fctr1
 
@@ -2826,7 +2828,7 @@ size of the buffer will change to the size of the data read from the record.
 ## GAIN
 Set receiver gain
 
-Category: Acquisition
+Category: Experiment
 
 Format: `GAIN` gain
 
@@ -2937,7 +2939,7 @@ simply an alias to it. As such `REMGBL` should be used in place of `GBLDL`.
 ## GENCS
 Generate complex sine wave
 
-Category: Data Manipulation
+Category: Signal Generation
 
 Format: `GENCS` freq phase sw
 
@@ -2961,7 +2963,7 @@ buffer will be altered to match the requested sweep width.
 ## GENPWDR
 Generate complex powder pattern
 
-Category: Data Manipulation
+Category: Signal Generation
 
 Format: `GENPWDR` freq phase sw fctr
 
@@ -2983,7 +2985,7 @@ orientations is equal to 3*freq*dstep*1e-3*fctr*size or 1 whichever is larger. V
 ## GM
 Gaussian multiply FID
 
-Category: Data Manipulation
+Category: Apodization
 
 Format: `GM` lb
 
@@ -3013,7 +3015,7 @@ where I is the index of the data point (I=1,2,...), LB is the line broadening fa
 ## GMV
 Calculate geometric mean
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `GMV` src dst
 
@@ -3050,7 +3052,7 @@ parameter is omitted RNMR will not prompt for it and will use 1 and 0 as default
 ## GOSUB
 Perform call within macro
 
-Category: Macro
+Category: Control Flow
 
 Format: `GOSUB` label
 
@@ -3069,7 +3071,7 @@ call at the next `MEXIT` even if no label was provided.
 ## GOTO
 Go to statement label in macro
 
-Category: Macro
+Category: Control Flow
 
 Format: `GOTO` label
 
@@ -3083,7 +3085,7 @@ execution should jump. If label is not specified, execution will continue at the
 ## GOTST
 Perform a conditional jump within a macro based on a test
 
-Category: Macro
+Category: Control Flow
 
 Format: `GOTST` name args... label1 label2
 
@@ -3167,7 +3169,7 @@ pointer (as displayed and set by `PTRA`).
 ## HILB
 Perform Hilbert transform on spectrum
 
-Category: Data Manipulation
+Category: Data Transforms
 
 Format: `HILB`
 
@@ -3186,7 +3188,7 @@ of two greater than or equal to 4.
 ## HILBZ
 Perform Hilbert transform on zero-filled spectrum
 
-Category: Data Manipulation
+Category: Data Transforms
 
 Format: `HILBZ`
 
@@ -3237,7 +3239,7 @@ value read from the hardware is displayed via an informational message as a two-
 ## IBOX
 Set volume parameters for nD volume integration
 
-Category: Data Manipulation
+Category: Data Analysis
 
 Format: `IBOX` dim size
 
@@ -3288,7 +3290,7 @@ prompt string is 'Enter identifier value:'. The value may be not be longer than 
 ## IFCND
 Branch on condition flag
 
-Category: Macro
+Category: Control Flow
 
 Format: `IFCND` icnd labelt labelf
 
@@ -3305,7 +3307,7 @@ conditional jumps.
 ## IFEQ
 Branch on equal
 
-Category: Macro
+Category: Control Flow
 
 Format: `IFEQ` arg1 arg2 labelt labelf
 
@@ -3322,7 +3324,7 @@ conditional jumps.
 ## IFGBL
 Check for global argument and branch
 
-Category: Macro
+Category: Control Flow
 
 Format: `IFGBL` gblnam labelt labelf
 
@@ -3340,7 +3342,7 @@ conditional jumps.
 ## IFLCL
 Check for local argument and branch
 
-Category: Macro
+Category: Control Flow
 
 Format: `IFLCL` lclnam labelt labelf
 
@@ -3358,7 +3360,7 @@ conditional jumps.
 ## IFMAC
 Check for macro and branch
 
-Category: Macro
+Category: Control Flow
 
 Format: `IFMAC` macnam labelt labelf
 
@@ -3375,7 +3377,7 @@ conditional jumps.
 ## IFREC
 Check for record and branch
 
-Category: Macro
+Category: Control Flow
 
 Format: `IFREC` rec. labelt labelf
 
@@ -3392,7 +3394,7 @@ conditional jumps.
 ## IFT
 Inverse Fourier transform spectrum
 
-Category: Data manipulation
+Category: Data Transforms
 
 Format: `IFT` size fctr1
 
@@ -3679,7 +3681,7 @@ Calling `KEYARG A B` within TEMP will delete KEY$1 and KEY$2 and leave A and B u
 ## LB
 Set line broadening factor
 
-Category: Data Manipulation
+Category: Apodization
 
 Format: `LB` lb
 
@@ -3768,7 +3770,7 @@ simply an alias to it. As such `REMLCL` should be used in place of `LCLDL`.
 ## LI
 Increment pulse programmer loop value
 
-Category: Acquisition
+Category: Experiment
 
 Format: `LI` loop incr
 
@@ -3848,7 +3850,7 @@ logging is enabled (`SET LOG ON`).
 ## LOOP
 Set or increment pulse program loop counter
 
-Category: Acquisition
+Category: Experiment
 
 Format: `LOOP` loop val
 
@@ -3870,7 +3872,7 @@ as an informational message.
 ## LP
 List processing buffer parameters
 
-Category: Data Storage
+Category: Misc.
 
 Qualifiers: /PRT /TTY /WND /WRT
 
@@ -4417,7 +4419,7 @@ Qualifier | Output
 ## LS
 Set pulse programmer loop value
 
-Category: Acquisition
+Category: Experiment
 
 Format: `LS` loop val
 
@@ -4552,7 +4554,7 @@ height at which the linewidth is measured. If pcnt_ht is omitted RNMR will not p
 ## MACARG
 Redefine names of positional macro arguments
 
-Category: Macros
+Category: Arguments
 
 Format: `MACARG` nam...
 
@@ -4566,7 +4568,7 @@ match the number of numbered arguments. Any names with no corresponding number l
 ## MAG
 Calculate magnitude of data
 
-Category: Data Manipulation
+Category: Data Transforms
 
 Format: `MAG`
 
@@ -4578,7 +4580,7 @@ the buffer and the imaginary part of the buffer is set to 0. The magnitude is de
 ## MAPN
 Append text to macro
 
-Category: Macro
+Category: Macros
 
 Format: `MAPN` nam
 
@@ -4623,7 +4625,7 @@ TEST    | Test connection | 0 | 0
 ## MAXV
 Calculate maximum
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `MAXV` src dst
 
@@ -4640,7 +4642,7 @@ same domain and active size (though not necessarily the same allocated size).
 ## MCPY
 Copy macro
 
-Category: Macro
+Category: Macros
 
 Format: `MCPY` name1 name2
 
@@ -4652,7 +4654,7 @@ alias to it. As such `CPYMAC` should be used in place of `MCPY`.
 ## MD
 Define macro
 
-Category: Macro
+Category: Macros
 
 Format: `MD` nam
 
@@ -4664,7 +4666,7 @@ an alias to it. As such `CRTMAC` should be used in place of `MD`.
 ## MDL
 Delete macro
 
-Category: Macro
+Category: Macros
 
 Format: `MDL` nam
 
@@ -4676,7 +4678,7 @@ alias to it. As such `REMMAC` should be used in place of `MDL`.
 ## ME
 Edit macro
 
-Category: Macro
+Category: Macros
 
 Format: `ME` macnam
 
@@ -4688,7 +4690,7 @@ alias to it. As such `EDTMAC` should be used in place of `ME`.
 ## MEDBF
 Median baseline fix spectrum
 
-Category: Data Manipulation
+Category: Baseline
 
 Format: `MEDBF` window std_dev
 
@@ -4717,7 +4719,7 @@ for caution.
 ## MEXIT
 Exit macro
 
-Category: Macro
+Category: Control Flow
 
 Format: `MEXIT` vals...
 
@@ -4737,7 +4739,7 @@ an error causing the calling site to jump to the label set by `ONERR`.
 ## MINV
 Calculates minimum
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `MINV` src dst
 
@@ -4754,7 +4756,7 @@ same domain and active size (though not necessarily the same allocated size).
 ## ML
 List contents of a macro
 
-Category: Macro
+Category: Macros
 
 Format: `ML` nam
 
@@ -4830,7 +4832,7 @@ available record and the actual destination record will be printed as an informa
 ## MOVV
 Move buffer
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `MOVV` src dst
 
@@ -4861,7 +4863,7 @@ The merged file specification is printed as an informational message.
 ## MRN
 Rename macro
 
-Category: Macro
+Category: Macros
 
 Format: `MRN` nam1 nam2
 
@@ -4884,7 +4886,7 @@ Description:
 ## MULV
 Multiply buffer
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `MULV` src dst
 
@@ -4906,7 +4908,7 @@ same allocated size).
 ## NA
 Set number of shots to acquire
 
-Category: Acquisition
+Category: Experiment
 
 Format: `NA` na
 
@@ -4936,7 +4938,7 @@ be used.
 ## NAMD
 Set number of acquisition modes
 
-Category: Acquisition
+Category: Pulse Control
 
 Format: `NAMD` namd
 
@@ -4956,7 +4958,7 @@ multidimensional spectra. The /TPPI qualifier is used to set the number of modes
 ## NCHN
 Set number of channels
 
-Category: Acquisition
+Category: Experiment
 
 Format: `NCHN` nchn
 
@@ -4970,7 +4972,7 @@ a default. Note that the number of channels is also set implicitly by the `CHN` 
 ## NCON
 Set number of contour levels
 
-Category: `ZO2DC`
+Category: Contours
 
 Format: `NCON` ncon
 
@@ -4986,7 +4988,7 @@ default. /LIN is used for linearly spaced contours while /LOG is used for logari
 ## NDEC
 Set number of decimal places
 
-Category: Misc.
+Category: Display Control
 
 Format: `NDEC` unit ndec
 
@@ -4999,7 +5001,7 @@ value as a default.
 ## NDLY
 Set number of dummy scans
 
-Category: Acquisition
+Category: Experiment
 
 Format: `NDLY` ndly
 
@@ -5033,7 +5035,7 @@ current value as a default.
 ## NEG
 Negates buffer
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `NEG`
 
@@ -5064,7 +5066,7 @@ parameter is omitted RNMR will not prompt for it and will use 1 and 0 as default
 ## NOISE
 Generate complex random noise
 
-Category: Data Manipulation
+Category: Signal Generation
 
 Format: `NOISE` sf
 
@@ -5095,7 +5097,7 @@ largest magnitude has magnitude 1.0.
 ## NUC
 Set synthesizer nucleus
 
-Category: Acquisition
+Category: Experiment
 
 Format: `NUC` chan nuc
 
@@ -5111,7 +5113,7 @@ frequency used for the pulses.
 ## NUCD
 Define nucleus table entry
 
-Category: Nuclei
+Category: Frequency Control
 
 Format: `NUCD` nuc hi lo
 
@@ -5126,7 +5128,7 @@ if the nucleus already exists or 0.0 if it does not.
 ## NUCDL
 Delete nucleus table entry
 
-Category: Nuclei
+Category: Frequency Control
 
 Format: `NUCDL` nuc
 
@@ -5137,7 +5139,7 @@ Description:
 ## NWAIT
 Set number of shots to wait
 
-Category: Acquisition
+Category: Experiment
 
 Format: `NWAIT` nwait
 
@@ -5149,7 +5151,7 @@ omitted RNMR will prompt for it with the current value as a default.
 ## NXTDO
 Cycle macro `DO` loop
 
-Category: Macro
+Category: Control Flow
 
 Format: `NXTDO`
 
@@ -5164,7 +5166,7 @@ the loop. `NXTDO` must fall between an instance of `DO` and its matching `ENDDO`
 ## OFF
 Set offset from reference frequency
 
-Category: Acquisition
+Category: Frequency Control
 
 Format: `OFF` syn off
 
@@ -5176,7 +5178,7 @@ modified is that associated with the processing buffer synthesizer.
 ## OFFA
 Set offset from reference frequency
 
-Category: Acquisition
+Category: Frequency Control
 
 Format: `OFFA` syn off
 
@@ -5188,7 +5190,7 @@ modified is that associated with the acquisition buffer synthesizer.
 ## ONERR
 Set macro error handler
 
-Category: Macro
+Category: Control Flow
 
 Format: `ONERR` label
 
@@ -5273,7 +5275,7 @@ format.
 ## OPNPLT
 Open plot stream 	
 
-Category: Printing
+Category: Plotting
 
 Format: `OPNPLT`
 
@@ -5314,7 +5316,7 @@ commands append to the file instead.
 ## P
 Set pulse length
 
-Category: Acquisition
+Category: Pulse Control
 
 Format: `P` pls usec
 
@@ -5343,7 +5345,7 @@ prompt for it with the current value as a default.
 ## PC
 Incremental phase correction
 
-Category: Data Manipulation
+Category: Phasing
 
 Format: `PC` dphi0 dphi1
 
@@ -5356,7 +5358,7 @@ will not prompt for either of the arguments and will use 0 if they are omitted.
 ## PEN
 Select plot pen
 
-Category: Printing
+Category: Plotting
 
 Format: `PEN` pen
 
@@ -5373,7 +5375,7 @@ RNMR will prompt for it with the current value as a default.
 ## PGSIZE
 Set page size for plot
 
-Category: Printing
+Category: Plotting
 
 Format: `PGSIZE` xsiz ysiz
 
@@ -5385,7 +5387,7 @@ the current value as a default.
 ## PH
 Interactive phase correction
 
-Category: Data Manipulation
+Category: Phasing
 
 Format: `PH`
 
@@ -5414,6 +5416,8 @@ cursor.
 ## PIDL
 Set lock PID gain factors
 
+Category: Lock
+
 Format: `PIDL` fctrp fctri
 
 Qualifiers: /P /I
@@ -5431,7 +5435,7 @@ will prompt for it with the current value as a default.
 ## PLDEV
 Select plotting device
 
-Category: Printing
+Category: Plotting
 
 Format: `PLDEV` device
 
@@ -5454,7 +5458,7 @@ displayed by `PLFIL`).
 ## PLFIL
 Set plot file
 
-Category: Printing
+Category: Plotting
 
 Format: `PLFIL` fspec
 
@@ -5472,7 +5476,7 @@ device (as set and displayed by `PLDEV`).
 ## PLOT
 Plot current 1D display
 
-Category: Printing
+Category: Plotting
 
 Format: `PLOT`
 
@@ -5482,7 +5486,7 @@ specified by `PLFIL`.
 ## PLOTC
 Plot 2D contours
 
-Category: Printing
+Category: Plotting
 
 Format: `PLOTC` rec slice
 
@@ -5499,7 +5503,7 @@ plot the first 2D slice of the record.
 ## PLS
 Set pulse length
 
-Category: Acquisition
+Category: Pulse Control
 
 Format: `PLS` name time
 
@@ -5518,7 +5522,7 @@ time in microseconds. The length of a pulse can range from 0 to 1200 microsecond
 ## PLSIZE
 Set plot size
 
-Category: Printing
+Category: Plotting
 
 Format: `PLSIZE` xsiz ysiz
 
@@ -5530,7 +5534,7 @@ the current value as a default.
 ## POLAR
 Convert buffer to polar coordinates
 
-Category: Data Manipulation
+Category: Data Transforms
 
 Format: `POLAR`
 
@@ -5571,7 +5575,7 @@ is specified RNMR will prompt for it with the current position as a default.
 ## PP
 Interactive peak picking
 
-Category: Data Manipulation
+Category: Data Analysis
 
 Format: `PP`
 
@@ -5595,7 +5599,7 @@ and it is either a local maximum or minimum if its intensity is greater or less 
 ## PPEX
 Load a pulse program experiment
 
-Category: Acquisition
+Category: Experiment
 
 Format: `PPEX` nam
 
@@ -5618,7 +5622,7 @@ is active by default.
 ## PPFLG
 Set state of pulse program flag
 
-Category: Acquisition
+Category: Experiment
 
 Format: `PPFLG` ind val
 
@@ -5632,7 +5636,7 @@ is currently simply an alias to it. As such `FLAG` should be used in place of `P
 ## PPMD
 Set pulse program phase mode
 
-Category: Acquisition
+Category: Pulse Control
 
 Format: `PPMD` nam spec1 spec2 ... spec8
 
@@ -5800,7 +5804,7 @@ Description:
 ## PS
 Set phase
 
-Category: Data Manipulation
+Category: Phasing
 
 Format: `PS` phi0 phi1
 
@@ -5831,7 +5835,7 @@ which end of the list to push a value to. By default RNMR pushes to the tail of 
 ## PSUBV
 Subtract polar buffers
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `PSUBV` src dst
 
@@ -5850,7 +5854,7 @@ same allocated size).
 ## PSX
 Set transmitter phase
 
-Category: Acquisition
+Category: Pulse Control
 
 Format: `PSX` chan psx phase
 
@@ -5864,7 +5868,7 @@ omitted RNMR will prompt for it with the current phase of that psx on that chann
 ## PSXEX
 Load transmitter phase program from PAM memory.
 
-Category:
+Category: Pulse Control
 
 Format: `PSXEX`
 
@@ -5903,7 +5907,7 @@ increment them before use, so entering 0 for either pointer indicates to start f
 ## PWR
 Set transmitter coarse power level
 
-Category: Acquisition
+Category: Experiment
 
 Format: `PWR` chan index pwr
 
@@ -5934,7 +5938,7 @@ provided RNMR will prompt for it with the current value as a default.
 ## PWX
 Set transmitter fine power level
 
-Category: Acquisition
+Category: Pulse Control
 
 Format: `PWR` chan nam pwr
 
@@ -5949,7 +5953,7 @@ If no power level is provided RNMR will prompt for it with the current value as 
 ## PWXEX
 Load power program
 
-Category:
+Category: Pulse Control
 
 Format: `PWXEX`
 
@@ -5986,7 +5990,7 @@ causes RNMR to halt immediately after the next shot.
 ## RCVMIX
 Set receiver quadrature mixing
 
-Category: Acquisition
+Category: Experiment
 
 Format: `RCVMIX` valr vali
 
@@ -6005,7 +6009,7 @@ used both will be set.
 ## RCVOFF
 Set receiver offset
 
-Category: Acquisition
+Category: Experiment
 
 Format: `RCVOFF` valr vali
 
@@ -6024,7 +6028,7 @@ used both will be set.
 ## RD
 Set recycle delay
 
-Category: Acquisition
+Category: Experiment
 
 Format: `RD` time
 
@@ -6071,7 +6075,7 @@ no extension RNMR will add .wrt to it.
 ## RDPPS
 Read PP symbol
 
-Category: Pulse Program
+Category: Pulse Program Symbols
 
 Format: `RDPPS` typ nam argnam
 
@@ -6093,7 +6097,7 @@ program symbol value cannot be read.
 ## RDPPSNAM
 Read PP symbol name
 
-Category: Pulse Program
+Category: Pulse Program Symbols
 
 Format: `RDPPSNAM` typ ind argnam
 
@@ -6214,7 +6218,7 @@ number of values in the list.
 ## REMMAC
 Remove macro table entry
 
-Category: Macro
+Category: Macros
 
 Format: `REMMAC` nam
 
@@ -6226,7 +6230,7 @@ reloaded, but unlike `DLTMAC` the macro file will not be deleted.
 ## REMPPS
 Remove pulse programmer symbols
 
-Category: Pulse Program
+Category: Pulse Program Symbols
 
 Format : `REMPPS` typ first last
 
@@ -6265,7 +6269,7 @@ for it and will remove only an entry whose name exactly matches first.
 ## RENMAC
 Rename macro
 
-Category: Macro
+Category: Macros
 
 Format: `RENMAC` nam1 nam2
 
@@ -6347,7 +6351,7 @@ the byte from and may range of 0 to 255 inclusive. If adr is omitted RNMR will p
 ## RPTDO
 Repeat iteration of macro `DO` loop
 
-Category: Macro
+Category: Control Flow
 
 Format: `RPTDO`
 
@@ -6481,7 +6485,7 @@ with the contents of fspec. Any tables that were already populated will be lost.
 ## RTNARG
 Renames return arguments
 
-Category: Macro
+Category: Arguments
 
 Format: `RTNARG` nam1 nam2...
 
@@ -6668,7 +6672,7 @@ is specified RNMR will prompt for it with temp as a default.
 ## SB
 Save data to blocked record
 
-Category: Blocked Record
+Category: Data Storage
 
 Format: `SB` rec slice buf nblk
 
@@ -6715,7 +6719,7 @@ scale factor as an informational message. If sf is omitted RNMR will not prompt 
 ## SEL
 Begin macro `SEL` block
 
-Category: Macro
+Category: Control Flow
 
 Format: `SEL` nam
 
@@ -6861,7 +6865,7 @@ TITLE  | Title of record (single parameter for all directions)
 ## SETIDN
 Set identification values
 
-Category: Display
+Category: Display Control
 
 Format: `SETIDN` idn1 idn2
 
@@ -7057,7 +7061,7 @@ acquisition buffer instead of the visible processing buffer.
 ## SINEB
 Perform Sine-bell apodization
 
-Category: Data Manipulation
+Category: Apodization
 
 Format: `SINEB` factor time
 
@@ -7076,7 +7080,7 @@ point. RNMR multiplies the time domain data in the visible processing buffer by 
 ## SIZE
 Set acquisition size
 
-Category: Acquisition
+Category: Experiment
 
 Format: `SIZE` size
 
@@ -7162,7 +7166,7 @@ By default `SP` uses /DATA /USED and prints the size of the filled space in bloc
 ## SPLN
 Spline baseline fix spectrum
 
-Category: Data Manipulation
+Category: Baseline
 
 Format: `SPLN` list
 
@@ -7237,7 +7241,7 @@ visible processing buffer.
 ## STK
 Add to plot stream stack
 
-Category: Printing
+Category: Plotting
 
 Format: `STK`
 
@@ -7252,7 +7256,7 @@ area.
 ## STKOFF
 Set stack plot offset
 
-Category: Printing
+Category: Plotting
 
 Format: `STKOFF` xoff yoff
 
@@ -7296,7 +7300,7 @@ Qualifier | Description
 ## SUBV
 Subtract data buffers
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `SUBV` src dst
 
@@ -7313,7 +7317,7 @@ same allocated size).
 ## SW
 Set sweep width
 
-Category: Acquisition
+Category: Experiment
 
 Format: `SW` freq
 
@@ -7329,7 +7333,7 @@ sweep width. If such an adjustment occurs RNMR will print an informational messa
 ## SWAPV
 Swap data buffers
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `SUBV` src dst
 
@@ -7406,7 +7410,7 @@ value as a default. The time constant must be between 1.0 and 100.0.
 ## TH
 Set threshold for peak selection
 
-Category: Display Control
+Category: Data Analysis
 
 Format: `TH` val
 
@@ -7463,7 +7467,7 @@ acquisition buffer title as a default. This title is transferred to a processing
 ## TM
 Perform trapezoidal multiplication apodization
 
-Category: Data Manipulation
+Category: Apodization
 
 Format: `TM` lfract rfract
 
@@ -7478,7 +7482,7 @@ as a default. Both fractions must be between 0.0 and 1.0.
 ## TP
 Show phase correction values
 
-Category: Display Control
+Category: Phasing
 
 Format: `TP`
 
@@ -7515,7 +7519,7 @@ current target temperature as a default. The temperature must be between -200 an
 ## TST
 Conditionally execute a block of commands based on a test
 
-Category: Macro
+Category: Control Flow
 
 Format: `TST` test args...
 
@@ -7674,7 +7678,7 @@ RNMR will not prompt for it and will use a value of 1.0. The value of tfctr may 
 ## UNECHO
 Rearrange buffer to simulate FID from echo
 
-Category: Data Manipulation
+Category: Signal Generation
 
 Format `UNECHO` time
 
@@ -7830,7 +7834,7 @@ the record.
 ## WAVV
 Perform weighted addition of buffers
 
-Category: Data Manipulation
+Category: Buffer Arithmetic
 
 Format: `WAVV` src dst
 
@@ -8097,7 +8101,7 @@ no time is specified RNMR will prompt for it with a default of 1.0. Press Q whil
 ## WWASH
 Set state of plot whitewash flag
 
-Category: Printing
+Category: Plotting
 
 Format: `WWASH` state
 
@@ -8187,7 +8191,7 @@ rightmost point). The converted value is printed as an informational message.
 ## ZER
 Zero visible processing buffer
 
-Category: Misc.
+Category: Data Manipulation
 
 Format: `ZER`
 
@@ -8306,7 +8310,7 @@ Z       | Call `ZO` to manipulate 1D display and cursor
 ## ZO2DC
 Zoom on 2D contour display
 
-Category: `ZO2DC`
+Category: Contours
 
 Format: `ZO2DC` rec slice
 
