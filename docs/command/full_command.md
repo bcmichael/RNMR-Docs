@@ -7329,14 +7329,14 @@ sweep width. If such an adjustment occurs RNMR will print an informational messa
 ## SWAPV
 Swap data buffers
 
-ategory: Data Manipulation
+Category: Data Manipulation
 
 Format: `SUBV` src dst
 
 Defaults: 2 1
 
 Description:
-`SWAPV` exchanges the contents of two processing buffers.
+`SWAPV` exchanges the contents of [processing buffers](syntax.md#buffers) src and dst.
 
     SRC = DST
     DST = SRC
