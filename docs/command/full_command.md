@@ -8070,7 +8070,7 @@ Prerequisites: RNMRA only
 Description:
 `WTRM` writes a command to a terminal and reads a response. The terminal is specified by its index. If no index is
 specified RNMR will prompt for it with a default of 1. If no command is provided RNMR will prompt for it with no
-default. THe response read form the terminal will be printed as an informational message.
+default. The response read form the terminal will be printed as an informational message.
 ## WTSET
 Wait for heater to stabilize at setpoint
 
