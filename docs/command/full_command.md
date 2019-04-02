@@ -7371,7 +7371,7 @@ Prerequisites: RNMR lock control; RNMRA only
 
 Description:
 `SWP` sets the state of the lock channel sweep. The state may be either ON or OFF. If no state is specified RNMR will
-prompt for it witht hte current value as a default.
+prompt for it with the current value as a default.
 
 # T
 ---
