@@ -7786,7 +7786,7 @@ with the current value.
 # W
 ---
 ## WAIT
-Halt when number of shots satisfies `NWAIT`
+Wait during acquisition
 
 Category: Acquisition
 
