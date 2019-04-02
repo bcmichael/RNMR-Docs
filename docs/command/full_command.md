@@ -7799,13 +7799,17 @@ Qualifier Defaults: none
 Prerequisites: Acquisition running; RNMRA only
 
 Description:
-`WAIT` halts acquisition after nwait shots. /ERR may be used to specify a label to jump to in the event of an error.
+`WAIT` waits during acquisition. While waiting commands cannot be entered at the console. `WAIT` will terminate if
+[acquisition](syntax#acquisition) finishes the specified number of scans (`NA` or `NWAIT`) or if a
+[signal](syntax#signals) is sent by the spectrometer. /ERR may be used to specify a label to jump to in the event of an
+error during acquisition.
 
-Pressing Q while `WAIT` is active calls `QUIT` to halt acquisition after the phase cycle is completed. Remember that
-another Q while `QUIT` is finishing the phase cycle halts immediately.
+Pressing Q while `WAIT` is active calls `QUIT` to halt acquisition.
 
-Pressing ^ while `WAIT` is active pauses the acquisition and returns control to the user at the command line. Entering
-exit from this command line resumes acquisition.
+Pressing ^ while `WAIT` is active returns control to the user at the command line. Entering exit from this command line
+resumes waiting. `WAIT` cannot terminate while in this state even if acquisition finishes or a signal is sent.
+Multi-dimensional acquisition usually relies on `WAIT` terminating in response to signals so the signal can be properly
+handled. As a result leaving the system at this console can effectively pause multi-dimensional acquisition.
 ## WAVB
 Perform weighted average of blocked record
 
