@@ -8315,16 +8315,11 @@ Defaults: rrec 1
 Prerequisites: Processing buffer visible (VIEW PRO)
 
 Description:
-`ZO2DC` displays a contour plot of a two-dimensional slice of a blocked record and provides subcommands to manipulate
-the contour display. If no record is specified RNMR will prompt for it with the current read record pointer (as set and
-displayed by `PTRA`) as a default. The last parameter, slice specifies which 2D slice of a 3D or 4D source record should
-be used. If the source record has only two dimensions, slice must be 1. If slice is omitted RNMR will not prompt for it
-and will use the first slice. Note that the current mapping of dimensions to directions (as displayed and set by `DIRB`)
-will affect the selection of which one-dimensional blocks of the record comprise the 2D slice. Slice is interpreted as a
-linear index over the 3rd/4th dimensions.
-
-The number of accessible dimensions in the blocked record must be large enough that the first two directions are
-accessible. The number of dimensions is set when the record is allocated and can be view using `SHOW REC rec 1 NDIMX`.
+`ZO2DC` displays a contour plot of a two-dimensional slice of a [blocked record](syntax#blocked_records) and provides
+subcommands to manipulate the contour display.  The number of contours is set by `NCON`, the contour height limits by
+`CONLIM`, the type of contours by `CONMD`, and the plot limits by `LIMB`. If no [record number](syntax#records) is
+specified RNMR will prompt for it with the current read record pointer (as displayed and set by `PTRA`) as a default. If
+no [slice](syntax#slice) is specified RNMR will not prompt for it and will plot the first 2D slice of the record.
 
 The following subcommands are available:
 
