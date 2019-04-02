@@ -8093,7 +8093,7 @@ Defaults: 1.0
 
 Description:
 `WTTIM` waits an amount of time specified by dlytime. The time is specified in seconds and must be a positive number. If
-no time is specified RNMR will prompt for it with a default of 1.0. ress Q while `WTTIM` is active to quit waiting.
+no time is specified RNMR will prompt for it with a default of 1.0. Press Q while `WTTIM` is active to quit waiting.
 ## WWASH
 Set state of plot whitewash flag
 
