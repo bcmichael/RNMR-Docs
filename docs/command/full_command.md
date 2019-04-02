@@ -8281,32 +8281,27 @@ Defaults: rrec 1
 Prerequisites: Processing buffer visible (VIEW PRO)
 
 Description:
-`ZO2D` performs two-dimensional zooming on a slice of a blocked record. If no record is specified RNMR will prompt for
-it with the current read record pointer (as set and displayed by `PTRA`) as a default. The last parameter, slice
-specifies which 2D slice of a 3D or 4D source record should be used. If the source record has only two dimensions, slice
-must be 1. If slice is omitted RNMR will not prompt for it and will use the first slice. Note that the current mapping
-of dimensions to directions (as displayed and set by `DIRB`) will affect the selection of which one-dimensional blocks
-of the record comprise the 2D slice. Slice is interpreted as a linear index over the 3rd/4th dimensions.
+`ZO2D` performs two-dimensional zooming on a slice of a [blocked record](syntax#blocked_records). If no
+[record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as displayed
+and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will display
+the first 2D slice of the record.
 
-The number of accessible dimensions in the blocked record must be large enough that the first two directions are
-accessible. The number of dimensions is set when the record is allocated and can be view using `SHOW REC rec 1 NDIMX`.
-
-`ZO2D` will display a single block along one of the first two dimensions at a time. Various subcommands allow for
-manipulation of which block along which dimension is displayed. Whenever the visible dimension is switched the block to
-display will be determined by the position of the cursor. The following subcommands are available:
+`ZO2D` will display a single one-dimensional slice along one of the first two directions at a time. Various subcommands
+allow for manipulation of which slice along which direction is displayed. Whenever the visible direction is switched the
+slice to display will be determined by the position of the cursor. The following subcommands are available:
 
 Command | Description
 ------- | -----------
-D1      | View dimension 1
-D2      | View dimension 2
+D1      | View direction 1
+D2      | View direction 2
 Enter   | Terminate
 F       | Select forward movement
 Q       | Terminate
 R       | Select reverse movement
-S       | Switch dimension
-V       | Select position in unviewed dimension in its units after prompt
+S       | Switch viewed direction
+V       | Select position in unviewed direction in its units after prompt
 Z       | Call `ZO` to manipulate 1D display and cursor
-0:3     | Move in unviewed dimension by 10^N blocks
+0:3     | Move in unviewed direction by 10^N slices
 
 ## ZO2DC
 Zoom on 2D contour display
