@@ -7458,8 +7458,8 @@ Defaults: current
 Prerequisites: RNMRA only
 
 Description:
-`TITLE` sets the title of the acquisition buffer. If no title is provided RNMR will prompt for it with the
-current acquisition buffer title as a default.
+`TITLEA` sets the title of the acquisition buffer. If no title is provided RNMR will prompt for it with the current
+acquisition buffer title as a default. This title is transferred to a processing buffer along with the data by `GAV`.
 ## TM
 Perform trapezoidal multiplication apodization
 
