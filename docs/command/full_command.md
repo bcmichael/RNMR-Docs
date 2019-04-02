@@ -6893,7 +6893,7 @@ buffer to a given value. If val is omitted RNMR will prompt for it with 0.0 as a
 RNMR will not prompt for them and will use the current display limits. The limits are specified in the current units of
 the visible processing buffer. The /REAL, /IMAG, and /COMPLEX qualifiers select whether to set the real part, imaginary
 part, or both parts of the buffer to the specified value. The default behavior is to set the currently visible part of
-buffer as selected and shown by the `BUF` command.
+buffer (as displayed and set by `BUF`).
 ## SETVP
 Set data values for specified points
 
@@ -6910,11 +6910,11 @@ Defaults: 0.0 current_display_limit 1
 Description:
 `SETVP` sets the data values for all points in a specified region (npt points starting from llim) of the visible
 processing buffer to a given value. If val is omitted RNMR will prompt for it with 0.0 as a default. If llim is omitted
-RNMR will not prompt for them and will use the current display limit. The limit is specified in the current units of the
-visible processing buffer. If the number of points to set, npt, is omitted RNMR will not prompt for it and will set a
-single point. The /REAL, /IMAG, and /COMPLEX qualifiers select whether to set the real part, imaginary part, or both
-parts of the buffer to the specified value. The default behavior is to set the currently visible part of buffer as
-selected and shown by the `BUF` command.
+RNMR will not prompt for it and will use the current left display limit. The limit is specified in the current units of
+the visible processing buffer. If the number of points to set, npt, is omitted RNMR will not prompt for it and will set
+a single point. The /REAL, /IMAG, and /COMPLEX qualifiers select whether to set the real part, imaginary part, or both
+parts of the buffer to the specified value. The default behavior is to set the currently visible part of buffer (as
+displayed and set by `BUF`).
 ## SG
 Start acquisition without accumulation
 
