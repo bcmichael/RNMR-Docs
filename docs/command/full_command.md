@@ -7402,7 +7402,7 @@ Prerequisites: RNMR lock control; RNMRA only
 
 Description:
 `TCL` sets the lock channel time constant. If the time constant is omitted RNMR will prompt for it with the current
-value as a default.
+value as a default. The time constant must be between 1.0 and 100.0.
 ## TH
 Set threshold for peak selection
 
