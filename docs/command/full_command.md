@@ -7820,12 +7820,13 @@ Format: rec first last
 Defaults: rrec 1 last
 
 Description:
-`WAVB` performs a weighted average of blocks from a blocked record and puts the result in the visible processing buffer.
-The average is weighted such that any blocks with all zeros have a weight of 0 and all other blocks have a weight of 1.
-If no record is specified RNMR will prompt for it with the read record pointer (as set and displayed by `PTRA`) as a
-default. `WAVB` performs the average over blocks first to last. If first is omitted RNMR will prompt for it with 1 as a
-default. If last is omitted RNMR will prompt for it with the number of blocks in the record as a default. Setting last
-to 0 indicates to use the last block in the record.
+`WAVB` performs a weighted average of one-dimensional [slices](syntax#slice) from a [blocked record](blocked_records)
+and puts the result in the visible processing buffer. The average is weighted such that any slices with all zeros have a
+weight of 0 and all other blocks have a weight of 1. If no [record number](syntax#records) is specified RNMR will prompt
+for it with the current read record pointer (as set and displayed by `PTRA`) as a default. `WAVB` performs the average
+over slices first to last. If first is omitted RNMR will prompt for it with 1 as a default. If last is omitted RNMR will
+prompt for it with the number of slices in the record as a default. Setting last to 0 indicates to use the last slice in
+the record.
 ## WAVV
 Perform weighted addition of buffers
 
