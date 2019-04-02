@@ -7984,7 +7984,7 @@ Defaults: none
 Prerequisites: RKC device implemented; RNMRA only
 
 Description:
-`WRKC` writes data from a RKC device. If no device  or data is specified RNMR will prompt for it with no default.
+`WRKC` writes data from a RKC device. If no device or data is specified RNMR will prompt for it with no default.
 ## WRRI
 Write command line to RRI device and read response
 
