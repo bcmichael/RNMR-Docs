@@ -7187,9 +7187,9 @@ Format: `SQZ` arv
 Defaults 1
 
 Description:
-`SQZ` squeezes and archive to reduce the size of the file stored on disk. After `SQZ` the number of records and data
+`SQZ` squeezes an archive to reduce the size of the file stored on disk. After `SQZ` the number of records and data
 blocks allocated in the file will match the number of used records and data blocks (`SP /USED` will equal `SP /FILE`).
-If no archive is specified RNMR will prompt for it with 1 as a default.
+If no [archive number](syntax#archives) is specified RNMR will prompt for it with 1 as a default.
 ## SREF
 Save processing buffer reference to nucleus table
 
