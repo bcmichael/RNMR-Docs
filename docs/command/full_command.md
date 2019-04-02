@@ -7511,7 +7511,7 @@ Prerequisites: RNMR heater control; RNMRA only
 
 Description:
 `TSET` sets the target temperature for the heater. If no temperature is specified RNMR will prompt for it with the
-current target temperature as a default.
+current target temperature as a default. The temperature must be between -200 and 125.
 ## TST
 Conditionally execute a block of commands based on a test
 
