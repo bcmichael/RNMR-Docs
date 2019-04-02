@@ -7470,10 +7470,11 @@ Format: `TM` lfract rfract
 Defaults: 0.0 0.0
 
 Description:
-`TM` performs a trapazoidal multiplication apodization. A fraction of the data on the left is multiplied by a linear
-function that increases from 0.0 to 1.0 and a fraction of the data on the right is multiplied by a linear function that
-decreases from 1.0 to 0.0. The parameters lfract an rfract determine what fraction of the data each linear function is
-applied to. If either of these arguments is omitted RNMR will prompt for it with 0.0 as a default.
+`TM` performs a trapazoidal multiplication apodization on data in the visible processing buffer. A fraction of the data
+on the left is multiplied by a linear function that increases from 0.0 to 1.0 and a fraction of the data on the right is
+multiplied by a linear function that decreases from 1.0 to 0.0. The parameters lfract an rfract determine what fraction
+of the data each linear function is applied to. If either of these arguments is omitted RNMR will prompt for it with 0.0
+as a default. Both fractions must be between 0.0 and 1.0.
 ## TP
 Show phase correction values
 
