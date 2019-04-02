@@ -7388,7 +7388,7 @@ Prerequisites: RNMR heater control; RNMRA only
 
 Description:
 `TALARM` sets the temperature limit for the heater alarm. If no temperature is provided RNMR will prompt for it with the
-current alaram temperature as a default.
+current alarm temperature as a default. The temperature must be between -200 and 125.
 ## TCL
 Set lock channel time constant
 
