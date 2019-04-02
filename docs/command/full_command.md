@@ -7717,7 +7717,8 @@ Description:
 `UNIT` sets the unit for a given domain. /FREQ, /TIME, and /UNKN select which domain to set the unit for. /DFLT is used
 to set the default unit for the selected domain. If no unit is specified RNMR will prompt for it with the current unit.
 
-Valid time domain units are USEC, MSEC, and SEC. Valid frequency domain units are HZ, kHz, MHz, and PPM.
+Valid time domain units are USEC, MSEC, and SEC. Valid frequency domain units are HZ, kHz, MHz, and PPM. PPM cannot be
+the default frequency unit.
 ## UPDARV
 Update archive
 
