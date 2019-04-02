@@ -7837,9 +7837,9 @@ Format: `WAVV` src dst
 Defaults: 2 1
 
 Description:
-`WAVV` replaces the contents of buffer dst with the weighted average of buffers src and dst. The buffers are weighted
-based upon the number of acquisitions in each buffer. The data from the src buffer is also scaled to the scale factor of
-the dst buffer for averaging purposes.
+`WAVV` calculates the weighted average of [processing buffers](syntax.md#buffers) src and dst and stores the result in
+dst. The buffers are weighted based upon the number of acquisitions in each buffer. The data from the src buffer is also
+scaled to the scale factor of the dst buffer for averaging purposes.
 
     DST = DST*NA_DST/(NA_DST+NA_SRC) + SRC*NA_SRC/(NA_DST+NA_SRC) * (SF_DST/SF_SRC)
 
