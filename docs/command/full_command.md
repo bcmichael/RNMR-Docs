@@ -7228,14 +7228,12 @@ Format: `SS` rec buf
 Defaults: 1 1
 
 Description:
-`SS` saves the date in a processing buffer to a scratch record (records 1-4 in an archive). The record must be in an
-archive which RNMR has read access to. If no record is provided RNMR will not prompt for it and will use record 1.
-Records in archives other than 1 can be specified by either pre-pending the archive number and a ":" or specifying
-numbers larger than 200. For example record # in archive 2 can be specified either as 2:# or by adding 200 to #. `SS`
-cannot write to archive records which must be written using `SA` or to blocked records which must be written using `SB`.
-
-If no buffer is specified RNMR will not prompt for it and will save the data from processing buffer 1 (the visible
-processing buffer).
+`SS` saves the date in a [processing buffer](syntax#buffers) to a [scratch record](syntax#record_type) (records 1-4 in
+an archive). The record must be in an archive which RNMR has write access to. If no [record number](syntax#records) is
+specified RNMR will not prompt for it and will use record 1. The specified scratch record does not need to be empty for
+`SS` to save data to it. `SS` cannot write to archive records which must be written using `SA` or to blocked records
+which must be written using `SB`. If no buffer is specified RNMR will not prompt for it and will save the data from the
+visible processing buffer.
 ## STK
 Add to plot stream stack
 
