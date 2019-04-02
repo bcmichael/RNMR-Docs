@@ -8162,11 +8162,11 @@ Format: `XTP` llim npt
 Defaults: current_display_limit 1
 
 Description:
-`XTP` extracts a specified number data in the visible processing buffer starting from llim. The left limit is specified
-in the current units of the buffer. If the left limit is omitted RNMR not prompt for it and will use the current left
-display limit. If the number of points to extract is not specified RNMR will not prompt for it and will extract a single
-point. All of the data outside of the specified points will be discarded. The size of the visible processing buffer will
-shrink to match the size of the extracted data points.
+`XTP` extracts a specified number of data points in the visible processing buffer starting from llim. The left limit is
+specified in the current units of the buffer. If the left limit is omitted RNMR will not prompt for it and will use the
+current left display limit. If the number of points to extract is not specified RNMR will not prompt for it and will
+extract a single point. All of the data outside of the specified points will be discarded. The size of the visible
+processing buffer will shrink to match the size of the extracted data points.
 ## XVAL
 Convert from point index to unit value
 
