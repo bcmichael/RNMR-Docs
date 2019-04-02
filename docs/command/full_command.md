@@ -6777,7 +6777,6 @@ The following flags may be set from both RNMRA and RNMRP:
 
 Name  | Flag | Description
 ----  | ---- | -----------
-DSP   | Display enable |
 LOG   | Logging window | When set on a window opens and `LOG` can be used to write logging lines to it that can be saved via `SAVLOG`. Closing the logging window will set the flag off.
 LP    | Text printer | When the text printer flag is on text is printed to the printer device as set and displayed by `LPDEV`. When the flag is off text printed by commands is saved to the text printer file as set and displayed by `LPFIL`. Changing `LPDEV` or `LPFIL` sets the flag to on or off respectively.
 MSG   | Message window | When set on a windows opens and all informational messages and messages written using `MSG` will appear in the window rather that being written to the console. Closing the message window will set the flag off.
@@ -6805,6 +6804,17 @@ SF    | Scale factor
 SIZE  | Size in points
 STEP  | Difference between position of sequential points
 TITLE | Buffer title
+
+DSP state
+
+`SET DSP` allows for disabling display updates. This can be useful when a macro does many calculations which would
+usually update the display. Instead of numerous different display states flickering across the screen the display can be
+disabled and updated after all of the calculations are complete. This can also save computational time. `SET DSP`
+appears to function like the flags listed above in that it takes a single argument that can be either on or off, but it
+actually has a value which is incremented by `SET DSP ON` and decremented by `SET DSP OFF`. This value is initially 1.
+When this value is greater than zero the display will update when commands that change the visible data are issued and
+the default prompt if state is omitted will be on. Otherwise the display will not update with such commands and the
+default prompt will be off. When `SET DSP ON` changes the value from 0 to 1 the display will be updated.
 
 INFO typ [nam] nam1...
 
