@@ -7427,16 +7427,13 @@ Format: `TILT` rec slice tfctr
 Defaults: wrec 1 1.0
 
 Description:
-`TILT` tilts a two-dimensional slice of a blocked record by an angle between 0.0 and 45.0 degrees. If no record is
-specified RNMR will prompt for it with the current write record pointer (as set and displayed by `PTRA`) as a default.
-The first two dimensions of the blocked record must be frequency domain. The second parameter, slice, specifies which 2D
-slice of a 3D or 4D source record should be tilted. If the source record has only two dimensions, slice must be 1. If
-slice is omitted RNMR will not prompt for it and will tilt the first slice. Slice is interpreted as a linear index over
-the 3rd/4th dimensions.
-
-The final parameter, tfctr, determines what angle to tilt the record by. The angle is tfctr times 45.0 degrees. If tfctr
-is omitted RNMR will not prompt for it and will use a value of 1.0 (45 degree tilt). The value of tfctr may be between
-0.0 and 1.0 inclusive.
+`TILT` tilts a two-dimensional slice of a [blocked record](syntax#blocked_records) by an angle between 0.0 and 45.0
+degrees. If no [record number](syntax#records) is specified RNMR will prompt for it with the current write record
+pointer (as displayed and set by `PTRA`) as a default. The first two directions of the blocked record must be frequency
+domain. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will tilt the first 2D slice of the
+record. The final parameter, tfctr, determines what angle to tilt the record by. The angle is tfctr times 45.0 degrees.
+If tfctr is omitted RNMR will not prompt for it and will use a value of 1.0 (45 degree tilt). The value of tfctr may be
+between 0.0 and 1.0 inclusive.
 ## TITLE
 Set processing buffer title
 
