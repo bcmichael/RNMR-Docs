@@ -7415,8 +7415,8 @@ Defaults: current
 Description:
 `TH` sets the threshold value used for peak picking. If no value is specified RNMR will prompt for it with the current
 value as a default. The threshold is used whenever RNMR identifies peaks (`LPK`, `LPK2D`, P subcommand of `ZO`, next
-peak button in zoom window). The magnitude of a point must be larger that the threshold in order to be considered a
-peak.
+peak button in zoom window etc.). The magnitude of a point must be larger that the threshold in order to be considered a
+peak. The threshold value must be between -1.0 and 1.0.
 ## TILT
 Tilt blocked record
 
