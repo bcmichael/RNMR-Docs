@@ -3,10 +3,10 @@
 While it is entirely possible to write your own pulse sequences in RNMR, many have already been written for common
 experiments. These existing experiments will generally include a pulse program file (some_experiment.pp) and a macro to
 set up the experiment (some_experiment.rnmrm). Both macros and pulse programs are explained in more depth in other
-sections, but a few basics will be explained here. The first time you use a pulse program you may need to compile it
-using the following command from the terminal (not within RNMR):
+sections of this documentation, but a few basics will be explained here. The first time you use a pulse program you may
+need to compile it using the following command from the terminal in your pp folder (not within RNMR):
 
-pprog some_experiment.pp
+    pprog some_experiment.pp
 
 ## A Brief Primer On Macros
 Macros are text files containing RNMR commands. When a macro is called the commands are executed sequentially just as if
@@ -14,23 +14,23 @@ they had been entered at the command line in RNMR. Macros also have some facilit
 arguments, and can make use of both global and local variables. A few macros were introduced in the section on running
 one pulse experiments, RUN and PROC.
 
-The first time you use a particular macro, or any time you alter a macro using a
-text editor outside of RNMR you must tell RNMR to load it from the file (some_macro.rnmrm) by typing `MACRO SOME_MACRO`.
-Subsequently you can run the macro by simply typing SOME_MACRO. Macros can also be edited from within RNMR by typing
-`ME SOME_MACRO`.
+The first time you use a particular macro, or any time you alter a macro using a text editor outside of RNMR you must
+tell RNMR to load it from the file (some_macro.rnmrm) by typing `MACRO SOME_MACRO`. Subsequently you can run the macro
+by simply typing SOME_MACRO. Macros can also be edited from within RNMR using `EDTMAC`.
 
-Global variables are set using the `GBLARG` command and are used by prepending the argument name with
-`%`. Local variables use `LCLARG` and `&` for these purposes. Note that RNMR is not case sensitive so do not for example
-attempt to name different variables A and a.
+Global variables can be set using `DFNGBL` and are used by prepending the argument name with `%`. % followed by a name
+will be replaced by the value of the global argument. Local variables use `DFNLCL` and `&` for these same purposes. Note
+that RNMR is not case sensitive so do not for example attempt to name different variables A and a. Everything on a line
+in a macro that comes after a ; is a comment and will not do anythin.
 
 ## Invoking an Experiment
 A common workflow in RNMR makes use of the utility macro mr.rnmrm. Create a text file which typically should have the
 same name as the archive in which data will be saved (some_name.rnmrm). Then set the global argument r to be that name
-by typing `GBLARG R SOME_NAME`. An example of what the macro might look like follows:
+by typing `DFNGBL R SOME_NAME`. An example of what the macro might look like follows:
 ```no-highlight
 goto .r&1                       ;Jump to a label. In this case if local arg 1
-                                ;has the value 5 it will jump to the ;label .r5
-.r5                             ;A label than can be jumped to
+                                ;has the value 5 it will jump to the label .r5
+.r5                             ;A label that can be jumped to
 macro justcp                    ;Load the justcp macro from its file
 justcp setup                    ;Call the setup submacro within justcp
 ;justcp ccal                    ;Uncomment to calibrate 13C powers
@@ -46,7 +46,7 @@ d cpdly 10                      ;Set the length of the cp to 10 ms
 pwx 2 cppls2 83                 ;Set the power of the initial 1H flip pulse
 p cppls 3                       ;Set the length of the 1H flip pulse to 3 us
 super 2,sample,on,*,29.7,17.0   ;Set the tppm decoupling power and pulse length
-supsxval 2,sample,tppm,11,0	    ;Set the tppm decoupling phases
+supsxval 2,sample,tppm,11,0     ;Set the tppm decoupling phases
 suacq 20,1024,3,30,4,0,10       ;Set up acquisition parameters
 ;dwell,size,rd,gain,na,ndly,p8   Just a comment
 pwx 1 flip 89                   ;Set the power for the 13C channel flip pulses
@@ -55,9 +55,9 @@ p flipdn 0                      ;Set the length of the second flip pulse to 0
 run                             ;Run the experiment
 mexit                           ;Exit the macro
 ```
-The command `MR 5` will now run everything between `.r5` and `mexit`. It will be instructive to step through this macro
-line by line to understand what it does. As such comments have been added to each line here, but they would not normally
-be included most of the time. This particular example will run the justcp experiment pictured here:
+The command `MR 5` will now run everything between .r5 and mexit. It will be instructive to step through this macro line
+by line to understand what it does. As such comments have been added to each line here, but they would not normally be
+included most of the time. This particular example will run the justcp experiment pictured here:
 
 ![justcp pulse sequence](justcp.png)
 
@@ -77,11 +77,11 @@ periods such as the cp contact time or the mixing time in certain recoupling exp
 ## Calibrating Pulse Powers
 It is important to be able to determine the appropriate power level to use to produce a particular nutation frequency.
 The justcp experiment invoked above can be used for this purpose. This experiment should give a maximum signal when the
-initial flip pulse is 90° and should give no signal at all when it is 180°.
+initial ¹H flip pulse (cppls) is 90° and should give no signal at all when it is 180°.
 
 The typical procedure once you have observed that your justcp experiment does in fact give you some signal is to set the
 length of the flip pulse to correspond to a 180° pulse at a particular frequency. For example, to calibrate an 83 KHz
-pulse for the 1H channel set the flip pulse to 6 us. Then adjust the power of the pulse until there is no signal.
+pulse for the ¹H channel set the pulse to 6 us. Then adjust the power of the pulse until there is no signal.
 Cutting the length of the pulse in half should then give a maximum signal as it would be a 90° pulse.
 
 In order to calibrate 13C powers we use the flipup and flipdn pulses which both have the same power. Uncomment the call
@@ -89,8 +89,8 @@ to justcp ccal to call a submacro of justcp that sets up the phase cycling for p
 pulses are 90° you should see no signal. When flipup is 180° and flipdn is 90° you should see the full signal.
 
 While calibrating it very helpful to be able to compare two spectra on screen at once. With a spectrum on the screen
-type `SET REF ON` to set this spectrum as a reference. The reference spectrum will now appear overlaid with any
-subsequent spectra you view until you set a new reference spectrum or type `SET REF OFF`. The justcp macro also has
+call `SET REF ON` to set this spectrum as a reference. The reference spectrum will now appear overlaid with any
+subsequent spectra you view until you set a new reference spectrum or call `SET REF OFF`. The justcp macro also has
 submacros for setting up cp to other nuclei such as 15N. You can add sections for additional nuclei if you need to.
 
 It is common to have a powers macro which contains submacros for each sample and spectrometer session which declare the
@@ -100,29 +100,28 @@ powers macro with powers for adamantane and GB1 run in October of 2017 might loo
 goto .&1
 
 .ada2017oct
-gblarg ph83	83
-gblarg ph71	55
-gblarg ph50	35
+dfngbl ph83	83
+dfngbl ph71	55
+dfngbl ph50	35
 
-gblarg pc71	90
-gblarg pc50	65
+dfngbl pc71	90
+dfngbl pc50	65
 mexit
 
 .gb12017oct
-gblarg ph83	91
-gblarg ph71	65
-gblarg ph50	40
+dfngbl ph83	91
+dfngbl ph71	65
+dfngbl ph50	40
 
-gblarg pc83	83
-gblarg pc71	72
-gblarg pc50	51
+dfngbl pc83	83
+dfngbl pc71	72
+dfngbl pc50	51
 mexit
 ```
 Running the appropriate power submacro makes the calibrated powers into global arguments that can be called when you are
 setting up experiments. This can make your macros easier to read as setting a power to `%ph83` makes it much more clear
 that the pulse is 83 KHz than if you set it to for example the 91 pwx units that were calibrated for GB1 in the above
 macro.
-
 
 ## Optimizing Cross Polarization
 Most solid state nmr experiments begin with a cross polarization (cp) step, so it is quite important to find a cp
