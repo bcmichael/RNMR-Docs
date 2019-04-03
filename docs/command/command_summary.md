@@ -177,7 +177,6 @@ Command | Description
 [QC](full_command#qc) | Perform software quadrature phase correction
 [ROT](full_command#rot) | Rotate spectrum
 [ROTP](full_command#rotp) | Rotate spectrum
-[SC](full_command#sc) | Scale data
 [SETV](full_command#setv) | Set data values between limits
 [SETVP](full_command#setvp) | Set data values for specified points
 [SHFT](full_command#shft) | Shift data
@@ -247,6 +246,7 @@ Command | Description
 [LIMB](full_command#limb) | Set blocked record display limits
 [NDEC](full_command#ndec) | Set number of decimal places
 [NORM](full_command#norm) | Set scale to normalize display
+[SC](full_command#sc) | Scale data
 [SETIDN](full_command#setidn) | Set identification values
 [UNIT](full_command#unit) | Set units
 [VIEW](full_command#view) | Set display source

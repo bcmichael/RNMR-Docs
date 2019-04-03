@@ -6701,7 +6701,7 @@ point to the last slice written.
 ## SC
 Scale data
 
-Category: Data Manipulation
+Category: Display Control
 
 Format: `SC` sf
 
