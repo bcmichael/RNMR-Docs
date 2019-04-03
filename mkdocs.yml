@@ -11,6 +11,7 @@ pages:
 - Macros: 'macros.md'
 - Commands:
     - Command Syntax: 'command/syntax.md'
+    - Command Summary: 'command/command_summary.md'
     - Full Command Descriptions: 'command/full_command.md'
 
 markdown_extensions:
