@@ -44,8 +44,8 @@ Will both define a global argument named temp with a value of 3. `DFLGBL` and `D
 globals and locals. These only define the variable if it does not exist, and can have a prompt associated with them.
 They have the same qualifiers as `DFNGBL` and `DFNLCL`. For example:
 
-    DFLGBL TEMP 2 ;if no global temp exists define global temp to be 2
-    DFLGBL TEMP 2 'set temp value' ;if no global temp exists prompt for it with 'set temp value' and 2 as a default
+    DFLGBL TEMP 2                  ;if no global temp exists define global temp to be 2
+    DFLGBL TEMP 2 'set temp value' ;if no global temp exists prompt for it with 2 as a default
 
 Variables may be also be defined by popping default values displayed by commands. Use > to pop to a global, >> to pop to
 a local, and >>> to pop to a symbol. When popping to a symbol the default value must be a number and the type of symbol
@@ -69,8 +69,8 @@ Using the value of a variable is done differently depending on the type of varia
 directly a name the value of the global variable of that name will be substituted. The same applies to locals but with
 & instead of %. For example:
 
-   DFNGBL TEMP 3
-   MSG %TEMP
+    DFNGBL TEMP 3
+    MSG %TEMP
 
 Will print 3 to the console. Symbols work a bit differently. The name of a symbol can be used directly without any
 special character, but can only be used as arguments to commands that expect the appropriate type of number. For
@@ -80,8 +80,58 @@ example:
     ARV TEMP
 
 Will print the name of archive 1.
-## Macro Labels
-Much of the control flow in RNMR macros makes use of labels. A macro label is defined by a period followed by the label
+## Structured Control Flow
+### DO Loops
+A macro `DO` loop executes a set of commands between `DO` and and its matching `ENDDO` a specified number of times. `DO`
+accepts arguments specifying the starting and ending value of the loop counter. Each time the `ENDDO` is reached the
+loop counter is incremented and the next iteration of the loop begins. There may optionally be a variable defined to
+hold the loop counter. By default the loop counter will be stored as a local. For example:
+
+    DO 2 6 COUNT
+        MSG &COUNT
+    ENDDO
+
+Will print the numbers 2 through 6. There several special commands which can only be used between `DO` and its matching
+`ENDDO`. `BRKDO` exits the loop immediately without finishing the loop. `NXTDO` iterates the loop counter and begins the
+next loop iteration with finish the loop body. `RPTDO` begins a new loop iteration without finishing the loop body or
+incrementing the loop counter. Caution is merited with `RPTDO` to avoid creating infinite loops.
+### SEL Selector
+`SEL` can be used to select one of several blocks of commands to execute based on the value of a local or global. By
+default a local is used. The value of the argument to `SEL` is compared to the argument of each `CASE` between `SEL` and
+its matching `ENDSEL`. The commands between the first matching `CASE` and either the next `CASE` or `ENDSEL` are
+executed. Note that if `CASE` has no argument it will match anything. For example:
+
+    DFNLCL SELECTOR 2
+    SEL SELECTOR
+    CASE 1
+        MSG 'A'
+    CASE 2
+        MSG 'B'
+    CASE 3
+        MSG 'C'
+    CASE
+        MSG 'IT WAS NOT IN 1-3'
+    ENDSEL
+
+Will print C.
+### TST Conditional Execution
+`TST` can be used to conditionally execute blocks of commands based on the result of a test. See the Full Command
+Descriptions section for a description of all the available tests. Either the commands between `TST` and `ELSTST` or the
+commands between `ELSTST` and `ENDTST` will be executed based on the result of the test. The `ELSTST` is optional. The
+/TRUE and /FALSE qualifiers determine which block executed for which test result. With /TRUE `TST` will run the commands
+between `TST` and `ELSTST` if the test returns true and the commands between `ELSTST` and `ENDTST` if it returns false.
+/FALSE reverses this behavior. /FALSE is mostly useful when you only have one set of commands that you want to execute
+when the test is false. For example:
+
+    TST LCL A
+        MSG "THE VALUE OF A IS &A"
+    ELSTST
+        MSG "LOCAL ARGUMENT A DOES NOT EXIST"
+    ENDTST
+
+will test if local argument a exists and then either print its value or the fact that it does not exist.
+## Unstructured Control Flow
+Unstructured control flow in RNMR macros makes use of labels. A macro label is defined by a period followed by the label
 name. When RNMR is searching for a label to jump to it will first search forward in the macro from the jump point and
 then wrap around and continue searching from the beginning of the macro.
 
@@ -89,43 +139,28 @@ When jumping to a label a period not followed by a name will cause RNMR to simpl
 Appending +# to a label will cause RNMR to start execution # lines farther down that it would otherwise. A label
 including the period and line offset cannot be more than 16 characters long.
 
-## Control Flow
-### Jumps
 The most basic control flow in RNMR macros is the `GOTO` command, which will simply jump to a label and continue
 execution from there. The `GOSUB` command is similar to `GOTO` in that it jumps to a label but when the macro hits an
 `MEXIT` it will return to where `GOSUB` was called from instead of exiting the macro. This is useful for creating
 subroutines within macros.
-### Conditionals
-Blocks of commands can be executed conditionally using the `TST` construct. `TST` checks some condition and then
-executes one of two blocks of commands depending on the result. The two blocks are separated with `ELSTST` and the whole
-construct ends with `ENDTST`. `ELSTST` is optional and if it is not present then nothing will be executed if the test is
-false. `TST` can perform a range of different tests, such as checking equality of values or checking the existence of
-arguments. For full details see the description of `TST` in the Full Command Descriptions section. For example:
-```no-highlight
-TST EQ &A &B
-  ;Commands here execute if local args a and b are the same
-ELSTST
-  ;Commands here execute if local args a and b are not the same
-ENDTST
-```
-`GOTST` performs the same type of tests as `TST`, but instead of executing one of two blocks of commands it jumps to one
-of two labels.
-### Loops
-While you can use conditional commands and labels to construct a looping type behavior RNMR also has a `DO` loop
-construct built in. A `DO` loop will execute until it reaches an `ENDDO` statement at which point it will increment the
-loop value and run it again. This will repeat a number of times determined by the beginning and end values of the loop.
-You may optionally specify a variable that holds the loop counter.  For example:
-```no-highlight
-LCLARG LOOPTO 10
-DO /LCL 1 &LOOPTO COUNT
-  ;Local argument COUNT will hold the loop value which will range from 1 to 10
-  ;Lines entered here will in this case execute 10 times
-ENDDO
-```
-### Error Handling
-You can also set a label to jump to in the event that an error is encountered during the execution of commands within
-the macro using the `ONERR` command.
 
+`GOTST` performs the same type of tests as `TST`, but instead of executing one of two blocks of commands it jumps to one
+of two labels. Tests which would cause `TST` to execute the commands between `TST` and `ELSTST` cause `GOTST` to jump to
+the first label. Tests which would cause `TST` to execute the commands between `ELSTST` and `ENDTST` cause `GOTST` to
+jump to the second. For example:
+
+    GOTST LCL A .EXISTS .DOESNOTEXIST
+    .EXISTS
+    MSG "THE VALUE OF A IS &A"
+    MEXIT
+    .DOESNOTEXIST
+    MSG "LOCAL ARGUMENT A DOES NOT EXIST"
+    MEXIT
+
+will test if local argument a exists and then either print its value or the fact that it does not exist.
+
+`ONERR` can be used to set a label to jump to in the event of an error. If any error occurs in an RNMR command execution
+will jump to the specified label. Calling `ONERR` with no label unsets the error handling label.
 ## Macro Output
 There are several ways in which an RNMR macro may output data to the user. First, data resulting from a calculation,
 experiment, or other manipulation may simply be stored in a global argument, which may be used on console level or in
