@@ -27,7 +27,7 @@ in a macro that comes after a ; is a comment and will not do anythin.
 A common workflow in RNMR makes use of the utility macro mr.rnmrm. Create a text file which typically should have the
 same name as the archive in which data will be saved (some_name.rnmrm). Then set the global argument r to be that name
 by typing `DFNGBL R SOME_NAME`. An example of what the macro might look like follows:
-```no-highlight
+```
 goto .r&1                       ;Jump to a label. In this case if local arg 1
                                 ;has the value 5 it will jump to the label .r5
 .r5                             ;A label that can be jumped to
@@ -96,7 +96,7 @@ submacros for setting up cp to other nuclei such as 15N. You can add sections fo
 It is common to have a powers macro which contains submacros for each sample and spectrometer session which declare the
 calibrated powers as global arguments. The submacro names should generally indicate the sample and the date. An example
 powers macro with powers for adamantane and GB1 run in October of 2017 might look like the following:
-```no-highlight
+```
 goto .&1
 
 .ada2017oct
@@ -151,7 +151,7 @@ This sequence is somewhat similar to the justcp sequence shown above except ther
 dimension inserted before the flip pulses and a mixing period between the flip pulses. During the mixing period a pulse
 is applied on the 1H channel with a nutation frequency that matches the rotor frequency. An example of a submacro to run
 a DARR experiment is shown here:
-```no-highlight
+```
 .r9
 macro powers
 powers gb12017oct

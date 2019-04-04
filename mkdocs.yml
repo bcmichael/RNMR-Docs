@@ -3,6 +3,7 @@ repo_url: https://github.com/bcmichael/RNMR-Docs
 
 theme:
     name: 'rtd-dropdown'
+    highlightjs: false
 
 nav:
 - Index: 'index.md'
