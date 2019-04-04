@@ -188,63 +188,62 @@ Data may be made available to all command levels using global arguments. However
 data from either console level or from a macro to a subprocedure without using global arguments.
 
 To pass values to a macro simply supply the arguments after the macro name on the same line where it is called. Macro
-arguments are automatically stored in local arguments `1`, `2`, `3` etc. based on the order they are provided in. It is
+arguments are automatically stored in local arguments 1, 2, 3 etc. based on the order they are provided in. It is
 also possible to change the names of the arguments they are stored in using the `MACARG` command.
 
-It is also possible to return values from a macro to the calling routine. Supply the return values after `MEXIT` on the
-same line and they will be stored as local arguments `RTN$1`, `RTN$2`, `RTN$3` etc. in the calling procedure. The
-calling procedure can use the `RTNARG` much like the `MACARG` command to put these return values into differently named
-arguments.
+It is also possible to return values from a macro to the calling routine. Supply the return values as arguments to
+`MEXIT` and they will be stored as local arguments `RTN$1`, `RTN$2`, `RTN$3` etc. in the calling procedure. The calling
+procedure can use `RTNARG` much like the `MACARG` to put these return values into differently named arguments.
 
 Both `MACARG` and `RTNARG` will only create as many local arguments as the number of values that were passed.  No local
 arguments will be created for any additional names which are supplied. For example, if the macro temp contains the
 following:
-```no-highlight
-MACARG A B
-MSG "ARGUMENT ONE IS &A"
-MSG "ARGUMENT TWO IS &B"
-LCLARG C 3
-MEXIT &C 4
-```
+
+    MACARG A B
+    MSG "ARGUMENT ONE IS &A"
+    MSG "ARGUMENT TWO IS &B"
+    DFNLCL C 3
+    MEXIT &C 4
+
 then calling the following:
-```no-highlight
-TEMP 1 2
- RTNARG ANSWER1 ANSWER2
-MSG "THE RETURN VALUES ARE &ANSWER1 AND &ANSWER2"
-```
+
+    TEMP 1 2
+        RTNARG ANSWER1 ANSWER2
+    MSG "THE RETURN VALUES ARE &ANSWER1 AND &ANSWER2"
+
 will print the following to the console:
-```no-highlight
-ARGUMENT ONE IS 1
-ARGUMENT TWO IS 2
-THE RETURN VALUES ARE 3 AND 4
-```
+
+    ARGUMENT ONE IS 1
+    ARGUMENT TWO IS 2
+    THE RETURN VALUES ARE 3 AND 4
+
 There is an additional method of passing information into a macro using a / in a calling procedure to specify a name of
 a local argument to create in the called macro. You can also specify the values of these arguments. For example, if the
 macro temp contains the following:
-```no-highlight
-TST LCL A
-  MSG "A EXISTS AND HAS VALUE &A"
-  MSG "B HAS VALUE &B"
-  MEXIT
-ELSTST
-  MSG "A DOES NOT EXIST"
-ENDTST
-MEXIT
-```
+
+    TST LCL A
+        MSG "A EXISTS AND HAS VALUE &A"
+        MSG "B HAS VALUE &B"
+        MEXIT
+    ELSTST
+        MSG "A DOES NOT EXIST"
+    ENDTST
+    MEXIT
+
 then calling the following:
-```no-highlight
-TEMP /A /B=2
-```
+
+    TEMP /A /B=2
+
 will print the following to the console:
-```no-highlight
-A EXISTS AND HAS VALUE
-B HAS VALUE 2
-```
-Note that `A` does not have a value so it shows up as blank in the printed message.
+
+    A EXISTS AND HAS VALUE
+    B HAS VALUE 2
+
+Note that A does not have a value so it shows up as blank in the printed message.
 
 These two methods of passing arguments into macros are somewhat analogous to the positional and keyword argument
 constructs in some other programing languages. You may use a mixture of both methods to pass information into a macro.
 
-The local arguments `KEY$MAX` and `POS$MAX` will automatically be created when a macro is called and will contain the
-number of each of these types of arguments that were passed to the macro. The local argument `MACRO$` will also be
-created and will hold the name of the macro.
+The local arguments KEY$MAX and POS$MAX will automatically be created when a macro is called and will contain the number
+of each of these types of arguments that were passed to the macro. The local argument MACRO$ will also be created and
+will hold the name of the macro.
