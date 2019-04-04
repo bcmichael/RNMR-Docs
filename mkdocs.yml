@@ -4,7 +4,7 @@ repo_url: https://github.com/bcmichael/RNMR-Docs
 theme:
     name: 'rtd-dropdown'
 
-pages:
+nav:
 - Index: 'index.md'
 - Getting Started: 'getting_started.md'
 - Running Routine Experiments: 'running_routine_experiments.md'

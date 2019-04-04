@@ -34,7 +34,7 @@ def format_command(lines, categories, num):
     else:
         category = lines[3][10:]
     
-    line = '[{}](full_command#{}) | {}\n'.format(command, command.lower(), description)
+    line = '[{}](full_command.md#{}) | {}\n'.format(command, command.lower(), description)
     if category in categories:
         categories[category].append(line)
     else:

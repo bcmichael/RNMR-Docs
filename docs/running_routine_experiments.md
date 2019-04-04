@@ -145,7 +145,7 @@ NMR spectroscopists routinely use multi-dimensional experiments to characterize 
 DARR is one of the simpler 2D dipolar recoupling experiments and is a good example to use to illustrate how to run a 2D
 in RNMR. The pulse sequence of DARR is as follows:
 
-![DARR pulse sequence](darr.png)
+![DARR pulse sequence](DARR.png)
 
 This sequence is somewhat similar to the justcp sequence shown above except there is a time t1 for encoding the indirect
 dimension inserted before the flip pulses and a mixing period between the flip pulses. During the mixing period a pulse
