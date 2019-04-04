@@ -1,4 +1,5 @@
-# Acquisition
+# Command Summary
+## Acquisition
 Command | Description
 ------- | -----------
 [ABORT](full_command.md#abort) | Abort acquisition
@@ -21,7 +22,7 @@ Command | Description
 [ZG](full_command.md#zg) | Start acquisition
 [ZOA](full_command.md#zoa) | Zoom on acquisition display
 
-# Apodization
+## Apodization
 Command | Description
 ------- | -----------
 [CD](full_command.md#cd) | Perform convolution difference apodization
@@ -32,7 +33,7 @@ Command | Description
 [SINEB](full_command.md#sineb) | Perform Sine-bell apodization
 [TM](full_command.md#tm) | Perform trapezoidal multiplication apodization
 
-# Arguments
+## Arguments
 Command | Description
 ------- | -----------
 [CATGBL](full_command.md#catgbl) | List catalog of global variables
@@ -57,7 +58,7 @@ Command | Description
 [RTNARG](full_command.md#rtnarg) | Renames return arguments
 [SAVGBL](full_command.md#savgbl) | Save global arguments to file
 
-# Baseline
+## Baseline
 Command | Description
 ------- | -----------
 [BC](full_command.md#bc) | Baseline correct FID
@@ -65,7 +66,7 @@ Command | Description
 [MEDBF](full_command.md#medbf) | Median baseline fix spectrum
 [SPLN](full_command.md#spln) | Spline baseline fix spectrum
 
-# Blocked Records
+## Blocked Records
 Command | Description
 ------- | -----------
 [ALLB](full_command.md#allb) | Allocate a blocked record
@@ -81,7 +82,7 @@ Command | Description
 [PTRB](full_command.md#ptrb) | Set read and write blocked record pointers
 [SIZEB](full_command.md#sizeb) | Displays size of blocked record
 
-# Buffer Arithmetic
+## Buffer Arithmetic
 Command | Description
 ------- | -----------
 [ADDV](full_command.md#addv) | Add buffers
@@ -100,13 +101,13 @@ Command | Description
 [SWAPV](full_command.md#swapv) | Swap data buffers
 [WAVV](full_command.md#wavv) | Perform weighted addition of buffers
 
-# Calculator
+## Calculator
 Command | Description
 ------- | -----------
 [CALC](full_command.md#calc) | Perform floating point arithmetic and logical calculations
 [CALCI](full_command.md#calci) | Perform integer arithmetic, logical, and bitwise calculations
 
-# Contours
+## Contours
 Command | Description
 ------- | -----------
 [CONLIM](full_command.md#conlim) | Set contour plot height limits
@@ -114,7 +115,7 @@ Command | Description
 [NCON](full_command.md#ncon) | Set number of contour levels
 [ZO2DC](full_command.md#zo2dc) | Zoom on 2D contour display
 
-# Control Flow
+## Control Flow
 Command | Description
 ------- | -----------
 [ASKYN](full_command.md#askyn) | Ask yes or no
@@ -141,7 +142,7 @@ Command | Description
 [SEL](full_command.md#sel) | Begin macro `SEL` block
 [TST](full_command.md#tst) | Conditionally execute a block of commands based on a test
 
-# Data Analysis
+## Data Analysis
 Command | Description
 ------- | -----------
 [IBOX](full_command.md#ibox) | Set volume parameters for nD volume integration
@@ -156,7 +157,7 @@ Command | Description
 [TH](full_command.md#th) | Set threshold for peak selection
 [XVAL](full_command.md#xval) | Convert from point index to unit value
 
-# Data Manipulation
+## Data Manipulation
 Command | Description
 ------- | -----------
 [BINCP](full_command.md#bincp) | Perform binary pulse phase correction
@@ -191,7 +192,7 @@ Command | Description
 [ZER](full_command.md#zer) | Zero visible processing buffer
 [ZF](full_command.md#zf) | Zero fill visible processing buffer
 
-# Data Storage
+## Data Storage
 Command | Description
 ------- | -----------
 [ARV](full_command.md#arv) | Return archive information
@@ -221,7 +222,7 @@ Command | Description
 [UPDARV](full_command.md#updarv) | Update archive
 [USER](full_command.md#user) | Set user name
 
-# Data Transforms
+## Data Transforms
 Command | Description
 ------- | -----------
 [FT](full_command.md#ft) | Fourier transform FID
@@ -231,7 +232,7 @@ Command | Description
 [MAG](full_command.md#mag) | Calculate magnitude of data
 [POLAR](full_command.md#polar) | Convert buffer to polar coordinates
 
-# Display Control
+## Display Control
 Command | Description
 ------- | -----------
 [AI](full_command.md#ai) | Scale to absolute intensity
@@ -255,7 +256,7 @@ Command | Description
 [ZO](full_command.md#zo) | Zoom
 [ZO2D](full_command.md#zo2d) | Zoom on 2D data set
 
-# Experiment
+## Experiment
 Command | Description
 ------- | -----------
 [CHN](full_command.md#chn) | Map logical and physical channels to one another
@@ -281,7 +282,7 @@ Command | Description
 [SIZE](full_command.md#size) | Set acquisition size
 [SW](full_command.md#sw) | Set sweep width
 
-# File IO
+## File IO
 Command | Description
 ------- | -----------
 [APNFIL](full_command.md#apnfil) | Append text to file
@@ -301,7 +302,7 @@ Command | Description
 [WPK2D](full_command.md#wpk2d) | Write 2D peaks to `WRT` file
 [WRT](full_command.md#wrt) | Write line to file opened by `OPNWRT`
 
-# Foreign
+## Foreign
 Command | Description
 ------- | -----------
 [BRUK](full_command.md#bruk) | Convert BRUKER FID to complex FID
@@ -319,7 +320,7 @@ Command | Description
 [OPNIMP](full_command.md#opnimp) | Open import file
 [TPPI](full_command.md#tppi) | Convert TPPI-format FID to complex FID
 
-# Frequency Control
+## Frequency Control
 Command | Description
 ------- | -----------
 [CATNUC](full_command.md#catnuc) | List catalog of nuclei
@@ -334,7 +335,7 @@ Command | Description
 [SREF](full_command.md#sref) | Save processing buffer reference to nucleus table
 [SREFA](full_command.md#srefa) | Save acquisition buffer reference to nucleus table
 
-# Hardware
+## Hardware
 Command | Description
 ------- | -----------
 [MASCMD](full_command.md#mascmd) | Send command to MAS controller
@@ -349,7 +350,7 @@ Command | Description
 [WSB](full_command.md#wsb) | Write data byte to spectrometer bus
 [WTRM](full_command.md#wtrm) | Write command line to terminal and read response
 
-# Heater
+## Heater
 Command | Description
 ------- | -----------
 [HTR](full_command.md#htr) | Enable or disable probe heater
@@ -361,7 +362,7 @@ Command | Description
 [TVAL](full_command.md#tval) | Show heater temperature
 [WTSET](full_command.md#wtset) | Wait for heater to stabilize at setpoint
 
-# Lists
+## Lists
 Command | Description
 ------- | -----------
 [APNLST](full_command.md#apnlst) | Append values to list
@@ -383,7 +384,7 @@ Command | Description
 [SIZLST](full_command.md#sizlst) | Display size of list
 [WRTLST](full_command.md#wrtlst) | Write list to file
 
-# Lock
+## Lock
 Command | Description
 ------- | -----------
 [GAINL](full_command.md#gainl) | Set lock receiver gain
@@ -400,7 +401,7 @@ Command | Description
 [SWP](full_command.md#swp) | Enable or disable lock sweep
 [TCL](full_command.md#tcl) | Set lock channel time constant
 
-# Macros
+## Macros
 Command | Description
 ------- | -----------
 [APNMAC](full_command.md#apnmac) | Append text to macro
@@ -421,10 +422,11 @@ Command | Description
 [REMMAC](full_command.md#remmac) | Remove macro table entry
 [RENMAC](full_command.md#renmac) | Rename macro
 
-# Misc.
+## Misc.
 Command | Description
 ------- | -----------
 [CND](full_command.md#cnd) | Set condition flag
+[CVTUNIT](full_command.md#cvtunit) | Convert a value between units
 [DATE](full_command.md#date) | Print the current date and time as an informational message
 [DBSZ](full_command.md#dbsz) | Set processing buffer partitioning
 [DCL](full_command.md#dcl) | Execute a shell command in background
@@ -447,7 +449,7 @@ Command | Description
 [STR](full_command.md#str) | Perform string operation
 [WTTIM](full_command.md#wttim) | Wait for specified number of seconds
 
-# Phasing
+## Phasing
 Command | Description
 ------- | -----------
 [PC](full_command.md#pc) | Incremental phase correction
@@ -455,7 +457,7 @@ Command | Description
 [PS](full_command.md#ps) | Set phase
 [TP](full_command.md#tp) | Show phase correction values
 
-# Plotting
+## Plotting
 Command | Description
 ------- | -----------
 [CLSPLT](full_command.md#clsplt) | Close plotter stream and print
@@ -471,13 +473,13 @@ Command | Description
 [STKOFF](full_command.md#stkoff) | Set stack plot offset
 [WWASH](full_command.md#wwash) | Set state of plot whitewash flag
 
-# Printing
+## Printing
 Command | Description
 ------- | -----------
 [LPDEV](full_command.md#lpdev) | Select text printer device
 [LPFIL](full_command.md#lpfil) | Set text printer file
 
-# Pulse Control
+## Pulse Control
 Command | Description
 ------- | -----------
 [AMD](full_command.md#amd) | Set acquisition modes
@@ -494,7 +496,7 @@ Command | Description
 [PWX](full_command.md#pwx) | Set transmitter fine power level
 [PWXEX](full_command.md#pwxex) | Load power program
 
-# Pulse Program Symbols
+## Pulse Program Symbols
 Command | Description
 ------- | -----------
 [CATPPS](full_command.md#catpps) | List catalog of PP symbols
@@ -503,7 +505,7 @@ Command | Description
 [RDPPSNAM](full_command.md#rdppsnam) | Read PP symbol name
 [REMPPS](full_command.md#rempps) | Remove pulse programmer symbols
 
-# Shim
+## Shim
 Command | Description
 ------- | -----------
 [AUTOZ](full_command.md#autoz) | Set automatic Z shim parameters
@@ -512,7 +514,7 @@ Command | Description
 [SHM](full_command.md#shm) | Set shim value
 [SHMCTL](full_command.md#shmctl) | Open interactive shim controls
 
-# Signal Generation
+## Signal Generation
 Command | Description
 ------- | -----------
 [ECHO](full_command.md#echo) | Rearrange buffer to simulate echo data
@@ -521,7 +523,7 @@ Command | Description
 [NOISE](full_command.md#noise) | Generate complex random noise
 [UNECHO](full_command.md#unecho) | Rearrange buffer to simulate FID from echo
 
-# Tables
+## Tables
 Command | Description
 ------- | -----------
 [CATTBL](full_command.md#cattbl) | List catalog of name tables
@@ -537,7 +539,7 @@ Command | Description
 [SIZTBL](full_command.md#siztbl) | Display size of name table
 [WRTTBL](full_command.md#wrttbl) | Write name table to file
 
-# Waveform
+## Waveform
 Command | Description
 ------- | -----------
 [WRF](full_command.md#wrf) | Set waveform reference values

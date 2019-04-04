@@ -1,7 +1,7 @@
-
-# A
+# Full Command Descriptions
+## A
 ---
-## ABORT
+### ABORT
 Abort acquisition
 
 Category: Acquisition
@@ -13,7 +13,7 @@ Prerequisites: RNMRA only
 Description:
 Aborts acquisition. If acquisition is not currently active, an error message will result. `ABORT` is equivalent to
 `QUIT`.  Acquisition will be aborted abruptly i.e. RNMR will not wait for next shot to be completed.
-## ADDV
+### ADDV
 Add buffers
 
 Category: Buffer Arithmetic
@@ -30,7 +30,7 @@ Description:
 If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
-## AI
+### AI
 Scale to absolute intensity
 
 Category: Display Control
@@ -44,7 +44,7 @@ Description:
 sfa. If sfa is omitted RNMR will not prompt for it and will use the current absolute scale factor (as set and displayed
 by `AK`). The scale factor must be greater than 0.0. The absolute scale factor (as set and displayed by `AK`) will also
 be updated to the value of sfa.
-## AK
+### AK
 Set absolute scale factor
 
 Category: Display Control
@@ -57,7 +57,7 @@ Description:
 `AK` sets the global absolute scale factor. If the absolute scale factor sfa is omitted RNMR will prompt for it with the
 current global scale factor as a default. The global scale factor must be greater than 0.0. If a scale factor of 0 is
 passed to `AK` the current scale factor of the visible processing buffer will be used.
-## ALLB
+### ALLB
 Allocate a blocked record
 
 Category: Blocked Records
@@ -87,7 +87,7 @@ prompt for it and will allocate 1 segment.
 
 In order for a blocked record to be successfully allocated there must be enough space in the archive (as displayed by
 `SP`). The other parameters of the blocked record can be set using `PARB` or `SET REC`.
-## ALLCPY
+### ALLCPY
 Allocate a copy of a blocked record
 
 Category: Blocked Records
@@ -119,7 +119,7 @@ specified RNMR will not prompt for it and will allocate 1 segment regardless of 
 
 In order for a blocked record to be successfully allocated there must be enough space in the archive (as displayed by
 `SP`).
-## AMD
+### AMD
 Set acquisition modes
 
 Category: Pulse Control
@@ -161,7 +161,7 @@ cycle out to the active phase cycle length with 16 modes per line.
 The /BLK qualifier is used to setup additional receiver phase shifts for different blocks of acquisition. The number of
 blocks can be set using `NAMD /BLK`. This capability is typically used to set up phase differences used for the
 different steps in hypercomplex acquisition of multi-dimensional spectra.
-## APNFIL
+### APNFIL
 Append text to file
 
 Category: File IO
@@ -194,7 +194,7 @@ used. An example of use in a macro is given here:
     ;;Also append this
 
 Text written by `APNFIL` will be all caps regardless of the capitalization provided in RNMR.
-## APNLST
+### APNLST
 Append values to list
 
 Category: Lists
@@ -226,7 +226,7 @@ used. An example of use in a macro is given here:
     ;;Also append this
 
 Text appended by `APNLST` will be all caps regardless of the capitalization provided in RNMR.
-## APNMAC
+### APNMAC
 Append text to macro
 
 Category: Macros
@@ -259,7 +259,7 @@ used. An example of use in a macro is given here:
     ;;Also append this
 
 Text written by `APNMAC` will be all caps regardless of the capitalization provided in RNMR.
-## ARV
+### ARV
 Return archive information
 
 Category: Data Storage
@@ -287,7 +287,7 @@ Access Code | Meaning
 1 | Read access
 3 | Read and write access
 
-## ASIG
+### ASIG
 Acknowledge signal
 
 Category: Acquisition
@@ -303,7 +303,7 @@ Description:
 acquisition and are primarily used for multi dimensional acquisition. If no signal is specified RNMR will prompt for it
 with a default of temp. The specified signal must have been sent in order to acknowledge it. The presence of a signal
 can be tested for using `TST SIG`.
-## ASKYN
+### ASKYN
 Ask yes or no
 
 Category: Control Flow
@@ -320,7 +320,7 @@ labelt if YES or labelf if NO.
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
 conditional jumps.
-## AUTOZ
+### AUTOZ
 Set automatic Z shim parameters
 
 Category: Shim
@@ -336,9 +336,9 @@ Description:
 shim controls. In order for `AUTOZ` to have any effect the automatic Z shimming flag (as set and displayed by
 `SET AUTOZ`) must be on. If either the step or time is omitted RNMR will prompt for them with the current values as a
 default. The step must be between 0.0 and 1.0 inclusive, while time must be between 4.0 and 100.0 inclusive.
-# B
+## B
 ---
-## BC
+### BC
 Baseline correct FID
 
 Category: Baseline
@@ -353,7 +353,7 @@ last 1/8th of the data points from the entire FID. To calculate the constant com
 entire FID, `BC` examines the final 1/8th of the FID data points with a minimum of 1 point if there are less than 8
 points. The average of these points (a complex number) is subtracted from each (complex) point of the entire FID,
 yielding a baseline corrected FID.
-## BF
+### BF
 Baseline fix spectrum
 
 Category: Baseline
@@ -370,7 +370,7 @@ between the current display limits.
 subtract. If there are fewer than 5 points between the current display limits `BF` subtracts the average over all the
 points instead of calculating a line. `BF` only subtracts from the points between the current display limits, leaving
 everything outside of those limits untouched.
-## BINCP
+### BINCP
 Perform binary pulse phase correction
 
 Category: Data Manipulation
@@ -407,7 +407,7 @@ Each point I ranging from 1 to the size of the buffer is multiplied by a complex
 
 If the data point closest to zero frequency (without offset) is not the last point in the spectrum, then all points
 in each block from zero to minimum (most negative) frequency are negated.
-## BRKDO
+### BRKDO
 Break out of a macro `DO` loop
 
 Category: Control Flow
@@ -420,7 +420,7 @@ Description:
 `BRKDO` can be used to break out of a macro `DO` loop. The loop will terminate immediately without executing any more
 commands within the loop regardless of how many more iterations it was supposed to do. Execution will continue on the
 line after the `ENDDO` at the end of the loop. `BRKDO` must appear between `DO` and `ENDDO`
-## BRUK
+### BRUK
 Convert BRUKER FID to complex FID
 
 Category: Foreign
@@ -446,7 +446,7 @@ FID.
 
 5.	Starting with the second point, every other point in the FID is negated.
 
-## BUF
+### BUF
 View real or imaginary processing buffer
 
 Category: Display Control
@@ -459,7 +459,7 @@ Description:
 `BUF` selects whether the real or imaginary part of the visible processing buffer should be displayed. The parameter
 nam may be set to real, imag, or complex to display the real part, imaginary part or both parts of the buffer
 respectively. If nam is omitted RNMR will prompt for a response with the current buffer display type as a default.
-## BUFA
+### BUFA
 View real or imaginary acquisition buffer
 
 Category: Display Control
@@ -474,9 +474,9 @@ Description:
 `BUFA` selects whether the real or imaginary part of the acquisition buffer should be displayed. The parameter nam may
 be set to real, imag, or complex to display the real part, imaginary part or both parts of the buffer respectively. If
 nam is omitted RNMR will prompt for a response with the current buffer display type as a default.
-# C
+## C
 ---
-## CALC
+### CALC
 Perform floating point arithmetic and logical calculations
 
 Category: Calculator
@@ -628,7 +628,7 @@ this situation. An example of a default push is shown in the command below:
 Here, the arguments "1" and "2" are not operations known to RNMR, so they are interpreted as values to be pushed onto
 the calculator stack. Once all operations specified on the `CALC` command line have been executed, RNMR checks that the
 calculator stack is empty. If it is not empty, an error message will be displayed.
-## CALCI
+### CALCI
 Perform integer arithmetic, logical, and bitwise calculations
 
 Category: Calculator
@@ -748,7 +748,7 @@ alphabetic and special characters may not be entered. An example of a default pu
 Here, the arguments "1" and "2" are not operations known to RNMR, so they are interpreted as values to be pushed onto
 the calculator stack. Once all operations specified on the `CALCI` command line have been executed, RNMR checks that the
 calculator stack is empty. If it is not empty, an error message will be displayed.
-## CALIB
+### CALIB
 Determine data buffer amplitudes and phases
 
 Category: Acquisition
@@ -768,7 +768,7 @@ Description:
 staff. The argument fcalib is a real number interpreted in the current frequency unit of the visible processing buffer.
 If fcalib is omitted  RNMR will prompt for it with the current calibration frequency as a default. After conversion to
 Hz, the calibration frequency must be nonzero.
-## CASE
+### CASE
 Process `CASE` clause of `SEL` block
 
 Category: Control Flow
@@ -783,7 +783,7 @@ Description:
 `CASE` executes the block of commands that falls between it and either the next `CASE` command or `ENDSEL` if the value
 used in the `SEL` block matches val. If val is omitted then `CASE` will act as if it matches for any value. `CASE` must
 be between a `SEL` and a matching `ENDSEL`.
-## CAT
+### CAT
 List catalog of records
 
 Category: Data Storage
@@ -816,7 +816,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## CATARV
+### CATARV
 List catalog of archives
 
 Category: Data Storage
@@ -844,7 +844,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## CATGBL
+### CATGBL
 List catalog of global variables
 
 Category: Arguments
@@ -871,7 +871,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## CATLCL
+### CATLCL
 List catalog of local variables
 
 Category: Arguments
@@ -898,7 +898,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## CATLST
+### CATLST
 List catalog of lists
 
 Category: Lists
@@ -926,7 +926,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## CATMAC
+### CATMAC
 List catalog of macros
 
 Category: Macros
@@ -958,7 +958,7 @@ Qualifier | Output
 
 Note that if neither /USR nor /SYS is specified `CATMAC` will list both, which is the same behavior as if both are
 specified.
-## CATNUC
+### CATNUC
 List catalog of nuclei
 
 Category: Frequency Control
@@ -986,7 +986,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## CATPPS
+### CATPPS
 List catalog of PP symbols
 
 Category: Pulse Program Symbols
@@ -1018,7 +1018,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## CATSYM
+### CATSYM
 List catalog of symbols
 
 Category: Arguments
@@ -1051,7 +1051,7 @@ Qualifier | Output
 
 Note that if neither /FLT nor /INT is specified `CATSYM` will list both, which is the same behavior as if both are
 specified.
-## CATTBL
+### CATTBL
 List catalog of name tables
 
 Category: Tables
@@ -1081,7 +1081,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## CD
+### CD
 Perform convolution difference apodization
 
 Category: Apodization
@@ -1106,7 +1106,7 @@ broadening and the wide line broadening are expressed in the current default fre
 Each linewidth entered must be between -1000 Hz and 1000 Hz, inclusive. The parameter wfract specifies the fraction of
 the wide component in the apodization. This fraction is a real number between 0.0 and 1.0, inclusive. If wfract is not
 specified RNMR will prompt for it with 0.0 as the default.
-## CHN
+### CHN
 Map logical and physical channels to one another
 
 Category: Experiment
@@ -1141,7 +1141,7 @@ in the system. The sequence of channels will be mapped to the logical channels s
 
 will map logical channel 1 to physical channel 3 and logical channel 2 to physical channel 1. If the sequence is omitted
 RNMR will prompt for it with the current mapping sequence as a default.
-## CLSARV
+### CLSARV
 Close archive
 
 Category: Data Storage
@@ -1153,7 +1153,7 @@ Defaults: 1
 Description:
 `CLSARV` closes an archive. If no [archive](syntax#archives) is specified RNMR will prompt for it with 1 as a default.
 An attempt to close an archive which is not open will result in an error.
-## CLSEXP
+### CLSEXP
 Close export file
 
 Category: Foreign
@@ -1162,7 +1162,7 @@ Format: `CLSEXP`
 
 Description:
 Close export file opened with `OPNEXP`. `CLSEXP` will error if no export file is open.
-## CLSIMP
+### CLSIMP
 Close import file
 
 Category: Foreign
@@ -1171,7 +1171,7 @@ Format: `CLSIMP`
 
 Description:
 Close import file opened with `OPNIMP`. `CLSIMP` will error if no import file is open.
-## CLSPLT
+### CLSPLT
 Close plotter stream and print
 
 Category: Plotting
@@ -1184,7 +1184,7 @@ plot sequence that began with `OPNPLT`. All plots between `OPNPLT` and `CLSPLT` 
 `CLSPLT` will error if no plot is currently open. Depending on the state of the plotter flag (as set and displayed by
 `SET PL`) the plot will either be saved to the plotter file (as set and displayed by `PLFIL`) or printed by the plotting
 device (as set and displayed by `PLDEV`).
-## CLSRD
+### CLSRD
 Close file opened for read
 
 Category: File IO
@@ -1194,7 +1194,7 @@ Format: `CLSRD`
 Description:
 `CLSRD` closes a file opened by `OPNRD` for reading with `RDWRT`. If `CLSRD` is entered when no file is open for read,
 RNMR will display an error message.
-## CLSWRT
+### CLSWRT
 Close file which has been opened for writing
 
 Category: File IO
@@ -1205,7 +1205,7 @@ Description:
 `CLSWRT` closes a file opened by `OPNWRT` for writing with the `WRT` command. All output from `WRT` commands issued
 between `OPNWRT` and `CLSWRT` will appear in one file. If `CLSWRT` is entered when no file is open for write, RNMR will
 display an error message.
-## CMUL
+### CMUL
 Multiply buffer by complex constant
 
 Category: Buffer Arithmetic
@@ -1224,7 +1224,7 @@ constant is specified in polar form:
 If the magnitude is omitted RNMR will not prompt for it and will use 1.0. If the phase, phi, is omitted RNMR will not
 prompt for it and will use 0.0. The phase is specified in degrees. If no buffer is specified RNMR will not prompt for it
 and will operate on the visible processing buffer.
-## CMULV
+### CMULV
 Complex multiply two buffers
 
 Category: Buffer Arithmetic
@@ -1242,7 +1242,7 @@ dst.
 If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
-## CND
+### CND
 Set condition flag
 
 Category: Misc.
@@ -1255,7 +1255,7 @@ Description:
 `CND` sets the state of the specified condition flag to ON or OFF. The first parameter, cnd specifies which of the 64
 available condition flags is to be set. Accordingly, cnd may be any integer from 1 to 64. If cnd is omitted RNMR will
 prompt for it with 1 as a default. If state is omitted,RNMR will prompt for it with the current state as a default.
-## CNVFL
+### CNVFL
 Convolution filter spectrum
 
 Category: Data Manipulation
@@ -1285,7 +1285,7 @@ ZER    | Set the points to 0 | 2*kmax+1
 
 /PASS determines what is done with the result of the convolution. /PASS=HIGH subtracts the result from the buffer while
 /PASS=LOW replaces the buffer with the result.
-## COLOR
+### COLOR
 Set data display colors
 
 Category: Display Control
@@ -1313,7 +1313,7 @@ Option | Default Color
 /REAL  | 0 100 0 (Green)
 /IMAG  | 100 0 0 (Red)
 
-## CONJG
+### CONJG
 Complex conjugate data
 
 Category: Buffer Arithmetic
@@ -1322,7 +1322,7 @@ Format: `CONJG`
 
 Description:
 `CONJG` complex conjugates the data in the visible processing buffer updating the buffer.
-## CONLIM
+### CONLIM
 Set contour plot height limits
 
 Category: Contours
@@ -1337,7 +1337,7 @@ If either min or max is omitted from the command line, RNMR will prompt for the 
 the default. If both min and max are 0.0 RNMR sets max to 1.0; min remains 0.0. If min and max are not both zero, max
 must be greater than min. When a contour plot is generated, the maximum contour level will be max while the minimum
 contour level will approach but not equal min.
-## CONMD
+### CONMD
 Set contour plotting mode
 
 Category: Contours
@@ -1349,7 +1349,7 @@ Defaults: current
 Description:
 `CONMD` sets the contour plotting mode. The argument mode may be entered as ABS, NEG, or POS. If mode is omitted RNMR
 will prompt for a contour plotting mode with the current mode as a default.
-## COSSQ
+### COSSQ
 Perform cosine squared apodization
 
 Category: Apodization
@@ -1363,7 +1363,7 @@ Prerequisites: Time domain data in processing buffer (TIME)
 Description:
 `COSSQ` multiplies the data in the visible processing buffer by a cosine squared function which goes to zero at time0
 updating the buffer.
-## CPXV
+### CPXV
 Complex merge two buffers
 
 Category: Buffer Arithmetic
@@ -1385,7 +1385,7 @@ of dst:
 If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
-## CPY
+### CPY
 Copy record
 
 Category: Data Storage
@@ -1401,7 +1401,7 @@ record pointer (as displayed and set by `PTRA`) as a default. If no destination 
 for it and will use the write record pointer (as displayed and set by `PTRA`). If the specified destination record is
 already in use RNMR will use the next available record. If RNMR selects the destination record for either of the above
 reasons the record number will be printed as an informational message after copying is complete.
-## CPYMAC
+### CPYMAC
 Copy macro
 
 Category: Macros
@@ -1413,7 +1413,7 @@ Defaults: temp temp
 Description
 `CPYMAC` copies the contents of macro name1 into a new macro name2. If either name is omitted RNMR will prompt for it
 with temp as a default.
-## CRS
+### CRS
 Set cursor positions
 
 Category: Display Control
@@ -1427,7 +1427,7 @@ Description:
 prompt for it with the current cursor position as a default. The positions are specified in the current units of the
 buffer. The cursors will be set to the points closest to the specified position. Thus if the position is beyond the
 range of the data in the buffer the cursor will be position at the edge of the buffer.
-## CRSA
+### CRSA
 Set acquisition cursor positions
 
 Category: Display Control
@@ -1443,7 +1443,7 @@ Description:
 for it with the current cursor position as a default. The positions are specified in the current units of the buffer.
 The cursors will be set to the points closest to the specified position. Thus if the position is beyond the range of the
 data in the buffer the cursor will be position at the edge of the buffer.
-## CRTARV
+### CRTARV
 Create archive
 
 Category: Data Storage
@@ -1455,7 +1455,7 @@ Defaults: 1 TEMP
 Description:
 `CRTARV` creates and opens a new [archive](syntax#archives) with read/write access. If no archive is specified RNMR will
 prompt for it with 1 as a default. If no name is specified RNMR will prompt for it with temp as a default.
-## CRTFIL
+### CRTFIL
 Create text file
 
 Category: File IO
@@ -1487,7 +1487,7 @@ of use in a macro is given here:
     ;;Also write this
 
 Text written when `CRTFIL` is called from a macro will be all caps regardless of the capitalization in the macro.
-## CRTLST
+### CRTLST
 Create list
 
 Category: Lists
@@ -1500,7 +1500,7 @@ Description:
 `CRTLST` creates a new list named nam that can hold a maximum of maxval entries. If no name is specified RNMR will
 prompt for it with temp as a default. If no max size is specified RNMR will prompt for it with 32 as a default. If a
 list with the same name already exists `CRTLST` will error.
-## CRTMAC
+### CRTMAC
 Create macro
 
 Category: Macros
@@ -1532,7 +1532,7 @@ example of use in a macro is given here:
     ;;so will this
 
 Text written when `CRTMAC` is called from a macro will be all caps regardless of the capitalization in the macro.
-## CRTTBL
+### CRTTBL
 Create name table
 
 Category: Tables
@@ -1545,7 +1545,7 @@ Description:
 `CRTTBL` creates a new name table named nam that can hold a maximum of maxval entries. If no name is specified RNMR will
 prompt for it with temp as a default. If no max size is specified RNMR will prompt for it with 32 as a default. If a
 name table with the same name already exists `CRTTBL` will error.
-## CVTMD
+### CVTMD
 Set modes for blocked record index conversion
 
 Category: Blocked Records
@@ -1560,7 +1560,7 @@ If sizmd is omitted, RNMR will prompt for a mode with the current size conversio
 for sizmd are SIZEA, SIZE, and CVTSZ. The second parameter, blkmd is the record blocking conversion mode. If blkmd is
 omitted, RNMR will prompt for a mode with the current mode as the default. The legal values for blkmd are 0, 1, 2, 3, or
 4.
-## CVTSZ
+### CVTSZ
 Set sizes for blocked record index conversion
 
 Category: Blocked Records
@@ -1575,7 +1575,7 @@ the conversion. If ndim is not specified RNMR will prompt for its value with a d
 dimensions may be from 1 to 4 inclusive. The remaining parameters are the sizes in each of the dimensions. If one or
 more of these is omitted RNMR will prompt for its value with the current conversion size in the appropriate dimension as
 a default.
-##CVTUNIT
+### CVTUNIT
 Convert a value between units
 
 Category: Misc.
@@ -1586,9 +1586,9 @@ Description:
 `CVTUNIT` converts a value from srcunit to dstunit. If either unit is omitted RNMR will prompt for it with the current
 unit of the visible processing buffer as a default. Both units must be the same domain. If no value is specified RNMR
 will prompt for it with 0.0 as a default. The result of the conversion is printed as an informational message.
-# D
----
 ## D
+---
+### D
 Set pulse programmer delay
 
 Category: Pulse Control
@@ -1602,7 +1602,7 @@ Prerequisites: Pulse program loaded (LOAD); RNMRA only
 Description:
 `D` is an old command for setting the length of pulse program delays. It has been replaced with the `DLY` command and is
 currently simply an alias to it. As such `DLY` should be used in place of `D`.
-## DATE
+### DATE
 Print the current date and time as an informational message
 
 Category: Misc.
@@ -1624,7 +1624,7 @@ Qualifier | Information
 /EPOCH    | The current Unix epoch time
 
 By default `DATE` prints the date and time of day.
-## DBSZ
+### DBSZ
 Set processing buffer partitioning
 
 Category: Misc.
@@ -1645,7 +1645,7 @@ two the actual block size will be the next power of 2. The total combined size o
 maximum buffer size of 32768. If the size is set to 0 RNMR will use the maximum possible block size of 32768. If the
 number of blocks is set to 0 RNMR will use the largest possible number of blocks such that the total size does not
 exceed the maximum buffer size.
-## DCDB
+### DCDB
 Convert block indices to values
 
 Category: Blocked Records
@@ -1671,7 +1671,7 @@ will be printed. If ndim is omitted RNMR will prompt for it with 1 as a default.
 If no index is specified RNMR will prompt for it with 1 as a default. The value of ind must not exceed the product of
 the sizes of the dimensions that the linear index is over. For example in a 3D data set with 32X64 blocks ind can be up
 to 2048 when ndim is 1 but only up to 64 if ndim is 2.
-## DCDBP
+### DCDBP
 Convert linear block index to vector indices
 
 Category: Blocked Records
@@ -1696,7 +1696,7 @@ less than the number of dimensions in the blocked record.
 If no index is specified RNMR will prompt for it with 1 as a default. The value of ind must not exceed the product of
 the sizes of the dimensions that the linear index is over. For example in a 3D data set with 32X64 blocks ind can be up
 to 2048 when ndim is 1 but only up to 64 if ndim is 2.
-## DCDREC
+### DCDREC
 Convert record number into archive and archive record index
 
 Category: Data Storage
@@ -1708,7 +1708,7 @@ Defaults: 1
 Description:
 `DCDREC` prints the [archive](syntax#archives) and [record number](syntax#records) within that archive of a specified
 record. If no record is specified RNMR will prompt for it with 1 as a default.
-## DCL
+### DCL
 Execute a shell command in background
 
 Category: Misc.
@@ -1739,7 +1739,7 @@ be entered. During execution, <CTRL-Z\> may not be used to cancel the subprocess
 continues without interruption. If the subprocess exits on error, RNMR will display an error message indicating the
 error condition returned. If `DCL` was called from within a macro, the current macro error handler (as set by `ONERR`)
 is executed.
-## DEPAKE
+### DEPAKE
 Perform depaking of powder pattern spectrum
 
 Category: Data Manipulation
@@ -1751,7 +1751,7 @@ Prerequisites: Frequency domain data in processing buffer (FREQ)
 Description:
 `DEPAKE` applies a depaking routine to the visible processing buffer to remove the effects of a pake pattern from the
 spectrum. The visible processing buffer must contain frequency domain data and its size must be a power of 2.
-## DF
+### DF
 Differentiate data
 
 Category: Data Manipulation
@@ -1763,7 +1763,7 @@ Prerequisites: Frequency domain data in processing buffer (FREQ)
 Description:
 `DF` differentiates the data in the visible processing buffer. Differentiation of a spectrum is often useful in
 resolving subtle features on broad lines since inflection points on the source spectrum become peaks in its derivative.
-## DFLGBL
+### DFLGBL
 Define global argument with default value
 
 Category: Arguments
@@ -1796,7 +1796,7 @@ from left to right without regard for order of operations except for parentheses
     DFLGBL /INT A 2*(2-1)
 
 will create global argument a with a value of 2.
-## DFLLCL
+### DFLLCL
 Define local argument with default value
 
 Category: Arguments
@@ -1829,7 +1829,7 @@ from left to right without regard for order of operations except for parentheses
     DFLLCL /INT A 2*(2-1)
 
 will create local argument a with a value of 2.
-## DFLT
+### DFLT
 Prompt for local variable with default
 
 Category: Arguments
@@ -1844,7 +1844,7 @@ Description:
 `DFLT` is an old command for creating a local variable if one does not already exist with an optional prompt. It has
 been replaced with the `DFLLCL` command and is currently simply an alias to it. As such `DFLLCL` should be use in place
 of `DFLT`.
-## DFLTBL
+### DFLTBL
 Define name table argument with default value
 
 Category: Tables
@@ -1878,7 +1878,7 @@ from left to right without regard for order of operations except for parentheses
     DFLTBL /INT A B 2*(2-1)
 
 will create argument a in name table b with a value of 2.
-## DFNGBL
+### DFNGBL
 Define global argument
 
 Category: Arguments
@@ -1911,7 +1911,7 @@ from left to right without regard for order of operations except for parentheses
     DFNGBL /INT A 2*(2-1)
 
 will create global argument a with a value of 2.
-## DFNLCL
+### DFNLCL
 Define local argument
 
 Category: Arguments
@@ -1944,7 +1944,7 @@ from left to right without regard for order of operations except for parentheses
     DFNLCL /INT A 2*(2-1)
 
 will create local argument a with a value of 2.
-## DFNLST
+### DFNLST
 Define list value
 
 Category: Lists
@@ -1957,7 +1957,7 @@ Description:
 `DFNLST` sets the value at position pos in list nam. If nam is not provided RNMR will prompt for it with a default of
 temp. If pos is not provided RNMR will prompt for it with a default of 1. If val is not provided RNMR will prompt for it
 with the current value at position pos in list nam as the default.
-## DFNMAC
+### DFNMAC
 Define macro table entry
 
 Category: Macros
@@ -1983,7 +1983,7 @@ used RNMR will first search for the macro file in the user macro folders. If the
 macro; otherwise it is a system macro. Note that `DFNMAC` does not actually search the system macro folders. No search
 for the file occurs if the type is specified manually. Thus if the file does not exist an error will not occur until the
 first time the macro is called.
-## DFNSYM
+### DFNSYM
 Define symbol
 
 Category: Arguments
@@ -2015,7 +2015,7 @@ from left to right without regard for order of operations except for parentheses
     DFNSYM /INT A 2*(2-1)
 
 will create symbol a with a value of 2.
-## DFNTBL
+### DFNTBL
 Define name table argument
 
 Category: Tables
@@ -2028,7 +2028,7 @@ Description:
 `DFNTBL` sets the value of argument nam in table tbl. If tbl or nam is not provided RNMR will prompt for it with a
 default of temp. If val is not provided RNMR will prompt for it with the current value of argument nam in table tbl as
 the default.
-## DFNPPS
+### DFNPPS
 Define pulse programmer symbol table entry
 
 Category: Pulse Program Symbols
@@ -2043,7 +2043,7 @@ Description:
 `DFNPPS` sets the value of the pulse programmer symbol of type typ and name nam. If typ or nam is not provided RNMR will
 prompt for it with a default of temp. If val is not provided RNMR will prompt for it with the current value of the pulse
 programmer symbol of type typ and name nam as the default.
-## DG
+### DG
 Start acquisition with delay shots
 
 Category: Acquisition
@@ -2062,7 +2062,7 @@ averaging begins. The number of dummy scans is set by `NDLY`.
 The arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
 parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
 0 then only first_group will be acquired.
-## DIRB
+### DIRB
 Set blocked record access sequence
 
 Category: Blocked Records
@@ -2084,7 +2084,7 @@ The second parameter, seq, assigns each dimension a direction. If this parameter
 with the current sequence for ndim dimensions as the default. This sequence is a string of ndim integers from 1 to ndim
 with no repeats. If seq fails to assign each dimension a direction, then RNMR completes the sequence with the missing
 dimensions in ascending order.
-## DL
+### DL
 Delete records
 
 Category: Data Storage
@@ -2105,7 +2105,7 @@ not in archive 1.
 Deleting records marks the appropriate title records and blocks of the data file as available for reuse. Neither the
 size of the title file nor the data file is reduced by `DL`; to compress the data file by eliminating deallocated
 blocks use `SQZ`.
-## DLTFIL
+### DLTFIL
 Delete file
 
 Category: File IO
@@ -2118,7 +2118,7 @@ Description:
 `DLTFIL` deletes a specified file. If no file is provided RNMR will prompt for a file to delete with temp.dat as a
 default. Be cautious when using `DLTFIL` as RNMR will not prompt for confirmation and will permanently delete the
 specified file.
-## DLTLST
+### DLTLST
 Delete list
 
 Category: Lists
@@ -2129,7 +2129,7 @@ Defaults: temp
 
 Description:
 `DLTLST` deletes a specified list. If no list is provided RNMR will prompt for a list to delete with temp as a default.
-## DLTMAC
+### DLTMAC
 Delete list
 
 Category: Macros
@@ -2142,7 +2142,7 @@ Description:
 `DLTMAC` deletes a specified macro. If no macro is provided RNMR will prompt for a macro to delete with temp as a
 default. `DLTMAC` will delete the file in which the macro is stored. To Remove the macro from RNMR without deleting the
 file use `REMMAC`.
-## DLTTBL
+### DLTTBL
 Delete name table
 
 Category: Tables
@@ -2154,7 +2154,7 @@ Defaults: temp
 Description:
 `DLTTBL` deletes a specified name table. If no table is provided RNMR will prompt for a table to delete with temp as a
 default.
-## DLY
+### DLY
 Set pulse programmer delay
 
 Category: Pulse Control
@@ -2177,7 +2177,7 @@ loaded using `PPEX` in order for `DLY` to be used to set the length of any delay
 Due to restrictions on the speed of the pulse programmer delays are rounded to the nearest 10 microseconds. Delays may
 be entered with more precision than this limit, but the additional precision will have no effect on the actual length of
 the delay.
-## DO
+### DO
 Begin macro `DO` loop
 
 Category: Control Flow
@@ -2211,7 +2211,7 @@ after executing one or more statements. The range of the `DO`/`ENDDO` loop is th
 statements after the jump out and before the jump back in. Jumps into a `DO` loop are not allowed when that `DO`
 command has not yet been processed, though the error will not be detected until the matching `ENDDO` statement is
 executed.
-## DW
+### DW
 Set dwell time for data sampling during acquisition
 
 Category: Experiment
@@ -2242,9 +2242,9 @@ set to the nearest cutoff setting at least as wide as FLF X (SW/2.0). If the cal
 50000.0 Hz, then the filters are disabled entirely. Whenever the dwell time is changed, the shot counter and averager
 are zeroed.
 
-# E
+## E
 ---
-## ECDB
+### ECDB
 Convert dimension values to linear block index
 
 Category: Blocked Records
@@ -2272,7 +2272,7 @@ If fewer values are provided than are needed for the conversion RNMR will prompt
 corresponding to the first point in the relevant dimension as the default. The values will be rounded to the nearest
 point in the block grid for conversion. Values that are outside of the range of dataset will round to the point on the
 edge of the dataset.
-## ECDBP
+### ECDBP
 Convert vector indices to linear block index
 
 Category: Blocked Records
@@ -2296,7 +2296,7 @@ greater than 0 and less than the number of dimensions in the blocked record.
 
 If fewer indices are provided than are needed for the conversion RNMR will prompt for the remaining values with 1 as a
 default. The indices must not exceed the size of the dataset.
-## ECDREC
+### ECDREC
 Encode archive index
 
 Category: Data Storage
@@ -2313,7 +2313,7 @@ encodes it in a form that can be used to access that record. For example:
 
 will print 2:7 as informational message. 2:7 can be used anywhere a record must be specified to refer to record 7 in
 archive 2. RNMR will prompt for both the archive and record number with a default of 1 if they are not specified.
-## ECHO
+### ECHO
 Rearrange buffer to simulate echo data
 
 Category: Signal Generation
@@ -2329,7 +2329,7 @@ Description:
 shifted to the right by an amount specified by time. The portion of the buffer vacated by this shift is filled with the
 complex conjugate of the reverse of the data that was in this region in the original FID. If time is not provided RNMR
 will prompt for it with a time value corresponding to the center of the buffer.
-## EDTFIL
+### EDTFIL
 Edit text file
 
 Category: File IO
@@ -2341,7 +2341,7 @@ Defaults: temp.dat
 Description:
 `EDTFIL` opens a pop up window to edit the text file specified by fspec. If no file is specified RNMR will prompt for
 one with temp.dat as a default.
-## EDTLST
+### EDTLST
 Edit list
 
 Category: Lists
@@ -2353,7 +2353,7 @@ Defaults: temp
 Description:
 `EDTLST` opens a pop up window to edit the list specified by nam. If no list is specified RNMR will prompt for one with
 temp as a default.
-## EDTMAC
+### EDTMAC
 Edit macro
 
 Category: Macros
@@ -2365,7 +2365,7 @@ Defaults: temp
 Description:
 `EDTMAC` opens a pop up window to edit the macro specified by nam. If no macro is specified RNMR will prompt for one
 with temp as a default.
-## ELSTST
+### ELSTST
 Separate the code blocks after a `TST` check
 
 Category: Control Flow
@@ -2377,7 +2377,7 @@ Prerequisites: Macro only (MAC)
 Description:
 `ELSTST` separates the two blocks of commands to be executed based upon the results of a conditional test using `TST`.
 For usage details see the description of `TST`.
-## EM
+### EM
 Exponential multiply FID
 
 Category: Apodization
@@ -2407,7 +2407,7 @@ the data. `EM` multiplies each block of processing buffer 1 by the real function
     F(I) = EXP(-PI*(I-1) * LB/SW)
 
 where I is the index of the data point (I=1,2,...), LB is the line broadening factor, and SW is the buffer sweep width.
-## ENDDO
+### ENDDO
 End a macro `DO` loop
 
 Category: Control Flow
@@ -2419,7 +2419,7 @@ Prerequisites: Macro only (MAC)
 Description:
 `ENDDO` marks the end of a macro `DO` loop. All commands between `DO` and `ENDDO` are executed repeatedly according to
 the parameters of the `DO` command. For usage details see the description of `DO`.
-## ENDSEL
+### ENDSEL
 End a macro `SEL` block
 
 Category: Control Flow
@@ -2431,7 +2431,7 @@ Prerequisites: Macro only (MAC)
 Description:
 `ENDSEL` marks the end of a macro `SEL` block. All `CASE` commands for the `SEL` block must precede `ENDSEL`. For usage
 details see the description of `SEL`.
-## ENDTST
+### ENDTST
 End a macro `TST` block
 
 Category: Control Flow
@@ -2443,7 +2443,7 @@ Prerequisites: Macro only (MAC)
 Description:
 `ENDTST` marks the end of a `TST` block used for conditional execution of commands. For usage details see the
 description of `TST`.
-## EX
+### EX
 Load a pulse program experiment
 
 Category: Experiment
@@ -2457,7 +2457,7 @@ Prerequisites: Acquisition stopped (HALT), RNMRA only
 Description:
 `EX` is an old command for loading a pulse program. It has been replaced with the `PPEX` command and is currently simply
 an alias to it. As such `PPEX` should be used in place of `EX`.
-## EXIT
+### EXIT
 Exit program
 
 Category: Misc.
@@ -2477,7 +2477,7 @@ Description
 resp is not provided RNMR will prompt for it with no as a default.
 
 If /ERROR is used RNMR will return with a status of 2 to indicate an error. Otherwise it will exit with a status of 1.
-## EXP
+### EXP
 Export buffer to foreign format
 
 Category: Foreign
@@ -2513,7 +2513,7 @@ prompt for fspec. The format must match the format specified in `OPNEXP`.
 Unlike `OPNWRT`, `EXP` will create a new version of the output file if there already exists a file in the current
 directory with the name entered by the user. Note that if processing buffer 1 is divided into two or more blocks, `EXP`
 writes out data from the first block only.
-## EXP1D
+### EXP1D
 Export 1D data to foreign format
 
 Category: Foreign
@@ -2554,7 +2554,7 @@ directory with the name entered by the user.
 
 Upon completion, the current read block of the record, as set and displayed by `PTRB`, is set to the slice that was
 exported. In addition, the current read record, as set and displayed by `PTRA`, is set to rec.
-## EXP2D
+### EXP2D
 Export 2D data to foreign format
 
 Category: Foreign
@@ -2595,7 +2595,7 @@ directory with the name entered by the user.
 
 Upon completion, the current read block of the record, as set and displayed by `PTRB`, is set to the slice that was
 exported. In addition, the current read record, as set and displayed by `PTRA`, is set to rec.
-## EXP3D
+### EXP3D
 Export 3D data to foreign format
 
 Category: Foreign
@@ -2635,9 +2635,9 @@ directory with the name entered by the user.
 
 Upon completion, the current read block of the record, as set and displayed by `PTRB`, is set to the slice that was
 exported. In addition, the current read record, as set and displayed by `PTRA`, is set to rec.
-# F
----
 ## F
+---
+### F
 Set synthesizer offset frequency
 
 Category: Frequency Control
@@ -2662,7 +2662,7 @@ conversion factor (fppm) of the assigned nucleus:
 
     Factual(Hz) = 1.0E+06*FPPM(MHz) + FREQ(Hz) + FREF(Hz)
 
-## FLAG
+### FLAG
 Set pulse program flag on or off
 
 Category: Experiment
@@ -2677,7 +2677,7 @@ Description:
 `FLAG` sets the pulse program flag specified by ind either on or off based on val. If ind is not provided RNMR will
 prompt for it with a default of 1. If val is not provided RNMR will prompt for it with the current value of the flag as
 the default. The legal values of val are on and off.
-## FLF
+### FLF
 Set filter factor
 
 Category: Experiment
@@ -2701,7 +2701,7 @@ FLF X (SW/2.0). If the calculated filter bandwidth exceeds 50000.0 Hz, then the 
 larger values of factor give wider filter cutoffs. The filter factor is saved to archive records by the commands `SA`,
 `SB`, and `SS` and is reported for those records by `LP`, even if S-bus filter control is not implemented in the
 spectrometer running RNMR.
-## FMX
+### FMX
 Set frequency modulation value
 
 Category: Pulse Control
@@ -2719,7 +2719,7 @@ specify which frequency offset is being set. `SETFMX` has an index as a paramete
 offsets are set separately for each channel and chan specifies the logical channel. If chan or ind is not specified RNMR
 will prompt for it with 1 as a default. The offset value to be set is specified by val. If val is not provided RNMR will
 prompt for it with the current offset as the default.
-## FMXEX
+### FMXEX
 Load frequency modulation program
 
 Category: Pulse Control
@@ -2727,7 +2727,7 @@ Category: Pulse Control
 Format: `FMXEX`
 
 Defaults:
-## FOLD
+### FOLD
 Fold data buffer
 
 Category: Data Manipulation
@@ -2740,7 +2740,7 @@ Description:
 `FOLD` divides the visible processing buffer into nsect evenly spaced sections and then averages the sections. If nsect
 is not specified RNMR will prompt for it with a default of 1. If nsect is equal to 1 then `FOLD` has no effect. The
 active size of the buffer will be reduced by a factor of nsect.
-## FSYS
+### FSYS
 Set spectrometer system frequency
 
 Category: Frequency Control
@@ -2763,7 +2763,7 @@ provided RNMR will prompt for them with the current values for the specified nuc
 conversion factor of each nucleus are updated. While `FSYS` changes the frequency values of each nucleus, the
 synthesizers are not updated with these new frequencies until the user issues a `NUC` or `F` command for each
 synthesizer.
-## FT
+### FT
 Fourier transform FID
 
 Category: Data Transforms
@@ -2801,9 +2801,9 @@ frequency on the left (by long standing NMR convention), the default action of `
 after transformation. This is done by conjugating the FID before the Fourier transform is calculated. `FT` also negates
 every other point in the FID.
 
-# G
+## G
 ---
-## GA
+### GA
 Get archive record data
 
 Category: Data Storage
@@ -2825,7 +2825,7 @@ the record into the visible processing buffer.
 In order to read the record into the buffer, the allocated size of the buffer must be greater than or equal to the size
 of the archive record. To check and, if necessary, modify the allocated buffer size, use the command `DBSZ`. The active
 size of the buffer will change to the size of the data read from the record.
-## GAIN
+### GAIN
 Set receiver gain
 
 Category: Experiment
@@ -2839,7 +2839,7 @@ Prerequisites: RNMRA only
 Description:
 `GAIN` sets the observe channel receiver gain. If no gain is specified RNMR will prompt for it with the current receiver
 gain as a default. The receiver gain must be between 0.0 and 100.0 inclusive and is considered precise to 0.1.
-## GAINL
+### GAINL
 Set lock receiver gain
 
 Category: Lock
@@ -2854,7 +2854,7 @@ Description:
 `GAINL` sets the lock channel receiver relative gain. If no gain is specified RNMR will prompt for it with the current
 lock channel receiver gain as a default. The receiver gain must be between 0.0 and 100.0 inclusive and is considered
 precise to 1.0.
-## GAV
+### GAV
 Get data from averager
 
 Category: Acquisition
@@ -2881,7 +2881,7 @@ with a given title by using `TITLEA` to set the acquisition buffer title before 
 In order to read the data into the buffer, the allocated size of the buffer must be greater than or equal to the size of
 the data. To check and, if necessary, modify the allocated buffer size, use the command `DBSZ`. The active size of the
 buffer will change to the size of the data transferred from the averager.
-## GB
+### GB
 Get blocked record data
 
 Category: Data Storage
@@ -2912,7 +2912,7 @@ block of the buffer. In order for a slice to be read it must not exceed the size
 been used (data stored in it). If a requested slice cannot be read for the above reasons all of the requested slices
 that come before it will still be successfully read. The read blocked record pointer (as displayed and set by `PTRB`)
 will be updated to point to the last slice read.
-## GBLARG
+### GBLARG
 Set value of global argument
 
 Category: Arguments
@@ -2924,7 +2924,7 @@ Defaults: temp current
 Description:
 `GBLARG` is an old command for defining global arguments. It has been replaced with the `DFNGBL` command and is
 currently simply an alias to it. As such `DFNGBL` should be used in place of `GBLARG`.
-## GBLDL
+### GBLDL
 Delete global argument
 
 Category: Arguments
@@ -2936,7 +2936,7 @@ Defaults: temp first
 Description:
 `GBLDL` is an old command for deleting global arguments. It has been replaced with the `REMGBL` command and is currently
 simply an alias to it. As such `REMGBL` should be used in place of `GBLDL`.
-## GENCS
+### GENCS
 Generate complex sine wave
 
 Category: Signal Generation
@@ -2960,7 +2960,7 @@ specified in degrees. If the phase is omitted RNMR will not prompt for it and wi
 parameter, sw, is the sweep width of the generated signal. If sw is not specified RNMR will not prompt for it and will
 use the current sweep width of the visible processing buffer. If a value of sw is entered then the time step in the
 buffer will be altered to match the requested sweep width.
-## GENPWDR
+### GENPWDR
 Generate complex powder pattern
 
 Category: Signal Generation
@@ -2982,7 +2982,7 @@ entered then the time step in the buffer will be altered to match the requested 
 is a factor controlling the number of orientations that are considered when generating the signal. The number of
 orientations is equal to 3*freq*dstep*1e-3*fctr*size or 1 whichever is larger. Values of fctr must be between 0.5 and
 2.0 inclusive.
-## GM
+### GM
 Gaussian multiply FID
 
 Category: Apodization
@@ -3012,7 +3012,7 @@ data. `GM` multiplies each block of processing buffer 1 by the real function:
     F(I) = EXP-(0.5*PI*(I-1)* LB/SW)^2)
 
 where I is the index of the data point (I=1,2,...), LB is the line broadening factor, and SW is buffer sweep width.
-## GMV
+### GMV
 Calculate geometric mean
 
 Category: Buffer Arithmetic
@@ -3029,7 +3029,7 @@ Description:
 The geometric means of the real and imaginary parts of the data are computed separately. If either argument is omitted,
 RNMR will prompt for a buffer number. The default source is buffer 2 while the default destination is buffer 1. The src
 and dst buffers must have the same domain and active size (though not necessarily the same allocated size).
-## GO
+### GO
 Start or resume acquisition
 
 Category: Acquisition
@@ -3049,7 +3049,7 @@ less than na. If the current shot counter is at 0 then `GO` will behave like `ZG
 The arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
 parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
 0 then only first_group will be acquired.
-## GOSUB
+### GOSUB
 Perform call within macro
 
 Category: Control Flow
@@ -3068,7 +3068,7 @@ subroutines within a macro.
 The parameter label is the name of the macro label to which execution should jump. If label is not specified, execution
 will continue at the next line of the current macro. Note that execution will still return to the line after the `GOSUB`
 call at the next `MEXIT` even if no label was provided.
-## GOTO
+### GOTO
 Go to statement label in macro
 
 Category: Control Flow
@@ -3082,7 +3082,7 @@ Prerequisites: Macro only (MAC)
 Description:
 `GOTO` performs an unconditional jump within a macro. The parameter label is the name of the macro label to which
 execution should jump. If label is not specified, execution will continue at the next line of the current macro.
-## GOTST
+### GOTST
 Perform a conditional jump within a macro based on a test
 
 Category: Control Flow
@@ -3107,7 +3107,7 @@ commands between `ELSTST` and `ENDTST` cause `GOTST` to jump to label2.
 `GOTST` is the most direct replacement for the behavior of the old if commands such as `IFEQ`. `GOTST` should only be
 used when there is a need to jump to labels in different parts of a macro. `TST` should be used for conditional
 execution of blocks of commands.
-## GREF
+### GREF
 Restore processing buffer reference from nucleus table
 
 Category: Frequency Control
@@ -3121,7 +3121,7 @@ Description:
 table. If nuc is * `GREF` changes the frequency for every channel. Otherwise a valid nucleus must be passed. If nuc is
 omitted RNMR will prompt for it with a default of \*. `GREF` only changes the reference frequency parameter for the
 processing buffers and does not update the synthesizers.
-## GREFA
+### GREFA
 Restore acquisition buffer reference from nucleus table
 
 Category: Frequency Control
@@ -3141,7 +3141,7 @@ Description:
 nucleus table. If nuc is * `GREFA` changes the frequency for every channel. Otherwise a valid nucleus must be passed. If
 nuc is omitted RNMR will prompt for it with a default of \*. `GREFA` only changes the reference frequency parameter for
 the acquisition buffer. If /RESET is used `GREFA` will also change the synthesizer frequency and FMU frequency.
-## GS
+### GS
 Get data from scratch record
 
 Category: Data Storage
@@ -3164,9 +3164,9 @@ of the scratch record. To check and, if necessary, modify the allocated buffer s
 size of the buffer will change to the size of the data read from the record. `GS` does not update the record read
 pointer (as displayed and set by `PTRA`).
 
-# H
+## H
 ---
-## HILB
+### HILB
 Perform Hilbert transform on spectrum
 
 Category: Data Transforms
@@ -3185,7 +3185,7 @@ Without correction by `HILB`, the inverse Fourier transform of this data would b
 of the data at long times. `HILB` replaces the imaginary part of the buffer data with the Hilbert transform of the real
 part, and leaves the real part of the buffer unchanged. The active size of the visible processing buffer must be a power
 of two greater than or equal to 4.
-## HILBZ
+### HILBZ
 Perform Hilbert transform on zero-filled spectrum
 
 Category: Data Transforms
@@ -3204,7 +3204,7 @@ pairs. Without correction by `HILBZ`, the inverse Fourier transform of this data
 divergence of the data at long times. `HILBZ` replaces the imaginary part of the buffer data with the Hilbert transform
 of the real part, and leaves the real part of the buffer unchanged. The active size of the visible processing buffer
 must be a power of two greater than or equal to 4.
-## HTR
+### HTR
 Enable or disable probe heater
 
 Category: Heater
@@ -3220,7 +3220,7 @@ Description:
 `HTR`  checks the current status of the probe heater. If the heater is in ERROR status, RNMR reports the error and
 resets the heater status. If state is not specified RNMR will prompt for the heater enable state with the current
 state as the default. The legal values of state are ON and OFF only.
-## HTRSTS
+### HTRSTS
 Return probe heater status
 
 Category: Heater
@@ -3234,9 +3234,9 @@ Description:
 controller indicates an error, RNMR will reset the heater status without printing an error message. The heater status
 value read from the hardware is displayed via an informational message as a two-character hexadecimal string.
 
-# I
+## I
 ---
-## IBOX
+### IBOX
 Set volume parameters for nD volume integration
 
 Category: Data Analysis
@@ -3248,7 +3248,7 @@ Defaults: 1 current
 Description:
 `IBOX` sets the integration block size for a dimension dim to size. If dim is omitted RNMR will prompt for it with a
 default of 1. If size is omitted RNMR will prompt for it with a default of the current integration block size for dim.
-## IDN
+### IDN
 Set processing buffer identification fields
 
 Category: Data Storage
@@ -3266,7 +3266,7 @@ The first parameter, idn, selects which identifier field is to be modified. If i
 for an identifier with 1 as a default. If the value to set the identifier to is omitted RNMR will prompt for it with the
 current value as a default and the third parameter, prompt, as the prompt string. If prompt is omitted the default
 prompt string is 'Enter identifier value:'. The value may be not be longer than eight characters.
-## IDNA
+### IDNA
 Set acquisition buffer identification fields
 
 Category: Acquisition
@@ -3287,7 +3287,7 @@ The first parameter, idn, selects which identifier field is to be modified. If i
 for an identifier with 1 as a default. If the value to set the identifier to is omitted RNMR will prompt for it with the
 current value as a default and the third parameter, prompt, as the prompt string. If prompt is omitted the default
 prompt string is 'Enter identifier value:'. The value may be not be longer than eight characters.
-## IFCND
+### IFCND
 Branch on condition flag
 
 Category: Control Flow
@@ -3304,7 +3304,7 @@ OFF. As with all of the old if commands, if the label to jump to is not specifie
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
 conditional jumps.
-## IFEQ
+### IFEQ
 Branch on equal
 
 Category: Control Flow
@@ -3321,7 +3321,7 @@ not. As with all of the old if commands, if the label to jump to is not specifie
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
 conditional jumps.
-## IFGBL
+### IFGBL
 Check for global argument and branch
 
 Category: Control Flow
@@ -3339,7 +3339,7 @@ line.
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
 conditional jumps.
-## IFLCL
+### IFLCL
 Check for local argument and branch
 
 Category: Control Flow
@@ -3357,7 +3357,7 @@ line.
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
 conditional jumps.
-## IFMAC
+### IFMAC
 Check for macro and branch
 
 Category: Control Flow
@@ -3374,7 +3374,7 @@ with all of the old if commands, if the label to jump to is not specified execut
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
 conditional jumps.
-## IFREC
+### IFREC
 Check for record and branch
 
 Category: Control Flow
@@ -3391,7 +3391,7 @@ As with all of the old if commands, if the label to jump to is not specified exe
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
 conditional jumps.
-## IFT
+### IFT
 Inverse Fourier transform spectrum
 
 Category: Data Transforms
@@ -3428,7 +3428,7 @@ NONE   | Does not scale
 Since time domain data is presented with minimum time on the left while frequency data is presented with maximum
 frequency on the left (by long standing NMR convention), the default action of `IFT` is to conjugate the data after
 transformation. This ensures that performing an `IFT` followed by an `FT` will give the same frequency data order.
-## IMP
+### IMP
 Import data from foreign format
 
 Category: Foreign
@@ -3457,7 +3457,7 @@ the format. By default `IMP` will search for data in the user's foreign director
 
 If an import file has been opened with `OPNIMP` the data will be stored in that file and `IMP` will neither use nor
 prompt for fspec. The format must match the format specified in `OPNIMP`.
-## IMP1D
+### IMP1D
 Import data from foreign format
 
 Category: Foreign
@@ -3488,7 +3488,7 @@ prompt for fspec. The format must match the format specified in `OPNIMP`.
 
 Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
 imported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
-## IMP2D
+### IMP2D
 Import data from foreign format
 
 Category: Foreign
@@ -3519,7 +3519,7 @@ prompt for fspec. The format must match the format specified in `OPNIMP`.
 
 Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
 imported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
-## IMP3D
+### IMP3D
 Import data from foreign format
 
 Category: Foreign
@@ -3550,7 +3550,7 @@ prompt for fspec. The format must match the format specified in `OPNIMP`.
 
 Upon completion, the current write block of the record, as set and displayed by `PTRB`, is set to the slice that was
 imported. In addition, the current write record, as set and displayed by `PTRA`, is set to rec.
-## INFLVL
+### INFLVL
 Set info level
 
 Category: Misc.
@@ -3564,7 +3564,7 @@ Description:
 console. The first parameter, nam, specifies which info level to set. If nam is omitted RNMR will prompt for it with no
 default. The second parameter, lev, is the level to set and should be an integer that is 0 or greater. If lev is omitted
 RNMR will prompt for it with the current value as a default.
-## INTG
+### INTG
 Compute integral of spectrum
 
 Category: Data Manipulation
@@ -3582,7 +3582,7 @@ definite integral within specified frequency limits using the command `INTRG`.
 A baseline fix apodization (`BF`) is performed prior to integration to eliminate any constant offset after integration.
 Then each point between the display limits is replaced with the sum of all the points from the left display limit to
 that data point, including the endpoints. After the integration is complete the buffer is normalized (`NORM`).
-## INTRG
+### INTRG
 Integrate region of spectrum
 
 Category: Data Analysis
@@ -3620,7 +3620,7 @@ Qualifier | Integrand
 /REAL     | Real part
 
 The default integrand is the same as the current display mode (as displayed and set by `BUF`).
-## INSLST
+### INSLST
 Insert value into list
 
 Category: Lists
@@ -3634,7 +3634,7 @@ Description:
 moved by one element and val is stored at pos. The parameter pos cannot exceed the largest filled position in the list.
 If nam is omitted RNMR will prompt for it with temp as a default. If pos is omitted RNMR will prompt for it with 1 as a
 default. If val is omitted RNMR will prompt for it with the current value at position pos in list nam.
-## IXVAL
+### IXVAL
 Convert from unit value to point index
 
 Category: Data Analysis
@@ -3649,9 +3649,9 @@ processing buffer. If no position is specified RNMR will prompt for it with the 
 If the specified position is outside of the actual data in the visible processing buffer `XVAL` will return the index of
 the closest point (the leftmost or rightmost point). The converted value is printed as an informational message.
 
-# K
+## K
 ---
-## KEYARG
+### KEYARG
 Declare names of macro keyword arguments
 
 Category: Arguments
@@ -3676,9 +3676,9 @@ following local arguments within macro TEMP.
 
 Calling `KEYARG A B` within TEMP will delete KEY$1 and KEY$2 and leave A and B untouched.
 
-# L
+## L
 ---
-## LB
+### LB
 Set line broadening factor
 
 Category: Apodization
@@ -3695,7 +3695,7 @@ factor can either be set with the `LB` command or by entering the line broadenin
 `LB` has one parameter, lb, which is the line broadening factor, expressed in the current frequency units unless that
 unit is ppm in which case it is in the default frequency units. If lb is omitted, RNMR will prompt for it with the
 current line broadening factor as the default. the line broadening factor must be between -1000 and 1000.
-## LCK
+### LCK
 Enable or disable lock feedback loop
 
 Category: Lock
@@ -3710,7 +3710,7 @@ Description:
 `LCK` enables or disables the magnetic field-frequency lock on spectrometers with software lock control enabled. `LCK`
 takes one parameter, state, which may be specified as either ON or OFF to enable or disable the lock, respectively.
 If state is omitted RNMR will prompt for it with the current lock state as the default.
-## LCKCTL
+### LCKCTL
 Open lock control pop up menu
 
 Category: Lock
@@ -3721,7 +3721,7 @@ Prerequisites: RNMR lock control; RNMRA only
 
 Description:
 `LCKCTL` opens a pop-up menu containing lock controls.
-## LCKMTR
+### LCKMTR
 Enable lock meter
 
 Category: Lock
@@ -3732,7 +3732,7 @@ Prerequisites: RNMR lock control; RNMRA only
 
 Description:
 `LCKMTR` enables the lock meter.
-## LCKVAL
+### LCKVAL
 Read lock value
 
 Category: Lock
@@ -3743,7 +3743,7 @@ Prerequisites: RNMR lock control; RNMRA only
 
 Description:
 `LCKVAL` displays the real and imaginary components of the current lock value as informational messages.
-## LCLARG
+### LCLARG
 Set local argument value
 
 Category: Arguments
@@ -3755,7 +3755,7 @@ Defaults: temp current
 Description:
 `LCLARG` is an old command for defining local arguments. It has been replaced with the `DFNLCL` command and is
 currently simply an alias to it. As such `DFNLCL` should be used in place of `LCLARG`.
-## LCLDL
+### LCLDL
 Delete local argument
 
 Category: Arguments
@@ -3767,7 +3767,7 @@ Defaults: temp first
 Description:
 `LCLDL` is an old command for deleting global arguments. It has been replaced with the `REMLCL` command and is currently
 simply an alias to it. As such `REMLCL` should be used in place of `LCLDL`.
-## LI
+### LI
 Increment pulse programmer loop value
 
 Category: Experiment
@@ -3781,7 +3781,7 @@ Prerequisites: Pulse program loaded (LOAD), RNMRA Only
 Description:
 `LI` is an old command for incrementing a loop value by an integer incr. It has been replaced with the `LOOP /INCR`
 command and is currently simply an alias to it. As such `LOOP /INCR` should be used in place of `LI`.
-## LIM
+### LIM
 Set processing buffer display limits
 
 Category: Display Control
@@ -3797,7 +3797,7 @@ processing buffer. If llim or rlim is omitted RNMR will prompt for it with the c
 default. A value outside of the dataset or "\*" will use the leftmost or rightmost point in the buffer. Values that are
 within the range of the dataset but that do not correspond exactly to a point will use the closest point to the right of
 the specified value.
-## LIMA
+### LIMA
 Set acquisition buffer display limits
 
 Category: Display Control
@@ -3815,7 +3815,7 @@ If llim or rlim is omitted RNMR will prompt for it with the current left or righ
 outside of the dataset or "\*" will use the leftmost or rightmost point in the buffer. Values that are within the range
 of the dataset but that do not correspond exactly to a point will use the closest point to the right of the specified
 value.
-## LIMB
+### LIMB
 Set blocked record display limits
 
 Category: Display Control
@@ -3833,7 +3833,7 @@ number of dimensions in the blocked record. If llim or rlim is omitted RNMR will
 right display limit as a default. A value outside of the dataset or "\*" will use the leftmost or rightmost point
 available. Values that are within the range of the dataset but that do not correspond exactly to a point will use the
 closest point to the right of the specified value.
-## LOG
+### LOG
 Write line to log
 
 Category: Misc.
@@ -3847,7 +3847,7 @@ Prerequisites: Logging enabled
 Description:
 `LOG` writes a line to the logging window. If no line is specified RNMR will prompt for it. `LOG` cannot be used unless
 logging is enabled (`SET LOG ON`).
-## LOOP
+### LOOP
 Set or increment pulse program loop counter
 
 Category: Experiment
@@ -3869,7 +3869,7 @@ unless /INCR is used in which case RNMR will not prompt for val and will increme
 
 The final loop value must be between 0 and 65,535 inclusive. If /INCR is used `LOOP` will display the final loop value
 as an informational message.
-## LP
+### LP
 List processing buffer parameters
 
 Category: Misc.
@@ -3984,7 +3984,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## LPA
+### LPA
 List acquisition buffer parameters
 
 Category: Acquisition
@@ -4094,7 +4094,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## LPB
+### LPB
 Perform backward linear prediction on FID
 
 Category: Data Manipulation
@@ -4136,7 +4136,7 @@ a singular value decomposition (SVD) of X. Once the coefficients are known RNMR 
 the beginning of the FID. That is the point rlim is predicted using the N points after it and then the point to the left
 of rlim is predicted using the N points after it (including the predicted value of point rlim) and so on until all the
 points are predicted.
-## LPC
+### LPC
 Perform long pulse phase and amplitude correction
 
 Category: Data Manipulation
@@ -4167,7 +4167,7 @@ as a default. The value of fnull is restricted such that the following relations
     0.1 ≤ ABS(FNULL-OFFSET)/(FNYQ-OFFSET) ≤ 2.0
 
 Both fnyq and fnull are specified in the current frequency unit (as set and displayed by `UNIT /FREQ`).
-## LPCA
+### LPCA
 Perform long pulse amplitude correction
 
 Category: Data Manipulation
@@ -4198,7 +4198,7 @@ as a default. The value of fnull is restricted such that the following relations
     0.1 ≤ ABS(FNULL-OFFSET)/(FNYQ-OFFSET) ≤ 2.0
 
 Both fnyq and fnull are specified in the current frequency unit (as set and displayed by `UNIT /FREQ`).
-## LPCP
+### LPCP
 Perform long pulse phase correction
 
 Category: Data Manipulation
@@ -4228,7 +4228,7 @@ as a default. The value of fnull is restricted such that the following relations
     0.1 ≤ ABS(FNULL-OFFSET)/(FNYQ-OFFSET) ≤ 2.0
 
 Both fnyq and fnull are specified in the current frequency unit (as set and displayed by `UNIT /FREQ`).
-## LPDEV
+### LPDEV
 Select text printer device
 
 Category: Printing
@@ -4251,7 +4251,7 @@ If no device is specified RNMR will prompt for it with the current text printing
 printing device is changed (device is not the current device) RNMR will set the text printing flag (as set and displayed
 by `SET LP`) on, indicating that text should be physically printed by the printing device rather than saved to the text
 printing file (as set and displayed by `LPFIL`).
-## LPF
+### LPF
 Perform forward linear prediction on FID
 
 Category: Data Manipulation
@@ -4298,7 +4298,7 @@ using a singular value decomposition (SVD) of X. Once the coefficients are known
 rlim. That is the point just after the FID is predicted using the N before after it and then point SIZE+2 is predicted
 using the N points before it (including the predicted value of point SIZE+1) and so on until all the points out to rlim
 are predicted. This process will change the active size of the buffer to rlim.
-## LPFIL
+### LPFIL
 Set text printer file
 
 Category: Printing
@@ -4315,7 +4315,7 @@ specified RNMR will prompt for it with the current text printer file as a defaul
 If the text printer file is changed (fspec is not the current fspec) RNMR will set the text printer flag (as set and
 displayed by `SET LP`) off, indicating that text should be saved to the text printing file rather than physically
 printed by the printer device (as set and displayed by `LPDEV`).
-## LPK
+### LPK
 List Peaks
 
 Category: Data Analysis
@@ -4361,7 +4361,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## LPK2D
+### LPK2D
 List peaks in two dimensions
 
 Category: Data Analysis
@@ -4416,7 +4416,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## LS
+### LS
 Set pulse programmer loop value
 
 Category: Experiment
@@ -4430,7 +4430,7 @@ Prerequisites: Pulse program loaded (LOAD) RNMR only
 Description:
 `LS` is an old command for setting a pulse programmer loop value. It has been replaced with the `LOOP` command and is
 currently simply an alias to it. As such `LOOP` should be used in place of `LS`.
-## LSTDP
+### LSTDP
 Define list from display
 
 Category: Lists
@@ -4459,7 +4459,7 @@ Q       | Terminate
 Z       | Call `ZO` to enable moving the cursor
 
 The list cannot exceed ten entries and attempts to add more values to it will fail.
-## LSTFIL
+### LSTFIL
 List contents of a text file
 
 Category: File IO
@@ -4484,7 +4484,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## LSTLST
+### LSTLST
 List contents of a list
 
 Category: Lists
@@ -4509,7 +4509,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## LSTMAC
+### LSTMAC
 List contents of a macro
 
 Category: Macros
@@ -4534,7 +4534,7 @@ Qualifier | Output
 /WND      | Display the list in a pop-up window. This is the default behavior.
 /WRT      | Write the list to a `WRT` file. Errors if no file is open to write to.
 
-## LW
+### LW
 Calculate line width
 
 Category: Data Analysis
@@ -4549,9 +4549,9 @@ peak above the peak picking threshold as set and displayed by `TH`. If llim or r
 prompt for it and will use the current cursor positions. The third parameter pcnt_ht is a the percentage of the peak
 height at which the linewidth is measured. If pcnt_ht is omitted RNMR will not prompt for it and will use 50 percent.
 
-# M
+## M
 ---
-## MACARG
+### MACARG
 Redefine names of positional macro arguments
 
 Category: Arguments
@@ -4565,7 +4565,7 @@ Description:
 is called with positional arguments they are stored in local arguments 1, 2, 3, etc. `MACARG` accepts a series of names
 as arguments. The default argument names are replaced with the names passed to `MACARG`. The number of names need not
 match the number of numbered arguments. Any names with no corresponding number local will be ignored.
-## MAG
+### MAG
 Calculate magnitude of data
 
 Category: Data Transforms
@@ -4577,7 +4577,7 @@ Description:
 the buffer and the imaginary part of the buffer is set to 0. The magnitude is defined as follows:
 
     MAG = SQRT(REAL^2 + IMAG^2)
-## MAPN
+### MAPN
 Append text to macro
 
 Category: Macros
@@ -4589,7 +4589,7 @@ Defaults: TEMP
 Description:
 `MAPN` is an old command for appending lines of text to a macro. It has been replaced with the `APNMAC` command and is
 currently simply an alias to it. As such `APNMAC` should be used in place of `MAPN`.
-## MASCMD
+### MASCMD
 Send command to MAS controller
 
 Category: Hardware
@@ -4622,7 +4622,7 @@ SPIN_A  | Get spin rate | 0 | 1
 SPIN_D  | Get set spin rate | 0 | 1
 TEST    | Test connection | 0 | 0
 
-## MAXV
+### MAXV
 Calculate maximum
 
 Category: Buffer Arithmetic
@@ -4639,7 +4639,7 @@ Description:
 The comparison is pointwise and based on magnitudes. If either argument is omitted, RNMR will prompt for a buffer
 number. The default source is buffer 2 while the default destination is buffer 1. The src and dst buffers must have the
 same domain and active size (though not necessarily the same allocated size).
-## MCPY
+### MCPY
 Copy macro
 
 Category: Macros
@@ -4651,7 +4651,7 @@ Defaults: temp temp
 Description:
 `MCPY` is an old command for copying a macro. It has been replaced with the `CPYMAC` command and is currently simply an
 alias to it. As such `CPYMAC` should be used in place of `MCPY`.
-## MD
+### MD
 Define macro
 
 Category: Macros
@@ -4663,7 +4663,7 @@ Defaults: temp
 Description:
 `MD` is an old command for defining to a macro. It has been replaced with the `CRTMAC` command and is currently simply
 an alias to it. As such `CRTMAC` should be used in place of `MD`.
-## MDL
+### MDL
 Delete macro
 
 Category: Macros
@@ -4675,7 +4675,7 @@ Defaults: temp
 Description:
 `MDL` is an old command for deleting a macro. It has been replaced with the `REMMAC` command and is currently simply an
 alias to it. As such `REMMAC` should be used in place of `MDL`.
-## ME
+### ME
 Edit macro
 
 Category: Macros
@@ -4687,7 +4687,7 @@ Defaults: temp
 Description:
 `ME` is an old command for editing a macro. It has been replaced with the `EDTMAC` command and is currently simply an
 alias to it. As such `EDTMAC` should be used in place of `ME`.
-## MEDBF
+### MEDBF
 Median baseline fix spectrum
 
 Category: Baseline
@@ -4716,7 +4716,7 @@ and thus broadening out the local correction over too wide a region. The user sh
 algorithm in cases where zero filling before Fourier transformation has taken place, since such a procedure in effect
 increases the number of points between noise extrema. Zero filling to sizes 4 or more times the acquired FID are cause
 for caution.
-## MEXIT
+### MEXIT
 Exit macro
 
 Category: Control Flow
@@ -4736,7 +4736,7 @@ Description:
 arguments to `MEXIT` will be stored as local variables at the site where the macro was called. They will be named RTN$1,
 RTN$2, RT$3 etc. `RTNARG` can be used to easily rename these local variables. The /ERROR causes the macro to return as
 an error causing the calling site to jump to the label set by `ONERR`.
-## MINV
+### MINV
 Calculates minimum
 
 Category: Buffer Arithmetic
@@ -4753,7 +4753,7 @@ Description:
 The comparison is pointwise and based on magnitudes. If either argument is omitted, RNMR will prompt for a buffer
 number. The default source is buffer 2 while the default destination is buffer 1. The src and dst buffers must have the
 same domain and active size (though not necessarily the same allocated size).
-## ML
+### ML
 List contents of a macro
 
 Category: Macros
@@ -4765,7 +4765,7 @@ Defaults: temp
 Description:
 `ML` is an old command for listing the contents a macro. It has been replaced with the `LSTMAC` command and is currently
 simply an alias to it. As such `LSTMAC` should be used in place of `ML`.
-## MNMX
+### MNMX
 Calculate minimum and maximum in buffer region
 
 Category: Data Analysis
@@ -4802,7 +4802,7 @@ Qualifier | Integrand
 /REAL     | Real part
 
 The default part of the buffer is the same as the current display mode as displayed and set by the `BUF` command.
-## MO
+### MO
 Exit program
 
 Category: Misc.
@@ -4814,7 +4814,7 @@ Defaults: no
 Description:
 `MO` is an old command for exiting RNMR. It has been replaced with the `EXIT` command and is currently simply an alias
 to it. As such `EXIT` should be used in place of `MO`.
-## MOV
+### MOV
 Move record
 
 Category: Data Storage
@@ -4829,7 +4829,7 @@ RNMR will prompt for it with the current read record pointer (as displayed and s
 destination record is specified RNMR prompt will not prompt for it and will use the current write record pointer (as
 displayed and set by `PTRA`) as a default. If the destination record is not free the record will be moved to the next
 available record and the actual destination record will be printed as an informational message.
-## MOVV
+### MOVV
 Move buffer
 
 Category: Buffer Arithmetic
@@ -4846,7 +4846,7 @@ Description:
 If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
-## MRGFS
+### MRGFS
 Merge default file with file
 
 Category: File IO
@@ -4860,7 +4860,7 @@ Description:
 last period). The parts of the merged file specification are obtained by preferentially selecting the parts from fspec.
 If a part is not present in fspec, the part in fspecd is used. If the part is not present in either input it is omitted.
 The merged file specification is printed as an informational message.
-## MRN
+### MRN
 Rename macro
 
 Category: Macros
@@ -4872,7 +4872,7 @@ Defaults: temp temp
 Description:
 `MRN` is an old command for renaming a macro. It has been replaced with the `RENMAC` command and is currently
 simply an alias to it. As such `RENMAC` should be used in place of `MRN`.
-## MSG
+### MSG
 Write message line to console
 
 Category: Misc.
@@ -4883,7 +4883,7 @@ Defaults: None
 
 Description:
 `MSG` writes the contents of msgln to the console. If msgln is omitted RNMR will prompt for it.
-## MULV
+### MULV
 Multiply buffer
 
 Category: Buffer Arithmetic
@@ -4903,9 +4903,9 @@ If either argument is omitted, RNMR will prompt for a buffer number. The default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
 
-# N
+## N
 ---
-## NA
+### NA
 Set number of shots to acquire
 
 Category: Experiment
@@ -4920,7 +4920,7 @@ Description:
 `NA` sets the number of shots to [acquire](syntax#acquisition) to na. If na is not provided RNMR will prompt for it with
 the current value as a default. If na is -1 an indefinite number of scans will be collected until the user halts the
 acquisition.
-## NABLK
+### NABLK
 Set number of acquisition blocks
 
 Category: Acquisition
@@ -4935,7 +4935,7 @@ Description:
 `NABLK` sets the number of blocks into which the acquisition buffer is partitioned. If nablk is not provided RNMR will
 prompt for it with the current value as a default. If nablk is 0 the maximum possible number of acquisition blocks will
 be used.
-## NAMD
+### NAMD
 Set number of acquisition modes
 
 Category: Pulse Control
@@ -4955,7 +4955,7 @@ Description:
 not provided RNMR will prompt for it with the current value as a default. The /BLK qualifier is used to set the number
 of block acquisition modes and is typically used to set the number of steps in hypercomplex acquisition of
 multidimensional spectra. The /TPPI qualifier is used to set the number of modes for TPPI acquisition.
-## NCHN
+### NCHN
 Set number of channels
 
 Category: Experiment
@@ -4969,7 +4969,7 @@ Prerequisites: RNMRA only
 Description:
 `NCHN` sets the number of channels to be used. If nchn is not provided RNMR will prompt for it with the current value as
 a default. Note that the number of channels is also set implicitly by the `CHN` command.
-## NCON
+### NCON
 Set number of contour levels
 
 Category: Contours
@@ -4985,7 +4985,7 @@ Defaults: current
 Description:
 `NCON` sets the number of contour levels to use. If ncon is omitted RNMR will prompt for it with the current value as a
 default. /LIN is used for linearly spaced contours while /LOG is used for logarithmically spaced contours.
-## NDEC
+### NDEC
 Set number of decimal places
 
 Category: Display Control
@@ -4998,7 +4998,7 @@ Description:
 `NDEC` sets the number of decimal places to use when displaying values with a given unit. If unit is omitted then RNMR
 will prompt for it with the current time unit as a default. If ndec is omitted RNMR will prompt for it with the current
 value as a default.
-## NDLY
+### NDLY
 Set number of dummy scans
 
 Category: Experiment
@@ -5018,7 +5018,7 @@ Description:
 with the current value as a default. The /FIRST qualifier allows for setting up a different number of dummy scans to be
 used for the first [acquisition group](syntax#acqgrp) collected by a given acquisition command. This /FIRST number of
 dummy scans is only used when multiple groups are to be collected by an acquisition command.
-## NDSP
+### NDSP
 Set number of shots between display update
 
 Category: Acquisition
@@ -5032,7 +5032,7 @@ Prerequisites: RNMRA only
 Description:
 `NDSP` sets the number of shots to acquire between display updates. If ndsp is omitted RNMR will prompt for it with the
 current value as a default.
-## NEG
+### NEG
 Negates buffer
 
 Category: Buffer Arithmetic
@@ -5041,7 +5041,7 @@ Format: `NEG`
 
 Description:
 `NEG` replaces the contents of the visible processing buffer with itself multiplied by -1.
-## NG
+### NG
 Start or resume acquisition with dummy scans
 
 Category: Acquisition
@@ -5063,7 +5063,7 @@ will behave like `DG` instead of its normal behavior.
 The arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
 parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
 0 then only first_group will be acquired.
-## NOISE
+### NOISE
 Generate complex random noise
 
 Category: Signal Generation
@@ -5075,7 +5075,7 @@ Defaults: 1.0
 Description:
 `NOISE` fills the visible processing buffer with randomly generated noise. The parameter sf is a scaling factor that is
 applied to the noise. If sf is omitted RNMR will not prompt for it and will use 1.0 as the scaling factor.
-## NOP
+### NOP
 Null operation
 
 Category: Misc.
@@ -5084,7 +5084,7 @@ Format: `NOP`
 
 Description:
 `NOP` performs no operation.
-## NORM
+### NORM
 Set scale to normalize display
 
 Category: Display Control
@@ -5094,7 +5094,7 @@ Format: `NORM`
 Description:
 `NORM` rescales the data in the visible processing buffer such that the point within the display limits that has the
 largest magnitude has magnitude 1.0.
-## NUC
+### NUC
 Set synthesizer nucleus
 
 Category: Experiment
@@ -5110,7 +5110,7 @@ Description:
 specified RNMR will prompt for it with the current nucleus assigned to the specified channel as a default. The nucleus
 is used to look up the parameters used for tasks such as converting Hz to ppm. In RNMRA this includes determining the
 frequency used for the pulses.
-## NUCD
+### NUCD
 Define nucleus table entry
 
 Category: Frequency Control
@@ -5125,7 +5125,7 @@ default. The PPM to Hz conversion factor in MHz for the nucleus is set by hi. If
 with a default of either the current value if the nucleus already exists or 1.0 if it does not. The reference frequency
 in Hz for the nucleus is set by lo. If lo is omitted RNMR will prompt for it with a default of either the current value
 if the nucleus already exists or 0.0 if it does not.
-## NUCDL
+### NUCDL
 Delete nucleus table entry
 
 Category: Frequency Control
@@ -5136,7 +5136,7 @@ Defaults: none
 
 Description:
 `NUCDL` deletes the nucleus entry table for a nucleus. If nuc is not specified RNMR will prompt for it.
-## NWAIT
+### NWAIT
 Set number of shots to wait
 
 Category: Experiment
@@ -5148,7 +5148,7 @@ Defaults: current
 Description:
 `NWAIT` sets the number of shots to [acquire](syntax#acquisition) when starting acquisition from a macro. If nwait is
 omitted RNMR will prompt for it with the current value as a default.
-## NXTDO
+### NXTDO
 Cycle macro `DO` loop
 
 Category: Control Flow
@@ -5161,9 +5161,9 @@ Description:
 `NXTDO` skips to the beginning of the next iteration of a macro `DO` loop without executing the rest of the commands in
 the loop. `NXTDO` must fall between an instance of `DO` and its matching `ENDDO`.
 
-# O
+## O
 ---
-## OFF
+### OFF
 Set offset from reference frequency
 
 Category: Frequency Control
@@ -5175,7 +5175,7 @@ Defaults: current current
 Description:
 Defines nucleus reference frequency by assigning value to synthesizer offset frequency. The nucleus reference frequency
 modified is that associated with the processing buffer synthesizer.
-## OFFA
+### OFFA
 Set offset from reference frequency
 
 Category: Frequency Control
@@ -5187,7 +5187,7 @@ Defaults: current current
 Description:
 Defines nucleus reference frequency by assigning value to synthesizer offset frequency. The nucleus reference frequency
 modified is that associated with the acquisition buffer synthesizer.
-## ONERR
+### ONERR
 Set macro error handler
 
 Category: Control Flow
@@ -5201,7 +5201,7 @@ Prerequisites: Macro only (MAC)
 Description:
 `ONERR` specifies a statement label to jump to in the event of an error condition or control-z. If no label is provided
 RNMR will not prompt for it and any previous error label set using `ONERR` will be unset.
-## OPNARV
+### OPNARV
 Open archive
 
 Category: Data Storage
@@ -5227,7 +5227,7 @@ lock files are intended to prevent multiple instances of RNMR from trying to wri
 Use of /FORCE might be necessary if RNMR crashed and was unable to delete the lock file. This option should be used
 carefully as opening an archive with write access in multiple instances of RNMR at the same time can lead to corruption
 of data.
-## OPNEXP
+### OPNEXP
 Open export file
 
 Category: Foreign
@@ -5250,7 +5250,7 @@ currently supported by `OPNEXP` are:
 All export commands using this file must use the same format as specified in `OPNEXP`. If no fspec is provided RNMR will
 prompt for a file name with temp.<format> as the default. The file extension of this default is determined by the
 format.
-## OPNIMP
+### OPNIMP
 Open import file
 
 Category: Foreign
@@ -5272,7 +5272,7 @@ currently supported by `OPNIMP` are:
 All import commands using this file must use the same format as specified in `OPNIMP`. If no fspec is provided RNMR will
 prompt for a file name with temp.<format> as the default. The file extension of this default is determined by the
 format.
-## OPNPLT
+### OPNPLT
 Open plot stream 	
 
 Category: Plotting
@@ -5281,7 +5281,7 @@ Format: `OPNPLT`
 
 Description:
 `OPNPLT` opens a plot stream. All plots between `OPNPLT` and `CLSPLT` will appear on one sheet of paper.
-## OPNRD
+### OPNRD
 Open file for reading
 
 Category: File IO
@@ -5293,7 +5293,7 @@ Default: temp.wrt
 Description:
 `OPNRD` opens an ASCII file for read-only access by the command `RDWRT`. If no file is specified RNMR will prompt for it
 with a default of temp.wrt.
-## OPNWRT
+### OPNWRT
 Open file stream for writing
 
 Category: File IO
@@ -5311,9 +5311,9 @@ Description:
 file. By default the file will be overridden if it already exists, but the /APPEND qualifier can be used to make write
 commands append to the file instead.
 
-# P
----
 ## P
+---
+### P
 Set pulse length
 
 Category: Pulse Control
@@ -5327,7 +5327,7 @@ Prerequisites: Pulse program loaded (LOAD); RNMRA only
 Description:
 `P` is an old command for setting the length of pulses. It has been replaced with the `PLS` command and is currently
 simply an alias to it. As such `PLS` should be used in place of `P`.
-## PARB
+### PARB
 Set blocked record parameters
 
 Category: Blocked Records
@@ -5342,7 +5342,7 @@ same as `SET REC` but sets many parameters for a specified direction at once. If
 specified RNMR will prompt for it with the current write record pointer (as displayed and set by `PTRA`) as a default.
 If no direction is specified RNMR will prompt for it with 1 as a default. If any other argument is omitted RNMR will
 prompt for it with the current value as a default.
-## PC
+### PC
 Incremental phase correction
 
 Category: Phasing
@@ -5355,7 +5355,7 @@ Description:
 `PC` performs an incremental phase correction using the provided zero order (dphi0) and first order (dphi1) phase
 factors. The correction is incremental in the sense that it alters the current phase parameters by these values. RNMR
 will not prompt for either of the arguments and will use 0 if they are omitted.
-## PEN
+### PEN
 Select plot pen
 
 Category: Plotting
@@ -5372,7 +5372,7 @@ Description:
 `PEN` selects a pen for plotting. For laser plotters, pen#=1 selects a thin line and pen#=2 selects a thick line. /DATA
 and /LABEL can be used to separately set the pen for the data and the labels in a plot. If no pen parameter is provided
 RNMR will prompt for it with the current value as a default.
-## PGSIZE
+### PGSIZE
 Set page size for plot
 
 Category: Plotting
@@ -5384,7 +5384,7 @@ Defaults: current current
 Description:
 `PGSIZE` sets the size of a plot page in inches. If either xsiz or ysiz are not provided RNMR will prompt for them with
 the current value as a default.
-## PH
+### PH
 Interactive phase correction
 
 Category: Phasing
@@ -5413,7 +5413,7 @@ Z       | Call `ZO` to enable moving the cursor
 Either the zero or first order phase parameter can be changed up or down in steps of 1, 10, or 100. To move the pivot
 point, use Z to call `ZO`, then move the cursor and press enter to exit `ZO`. Finally press P to move the pivot to the
 cursor.
-## PIDL
+### PIDL
 Set lock PID gain factors
 
 Category: Lock
@@ -5432,7 +5432,7 @@ Description:
 `PIDL` sets the proportional and integral gain factors for the lock PID. /P and /I can be used to select which parameter
 to update. If no qualifier is supplied RNMR will set both parameters. If a gain factor to be set is not provided RNMR
 will prompt for it with the current value as a default.
-## PLDEV
+### PLDEV
 Select plotting device
 
 Category: Plotting
@@ -5455,7 +5455,7 @@ If no device is specified RNMR will prompt for it with the current plotting devi
 is changed (device is not the current device) RNMR will set the plotter flag (as set and displayed by `SET PL`) on,
 indicating that plots should be physically printed by the plotting device rather than saved to the plot file (as set and
 displayed by `PLFIL`).
-## PLFIL
+### PLFIL
 Set plot file
 
 Category: Plotting
@@ -5473,7 +5473,7 @@ default.
 If the plot file is changed (fspec is not the current fspec) RNMR will set the plotter flag (as set and displayed by
 `SET PL`) off, indicating that plots should be saved to the plot file rather than physically printed by the plotting
 device (as set and displayed by `PLDEV`).
-## PLOT
+### PLOT
 Plot current 1D display
 
 Category: Plotting
@@ -5483,7 +5483,7 @@ Format: `PLOT`
 Description:
 `PLOT` plots the current one dimensional display to either the plotting device specified by `PLDEV` or the file
 specified by `PLFIL`.
-## PLOTC
+### PLOTC
 Plot 2D contours
 
 Category: Plotting
@@ -5500,7 +5500,7 @@ Description:
 If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
 displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
 plot the first 2D slice of the record.
-## PLS
+### PLS
 Set pulse length
 
 Category: Pulse Control
@@ -5519,7 +5519,7 @@ Description:
 `PLS` sets the length of a pulse indicated by name. /DLY will interpret time in milliseconds while /PLS will interpret
 time in microseconds. The length of a pulse can range from 0 to 1200 microseconds. A pulse program must be loaded using
 `PPEX` in order for `PLS` to be used to set the length of any pulses.
-## PLSIZE
+### PLSIZE
 Set plot size
 
 Category: Plotting
@@ -5531,7 +5531,7 @@ Defaults: current current
 Description:
 `PLSIZE` sets the size of a plot in inches. If either xsiz or ysiz are not provided RNMR will prompt for them with
 the current value as a default.
-## POLAR
+### POLAR
 Convert buffer to polar coordinates
 
 Category: Data Transforms
@@ -5541,7 +5541,7 @@ Format: `POLAR`
 Description:
 `POLAR` converts the data in the visible processing buffer into polar coordinates. The magnitude of the data is placed
 in the real part of the buffer and the phase in the imaginary part of the buffer.
-## POPLST
+### POPLST
 Pop a value from a list
 
 Category: Lists
@@ -5558,7 +5558,7 @@ Description:
 `POPLST` pops a value from the end of a list specified by nam. If no list is specified RNMR will prompt for it with temp
 as a default. /HEAD or /TAIL may be used to determine which end of the list to pop a value from. By default RNMR pops
 from the tail of the list. The value is removed from the list and printed as an informational message.
-## POSL
+### POSL
 Set lock channel center position
 
 Category: Lock
@@ -5572,7 +5572,7 @@ Prerequisites: RNMR lock control; RNMRA only
 Description:
 `POSL` sets the position of the center of the lock. The value must be between -50.0 and 50.0 inclusive. If no position
 is specified RNMR will prompt for it with the current position as a default.
-## PP
+### PP
 Interactive peak picking
 
 Category: Data Analysis
@@ -5596,7 +5596,7 @@ Z       | Call `ZO`
 
 A point is considered a peak if its magnitude is greater than the peak picking threshold (as set and displayed by `TH`)
 and it is either a local maximum or minimum if its intensity is greater or less than zero respectively.
-## PPEX
+### PPEX
 Load a pulse program experiment
 
 Category: Experiment
@@ -5619,7 +5619,7 @@ title is usually a brief description of the function of the pulse program.
 
 The /INIT qualifier causes the pulse program to be initialized by loading default values into the pulse programmer and
 is active by default.
-## PPFLG
+### PPFLG
 Set state of pulse program flag
 
 Category: Experiment
@@ -5633,7 +5633,7 @@ Prerequisites: Pulse program loaded (LOAD); RNMRA only
 Description:
 `PPFLG` is an old command for setting the state of pulse program flags. It has been replaced with the `FLAG` command and
 is currently simply an alias to it. As such `FLAG` should be used in place of `PPFLG`.
-## PPMD
+### PPMD
 Set pulse program phase mode
 
 Category: Pulse Control
@@ -5677,7 +5677,7 @@ cycle out to the active phase cycle length with 16 modes per line.
 The /BLK qualifier is used to setup additional phase shifts for different blocks of acquisition. The number of blocks
 can be set using `NAMD /BLK`. This capability is typically used to set up phase differences used for the different steps
 in hypercomplex acquisition of multi-dimensional spectra.
-## PRGLST
+### PRGLST
 Purge list
 
 Category: Lists
@@ -5689,7 +5689,7 @@ Defaults: temp
 Description:
 `PRGLST` removes all of the values from list nam. If nam is not specified RNMR will prompt for it with a default of
 temp.
-## PRGTBL
+### PRGTBL
 Purge name table
 
 Category: Tables
@@ -5701,7 +5701,7 @@ Defaults: temp
 Description:
 `PRGTBL` removes all of the entries from name table nam. If nam is not specified RNMR will prompt for it with a default
 of temp.
-## PROF
+### PROF
 Calculate profile of 2D data
 
 Category: Data Manipulation
@@ -5717,7 +5717,7 @@ Each point in the profile will be set to the maximum value at that point along d
 If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
 displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
 calculate the profile of the first 2D slice of the record.
-## PROFB
+### PROFB
 Calculate profile of blocked record along a dimension
 
 Category: Data Manipulation
@@ -5740,7 +5740,7 @@ If the specified destination record is not free the next available record will b
 will be printed as an informational message. The destination record will have the same dimensionality and size as the
 source record except that the profile dimension will have size 1. Each point in the destination record will be set to
 the maximum value at that point across all of the blocks along the specified dimension in the source record.
-## PROG
+### PROG
 Identify program
 
 Category: Misc.
@@ -5750,7 +5750,7 @@ Format: `PROG`
 Description:
 `PROG` prints the identity of the program (RNMRA or RNMRP) and the modification time of the corresponding file to the
 console.
-## PROJ
+### PROJ
 Calculate projection of 2D data
 
 Category: Data Manipulation
@@ -5766,7 +5766,7 @@ Each point in the projection will be set to the sum of the values at that point 
 If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
 displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
 calculate the profile of the first 2D slice of the record.
-## PROJB
+### PROJB
 Calculate projection of blocked record along a dimension
 
 Category: Data Manipulation
@@ -5790,7 +5790,7 @@ will be printed as an informational message. The destination record will have th
 source record except that the projection dimension will have size 1. Each point in the destination record will be set to
 the sum of the values at that point across all of the blocks along the specified dimension in the source record.
 of the blocks.
-## PRTARG
+### PRTARG
 Print arguments
 
 Category: Misc.
@@ -5801,7 +5801,7 @@ Defaults: none none none
 
 Description:
 `PRTARG` prints its arguments to standard out.
-## PS
+### PS
 Set phase
 
 Category: Phasing
@@ -5815,7 +5815,7 @@ Description:
 prompt for them and will use the current global values. The global values are updated anytime a spectrum is phased. Thus
 `PS` with no arguments can be used to phase a new data set after `FT` to the same phase values as the last thing that
 was phased.
-## PSHLST
+### PSHLST
 Push a value to a list
 
 Category: Lists
@@ -5832,7 +5832,7 @@ Description:
 `PSHLST` pushes a value to the end of a list specified by nam. If no list is specified RNMR will prompt for it with temp
 as a default. If the value is omitted RNMR will prompt for it with no default. /HEAD or /TAIL may be used to determine
 which end of the list to push a value to. By default RNMR pushes to the tail of the list.
-## PSUBV
+### PSUBV
 Subtract polar buffers
 
 Category: Buffer Arithmetic
@@ -5851,7 +5851,7 @@ dst.
 If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
-## PSX
+### PSX
 Set transmitter phase
 
 Category: Pulse Control
@@ -5865,7 +5865,7 @@ Prerequisites: Acquisition stopped (HALT); RNMRA only
 Description:
 `PSX` sets a transmitter phase. If chan or psx are omitted RNMR will prompt for them with a default of 1. If phase is
 omitted RNMR will prompt for it with the current phase of that psx on that channel as a default.
-## PSXEX
+### PSXEX
 Load transmitter phase program from PAM memory.
 
 Category: Pulse Control
@@ -5873,7 +5873,7 @@ Category: Pulse Control
 Format: `PSXEX`
 
 Defaults:
-## PTRA
+### PTRA
 Set read and write archive pointers
 
 Category: Data Storage
@@ -5887,7 +5887,7 @@ Description:
 default values for most commands involving records. If either pointer is omitted RNMR will prompt for it with the
 current value as a default. The read and write archive pointers are also set by most commands that read from or write to
 a record respectively.
-## PTRB
+### PTRB
 Set read and write blocked record pointers
 
 Category: Blocked Records
@@ -5904,7 +5904,7 @@ and set by `PTRA`) as a default. The record must be a blocked record. If either 
 prompt for it with the current value as a default. The read and write blocked record pointers are also set by most
 commands that read from or write to the blocked record respectively. Most commands that rely on these pointers will
 increment them before use, so entering 0 for either pointer indicates to start from the beginning of the blocked record.
-## PWR
+### PWR
 Set transmitter coarse power level
 
 Category: Experiment
@@ -5921,7 +5921,7 @@ value of 1. Each transmitter has two coarse power levels that can be used in a p
 to pwrh and an index of 2 indicates pwrl. If no index is specified RNMR will prompt for it with a default of 1. The
 power level must be between 0.0 and 100.0 inclusive. If no power level is provided RNMR will prompt for it with the
 current value as a default.
-## PWRL
+### PWRL
 Set lock channel power level
 
 Category: Lock
@@ -5935,7 +5935,7 @@ Prerequisites: RNMR lock control; RNMRA only
 Description:
 `PWRL` sets the lock channel power level. The power level must be between 0.0 and 100.0 inclusive. If no power level is
 provided RNMR will prompt for it with the current value as a default.
-## PWX
+### PWX
 Set transmitter fine power level
 
 Category: Pulse Control
@@ -5950,7 +5950,7 @@ Description:
 `PWX` sets the fine power level for a pulse on a given channel. If either the channel or the name of the power level to
 set is omitted RNMR will prompt for them with a default of 1. The power level must be between 0.0 and 100.0 inclusive.
 If no power level is provided RNMR will prompt for it with the current value as a default.
-## PWXEX
+### PWXEX
 Load power program
 
 Category: Pulse Control
@@ -5959,9 +5959,9 @@ Format: `PWXEX`
 
 Defaults:
 
-# Q
+## Q
 ---
-## QC
+### QC
 Perform software quadrature phase correction
 
 Category: Data Manipulation
@@ -5974,7 +5974,7 @@ Description:
 `QC` performs software quadrature phase correction on an FID in the visible processing buffer. The cross correlation
 coefficient between the real and imaginary parts of the buffer is obtained and the appropriate fraction of the imaginary
 part subtracted from the real part.
-## QUIT
+### QUIT
 Quit acquisition
 
 Category: Acquisition
@@ -5985,9 +5985,9 @@ Description:
 `QUIT` Halts acquisition after the next complete phase cycle. Pressing Q while `QUIT` is waiting to finish a phase cycle
 causes RNMR to halt immediately after the next shot.
 
-# R
+## R
 ---
-## RCVMIX
+### RCVMIX
 Set receiver quadrature mixing
 
 Category: Experiment
@@ -6006,7 +6006,7 @@ Description:
 `RCVMIX` sets the receiver mix correction values for the real and imaginary channels. This operation should generally
 only be performed by the staff. /REAL and /IMAG determine whether to set the real or imaginary value. If no qualifier is
 used both will be set.
-## RCVOFF
+### RCVOFF
 Set receiver offset
 
 Category: Experiment
@@ -6025,7 +6025,7 @@ Description:
 `RCVOFF` sets the receiver offset correction values for the real and imaginary channels. This operation should generally
 only be performed by the staff. /REAL and /IMAG determine whether to set the real or imaginary value. If no qualifier is
 used both will be set.
-## RD
+### RD
 Set recycle delay
 
 Category: Experiment
@@ -6039,7 +6039,7 @@ Prerequisites: RNMRA only
 Description:
 `RD` sets the recycle delay in seconds. The recycle delay is precise to the nearest tenth of a second. If no value is
 provided RNMR will prompt for it with the current recycle delay as a default.
-## RDARV
+### RDARV
 Read archive name
 
 Category: Data Storage
@@ -6058,7 +6058,7 @@ default of 1. The name can be saved in either a global or local argument (as sel
 named argnam. By default it will be saved to a local variable. If no argnam is provided RNMR will not prompt for it and
 will print the archive name as an informational message instead of saving it to an argument. /ERR can be used to set a
 label to jump to in the event that the archive name cannot be read.
-## RDLST
+### RDLST
 Read list from file
 
 Category: Lists
@@ -6072,7 +6072,7 @@ Description:
 already been allocated using `CRTLST` prior to using `RDLST`. If no list name is specified RNMR will prompt for it with
 default of temp. If no file is specified RNMR will prompt for it with the list name as a default. If the file name has
 no extension RNMR will add .wrt to it.
-## RDPPS
+### RDPPS
 Read PP symbol
 
 Category: Pulse Program Symbols
@@ -6094,7 +6094,7 @@ either a global or local argument (as selected by the /LCL or /GBL qualifiers) n
 to a local variable. If no argnam is provided RNMR will not prompt for it and will print the value as an informational
 message instead of saving it to an argument. /ERR can be used to set a label to jump to in the event that the pulse
 program symbol value cannot be read.
-## RDPPSNAM
+### RDPPSNAM
 Read PP symbol name
 
 Category: Pulse Program Symbols
@@ -6116,7 +6116,7 @@ omitted RNMR will prompt for it with a default of 1. The name can be saved in ei
 selected by the /LCL or /GBL qualifiers) named argnam. By default it will be saved to a local variable. If no argnam is
 provided RNMR will not prompt for it and will print the name as an informational message instead of saving it to an
 argument. /ERR can be used to set a label to jump to in the event that the pulse program symbol name cannot be read.
-## RDSTR
+### RDSTR
 Read tokens from a string
 
 Category: Misc.
@@ -6135,7 +6135,7 @@ local arguments (as selected by the /LCL or /GBL qualifiers) whose names are set
 first token to save. By default this is set to 1 and the first token is saved to nam1 and the second to nam2 and so on.
 It can be set to higher values so as to skip some number of tokens. RNMR will not prompt for any of the arguments to
 `RDSTR`.
-## RDTBL
+### RDTBL
 Read name table values from file
 
 Category: Tables
@@ -6149,7 +6149,7 @@ Description:
 must have already been allocated using `CRTTBL` prior to using `RDTBL`. If no table name is specified RNMR will prompt
 for it with a default of temp. If no file is specified RNMR will prompt for it with the table name as a default. If the
 file name has no extension RNMR will add .wrt to it.
-## RDWRT
+### RDWRT
 Read line from file
 
 Category: File IO
@@ -6176,7 +6176,7 @@ will instead cause an error.
 
 After `RDWRT` has executed the file position will be have moved such that calling `RDWRT` will read the next line. To
 return to the beginning of the file use `RWDRD`.
-## REMGBL
+### REMGBL
 Remove global arguments
 
 Category: Arguments
@@ -6189,7 +6189,7 @@ Description:
 `REMGBL` removes all global variables that alphabetically fall between first and last inclusive. If first is not
 specified RNMR will prompt for it with a default of temp. If last is not specified RNMR will not prompt for it and will
 remove only an argument whose name exactly matches first.
-## REMLCL
+### REMLCL
 Remove local arguments
 
 Category: Arguments
@@ -6202,7 +6202,7 @@ Description:
 `REMLCL` removes all local variables that alphabetically fall between first and last inclusive. If first is not
 specified RNMR will prompt for it with a default of temp. If last is not specified RNMR will not prompt for it and will
 remove only an argument whose name exactly matches first.
-## REMLST
+### REMLST
 Remove list value
 
 Category: Lists
@@ -6215,7 +6215,7 @@ Description:
 `REMLST` removes the value at position ind from list nam. If nam is not specified RNMR will prompt for it with a default
 of temp. If ind is not specified RNMR will prompt for it with a default of 1. The specified ind should not exceed the
 number of values in the list.
-## REMMAC
+### REMMAC
 Remove macro table entry
 
 Category: Macros
@@ -6227,7 +6227,7 @@ Defaults: temp
 Description:
 `REMMAC` removes macro nam from the macro table. The macro will be removed from RNMR and cannot be used without being
 reloaded, but unlike `DLTMAC` the macro file will not be deleted.
-## REMPPS
+### REMPPS
 Remove pulse programmer symbols
 
 Category: Pulse Program Symbols
@@ -6240,7 +6240,7 @@ Description:
 `REMPPS` removes all pulse programmer symbols of a specified type that alphabetically fall between first and last
 inclusive. If typ or first is not specified RNMR will prompt for it with a default of temp. If last is not specified
 RNMR will not prompt for it and will remove only a pulse programmer symbol whose name exactly matches first.
-## REMSYM
+### REMSYM
 Remove symbols
 
 Category: Arguments
@@ -6253,7 +6253,7 @@ Description:
 `REMSYM` removes all symbols that alphabetically fall between first and last inclusive. If first is not specified RNMR
 will prompt for it with a default of temp. If last is not specified RNMR will not prompt for it and will remove only a
 symbol whose name exactly matches first.
-## REMTBL
+### REMTBL
 Remove name table entries
 
 Category: Tables
@@ -6266,7 +6266,7 @@ Description:
 `REMTBL` removes all entries in name table nam that alphabetically fall between first and last inclusive. If nam or
 first are not specified RNMR will prompt for them with a default of temp. If last is not specified RNMR will not prompt
 for it and will remove only an entry whose name exactly matches first.
-## RENMAC
+### RENMAC
 Rename macro
 
 Category: Macros
@@ -6277,7 +6277,7 @@ Defaults: temp temp
 
 Description:
 `REMMAC` renames macro nam1 to nam2. If either name is omitted RNMR will prompt for it with a default of temp.
-## RGPIB
+### RGPIB
 Read string from GPIB device
 
 Category: Hardware
@@ -6290,7 +6290,7 @@ Prerequisites: RNMRA only
 
 Description:
 `RGPIB` reads a string from a GPIB device. If no device is specified RNMR will prompt for one with no default.
-## RMS
+### RMS
 Calculate root-mean-square value of data
 
 Category: Data Analysis
@@ -6308,7 +6308,7 @@ Description:
 is omitted RNMR will not prompt for it and will use the current left or right display limit. /REAL or /IMAG will compute
 the rms of the real or imaginary part of the buffer respectively. /COMPLEX will compute the rms of the magnitude of the
 buffer. The computed value will be printed as an informational message.
-## ROT
+### ROT
 Rotate spectrum
 
 Category: Data Manipulation
@@ -6321,7 +6321,7 @@ Description:
 `ROT` rotates the visible processing buffer by an amount (drot) specified in the current units of that buffer. A portion
 of the buffer drot wide is moved from the left edge of the buffer to the right edge of the buffer. If drot is not
 specified RNMR will prompt for it with a default that is equal to a single point rotation.
-## ROTP
+### ROTP
 Rotate spectrum
 
 Category: Data Manipulation
@@ -6334,7 +6334,7 @@ Description:
 `ROTP` rotates the visible processing buffer by an amount (nrot) specified in points. A portion of the buffer nrot
 points wide is moved from the left edge of the buffer to the right edge of the buffer. If nrot is not specified RNMR
 will prompt for it with a default of 1.
-## RPPSB
+### RPPSB
 Read data byte from pulse programmer spectrometer bus
 
 Category: Hardware
@@ -6348,7 +6348,7 @@ Prerequisites: Pulse programmer spectrometer bus control implemented (CGFSB2); R
 Description:
 `RPPSB` reads a data byte from the pulse programmer spectrometer bus. The adr parameter specifies the address to read
 the byte from and may range of 0 to 255 inclusive. If adr is omitted RNMR will prompt for it with a default of 0.
-## RPTDO
+### RPTDO
 Repeat iteration of macro `DO` loop
 
 Category: Control Flow
@@ -6361,7 +6361,7 @@ Description:
 `RPTDO` repeats an iteration of a macro `DO` loop. It returns to the beginning of the loop without executing the rest of
 the commands in the loop or incrementing the loop counter. Take care as this behavior can easily lead to an infinite
 loop. `RPTDO` must fall between an instance of `DO` and its matching `ENDDO`.
-## RRKC
+### RRKC
 Read data from an RKC device
 
 Category: Hardware
@@ -6374,7 +6374,7 @@ Prerequisites: RKC device implemented; RNMRA only
 
 Description:
 `RRKC` reads data from a RKC device. If no device is specified RNMR will prompt for one with no default.
-## RSB
+### RSB
 Read data byte from spectrometer bus
 
 Category: Hardware
@@ -6388,7 +6388,7 @@ Prerequisites: Spectrometer bus control implemented (CGFSB1); RNMRA only
 Description:
 `RSB` reads a data byte from the spectrometer bus. The adr parameter specifies the address to read the byte from and may
 range of 0 to 255 inclusive. If adr is omitted RNMR will prompt for it with a default of 0.
-## RSTBUF
+### RSTBUF
 Restore buffer values from file
 
 Category: Misc.
@@ -6401,7 +6401,7 @@ Description:
 `RSTBUF` restores buffer values from a file fspec written using `SAVBUF` and applies them to a
 [processing buffer](syntax#buffers). If no fspec is provided RNMR will prompt for it with temp as a default. If no
 buffer is specified RNMR will not prompt for it and will apply the loaded values to the visible processing buffer.
-## RSTGBL
+### RSTGBL
 Restore global arguments from file
 
 Category: Arguments
@@ -6414,7 +6414,7 @@ Description:
 `RSTGBL` restores global arguments from a file fspec written using `SAVGBL`. If no fspec is provided RNMR will prompt
 for it with temp as a default. Note that global arguments from the file will overwrite existing arguments with the same
 name.
-## RSTHTR
+### RSTHTR
 Restore heater values from file
 
 Category: Heater
@@ -6428,7 +6428,7 @@ Prerequisites: RNMR heater control; RNMRA only
 Description:
 `RSTHTR` restores heater values from a file fspec written using `SAVHTR`. If no fspec is provided RNMR will prompt
 for it with temp as a default.
-## RSTLCK
+### RSTLCK
 Restore lock values from file
 
 Category: Lock
@@ -6442,7 +6442,7 @@ Prerequisites: RNMR lock control; RNMRA only
 Description:
 `RSTLCK` restores lock values from a file fspec written using `SAVLCK`. If no fspec is provided RNMR will prompt
 for it with temp as a default.
-## RSTLST
+### RSTLST
 Restore lists from file
 
 Category: Lists
@@ -6455,7 +6455,7 @@ Description:
 `RSTLST` restores all lists from a file fspec written using `SAVLST`. If no fspec is provided RNMR will prompt for it
 with temp as a default. `RSTLST` will replace the full set of lists and their values as viewed by `CATLST /VAL` with the
 contents of fspec. Any lists that were already populated will be lost.
-## RSTSHM
+### RSTSHM
 Restore shim values from file
 
 Category: Shim
@@ -6469,7 +6469,7 @@ Prerequisites: RNMR shim control; RNMRA only
 Description:
 `RSTSHM` restores shim values from a file fspec written using `SAVSHM`. If no fspec is provided RNMR will prompt
 for it with temp as a default.
-## RSTTBL
+### RSTTBL
 Restore name tables from file
 
 Category: Tables
@@ -6482,7 +6482,7 @@ Description:
 `RSTTBL` restores all name tables from a file fspec written using `SAVTBL`. If no fspec is provided RNMR will prompt for
 it with temp as a default. `RSTTBL` will replace the full set of name tables and their values as viewed by `CATTBL /VAL`
 with the contents of fspec. Any tables that were already populated will be lost.
-## RTNARG
+### RTNARG
 Renames return arguments
 
 Category: Arguments
@@ -6496,7 +6496,7 @@ Description:
 stored in local arguments RTN$1, RTN$2, RT$3 etc. `RTNARG` renames these arguments to nam1, nam2, nam3 etc. The number
 of names need not match the number of returned arguments. Any names with no corresponding returned local will be
 ignored.
-## RWDRD
+### RWDRD
 Rewind file opened by `OPNRD`
 
 Category: File IO
@@ -6506,7 +6506,7 @@ Format: `RWDRD`
 Description:
 `RWDRD` rewinds a file that was opened by `OPNRD`. This returns to the beginning of the file such that the next call to
 `RDWRT` will read the first line in the file.
-## RWDWRT
+### RWDWRT
 Rewind file opened by `OPNWRT`
 
 Category: File IO
@@ -6517,9 +6517,9 @@ Description:
 `RWDWRT` rewinds a file that was opened by `OPNWRT`. This returns to the beginning of the file such that the next call
 to `WRT` will write to the beginning of the file.
 
-# S
+## S
 ---
-## SA
+### SA
 Save data to archive record
 
 Category: Data Storage
@@ -6534,7 +6534,7 @@ Description:
 (as displayed and set by `PTRA`). The record must be in an archive which RNMR has write access to. `SA` cannot write to
 scratch records which must be written using `SS` or to blocked records which must be written using `SB`. If no buffer is
 specified RNMR will not prompt for it and will save the data from the visible processing buffer.
-## SAV
+### SAV
 Save data and parameters to averager
 
 Category: Acquisition
@@ -6550,7 +6550,7 @@ different experimental parameters can be acquired at once, without the need to s
 `SAV` transfers data from a processing buffer to one of these blocks. If no block is specified RNMR will not prompt for
 it and will transfer to block 1. If no buffer is specified RNMR will not prompt for it and will transfer from the
 visible processing buffer.
-## SAVARV
+### SAVARV
 Save archive
 
 Category: Data Storage
@@ -6564,7 +6564,7 @@ Description:
 default of 1. Archives will be automatically saved in a number of situations, but it can be useful to manually save an
 archive especially when opening an archive in read only mode in RNMRP while it is open with write access in RNMRA. Using
 `SAVARV` in RNMRA and then `UPDARV` in RNMRP ensures that all changes made from RNMRA are visible in RNMRP.
-## SAVBUF
+### SAVBUF
 Save buffer value to file
 
 Category: Misc.
@@ -6577,7 +6577,7 @@ Description:
 `SAVBUF` saves values from a specified [processing buffer](syntax#buffers) to a file on disk fspec which can be later be
 loaded using `RSTBUF`. If no file is specified RNMR will prompt for it with temp as a default. If no buffer is specified
 RNMR will not prompt for it and will save values from the visible processing buffer.
-## SAVGBL
+### SAVGBL
 Save global arguments to file
 
 Category: Arguments
@@ -6589,7 +6589,7 @@ Defaults: temp
 Description:
 `SAVGBL` saves the value of all current global arguments to a file on disk fspec which can be later be loaded using
 `RSTGBL`. If no file is specified RNMR will prompt for it with temp as a default.
-## SAVHTR
+### SAVHTR
 Save heater values to file
 
 Category: Heater
@@ -6603,7 +6603,7 @@ Prerequisites: RNMR heater control; RNMRA only
 Description:
 `SAVHTR` saves heater values to a file on disk fspec which can be later be loaded using `RSTHTR`. If no file is
 specified RNMR will prompt for it with temp as a default.
-## SAVLCK
+### SAVLCK
 Save lock values to file
 
 Category: Lock
@@ -6617,7 +6617,7 @@ Prerequisites: RNMR lock control; RNMRA only
 Description:
 `SAVLCK` saves lock values to a file on disk fspec which can be later be loaded using `RSTLCK`. If no file is
 specified RNMR will prompt for it with temp as a default.
-## SAVLOG
+### SAVLOG
 Save logging to file
 
 Category: Misc.
@@ -6631,7 +6631,7 @@ Prerequisites: Logging enabled
 Description:
 `SAVLOG` saves the contents of the logging window to a file on disk fspec. If no file is specified RNMR will prompt for
 it with temp as a default. `SAVLOG` cannot be used unless logging is enabled (`SET LOG ON`).
-## SAVLST
+### SAVLST
 Save lists to file
 
 Category: Lists
@@ -6643,7 +6643,7 @@ Defaults: temp
 Description:
 `SAVLST` saves all current lists to a file on disk fspec which can be later be loaded using `RSTLST`. If no file is
 specified RNMR will prompt for it with temp as a default.
-## SAVSHM
+### SAVSHM
 Save shim values to file
 
 Category: Shim
@@ -6657,7 +6657,7 @@ Prerequisites: RNMR shim control; RNMRA only
 Description:
 `SAVSHM` saves shim values to a file on disk fspec which can be later be loaded using `RSTSHM`. If no file is
 specified RNMR will prompt for it with temp as a default.
-## SAVTBL
+### SAVTBL
 Save name tables to file
 
 Category: Tables
@@ -6669,7 +6669,7 @@ Defaults: temp
 Description:
 `SAVTBL` saves all current name tables to a file on disk fspec which can be later be loaded using `RSTTBL`. If no file
 is specified RNMR will prompt for it with temp as a default.
-## SB
+### SB
 Save data to blocked record
 
 Category: Data Storage
@@ -6698,7 +6698,7 @@ size of the blocked record along direction 1. In order for a slice to be read it
 record. If a requested slice cannot be written for the above reasons all of the requested slices that come before it
 will still be successfully saved. The write blocked record pointer (as displayed and set by `PTRB`) will be updated to
 point to the last slice written.
-## SC
+### SC
 Scale data
 
 Category: Display Control
@@ -6716,7 +6716,7 @@ Description:
 data by the value of sf. /ABS sets the absolute scale factor of the data. After scaling RNMR will print the new absolute
 scale factor as an informational message. If sf is omitted RNMR will not prompt for it and will use a scale factor of
 1.0.
-## SEL
+### SEL
 Begin macro `SEL` block
 
 Category: Control Flow
@@ -6738,7 +6738,7 @@ it with no default. RNMR iterates sequentially through each instance of `CASE` b
 `CASE` the value of argument nam is compared to the value of the `CASE`. The first time a match is found all of the
 commands are executed that fall between that `CASE` and either the next `CASE` or `ENDSEL` whichever comes first. Then
 execution proceeds from the line after `ENDSEL`
-## SET
+### SET
 Set system state
 
 Category: Misc.
@@ -6862,7 +6862,7 @@ STEP   | Difference between position of sequential points
 SYN    | Synthesizer associated with direction
 TITLE  | Title of record (single parameter for all directions)
 
-## SETIDN
+### SETIDN
 Set identification values
 
 Category: Display Control
@@ -6878,7 +6878,7 @@ Description:
 from within a macro and the text set with it will be unset when the macro exits. The two arguments idn1 and idn2 are the
 text for the two available identification fields. If these arguments are omitted RNMR will not prompt for them and will
 not change the corresponding fields.
-## SETV
+### SETV
 Set data values between limits
 
 Category: Data Manipulation
@@ -6898,7 +6898,7 @@ RNMR will not prompt for them and will use the current display limits. The limit
 the visible processing buffer. The /REAL, /IMAG, and /COMPLEX qualifiers select whether to set the real part, imaginary
 part, or both parts of the buffer to the specified value. The default behavior is to set the currently visible part of
 buffer (as displayed and set by `BUF`).
-## SETVP
+### SETVP
 Set data values for specified points
 
 Category: Data Manipulation
@@ -6919,7 +6919,7 @@ the visible processing buffer. If the number of points to set, npt, is omitted R
 a single point. The /REAL, /IMAG, and /COMPLEX qualifiers select whether to set the real part, imaginary part, or both
 parts of the buffer to the specified value. The default behavior is to set the currently visible part of buffer (as
 displayed and set by `BUF`).
-## SG
+### SG
 Start acquisition without accumulation
 
 Category: Acquisition
@@ -6931,7 +6931,7 @@ Prerequisites: Experiment loaded (LOAD); Acquisition stopped (HALT); RNMRA only
 Description:
 `SG` starts acquisition but does not accumulate data from multiple shots. An indefinite number of scans will be
 performed until acquisition is halted manually with `QUIT`.
-## SHELL
+### SHELL
 Spawn shell
 
 Category: Misc.
@@ -6940,7 +6940,7 @@ Format: `SHELL`
 
 Description:
 `SHELL` spawns a new terminal from which shell commands can be executed.
-## SHFT
+### SHFT
 Shift data
 
 Category: Data Manipulation
@@ -6954,7 +6954,7 @@ Description:
 is not specified RNMR will prompt for it with the current step, the value corresponding to a single point, as a default.
 Shift values greater than zero will shift to the left while values less than zero will shift to the right. The portion
 of the buffer left empty after the shift will be filled with zeros.
-## SHFTP
+### SHFTP
 Shift data by points
 
 Category: Data Manipulation
@@ -6967,7 +6967,7 @@ Description:
 `SHFTP` shifts the data in the visible processing buffer by an amount shft specified in points. If shft is not specified
 RNMR will prompt for it with 1 as a default. Shift values greater than zero will shift to the left while values less
 than zero will shift to the right. The portion of the buffer left empty after the shift will be filled with zeros.
-## SHM
+### SHM
 Set shim value
 
 Category: Shim
@@ -6982,7 +6982,7 @@ Description:
 `SHM` sets the value of a particular shim specified by name. If name is omitted RNMR will prompt for it with no default.
 If value is omitted RNMR will prompt for it with the current value of the specified shim as a default. The shim value
 may be between -100.0 and 100.0 inclusive.
-## SHMCTL
+### SHMCTL
 Open interactive shim controls
 
 Category: Shim
@@ -6994,7 +6994,7 @@ Prerequisites: RNMR shim control; RNMRA only
 Description:
 `SHMCTL` opens a pop up window for viewing and adjusting shim values. The same window is available via the shim option
 in the controls drop down menu.
-## SHOW
+### SHOW
 Show information
 
 Category: Misc.
@@ -7027,8 +7027,8 @@ REC rec dir item
 
 `SHOW REC` displays the value of various parameters in the title information of a record. It takes several arguments.
 The first is a record to show a parameter for. Records in archives other than 1 can be specified by either pre-pending
-the archive number and a ":" or specifying numbers larger than 200. For example record # in archive 2 can be specified
-either as 2:# or by adding 200 to #. The second parameter is a direction which may be an integer from 1 and the number
+the archive number and a ":" or specifying numbers larger than 200. For example record ## in archive 2 can be specified
+either as 2:## or by adding 200 to #. The second parameter is a direction which may be an integer from 1 and the number
 of dimensions the record has. The third argument is which item to show the value of. Some items have only a single value
 for the entire record which will be displayed regardless of which dimension is specified. The following items may be
 displayed with `SHOW REC`:
@@ -7058,7 +7058,7 @@ TITLE  | Title of record (single parameter for all directions)
 
 In RNMRA the BUFA option is also available. BUFA behaves exactly the same as BUF but displays information about the
 acquisition buffer instead of the visible processing buffer.
-## SINEB
+### SINEB
 Perform Sine-bell apodization
 
 Category: Apodization
@@ -7077,7 +7077,7 @@ omitted RNMR will prompt for it with 0.0 as a default. The second argument, time
 sinebell reaches 0 thereby stretching or squeezing the sinebell. All points from time on are set to 0. If time is
 omitted RNMR will prompt for it with (size+1)\*step as a default. This default will end the sinebell at the last data
 point. RNMR multiplies the time domain data in the visible processing buffer by the specified sinebell.
-## SIZE
+### SIZE
 Set acquisition size
 
 Category: Experiment
@@ -7091,7 +7091,7 @@ Prerequisites: Acquisition stopped (HALT); RNMRA only
 Description:
 `SIZE` sets the number of point in a signal to be acquired. If size is omitted RNMR will prompt for it with the current
 size as a default. The value of size must be between 1 and 32768 inclusive.
-## SIZEB
+### SIZEB
 Displays size of blocked record
 
 Category: Blocked Records
@@ -7109,7 +7109,7 @@ of dimensions in the blocked record RNMR will print the size and allocated size 
 as informational messages. If dir is 0 RNMR will print the number of segments in the record and the number of allocated
 segments. If dir is * RNMR will print the total number of blocks and total number of allocated blocks in the record. No
 other values of dim are permitted.
-## SIZLST
+### SIZLST
 Display size of list
 
 Category: Lists
@@ -7121,7 +7121,7 @@ Defaults: temp
 Description:
 `SIZLST` prints the size of a list and its allocated size as informational messages. If no list is specified RNMR will
 prompt for it with a default of temp.
-## SIZTBL
+### SIZTBL
 Display size of name table
 
 Category: Tables
@@ -7133,7 +7133,7 @@ Defaults: temp
 Description:
 `SIZTBL` prints the size of a name table and its allocated size as informational messages. If no table is specified RNMR
 will prompt for it with a default of temp.
-## SP
+### SP
 Display archive space information
 
 Category: Data Storage
@@ -7163,7 +7163,7 @@ MAX  | Maximum allowable size | Maximum allowable number of records
 USED | Size of filled space | Number of records in use
 
 By default `SP` uses /DATA /USED and prints the size of the filled space in blocks as an informational message.
-## SPLN
+### SPLN
 Spline baseline fix spectrum
 
 Category: Baseline
@@ -7181,7 +7181,7 @@ list is specified RNMR will prompt for it with temp as a default. `SPLN` can pro
 than `BF` if the baseline of a spectrum is not linear. The baseline subtraction will be affected by the selection of the
 list of points used to fit the spline, so it is important to choose points that are not on peaks and cover all of the
 features of the baseline.
-## SQZ
+### SQZ
 Squeeze archive (de-allocate unused space)
 
 Category: Data Storage
@@ -7194,7 +7194,7 @@ Description:
 `SQZ` squeezes an archive to reduce the size of the file stored on disk. After `SQZ` the number of records and data
 blocks allocated in the file will match the number of used records and data blocks (`SP /USED` will equal `SP /FILE`).
 If no [archive number](syntax#archives) is specified RNMR will prompt for it with 1 as a default.
-## SREF
+### SREF
 Save processing buffer reference to nucleus table
 
 Category: Frequency Control
@@ -7207,7 +7207,7 @@ Description:
 `SREF` stores the reference frequency (or frequencies) in the visible processing buffer in the nucleus table. If nuc is
 * `SREF` saves the frequency for every channel. Otherwise a valid nucleus must be passed. If nuc is omitted RNMR will
 prompt for it with a default of \*.
-## SREFA
+### SREFA
 Save acquisition buffer reference to nucleus table
 
 Category: Frequency Control
@@ -7222,7 +7222,7 @@ Description:
 `SREFA` stores the reference frequency (or frequencies) in the acquisition buffer in the nucleus table. If nuc is *
 `SREFA` saves the frequency for every channel. Otherwise a valid nucleus must be passed. If nuc is omitted RNMR will
 prompt for it with a default of \*.
-## SS
+### SS
 Save data to scratch record
 
 Category: Data Storage
@@ -7238,7 +7238,7 @@ specified RNMR will not prompt for it and will use record 1. The specified scrat
 `SS` to save data to it. `SS` cannot write to archive records which must be written using `SA` or to blocked records
 which must be written using `SB`. If no buffer is specified RNMR will not prompt for it and will save the data from the
 visible processing buffer.
-## STK
+### STK
 Add to plot stream stack
 
 Category: Plotting
@@ -7253,7 +7253,7 @@ Description:
 plot in X and Y by the values set by `STKOFF`. There are limits to the area of a plot which `STK` cannot exceed. Reduce
 the size of the plots using `PLSIZE` and offsets using `STKOFF` to ensure that all of the stack plots fit within a 9x6
 area.
-## STKOFF
+### STKOFF
 Set stack plot offset
 
 Category: Plotting
@@ -7267,7 +7267,7 @@ Prerequisites: Plot stream closed
 Description:
 `STKOFF` sets the offset values in inches to be used when creating stack plots with `STK`. If either offset is omitted
 RNMR will prompt for it with the current value as a default. `STK` cannot be used between `OPNPLT` and `CLSPLT`.
-## STR
+### STR
 Perform string operation
 
 Category: Misc.
@@ -7297,7 +7297,7 @@ Qualifier | Description
 /REPL     | Replace region between beg and end with str
 /UC       | Convert characters from beg to end to upper case
 
-## SUBV
+### SUBV
 Subtract data buffers
 
 Category: Buffer Arithmetic
@@ -7314,7 +7314,7 @@ Description:
 If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
-## SW
+### SW
 Set sweep width
 
 Category: Experiment
@@ -7330,7 +7330,7 @@ Description:
 freq is omitted RNMR will prompt for it with the current sweep width as a default. The sweep width is in the current
 frequency units. Due to limitations of the hardware RNMR may adjust the desired sweep width to the closest possible
 sweep width. If such an adjustment occurs RNMR will print an informational message containing the adjusted sweep width.
-## SWAPV
+### SWAPV
 Swap data buffers
 
 Category: Buffer Arithmetic
@@ -7348,7 +7348,7 @@ Description:
 If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
-## SWL
+### SWL
 Set lock channel sweep width
 
 Category: Lock
@@ -7362,7 +7362,7 @@ Prerequisites: RNMR lock control; RNMRA only
 Description:
 `SWL` sets lock sweep width. If width is omitted RNMR will prompt for it with the current value as a default. The sweep
 width must be between 0.0 and 100.0 inclusive.
-## SWP
+### SWP
 Enable or disable lock sweep
 
 Category: Lock
@@ -7377,9 +7377,9 @@ Description:
 `SWP` sets the state of the lock channel sweep. The state may be either ON or OFF. If no state is specified RNMR will
 prompt for it with the current value as a default.
 
-# T
+## T
 ---
-## TALARM
+### TALARM
 Set temperature for probe heater alarm
 
 Category: Heater
@@ -7393,7 +7393,7 @@ Prerequisites: RNMR heater control; RNMRA only
 Description:
 `TALARM` sets the temperature limit for the heater alarm. If no temperature is provided RNMR will prompt for it with the
 current alarm temperature as a default. The temperature must be between -200 and 125.
-## TCL
+### TCL
 Set lock channel time constant
 
 Category: Lock
@@ -7407,7 +7407,7 @@ Prerequisites: RNMR lock control; RNMRA only
 Description:
 `TCL` sets the lock channel time constant. If the time constant is omitted RNMR will prompt for it with the current
 value as a default. The time constant must be between 1.0 and 100.0.
-## TH
+### TH
 Set threshold for peak selection
 
 Category: Data Analysis
@@ -7421,7 +7421,7 @@ Description:
 value as a default. The threshold is used whenever RNMR identifies peaks (`LPK`, `LPK2D`, P subcommand of `ZO`, next
 peak button in zoom window etc.). The magnitude of a point must be larger that the threshold in order to be considered a
 peak. The threshold value must be between -1.0 and 1.0.
-## TILT
+### TILT
 Tilt blocked record
 
 Category: Data Manipulation
@@ -7438,7 +7438,7 @@ domain. If no [slice](syntax#slice) is specified RNMR will not prompt for it and
 record. The final parameter, tfctr, determines what angle to tilt the record by. The angle is tfctr times 45.0 degrees.
 If tfctr is omitted RNMR will not prompt for it and will use a value of 1.0 (45 degree tilt). The value of tfctr may be
 between 0.0 and 1.0 inclusive.
-## TITLE
+### TITLE
 Set processing buffer title
 
 Category: Data Storage
@@ -7450,7 +7450,7 @@ Defaults: current
 Description:
 `TITLE` sets the title of the visible processing buffer. If no title is provided RNMR will prompt for it with the
 current processing buffer title as a default.
-## TITLEA
+### TITLEA
 Set acquisition title
 
 Category: Acquisition
@@ -7464,7 +7464,7 @@ Prerequisites: RNMRA only
 Description:
 `TITLEA` sets the title of the acquisition buffer. If no title is provided RNMR will prompt for it with the current
 acquisition buffer title as a default. This title is transferred to a processing buffer along with the data by `GAV`.
-## TM
+### TM
 Perform trapezoidal multiplication apodization
 
 Category: Apodization
@@ -7479,7 +7479,7 @@ on the left is multiplied by a linear function that increases from 0.0 to 1.0 an
 multiplied by a linear function that decreases from 1.0 to 0.0. The parameters lfract an rfract determine what fraction
 of the data each linear function is applied to. If either of these arguments is omitted RNMR will prompt for it with 0.0
 as a default. Both fractions must be between 0.0 and 1.0.
-## TP
+### TP
 Show phase correction values
 
 Category: Phasing
@@ -7488,7 +7488,7 @@ Format: `TP`
 
 Description:
 `TP` prints the current zero order and first order phase correction values as informational messages.
-## TPPI
+### TPPI
 Convert TPPI-format FID to complex FID
 
 Category: Foreign
@@ -7502,7 +7502,7 @@ Description:
 buffer. It treats every other point starting with point 1 as the real data and every other point starting with point 2
 as the imaginary data. As a result the size of the visible processing buffer will be reduced by a factor of two.
 Additionally, after combining the data into complex numbers every other point starting with point 2 is negated.
-## TSET
+### TSET
 Set heater set-point temperature
 
 Category: Heater
@@ -7516,7 +7516,7 @@ Prerequisites: RNMR heater control; RNMRA only
 Description:
 `TSET` sets the target temperature for the heater. If no temperature is specified RNMR will prompt for it with the
 current target temperature as a default. The temperature must be between -200 and 125.
-## TST
+### TST
 Conditionally execute a block of commands based on a test
 
 Category: Control Flow
@@ -7645,7 +7645,7 @@ Flag | Description
 
 `TST` is a replacement for the old if commands such as `IFEQ`. If you need the old behavior of jumping to labels instead
 of executing code blocks use `GOTST`.
-## TVAL
+### TVAL
 Show heater temperature
 
 Category: Heater
@@ -7656,7 +7656,7 @@ Prerequisites: RNMR heater control; RNMRA only
 
 Description:
 `TVAL` prints the current heater temperature as an informational message.
-## TWIST
+### TWIST
 Twist blocked record
 
 Category: Data Manipulation
@@ -7673,9 +7673,9 @@ direction must be time domain. If no [slice](syntax#slice) is specified RNMR wil
 first 2D slice of the record. The final parameter, tfctr, determines how much to twist the record. If tfctr is omitted
 RNMR will not prompt for it and will use a value of 1.0. The value of tfctr may be between 0.0 and 1.0 inclusive.
 
-# U
+## U
 ---
-## UNECHO
+### UNECHO
 Rearrange buffer to simulate FID from echo
 
 Category: Signal Generation
@@ -7691,7 +7691,7 @@ Description:
 be set to the middle of the echo. `UNECHO` will use a mixture of the data from the left and right halves of the echo to
 generate the FID. The part of the buffer beyond the size of the larger half of the echo will be set to 0. If time is not
 provided RNMR will prompt for it with a time value corresponding to the center of the buffer.
-## UNFOLD
+### UNFOLD
 Unfold data buffer
 
 Category: Data Manipulation
@@ -7704,7 +7704,7 @@ Description:
 `UNFOLD` grows the visible processing buffer to hold nsect sections each with the prior size of the buffer. The data in
 the buffer is then copied into each section. If nsect is not specified RNMR will prompt for it with a default of 1. If
 nsect is equal to 1 then `UNFOLD` has no effect.
-## UNIT
+### UNIT
 Set units
 
 Category: Display Control
@@ -7723,7 +7723,7 @@ to set the default unit for the selected domain. If no unit is specified RNMR wi
 
 Valid time domain units are USEC, MSEC, and SEC. Valid frequency domain units are HZ, kHz, MHz, and PPM. PPM cannot be
 the default frequency unit.
-## UPDARV
+### UPDARV
 Update archive
 
 Category: Data Storage
@@ -7737,7 +7737,7 @@ Description:
 RNMR. If no [archive number](syntax#archives) is specified RNMR will prompt for it with a default of 1. This can be
 useful when using an archive in read only mode in RNMRP while it is open with write access in RNMRA. Using `SAVARV` in
 RNMRA and then `UPDARV` in RNMRP ensures that all changes made from RNMRA are visible in RNMRP.
-## USER
+### USER
 Set user name
 
 Category: Data Storage
@@ -7752,9 +7752,9 @@ user is specified RNMR will prompt for it with the current user as a default. If
 case when first starting RNMR) the default will be \*\*\*\*\*\*\*. RNMR will continue to prompt until the user is not
 \*\*\*\*\*\*\*\*.
 
-# V
+## V
 ---
-## VAL
+### VAL
 Set data value
 
 Category: Data Manipulation
@@ -7773,7 +7773,7 @@ Description:
 specified RNMR will prompt for it with the current cursor position as a default. /REAL and /IMAG select whether to
 set the value of the real or imaginary part of the data point respectively. If neither is set `VAL` will set both. If
 a value to set is omitted RNMR will prompt for it with the current value as a default.
-## VIEW
+### VIEW
 Set display source
 
 Category: Display Control
@@ -7787,9 +7787,9 @@ Description:
 buffer or acquisition buffer respectively. In RNMRP only pro is allowed. If no view is provided RNMR will prompt for it
 with the current value.
 
-# W
+## W
 ---
-## WAIT
+### WAIT
 Wait during acquisition
 
 Category: Acquisition
@@ -7814,7 +7814,7 @@ Pressing ^ while `WAIT` is active returns control to the user at the command lin
 resumes waiting. `WAIT` cannot terminate while in this state even if acquisition finishes or a signal is sent.
 Multi-dimensional acquisition usually relies on `WAIT` terminating in response to signals so the signal can be properly
 handled. As a result leaving the system at this console can effectively pause multi-dimensional acquisition.
-## WAVB
+### WAVB
 Perform weighted average of blocked record
 
 Category: Data Manipulation
@@ -7831,7 +7831,7 @@ for it with the current read record pointer (as set and displayed by `PTRA`) as 
 over slices first to last. If first is omitted RNMR will prompt for it with 1 as a default. If last is omitted RNMR will
 prompt for it with the number of slices in the record as a default. Setting last to 0 indicates to use the last slice in
 the record.
-## WAVV
+### WAVV
 Perform weighted addition of buffers
 
 Category: Buffer Arithmetic
@@ -7853,7 +7853,7 @@ acquisitions; each data set is weighted appropriately.
 If either argument is omitted, RNMR will prompt for a buffer number. The default source is buffer 2 while the default
 destination is buffer 1. The src and dst buffers must have the same domain and active size (though not necessarily the
 same allocated size).
-## WGPIB
+### WGPIB
 Write line to GPIB device
 
 Category: Hardware
@@ -7867,7 +7867,7 @@ Prerequisites: RNMRA only
 Description:
 `WGPIB` writes a command line to a GPIB device. If no device is specified RNMR will prompt for it with no default. If no
 command line is provided RNMR will prompt for one with no default.
-## WNDLIM
+### WNDLIM
 Set processing view vertical window limits
 
 Category: Display Control
@@ -7887,7 +7887,7 @@ RNMR will prompt for it with the current window limit.
 
 The window limits are set separately for data in different domains. /FREQ, /TIME, and /UNKN select which domain to set
 the limits for.
-## WNDLIMA
+### WNDLIMA
 Set acquisition view vertical window limits
 
 Category: Display Control
@@ -7900,7 +7900,7 @@ Description:
 `WNDLIMA` sets the vertical window limits when viewing the acquisition buffer. The min and max parameters set the lower
 and upper bounds of the display. The value of max must be greater than the value of min. If either min or max is omitted
 RNMR will prompt for it with the current window limit.
-## WPK
+### WPK
 Write peaks in current display to `WRT` file
 
 Category: File IO
@@ -7913,7 +7913,7 @@ left to right in the display. For each peak a line will be written with four val
 frequency units, position in default frequency units, intensity). A maximum of 50 peaks will be written to the file. A
 point is considered a peak if its magnitude is greater than the peak picking threshold (as set and displayed by `TH`)
 and it is either a local maximum or minimum if its intensity is greater or less than zero respectively.
-## WPK2D
+### WPK2D
 Write 2D peaks to `WRT` file
 
 Category: File IO
@@ -7935,7 +7935,7 @@ print peaks from the first 2D slice of the record.
 A point is considered a peak if its magnitude is greater than the peak picking threshold (as set and displayed by `TH`)
 and it is either a local maximum or minimum if its intensity is greater or less than zero respectively. By setting
 `CONMD` to POS, NEG, or ABS beforehand, the user may modify the selection of 2D peaks for a given threshold value.
-## WPPSB
+### WPPSB
 Write data byte to pulse programmer spectrometer bus
 
 Category: Hardware
@@ -7950,7 +7950,7 @@ Description:
 `WPPSB` writes a data byte from the pulse programmer spectrometer bus. The adr parameter specifies the address to write
 the byte to and may range from 0 to 255 inclusive. The data parameter specifies what value to write to the bus and may
 range from 0 to 255 inclusive. If adr or data is omitted RNMR will prompt for it with a default of 0.
-## WRF
+### WRF
 Set waveform reference values
 
 Category: Waveform
@@ -7966,7 +7966,7 @@ Description:
 channel to adjust. If either chan or ind are omitted RNMR will prompt for them with a default of 1. The parameters val1
 and val2 are the reference values. If either val1 or val2 are omitted RNMR will prompt for them with the current value
 as a default.
-## WRFEX
+### WRFEX
 Load waveform RF program
 
 Category: Waveform
@@ -7976,7 +7976,7 @@ Format: `WRFEX`
 Defaults:
 
 Prerequisites: Waveform generator implemented and HALT
-## WRKC
+### WRKC
 Write data byte to RKC device
 
 Category: Hardware
@@ -7989,7 +7989,7 @@ Prerequisites: RKC device implemented; RNMRA only
 
 Description:
 `WRKC` writes data from a RKC device. If no device or data is specified RNMR will prompt for it with no default.
-## WRRI
+### WRRI
 Write command line to RRI device and read response
 
 Category: Hardware
@@ -8003,7 +8003,7 @@ Prerequisites: RRI device implemented; RNMRA only
 Description:
 `WRRI` writes data from a RRI device. If no command is specified RNMR will prompt for it with no default. The response
 will be printed as an informational message.
-## WRT
+### WRT
 Write line to file opened by `OPNWRT`
 
 Category: File IO
@@ -8019,7 +8019,7 @@ the same line. Arguments are padded with spaces in multiples of 8. This means th
 second argument would start at the 17th character and so on. The total length of the line cannot exceed 80 characters,
 so `WRT` can accept a maximum of 10 arguments when each argument is less than 8 characters long. If no arguments are
 provided RNMR will prompt for a single value to write.
-## WRTLST
+### WRTLST
 Write list to file
 
 Category: Lists
@@ -8032,7 +8032,7 @@ Description:
 `WRTLST` writes the contents of a list to a file. The values can be reloaded into a list using `RDLST`. If no list name
 is specified RNMR will prompt for it with a default of temp. If no file is specified RNMR will prompt for it with the
 list name as a default. If the file name has no extension RNMR will add .wrt to it.
-## WRTTBL
+### WRTTBL
 Write name table to file
 
 Category: Tables
@@ -8045,7 +8045,7 @@ Description:
 `WRTTBL` writes the contents of a name table to a file. The values can be reloaded into a name table using `RDTBL`. If
 no table name is specified RNMR will prompt for it with a default of temp. If no file is specified RNMR will prompt for
 it with the table name as a default. If the file name has no extension RNMR will add .wrt to it.
-## WSB
+### WSB
 Write data byte to spectrometer bus
 
 Category: Hardware
@@ -8060,7 +8060,7 @@ Description:
 `WSB` writes a data byte to the spectrometer bus. The adr parameter specifies the address to write the byte to and may
 range from 0 to 255 inclusive. The data parameter specifies what value to write to the bus and may range from 0 to 255
 inclusive. If adr or data is omitted RNMR will prompt for it with a default of 0.
-## WTRM
+### WTRM
 Write command line to terminal and read response
 
 Category: Hardware
@@ -8075,7 +8075,7 @@ Description:
 `WTRM` writes a command to a terminal and reads a response. The terminal is specified by its index. If no index is
 specified RNMR will prompt for it with a default of 1. If no command is provided RNMR will prompt for it with no
 default. The response read form the terminal will be printed as an informational message.
-## WTSET
+### WTSET
 Wait for heater to stabilize at setpoint
 
 Category: Heater
@@ -8086,7 +8086,7 @@ Prerequisites: RNMR heater control; RNMRA only
 
 Description:
 `WTSET` waits for the heater temperature to reach its set point. Press Q while `WTSET` is active to quit waiting.
-## WTTIM
+### WTTIM
 Wait for specified number of seconds
 
 Category: Misc.
@@ -8098,7 +8098,7 @@ Defaults: 1.0
 Description:
 `WTTIM` waits an amount of time specified by dlytime. The time is specified in seconds and must be a positive number. If
 no time is specified RNMR will prompt for it with a default of 1.0. Press Q while `WTTIM` is active to quit waiting.
-## WWASH
+### WWASH
 Set state of plot whitewash flag
 
 Category: Plotting
@@ -8113,7 +8113,7 @@ specified RNMR will prompt for it with the current state of the flag as a defaul
 `STK` subsequent plots are considered to be behind previous plots. If the whitewash flag is on the portions of the line
 that are behind peaks in the previous plots are not drawn. If the whitewash flag is off the whole plot is drawn for each
 stacked plot.
-## WWF
+### WWF
 Set waveform values
 
 Category: Waveform
@@ -8129,7 +8129,7 @@ Description:
 adjust. If either chan or ind are omitted RNMR will prompt for them with a default of 1. The parameters val1 and val2
 are the waveform values. If either val1 or val2 are omitted RNMR will prompt for them with the current value as a
 default.
-## WWFEX
+### WWFEX
 Load waveform program
 
 Category: Waveform
@@ -8140,9 +8140,9 @@ Defaults:
 
 Prerequisites: Waveform generator implemented and HALT
 
-# X
+## X
 ---
-## XT
+### XT
 Extract data within specified limits
 
 Category: Data Manipulation
@@ -8156,7 +8156,7 @@ Description:
 current units of the buffer. If either limit is omitted RNMR not prompt for it and will use the corresponding current
 display limit. All of the data outside of the specified limits will be discarded. The size of the visible processing
 buffer will shrink to match the size of the extracted data points.
-## XTP
+### XTP
 Extract data for points
 
 Category: Data Manipulation
@@ -8171,7 +8171,7 @@ specified in the current units of the buffer. If the left limit is omitted RNMR 
 current left display limit. If the number of points to extract is not specified RNMR will not prompt for it and will
 extract a single point. All of the data outside of the specified points will be discarded. The size of the visible
 processing buffer will shrink to match the size of the extracted data points.
-## XVAL
+### XVAL
 Convert from point index to unit value
 
 Category: Data Analysis
@@ -8186,9 +8186,9 @@ is specified RNMR will prompt for it with the current cursor position as a defau
 the actual data in the visible processing buffer `XVAL` will return the position of the closest point (the leftmost or
 rightmost point). The converted value is printed as an informational message.
 
-# Z
+## Z
 ---
-## ZER
+### ZER
 Zero visible processing buffer
 
 Category: Data Manipulation
@@ -8197,7 +8197,7 @@ Format: `ZER`
 
 Description:
 `ZERA` sets the data in the visible processing buffer to 0 and initializes the buffer parameters.
-## ZERA
+### ZERA
 Zero acquisition buffer and shot counter
 
 Category: Acquisition
@@ -8209,7 +8209,7 @@ Prerequisites: Acquisition stopped (HALT); RNMRA only
 Description:
 `ZERA` sets the data in the acquisition buffer and the shot counter to 0 and initializes the acquisition buffer
 parameters.
-## ZF
+### ZF
 Zero fill visible processing buffer
 
 Category: Data Manipulation
@@ -8224,7 +8224,7 @@ current number of data points in the buffer and must be a power of 2. The buffer
 all of the points beyond the original data are set to zero. If size is omitted RNMR will prompt for it with the smallest
 power of 2 that is greater than the current data size. The current maximum size for a processing buffer is 32768, so
 size may not exceed this value.
-## ZG
+### ZG
 Start acquisition
 
 Category: Acquisition
@@ -8240,7 +8240,7 @@ Description:
 arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
 parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
 0 then only first_group will be acquired.
-## ZO
+### ZO
 Zoom
 
 Category: Display Control
@@ -8273,7 +8273,7 @@ V       | Enter cursor position after prompt
 W       | Write point values to file opened with `OPNWRT` (number, position in current units, position in default units, intensity)
 0-3     | Move cursor by 10^N points
 
-## ZO2D
+### ZO2D
 Zoom on 2D data set
 
 Category: Display Control
@@ -8307,7 +8307,7 @@ V       | Select position in unviewed direction in its units after prompt
 Z       | Call `ZO` to manipulate 1D display and cursor
 0:3     | Move in unviewed direction by 10^N slices
 
-## ZO2DC
+### ZO2DC
 Zoom on 2D contour display
 
 Category: Contours
@@ -8351,7 +8351,7 @@ V       | Enter cursor position after prompt
 W       | Write point values to file opened with `OPNWRT` (number, position1 in current units, position1 in default units, position2 in current units, position2 in default units, intensity)
 0-3     | Move 10^N points
 
-## ZOA
+### ZOA
 Zoom on acquisition display
 
 Category: Acquisition

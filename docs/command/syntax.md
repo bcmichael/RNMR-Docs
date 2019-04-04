@@ -29,7 +29,7 @@ Repeat Count | Action
 -1           | Execute command an indefinite number of times until stopped by Q or Ctrl-Z
 -2 and below | illegal
 
-# Archives
+## Archives
 RNMR data is saved in archives and a number of RNMR commands take archives as arguments. Up to 4 archives may be open in
 an instance of RNMR at any one time. Each archive has an associated archive number (1-4). These archive numbers are what
 are passed as arguments to commands rather than the archive name.
@@ -44,7 +44,7 @@ archives for which lock files are still present. This can be circumvented by man
 users archive folder or by using `OPNARV /FORCE`. Be careful to only take these actions if you are sure that the archive
 is not in fact open in an instance of RNMR to avoid data corruption.
 
-# Records
+## Records
 Archives consist of individual numbered records that hold data. An archive may have up to 200 records. When a command
 accepts a record as an argument the record number should be used. Records in archive 1 can simply be specified by their
 record number within the archive. Records in archives other than 1 can be selected in two ways. Records in archive 2 are
@@ -60,7 +60,7 @@ first being explicitly deleted. The other record numbers (5-200) may hold either
 archive record stores a single one dimensional data set. A blocked record is a multi dimensional set of blocks that can
 each store a one dimensional data set.
 
-# Blocked Records
+## Blocked Records
 Blocked records store multi dimensional data sets as a collection of blocks that each hold a one dimensional data set.
 Blocked records must be allocated (by commands such as `ALLB` and `ALLCPY`) before data can be stored in them. A blocked
 record may have up to four dimensions. The size of each dimension is set at the time that the blocked record is
@@ -89,7 +89,7 @@ Blocked records may have multiple segments. These segments are typically used to
 hypercomplex acquisition used for multi-dimensional spectra. When loading data from or saving data to a blocked record
 a particular segment can be selected by appending a period and the segment number to the record number.
 
-# Buffers
+## Buffers
 Data in RNMR is kept in buffers. There are two types of buffers in RNMR: acquisition and processing. The acquisition
 buffer is only available in RNMRA and holds the same values as the averager. Data will initially be in the acquisition
 buffer when it is collected and it can then be transferred to a processing buffer for further manipulation and analysis.
@@ -110,7 +110,7 @@ the following formula to match source and destination blocks.
 
     SRC_BLCK = MOD(DTS_BLCK-1, NBLK_SRC)+1
 
-# Acquisition
+## Acquisition
 RNMR has several commands that start the collection and averaging of data: `DG`, `GO`, `NG`, and `ZG`. There are two
 parameters that determine the number of shots these acquisition commands will average: na (as displayed and set by `NA`)
 and nwait (as displayed and set by `NWAIT`). If the acquisition command is called from the console or nwait is 0 the

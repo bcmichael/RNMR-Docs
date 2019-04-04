@@ -16,10 +16,10 @@ def format_command(lines, categories, num):
         num: line number for error messages
     """
 
-    if len(lines[0]) <= 3:
+    if len(lines[0]) <= 4:
         raise ValueError('Invalid Heading at line {}'.format(num))
     else:
-        command = lines[0][3:]
+        command = lines[0][4:]
 
     if len(lines[1]) == 0:
         raise ValueError('No description for {} command at line {}'.format(command, num))
@@ -47,15 +47,16 @@ lines = [line.rstrip('\n') for line in lines]
 
 categories = {}
 for ind, line in enumerate(lines):
-    if line[:3] == '## ':
+    if line[:4] == '### ':
         format_command(lines[ind:ind+4], categories, ind+1)
 
 keys = list(categories.keys())
 keys.sort()
 
 with open('command_summary.md', 'w') as file_:
+    file_.write('# Command Summary\n')
     for category in keys:
-        file_.write('# {}\n'.format(category))
+        file_.write('## {}\n'.format(category))
         file_.write('Command | Description\n')
         file_.write('------- | -----------\n')
         for command in categories[category]:
