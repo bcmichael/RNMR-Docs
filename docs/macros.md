@@ -113,7 +113,7 @@ executed. Note that if `CASE` has no argument it will match anything. For exampl
         MSG 'IT WAS NOT IN 1-3'
     ENDSEL
 
-Will print C.
+Will print B.
 ### TST Conditional Execution
 `TST` can be used to conditionally execute blocks of commands based on the result of a test. See the Full Command
 Descriptions section for a description of all the available tests. Either the commands between `TST` and `ELSTST` or the
