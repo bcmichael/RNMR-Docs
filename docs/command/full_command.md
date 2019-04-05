@@ -67,10 +67,10 @@ Format: `ALLB` rec ndim size(1)...size(ndim) ndimx nsega
 Defaults: wrec 2 64 ... 64 <ndim> 1
 
 Description:
-`ALLB` allocates a [blocked record](syntax#blocked_records). By allocating multidimensional records in advance, the user
-is assured that there will be adequate disk space to hold all the data to be acquired.
+`ALLB` allocates a [blocked record](syntax.md#blocked_records). By allocating multidimensional records in advance, the
+user is assured that there will be adequate disk space to hold all the data to be acquired.
 
-The parameter rec is the [record number](syntax#records) to be allocated. If 0 is entered for this parameter or if no
+The parameter rec is the [record number](syntax.md#records) to be allocated. If 0 is entered for this parameter or if no
 record is specified RNMR will not prompt for it and will use the write record pointer (as displayed and set by `PTRA`).
 If the specified record is already in use RNMR will use the next available record. If RNMR selects the record for either
 of the above reasons the record number will be printed as an informational message after allocation is complete.
@@ -80,9 +80,9 @@ RNMR will prompt for it with 2 as a default. `ALLB` accepts ndim arguments to se
 each dimension. If any of these sizes are omitted RNMR will prompt for them with 64 as a default. The sizes must be
 positive integers.
 
-The next parameter, [ndimx](syntax#ndimx), is the number of dimensions of the blocked record that will be simultaneously
-accessible. If ndimx is omitted RNMR will prompt for it with ndim as a default. The final parameter,
-[nsega](syntax#nseg), is the number of segments to allocate in the records. If nsega is not specified RNMR will not
+The next parameter, [ndimx](syntax.md#ndimx), is the number of dimensions of the blocked record that will be
+simultaneously accessible. If ndimx is omitted RNMR will prompt for it with ndim as a default. The final parameter,
+[nsega](syntax.md#nseg), is the number of segments to allocate in the records. If nsega is not specified RNMR will not
 prompt for it and will allocate 1 segment.
 
 In order for a blocked record to be successfully allocated there must be enough space in the archive (as displayed by
@@ -97,16 +97,16 @@ Format: `ALLCPY` srcrec dstrec isize(1) ... isize(ndim) ndimx nsega
 Defaults: rrec wrec insize(1)...insize(ndim) <ndim> 1
 
 Description:
-`ALLCPY` allocates a [blocked record](syntax#blocked_records) dstrec copying the parameters but not the data from
+`ALLCPY` allocates a [blocked record](syntax.md#blocked_records) dstrec copying the parameters but not the data from
 blocked record srcrec. To copy both parameters and data, use the command `CPY`. The destination record may be given new
-sizes, [number of accessible dimensions](syntax#ndimx), and [number of segments](syntax#nseg) in place of those used
-in the source record.
+sizes, [number of accessible dimensions](syntax.md#ndimx), and [number of segments](syntax.md#nseg) in place of those
+used in the source record.
 
-If no source [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer
-(as displayed and set by `PTRA`) as a default. If no destination record is specified RNMR will not prompt for it and
-will use the write record pointer (as displayed and set by `PTRA`). If the specified destination record is already in
-use RNMR will use the next available record. If RNMR selects the destination record for either of the above reasons the
-record number will be printed as an informational message after allocation is complete.
+If no source [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record
+pointer (as displayed and set by `PTRA`) as a default. If no destination record is specified RNMR will not prompt for
+it and will use the write record pointer (as displayed and set by `PTRA`). If the specified destination record is
+already in use RNMR will use the next available record. If RNMR selects the destination record for either of the above
+reasons the record number will be printed as an informational message after allocation is complete.
 
 `ALLCPY` can accept a number of sizes up to the number of dimensions in the source record. These sizes will be used in
 place of the some or all of the sizes from the source record. If any sizes are not specified RNMR will not prompt for
@@ -136,13 +136,13 @@ Prerequisites: Acquisition stopped (HALT); RNMRA only
 
 Description:
 `AMD` sets the receiver phase cycling. /MOD defines the number of different phase values to be used. These phase values
-will be equally spaced so the default value of 4 yields 90° phase steps while for example 6 would yield 60° steps. Each
-element or mode of the `AMD` sequence is a number from 1 to the value specified by /MOD. With the default qualifier /ACQ
-these modes indicate a sequence of phase shifts to apply to an acquired FID on sequential shots.
+will be equally spaced so the default value of 4 yields 90° phase steps while for example 6 would yield 60° steps.
+Each element or mode of the `AMD` sequence is a number from 1 to the value specified by /MOD. With the default
+qualifier /ACQ these modes indicate a sequence of phase shifts to apply to an acquired FID on sequential shots.
 
-The default value is /MOD=4, which yields phase values of (0°, 90°, 180°, 270°) corresponding to the numbers 1 through 4.
-The maximum number of acquisition modes in a sequence is 64. If the number of modes entered is less than 64, the
-specified modes will be replicated to a 64 mode sequence. For example, if the user specifies:
+The default value is /MOD=4, which yields phase values of (0°, 90°, 180°, 270°) corresponding to the numbers 1
+through 4. The maximum number of acquisition modes in a sequence is 64. If the number of modes entered is less than 64,
+the specified modes will be replicated to a 64 mode sequence. For example, if the user specifies:
 
         AMD 1111 3333
 
@@ -251,8 +251,8 @@ When called from a macro `APNMAC` will not prompt for a macro name. The lines to
 lines following `APNMAC` in the macro and should start with ;;. The first line will be interpreted as a macro name if
 none is provided as an argument. `APNMAC` will stop appending lines when it either reaches a line that matches <end\> or
 runs out of lines. /TTY will make RNMR prompt for the lines to enter much like the behavior at the command line even
-when `APNMAC` is called from a macro. RNMR will still expect the macro name to passed in the same way as when /TTY is not
-used. An example of use in a macro is given here:
+when `APNMAC` is called from a macro. RNMR will still expect the macro name to passed in the same way as when /TTY is
+not used. An example of use in a macro is given here:
 
     APNMAC TEMP.TXT
     ;;Append this
@@ -273,13 +273,13 @@ Qualifier Defaults: /NAME
 Defaults: 1
 
 Description:
-`ARV` prints information about an [archive](syntax#archives) arv as an informational message. If no archive is specified
-RNMR will prompt for it with 1 as a default. The default /NAME qualifier causes `ARV` to print the name of the specified
-archive as an informational message. The /ACCESS qualifier causes `ARV` to print an integer indicating the level of
-access to the archive. The integer codes are generated by using the least significant bit to indicate whether there is
-read access to the archive and the next least significant bit to indicate write access. Numbers for which no archive is
-open will have neither and there will never be write access without read access. This yields the following possible
-codes:
+`ARV` prints information about an [archive](syntax.md#archives) arv as an informational message. If no archive is
+specified RNMR will prompt for it with 1 as a default. The default /NAME qualifier causes `ARV` to print the name of
+the specified archive as an informational message. The /ACCESS qualifier causes `ARV` to print an integer indicating
+the level of access to the archive. The integer codes are generated by using the least significant bit to indicate
+whether there is read access to the archive and the next least significant bit to indicate write access. Numbers for
+which no archive is open will have neither and there will never be write access without read access. This yields the
+following possible codes:
 
 Access Code | Meaning
 ----------- | -------
@@ -299,7 +299,7 @@ Defaults: temp
 Prerequisites: RNMRA only
 
 Description:
-`ASIG` acknowledges and resets a [signal](syntax#signals). Signals occur asynchronously to macro execution during
+`ASIG` acknowledges and resets a [signal](syntax.md#signals). Signals occur asynchronously to macro execution during
 acquisition and are primarily used for multi dimensional acquisition. If no signal is specified RNMR will prompt for it
 with a default of temp. The specified signal must have been sent in order to acknowledge it. The presence of a signal
 can be tested for using `TST SIG`.
@@ -798,7 +798,7 @@ Defaults: 0 200
 
 Description:
 `CAT` displays a catalog of records from first-rec to last-rec within a single archive. `CAT` takes two parameters,
-which are the first and last [record numbers](syntax#records) to be displayed. If first-rec is set to record 0 (which
+which are the first and last [record numbers](syntax.md#records) to be displayed. If first-rec is set to record 0 (which
 does not exist) in an archive, all of the records in that archive up to last-rec will be listed. In this case if
 last-rec is omitted all the records in the archive are listed. If neither parameter is specified the default behavior is
 to list all records in archive 1. If first rec is set to any other value and last-rec is omitted only that record will
@@ -830,7 +830,7 @@ Qualifier Defaults: /WND
 Defaults: 1 4
 
 Description:
-`CATARV` displays a list of [archives](syntax#archives) from first-archive to last-archive. If only one argument is
+`CATARV` displays a list of [archives](syntax.md#archives) from first-archive to last-archive. If only one argument is
 specified, `CATARV` will list information about only that single archive. `CATARV` shows the archive number and if the
 archive is open it also shows flags indicating the presence of read access and write access, as well as the name of the
 archive.
@@ -1151,8 +1151,8 @@ Format: `CLSARV` archive
 Defaults: 1
 
 Description:
-`CLSARV` closes an archive. If no [archive](syntax#archives) is specified RNMR will prompt for it with 1 as a default.
-An attempt to close an archive which is not open will result in an error.
+`CLSARV` closes an archive. If no [archive](syntax.md#archives) is specified RNMR will prompt for it with 1 as a
+default. An attempt to close an archive which is not open will result in an error.
 ### CLSEXP
 Close export file
 
@@ -1215,8 +1215,8 @@ Format: `CMUL` mag phi buf
 Defaults: 1.0 0.0 1
 
 Description:
-`CMUL` multiplies the contents of a [processing buffer](syntax#buffers) by a complex constant, updating the buffer. This
-constant is specified in polar form:
+`CMUL` multiplies the contents of a [processing buffer](syntax.md#buffers) by a complex constant, updating the buffer.
+This constant is specified in polar form:
 
     REAL(CONST) = MAG*COS(PHI*PI/2)
     IMAG(CONST) = MAG*SIN(PHI*PI/2)
@@ -1373,8 +1373,8 @@ Format: `CPXV` src dst
 Defaults: 2 1
 
 Description:
-`CPXV` combines the real parts of [processing buffers](syntax#buffers) src and dst to form the real and imaginary parts
-of dst:
+`CPXV` combines the real parts of [processing buffers](syntax.md#buffers) src and dst to form the real and imaginary
+parts of dst:
 
  	DST = COMPLEX(REAL(DST),REAL(SRC))
 
@@ -1395,8 +1395,8 @@ Format: `CPY` src dst
 Defaults: rrec wrec
 
 Description:
-`CPY` copies [record](syntax#records) src into record dst. `CPY` copies both parameters and data from source to
-destination. If no source [record number](syntax#records) is specified RNMR will prompt for it with the current read
+`CPY` copies [record](syntax.md#records) src into record dst. `CPY` copies both parameters and data from source to
+destination. If no source [record number](syntax.md#records) is specified RNMR will prompt for it with the current read
 record pointer (as displayed and set by `PTRA`) as a default. If no destination record is specified RNMR will not prompt
 for it and will use the write record pointer (as displayed and set by `PTRA`). If the specified destination record is
 already in use RNMR will use the next available record. If RNMR selects the destination record for either of the above
@@ -1453,8 +1453,8 @@ Format: `CRTARV` archive name
 Defaults: 1 TEMP
 
 Description:
-`CRTARV` creates and opens a new [archive](syntax#archives) with read/write access. If no archive is specified RNMR will
-prompt for it with 1 as a default. If no name is specified RNMR will prompt for it with temp as a default.
+`CRTARV` creates and opens a new [archive](syntax.md#archives) with read/write access. If no archive is specified RNMR
+will prompt for it with 1 as a default. If no name is specified RNMR will prompt for it with temp as a default.
 ### CRTFIL
 Create text file
 
@@ -1634,8 +1634,8 @@ Format: `DBSZ` buf size nblk
 Defaults: 1 current current
 
 Description:
-`DBSZ` sets up the partitioning of a [processing buffer](syntax#buffers) into blocks. The number of blocks and the block
-size for the specified buffer will be set. This allows loading and processing multiple data sets in the processing
+`DBSZ` sets up the partitioning of a [processing buffer](syntax.md#buffers) into blocks. The number of blocks and the
+block size for the specified buffer will be set. This allows loading and processing multiple data sets in the processing
 buffer at once. This can reduce the overhead from interpreting RNMR commands when processing a large number of data
 sets. The buffer will be zeroed after it is partitioned.
 
@@ -1656,10 +1656,11 @@ Defaults: rrec 1 1
 
 Description:
 `DCDB` decodes a linear block index ind into a vector of actual values representing positions in each dimension of a
-[blocked record](syntax#blocked_records). The conversion uses information about the block layout of a record to perform
-this conversion. If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record
-pointer (as displayed and set by `PTRA`) as a default. For example when used on a dataset from a multi dimensional
-experiment stored as a blocked record, `DCDB` will convert a linear block index into indirect dimension time values.
+[blocked record](syntax.md#blocked_records). The conversion uses information about the block layout of a record to
+perform this conversion. If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current
+read record pointer (as displayed and set by `PTRA`) as a default. For example when used on a dataset from a multi
+dimensional experiment stored as a blocked record, `DCDB` will convert a linear block index into indirect dimension
+time values. 
 
 The second parameter, ndim, specifies how many dimensions are accounted for before the linear index. For example in a 3D
 data set ndim set to 1 will indicate that only the direct dimension is already accounted for and the linear index is
@@ -1682,9 +1683,9 @@ Defaults: last_read 1 1
 
 Description:
 `DCDBP` converts a linear block index ind into a vector of individual indices representing each blocked dimension in a
-[blocked record](syntax#blocked_records). The conversion uses information about the block layout of a record to perform
-this conversion. If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record
-pointer (as displayed and set by `PTRA`) as a default.
+[blocked record](syntax.md#blocked_records). The conversion uses information about the block layout of a record to
+perform this conversion. If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current
+read record pointer (as displayed and set by `PTRA`) as a default.
 
 The second parameter, ndim, specifies how many dimensions are accounted for before the linear index. For example in a 3D
 data set ndim set to 1 will indicate that only the direct dimension is already accounted for and the linear index is
@@ -1706,8 +1707,8 @@ Format: `DCDREC` rec
 Defaults: 1
 
 Description:
-`DCDREC` prints the [archive](syntax#archives) and [record number](syntax#records) within that archive of a specified
-record. If no record is specified RNMR will prompt for it with 1 as a default.
+`DCDREC` prints the [archive](syntax.md#archives) and [record number](syntax.md#records) within that archive of a
+specified record. If no record is specified RNMR will prompt for it with 1 as a default.
 ### DCL
 Execute a shell command in background
 
@@ -2055,13 +2056,13 @@ Defaults: 1 0
 Prerequisites: Experiment loaded (LOAD); Acquisition stopped (HALT); RNMRA only
 
 Description:
-`DG` zeroes the averager and shot counter then [starts acquisition](syntax#acquisition) with dummy scans. The dummy
+`DG` zeroes the averager and shot counter then [starts acquisition](syntax.md#acquisition) with dummy scans. The dummy
 scans allow the initial magnetization to reach an equilibrium based on relaxation rates and the recycle delay before
 averaging begins. The number of dummy scans is set by `NDLY`.
 
-The arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
-parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
-0 then only first_group will be acquired.
+The arguments first_group and last_group specify the range of [acquisition groups](syntax.md#acqgrp) to acquire. If
+either parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is
+set to 0 then only first_group will be acquired.
 ### DIRB
 Set blocked record access sequence
 
@@ -2072,10 +2073,10 @@ Format: `DIRB` ndim seq
 Defaults: 2 current
 
 Description:
-`DIRB` sets the order in which the dimensions of a [blocked record](syntax#blocked_records) are accessed. When commands
-access a blocked record along some number of dimensions, they access the first n directions. These directions are not
-necessarily the same as the first dimensions. The mapping of dimensions to directions is set independently for each
-dimensionality by `DIRB`.
+`DIRB` sets the order in which the dimensions of a [blocked record](syntax.md#blocked_records) are accessed. When
+commands access a blocked record along some number of dimensions, they access the first n directions. These directions
+are not necessarily the same as the first dimensions. The mapping of dimensions to directions is set independently for
+each dimensionality by `DIRB`.
 
 The first parameter, ndim, is the dimensionality to set the mappinng for. If ndim is omitted, RNMR will prompt for it
 with 2 as a default.
@@ -2095,7 +2096,7 @@ Defaults: wrec none
 
 Description:
 `DL` deletes records from first-rec to last-rec within a single archive. `DL` takes two parameters, which are the first
-and last [record numbers](syntax#records) to be deleted. If first-rec is omitted RNMR will prompt for it with the
+and last [record numbers](syntax.md#records) to be deleted. If first-rec is omitted RNMR will prompt for it with the
 current write record pointer (as displayed and set by `PTRA`) as a default. If first-rec is set to record 0 (which does
 not exist) in an archive, all of the records in that archive up to last-rec will be deleted. In this case if last-rec is
 omitted all the records in the archive are deleted. If first-rec is set to any other value and last-rec is omitted only
@@ -2255,11 +2256,11 @@ Defaults: rrec 1 first...
 
 Description:
 `ECDB` encodes a series of values (val...) corresponding to positions in each block dimension of a
-[blocked record](syntax#blocked_records) into a linear block index. The conversion uses information about the block
-layout of a record to perofrm the conversion. If no [record number](syntax#records) is specified RNMR will prompt for it
-with the current read record pointer (as displayed and set by `PTRA`) as a default. For example when used on a dataset
-from an unprocessed multi dimensional experiment stored as a blocked record, `ECDB` will convert a set of indirect
-dimension time values into a linear block index.
+[blocked record](syntax.md#blocked_records) into a linear block index. The conversion uses information about the block
+layout of a record to perofrm the conversion. If no [record number](syntax.md#records) is specified RNMR will prompt
+for it with the current read record pointer (as displayed and set by `PTRA`) as a default. For example when used on a
+dataset from an unprocessed multi dimensional experiment stored as a blocked record, `ECDB` will convert a set of
+indirect dimension time values into a linear block index.
 
 The second parameter, ndim, specifies how many dimensions are accounted for before the linear index. For example in a 3D
 data set ndim set to 1 will indicate that only the direct dimension is already accounted for and the linear index is
@@ -2283,9 +2284,9 @@ Defaults: rrec 1 1...
 
 Description:
 `ECDBP` encodes a series of indices (ind...) corresponding to positions in each block dimension of a
-[blocked record](syntax#blocked_records) into a linear block index. The conversion uses information about the block
-layout of a record to perofrm the conversion. If no [record number](syntax#records) is specified RNMR will prompt for it
-with the current read record pointer (as displayed and set by `PTRA`) as a default.
+[blocked record](syntax.md#blocked_records) into a linear block index. The conversion uses information about the block
+layout of a record to perofrm the conversion. If no [record number](syntax.md#records) is specified RNMR will prompt
+for it with the current read record pointer (as displayed and set by `PTRA`) as a default.
 
 The second parameter, ndim, specifies how many dimensions are accounted for before the linear index. For example in a 3D
 data set ndim set to 1 will indicate that only the direct dimension is already accounted for and the linear index is
@@ -2306,7 +2307,7 @@ Format: `ECDREC` arv rec
 Defaults: 1 1
 
 Description:
-`ECDREC` takes an [archive](syntax#archives) and a [record number](syntax#records) within that archive and
+`ECDREC` takes an [archive](syntax.md#archives) and a [record number](syntax.md#records) within that archive and
 encodes it in a form that can be used to access that record. For example:
 
     ECDREC 2 7
@@ -2395,7 +2396,8 @@ Prerequisites: Time domain data in processing buffer (TIME)
 Description:
 `EM` performs exponential multiplication apodization on an FID in the visible processing buffer. In this apodization,
 the FID is multiplied by a decaying real exponential function. This results in a broadening of spectral lines after
-Fourier transformation which masks noise at the expense of resolution. When a perfect, non-decaying complex sine wave is exponentially multiplied and Fourier transformed, the result is a perfect Lorentzian line-shape.
+Fourier transformation which masks noise at the expense of resolution. When a perfect, non-decaying complex sine wave
+is exponentially multiplied and Fourier transformed, the result is a perfect Lorentzian line-shape. 
 
 `EM` takes one argument, lb, which is the line broadening factor. This parameter is expressed in the current frequency
 units (Hz, kHz, or MHz) unless that unit is ppm in which case it is in the default frequency units. The value of lb must
@@ -2538,9 +2540,9 @@ If no format is specified RNMR will prompt for it with a default of pipe. The cu
 - UCSF
 - VNMR
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
-export the first 1D slice of the record.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will export the first 1D slice of the record.
 
 If the `EXP1D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
@@ -2579,9 +2581,9 @@ If no format is specified RNMR will prompt for it with a default of pipe. The cu
 - UCSF
 - VNMR
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
-export the first 2D slice of the record.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will export the first 2D slice of the record.
 
 If the `EXP2D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
@@ -2619,9 +2621,9 @@ If no format is specified RNMR will prompt for it with a default of pipe. The cu
 - SIFT
 - UCSF
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
-export the first 3D slice of the record.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will export the first 3D slice of the record.
 
 If the `EXP3D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file to contain the exported data. The default file name in the prompt will depend upon the record number, slice and the
@@ -2813,11 +2815,11 @@ Format: `GA` rec buf
 Defaults: rrec 1
 
 Description:
-`GA` reads data from an [archive record](syntax#record_type) to a [processing buffer](syntax#buffers). The parameters
-and data of the buffer are replaced with corresponding values read from the disk record. Most RNMR commands require that
-data stored in an archive file be read into a buffer before further processing may be performed.
+`GA` reads data from an [archive record](syntax.md#record_type) to a [processing buffer](syntax.md#buffers). The
+parameters and data of the buffer are replaced with corresponding values read from the disk record. Most RNMR commands
+require that data stored in an archive file be read into a buffer before further processing may be performed.
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
 displayed and set by `PTRA`) as a default. `GA` cannot be used to read scratch records which must be accessed with `GS`
 or blocked records which must be accessed with `GB`. If no buffer is specified RNMR will not prompt for it and will read
 the record into the visible processing buffer.
@@ -2866,7 +2868,7 @@ Defaults: 1 1
 Prerequisites: Experiment loaded (LOAD); Acquisition stopped (HALT); RNMRA only
 
 Description:
-`GAV` transfers data and parameters from the averager to a [processing buffer](syntax#buffers). `GAV` must be used in
+`GAV` transfers data and parameters from the averager to a [processing buffer](syntax.md#buffers). `GAV` must be used in
 order to process data acquired by the spectrometer hardware. The averager memory may be logically partitioned into two
 or more blocks by `NABLK` so that multiple FID's with different experimental parameters can be acquired at once, without
 the need to start and stop acquisition many times. `GAV` transfers one of these blocks to a processing buffer. If no
@@ -2891,15 +2893,15 @@ Format: `GB` rec slice buf nslice
 Defaults: rrec next 1 1
 
 Description:
-`GB` reads 1D slices from a [blocked record](syntax#blocked_records) to a [processing buffer](syntax#buffers). The
+`GB` reads 1D slices from a [blocked record](syntax.md#blocked_records) to a [processing buffer](syntax.md#buffers). The
 parameters and data of the buffer are replaced with corresponding values read from the disk record. Most RNMR commands
 require that data stored in a blocked record be read into a buffer before further processing may be performed.
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. `GB` can only be used on [blocked records](syntax#record_type) and cannot be
-used to read scratch records which must be accessed with `GS` or archive records which must be accessed with `GA`.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. `GB` can only be used on [blocked records](syntax.md#record_type) and cannot
+be used to read scratch records which must be accessed with `GS` or archive records which must be accessed with `GA`.
 
-Since processing buffers are one-dimensional, the user must specify which one-dimensional [slice(s)](syntax#slice) of
+Since processing buffers are one-dimensional, the user must specify which one-dimensional [slice(s)](syntax.md#slice) of
 the blocked record to read into the buffer. If no slice is specified RNMR will not prompt for it and will get the next
 slice after the current read blocked record pointer (as displayed and set by `PTRB`).
 
@@ -2999,8 +3001,9 @@ Prerequisites: Time domain data in processing buffer (TIME)
 
 Description:
 `GM` performs a Gaussian multiplication apodization on an FID in the visible processing buffer. In this  apodization,
-the FID is multiplied by a decaying real Gaussian function. This results in a broadening of spectral lines after Fourier transformation which masks noise at the expense of resolution. When Gaussian multiplication is applied to a perfect,
-non-decaying complex sine wave and a Fourier transform is performed, the result will be a perfect Gaussian line shape.
+the FID is multiplied by a decaying real Gaussian function. This results in a broadening of spectral lines after
+Fourier transformation which masks noise at the expense of resolution. When Gaussian multiplication is applied to a
+perfect, non-decaying complex sine wave and a Fourier transform is performed, the result will be a perfect Gaussian line shape. 
 
 `GM` takes one argument, lb, which is the line broadening factor. This parameter is expressed in the current frequency
 units (Hz, kHz, or MHz) unless that unit is ppm in which case it is in the default frequency units. The value of lb must
@@ -3041,14 +3044,15 @@ Defaults: 1 0
 Prerequisites: Experiment loaded (LOAD); Acquisition stopped (HALT); RNMRA only
 
 Description:
-`GO` [starts acquisition](syntax#acquisition) without zeroing the shot counter or averager and without performing dummy
-scans. This permits continued averaging of existing data. This can be used to resume acquisition that was halted. If the
-number of shots to acquire, na, (as displayed and set by `NA`) is not -1 the number of shots already acquired must be
-less than na. If the current shot counter is at 0 then `GO` will behave like `ZG` instead of its normal behavior.
+`GO` [starts acquisition](syntax.md#acquisition) without zeroing the shot counter or averager and without performing
+dummy scans. This permits continued averaging of existing data. This can be used to resume acquisition that was halted.
+If the number of shots to acquire, na, (as displayed and set by `NA`) is not -1 the number of shots already acquired
+must be less than na. If the current shot counter is at 0 then `GO` will behave like `ZG` instead of its normal
+behavior. 
 
-The arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
-parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
-0 then only first_group will be acquired.
+The arguments first_group and last_group specify the range of [acquisition groups](syntax.md#acqgrp) to acquire. If
+either parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is
+set to 0 then only first_group will be acquired.
 ### GOSUB
 Perform call within macro
 
@@ -3151,11 +3155,11 @@ Format: `GS` rec buf
 Defaults: 1 1
 
 Description:
-`GS` reads data from a [scratch record](syntax#record_type) to a [processing buffer](syntax#buffers). The parameters
-and data of the buffer are replaced with corresponding values read from the disk record. Most RNMR commands require that
-data stored in an archive file be read into a buffer before further processing may be performed.
+`GS` reads data from a [scratch record](syntax.md#record_type) to a [processing buffer](syntax.md#buffers). The
+parameters and data of the buffer are replaced with corresponding values read from the disk record. Most RNMR commands
+require that data stored in an archive file be read into a buffer before further processing may be performed.
 
-If no [record number](syntax#records) is specified RNMR will not prompt for it and will read data from record 1. `GS`
+If no [record number](syntax.md#records) is specified RNMR will not prompt for it and will read data from record 1. `GS`
 cannot be used to read archive records which must be accessed with `GA` or blocked records which must be accessed with
 `GB`. If no buffer is specified RNMR will not prompt for it and will read the record into the visible processing buffer.
 
@@ -3468,16 +3472,16 @@ Defaults: sift rrec 1 default_name
 
 Description:
 `IMP1D` imports the contents of a disk file in a foreign (non-RNMR) format and saves it in a specified one-dimensional
-slice of a [blocked record](syntax#blocked_records). This importation allows one-dimensional data to be transferred to
-RNMR from another processing program or from one RNMR archive to another via `EXP1D`.
+slice of a [blocked record](syntax.md#blocked_records). This importation allows one-dimensional data to be transferred
+to RNMR from another processing program or from one RNMR archive to another via `EXP1D`.
 
 If no format is specified RNMR will prompt for it with a default of sift. The currently supported foreign formats are:
 
 - SIFT
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
-import data to the first 1D slice of the record.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will import data to the first 1D slice of the record.
 
 If the `IMP1D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
@@ -3499,16 +3503,16 @@ Defaults: sift rrec 1 default_name
 
 Description:
 `IMP2D` imports the contents of a disk file in a foreign (non-RNMR) format and saves it in a specified two-dimensional
-slice of a [blocked record](syntax#blocked_records). This importation allows two-dimensional data to be transferred to
-RNMR from another processing program or from one RNMR archive to another via `EXP2D`.
+slice of a [blocked record](syntax.md#blocked_records). This importation allows two-dimensional data to be transferred
+to RNMR from another processing program or from one RNMR archive to another via `EXP2D`.
 
 If no format is specified RNMR will prompt for it with a default of sift. The currently supported foreign formats are:
 
 - SIFT
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
-import data to the first 2D slice of the record.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will import data to the first 2D slice of the record.
 
 If the `IMP2D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
@@ -3530,16 +3534,16 @@ Defaults: sift rrec 1 default_name
 
 Description:
 `IMP3D` imports the contents of a disk file in a foreign (non-RNMR) format and saves it in a specified three-dimensional
-slice of a [blocked record](syntax#blocked_records). This importation allows two-dimensional data to be transferred to
-RNMR from another processing program or from one RNMR archive to another via `EXP3D`.
+slice of a [blocked record](syntax.md#blocked_records). This importation allows two-dimensional data to be transferred
+to RNMR from another processing program or from one RNMR archive to another via `EXP3D`.
 
 If no format is specified RNMR will prompt for it with a default of sift. The currently supported foreign formats are:
 
 - SIFT
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
-import data to the first 3D slice of the record.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will import data to the first 3D slice of the record.
 
 If the `IMP3D` command is used at console level and fspec is not provided, RNMR will prompt the user for the name of the
 file containing the data to be imported. The default file name in the prompt will depend upon the record number, slice
@@ -3825,14 +3829,14 @@ Format: `LIMB` rec dim llim rlim
 Defaults: rrec 1 current current
 
 Description:
-`LIMB` sets display limits for a [blocked record](syntax#blocked_records) along a specified dimension. The parameters
-llim and rlim are the left and right display limits. If no [record number](syntax#records) is specified RNMR will prompt
-for it with the current read record pointer (as displayed and set by `PTRA`) as the default. `LIMB` may only be used on
-blocked records. If dim is omitted RNMR will prompt for it with 1 as a default. The value of dim cannot exceed the
-number of dimensions in the blocked record. If llim or rlim is omitted RNMR will prompt for it with the current left or
-right display limit as a default. A value outside of the dataset or "\*" will use the leftmost or rightmost point
-available. Values that are within the range of the dataset but that do not correspond exactly to a point will use the
-closest point to the right of the specified value.
+`LIMB` sets display limits for a [blocked record](syntax.md#blocked_records) along a specified dimension. The parameters
+llim and rlim are the left and right display limits. If no [record number](syntax.md#records) is specified RNMR will
+prompt for it with the current read record pointer (as displayed and set by `PTRA`) as the default. `LIMB` may only be
+used on blocked records. If dim is omitted RNMR will prompt for it with 1 as a default. The value of dim cannot exceed
+the number of dimensions in the blocked record. If llim or rlim is omitted RNMR will prompt for it with the current
+left or right display limit as a default. A value outside of the dataset or "\*" will use the leftmost or rightmost
+point available. Values that are within the range of the dataset but that do not correspond exactly to a point will use
+the closest point to the right of the specified value.
 ### LOG
 Write line to log
 
@@ -4376,12 +4380,12 @@ Defaults: rrec 1
 
 Description:
 `LPK2D` displays a list of peak positions and intensities for the first 250 peaks found within a 2D slice of a
-[blocked record](syntax#blocked_records) above the current peak pick threshold (`TH`). Only peaks within the current
+[blocked record](syntax.md#blocked_records) above the current peak pick threshold (`TH`). Only peaks within the current
 display limits (as set and shown by the command `LIMB`) will be listed by `LPK2D`.
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
-list peaks from the first 2D slice of the record.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will list peaks from the first 2D slice of the record.
 
 Each `LPK2D` display begins with a header which includes the buffer title, record and block numbers, record owner, and
 date, as well as titles for each column specifying the domain (time or frequency) in each direction and units for the
@@ -4824,11 +4828,11 @@ Format: `MOV` src dst
 Defaults: rrec wrec
 
 Description:
-`MOV` moves data from one [record](syntax#records) to another within the same archive. If no source record is specified
-RNMR will prompt for it with the current read record pointer (as displayed and set by `PTRA`) as a default. If no
-destination record is specified RNMR prompt will not prompt for it and will use the current write record pointer (as
-displayed and set by `PTRA`) as a default. If the destination record is not free the record will be moved to the next
-available record and the actual destination record will be printed as an informational message.
+`MOV` moves data from one [record](syntax.md#records) to another within the same archive. If no source record is
+specified RNMR will prompt for it with the current read record pointer (as displayed and set by `PTRA`) as a default.
+If no destination record is specified RNMR prompt will not prompt for it and will use the current write record pointer
+(as displayed and set by `PTRA`) as a default. If the destination record is not free the record will be moved to the
+next available record and the actual destination record will be printed as an informational message.
 ### MOVV
 Move buffer
 
@@ -4917,9 +4921,9 @@ Defaults: current
 Prerequisites: RNMRA only
 
 Description:
-`NA` sets the number of shots to [acquire](syntax#acquisition) to na. If na is not provided RNMR will prompt for it with
-the current value as a default. If na is -1 an indefinite number of scans will be collected until the user halts the
-acquisition.
+`NA` sets the number of shots to [acquire](syntax.md#acquisition) to na. If na is not provided RNMR will prompt for it
+with the current value as a default. If na is -1 an indefinite number of scans will be collected until the user halts
+the acquisition.
 ### NABLK
 Set number of acquisition blocks
 
@@ -5016,7 +5020,7 @@ Prerequisites: RNMRA only
 Description:
 `NDLY` sets the number of dummy scans to run before starting acquisition. If ndly is omitted RNMR will prompt for it
 with the current value as a default. The /FIRST qualifier allows for setting up a different number of dummy scans to be
-used for the first [acquisition group](syntax#acqgrp) collected by a given acquisition command. This /FIRST number of
+used for the first [acquisition group](syntax.md#acqgrp) collected by a given acquisition command. This /FIRST number of
 dummy scans is only used when multiple groups are to be collected by an acquisition command.
 ### NDSP
 Set number of shots between display update
@@ -5053,16 +5057,16 @@ Defaults: 1 0
 Prerequisites: Experiment loaded (LOAD); Acquisition stopped (HALT); RNMRA only
 
 Description:
-`NG` [starts acquisition](syntax#acquisition) without zeroing the shot counter or averager with dummy scans. This
+`NG` [starts acquisition](syntax.md#acquisition) without zeroing the shot counter or averager with dummy scans. This
 permits continued averaging of existing data. This can be used to resume acquisition that was halted. The dummy scans
 allow the initial magnetization to reach an equilibrium based on relaxation rates and the recycle delay before averaging
 begins. The number of dummy scans is set by `NDLY`. If the number of shots to acquire, na, (as displayed and set by
 `NA`) is not -1 the number of shots already acquired must be less than na. If the current shot counter is at 0 then `NG`
 will behave like `DG` instead of its normal behavior.
 
-The arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
-parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
-0 then only first_group will be acquired.
+The arguments first_group and last_group specify the range of [acquisition groups](syntax.md#acqgrp) to acquire. If
+either parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is
+set to 0 then only first_group will be acquired.
 ### NOISE
 Generate complex random noise
 
@@ -5146,7 +5150,7 @@ Format: `NWAIT` nwait
 Defaults: current
 
 Description:
-`NWAIT` sets the number of shots to [acquire](syntax#acquisition) when starting acquisition from a macro. If nwait is
+`NWAIT` sets the number of shots to [acquire](syntax.md#acquisition) when starting acquisition from a macro. If nwait is
 omitted RNMR will prompt for it with the current value as a default.
 ### NXTDO
 Cycle macro `DO` loop
@@ -5215,10 +5219,10 @@ Qualifier Defaults: /WRT for arv 1; /RD for others
 Defaults: 1 TEMP
 
 Description:
-`OPNARV` opens an archive for access by RNMR. If no [archive number](syntax#archives) is specified RNMR will prompt for
-it with a default of 1. The parameter name specifies the name of the archive file that is to be opened. If no name is
-specified RNMR will prompt for it with a default of temp. The /RD and /WRT qualifiers alter the
-[access](syntax#archive_access) to the archive. /RD will cause the archive to be opened with read access. /WRT will
+`OPNARV` opens an archive for access by RNMR. If no [archive number](syntax.md#archives) is specified RNMR will prompt
+for it with a default of 1. The parameter name specifies the name of the archive file that is to be opened. If no name
+is specified RNMR will prompt for it with a default of temp. The /RD and /WRT qualifiers alter the
+[access](syntax.md#archive_access) to the archive. /RD will cause the archive to be opened with read access. /WRT will
 cause the archive to be opened with read and write access. If neither /RD or /WRT is specified then `OPNARV` will use
 /WRT for archive 1 and /RD for all other archive numbers.
 
@@ -5337,11 +5341,11 @@ Format: `PARB` rec dir dim dom syn first step
 Defaults: wrec 1 current current current current current
 
 Description:
-`PARB` sets parameters for interpreting a [blocked record](syntax#blocked_records). This command works essentially the
-same as `SET REC` but sets many parameters for a specified direction at once. If no [record number](syntax#records) is
-specified RNMR will prompt for it with the current write record pointer (as displayed and set by `PTRA`) as a default.
-If no direction is specified RNMR will prompt for it with 1 as a default. If any other argument is omitted RNMR will
-prompt for it with the current value as a default.
+`PARB` sets parameters for interpreting a [blocked record](syntax.md#blocked_records). This command works essentially
+the same as `SET REC` but sets many parameters for a specified direction at once. If no
+[record number](syntax.md#records) is specified RNMR will prompt for it with the current write record pointer (as
+displayed and set by `PTRA`) as a default. If no direction is specified RNMR will prompt for it with 1 as a default. If
+any other argument is omitted RNMR will prompt for it with the current value as a default.
 ### PC
 Incremental phase correction
 
@@ -5497,9 +5501,9 @@ Description:
 `PLDEV` or the file specified by `PLFIL`. The number of contours is set by `NCON`, the contour height limits by
 `CONLIM`, the type of contours by `CONMD`, and the plot limits by `LIMB`.
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
-plot the first 2D slice of the record.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will plot the first 2D slice of the record.
 ### PLS
 Set pulse length
 
@@ -5656,9 +5660,9 @@ yields 90° phase steps while for example 6 would yield 60° steps. Each element
 number from 1 to the value specified by /MOD. With the default qualifier /ACQ these modes indicate a sequence of phase
 shifts to apply on sequential shots.
 
-The default value is /MOD=4, which yields phase values of (0°, 90°, 180°, 270°) corresponding to the numbers 1 through 4.
-The maximum number of acquisition modes in a sequence is 64. If the number of modes entered is less than 64, the
-specified modes will be replicated to a 64 mode sequence. For example, if the user specifies:
+The default value is /MOD=4, which yields phase values of (0°, 90°, 180°, 270°) corresponding to the numbers 1
+through 4. The maximum number of acquisition modes in a sequence is 64. If the number of modes entered is less than 64,
+the specified modes will be replicated to a 64 mode sequence. For example, if the user specifies:
 
         PPMD 1111 3333
 
@@ -5714,9 +5718,9 @@ Description:
 `PROF` calculates a one dimensional profile of a two dimensional slice of a [blocked record](synatx#blocked_records).
 Each point in the profile will be set to the maximum value at that point along direction 2.
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
-calculate the profile of the first 2D slice of the record.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will calculate the profile of the first 2D slice of the record.
 ### PROFB
 Calculate profile of blocked record along a dimension
 
@@ -5728,13 +5732,13 @@ Defaults: rrec iwrec last
 
 Defaults:
 `PROFB` calculates the profile of a [blocked record](sybtax#blocked_records) src along dimension dim and stores the
-result in blocked record dst. If no source [record number](syntax#records) is specified RNMR will prompt for it with the
-current read record pointer (as displayed and set by `PTRA`) as a default. If no destination
-[record number](syntax#records) is specified RNMR will not prompt for it and will use the current write record pointer
-(as displayed and set by `PTRA`) as a default. The dimension to calculate the profile along is a dimension and not a
-direction and is not affected by `DIRB`. The source record must be [accessible](syntax#ndimx) along the specified
-dimension. If no dimension is specified RNMR will prompt for it with the last accessible dimension of the source record
-as a default.
+result in blocked record dst. If no source [record number](syntax.md#records) is specified RNMR will prompt for it with
+the current read record pointer (as displayed and set by `PTRA`) as a default. If no destination
+[record number](syntax.md#records) is specified RNMR will not prompt for it and will use the current write record
+pointer (as displayed and set by `PTRA`) as a default. The dimension to calculate the profile along is a dimension and
+not a direction and is not affected by `DIRB`. The source record must be [accessible](syntax.md#ndimx) along the
+specified dimension. If no dimension is specified RNMR will prompt for it with the last accessible dimension of the
+source record as a default.
 
 If the specified destination record is not free the next available record will be used and the actual destination record
 will be printed as an informational message. The destination record will have the same dimensionality and size as the
@@ -5763,9 +5767,9 @@ Description:
 `PROJ` calculates a one dimensional projection of a two dimensional slice of a [blocked record](synatx#blocked_records).
 Each point in the projection will be set to the sum of the values at that point along direction 2.
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
-calculate the profile of the first 2D slice of the record.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will calculate the profile of the first 2D slice of the record.
 ### PROJB
 Calculate projection of blocked record along a dimension
 
@@ -5777,13 +5781,13 @@ Defaults: rrec wrec last
 
 Defaults:
 `PROJB` calculates the projection of a [blocked record](sybtax#blocked_records) src along dimension dim and stores the
-result in blocked record dst. If no source [record number](syntax#records) is specified RNMR will prompt for it with the
-current read record pointer (as displayed and set by `PTRA`) as a default. If no destination
-[record number](syntax#records) is specified RNMR will not prompt for it and will use the current write record pointer
-(as displayed and set by `PTRA`) as a default. The dimension to calculate the projection along is a dimension and not a
-direction and is not affected by `DIRB`. The source record must be [accessible](syntax#ndimx) along the specified
-dimension. If no dimension is specified RNMR will prompt for it with the last accessible dimension of the source record
-as a default.
+result in blocked record dst. If no source [record number](syntax.md#records) is specified RNMR will prompt for it with
+the current read record pointer (as displayed and set by `PTRA`) as a default. If no destination
+[record number](syntax.md#records) is specified RNMR will not prompt for it and will use the current write record
+pointer (as displayed and set by `PTRA`) as a default. The dimension to calculate the projection along is a dimension
+and not a direction and is not affected by `DIRB`. The source record must be [accessible](syntax.md#ndimx) along the
+specified dimension. If no dimension is specified RNMR will prompt for it with the last accessible dimension of the
+source record as a default.
 
 If the specified destination record is not free the next available record will be used and the actual destination record
 will be printed as an informational message. The destination record will have the same dimensionality and size as the
@@ -5883,7 +5887,7 @@ Format: `PTRA` rrec wrec
 Defaults: current current
 
 Description:
-`PTRA` sets the read and write archive pointers. These pointers are [record numbers](syntax#records) that provide the
+`PTRA` sets the read and write archive pointers. These pointers are [record numbers](syntax.md#records) that provide the
 default values for most commands involving records. If either pointer is omitted RNMR will prompt for it with the
 current value as a default. The read and write archive pointers are also set by most commands that read from or write to
 a record respectively.
@@ -5897,10 +5901,10 @@ Format: `PTRB` rec rblk wblk
 Defaults: rrec current current
 
 Description:
-`PTRB` sets the read and write pointers for a [blocked record](syntax#blocked_records). These pointers are used to
+`PTRB` sets the read and write pointers for a [blocked record](syntax.md#blocked_records). These pointers are used to
 determine the default values for most commands involving loading from or saving to blocked records. If no
-[record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as displayed
-and set by `PTRA`) as a default. The record must be a blocked record. If either pointer is omitted RNMR will
+[record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. The record must be a blocked record. If either pointer is omitted RNMR will
 prompt for it with the current value as a default. The read and write blocked record pointers are also set by most
 commands that read from or write to the blocked record respectively. Most commands that rely on these pointers will
 increment them before use, so entering 0 for either pointer indicates to start from the beginning of the blocked record.
@@ -6399,7 +6403,7 @@ Defaults: temp 1
 
 Description:
 `RSTBUF` restores buffer values from a file fspec written using `SAVBUF` and applies them to a
-[processing buffer](syntax#buffers). If no fspec is provided RNMR will prompt for it with temp as a default. If no
+[processing buffer](syntax.md#buffers). If no fspec is provided RNMR will prompt for it with temp as a default. If no
 buffer is specified RNMR will not prompt for it and will apply the loaded values to the visible processing buffer.
 ### RSTGBL
 Restore global arguments from file
@@ -6529,8 +6533,8 @@ Format: `SA` rec buf
 Defaults: wrec 1
 
 Description:
-`SA` saves the date in a [processing buffer](syntax#buffers) to an [archive record](syntax#record_type). If no
-[record number](syntax#records) is provided RNMR will not prompt for it and will use the current write record pointer
+`SA` saves the date in a [processing buffer](syntax.md#buffers) to an [archive record](syntax.md#record_type). If no
+[record number](syntax.md#records) is provided RNMR will not prompt for it and will use the current write record pointer
 (as displayed and set by `PTRA`). The record must be in an archive which RNMR has write access to. `SA` cannot write to
 scratch records which must be written using `SS` or to blocked records which must be written using `SB`. If no buffer is
 specified RNMR will not prompt for it and will save the data from the visible processing buffer.
@@ -6544,7 +6548,7 @@ Format: `SAV` blk buf
 Prerequisites: Acquisition stopped (HALT); Time domain only (TIME); RNMRA only
 
 Description:
-`SAV` transfers data and parameters from a [processing buffer](syntax#buffers) to the averager for further averaging.
+`SAV` transfers data and parameters from a [processing buffer](syntax.md#buffers) to the averager for further averaging.
 The averager memory may be logically partitioned into two or more blocks by `NABLK` so that multiple FID's with
 different experimental parameters can be acquired at once, without the need to start and stop acquisition many times.
 `SAV` transfers data from a processing buffer to one of these blocks. If no block is specified RNMR will not prompt for
@@ -6560,8 +6564,8 @@ Format: `SAVARV` arv
 Defaults: 1
 
 Description:
-`SAVARV` saves an archive to disk. If no [archive number](syntax#archives) is specified RNMR will prompt for it with a
-default of 1. Archives will be automatically saved in a number of situations, but it can be useful to manually save an
+`SAVARV` saves an archive to disk. If no [archive number](syntax.md#archives) is specified RNMR will prompt for it with
+a default of 1. Archives will be automatically saved in a number of situations, but it can be useful to manually save an
 archive especially when opening an archive in read only mode in RNMRP while it is open with write access in RNMRA. Using
 `SAVARV` in RNMRA and then `UPDARV` in RNMRP ensures that all changes made from RNMRA are visible in RNMRP.
 ### SAVBUF
@@ -6574,9 +6578,9 @@ Format: `SAVBUF` fspec buf
 Defaults: temp 1
 
 Description:
-`SAVBUF` saves values from a specified [processing buffer](syntax#buffers) to a file on disk fspec which can be later be
-loaded using `RSTBUF`. If no file is specified RNMR will prompt for it with temp as a default. If no buffer is specified
-RNMR will not prompt for it and will save values from the visible processing buffer.
+`SAVBUF` saves values from a specified [processing buffer](syntax.md#buffers) to a file on disk fspec which can be
+later be loaded using `RSTBUF`. If no file is specified RNMR will prompt for it with temp as a default. If no buffer is
+specified RNMR will not prompt for it and will save values from the visible processing buffer.
 ### SAVGBL
 Save global arguments to file
 
@@ -6679,13 +6683,13 @@ Format: `SB` rec slice buf nblk
 Defaults: wrec next 1 1
 
 Description:
-`SB` saves the data in a [processing buffer](syntax#buffers) to 1D slices if a [blocked record](syntax#blocked_records).
-If no [record number](syntax#records) is provided RNMR will not prompt for it and will use the current write record
-pointer (as displayed and set by `PTRA`). The record must be in an archive which RNMR has write access to. `SB` cannot
-write to [scratch records](syntax#record_types) which must be written using `SS` or to archive records which must be
-written using `SA`.
+`SB` saves the data in a [processing buffer](syntax.md#buffers) to 1D slices if a
+[blocked record](syntax.md#blocked_records). If no [record number](syntax.md#records) is provided RNMR will not prompt
+for it and will use the current write record pointer (as displayed and set by `PTRA`). The record must be in an archive
+which RNMR has write access to. `SB` cannot write to [scratch records](syntax.md#record_types) which must be written
+using `SS` or to archive records which must be written using `SA`.
 
-Since processing buffers are one-dimensional, the user must specify which one-dimensional [slice(s)](syntax#slice) of
+Since processing buffers are one-dimensional, the user must specify which one-dimensional [slice(s)](syntax.md#slice) of
 the blocked record to save the data from the buffer to. If no slice is specified RNMR will not prompt for it and will
 write to the slice after the current write blocked record pointer (as displayed and set by `PTRB`).
 
@@ -7101,14 +7105,14 @@ Format: `SIZEB` rec dim
 Defaults: rrec 1
 
 Description:
-`SIZEB` displays information about the size of a [blocked record](syntax#blocked_records) along a particular dimension.
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no dimension is specified RNMR will prompt for it with 1 as a default.
-This parameter is a dimension not a direction and is unaffected by `DIRB`. If the dimension is between 1 and the number
-of dimensions in the blocked record RNMR will print the size and allocated size of the blocked record in that dimension
-as informational messages. If dir is 0 RNMR will print the number of segments in the record and the number of allocated
-segments. If dir is * RNMR will print the total number of blocks and total number of allocated blocks in the record. No
-other values of dim are permitted.
+`SIZEB` displays information about the size of a [blocked record](syntax.md#blocked_records) along a particular
+dimension. If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record
+pointer (as displayed and set by `PTRA`) as a default. If no dimension is specified RNMR will prompt for it with 1 as a
+default. This parameter is a dimension not a direction and is unaffected by `DIRB`. If the dimension is between 1 and
+the number of dimensions in the blocked record RNMR will print the size and allocated size of the blocked record in
+that dimension as informational messages. If dir is 0 RNMR will print the number of segments in the record and the
+number of allocated segments. If dir is * RNMR will print the total number of blocks and total number of allocated
+blocks in the record. No other values of dim are permitted.
 ### SIZLST
 Display size of list
 
@@ -7147,11 +7151,11 @@ Qualifier defaults: /DATA /USED
 Defaults: 1
 
 Description:
-`SP` prints information about the space in an archive as informational messages. If no [archive number](syntax#archives)
-is specified RNMR will not prompt for it and will display information about archive 1. The qualifiers are used to
-determine what information to display. /DATA and /TITLE select the type of information to return. /DATA returns
-information about the size of various aspects of the archive in 512 byte blocks. /TITLE returns information about the
-number of records in the archive.
+`SP` prints information about the space in an archive as informational messages. If no
+[archive number](syntax.md#archives) is specified RNMR will not prompt for it and will display information about
+archive 1. The qualifiers are used to determine what information to display. /DATA and /TITLE select the type of
+information to return. /DATA returns information about the size of various aspects of the archive in 512 byte blocks.
+/TITLE returns information about the number of records in the archive.
 
 The other qualifiers determine the quantity to print as follows:
 
@@ -7193,7 +7197,7 @@ Defaults 1
 Description:
 `SQZ` squeezes an archive to reduce the size of the file stored on disk. After `SQZ` the number of records and data
 blocks allocated in the file will match the number of used records and data blocks (`SP /USED` will equal `SP /FILE`).
-If no [archive number](syntax#archives) is specified RNMR will prompt for it with 1 as a default.
+If no [archive number](syntax.md#archives) is specified RNMR will prompt for it with 1 as a default.
 ### SREF
 Save processing buffer reference to nucleus table
 
@@ -7232,12 +7236,12 @@ Format: `SS` rec buf
 Defaults: 1 1
 
 Description:
-`SS` saves the date in a [processing buffer](syntax#buffers) to a [scratch record](syntax#record_type) (records 1-4 in
-an archive). The record must be in an archive which RNMR has write access to. If no [record number](syntax#records) is
-specified RNMR will not prompt for it and will use record 1. The specified scratch record does not need to be empty for
-`SS` to save data to it. `SS` cannot write to archive records which must be written using `SA` or to blocked records
-which must be written using `SB`. If no buffer is specified RNMR will not prompt for it and will save the data from the
-visible processing buffer.
+`SS` saves the date in a [processing buffer](syntax.md#buffers) to a [scratch record](syntax.md#record_type) (records
+1-4 in an archive). The record must be in an archive which RNMR has write access to. If no
+[record number](syntax.md#records) is specified RNMR will not prompt for it and will use record 1. The specified
+scratch record does not need to be empty for `SS` to save data to it. `SS` cannot write to archive records which must
+be written using `SA` or to blocked records which must be written using `SB`. If no buffer is specified RNMR will not
+prompt for it and will save the data from the visible processing buffer.
 ### STK
 Add to plot stream stack
 
@@ -7431,10 +7435,10 @@ Format: `TILT` rec slice tfctr
 Defaults: wrec 1 1.0
 
 Description:
-`TILT` tilts a two-dimensional slice of a [blocked record](syntax#blocked_records) by an angle between 0.0 and 45.0
-degrees. If no [record number](syntax#records) is specified RNMR will prompt for it with the current write record
+`TILT` tilts a two-dimensional slice of a [blocked record](syntax.md#blocked_records) by an angle between 0.0 and 45.0
+degrees. If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current write record
 pointer (as displayed and set by `PTRA`) as a default. The first two directions of the blocked record must be frequency
-domain. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will tilt the first 2D slice of the
+domain. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and will tilt the first 2D slice of the
 record. The final parameter, tfctr, determines what angle to tilt the record by. The angle is tfctr times 45.0 degrees.
 If tfctr is omitted RNMR will not prompt for it and will use a value of 1.0 (45 degree tilt). The value of tfctr may be
 between 0.0 and 1.0 inclusive.
@@ -7666,12 +7670,13 @@ Format: `TWIST` rec slice tfctr
 Defaults: wrec 1 1.0
 
 Description:
-`TWIST` twists a two-dimensional slice of a [blocked record](syntax#blocked_records). If no
-[record number](syntax#records) is specified RNMR will prompt for it with the current write record pointer (as displayed
-and set by `PTRA`) as a default. The first direction of the blocked record must be frequency domain and the second
-direction must be time domain. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will twist the
-first 2D slice of the record. The final parameter, tfctr, determines how much to twist the record. If tfctr is omitted
-RNMR will not prompt for it and will use a value of 1.0. The value of tfctr may be between 0.0 and 1.0 inclusive.
+`TWIST` twists a two-dimensional slice of a [blocked record](syntax.md#blocked_records). If no
+[record number](syntax.md#records) is specified RNMR will prompt for it with the current write record pointer (as
+displayed and set by `PTRA`) as a default. The first direction of the blocked record must be frequency domain and the
+second direction must be time domain. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and will
+twist the first 2D slice of the record. The final parameter, tfctr, determines how much to twist the record. If tfctr
+is omitted RNMR will not prompt for it and will use a value of 1.0. The value of tfctr may be between 0.0 and 1.0
+inclusive. 
 
 ## U
 ---
@@ -7734,7 +7739,7 @@ Defaults: 1
 
 Description:
 `UPDARV` updates an archive from its file on disk. This makes any changes that have been made to the file visible from
-RNMR. If no [archive number](syntax#archives) is specified RNMR will prompt for it with a default of 1. This can be
+RNMR. If no [archive number](syntax.md#archives) is specified RNMR will prompt for it with a default of 1. This can be
 useful when using an archive in read only mode in RNMRP while it is open with write access in RNMRA. Using `SAVARV` in
 RNMRA and then `UPDARV` in RNMRP ensures that all changes made from RNMRA are visible in RNMRP.
 ### USER
@@ -7804,9 +7809,9 @@ Prerequisites: Acquisition running; RNMRA only
 
 Description:
 `WAIT` waits during acquisition. While waiting commands cannot be entered at the console. `WAIT` will terminate if
-[acquisition](syntax#acquisition) finishes the specified number of scans (`NA` or `NWAIT`) or if a
-[signal](syntax#signals) is sent by the spectrometer. /ERR may be used to specify a label to jump to in the event of an
-error during acquisition.
+[acquisition](syntax.md#acquisition) finishes the specified number of scans (`NA` or `NWAIT`) or if a
+[signal](syntax.md#signals) is sent by the spectrometer. /ERR may be used to specify a label to jump to in the event of
+an error during acquisition.
 
 Pressing Q while `WAIT` is active calls `QUIT` to halt acquisition.
 
@@ -7824,13 +7829,13 @@ Format: rec first last
 Defaults: rrec 1 last
 
 Description:
-`WAVB` performs a weighted average of one-dimensional [slices](syntax#slice) from a [blocked record](blocked_records)
+`WAVB` performs a weighted average of one-dimensional [slices](syntax.md#slice) from a [blocked record](blocked_records)
 and puts the result in the visible processing buffer. The average is weighted such that any slices with all zeros have a
-weight of 0 and all other blocks have a weight of 1. If no [record number](syntax#records) is specified RNMR will prompt
-for it with the current read record pointer (as set and displayed by `PTRA`) as a default. `WAVB` performs the average
-over slices first to last. If first is omitted RNMR will prompt for it with 1 as a default. If last is omitted RNMR will
-prompt for it with the number of slices in the record as a default. Setting last to 0 indicates to use the last slice in
-the record.
+weight of 0 and all other blocks have a weight of 1. If no [record number](syntax.md#records) is specified RNMR will
+prompt for it with the current read record pointer (as set and displayed by `PTRA`) as a default. `WAVB` performs the
+average over slices first to last. If first is omitted RNMR will prompt for it with 1 as a default. If last is omitted
+RNMR will prompt for it with the number of slices in the record as a default. Setting last to 0 indicates to use the
+last slice in the record.
 ### WAVV
 Perform weighted addition of buffers
 
@@ -7923,14 +7928,14 @@ Format: `WPK2D` rec slice
 Defaults: rrec 1
 
 Description:
-`WPK2D` writes a list within a two-dimensional slice of a [blocked record](syntax#blocked_records) and within the
+`WPK2D` writes a list within a two-dimensional slice of a [blocked record](syntax.md#blocked_records) and within the
 current display limits to a file opened with `WRT`. For each peak a line will be written to the file containing the peak
 number, the position in each dimension in the current and default frequency units and the peak intensity. A maximum of
 250 peaks will be written to the file.
 
-If no [record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as
-displayed and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will
-print peaks from the first 2D slice of the record.
+If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will print peaks from the first 2D slice of the record.
 
 A point is considered a peak if its magnitude is greater than the peak picking threshold (as set and displayed by `TH`)
 and it is either a local maximum or minimum if its intensity is greater or less than zero respectively. By setting
@@ -8236,8 +8241,8 @@ Defaults: 1 0
 Prerequisites: Experiment loaded (LOAD); Acquisition stopped (HALT); RNMRA only
 
 Description:
-`ZG` zeroes the averager and shot counter then [starts acquisition](syntax#acquisition) without dummy scans. The
-arguments first_group and last_group specify the range of [acquisition groups](syntax#acqgrp) to acquire. If either
+`ZG` zeroes the averager and shot counter then [starts acquisition](syntax.md#acquisition) without dummy scans. The
+arguments first_group and last_group specify the range of [acquisition groups](syntax.md#acqgrp) to acquire. If either
 parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is set to
 0 then only first_group will be acquired.
 ### ZO
@@ -8285,10 +8290,10 @@ Defaults: rrec 1
 Prerequisites: Processing buffer visible (VIEW PRO)
 
 Description:
-`ZO2D` performs two-dimensional zooming on a slice of a [blocked record](syntax#blocked_records). If no
-[record number](syntax#records) is specified RNMR will prompt for it with the current read record pointer (as displayed
-and set by `PTRA`) as a default. If no [slice](syntax#slice) is specified RNMR will not prompt for it and will display
-the first 2D slice of the record.
+`ZO2D` performs two-dimensional zooming on a slice of a [blocked record](syntax.md#blocked_records). If no
+[record number](syntax.md#records) is specified RNMR will prompt for it with the current read record pointer (as
+displayed and set by `PTRA`) as a default. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and
+will display the first 2D slice of the record.
 
 `ZO2D` will display a single one-dimensional slice along one of the first two directions at a time. Various subcommands
 allow for manipulation of which slice along which direction is displayed. Whenever the visible direction is switched the
@@ -8319,11 +8324,11 @@ Defaults: rrec 1
 Prerequisites: Processing buffer visible (VIEW PRO)
 
 Description:
-`ZO2DC` displays a contour plot of a two-dimensional slice of a [blocked record](syntax#blocked_records) and provides
+`ZO2DC` displays a contour plot of a two-dimensional slice of a [blocked record](syntax.md#blocked_records) and provides
 subcommands to manipulate the contour display.  The number of contours is set by `NCON`, the contour height limits by
-`CONLIM`, the type of contours by `CONMD`, and the plot limits by `LIMB`. If no [record number](syntax#records) is
+`CONLIM`, the type of contours by `CONMD`, and the plot limits by `LIMB`. If no [record number](syntax.md#records) is
 specified RNMR will prompt for it with the current read record pointer (as displayed and set by `PTRA`) as a default. If
-no [slice](syntax#slice) is specified RNMR will not prompt for it and will plot the first 2D slice of the record.
+no [slice](syntax.md#slice) is specified RNMR will not prompt for it and will plot the first 2D slice of the record.
 
 The following subcommands are available:
 
