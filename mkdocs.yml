@@ -10,6 +10,7 @@ nav:
 - Getting Started: 'getting_started.md'
 - Running Routine Experiments: 'running_routine_experiments.md'
 - Macros: 'macros.md'
+- Pulse Programming: 'pulse_programming.md'
 - Commands:
     - Command Syntax: 'command/syntax.md'
     - Command Summary: 'command/command_summary.md'

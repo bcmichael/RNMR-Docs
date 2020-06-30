@@ -23,6 +23,9 @@
 * [Unstructured Control Flow](macros.md#unstructured_control_flow)
 * [Macro Output](macros.md#macro_output)
 * [Passing Information to and from Macros](macros.md#passing_information_to_and_from_macros)
+## Pulse Programming
+* [JustCP](pulse_programming.md#justcp)
+* [DARR](pulse_programming.md#darr)
 ## Command Syntax
 * [Archives](command/syntax.md#archives)
 * [Records](command/syntax.md#records)
