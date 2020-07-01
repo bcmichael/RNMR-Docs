@@ -1,7 +1,7 @@
 # Getting Started
 ## Introduction
 RNMR software has two separate but similar programs. The acquisition software is called RNMRA, while the processing
-software is called RNMRP. To get started using a spectrometer pen a terminal window on the spectrometer computer. You
+software is called RNMRP. To get started using a spectrometer open a terminal window on the spectrometer computer. You
 will be prompted to enter your home directory or your last name. After entering your username the working directory of
 the terminal will be your user folder on that spectrometer. The first step to collecting data is to launch RNMRA by
 entering the following command in the terminal:  
@@ -23,26 +23,26 @@ An existing archive may be specified here in order to open it.
 RNMR has many commands, some of which are referenced here when describing how to accomplish a particular task. To run a
 command type it into the console at the bottom of the RNMR window. Many RNMR commands require additional arguments to
 specify exactly what they should do. To see a full description of a particular command including its arguments and what
-it does look it up in the Full Command Descriptions section of this documentation.
+it does look it up in the [Full Command Descriptions](command/full_command.md) section of this documentation.
 
 ## Manually Running a One Pulse 1D Experiment
-The first task when starting up doing solid state NMR is typically to adjust the spinning angle to the magic angle. We
-typically set the magic angle using the ⁷⁹Br signal from a sample of KBr spinning at 4-6 KHz. Once the sample is in the
-probe and spinning the probe must be tuned to the correct frequency. The command `CATNUC` opens a list of defined nuclei
-and their frequencies (given the current spectrometer frequency). The appropriate channel of the probe (usually the ¹³C
-channel) should be tuned to the frequency listed for ⁷⁹Br.
+The first task when starting experiments in solid state NMR is typically to adjust the spinning axis to be at the magic
+angle. We typically set the magic angle using the ⁷⁹Br signal from a sample of KBr spinning at 4-6 KHz. Once the sample
+is in the probe and spinning the probe must be tuned to the correct frequency. The command `CATNUC` opens a list of
+defined nuclei and their frequencies (given the current spectrometer frequency). The appropriate channel of the probe
+(usually the ¹³C channel) should be tuned to the frequency listed for ⁷⁹Br.
 
 Enter ONEPLS at the command line to call a macro for setting up a one pulse NMR experiment. This macro will prompt for
 a channel sequence. Only one channel is needed for a one pulse experiment so enter the number corresponding to the
 physical channel that should be used for ⁷⁹Br (usually the same as for ¹³C).  Next a window will pop up asking for
 information about the experiment to run. Make sure that the nucleus is set to BR79. The other parameters can likely be
 left at their default settings for now. Next the prompt will ask for a pulse width. This value is interpreted as a
-number of microseconds. 5 should usually be a reasonable for KBr. Another window will pop up asking for more parameters.
-Again, the default settings should work for now. Finally the prompt will ask for a title, so enter a title describing
-the experiment.
+number of microseconds. 5 should usually be a reasonable value for KBr. Another window will pop up asking for more
+parameters. Again, the default settings should work for now. Finally the prompt will ask for a title, so enter a title
+describing the experiment.
 
 To start off with set the number of scans to 4 with the command `NA 4`. Start the acquisition with `ZG`. The shot
-counter in the top right corner of the display will count up from 0 to 4. After the final scan a message will printed
+counter in the top right corner of the display will count up from 0 to 4. After the final scan a message will be printed
 to the console saying ACQUISITION FINISHED. In order to process the data it must be transferred from the averager to a
 processing buffer. Use `GAV` to transfer the data to the visible processing buffer. The FID will be visible on the
 screen if the processing buffer is being viewed. When viewing the processing buffer PRO will be displayed in the top
@@ -63,16 +63,16 @@ sequence of processing commands. To use these macros first copy them to your mac
 data to the visible processing buffer. Entering proc will process the data.
 
 ## Manipulating The Display
-It is often useful to change various aspects of the displayed spectrum. Things like zooming in on a region of spectrum
-or scaling the spectrum up or down to fit the screen are common operations when viewing data. Selecting zoom from the
-view menu enters the zooming subroutine and opens a window with some useful controls. In this subroutine there are two
-cursors which can be moved by clicking and dragging on the screen. The switch cursors button changes which cursor is
-active and movable. The position of the active cursor and the data value at that point are displayed about the data
-display. The cursor can also jump to the next peak in a specified direction. The peak picking threshold can be changed
-using the threshold button. The display of the cursors also has two different modes which can be toggled. The region
-between the cursors can be expanded to the full display or the full spectrum can be displayed. This window is built on
-the `ZO` command and all of the keyboard commands it allows are available. `LIM` can also be used to set the display
-limits to specific values. The units used for time or frequency display can be changed using `UNIT`
+It is often useful to change various aspects of the displayed spectrum. Things like zooming in on a region of the
+spectrum or scaling the spectrum up or down to fit the screen are common operations when viewing data. Selecting zoom
+from the view menu enters the zooming subroutine and opens a window with some useful controls. In this subroutine there
+are two cursors which can be moved by clicking and dragging on the screen. The switch cursors button changes which
+cursor is active and movable. The position of the active cursor and the data value at that point are displayed above the
+data display. The cursor can also jump to the next peak in a specified direction. The peak picking threshold can be
+changed using the threshold button. The display of the cursors also has two different modes which can be toggled. The
+region between the cursors can be expanded to the full display or the full spectrum can be displayed. This window is
+built on the `ZO` command and all of the keyboard commands it allows are available. `LIM` can also be used to set the
+display limits to specific values. The units used for time or frequency display can be changed using `UNIT`.
 
 There are several useful commands available for scaling the displayed data vertically. `NORM` can be used to normalize
 the data to fit the display. `SC` can be used to scale the data by a certain amount. `AK` can be used to set an absolute
@@ -129,10 +129,11 @@ visible processing buffer for further manipulation use `GA`.
 ## Shimming and Referencing
 In order to acquire high quality NMR spectra the magnetic field in the sample must be as homogenous as possible. This
 homogeneity is obtained by adjusting the current in a set of shim coils that generate magnetic fields to counteract
-inhomogeneity of the main coil.  The shim controls can be accessed by selecting the shim option from the controls menu.
+inhomogeneity of the main coil. The shim controls can be accessed by selecting the shim option from the controls menu.
 The homogeneity is judged by looking at the width and shape of a peak from a reference sample. In solid state NMR this
 is usually done using a ¹³C spectrum of adamantane measured with a cross polarization experiment. A workflow for running
-such an experiment is detailed in the Running Routine Experiments section of this documentation.
+such an experiment is detailed in the
+[Running Routine Experiments](running_routine_experiments.md#invoking_an_experiment) section of this documentation.
 
 The width of a peak can be easily measured in RNMR. Position the two cursors on either side of the peak of interest
 using the zoom subroutine. Then use `LW` to print the width at half max of the peak as an informational message. Adjust
@@ -142,4 +143,4 @@ This same adamantane sample is usually used as a frequency reference. Referencin
 reference macro. Call reference setref to begin referencing. When prompted for ppm or kHz enter yes to reference in ppm
 then position the cursor on the peak to reference to. Press O and enter the desired chemical shift of the peak. The
 chemical shifts of the peaks of adamantane relative to DSS will be printed to the console so that they are easily
-available. to enter. Finally press enter to finish and then again to accept the changed reference.
+available to enter. Finally press enter to finish and then again to accept the changed reference.
