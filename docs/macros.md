@@ -10,8 +10,8 @@ utilities, however they can also be manipulated outside of RNMR using a text edi
 been altered outside of RNMR you must call `MACRO SOME_MACRO` in order for the changes to show up inside RNMR.
 
 A number of commands and control flow constructs will be briefly described here and some examples of their use will be
-provided. More thorough documentation of these commands as well as many others can be found in the Full Command
-Descriptions section.
+provided. More thorough documentation of these commands as well as many others can be found in the
+[Full Command Descriptions](command/full_command.md) section.
 ## Macro Variables
 There are three different types of variables available in RNMR: global arguments, local arguments, and symbols. Global
 and local arguments are stored as strings with a maximum length of 80 characters even when they hold numbers while
@@ -79,10 +79,10 @@ example:
     DFNSYM TEMP 2
     ARV TEMP
 
-Will print the name of archive 1.
+Will print the name of archive 2.
 ## Structured Control Flow
 ### DO Loops
-A macro `DO` loop executes a set of commands between `DO` and and its matching `ENDDO` a specified number of times. `DO`
+A macro `DO` loop executes a set of commands between `DO` and its matching `ENDDO` a specified number of times. `DO`
 accepts arguments specifying the starting and ending value of the loop counter. Each time the `ENDDO` is reached the
 loop counter is incremented and the next iteration of the loop begins. There may optionally be a variable defined to
 hold the loop counter. By default the loop counter will be stored as a local. For example:
@@ -93,8 +93,8 @@ hold the loop counter. By default the loop counter will be stored as a local. Fo
 
 Will print the numbers 2 through 6. There several special commands which can only be used between `DO` and its matching
 `ENDDO`. `BRKDO` exits the loop immediately without finishing the loop. `NXTDO` iterates the loop counter and begins the
-next loop iteration with finish the loop body. `RPTDO` begins a new loop iteration without finishing the loop body or
-incrementing the loop counter. Caution is merited with `RPTDO` to avoid creating infinite loops.
+next loop iteration without finishing the loop body. `RPTDO` begins a new loop iteration without finishing the loop body
+or incrementing the loop counter. Caution is merited with `RPTDO` to avoid creating infinite loops.
 ### SEL Selector
 `SEL` can be used to select one of several blocks of commands to execute based on the value of a local or global. By
 default a local is used. The value of the argument to `SEL` is compared to the argument of each `CASE` between `SEL` and
@@ -115,13 +115,13 @@ executed. Note that if `CASE` has no argument it will match anything. For exampl
 
 Will print B.
 ### TST Conditional Execution
-`TST` can be used to conditionally execute blocks of commands based on the result of a test. See the Full Command
-Descriptions section for a description of all the available tests. Either the commands between `TST` and `ELSTST` or the
-commands between `ELSTST` and `ENDTST` will be executed based on the result of the test. The `ELSTST` is optional. The
-/TRUE and /FALSE qualifiers determine which block executed for which test result. With /TRUE `TST` will run the commands
-between `TST` and `ELSTST` if the test returns true and the commands between `ELSTST` and `ENDTST` if it returns false.
-/FALSE reverses this behavior. /FALSE is mostly useful when you only have one set of commands that you want to execute
-when the test is false. For example:
+`TST` can be used to conditionally execute blocks of commands based on the result of a test. See the
+[Full Command Descriptions](command/full_command.md#tst) section for a description of all the available tests. Either
+the commands between `TST` and `ELSTST` or the commands between `ELSTST` and `ENDTST` will be executed based on the
+result of the test. The `ELSTST` is optional. The /TRUE and /FALSE qualifiers determine which block executed for which
+test result. With /TRUE `TST` will run the commands between `TST` and `ELSTST` if the test returns true and the commands
+between `ELSTST` and `ENDTST` if it returns false. /FALSE reverses this behavior. /FALSE is mostly useful when you only
+have one set of commands that you want to execute when the test is false. For example:
 
     TST LCL A
         MSG "THE VALUE OF A IS &A"
