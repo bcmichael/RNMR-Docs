@@ -11,22 +11,22 @@ need to compile it using the following command from the terminal in your pp fold
 ## A Brief Primer On Macros
 Macros are text files containing RNMR commands. When a macro is called the commands are executed sequentially just as if
 they had been entered at the command line in RNMR. Macros also have some facilities for control flow, can accept
-arguments, and can make use of both global and local variables. A few macros were introduced in the section on running
-one pulse experiments, RUN and PROC.
+arguments, and can make use of both global and local variables. A few macros were introduced in the section on
+[running one pulse experiments](getting_started.md#manually_running_a_one_pulse_1d_experiment), RUN and PROC.
 
 The first time you use a particular macro, or any time you alter a macro using a text editor outside of RNMR you must
 tell RNMR to load it from the file (some_macro.rnmrm) by typing `MACRO SOME_MACRO`. Subsequently you can run the macro
 by simply typing SOME_MACRO. Macros can also be edited from within RNMR using `EDTMAC`.
 
-Global variables can be set using `DFNGBL` and are used by prepending the argument name with `%`. % followed by a name
+Global variables can be set using `DFNGBL` and are used by prepending the argument name with `%`. `%` followed by a name
 will be replaced by the value of the global argument. Local variables use `DFNLCL` and `&` for these same purposes. Note
 that RNMR is not case sensitive so do not for example attempt to name different variables A and a. Everything on a line
-in a macro that comes after a ; is a comment and will not do anythin.
+in a macro that comes after a `;` is a comment and will not do anything.
 
 ## Invoking an Experiment
-A common workflow in RNMR makes use of the utility macro mr.rnmrm. Create a text file which typically should have the
-same name as the archive in which data will be saved (some_name.rnmrm). Then set the global argument r to be that name
-by typing `DFNGBL R SOME_NAME`. An example of what the macro might look like follows:
+A common workflow in RNMR makes use of the utility macro mr.rnmrm. Create a text file in your macro folder which
+typically should have the same name as the archive in which data will be saved (some_name.rnmrm). Then set the global
+argument r to be that name by typing `DFNGBL R SOME_NAME`. An example of what the macro might look like follows:
 ```
 goto .r&1                       ;Jump to a label. In this case if local arg 1
                                 ;has the value 5 it will jump to the label .r5
@@ -67,7 +67,7 @@ you store the corresponding data. The macro also keeps a nice record of what you
 
 Many of the commands used in this macro must specify which channel they are operating on. The channel numbers here refer
 to the logical channels, which are distinct from the numbers of the hardware channels on the spectrometer. The channel
-on which you detect is always logical channel 1, which is why in this case 1 is the 13C channel and 2 is the 1H channel.
+on which you detect is always logical channel 1, which is why in this case 1 is the ¹³C channel and 2 is the ¹H channel.
 
 You will also notice that the length of most of the pulses are set with the `P` command but the length of the cp is set
 using `D`. This distinction is based upon how they are defined within the pulse program. The `P` command is in
@@ -81,14 +81,16 @@ initial ¹H flip pulse (cppls) is 90° and should give no signal at all when it 
 
 The typical procedure once you have observed that your justcp experiment does in fact give you some signal is to set the
 length of the flip pulse to correspond to a 180° pulse at a particular frequency. For example, to calibrate an 83 KHz
-pulse for the ¹H channel set the pulse to 6 us. Then adjust the power of the pulse until there is no signal.
-Cutting the length of the pulse in half should then give a maximum signal as it would be a 90° pulse.
+pulse for the ¹H channel set the pulse to 6 us. Then adjust the power of the pulse until there is no signal. Cutting the
+length of the pulse in half should then give a maximum signal as it would be a 90° pulse. Power may be set to any value
+from 0.0 to 100.0. The nutation frequency should be approximately proportional to this power setting, but this
+relationship is not perfect (especially at the high end of the power range), as the amplifiers are not perfectly linear.
 
-In order to calibrate 13C powers we use the flipup and flipdn pulses which both have the same power. Uncomment the call
+In order to calibrate ¹³C powers we use the flipup and flipdn pulses which both have the same power. Uncomment the call
 to justcp ccal to call a submacro of justcp that sets up the phase cycling for power calibration. When both of the flip
 pulses are 90° you should see no signal. When flipup is 180° and flipdn is 90° you should see the full signal.
 
-While calibrating it very helpful to be able to compare two spectra on screen at once. With a spectrum on the screen
+While calibrating it is very helpful to be able to compare two spectra on screen at once. With a spectrum on the screen
 call `SET REF ON` to set this spectrum as a reference. The reference spectrum will now appear overlaid with any
 subsequent spectra you view until you set a new reference spectrum or call `SET REF OFF`. The justcp macro also has
 submacros for setting up cp to other nuclei such as 15N. You can add sections for additional nuclei if you need to.
@@ -143,7 +145,7 @@ all.
 ## Running a 2D DARR Experiment
 NMR spectroscopists routinely use multi-dimensional experiments to characterize complex samples with crowded spectra.
 DARR is one of the simpler 2D dipolar recoupling experiments and is a good example to use to illustrate how to run a 2D
-in RNMR. The pulse sequence of DARR is as follows:
+spectrum in RNMR. The pulse sequence of DARR is as follows:
 
 ![DARR pulse sequence](DARR.png)
 
