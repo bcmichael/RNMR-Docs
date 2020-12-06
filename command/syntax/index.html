@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Command Syntax - RNMR Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Command Syntax";
+    var mkdocs_page_input_path = "command\\syntax.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> RNMR Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="tocbase current">
+    
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../..">Index</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../getting_started/">Getting Started</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../running_routine_experiments/">Running Routine Experiments</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../macros/">Macros</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../pulse_programming/">Pulse Programming</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Commands</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  
+    
+    <li class="navtree toctree-l2 page current">
+      <a class="current" href="./">
+        Command Syntax
+          <span class="toctree-expand"></span>
+      </a>
+    </li>
+    
+      
+
+
+
+  <li class="toctree-l2 current">
+    <ul class="subnav-l2 current">
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#archives">Archives</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#records">Records</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#blocked_records">Blocked Records</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#buffers">Buffers</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#acquisition">Acquisition</a>
+        </li>
+    
+    </ul>
+  </li>
+
+
+  
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../command_summary/">Command Summary</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../full_command/">Full Command Descriptions</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">RNMR Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Commands &raquo;</li>
+        
+      
+    
+    <li>Command Syntax</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/bcmichael/RNMR-Docs/edit/master/docs/command/syntax.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="command_syntax">Command Syntax</h1>
+<p>The general form of an RNMR command line is:</p>
+<pre><code>(Repeat-count) command (Qualifiers) argument_1 (,) argument_2 (,)...
+</code></pre>
+<p>Some qualifiers require a value, which can be specified using =. For example, the command line below indicates that the
+command ABC with qualifier D, qualifier E set to 1, and parameters 2, 3, and 4 should be executed five times:</p>
+<pre><code>5 ABC /D /E=1 2 3 4
+</code></pre>
+<p>Qualifiers always start with a / and should precede the command's arguments.</p>
+<p>While commas need not be included to delimit the arguments of a command, they may be used to specify a null
+argument as in the example below:</p>
+<pre><code>ALLCPY 90, ,4096
+</code></pre>
+<p>When RNMR reads a user's command, any integer preceding a valid instruction is understood as a repeat count. For
+example, the command line:</p>
+<pre><code>2 EM 0.05
+</code></pre>
+<p>instructs RNMR to exponentially multiply an FID by 0.05 twice. Repeat counts are interpreted as summarized below:</p>
+<table>
+<thead>
+<tr>
+<th>Repeat Count</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 and above</td>
+<td>Execute command N times</td>
+</tr>
+<tr>
+<td>0</td>
+<td>Illegal</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>Execute command an indefinite number of times until stopped by Q or Ctrl-Z</td>
+</tr>
+<tr>
+<td>-2 and below</td>
+<td>Illegal</td>
+</tr>
+</tbody>
+</table>
+<h2 id="archives">Archives</h2>
+<p>RNMR data is saved in archives and a number of RNMR commands take archives as arguments. Up to 4 archives may be open in
+an instance of RNMR at any one time. Each archive has an associated archive number (1-4). These archive numbers are what
+are passed as arguments to commands rather than the archive name.</p>
+<p><a name="archive_access"></a>
+At the time that an archive is opened (by <code>OPNARV</code>) the level of access RNMR has to that archive is set. RNMR will
+always have read access to an open archive, but not necessarily write access. A given archive may be open in multiple
+instances of RNMR but only one may have write access to it. This restriction is enforced by lock files which are created
+when RNMR opens an archive with write access and are deleted when the archive is closed. If RNMR closes unexpectedly (as
+in a program crash or power loss) these lock files may not be properly deleted, and affected archives will not be able
+to be opened with write access when RNMR is restarted. This issue can be circumvented by manually deleting the lock
+files in the user's archive folder or by using <code>OPNARV /FORCE</code>. In order to avoid data corruption, be careful to only
+take these actions if you are sure that the archive is not in fact open with write access in any instance of RNMR.</p>
+<h2 id="records">Records</h2>
+<p>Archives consist of individual numbered records that hold data. An archive may have up to 200 records. When a command
+accepts a record as an argument the record number should be used. Records in archive 1 can simply be specified by their
+record number within the archive. Records in archives other than 1 can be selected in two ways. Records in archive 2 are
+mapped to record numbers 201-400, archive 3 401-600, and archive 4 601-800. Any numbers in these ranges specify a record
+in the corresponding archive. The other method is to prepend the record number with the archive number and a colon. For
+example 2:12 refers to record number 12 in archive 2.</p>
+<p><a name="record_type"></a>
+There are three types of record: scratch records, archive records, and blocked records. Many commands that deal with
+records can only accept one of these types of records. The first four records in an archive are scratch records. They
+are meant as a temporary place to store data while working with it. Data in scratch records may be overwritten without
+first being explicitly deleted. The other record numbers (5-200) may hold either archive records or blocked records. An
+archive record stores a single one dimensional data set. A blocked record is a multi dimensional set of blocks that can
+each store a one dimensional data set.</p>
+<h2 id="blocked_records">Blocked Records</h2>
+<p>Blocked records store multi dimensional data sets as a collection of blocks that each hold a one dimensional data set.
+Blocked records must be allocated (by commands such as <code>ALLB</code> and <code>ALLCPY</code>) before data can be stored in them. A blocked
+record may have up to four dimensions. The size of each dimension is set at the time that the blocked record is
+allocated. Space within the archive file is also reserved when a blocked record is allocated. Space is reserved in
+blocks of 512 bytes each. Therefore the allocated space may exceed the actual amount of data.</p>
+<p><a name="ndimx"></a>
+The layout of the blocked record in the archive file depends upon the parameter NDIMX which determines the dimensions in
+which RNMR will be able to access the data in the blocked record. If NDIMX is 1 (the typical default) RNMR will only be
+able to access the data along the first dimension. The data will be stored in sequential order as one dimensional
+blocks. If NDIMX is 2 RNMR will be able to access data along the first two dimensions and will store the data in square
+blocks. The trend continues for larger values of NDIMX. The value of NDIMX cannot be changed after the record is
+allocated. Commands which must access data from a blocked record along a particular dimension will fail if the value of
+NDIMX for that record is not large enough.</p>
+<p><a name="slice"></a>
+When RNMR commands need to access some number of dimensions in a blocked record they access the first directions of the
+record. These directions are not necessarily the first dimensions of the record. The mapping of directions to dimensions
+is set by <code>DIRB</code>. This mapping is set separately for each possible dimensionality. When RNMR commands access some number
+of directions they will access a n-dimensional slice of the record. They will generally take an argument to indicate
+which slice. If the record has the same number of dimensions as are being accessed this slice must be 1. Otherwise the
+slice parameter is interpreted as a linear index along the other directions.</p>
+<p><a name="nseg"></a>
+Blocked records may have multiple segments. These segments are typically used to store the different channels of the
+hypercomplex acquisition used for multi-dimensional spectra. When loading data from or saving data to a blocked record
+a particular segment can be selected by appending a period and the segment number to the record number.</p>
+<h2 id="buffers">Buffers</h2>
+<p>Data to be manipulated in RNMR is kept in buffers. There are two types of buffers in RNMR: acquisition and processing.
+The acquisition buffer is only available in RNMRA and holds the same values as the averager. Data will initially be in
+the acquisition buffer when it is collected and it can then be transferred to a processing buffer for further
+manipulation and analysis. There are currently four processing buffers available in RNMR. Processing buffer 1 is the
+visible processing buffer and its contents may be displayed on the screen. Many commands operate only on the visible
+processing buffer. Others will accept processing buffers as arguments. Processing buffers are specified by their indexes
+(1-4).</p>
+<p>Processing buffers can be divided into multiple blocks using <code>DBSZ</code>. Multiple blocks of data can be read into these
+processing buffer blocks from a blocked record. Most commands that process data will operate on all of these blocks
+independently with a single RNMR command. This approach to data processing can increase efficiency by reducing the
+overhead of interpreting RNMR commands.</p>
+<p>There are a series of commands that perform mathematical operations on the data in two processing buffers. These will
+typically have a source and destination buffer as their arguments. The operation is performed on the data from the two
+buffers and the result is stored in the destination buffer. For these operations it is required that the two buffers
+have the same active size and domain, but they are not required to be partitioned into the same number of blocks. RNMR
+uses the following formula to match source and destination blocks when performing these operations.</p>
+<pre><code>SRC_BLCK = MOD(DTS_BLCK-1, NBLK_SRC)+1
+</code></pre>
+<h2 id="acquisition">Acquisition</h2>
+<p>RNMR has several commands that start the collection and averaging of data: <code>DG</code>, <code>GO</code>, <code>NG</code>, and <code>ZG</code>. A shot counter is
+visible in the top right corner of the display and is incremented by every shot. Dummy scans are indicated by negative
+numbers while averaged shots will be indicated with positive numbers. There are two parameters that determine the number
+of shots these acquisition commands will average: na (as displayed and set by <code>NA</code>) and nwait (as displayed and set by
+<code>NWAIT</code>).</p>
+<ul>
+<li>
+<p>If the acquisition command is called from the console or nwait is 0 the
+number of shots will be based on na. If na is -1 an indefinite number of shots will be performed until the acquisition
+is halted manually by <code>QUIT</code>. Otherwise shots will be acquired until the shot counter reaches na.</p>
+</li>
+<li>
+<p>If the acquisition
+command is called from a macro and nwait is not 0 then shots will be acquired until the shot counter reaches either the
+next integer multiple of nwait or na (if it is not -1) whichever is smaller.</p>
+</li>
+</ul>
+<p><a name="acqgrp"></a>
+Acquisition using these commands can consist of multiple acquisition groups. These acquisition groups are primarily used
+when running multi-dimensional experiments. Each one corresponds to a separately averaged one dimensional slice within
+the larger experiment. When iterating through all of the necessary acquisition groups RNMR first iterates through each
+block of acquisition (the number of these being displayed and set by <code>NAMD /BLCK</code>) using the phase shifts set up by
+<code>AMD /BLCK</code> and <code>PPMD /BLCK</code>. These blocks are typically used to set up the steps of hypercomplex acquisition. After all
+the blocks are performed RNMR returns to the beginning of the sequence of blocks and increments the time step in the
+first indirect dimension. Once the maximum time in the first indirect dimension is reached it is set back to the first
+time step and the next indirect dimension is incremented etc.</p>
+<p>The acquisition commands all accept two arguments: the first and last acquisition groups to acquire (which default to 1
+and zero respectively). The groups are specified as a linear index into this whole process. For example in a 2D
+experiment with two blocks for two steps of hypercomplex acquisition, group 3 refers to the first block of the second
+indirect dimension time step. If the last group is set to 0 only the first group will be run. The details of these
+acquisition groups are typically handled automatically by a macro, but they can be useful for troubleshooting purposes.</p>
+<p><a name="signals"></a>
+When acquiring multiple acquisition groups RNMR will pause at certain steps in the acquisition process and use signals
+to indicate what step of the process it is at. These signals can also indicate that certain actions should be taken.
+Once the signal is acknowledged by <code>ASIG</code> acquisition will proceed. The following signals are used:</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GAV</td>
+<td>Indicates a slice is ready to be read from the averager and written to a blocked record</td>
+</tr>
+<tr>
+<td>SAV</td>
+<td>Indicates a slice is ready to be read from a blocked record and written to the averager for further averaging</td>
+</tr>
+<tr>
+<td>SGO</td>
+<td>Indicates that acquisition is ready to begin for a slice</td>
+</tr>
+</tbody>
+</table>
+<p>The SAV signal will only be used by <code>GO</code> and <code>NG</code> as only they are used for doing additional averaging on existing data.
+The appropriate data should be read from a (typically blocked) record and sent to the averager with <code>SAV</code> before this
+signal is acknowledged. Likewise data should be fetched from the averager with <code>GAV</code> to save to a (typically blocked)
+record before the GAV signal is acknowledged. These signals are generally handled by a macro and users will not
+typically need to deal with them directly.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../command_summary/" class="btn btn-neutral float-right" title="Command Summary">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../pulse_programming/" class="btn btn-neutral" title="Pulse Programming"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/bcmichael/RNMR-Docs/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../pulse_programming/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../command_summary/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

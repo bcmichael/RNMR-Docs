@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Macros - RNMR Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Macros";
+    var mkdocs_page_input_path = "macros.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> RNMR Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="tocbase current">
+    
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="..">Index</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../getting_started/">Getting Started</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../running_routine_experiments/">Running Routine Experiments</a>
+  </li>
+    
+      
+
+
+  
+    
+    <li class="navtree toctree-l1 page current">
+      <a class="current" href="./">
+        Macros
+      </a>
+    </li>
+    
+      
+
+
+
+  <li class="toctree-l1 current">
+    <ul class="subnav-l1 current">
+    
+      
+        <li class="toctree-l2">
+          <a class="toctree-l3" href="#introduction">Introduction</a>
+        </li>
+    
+      
+        <li class="toctree-l2">
+          <a class="toctree-l3" href="#macro_variables">Macro Variables</a>
+        </li>
+    
+      
+          
+
+  <li class="toctree-l2">
+    <a href="#structured_control_flow">
+      Structured Control Flow
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l2">
+    <ul class="subnav-l2 toc-hidden">
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#do_loops">DO Loops</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#sel_selector">SEL Selector</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#tst_conditional_execution">TST Conditional Execution</a>
+        </li>
+    
+    </ul>
+  </li>
+
+      
+    
+      
+        <li class="toctree-l2">
+          <a class="toctree-l3" href="#unstructured_control_flow">Unstructured Control Flow</a>
+        </li>
+    
+      
+        <li class="toctree-l2">
+          <a class="toctree-l3" href="#macro_output">Macro Output</a>
+        </li>
+    
+      
+        <li class="toctree-l2">
+          <a class="toctree-l3" href="#passing_information_to_and_from_macros">Passing Information to and from Macros</a>
+        </li>
+    
+    </ul>
+  </li>
+
+
+  
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../pulse_programming/">Pulse Programming</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Commands</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../command/syntax/">Command Syntax</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../command/command_summary/">Command Summary</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../command/full_command/">Full Command Descriptions</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">RNMR Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Macros</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/bcmichael/RNMR-Docs/edit/master/docs/macros.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="macros">Macros</h1>
+<h2 id="introduction">Introduction</h2>
+<p>In RNMR, macros are user-defined procedures which consist of sequences of RNMR commands and (optionally) branching
+instructions to control the flow of command execution. Simple macros may be nothing more than a collection of commands
+to be executed sequentially as a unit, while more complex macros may perform calculations and manipulate acquisition and
+processing functions via local and global arguments.</p>
+<p>The creation and modification of macros may be handled entirely from within RNMR, using the Macro Edit and Define
+utilities, however they can also be manipulated outside of RNMR using a text editor. After a macro some_macro.rnmrm has
+been altered outside of RNMR you must call <code>MACRO SOME_MACRO</code> in order for the changes to show up inside RNMR.</p>
+<p>A number of commands and control flow constructs will be briefly described here and some examples of their use will be
+provided. More thorough documentation of these commands as well as many others can be found in the
+<a href="../command/full_command/">Full Command Descriptions</a> section.</p>
+<h2 id="macro_variables">Macro Variables</h2>
+<p>There are three different types of variables available in RNMR: global arguments, local arguments, and symbols. Global
+and local arguments are stored as strings with a maximum length of 80 characters even when they hold numbers while
+symbols are stored as either single precision floating point numbers or 32-bit integers. Arguments are more flexible and
+can be used in more places than symbols, but symbols are better for storing numbers with high precision. The name of a
+global, local, or symbol can be up to 16 characters long and may only include the characters A-Z, 0-9, $, or _. The
+first character may not be a number.</p>
+<p>These three types of variables share a common set of ways in which they can be defined. The commands <code>DNFGBL</code>, <code>DFNLCL</code>,
+and <code>DFNSYM</code> can directly define a variable. These commands have the following set of qualifiers:</p>
+<table>
+<thead>
+<tr>
+<th>Qualifier</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/FLT</td>
+<td>Treat val as a floating point number</td>
+</tr>
+<tr>
+<td>/INT</td>
+<td>Treat val as an integer</td>
+</tr>
+<tr>
+<td>/STR</td>
+<td>Treat val as a string</td>
+</tr>
+<tr>
+<td>/NDEC</td>
+<td>Set the number of decimal places to keep in /FLT mode</td>
+</tr>
+</tbody>
+</table>
+<p><code>DFNSYM</code> does not have the /STR option while <code>DFNGBL</code> and <code>DFNLCL</code> use it by default. <code>DFNSYM</code> uses /INT by default.
+When using the number options basic arithmetic operations may be performed (+, - , /, *). They will be performed in
+order from left to right without regard for order of operations except for parentheses. With /INT the arithmetic will be
+integer arithmetic and all of the operands must be integers. /NDEC sets the number of decimal places to keep when
+converting a float to a string. This affects the stored value for globals and locals but only the display of the default
+value for symbols. For example:</p>
+<pre><code>DFNGBL TEMP 3
+DNFGBL /INT TEMP 1+2
+</code></pre>
+<p>Will both define a global argument named temp with a value of 3. <code>DFLGBL</code> and <code>DFLLCL</code> can also be used to define
+globals and locals. These only define the variable if it does not exist, and can have a prompt associated with them.
+They have the same qualifiers as <code>DFNGBL</code> and <code>DFNLCL</code>. For example:</p>
+<pre><code>DFLGBL TEMP 2                  ;if no global temp exists define global temp to be 2
+DFLGBL TEMP 2 'set temp value' ;if no global temp exists prompt for it with 2 as a default
+</code></pre>
+<p>Variables may be also be defined by popping default values displayed by commands. Use &gt; to pop to a global, &gt;&gt; to pop to
+a local, and &gt;&gt;&gt; to pop to a symbol. When popping to a symbol the default value must be a number and the type of symbol
+is determined by the type of the value. For example:</p>
+<pre><code>LB &gt;TEMP   ;global temp with the current line broadening value as its value
+LB &gt;&gt;TEMP  ;local temp with the current line broadening value as its value
+LB &gt;&gt;&gt;TEMP ;float symbol temp with the current line broadening value as its value
+SP &gt;&gt;&gt;TEMP ;integer symbol temp with 1 as its value
+</code></pre>
+<p>Variables can also be defined by using <code>SET INFO</code> to redirect informational messages to a variable. For example:</p>
+<pre><code>SET INFO GBL TEMP
+ARV 1
+</code></pre>
+<p>Will define a global temp with the name of archive 1 as its value. Once again when defining a symbol the value must be a
+number and the type of symbol is determined by the type of the value. Variables can also be defined by <code>DO</code> to hold the
+loop counter. Variables may be removed using <code>REMGBL</code>, <code>REMLCL</code>, and <code>REMSYM</code>.</p>
+<p>Using the value of a variable is done differently depending on the type of variable. Any place that % is used followed
+directly a name the value of the global variable of that name will be substituted. The same applies to locals but with
+&amp; instead of %. For example:</p>
+<pre><code>DFNGBL TEMP 3
+MSG %TEMP
+</code></pre>
+<p>Will print 3 to the console. Symbols work a bit differently. The name of a symbol can be used directly without any
+special character, but can only be used as arguments to commands that expect the appropriate type of number. For
+example:</p>
+<pre><code>DFNSYM TEMP 2
+ARV TEMP
+</code></pre>
+<p>Will print the name of archive 2.</p>
+<h2 id="structured_control_flow">Structured Control Flow</h2>
+<h3 id="do_loops">DO Loops</h3>
+<p>A macro <code>DO</code> loop executes a set of commands between <code>DO</code> and its matching <code>ENDDO</code> a specified number of times. <code>DO</code>
+accepts arguments specifying the starting and ending value of the loop counter. Each time the <code>ENDDO</code> is reached the
+loop counter is incremented and the next iteration of the loop begins. There may optionally be a variable defined to
+hold the loop counter. By default the loop counter will be stored as a local. For example:</p>
+<pre><code>DO 2 6 COUNT
+    MSG &amp;COUNT
+ENDDO
+</code></pre>
+<p>Will print the numbers 2 through 6. There several special commands which can only be used between <code>DO</code> and its matching
+<code>ENDDO</code>. <code>BRKDO</code> exits the loop immediately without finishing the loop. <code>NXTDO</code> iterates the loop counter and begins the
+next loop iteration without finishing the loop body. <code>RPTDO</code> begins a new loop iteration without finishing the loop body
+or incrementing the loop counter. Caution is merited with <code>RPTDO</code> to avoid creating infinite loops.</p>
+<h3 id="sel_selector">SEL Selector</h3>
+<p><code>SEL</code> can be used to select one of several blocks of commands to execute based on the value of a local or global. By
+default a local is used. The value of the argument to <code>SEL</code> is compared to the argument of each <code>CASE</code> between <code>SEL</code> and
+its matching <code>ENDSEL</code>. The commands between the first matching <code>CASE</code> and either the next <code>CASE</code> or <code>ENDSEL</code> are
+executed. Note that if <code>CASE</code> has no argument it will match anything. For example:</p>
+<pre><code>DFNLCL SELECTOR 2
+SEL SELECTOR
+CASE 1
+    MSG 'A'
+CASE 2
+    MSG 'B'
+CASE 3
+    MSG 'C'
+CASE
+    MSG 'IT WAS NOT IN 1-3'
+ENDSEL
+</code></pre>
+<p>Will print B.</p>
+<h3 id="tst_conditional_execution">TST Conditional Execution</h3>
+<p><code>TST</code> can be used to conditionally execute blocks of commands based on the result of a test. See the
+<a href="../command/full_command/#tst">Full Command Descriptions</a> section for a description of all the available tests. Either
+the commands between <code>TST</code> and <code>ELSTST</code> or the commands between <code>ELSTST</code> and <code>ENDTST</code> will be executed based on the
+result of the test. The <code>ELSTST</code> is optional. The /TRUE and /FALSE qualifiers determine which block executed for which
+test result. With /TRUE <code>TST</code> will run the commands between <code>TST</code> and <code>ELSTST</code> if the test returns true and the commands
+between <code>ELSTST</code> and <code>ENDTST</code> if it returns false. /FALSE reverses this behavior. /FALSE is mostly useful when you only
+have one set of commands that you want to execute when the test is false. For example:</p>
+<pre><code>TST LCL A
+    MSG "THE VALUE OF A IS &amp;A"
+ELSTST
+    MSG "LOCAL ARGUMENT A DOES NOT EXIST"
+ENDTST
+</code></pre>
+<p>will test if local argument a exists and then either print its value or the fact that it does not exist.</p>
+<h2 id="unstructured_control_flow">Unstructured Control Flow</h2>
+<p>Unstructured control flow in RNMR macros makes use of labels. A macro label is defined by a period followed by the label
+name. When RNMR is searching for a label to jump to it will first search forward in the macro from the jump point and
+then wrap around and continue searching from the beginning of the macro.</p>
+<p>When jumping to a label a period not followed by a name will cause RNMR to simply continue execution on the next line.
+Appending +# to a label will cause RNMR to start execution # lines farther down that it would otherwise. A label
+including the period and line offset cannot be more than 16 characters long.</p>
+<p>The most basic control flow in RNMR macros is the <code>GOTO</code> command, which will simply jump to a label and continue
+execution from there. The <code>GOSUB</code> command is similar to <code>GOTO</code> in that it jumps to a label but when the macro hits an
+<code>MEXIT</code> it will return to where <code>GOSUB</code> was called from instead of exiting the macro. This is useful for creating
+subroutines within macros.</p>
+<p><code>GOTST</code> performs the same type of tests as <code>TST</code>, but instead of executing one of two blocks of commands it jumps to one
+of two labels. Tests which would cause <code>TST</code> to execute the commands between <code>TST</code> and <code>ELSTST</code> cause <code>GOTST</code> to jump to
+the first label. Tests which would cause <code>TST</code> to execute the commands between <code>ELSTST</code> and <code>ENDTST</code> cause <code>GOTST</code> to
+jump to the second. For example:</p>
+<pre><code>GOTST LCL A .EXISTS .DOESNOTEXIST
+.EXISTS
+MSG "THE VALUE OF A IS &amp;A"
+MEXIT
+.DOESNOTEXIST
+MSG "LOCAL ARGUMENT A DOES NOT EXIST"
+MEXIT
+</code></pre>
+<p>will test if local argument a exists and then either print its value or the fact that it does not exist.</p>
+<p><code>ONERR</code> can be used to set a label to jump to in the event of an error. If any error occurs in an RNMR command execution
+will jump to the specified label. Calling <code>ONERR</code> with no label unsets the error handling label.</p>
+<h2 id="macro_output">Macro Output</h2>
+<p>There are several ways in which an RNMR macro may output data to the user. First, data resulting from a calculation,
+experiment, or other manipulation may simply be stored in a global argument, which may be used on console level or in
+another macro as desired. Second, data from a macro may be printed to the screen using the <code>MSG</code> command. For example:</p>
+<pre><code>DFNLCL ABC 9
+MSG "VALUE OF ABC IS &amp;ABC"
+</code></pre>
+<p>The above code will print the following message to the console:</p>
+<pre><code>VALUE OF ABC IS 9
+</code></pre>
+<p>Data generated by a macro to a disk file using commands such as <code>WRT</code>. For example:</p>
+<pre><code>OPNWRT XYZ
+DFNLCL ABC 3
+WRT &amp;ABC
+CLSWRT
+</code></pre>
+<p>Creates a disk file called XYZ.WRT, writes the value of local argument ABC as one line in that file, and closes XYZ.WRT.
+When writing to files it is a good practice to set up error handling using <code>ONERR</code> to ensure that <code>CLSWRT</code> gets called
+even if errors occur during the writing process.</p>
+<h2 id="passing_information_to_and_from_macros">Passing Information to and from Macros</h2>
+<p>Data may be made available to all command levels using global arguments. However, it is also possible to explicitly pass
+data from either console level or from a macro to a subprocedure without using global arguments.</p>
+<p>To pass values to a macro simply supply the arguments after the macro name on the same line where it is called. Macro
+arguments are automatically stored in local arguments 1, 2, 3 etc. based on the order they are provided in. It is
+also possible to change the names of the arguments they are stored in using the <code>MACARG</code> command.</p>
+<p>It is also possible to return values from a macro to the calling routine. Supply the return values as arguments to
+<code>MEXIT</code> and they will be stored as local arguments <code>RTN$1</code>, <code>RTN$2</code>, <code>RTN$3</code> etc. in the calling procedure. The calling
+procedure can use <code>RTNARG</code> much like the <code>MACARG</code> to put these return values into differently named arguments.</p>
+<p>Both <code>MACARG</code> and <code>RTNARG</code> will only create as many local arguments as the number of values that were passed.  No local
+arguments will be created for any additional names which are supplied. For example, if the macro temp contains the
+following:</p>
+<pre><code>MACARG A B
+MSG "ARGUMENT ONE IS &amp;A"
+MSG "ARGUMENT TWO IS &amp;B"
+DFNLCL C 3
+MEXIT &amp;C 4
+</code></pre>
+<p>then calling the following:</p>
+<pre><code>TEMP 1 2
+    RTNARG ANSWER1 ANSWER2
+MSG "THE RETURN VALUES ARE &amp;ANSWER1 AND &amp;ANSWER2"
+</code></pre>
+<p>will print the following to the console:</p>
+<pre><code>ARGUMENT ONE IS 1
+ARGUMENT TWO IS 2
+THE RETURN VALUES ARE 3 AND 4
+</code></pre>
+<p>There is an additional method of passing information into a macro using a / in a calling procedure to specify a name of
+a local argument to create in the called macro. You can also specify the values of these arguments. For example, if the
+macro temp contains the following:</p>
+<pre><code>TST LCL A
+    MSG "A EXISTS AND HAS VALUE &amp;A"
+    MSG "B HAS VALUE &amp;B"
+    MEXIT
+ELSTST
+    MSG "A DOES NOT EXIST"
+ENDTST
+MEXIT
+</code></pre>
+<p>then calling the following:</p>
+<pre><code>TEMP /A /B=2
+</code></pre>
+<p>will print the following to the console:</p>
+<pre><code>A EXISTS AND HAS VALUE
+B HAS VALUE 2
+</code></pre>
+<p>Note that A does not have a value so it shows up as blank in the printed message.</p>
+<p>These two methods of passing arguments into macros are somewhat analogous to the positional and keyword argument
+constructs in some other programing languages. You may use a mixture of both methods to pass information into a macro.</p>
+<p>The local arguments KEY$MAX and POS$MAX will automatically be created when a macro is called and will contain the number
+of each of these types of arguments that were passed to the macro. The local argument MACRO$ will also be created and
+will hold the name of the macro.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../pulse_programming/" class="btn btn-neutral float-right" title="Pulse Programming">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../running_routine_experiments/" class="btn btn-neutral" title="Running Routine Experiments"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/bcmichael/RNMR-Docs/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../running_routine_experiments/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../pulse_programming/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

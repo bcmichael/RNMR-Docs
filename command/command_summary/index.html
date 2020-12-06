@@ -1,0 +1,2419 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Command Summary - RNMR Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Command Summary";
+    var mkdocs_page_input_path = "command\\command_summary.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> RNMR Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="tocbase current">
+    
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../..">Index</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../getting_started/">Getting Started</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../running_routine_experiments/">Running Routine Experiments</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../macros/">Macros</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../pulse_programming/">Pulse Programming</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Commands</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../syntax/">Command Syntax</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l2 page current">
+      <a class="current" href="./">
+        Command Summary
+          <span class="toctree-expand"></span>
+      </a>
+    </li>
+    
+      
+
+
+
+  <li class="toctree-l2 current">
+    <ul class="subnav-l2 current">
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#acquisition">Acquisition</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#apodization">Apodization</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#arguments">Arguments</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#baseline">Baseline</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#blocked_records">Blocked Records</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#buffer_arithmetic">Buffer Arithmetic</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#calculator">Calculator</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#contours">Contours</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#control_flow">Control Flow</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#data_analysis">Data Analysis</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#data_manipulation">Data Manipulation</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#data_storage">Data Storage</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#data_transforms">Data Transforms</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#display_control">Display Control</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#experiment">Experiment</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#file_io">File IO</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#foreign">Foreign</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#frequency_control">Frequency Control</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#hardware">Hardware</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#heater">Heater</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#lists">Lists</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#lock">Lock</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#macros">Macros</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#misc">Misc.</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#phasing">Phasing</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#plotting">Plotting</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#printing">Printing</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#pulse_control">Pulse Control</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#pulse_program_symbols">Pulse Program Symbols</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#shim">Shim</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#signal_generation">Signal Generation</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#tables">Tables</a>
+        </li>
+    
+      
+        <li class="toctree-l3">
+          <a class="toctree-l4" href="#waveform">Waveform</a>
+        </li>
+    
+    </ul>
+  </li>
+
+
+  
+        
+          
+
+
+  <li class="navtree toctree-l2 inactive">
+    <a class="" href="../full_command/">Full Command Descriptions</a>
+  </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">RNMR Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Commands &raquo;</li>
+        
+      
+    
+    <li>Command Summary</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/bcmichael/RNMR-Docs/edit/master/docs/command/command_summary.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="command_summary">Command Summary</h1>
+<h2 id="acquisition">Acquisition</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#abort">ABORT</a></td>
+<td>Abort acquisition</td>
+</tr>
+<tr>
+<td><a href="../full_command/#asig">ASIG</a></td>
+<td>Acknowledge signal</td>
+</tr>
+<tr>
+<td><a href="../full_command/#calib">CALIB</a></td>
+<td>Determine data buffer amplitudes and phases</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dg">DG</a></td>
+<td>Start acquisition with delay shots</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gav">GAV</a></td>
+<td>Get data from averager</td>
+</tr>
+<tr>
+<td><a href="../full_command/#go">GO</a></td>
+<td>Start or resume acquisition</td>
+</tr>
+<tr>
+<td><a href="../full_command/#idna">IDNA</a></td>
+<td>Set acquisition buffer identification fields</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lpa">LPA</a></td>
+<td>List acquisition buffer parameters</td>
+</tr>
+<tr>
+<td><a href="../full_command/#nablk">NABLK</a></td>
+<td>Set number of acquisition blocks</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ndsp">NDSP</a></td>
+<td>Set number of shots between display update</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ng">NG</a></td>
+<td>Start or resume acquisition with dummy scans</td>
+</tr>
+<tr>
+<td><a href="../full_command/#quit">QUIT</a></td>
+<td>Quit acquisition</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sav">SAV</a></td>
+<td>Save data and parameters to averager</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sg">SG</a></td>
+<td>Start acquisition without accumulation</td>
+</tr>
+<tr>
+<td><a href="../full_command/#titlea">TITLEA</a></td>
+<td>Set acquisition title</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wait">WAIT</a></td>
+<td>Wait during acquisition</td>
+</tr>
+<tr>
+<td><a href="../full_command/#zera">ZERA</a></td>
+<td>Zero acquisition buffer and shot counter</td>
+</tr>
+<tr>
+<td><a href="../full_command/#zg">ZG</a></td>
+<td>Start acquisition</td>
+</tr>
+<tr>
+<td><a href="../full_command/#zoa">ZOA</a></td>
+<td>Zoom on acquisition display</td>
+</tr>
+</tbody>
+</table>
+<h2 id="apodization">Apodization</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#cd">CD</a></td>
+<td>Perform convolution difference apodization</td>
+</tr>
+<tr>
+<td><a href="../full_command/#cossq">COSSQ</a></td>
+<td>Perform cosine squared apodization</td>
+</tr>
+<tr>
+<td><a href="../full_command/#em">EM</a></td>
+<td>Exponential multiply FID</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gm">GM</a></td>
+<td>Gaussian multiply FID</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lb">LB</a></td>
+<td>Set line broadening factor</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sineb">SINEB</a></td>
+<td>Perform Sine-bell apodization</td>
+</tr>
+<tr>
+<td><a href="../full_command/#tm">TM</a></td>
+<td>Perform trapezoidal multiplication apodization</td>
+</tr>
+</tbody>
+</table>
+<h2 id="arguments">Arguments</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#catgbl">CATGBL</a></td>
+<td>List catalog of global variables</td>
+</tr>
+<tr>
+<td><a href="../full_command/#catlcl">CATLCL</a></td>
+<td>List catalog of local variables</td>
+</tr>
+<tr>
+<td><a href="../full_command/#catsym">CATSYM</a></td>
+<td>List catalog of symbols</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dflgbl">DFLGBL</a></td>
+<td>Define global argument with default value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dfllcl">DFLLCL</a></td>
+<td>Define local argument with default value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dflt">DFLT</a></td>
+<td>Prompt for local variable with default</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dfngbl">DFNGBL</a></td>
+<td>Define global argument</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dfnlcl">DFNLCL</a></td>
+<td>Define local argument</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dfnsym">DFNSYM</a></td>
+<td>Define symbol</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gblarg">GBLARG</a></td>
+<td>Set value of global argument</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gbldl">GBLDL</a></td>
+<td>Delete global argument</td>
+</tr>
+<tr>
+<td><a href="../full_command/#keyarg">KEYARG</a></td>
+<td>Declare names of macro keyword arguments</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lclarg">LCLARG</a></td>
+<td>Set local argument value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lcldl">LCLDL</a></td>
+<td>Delete local argument</td>
+</tr>
+<tr>
+<td><a href="../full_command/#macarg">MACARG</a></td>
+<td>Redefine names of positional macro arguments</td>
+</tr>
+<tr>
+<td><a href="../full_command/#remgbl">REMGBL</a></td>
+<td>Remove global arguments</td>
+</tr>
+<tr>
+<td><a href="../full_command/#remlcl">REMLCL</a></td>
+<td>Remove local arguments</td>
+</tr>
+<tr>
+<td><a href="../full_command/#remsym">REMSYM</a></td>
+<td>Remove symbols</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rstgbl">RSTGBL</a></td>
+<td>Restore global arguments from file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rtnarg">RTNARG</a></td>
+<td>Renames return arguments</td>
+</tr>
+<tr>
+<td><a href="../full_command/#savgbl">SAVGBL</a></td>
+<td>Save global arguments to file</td>
+</tr>
+</tbody>
+</table>
+<h2 id="baseline">Baseline</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#bc">BC</a></td>
+<td>Baseline correct FID</td>
+</tr>
+<tr>
+<td><a href="../full_command/#bf">BF</a></td>
+<td>Baseline fix spectrum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#medbf">MEDBF</a></td>
+<td>Median baseline fix spectrum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#spln">SPLN</a></td>
+<td>Spline baseline fix spectrum</td>
+</tr>
+</tbody>
+</table>
+<h2 id="blocked_records">Blocked Records</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#allb">ALLB</a></td>
+<td>Allocate a blocked record</td>
+</tr>
+<tr>
+<td><a href="../full_command/#allcpy">ALLCPY</a></td>
+<td>Allocate a copy of a blocked record</td>
+</tr>
+<tr>
+<td><a href="../full_command/#cvtmd">CVTMD</a></td>
+<td>Set modes for blocked record index conversion</td>
+</tr>
+<tr>
+<td><a href="../full_command/#cvtsz">CVTSZ</a></td>
+<td>Set sizes for blocked record index conversion</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dcdb">DCDB</a></td>
+<td>Convert block indices to values</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dcdbp">DCDBP</a></td>
+<td>Convert linear block index to vector indices</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dirb">DIRB</a></td>
+<td>Set blocked record access sequence</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ecdb">ECDB</a></td>
+<td>Convert dimension values to linear block index</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ecdbp">ECDBP</a></td>
+<td>Convert vector indices to linear block index</td>
+</tr>
+<tr>
+<td><a href="../full_command/#parb">PARB</a></td>
+<td>Set blocked record parameters</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ptrb">PTRB</a></td>
+<td>Set read and write blocked record pointers</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sizeb">SIZEB</a></td>
+<td>Displays size of blocked record</td>
+</tr>
+</tbody>
+</table>
+<h2 id="buffer_arithmetic">Buffer Arithmetic</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#addv">ADDV</a></td>
+<td>Add buffers</td>
+</tr>
+<tr>
+<td><a href="../full_command/#cmul">CMUL</a></td>
+<td>Multiply buffer by complex constant</td>
+</tr>
+<tr>
+<td><a href="../full_command/#cmulv">CMULV</a></td>
+<td>Complex multiply two buffers</td>
+</tr>
+<tr>
+<td><a href="../full_command/#conjg">CONJG</a></td>
+<td>Complex conjugate data</td>
+</tr>
+<tr>
+<td><a href="../full_command/#cpxv">CPXV</a></td>
+<td>Complex merge two buffers</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gmv">GMV</a></td>
+<td>Calculate geometric mean</td>
+</tr>
+<tr>
+<td><a href="../full_command/#maxv">MAXV</a></td>
+<td>Calculate maximum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#minv">MINV</a></td>
+<td>Calculates minimum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#movv">MOVV</a></td>
+<td>Move buffer</td>
+</tr>
+<tr>
+<td><a href="../full_command/#mulv">MULV</a></td>
+<td>Multiply buffer</td>
+</tr>
+<tr>
+<td><a href="../full_command/#neg">NEG</a></td>
+<td>Negates buffer</td>
+</tr>
+<tr>
+<td><a href="../full_command/#psubv">PSUBV</a></td>
+<td>Subtract polar buffers</td>
+</tr>
+<tr>
+<td><a href="../full_command/#subv">SUBV</a></td>
+<td>Subtract data buffers</td>
+</tr>
+<tr>
+<td><a href="../full_command/#swapv">SWAPV</a></td>
+<td>Swap data buffers</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wavv">WAVV</a></td>
+<td>Perform weighted addition of buffers</td>
+</tr>
+</tbody>
+</table>
+<h2 id="calculator">Calculator</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#calc">CALC</a></td>
+<td>Perform floating point arithmetic and logical calculations</td>
+</tr>
+<tr>
+<td><a href="../full_command/#calci">CALCI</a></td>
+<td>Perform integer arithmetic, logical, and bitwise calculations</td>
+</tr>
+</tbody>
+</table>
+<h2 id="contours">Contours</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#conlim">CONLIM</a></td>
+<td>Set contour plot height limits</td>
+</tr>
+<tr>
+<td><a href="../full_command/#conmd">CONMD</a></td>
+<td>Set contour plotting mode</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ncon">NCON</a></td>
+<td>Set number of contour levels</td>
+</tr>
+<tr>
+<td><a href="../full_command/#zo2dc">ZO2DC</a></td>
+<td>Zoom on 2D contour display</td>
+</tr>
+</tbody>
+</table>
+<h2 id="control_flow">Control Flow</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#askyn">ASKYN</a></td>
+<td>Ask yes or no</td>
+</tr>
+<tr>
+<td><a href="../full_command/#brkdo">BRKDO</a></td>
+<td>Break out of a macro <code>DO</code> loop</td>
+</tr>
+<tr>
+<td><a href="../full_command/#case">CASE</a></td>
+<td>Process <code>CASE</code> clause of <code>SEL</code> block</td>
+</tr>
+<tr>
+<td><a href="../full_command/#do">DO</a></td>
+<td>Begin macro <code>DO</code> loop</td>
+</tr>
+<tr>
+<td><a href="../full_command/#elstst">ELSTST</a></td>
+<td>Separate the code blocks after a <code>TST</code> check</td>
+</tr>
+<tr>
+<td><a href="../full_command/#enddo">ENDDO</a></td>
+<td>End a macro <code>DO</code> loop</td>
+</tr>
+<tr>
+<td><a href="../full_command/#endsel">ENDSEL</a></td>
+<td>End a macro <code>SEL</code> block</td>
+</tr>
+<tr>
+<td><a href="../full_command/#endtst">ENDTST</a></td>
+<td>End a macro <code>TST</code> block</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gosub">GOSUB</a></td>
+<td>Perform call within macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#goto">GOTO</a></td>
+<td>Go to statement label in macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gotst">GOTST</a></td>
+<td>Perform a conditional jump within a macro based on a test</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ifcnd">IFCND</a></td>
+<td>Branch on condition flag</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ifeq">IFEQ</a></td>
+<td>Branch on equal</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ifgbl">IFGBL</a></td>
+<td>Check for global argument and branch</td>
+</tr>
+<tr>
+<td><a href="../full_command/#iflcl">IFLCL</a></td>
+<td>Check for local argument and branch</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ifmac">IFMAC</a></td>
+<td>Check for macro and branch</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ifrec">IFREC</a></td>
+<td>Check for record and branch</td>
+</tr>
+<tr>
+<td><a href="../full_command/#mexit">MEXIT</a></td>
+<td>Exit macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#nxtdo">NXTDO</a></td>
+<td>Cycle macro <code>DO</code> loop</td>
+</tr>
+<tr>
+<td><a href="../full_command/#onerr">ONERR</a></td>
+<td>Set macro error handler</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rptdo">RPTDO</a></td>
+<td>Repeat iteration of macro <code>DO</code> loop</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sel">SEL</a></td>
+<td>Begin macro <code>SEL</code> block</td>
+</tr>
+<tr>
+<td><a href="../full_command/#tst">TST</a></td>
+<td>Conditionally execute a block of commands based on a test</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data_analysis">Data Analysis</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#ibox">IBOX</a></td>
+<td>Set volume parameters for nD volume integration</td>
+</tr>
+<tr>
+<td><a href="../full_command/#intrg">INTRG</a></td>
+<td>Integrate region of spectrum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ixval">IXVAL</a></td>
+<td>Convert from unit value to point index</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lpk">LPK</a></td>
+<td>List Peaks</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lpk2d">LPK2D</a></td>
+<td>List peaks in two dimensions</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lw">LW</a></td>
+<td>Calculate line width</td>
+</tr>
+<tr>
+<td><a href="../full_command/#mnmx">MNMX</a></td>
+<td>Calculate minimum and maximum in buffer region</td>
+</tr>
+<tr>
+<td><a href="../full_command/#pp">PP</a></td>
+<td>Interactive peak picking</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rms">RMS</a></td>
+<td>Calculate root-mean-square value of data</td>
+</tr>
+<tr>
+<td><a href="../full_command/#th">TH</a></td>
+<td>Set threshold for peak selection</td>
+</tr>
+<tr>
+<td><a href="../full_command/#xval">XVAL</a></td>
+<td>Convert from point index to unit value</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data_manipulation">Data Manipulation</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#bincp">BINCP</a></td>
+<td>Perform binary pulse phase correction</td>
+</tr>
+<tr>
+<td><a href="../full_command/#cnvfl">CNVFL</a></td>
+<td>Convolution filter spectrum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#depake">DEPAKE</a></td>
+<td>Perform depaking of powder pattern spectrum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#df">DF</a></td>
+<td>Differentiate data</td>
+</tr>
+<tr>
+<td><a href="../full_command/#fold">FOLD</a></td>
+<td>Fold data buffer</td>
+</tr>
+<tr>
+<td><a href="../full_command/#intg">INTG</a></td>
+<td>Compute integral of spectrum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lpb">LPB</a></td>
+<td>Perform backward linear prediction on FID</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lpc">LPC</a></td>
+<td>Perform long pulse phase and amplitude correction</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lpca">LPCA</a></td>
+<td>Perform long pulse amplitude correction</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lpcp">LPCP</a></td>
+<td>Perform long pulse phase correction</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lpf">LPF</a></td>
+<td>Perform forward linear prediction on FID</td>
+</tr>
+<tr>
+<td><a href="../full_command/#prof">PROF</a></td>
+<td>Calculate profile of 2D data</td>
+</tr>
+<tr>
+<td><a href="../full_command/#profb">PROFB</a></td>
+<td>Calculate profile of blocked record along a dimension</td>
+</tr>
+<tr>
+<td><a href="../full_command/#proj">PROJ</a></td>
+<td>Calculate projection of 2D data</td>
+</tr>
+<tr>
+<td><a href="../full_command/#projb">PROJB</a></td>
+<td>Calculate projection of blocked record along a dimension</td>
+</tr>
+<tr>
+<td><a href="../full_command/#qc">QC</a></td>
+<td>Perform software quadrature phase correction</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rot">ROT</a></td>
+<td>Rotate spectrum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rotp">ROTP</a></td>
+<td>Rotate spectrum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#setv">SETV</a></td>
+<td>Set data values between limits</td>
+</tr>
+<tr>
+<td><a href="../full_command/#setvp">SETVP</a></td>
+<td>Set data values for specified points</td>
+</tr>
+<tr>
+<td><a href="../full_command/#shft">SHFT</a></td>
+<td>Shift data</td>
+</tr>
+<tr>
+<td><a href="../full_command/#shftp">SHFTP</a></td>
+<td>Shift data by points</td>
+</tr>
+<tr>
+<td><a href="../full_command/#tilt">TILT</a></td>
+<td>Tilt blocked record</td>
+</tr>
+<tr>
+<td><a href="../full_command/#twist">TWIST</a></td>
+<td>Twist blocked record</td>
+</tr>
+<tr>
+<td><a href="../full_command/#unfold">UNFOLD</a></td>
+<td>Unfold data buffer</td>
+</tr>
+<tr>
+<td><a href="../full_command/#val">VAL</a></td>
+<td>Set data value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wavb">WAVB</a></td>
+<td>Perform weighted average of blocked record</td>
+</tr>
+<tr>
+<td><a href="../full_command/#xt">XT</a></td>
+<td>Extract data within specified limits</td>
+</tr>
+<tr>
+<td><a href="../full_command/#xtp">XTP</a></td>
+<td>Extract data for points</td>
+</tr>
+<tr>
+<td><a href="../full_command/#zer">ZER</a></td>
+<td>Zero visible processing buffer</td>
+</tr>
+<tr>
+<td><a href="../full_command/#zf">ZF</a></td>
+<td>Zero fill visible processing buffer</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data_storage">Data Storage</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#arv">ARV</a></td>
+<td>Return archive information</td>
+</tr>
+<tr>
+<td><a href="../full_command/#cat">CAT</a></td>
+<td>List catalog of records</td>
+</tr>
+<tr>
+<td><a href="../full_command/#catarv">CATARV</a></td>
+<td>List catalog of archives</td>
+</tr>
+<tr>
+<td><a href="../full_command/#clsarv">CLSARV</a></td>
+<td>Close archive</td>
+</tr>
+<tr>
+<td><a href="../full_command/#cpy">CPY</a></td>
+<td>Copy record</td>
+</tr>
+<tr>
+<td><a href="../full_command/#crtarv">CRTARV</a></td>
+<td>Create archive</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dcdrec">DCDREC</a></td>
+<td>Convert record number into archive and archive record index</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dl">DL</a></td>
+<td>Delete records</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ecdrec">ECDREC</a></td>
+<td>Encode archive index</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ga">GA</a></td>
+<td>Get archive record data</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gb">GB</a></td>
+<td>Get blocked record data</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gs">GS</a></td>
+<td>Get data from scratch record</td>
+</tr>
+<tr>
+<td><a href="../full_command/#idn">IDN</a></td>
+<td>Set processing buffer identification fields</td>
+</tr>
+<tr>
+<td><a href="../full_command/#mov">MOV</a></td>
+<td>Move record</td>
+</tr>
+<tr>
+<td><a href="../full_command/#opnarv">OPNARV</a></td>
+<td>Open archive</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ptra">PTRA</a></td>
+<td>Set read and write archive pointers</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rdarv">RDARV</a></td>
+<td>Read archive name</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sa">SA</a></td>
+<td>Save data to archive record</td>
+</tr>
+<tr>
+<td><a href="../full_command/#savarv">SAVARV</a></td>
+<td>Save archive</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sb">SB</a></td>
+<td>Save data to blocked record</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sp">SP</a></td>
+<td>Display archive space information</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sqz">SQZ</a></td>
+<td>Squeeze archive (de-allocate unused space)</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ss">SS</a></td>
+<td>Save data to scratch record</td>
+</tr>
+<tr>
+<td><a href="../full_command/#title">TITLE</a></td>
+<td>Set processing buffer title</td>
+</tr>
+<tr>
+<td><a href="../full_command/#updarv">UPDARV</a></td>
+<td>Update archive</td>
+</tr>
+<tr>
+<td><a href="../full_command/#user">USER</a></td>
+<td>Set user name</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data_transforms">Data Transforms</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#ft">FT</a></td>
+<td>Fourier transform FID</td>
+</tr>
+<tr>
+<td><a href="../full_command/#hilb">HILB</a></td>
+<td>Perform Hilbert transform on spectrum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#hilbz">HILBZ</a></td>
+<td>Perform Hilbert transform on zero-filled spectrum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ift">IFT</a></td>
+<td>Inverse Fourier transform spectrum</td>
+</tr>
+<tr>
+<td><a href="../full_command/#mag">MAG</a></td>
+<td>Calculate magnitude of data</td>
+</tr>
+<tr>
+<td><a href="../full_command/#polar">POLAR</a></td>
+<td>Convert buffer to polar coordinates</td>
+</tr>
+</tbody>
+</table>
+<h2 id="display_control">Display Control</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#ai">AI</a></td>
+<td>Scale to absolute intensity</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ak">AK</a></td>
+<td>Set absolute scale factor</td>
+</tr>
+<tr>
+<td><a href="../full_command/#buf">BUF</a></td>
+<td>View real or imaginary processing buffer</td>
+</tr>
+<tr>
+<td><a href="../full_command/#bufa">BUFA</a></td>
+<td>View real or imaginary acquisition buffer</td>
+</tr>
+<tr>
+<td><a href="../full_command/#color">COLOR</a></td>
+<td>Set data display colors</td>
+</tr>
+<tr>
+<td><a href="../full_command/#crs">CRS</a></td>
+<td>Set cursor positions</td>
+</tr>
+<tr>
+<td><a href="../full_command/#crsa">CRSA</a></td>
+<td>Set acquisition cursor positions</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lim">LIM</a></td>
+<td>Set processing buffer display limits</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lima">LIMA</a></td>
+<td>Set acquisition buffer display limits</td>
+</tr>
+<tr>
+<td><a href="../full_command/#limb">LIMB</a></td>
+<td>Set blocked record display limits</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ndec">NDEC</a></td>
+<td>Set number of decimal places</td>
+</tr>
+<tr>
+<td><a href="../full_command/#norm">NORM</a></td>
+<td>Set scale to normalize display</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sc">SC</a></td>
+<td>Scale data</td>
+</tr>
+<tr>
+<td><a href="../full_command/#setidn">SETIDN</a></td>
+<td>Set identification values</td>
+</tr>
+<tr>
+<td><a href="../full_command/#unit">UNIT</a></td>
+<td>Set units</td>
+</tr>
+<tr>
+<td><a href="../full_command/#view">VIEW</a></td>
+<td>Set display source</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wndlim">WNDLIM</a></td>
+<td>Set processing view vertical window limits</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wndlima">WNDLIMA</a></td>
+<td>Set acquisition view vertical window limits</td>
+</tr>
+<tr>
+<td><a href="../full_command/#zo">ZO</a></td>
+<td>Zoom</td>
+</tr>
+<tr>
+<td><a href="../full_command/#zo2d">ZO2D</a></td>
+<td>Zoom on 2D data set</td>
+</tr>
+</tbody>
+</table>
+<h2 id="experiment">Experiment</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#chn">CHN</a></td>
+<td>Map logical and physical channels to one another</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dw">DW</a></td>
+<td>Set dwell time for data sampling during acquisition</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ex">EX</a></td>
+<td>Load a pulse program experiment</td>
+</tr>
+<tr>
+<td><a href="../full_command/#flag">FLAG</a></td>
+<td>Set pulse program flag on or off</td>
+</tr>
+<tr>
+<td><a href="../full_command/#flf">FLF</a></td>
+<td>Set filter factor</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gain">GAIN</a></td>
+<td>Set receiver gain</td>
+</tr>
+<tr>
+<td><a href="../full_command/#li">LI</a></td>
+<td>Increment pulse programmer loop value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#loop">LOOP</a></td>
+<td>Set or increment pulse program loop counter</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ls">LS</a></td>
+<td>Set pulse programmer loop value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#na">NA</a></td>
+<td>Set number of shots to acquire</td>
+</tr>
+<tr>
+<td><a href="../full_command/#nchn">NCHN</a></td>
+<td>Set number of channels</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ndly">NDLY</a></td>
+<td>Set number of dummy scans</td>
+</tr>
+<tr>
+<td><a href="../full_command/#nuc">NUC</a></td>
+<td>Set synthesizer nucleus</td>
+</tr>
+<tr>
+<td><a href="../full_command/#nwait">NWAIT</a></td>
+<td>Set number of shots to wait</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ppex">PPEX</a></td>
+<td>Load a pulse program experiment</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ppflg">PPFLG</a></td>
+<td>Set state of pulse program flag</td>
+</tr>
+<tr>
+<td><a href="../full_command/#pwr">PWR</a></td>
+<td>Set transmitter coarse power level</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rcvmix">RCVMIX</a></td>
+<td>Set receiver quadrature mixing</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rcvoff">RCVOFF</a></td>
+<td>Set receiver offset</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rd">RD</a></td>
+<td>Set recycle delay</td>
+</tr>
+<tr>
+<td><a href="../full_command/#size">SIZE</a></td>
+<td>Set acquisition size</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sw">SW</a></td>
+<td>Set sweep width</td>
+</tr>
+</tbody>
+</table>
+<h2 id="file_io">File IO</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#apnfil">APNFIL</a></td>
+<td>Append text to file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#clsrd">CLSRD</a></td>
+<td>Close file opened for read</td>
+</tr>
+<tr>
+<td><a href="../full_command/#clswrt">CLSWRT</a></td>
+<td>Close file which has been opened for writing</td>
+</tr>
+<tr>
+<td><a href="../full_command/#crtfil">CRTFIL</a></td>
+<td>Create text file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dltfil">DLTFIL</a></td>
+<td>Delete file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#edtfil">EDTFIL</a></td>
+<td>Edit text file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lstfil">LSTFIL</a></td>
+<td>List contents of a text file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#mrgfs">MRGFS</a></td>
+<td>Merge default file with file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#opnrd">OPNRD</a></td>
+<td>Open file for reading</td>
+</tr>
+<tr>
+<td><a href="../full_command/#opnwrt">OPNWRT</a></td>
+<td>Open file stream for writing</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rdwrt">RDWRT</a></td>
+<td>Read line from file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rwdrd">RWDRD</a></td>
+<td>Rewind file opened by <code>OPNRD</code></td>
+</tr>
+<tr>
+<td><a href="../full_command/#rwdwrt">RWDWRT</a></td>
+<td>Rewind file opened by <code>OPNWRT</code></td>
+</tr>
+<tr>
+<td><a href="../full_command/#wpk">WPK</a></td>
+<td>Write peaks in current display to <code>WRT</code> file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wpk2d">WPK2D</a></td>
+<td>Write 2D peaks to <code>WRT</code> file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wrt">WRT</a></td>
+<td>Write line to file opened by <code>OPNWRT</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="foreign">Foreign</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#bruk">BRUK</a></td>
+<td>Convert BRUKER FID to complex FID</td>
+</tr>
+<tr>
+<td><a href="../full_command/#clsexp">CLSEXP</a></td>
+<td>Close export file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#clsimp">CLSIMP</a></td>
+<td>Close import file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#exp">EXP</a></td>
+<td>Export buffer to foreign format</td>
+</tr>
+<tr>
+<td><a href="../full_command/#exp1d">EXP1D</a></td>
+<td>Export 1D data to foreign format</td>
+</tr>
+<tr>
+<td><a href="../full_command/#exp2d">EXP2D</a></td>
+<td>Export 2D data to foreign format</td>
+</tr>
+<tr>
+<td><a href="../full_command/#exp3d">EXP3D</a></td>
+<td>Export 3D data to foreign format</td>
+</tr>
+<tr>
+<td><a href="../full_command/#imp">IMP</a></td>
+<td>Import data from foreign format</td>
+</tr>
+<tr>
+<td><a href="../full_command/#imp1d">IMP1D</a></td>
+<td>Import data from foreign format</td>
+</tr>
+<tr>
+<td><a href="../full_command/#imp2d">IMP2D</a></td>
+<td>Import data from foreign format</td>
+</tr>
+<tr>
+<td><a href="../full_command/#imp3d">IMP3D</a></td>
+<td>Import data from foreign format</td>
+</tr>
+<tr>
+<td><a href="../full_command/#opnexp">OPNEXP</a></td>
+<td>Open export file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#opnimp">OPNIMP</a></td>
+<td>Open import file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#tppi">TPPI</a></td>
+<td>Convert TPPI-format FID to complex FID</td>
+</tr>
+</tbody>
+</table>
+<h2 id="frequency_control">Frequency Control</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#catnuc">CATNUC</a></td>
+<td>List catalog of nuclei</td>
+</tr>
+<tr>
+<td><a href="../full_command/#f">F</a></td>
+<td>Set synthesizer offset frequency</td>
+</tr>
+<tr>
+<td><a href="../full_command/#fsys">FSYS</a></td>
+<td>Set spectrometer system frequency</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gref">GREF</a></td>
+<td>Restore processing buffer reference from nucleus table</td>
+</tr>
+<tr>
+<td><a href="../full_command/#grefa">GREFA</a></td>
+<td>Restore acquisition buffer reference from nucleus table</td>
+</tr>
+<tr>
+<td><a href="../full_command/#nucd">NUCD</a></td>
+<td>Define nucleus table entry</td>
+</tr>
+<tr>
+<td><a href="../full_command/#nucdl">NUCDL</a></td>
+<td>Delete nucleus table entry</td>
+</tr>
+<tr>
+<td><a href="../full_command/#off">OFF</a></td>
+<td>Set offset from reference frequency</td>
+</tr>
+<tr>
+<td><a href="../full_command/#offa">OFFA</a></td>
+<td>Set offset from reference frequency</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sref">SREF</a></td>
+<td>Save processing buffer reference to nucleus table</td>
+</tr>
+<tr>
+<td><a href="../full_command/#srefa">SREFA</a></td>
+<td>Save acquisition buffer reference to nucleus table</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hardware">Hardware</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#mascmd">MASCMD</a></td>
+<td>Send command to MAS controller</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rgpib">RGPIB</a></td>
+<td>Read string from GPIB device</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rppsb">RPPSB</a></td>
+<td>Read data byte from pulse programmer spectrometer bus</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rrkc">RRKC</a></td>
+<td>Read data from an RKC device</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rsb">RSB</a></td>
+<td>Read data byte from spectrometer bus</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wgpib">WGPIB</a></td>
+<td>Write line to GPIB device</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wppsb">WPPSB</a></td>
+<td>Write data byte to pulse programmer spectrometer bus</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wrkc">WRKC</a></td>
+<td>Write data byte to RKC device</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wrri">WRRI</a></td>
+<td>Write command line to RRI device and read response</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wsb">WSB</a></td>
+<td>Write data byte to spectrometer bus</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wtrm">WTRM</a></td>
+<td>Write command line to terminal and read response</td>
+</tr>
+</tbody>
+</table>
+<h2 id="heater">Heater</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#htr">HTR</a></td>
+<td>Enable or disable probe heater</td>
+</tr>
+<tr>
+<td><a href="../full_command/#htrsts">HTRSTS</a></td>
+<td>Return probe heater status</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rsthtr">RSTHTR</a></td>
+<td>Restore heater values from file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#savhtr">SAVHTR</a></td>
+<td>Save heater values to file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#talarm">TALARM</a></td>
+<td>Set temperature for probe heater alarm</td>
+</tr>
+<tr>
+<td><a href="../full_command/#tset">TSET</a></td>
+<td>Set heater set-point temperature</td>
+</tr>
+<tr>
+<td><a href="../full_command/#tval">TVAL</a></td>
+<td>Show heater temperature</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wtset">WTSET</a></td>
+<td>Wait for heater to stabilize at setpoint</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lists">Lists</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#apnlst">APNLST</a></td>
+<td>Append values to list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#catlst">CATLST</a></td>
+<td>List catalog of lists</td>
+</tr>
+<tr>
+<td><a href="../full_command/#crtlst">CRTLST</a></td>
+<td>Create list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dfnlst">DFNLST</a></td>
+<td>Define list value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dltlst">DLTLST</a></td>
+<td>Delete list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#edtlst">EDTLST</a></td>
+<td>Edit list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#inslst">INSLST</a></td>
+<td>Insert value into list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lstdp">LSTDP</a></td>
+<td>Define list from display</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lstlst">LSTLST</a></td>
+<td>List contents of a list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#poplst">POPLST</a></td>
+<td>Pop a value from a list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#prglst">PRGLST</a></td>
+<td>Purge list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#pshlst">PSHLST</a></td>
+<td>Push a value to a list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rdlst">RDLST</a></td>
+<td>Read list from file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#remlst">REMLST</a></td>
+<td>Remove list value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rstlst">RSTLST</a></td>
+<td>Restore lists from file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#savlst">SAVLST</a></td>
+<td>Save lists to file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#sizlst">SIZLST</a></td>
+<td>Display size of list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wrtlst">WRTLST</a></td>
+<td>Write list to file</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lock">Lock</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#gainl">GAINL</a></td>
+<td>Set lock receiver gain</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lck">LCK</a></td>
+<td>Enable or disable lock feedback loop</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lckctl">LCKCTL</a></td>
+<td>Open lock control pop up menu</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lckmtr">LCKMTR</a></td>
+<td>Enable lock meter</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lckval">LCKVAL</a></td>
+<td>Read lock value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#pidl">PIDL</a></td>
+<td>Set lock PID gain factors</td>
+</tr>
+<tr>
+<td><a href="../full_command/#posl">POSL</a></td>
+<td>Set lock channel center position</td>
+</tr>
+<tr>
+<td><a href="../full_command/#pwrl">PWRL</a></td>
+<td>Set lock channel power level</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rstlck">RSTLCK</a></td>
+<td>Restore lock values from file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#savlck">SAVLCK</a></td>
+<td>Save lock values to file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#swl">SWL</a></td>
+<td>Set lock channel sweep width</td>
+</tr>
+<tr>
+<td><a href="../full_command/#swp">SWP</a></td>
+<td>Enable or disable lock sweep</td>
+</tr>
+<tr>
+<td><a href="../full_command/#tcl">TCL</a></td>
+<td>Set lock channel time constant</td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#apnmac">APNMAC</a></td>
+<td>Append text to macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#catmac">CATMAC</a></td>
+<td>List catalog of macros</td>
+</tr>
+<tr>
+<td><a href="../full_command/#cpymac">CPYMAC</a></td>
+<td>Copy macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#crtmac">CRTMAC</a></td>
+<td>Create macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dfnmac">DFNMAC</a></td>
+<td>Define macro table entry</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dltmac">DLTMAC</a></td>
+<td>Delete list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#edtmac">EDTMAC</a></td>
+<td>Edit macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lstmac">LSTMAC</a></td>
+<td>List contents of a macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#mapn">MAPN</a></td>
+<td>Append text to macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#mcpy">MCPY</a></td>
+<td>Copy macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#md">MD</a></td>
+<td>Define macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#mdl">MDL</a></td>
+<td>Delete macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#me">ME</a></td>
+<td>Edit macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ml">ML</a></td>
+<td>List contents of a macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#mrn">MRN</a></td>
+<td>Rename macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#remmac">REMMAC</a></td>
+<td>Remove macro table entry</td>
+</tr>
+<tr>
+<td><a href="../full_command/#renmac">RENMAC</a></td>
+<td>Rename macro</td>
+</tr>
+</tbody>
+</table>
+<h2 id="misc">Misc.</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#cnd">CND</a></td>
+<td>Set condition flag</td>
+</tr>
+<tr>
+<td><a href="../full_command/#cvtunit">CVTUNIT</a></td>
+<td>Convert a value between units</td>
+</tr>
+<tr>
+<td><a href="../full_command/#date">DATE</a></td>
+<td>Print the current date and time as an informational message</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dbsz">DBSZ</a></td>
+<td>Set processing buffer partitioning</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dcl">DCL</a></td>
+<td>Execute a shell command in background</td>
+</tr>
+<tr>
+<td><a href="../full_command/#exit">EXIT</a></td>
+<td>Exit program</td>
+</tr>
+<tr>
+<td><a href="../full_command/#inflvl">INFLVL</a></td>
+<td>Set info level</td>
+</tr>
+<tr>
+<td><a href="../full_command/#log">LOG</a></td>
+<td>Write line to log</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lp">LP</a></td>
+<td>List processing buffer parameters</td>
+</tr>
+<tr>
+<td><a href="../full_command/#mo">MO</a></td>
+<td>Exit program</td>
+</tr>
+<tr>
+<td><a href="../full_command/#msg">MSG</a></td>
+<td>Write message line to console</td>
+</tr>
+<tr>
+<td><a href="../full_command/#nop">NOP</a></td>
+<td>Null operation</td>
+</tr>
+<tr>
+<td><a href="../full_command/#prog">PROG</a></td>
+<td>Identify program</td>
+</tr>
+<tr>
+<td><a href="../full_command/#prtarg">PRTARG</a></td>
+<td>Print arguments</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rdstr">RDSTR</a></td>
+<td>Read tokens from a string</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rstbuf">RSTBUF</a></td>
+<td>Restore buffer values from file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#savbuf">SAVBUF</a></td>
+<td>Save buffer value to file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#savlog">SAVLOG</a></td>
+<td>Save logging to file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#set">SET</a></td>
+<td>Set system state</td>
+</tr>
+<tr>
+<td><a href="../full_command/#shell">SHELL</a></td>
+<td>Spawn shell</td>
+</tr>
+<tr>
+<td><a href="../full_command/#show">SHOW</a></td>
+<td>Show information</td>
+</tr>
+<tr>
+<td><a href="../full_command/#str">STR</a></td>
+<td>Perform string operation</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wttim">WTTIM</a></td>
+<td>Wait for specified number of seconds</td>
+</tr>
+</tbody>
+</table>
+<h2 id="phasing">Phasing</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#pc">PC</a></td>
+<td>Incremental phase correction</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ph">PH</a></td>
+<td>Interactive phase correction</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ps">PS</a></td>
+<td>Set phase</td>
+</tr>
+<tr>
+<td><a href="../full_command/#tp">TP</a></td>
+<td>Show phase correction values</td>
+</tr>
+</tbody>
+</table>
+<h2 id="plotting">Plotting</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#clsplt">CLSPLT</a></td>
+<td>Close plotter stream and print</td>
+</tr>
+<tr>
+<td><a href="../full_command/#opnplt">OPNPLT</a></td>
+<td>Open plot stream</td>
+</tr>
+<tr>
+<td><a href="../full_command/#pen">PEN</a></td>
+<td>Select plot pen</td>
+</tr>
+<tr>
+<td><a href="../full_command/#pgsize">PGSIZE</a></td>
+<td>Set page size for plot</td>
+</tr>
+<tr>
+<td><a href="../full_command/#pldev">PLDEV</a></td>
+<td>Select plotting device</td>
+</tr>
+<tr>
+<td><a href="../full_command/#plfil">PLFIL</a></td>
+<td>Set plot file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#plot">PLOT</a></td>
+<td>Plot current 1D display</td>
+</tr>
+<tr>
+<td><a href="../full_command/#plotc">PLOTC</a></td>
+<td>Plot 2D contours</td>
+</tr>
+<tr>
+<td><a href="../full_command/#plsize">PLSIZE</a></td>
+<td>Set plot size</td>
+</tr>
+<tr>
+<td><a href="../full_command/#stk">STK</a></td>
+<td>Add to plot stream stack</td>
+</tr>
+<tr>
+<td><a href="../full_command/#stkoff">STKOFF</a></td>
+<td>Set stack plot offset</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wwash">WWASH</a></td>
+<td>Set state of plot whitewash flag</td>
+</tr>
+</tbody>
+</table>
+<h2 id="printing">Printing</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#lpdev">LPDEV</a></td>
+<td>Select text printer device</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lpfil">LPFIL</a></td>
+<td>Set text printer file</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pulse_control">Pulse Control</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#amd">AMD</a></td>
+<td>Set acquisition modes</td>
+</tr>
+<tr>
+<td><a href="../full_command/#d">D</a></td>
+<td>Set pulse programmer delay</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dly">DLY</a></td>
+<td>Set pulse programmer delay</td>
+</tr>
+<tr>
+<td><a href="../full_command/#fmx">FMX</a></td>
+<td>Set frequency modulation value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#fmxex">FMXEX</a></td>
+<td>Load frequency modulation program</td>
+</tr>
+<tr>
+<td><a href="../full_command/#namd">NAMD</a></td>
+<td>Set number of acquisition modes</td>
+</tr>
+<tr>
+<td><a href="../full_command/#p">P</a></td>
+<td>Set pulse length</td>
+</tr>
+<tr>
+<td><a href="../full_command/#pls">PLS</a></td>
+<td>Set pulse length</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ppmd">PPMD</a></td>
+<td>Set pulse program phase mode</td>
+</tr>
+<tr>
+<td><a href="../full_command/#psx">PSX</a></td>
+<td>Set transmitter phase</td>
+</tr>
+<tr>
+<td><a href="../full_command/#psxex">PSXEX</a></td>
+<td>Load transmitter phase program from PAM memory.</td>
+</tr>
+<tr>
+<td><a href="../full_command/#pwx">PWX</a></td>
+<td>Set transmitter fine power level</td>
+</tr>
+<tr>
+<td><a href="../full_command/#pwxex">PWXEX</a></td>
+<td>Load power program</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pulse_program_symbols">Pulse Program Symbols</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#catpps">CATPPS</a></td>
+<td>List catalog of PP symbols</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dfnpps">DFNPPS</a></td>
+<td>Define pulse programmer symbol table entry</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rdpps">RDPPS</a></td>
+<td>Read PP symbol</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rdppsnam">RDPPSNAM</a></td>
+<td>Read PP symbol name</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rempps">REMPPS</a></td>
+<td>Remove pulse programmer symbols</td>
+</tr>
+</tbody>
+</table>
+<h2 id="shim">Shim</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#autoz">AUTOZ</a></td>
+<td>Set automatic Z shim parameters</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rstshm">RSTSHM</a></td>
+<td>Restore shim values from file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#savshm">SAVSHM</a></td>
+<td>Save shim values to file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#shm">SHM</a></td>
+<td>Set shim value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#shmctl">SHMCTL</a></td>
+<td>Open interactive shim controls</td>
+</tr>
+</tbody>
+</table>
+<h2 id="signal_generation">Signal Generation</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#echo">ECHO</a></td>
+<td>Rearrange buffer to simulate echo data</td>
+</tr>
+<tr>
+<td><a href="../full_command/#gencs">GENCS</a></td>
+<td>Generate complex sine wave</td>
+</tr>
+<tr>
+<td><a href="../full_command/#genpwdr">GENPWDR</a></td>
+<td>Generate complex powder pattern</td>
+</tr>
+<tr>
+<td><a href="../full_command/#noise">NOISE</a></td>
+<td>Generate complex random noise</td>
+</tr>
+<tr>
+<td><a href="../full_command/#unecho">UNECHO</a></td>
+<td>Rearrange buffer to simulate FID from echo</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tables">Tables</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#cattbl">CATTBL</a></td>
+<td>List catalog of name tables</td>
+</tr>
+<tr>
+<td><a href="../full_command/#crttbl">CRTTBL</a></td>
+<td>Create name table</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dfltbl">DFLTBL</a></td>
+<td>Define name table argument with default value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dfntbl">DFNTBL</a></td>
+<td>Define name table argument</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dlttbl">DLTTBL</a></td>
+<td>Delete name table</td>
+</tr>
+<tr>
+<td><a href="../full_command/#prgtbl">PRGTBL</a></td>
+<td>Purge name table</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rdtbl">RDTBL</a></td>
+<td>Read name table values from file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#remtbl">REMTBL</a></td>
+<td>Remove name table entries</td>
+</tr>
+<tr>
+<td><a href="../full_command/#rsttbl">RSTTBL</a></td>
+<td>Restore name tables from file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#savtbl">SAVTBL</a></td>
+<td>Save name tables to file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#siztbl">SIZTBL</a></td>
+<td>Display size of name table</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wrttbl">WRTTBL</a></td>
+<td>Write name table to file</td>
+</tr>
+</tbody>
+</table>
+<h2 id="waveform">Waveform</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../full_command/#wrf">WRF</a></td>
+<td>Set waveform reference values</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wrfex">WRFEX</a></td>
+<td>Load waveform RF program</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wwf">WWF</a></td>
+<td>Set waveform values</td>
+</tr>
+<tr>
+<td><a href="../full_command/#wwfex">WWFEX</a></td>
+<td>Load waveform program</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../full_command/" class="btn btn-neutral float-right" title="Full Command Descriptions">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../syntax/" class="btn btn-neutral" title="Command Syntax"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/bcmichael/RNMR-Docs/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../syntax/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../full_command/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
