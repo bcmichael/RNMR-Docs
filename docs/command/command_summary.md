@@ -39,16 +39,20 @@ Command | Description
 [CATGBL](full_command.md#catgbl) | List catalog of global variables
 [CATLCL](full_command.md#catlcl) | List catalog of local variables
 [CATSYM](full_command.md#catsym) | List catalog of symbols
+[CATSYMB](full_command.md#catsymb) | List catalog of symbols
 [DFLGBL](full_command.md#dflgbl) | Define global argument with default value
 [DFLLCL](full_command.md#dfllcl) | Define local argument with default value
 [DFLT](full_command.md#dflt) | Prompt for local variable with default
+[DFLTV](full_command.md#dfltv) | Prompt for local integer variable with default
 [DFNGBL](full_command.md#dfngbl) | Define global argument
 [DFNLCL](full_command.md#dfnlcl) | Define local argument
 [DFNSYM](full_command.md#dfnsym) | Define symbol
 [GBLARG](full_command.md#gblarg) | Set value of global argument
+[GBLARGV](full_command.md#gblargv) | Set value of global integer argument
 [GBLDL](full_command.md#gbldl) | Delete global argument
 [KEYARG](full_command.md#keyarg) | Declare names of macro keyword arguments
 [LCLARG](full_command.md#lclarg) | Set local argument value
+[LCLARGV](full_command.md#lclargv) | Set local integer argument value
 [LCLDL](full_command.md#lcldl) | Delete local argument
 [MACARG](full_command.md#macarg) | Redefine names of positional macro arguments
 [REMGBL](full_command.md#remgbl) | Remove global arguments
@@ -57,6 +61,9 @@ Command | Description
 [RSTGBL](full_command.md#rstgbl) | Restore global arguments from file
 [RTNARG](full_command.md#rtnarg) | Renames return arguments
 [SAVGBL](full_command.md#savgbl) | Save global arguments to file
+[SYMB](full_command.md#symb) | Define symbol
+[SYMBDL](full_command.md#symbdl) | Delete symbol
+[SYMBF](full_command.md#symbf) | Define float symbol
 
 ## Baseline
 Command | Description
@@ -129,12 +136,23 @@ Command | Description
 [GOSUB](full_command.md#gosub) | Perform call within macro
 [GOTO](full_command.md#goto) | Go to statement label in macro
 [GOTST](full_command.md#gotst) | Perform a conditional jump within a macro based on a test
+[IFARV](full_command.md#ifarv) | Check for record and branch
+[IFCFG](full_command.md#ifcfg) | Check for subsytem and branch
 [IFCND](full_command.md#ifcnd) | Branch on condition flag
 [IFEQ](full_command.md#ifeq) | Branch on equal
+[IFFIL](full_command.md#iffil) | Check for file and branch
+[IFFLG](full_command.md#ifflg) | Branch on flag
 [IFGBL](full_command.md#ifgbl) | Check for global argument and branch
+[IFLAB](full_command.md#iflab) | Check for label and branch
 [IFLCL](full_command.md#iflcl) | Check for local argument and branch
+[IFLIM](full_command.md#iflim) | Check if value is within limits and branch
 [IFMAC](full_command.md#ifmac) | Check for macro and branch
+[IFPPS](full_command.md#ifpps) | Check for pulse program symbol and branch
+[IFRD](full_command.md#ifrd) | Check for open read file and branch
 [IFREC](full_command.md#ifrec) | Check for record and branch
+[IFSIG](full_command.md#ifsig) | Check for subsytem and branch
+[IFSYM](full_command.md#ifsym) | Check for symbol and branch
+[IFWR](full_command.md#ifwr) | Check for open write file and branch
 [MEXIT](full_command.md#mexit) | Exit macro
 [NXTDO](full_command.md#nxtdo) | Cycle macro `DO` loop
 [ONERR](full_command.md#onerr) | Set macro error handler
@@ -291,6 +309,7 @@ Command | Description
 [CRTFIL](full_command.md#crtfil) | Create text file
 [DLTFIL](full_command.md#dltfil) | Delete file
 [EDTFIL](full_command.md#edtfil) | Edit text file
+[FILDL](full_command.md#fildl) | Delete file
 [LSTFIL](full_command.md#lstfil) | List contents of a text file
 [MRGFS](full_command.md#mrgfs) | Merge default file with file
 [OPNRD](full_command.md#opnrd) | Open file for reading
@@ -371,7 +390,9 @@ Command | Description
 [DFNLST](full_command.md#dfnlst) | Define list value
 [DLTLST](full_command.md#dltlst) | Delete list
 [EDTLST](full_command.md#edtlst) | Edit list
+[INILST](full_command.md#inilst) | Purge list
 [INSLST](full_command.md#inslst) | Insert value into list
+[LST](full_command.md#lst) | Define list value
 [LSTDP](full_command.md#lstdp) | Define list from display
 [LSTLST](full_command.md#lstlst) | List contents of a list
 [POPLST](full_command.md#poplst) | Pop a value from a list
@@ -412,6 +433,7 @@ Command | Description
 [DLTMAC](full_command.md#dltmac) | Delete list
 [EDTMAC](full_command.md#edtmac) | Edit macro
 [LSTMAC](full_command.md#lstmac) | List contents of a macro
+[MACRO](full_command.md#macro) | Load macro from file
 [MAPN](full_command.md#mapn) | Append text to macro
 [MCPY](full_command.md#mcpy) | Copy macro
 [MD](full_command.md#md) | Define macro

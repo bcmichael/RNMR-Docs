@@ -1051,6 +1051,18 @@ Qualifier | Output
 
 Note that if neither /FLT nor /INT is specified `CATSYM` will list both, which is the same behavior as if both are
 specified.
+### CATSYMB
+List catalog of symbols
+
+Category: Arguments
+
+Format: `CATSYMB` first last
+
+Defaults: none ZZZZZZZZZZZZZZZZ
+
+Description:
+`CATSYMB` is an old command for listing symbols. It has been replaced with the `CATSYM` command and is currently simply
+an alias to it. As such `CATSYM` should be used in place of `CATSYMB`.
 ### CATTBL
 List catalog of name tables
 
@@ -1660,7 +1672,7 @@ Description:
 perform this conversion. If no [record number](syntax.md#records) is specified RNMR will prompt for it with the current
 read record pointer (as displayed and set by `PTRA`) as a default. For example when used on a dataset from a multi
 dimensional experiment stored as a blocked record, `DCDB` will convert a linear block index into indirect dimension
-time values. 
+time values.
 
 The second parameter, ndim, specifies how many dimensions are accounted for before the linear index. For example in a 3D
 data set ndim set to 1 will indicate that only the direct dimension is already accounted for and the linear index is
@@ -1879,6 +1891,21 @@ from left to right without regard for order of operations except for parentheses
     DFLTBL /INT A B 2*(2-1)
 
 will create argument a in name table b with a value of 2.
+### DFLTV
+Prompt for local integer variable with default
+
+Category: Arguments
+
+Format: `DFLTV` lclnam lclval prompt
+
+Defaults: TEMP none none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`DFLTV` is an old command for creating a local integer variable if one does not already exist with an optional prompt.
+It has been replaced with the `DFLLCL /INT` command and is currently simply an alias to it. As such `DFLLCL /INT` should
+be use in place of `DFLTV`.
 ### DFNGBL
 Define global argument
 
@@ -2397,7 +2424,7 @@ Description:
 `EM` performs exponential multiplication apodization on an FID in the visible processing buffer. In this apodization,
 the FID is multiplied by a decaying real exponential function. This results in a broadening of spectral lines after
 Fourier transformation which masks noise at the expense of resolution. When a perfect, non-decaying complex sine wave
-is exponentially multiplied and Fourier transformed, the result is a perfect Lorentzian line-shape. 
+is exponentially multiplied and Fourier transformed, the result is a perfect Lorentzian line-shape.
 
 `EM` takes one argument, lb, which is the line broadening factor. This parameter is expressed in the current frequency
 units (Hz, kHz, or MHz) unless that unit is ppm in which case it is in the default frequency units. The value of lb must
@@ -2664,6 +2691,18 @@ conversion factor (fppm) of the assigned nucleus:
 
     Factual(Hz) = 1.0E+06*FPPM(MHz) + FREQ(Hz) + FREF(Hz)
 
+### FILDL
+Delete file
+
+Category: File IO
+
+Format: `FILDL` file
+
+Defaults: temp.dat
+
+Description:
+`FILDL` is an old command for deleting files. It has been replaced with the `DLTFIL` command and is currently simply an
+alias to it. As such `DLTFIL` should be used in place of `FILDL`.
 ### FLAG
 Set pulse program flag on or off
 
@@ -2926,6 +2965,18 @@ Defaults: temp current
 Description:
 `GBLARG` is an old command for defining global arguments. It has been replaced with the `DFNGBL` command and is
 currently simply an alias to it. As such `DFNGBL` should be used in place of `GBLARG`.
+### GBLARGV
+Set value of global integer argument
+
+Category: Arguments
+
+Format: `GBLARGV` nam val
+
+Defaults: temp current
+
+Description:
+`GBLARGV` is an old command for defining integer global arguments. It has been replaced with the `DFNGBL /INT` command
+and is currently simply an alias to it. As such `DFNGBL /INT` should be used in place of `GBLARGV`.
 ### GBLDL
 Delete global argument
 
@@ -3003,7 +3054,7 @@ Description:
 `GM` performs a Gaussian multiplication apodization on an FID in the visible processing buffer. In this  apodization,
 the FID is multiplied by a decaying real Gaussian function. This results in a broadening of spectral lines after
 Fourier transformation which masks noise at the expense of resolution. When Gaussian multiplication is applied to a
-perfect, non-decaying complex sine wave and a Fourier transform is performed, the result will be a perfect Gaussian line shape. 
+perfect, non-decaying complex sine wave and a Fourier transform is performed, the result will be a perfect Gaussian line shape.
 
 `GM` takes one argument, lb, which is the line broadening factor. This parameter is expressed in the current frequency
 units (Hz, kHz, or MHz) unless that unit is ppm in which case it is in the default frequency units. The value of lb must
@@ -3048,7 +3099,7 @@ Description:
 dummy scans. This permits continued averaging of existing data. This can be used to resume acquisition that was halted.
 If the number of shots to acquire, na, (as displayed and set by `NA`) is not -1 the number of shots already acquired
 must be less than na. If the current shot counter is at 0 then `GO` will behave like `ZG` instead of its normal
-behavior. 
+behavior.
 
 The arguments first_group and last_group specify the range of [acquisition groups](syntax.md#acqgrp) to acquire. If
 either parameter is omitted RNMR will not prompt for it and will use 1 and 0 as defaults respectively. If last_group is
@@ -3291,6 +3342,40 @@ The first parameter, idn, selects which identifier field is to be modified. If i
 for an identifier with 1 as a default. If the value to set the identifier to is omitted RNMR will prompt for it with the
 current value as a default and the third parameter, prompt, as the prompt string. If prompt is omitted the default
 prompt string is 'Enter identifier value:'. The value may be not be longer than eight characters.
+### IFARV
+Check for record and branch
+
+Category: Control Flow
+
+Format: `IFARV` arv labelt labelf
+
+Defaults: 1 none none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`IFARV` is one of the old if commands. It jumps to labelt if the specified archive is open and to labelf if it is not.
+As with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
+
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
+### IFCFG
+Check for subsytem and branch
+
+Category: Control Flow
+
+Format: `IFCFG` nam labelt labelf
+
+Defaults: none none none
+
+Prerequisites: Macro only (MAC); RNMRA Only
+
+Description:
+`IFCFG` is one of the old if commands. It jumps to labelt if the specified subsystem exists and to labelf if it does
+not. As with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
+
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 ### IFCND
 Branch on condition flag
 
@@ -3325,14 +3410,48 @@ not. As with all of the old if commands, if the label to jump to is not specifie
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
 conditional jumps.
+### IFFIL
+Check for file and branch
+
+Category: Control Flow
+
+Format: `IFIL` nam labelt labelf
+
+Defaults: none none none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`IFFIL` is one of the old if commands. It jumps to labelt if the specified file exists and to labelf if it does not. As
+with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
+
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
+### IFFLG
+Branch on flag
+
+Category: Control Flow
+
+Format: `IFFLG` nam labelt labelf
+
+Defaults: none none none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`IFFLG` is one of the old if commands. It jumps to labelt if flag is on and to labelf if it is not. As with all of the
+old if commands, if the label to jump to is not specified execution continues to the next line.
+
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 ### IFGBL
 Check for global argument and branch
 
 Category: Control Flow
 
-Format: `IFGBL` gblnam labelt labelf
+Format: `IFGBL` nam labelt labelf
 
-Defaults: TEMP none none
+Defaults: none none none
 
 Prerequisites: Macro only (MAC)
 
@@ -3343,20 +3462,55 @@ line.
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
 conditional jumps.
+### IFLAB
+Check for label and branch
+
+Category: Control Flow
+
+Format: `IFLAB` nam labelt labelf
+
+Defaults: none none none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`IFLAB` is one of the old if commands. It jumps to labelt if the specified label exists and to labelf if it does not. As
+with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
+
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 ### IFLCL
 Check for local argument and branch
 
 Category: Control Flow
 
-Format: `IFLCL` lclnam labelt labelf
+Format: `IFLCL` nam labelt labelf
 
-Defaults: TEMP none none
+Defaults: none none none
 
 Prerequisites: Macro only (MAC)
 
 Description:
 `IFLCL` is one of the old if commands. It jumps to labelt if the specified local argument exists and to labelf if it
 does not. As with all of the old if commands, if the label to jump to is not specified execution continues to the next
+line.
+
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
+### IFLIM
+Check if value is within limits and branch
+
+Category: Control Flow
+
+Format: `IFLIM` val lim1 lim2 labelt labelf
+
+Defaults: intmax intmax intmax none none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`IFLIM` is one of the old if commands. It jumps to labelt if the value is between the specified limits and to labelf if
+it is not. As with all of the old if commands, if the label to jump to is not specified execution continues to the next
 line.
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
@@ -3368,7 +3522,7 @@ Category: Control Flow
 
 Format: `IFMAC` macnam labelt labelf
 
-Defaults: TEMP none none
+Defaults: none none none
 
 Prerequisites: Macro only (MAC)
 
@@ -3378,19 +3532,89 @@ with all of the old if commands, if the label to jump to is not specified execut
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
 conditional jumps.
+### IFPPS
+Check for pulse program symbol and branch
+
+Category: Control Flow
+
+Format: `IFPPS` nam labelt labelf
+
+Defaults: none none none
+
+Prerequisites: Macro only (MAC); RNMRA Only
+
+Description:
+`IFPPS` is one of the old if commands. It jumps to labelt if the specified pulse program symbol exists and to labelf if
+it does not. As with all of the old if commands, if the label to jump to is not specified execution continues to the
+next line.
+
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
+### IFRD
+Check for open read file and branch
+
+Category: Control Flow
+
+Format: `IFRD` labelt labelf
+
+Defaults: none none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`IFRD` is one of the old if commands. It jumps to labelt if a file is open for use with `RDWRT` and to labelf if not. As
+with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
+
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 ### IFREC
 Check for record and branch
 
 Category: Control Flow
 
-Format: `IFREC` rec. labelt labelf
+Format: `IFREC` rec labelt labelf
 
-Defaults: current none none
+Defaults: rrec none none
 
 Prerequisites: Macro only (MAC)
 
 Description:
 `IFREC` is one of the old if commands. It jumps to labelt if the specified record exists and to labelf if it does not.
+As with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
+
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
+### IFSIG
+Check for subsytem and branch
+
+Category: Control Flow
+
+Format: `IFSIG` nam labelt labelf
+
+Defaults: none none none
+
+Prerequisites: Macro only (MAC); RNMRA Only
+
+Description:
+`IFSIG` is one of the old if commands. It jumps to labelt if the specified [signal](syntax.md#signals) has occurred and
+to labelf if it has not. As with all of the old if commands, if the label to jump to is not specified execution
+continues to the next line.
+
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
+### IFSYM
+Check for symbol and branch
+
+Category: Control Flow
+
+Format: `IFSYM` nam labelt labelf
+
+Defaults: none none none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`IFSYM` is one of the old if commands. It jumps to labelt if the specified symbol exists and to labelf if it does not.
 As with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
 
 The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
@@ -3432,6 +3656,23 @@ NONE   | Does not scale
 Since time domain data is presented with minimum time on the left while frequency data is presented with maximum
 frequency on the left (by long standing NMR convention), the default action of `IFT` is to conjugate the data after
 transformation. This ensures that performing an `IFT` followed by an `FT` will give the same frequency data order.
+### IFWR
+Check for open write file and branch
+
+Category: Control Flow
+
+Format: `IFWR` labelt labelf
+
+Defaults: none none
+
+Prerequisites: Macro only (MAC)
+
+Description:
+`IFWR` is one of the old if commands. It jumps to labelt if a file is open for use with `WRT` and to labelf if not. As
+with all of the old if commands, if the label to jump to is not specified execution continues to the next line.
+
+The old if commands have been replaced. Instead use `TST` to conditionally execute commands or `GOTST` to make
+conditional jumps.
 ### IMP
 Import data from foreign format
 
@@ -3568,6 +3809,18 @@ Description:
 console. The first parameter, nam, specifies which info level to set. If nam is omitted RNMR will prompt for it with no
 default. The second parameter, lev, is the level to set and should be an integer that is 0 or greater. If lev is omitted
 RNMR will prompt for it with the current value as a default.
+### INILST
+Purge list
+
+Category: Lists
+
+Format: `INILST` nam
+
+Defaults: temp
+
+Description:
+`INILST` is an old command for emptying lists. It has been replaced with the `PRGLST` command and is currently simply an
+alias to it. As such `PRGLST` should be used in place of `INILST`.
 ### INTG
 Compute integral of spectrum
 
@@ -3759,6 +4012,18 @@ Defaults: temp current
 Description:
 `LCLARG` is an old command for defining local arguments. It has been replaced with the `DFNLCL` command and is
 currently simply an alias to it. As such `DFNLCL` should be used in place of `LCLARG`.
+### LCLARGV
+Set local integer argument value
+
+Category: Arguments
+
+Format: `LCLARGV` nam val
+
+Defaults: temp current
+
+Description:
+`LCLARGV` is an old command for defining local integer arguments. It has been replaced with the `DFNLCL /INT` command
+and is currently simply an alias to it. As such `DFNLCL /INT` should be used in place of `LCLARGV`.
 ### LCLDL
 Delete local argument
 
@@ -3769,7 +4034,7 @@ Format: `LCLDL` first last
 Defaults: temp first
 
 Description:
-`LCLDL` is an old command for deleting global arguments. It has been replaced with the `REMLCL` command and is currently
+`LCLDL` is an old command for deleting local arguments. It has been replaced with the `REMLCL` command and is currently
 simply an alias to it. As such `REMLCL` should be used in place of `LCLDL`.
 ### LI
 Increment pulse programmer loop value
@@ -4434,6 +4699,18 @@ Prerequisites: Pulse program loaded (LOAD) RNMR only
 Description:
 `LS` is an old command for setting a pulse programmer loop value. It has been replaced with the `LOOP` command and is
 currently simply an alias to it. As such `LOOP` should be used in place of `LS`.
+### LST
+Define list value
+
+Category: Lists
+
+Format: `LST` nam pos val
+
+Defaults: temp 1 current
+
+Description:
+`LST` is an old command for defining list values. It has been replaced with the `DFNLST` command and is currently simply
+an alias to it. As such `DFNLST` should be used in place of `LST`.
 ### LSTDP
 Define list from display
 
@@ -4569,6 +4846,18 @@ Description:
 is called with positional arguments they are stored in local arguments 1, 2, 3, etc. `MACARG` accepts a series of names
 as arguments. The default argument names are replaced with the names passed to `MACARG`. The number of names need not
 match the number of numbered arguments. Any names with no corresponding number local will be ignored.
+### MACRO
+Load macro from file
+
+Category: Macros
+
+Format: `MACRO` nam
+
+Defaults: temp
+
+Description:
+`MACRO` is an old command for loading macros. It has been replaced with the `DFNMAC /FORCE` command and is currently
+simply an alias to it. As such `DFNMAC` should be used in place of `MACRO`.
 ### MAG
 Calculate magnitude of data
 
@@ -7380,6 +7669,42 @@ Prerequisites: RNMR lock control; RNMRA only
 Description:
 `SWP` sets the state of the lock channel sweep. The state may be either ON or OFF. If no state is specified RNMR will
 prompt for it with the current value as a default.
+### SYMB
+Define symbol
+
+Category: Arguments
+
+Format: `SYMB` nam val
+
+Defaults: temp current
+
+Description:
+`SYMB` is an old command for defining symbols. It has been replaced with the `DFNSYM` command and is currently simply an
+alias to it. As such `DFNSYM` should be used in place of `SYMB`.
+### SYMBDL
+Delete symbol
+
+Category: Arguments
+
+Format: `SYMBDL` first last
+
+Defaults: temp first
+
+Description:
+`SYMBDL` is an old command for deleting symbols. It has been replaced with the `REMSYM` command and is currently simply
+an alias to it. As such `REMSYM` should be used in place of `SYMBDL`.
+### SYMBF
+Define float symbol
+
+Category: Arguments
+
+Format: `SYMBF` nam val
+
+Defaults: temp current
+
+Description:
+`SYMBF` is an old command for defining symbols. It has been replaced with the `DFNSYM /FLT` command and is currently
+simply an alias to it. As such `DFNSYM /FLT` should be used in place of `SYMB`.
 
 ## T
 ---
@@ -7676,7 +8001,7 @@ displayed and set by `PTRA`) as a default. The first direction of the blocked re
 second direction must be time domain. If no [slice](syntax.md#slice) is specified RNMR will not prompt for it and will
 twist the first 2D slice of the record. The final parameter, tfctr, determines how much to twist the record. If tfctr
 is omitted RNMR will not prompt for it and will use a value of 1.0. The value of tfctr may be between 0.0 and 1.0
-inclusive. 
+inclusive.
 
 ## U
 ---
