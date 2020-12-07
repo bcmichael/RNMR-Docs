@@ -88,7 +88,7 @@ relationship is not perfect (especially at the high end of the power range), as 
 
 In order to calibrate ¹³C powers we use the flipup and flipdn pulses which both have the same power. Uncomment the call
 to justcp ccal to call a submacro of justcp that sets up the phase cycling for power calibration. When both of the flip
-pulses are 90° you should see no signal. When flipup is 180° and flipdn is 90° you should see the full signal.
+pulses are 90° you should see the full signal. When flipup is 180° and flipdn is 90° you should see no signal.
 
 While calibrating it is very helpful to be able to compare two spectra on screen at once. With a spectrum on the screen
 call `SET REF ON` to set this spectrum as a reference. The reference spectrum will now appear overlaid with any
