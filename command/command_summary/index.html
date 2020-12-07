@@ -487,6 +487,10 @@
 <td>List catalog of symbols</td>
 </tr>
 <tr>
+<td><a href="../full_command/#catsymb">CATSYMB</a></td>
+<td>List catalog of symbols</td>
+</tr>
+<tr>
 <td><a href="../full_command/#dflgbl">DFLGBL</a></td>
 <td>Define global argument with default value</td>
 </tr>
@@ -497,6 +501,10 @@
 <tr>
 <td><a href="../full_command/#dflt">DFLT</a></td>
 <td>Prompt for local variable with default</td>
+</tr>
+<tr>
+<td><a href="../full_command/#dfltv">DFLTV</a></td>
+<td>Prompt for local integer variable with default</td>
 </tr>
 <tr>
 <td><a href="../full_command/#dfngbl">DFNGBL</a></td>
@@ -515,6 +523,10 @@
 <td>Set value of global argument</td>
 </tr>
 <tr>
+<td><a href="../full_command/#gblargv">GBLARGV</a></td>
+<td>Set value of global integer argument</td>
+</tr>
+<tr>
 <td><a href="../full_command/#gbldl">GBLDL</a></td>
 <td>Delete global argument</td>
 </tr>
@@ -525,6 +537,10 @@
 <tr>
 <td><a href="../full_command/#lclarg">LCLARG</a></td>
 <td>Set local argument value</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lclargv">LCLARGV</a></td>
+<td>Set local integer argument value</td>
 </tr>
 <tr>
 <td><a href="../full_command/#lcldl">LCLDL</a></td>
@@ -557,6 +573,18 @@
 <tr>
 <td><a href="../full_command/#savgbl">SAVGBL</a></td>
 <td>Save global arguments to file</td>
+</tr>
+<tr>
+<td><a href="../full_command/#symb">SYMB</a></td>
+<td>Define symbol</td>
+</tr>
+<tr>
+<td><a href="../full_command/#symbdl">SYMBDL</a></td>
+<td>Delete symbol</td>
+</tr>
+<tr>
+<td><a href="../full_command/#symbf">SYMBF</a></td>
+<td>Define float symbol</td>
 </tr>
 </tbody>
 </table>
@@ -817,6 +845,14 @@
 <td>Perform a conditional jump within a macro based on a test</td>
 </tr>
 <tr>
+<td><a href="../full_command/#ifarv">IFARV</a></td>
+<td>Check for record and branch</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ifcfg">IFCFG</a></td>
+<td>Check for subsytem and branch</td>
+</tr>
+<tr>
 <td><a href="../full_command/#ifcnd">IFCND</a></td>
 <td>Branch on condition flag</td>
 </tr>
@@ -825,20 +861,56 @@
 <td>Branch on equal</td>
 </tr>
 <tr>
+<td><a href="../full_command/#iffil">IFFIL</a></td>
+<td>Check for file and branch</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ifflg">IFFLG</a></td>
+<td>Branch on flag</td>
+</tr>
+<tr>
 <td><a href="../full_command/#ifgbl">IFGBL</a></td>
 <td>Check for global argument and branch</td>
+</tr>
+<tr>
+<td><a href="../full_command/#iflab">IFLAB</a></td>
+<td>Check for label and branch</td>
 </tr>
 <tr>
 <td><a href="../full_command/#iflcl">IFLCL</a></td>
 <td>Check for local argument and branch</td>
 </tr>
 <tr>
+<td><a href="../full_command/#iflim">IFLIM</a></td>
+<td>Check if value is within limits and branch</td>
+</tr>
+<tr>
 <td><a href="../full_command/#ifmac">IFMAC</a></td>
 <td>Check for macro and branch</td>
 </tr>
 <tr>
+<td><a href="../full_command/#ifpps">IFPPS</a></td>
+<td>Check for pulse program symbol and branch</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ifrd">IFRD</a></td>
+<td>Check for open read file and branch</td>
+</tr>
+<tr>
 <td><a href="../full_command/#ifrec">IFREC</a></td>
 <td>Check for record and branch</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ifsig">IFSIG</a></td>
+<td>Check for subsytem and branch</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ifsym">IFSYM</a></td>
+<td>Check for symbol and branch</td>
+</tr>
+<tr>
+<td><a href="../full_command/#ifwr">IFWR</a></td>
+<td>Check for open write file and branch</td>
 </tr>
 <tr>
 <td><a href="../full_command/#mexit">MEXIT</a></td>
@@ -1430,6 +1502,10 @@
 <td>Edit text file</td>
 </tr>
 <tr>
+<td><a href="../full_command/#fildl">FILDL</a></td>
+<td>Delete file</td>
+</tr>
+<tr>
 <td><a href="../full_command/#lstfil">LSTFIL</a></td>
 <td>List contents of a text file</td>
 </tr>
@@ -1725,8 +1801,16 @@
 <td>Edit list</td>
 </tr>
 <tr>
+<td><a href="../full_command/#inilst">INILST</a></td>
+<td>Purge list</td>
+</tr>
+<tr>
 <td><a href="../full_command/#inslst">INSLST</a></td>
 <td>Insert value into list</td>
+</tr>
+<tr>
+<td><a href="../full_command/#lst">LST</a></td>
+<td>Define list value</td>
 </tr>
 <tr>
 <td><a href="../full_command/#lstdp">LSTDP</a></td>
@@ -1877,6 +1961,10 @@
 <tr>
 <td><a href="../full_command/#lstmac">LSTMAC</a></td>
 <td>List contents of a macro</td>
+</tr>
+<tr>
+<td><a href="../full_command/#macro">MACRO</a></td>
+<td>Load macro from file</td>
 </tr>
 <tr>
 <td><a href="../full_command/#mapn">MAPN</a></td>
