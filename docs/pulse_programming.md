@@ -247,7 +247,7 @@ runs the PWXEX1 submacro. This then calls the supwxex macro to set up the powers
 idea holds for setting up the phases of each step of the decoupling.
 
 The macro also loads the justcp pulse program via `EX JUSTCP`. It also has sections for setting up a couple of different
-phase cycles for the experiment. The `AMD` command sets the pahse cycle for the receiver and the `PPMD` command sets the
+phase cycles for the experiment. The `AMD` command sets the phase cycle for the receiver and the `PPMD` command sets the
 phase cycle for the pulses that used the given ppmd in the pulse sequence. In this case each number 1-4 refers to the
 phase values 0, 90, 180, and 270 degrees respectively. A sequence of modes is supplied to `PPMD`. Starting with the
 first mode the sequence is iterated over as multiple shots are taken. That is to say on the first shot the first mode is
