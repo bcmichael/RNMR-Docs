@@ -1304,15 +1304,16 @@ Category: Display Control
 
 Format: `COLOR` red green blue
 
-Qualifiers: /BG /CURSOR /IMAG /REAL
+Qualifiers: /BG /CURSOR /IMAG /REAL /FG=ind
 
-Qualifier defaults: /REAL
+Qualifier defaults: /REAL /FG=1
 
 Defaults: current current current
 
 Description:
 `COLOR` sets the color of elements of the display. /BG sets the color of the background and /CURSOR sets the color of
-all cursors. /REAL and /IMAG set the color of the real and imaginary data respectively.
+all cursors. /REAL and /IMAG set the color of the real and imaginary data respectively. /FG=1 sets the color of the
+current data set, while /FG=2 sets the color of the reference data as set by `SET REF ON`.
 
 The red/green/blue values may each range from 0 to 100. That is, to specify pure red, use 100 0 0.
 
@@ -1322,8 +1323,10 @@ Option | Default Color
 ------ | -------------
 /BG    | 0 0 0 (Black)
 /CURSOR | 100 100 100 (White)
-/REAL  | 0 100 0 (Green)
-/IMAG  | 100 0 0 (Red)
+/REAL /FG=1 | 0 100 0 (Green)
+/IMAG /FG=1 | 100 0 0 (Red)
+/REAL /FG=1 | 25 75 25 (Light Green)
+/IMAG /FG=1 | 75 25 25 (Light Red)
 
 ### CONJG
 Complex conjugate data
