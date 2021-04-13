@@ -4514,12 +4514,13 @@ to the kernel size also depends on /END. The following options area available:</
 <p>Set data display colors</p>
 <p>Category: Display Control</p>
 <p>Format: <code>COLOR</code> red green blue</p>
-<p>Qualifiers: /BG /CURSOR /IMAG /REAL</p>
-<p>Qualifier defaults: /REAL</p>
+<p>Qualifiers: /BG /CURSOR /IMAG /REAL /FG=ind</p>
+<p>Qualifier defaults: /REAL /FG=1</p>
 <p>Defaults: current current current</p>
 <p>Description:
 <code>COLOR</code> sets the color of elements of the display. /BG sets the color of the background and /CURSOR sets the color of
-all cursors. /REAL and /IMAG set the color of the real and imaginary data respectively.</p>
+all cursors. /REAL and /IMAG set the color of the real and imaginary data respectively. /FG=1 sets the color of the
+current data set, while /FG=2 sets the color of the reference data as set by <code>SET REF ON</code>.</p>
 <p>The red/green/blue values may each range from 0 to 100. That is, to specify pure red, use 100 0 0.</p>
 <p>The default colors are:</p>
 <table>
@@ -4539,12 +4540,20 @@ all cursors. /REAL and /IMAG set the color of the real and imaginary data respec
 <td>100 100 100 (White)</td>
 </tr>
 <tr>
-<td>/REAL</td>
+<td>/REAL /FG=1</td>
 <td>0 100 0 (Green)</td>
 </tr>
 <tr>
-<td>/IMAG</td>
+<td>/IMAG /FG=1</td>
 <td>100 0 0 (Red)</td>
+</tr>
+<tr>
+<td>/REAL /FG=1</td>
+<td>25 75 25 (Light Green)</td>
+</tr>
+<tr>
+<td>/IMAG /FG=1</td>
+<td>75 25 25 (Light Red)</td>
 </tr>
 </tbody>
 </table>
