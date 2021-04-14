@@ -1325,8 +1325,8 @@ Option | Default Color
 /CURSOR | 100 100 100 (White)
 /REAL /FG=1 | 0 100 0 (Green)
 /IMAG /FG=1 | 100 0 0 (Red)
-/REAL /FG=1 | 25 75 25 (Light Green)
-/IMAG /FG=1 | 75 25 25 (Light Red)
+/REAL /FG=2 | 25 75 25 (Light Green)
+/IMAG /FG=2 | 75 25 25 (Light Red)
 
 ### CONJG
 Complex conjugate data
